@@ -7,6 +7,7 @@ import { DemoRequestDialog } from "@/components/ui/demo-request-dialog";
 import { LoginDialog } from "@/components/ui/login-dialog";
 import { ProductTour } from "@/components/ui/product-tour";
 import { LiveChatWidget } from "@/components/ui/live-chat-widget";
+import { TermsAndConditions } from "@/components/ui/terms-and-conditions";
 import { useToast } from "@/hooks/use-toast";
 import { 
   CheckCircle, 
@@ -37,6 +38,13 @@ export default function LandingPage() {
   const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
   const [showProductTour, setShowProductTour] = useState(false);
   const [showLiveChat, setShowLiveChat] = useState(false);
+  const [showTermsDialog, setShowTermsDialog] = useState(false);
+  const [pendingSignupData, setPendingSignupData] = useState<{
+    type: 'trial' | 'demo';
+    data: any;
+    userEmail: string;
+    planName: string;
+  } | null>(null);
   const [user, setUser] = useState(null);
   const { toast } = useToast();
 
@@ -57,6 +65,80 @@ export default function LandingPage() {
     toast({
       title: "Welcome back!",
       description: `Signed in as ${userData.name}`,
+      duration: 3000,
+    });
+  };
+
+  const handleTrialSubmit = (data: any) => {
+    // Show terms dialog before creating account
+    setPendingSignupData({
+      type: 'trial',
+      data: data,
+      userEmail: data.email,
+      planName: 'Professional Trial'
+    });
+    setIsTrialDialogOpen(false);
+    setShowTermsDialog(true);
+  };
+
+  const handleDemoSubmit = (data: any) => {
+    // Show terms dialog before creating account
+    setPendingSignupData({
+      type: 'demo',
+      data: data,
+      userEmail: data.email,
+      planName: 'Enterprise Demo'
+    });
+    setIsDemoDialogOpen(false);
+    setShowTermsDialog(true);
+  };
+
+  const handleTermsAccept = async () => {
+    if (!pendingSignupData) return;
+
+    try {
+      const response = await fetch('/api/leads', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...pendingSignupData.data,
+          leadType: pendingSignupData.type,
+          termsAccepted: true,
+          termsAcceptedAt: new Date().toISOString()
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to create account');
+      }
+
+      setShowTermsDialog(false);
+      setPendingSignupData(null);
+      
+      toast({
+        title: "Account Created Successfully! 🎉",
+        description: `Welcome to SafetySync.AI! Your ${pendingSignupData.type === 'trial' ? 'free trial' : 'demo'} is now active.`,
+        duration: 5000,
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to create account. Please try again.",
+        variant: "destructive",
+        duration: 3000,
+      });
+    }
+  };
+
+  const handleTermsDecline = () => {
+    setShowTermsDialog(false);
+    setPendingSignupData(null);
+    
+    toast({
+      title: "Signup Cancelled",
+      description: "You must accept the terms to create an account.",
       duration: 3000,
     });
   };
@@ -732,13 +814,30 @@ export default function LandingPage() {
       </footer>
 
       {/* Dialogs */}
-      <TrialSignupDialog isOpen={isTrialDialogOpen} onClose={() => setIsTrialDialogOpen(false)} />
-      <DemoRequestDialog isOpen={isDemoDialogOpen} onClose={() => setIsDemoDialogOpen(false)} />
+      <TrialSignupDialog 
+        isOpen={isTrialDialogOpen} 
+        onClose={() => setIsTrialDialogOpen(false)} 
+        onSubmit={handleTrialSubmit}
+      />
+      <DemoRequestDialog 
+        isOpen={isDemoDialogOpen} 
+        onClose={() => setIsDemoDialogOpen(false)} 
+        onSubmit={handleDemoSubmit}
+      />
       <LoginDialog 
         isOpen={isLoginDialogOpen} 
         onClose={() => setIsLoginDialogOpen(false)}
         onSuccess={handleLoginSuccess}
-        onSignupClick={handleSignupClick}
+        onSignupClick={handleTrialClick}
+      />
+      
+      {/* Terms and Conditions Dialog */}
+      <TermsAndConditions
+        isOpen={showTermsDialog}
+        onClose={handleTermsDecline}
+        onAccept={handleTermsAccept}
+        userEmail={pendingSignupData?.userEmail}
+        planName={pendingSignupData?.planName}
       />
       
       {/* Product Tour */}

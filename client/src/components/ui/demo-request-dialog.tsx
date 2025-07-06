@@ -11,9 +11,10 @@ import { Loader2, CheckCircle } from "lucide-react";
 interface DemoRequestDialogProps {
   isOpen: boolean;
   onClose: () => void;
+  onSubmit?: (data: any) => void;
 }
 
-export function DemoRequestDialog({ isOpen, onClose }: DemoRequestDialogProps) {
+export function DemoRequestDialog({ isOpen, onClose, onSubmit }: DemoRequestDialogProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [formData, setFormData] = useState({

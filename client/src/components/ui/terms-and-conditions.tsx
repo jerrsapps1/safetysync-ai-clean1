@@ -1,0 +1,271 @@
+import React, { useState } from 'react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from './dialog';
+import { Button } from './button';
+import { ScrollArea } from './scroll-area';
+import { Separator } from './separator';
+import { Badge } from './badge';
+
+interface TermsAndConditionsProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onAccept: () => void;
+  userEmail?: string;
+  planName?: string;
+}
+
+export function TermsAndConditions({ 
+  isOpen, 
+  onClose, 
+  onAccept, 
+  userEmail, 
+  planName 
+}: TermsAndConditionsProps) {
+  const [hasReadTerms, setHasReadTerms] = useState(false);
+  const [hasAcceptedTerms, setHasAcceptedTerms] = useState(false);
+  const [hasAcceptedPrivacy, setHasAcceptedPrivacy] = useState(false);
+
+  const canAccept = hasReadTerms && hasAcceptedTerms && hasAcceptedPrivacy;
+
+  const handleAccept = () => {
+    if (canAccept) {
+      onAccept();
+    }
+  };
+
+  return (
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="max-w-4xl max-h-[90vh] bg-white">
+        <DialogHeader>
+          <DialogTitle className="text-2xl font-bold text-gray-900">
+            Service Agreement & Terms of Use
+          </DialogTitle>
+          <div className="flex items-center gap-2 mt-2">
+            <Badge variant="outline" className="text-blue-600">
+              {planName || 'Professional Plan'}
+            </Badge>
+            <Badge variant="outline" className="text-gray-600">
+              {userEmail || 'Client Agreement'}
+            </Badge>
+          </div>
+        </DialogHeader>
+
+        <ScrollArea className="max-h-[60vh] pr-4">
+          <div className="space-y-6 text-sm text-gray-700">
+            
+            {/* Service Agreement Overview */}
+            <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+              <h3 className="font-semibold text-blue-900 mb-2">Service Agreement Overview</h3>
+              <p className="text-blue-800">
+                This agreement establishes the terms for your SafetySync.AI OSHA compliance platform subscription. 
+                By proceeding, you agree to these terms and create a binding service contract.
+              </p>
+            </div>
+
+            {/* Key Terms Summary */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+                <h4 className="font-semibold text-green-900 mb-2">✓ Service Access</h4>
+                <ul className="text-green-800 space-y-1">
+                  <li>• Immediate platform access upon payment</li>
+                  <li>• 24/7 compliance monitoring</li>
+                  <li>• Full feature access per your plan</li>
+                  <li>• Monthly billing cycle</li>
+                </ul>
+              </div>
+              
+              <div className="bg-orange-50 p-4 rounded-lg border border-orange-200">
+                <h4 className="font-semibold text-orange-900 mb-2">⚠️ Cancellation Policy</h4>
+                <ul className="text-orange-800 space-y-1">
+                  <li>• Cancel anytime with 30-day notice</li>
+                  <li>• No prorated refunds issued</li>
+                  <li>• 30-day data migration period</li>
+                  <li>• Export tools available during migration</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Full Terms and Conditions */}
+            <Separator />
+            
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold text-gray-900">TERMS AND CONDITIONS OF SERVICE</h3>
+              
+              <div className="space-y-3">
+                <div>
+                  <h4 className="font-semibold text-gray-900">1. SERVICE DESCRIPTION</h4>
+                  <p className="mt-1">
+                    SafetySync.AI provides AI-powered OSHA compliance management software as a service (SaaS). 
+                    Our platform includes compliance tracking, automated reporting, training management, 
+                    and regulatory update notifications.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-gray-900">2. SUBSCRIPTION AND BILLING</h4>
+                  <p className="mt-1">
+                    <strong>Monthly Billing:</strong> Services are billed monthly in advance based on your selected plan and employee count.
+                    <br />
+                    <strong>Payment Terms:</strong> Payment is due immediately upon subscription activation.
+                    <br />
+                    <strong>Plan Changes:</strong> Upgrades take effect immediately; downgrades take effect at the next billing cycle.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-gray-900">3. CANCELLATION AND REFUND POLICY</h4>
+                  <p className="mt-1">
+                    <strong>Cancellation:</strong> You may cancel your subscription at any time with 30 days written notice.
+                    <br />
+                    <strong>No Prorated Refunds:</strong> We do not provide prorated refunds for partial months of service.
+                    <br />
+                    <strong>Data Migration Period:</strong> Following cancellation notice, you will retain access for 30 days to migrate your data.
+                    <br />
+                    <strong>Data Export:</strong> We provide data export tools during the migration period.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-gray-900">4. DATA OWNERSHIP AND PRIVACY</h4>
+                  <p className="mt-1">
+                    <strong>Your Data:</strong> You retain ownership of all data uploaded to our platform.
+                    <br />
+                    <strong>Data Security:</strong> We implement enterprise-grade security measures to protect your data.
+                    <br />
+                    <strong>Data Retention:</strong> Upon cancellation, data is retained for 30 days then permanently deleted.
+                    <br />
+                    <strong>Privacy:</strong> We comply with applicable privacy laws and our Privacy Policy.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-gray-900">5. SERVICE AVAILABILITY</h4>
+                  <p className="mt-1">
+                    <strong>Uptime:</strong> We strive for 99.9% uptime but do not guarantee uninterrupted service.
+                    <br />
+                    <strong>Maintenance:</strong> Scheduled maintenance will be announced 48 hours in advance.
+                    <br />
+                    <strong>Support:</strong> Technical support is available during business hours for paid plans.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-gray-900">6. COMPLIANCE AND LIABILITY</h4>
+                  <p className="mt-1">
+                    <strong>Compliance Tool:</strong> Our platform is a tool to assist with OSHA compliance but does not guarantee compliance.
+                    <br />
+                    <strong>Professional Responsibility:</strong> You remain responsible for ensuring actual compliance with all applicable regulations.
+                    <br />
+                    <strong>Limitation of Liability:</strong> Our liability is limited to the amount paid for services in the preceding 12 months.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-gray-900">7. ACCEPTABLE USE</h4>
+                  <p className="mt-1">
+                    You agree not to: (a) violate any laws, (b) infringe intellectual property rights, 
+                    (c) transmit malicious code, (d) attempt to gain unauthorized access, or (e) use the service 
+                    for any unlawful or prohibited purpose.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-gray-900">8. MODIFICATIONS</h4>
+                  <p className="mt-1">
+                    We reserve the right to modify these terms with 30 days notice. Continued use of the service 
+                    constitutes acceptance of modified terms.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-gray-900">9. GOVERNING LAW</h4>
+                  <p className="mt-1">
+                    This agreement is governed by the laws of the jurisdiction where SafetySync.AI is incorporated. 
+                    Any disputes will be resolved through binding arbitration.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <Separator />
+
+            <div className="bg-gray-50 p-4 rounded-lg">
+              <h4 className="font-semibold text-gray-900 mb-2">Contact Information</h4>
+              <p className="text-gray-700">
+                For questions about these terms or your account, contact our support team at{' '}
+                <span className="font-medium">support@safetysync.ai</span>
+              </p>
+              <p className="text-xs text-gray-500 mt-2">
+                Last updated: {new Date().toLocaleDateString()}
+              </p>
+            </div>
+          </div>
+        </ScrollArea>
+
+        <DialogFooter className="flex flex-col gap-4">
+          <div className="space-y-3">
+            <div className="flex items-center space-x-2">
+              <input 
+                type="checkbox" 
+                id="read-terms" 
+                checked={hasReadTerms}
+                onChange={(e) => setHasReadTerms(e.target.checked)}
+                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+              />
+              <label 
+                htmlFor="read-terms" 
+                className="text-sm font-medium leading-none cursor-pointer"
+              >
+                I have read and understand the complete terms and conditions above
+              </label>
+            </div>
+            
+            <div className="flex items-center space-x-2">
+              <input 
+                type="checkbox" 
+                id="accept-terms" 
+                checked={hasAcceptedTerms}
+                onChange={(e) => setHasAcceptedTerms(e.target.checked)}
+                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+              />
+              <label 
+                htmlFor="accept-terms" 
+                className="text-sm font-medium leading-none cursor-pointer"
+              >
+                I agree to be bound by these terms and conditions
+              </label>
+            </div>
+            
+            <div className="flex items-center space-x-2">
+              <input 
+                type="checkbox" 
+                id="accept-privacy" 
+                checked={hasAcceptedPrivacy}
+                onChange={(e) => setHasAcceptedPrivacy(e.target.checked)}
+                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+              />
+              <label 
+                htmlFor="accept-privacy" 
+                className="text-sm font-medium leading-none cursor-pointer"
+              >
+                I acknowledge the cancellation policy and data migration terms
+              </label>
+            </div>
+          </div>
+          
+          <div className="flex justify-end gap-2">
+            <Button variant="outline" onClick={onClose}>
+              Cancel
+            </Button>
+            <Button 
+              onClick={handleAccept}
+              disabled={!canAccept}
+              className="bg-blue-600 hover:bg-blue-700"
+            >
+              Accept Terms & Create Account
+            </Button>
+          </div>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}

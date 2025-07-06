@@ -11,9 +11,10 @@ import { Loader2, CheckCircle } from "lucide-react";
 interface TrialSignupDialogProps {
   isOpen: boolean;
   onClose: () => void;
+  onSubmit?: (data: any) => void;
 }
 
-export function TrialSignupDialog({ isOpen, onClose }: TrialSignupDialogProps) {
+export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDialogProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [formData, setFormData] = useState({
