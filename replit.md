@@ -181,6 +181,10 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Created fallback analysis system for environments without OpenAI API access
   - Enhanced platform with robots.txt configuration and comprehensive security headers
   - Added automatic clone detector initialization on server startup for continuous monitoring
+- **July 06, 2025** - Updated Contact Information and Privacy:
+  - Removed phone number fields from all forms (trial signup, demo request, FAQ support) per user privacy preference
+  - Updated contact information to use email-only approach with support email available to paying customers
+  - Maintained phone field in database schema for existing data compatibility while removing from UI
 
 ## Changelog
 

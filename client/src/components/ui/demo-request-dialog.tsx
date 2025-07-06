@@ -20,7 +20,6 @@ export function DemoRequestDialog({ isOpen, onClose }: DemoRequestDialogProps) {
     name: "",
     email: "",
     company: "",
-    phone: "",
     message: "",
     leadType: "demo"
   });
@@ -92,7 +91,7 @@ export function DemoRequestDialog({ isOpen, onClose }: DemoRequestDialogProps) {
 
   const handleClose = () => {
     setIsSuccess(false);
-    setFormData({ name: "", email: "", company: "", phone: "", message: "", leadType: "demo" });
+    setFormData({ name: "", email: "", company: "", message: "", leadType: "demo" });
     setErrors({});
     onClose();
   };
@@ -169,16 +168,6 @@ export function DemoRequestDialog({ isOpen, onClose }: DemoRequestDialogProps) {
             {errors.company && <p className="text-sm text-red-500">{errors.company}</p>}
           </div>
           
-          <div className="space-y-2">
-            <Label htmlFor="phone">Phone Number</Label>
-            <Input
-              id="phone"
-              type="tel"
-              value={formData.phone}
-              onChange={(e) => handleInputChange("phone", e.target.value)}
-              placeholder="(555) 123-4567"
-            />
-          </div>
           
           <div className="space-y-2">
             <Label htmlFor="message">Tell us about your compliance needs</Label>
