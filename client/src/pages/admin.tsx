@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { getQueryFn } from "@/lib/queryClient";
 import { AdminAccess } from "@/components/ui/admin-access";
+import { AICloneDetector } from "@/components/ui/ai-clone-detector";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -28,7 +29,8 @@ import {
   Clock,
   CheckCircle,
   Home,
-  Brain
+  Brain,
+  Shield
 } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
@@ -376,10 +378,11 @@ export default function AdminPanel() {
 
         {/* Main Content Tabs */}
         <Tabs defaultValue="leads" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3">
+          <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="leads">Lead Management</TabsTrigger>
             <TabsTrigger value="users">User Management</TabsTrigger>
             <TabsTrigger value="analytics">Analytics</TabsTrigger>
+            <TabsTrigger value="security">Platform Security</TabsTrigger>
           </TabsList>
 
           <TabsContent value="leads" className="space-y-6">
@@ -728,6 +731,24 @@ export default function AdminPanel() {
                 </CardContent>
               </Card>
             </div>
+          </TabsContent>
+
+          {/* Platform Security Tab */}
+          <TabsContent value="security" className="space-y-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-lg font-semibold flex items-center gap-2">
+                  <Shield className="w-5 h-5 text-blue-600" />
+                  Platform Security
+                </h3>
+                <p className="text-gray-600">Monitor website clone detection and platform security threats</p>
+              </div>
+            </div>
+            <AICloneDetector 
+              onScanComplete={(results) => {
+                console.log('Clone detection scan completed:', results);
+              }}
+            />
           </TabsContent>
         </Tabs>
       </div>
