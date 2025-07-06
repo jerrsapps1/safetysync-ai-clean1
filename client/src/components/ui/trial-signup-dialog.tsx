@@ -20,7 +20,6 @@ export function TrialSignupDialog({ isOpen, onClose }: TrialSignupDialogProps) {
     name: "",
     email: "",
     company: "",
-    phone: "",
     password: "",
     message: "",
     leadType: "trial"
@@ -111,7 +110,7 @@ export function TrialSignupDialog({ isOpen, onClose }: TrialSignupDialogProps) {
 
   const handleClose = () => {
     setIsSuccess(false);
-    setFormData({ name: "", email: "", company: "", phone: "", password: "", message: "", leadType: "trial" });
+    setFormData({ name: "", email: "", company: "", password: "", message: "", leadType: "trial" });
     setErrors({});
     onClose();
   };
@@ -188,16 +187,6 @@ export function TrialSignupDialog({ isOpen, onClose }: TrialSignupDialogProps) {
             {errors.company && <p className="text-sm text-red-500">{errors.company}</p>}
           </div>
           
-          <div className="space-y-2">
-            <Label htmlFor="phone">Phone Number</Label>
-            <Input
-              id="phone"
-              type="tel"
-              value={formData.phone}
-              onChange={(e) => handleInputChange("phone", e.target.value)}
-              placeholder="(555) 123-4567"
-            />
-          </div>
           
           <div className="space-y-2">
             <Label htmlFor="password">Password *</Label>

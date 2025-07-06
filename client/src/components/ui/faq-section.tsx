@@ -330,11 +330,11 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
                 </Button>
               </div>
               <div className="text-center p-4">
-                <Phone className="w-6 h-6 mx-auto mb-2 text-purple-600" />
-                <div className="font-medium">Phone Support</div>
-                <div className="text-sm text-gray-600">Mon-Fri 8AM-6PM EST</div>
+                <Mail className="w-6 h-6 mx-auto mb-2 text-purple-600" />
+                <div className="font-medium">Premium Support</div>
+                <div className="text-sm text-gray-600">Available to paying customers</div>
                 <Button variant="outline" size="sm" className="mt-2">
-                  Call Now
+                  Get Support
                 </Button>
               </div>
             </div>
