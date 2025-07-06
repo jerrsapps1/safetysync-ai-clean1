@@ -219,6 +219,14 @@ export default function LandingPage() {
                 Start Your Free Trial
               </Button>
               <Button 
+                onClick={() => window.location.href = '/dashboard'}
+                variant="outline"
+                className="bg-white/10 border-white/20 text-white hover:bg-white/20 px-8 py-4 rounded-lg text-lg font-semibold backdrop-blur-sm min-w-[200px]"
+              >
+                <Settings className="w-5 h-5 mr-2" />
+                Demo Access
+              </Button>
+              <Button 
                 onClick={handleDemoClick}
                 variant="outline"
                 className="glass-effect border-white/30 text-white hover:bg-white/10 px-8 py-4 rounded-lg text-lg font-semibold backdrop-blur-sm min-w-[200px]"
