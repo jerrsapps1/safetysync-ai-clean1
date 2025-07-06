@@ -52,6 +52,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
         "Standard reports",
         "Email notifications",
         "Basic dashboard",
+        "Custom branding",
         "CSV exports"
       ]
     },
