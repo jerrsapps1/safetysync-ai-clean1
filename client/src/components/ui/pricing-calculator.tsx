@@ -40,10 +40,10 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
 
   const pricingTiers: PricingTier[] = [
     {
-      name: "Starter",
-      basePrice: 99,
-      perEmployee: 2.5,
-      maxEmployees: 100,
+      name: "Essential",
+      basePrice: 49,
+      perEmployee: 1.5,
+      maxEmployees: 50,
       features: [
         "Basic compliance tracking",
         "Employee certification records",
@@ -55,9 +55,9 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
     },
     {
       name: "Professional",
-      basePrice: 199,
-      perEmployee: 4,
-      maxEmployees: 500,
+      basePrice: 129,
+      perEmployee: 2.5,
+      maxEmployees: 250,
       popular: true,
       features: [
         "Advanced compliance analytics",
@@ -72,9 +72,9 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
     },
     {
       name: "Enterprise",
-      basePrice: 399,
-      perEmployee: 6,
-      maxEmployees: 2000,
+      basePrice: 299,
+      perEmployee: 4,
+      maxEmployees: 1000,
       features: [
         "Full compliance suite",
         "AI-powered recommendations",
@@ -138,9 +138,9 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
 
   const getRecommendedPlan = () => {
     const employees = employeeCount[0];
-    if (employees <= 100) return "Starter";
-    if (employees <= 500) return "Professional";
-    if (employees <= 2000) return "Enterprise";
+    if (employees <= 50) return "Essential";
+    if (employees <= 250) return "Professional";
+    if (employees <= 1000) return "Enterprise";
     return "Enterprise Plus";
   };
 
