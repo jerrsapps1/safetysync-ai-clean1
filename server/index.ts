@@ -23,13 +23,18 @@ app.use((req, res, next) => {
   next();
 });
 
-// Basic rate limiting
+// Basic rate limiting - more permissive for development
 const requestCounts = new Map();
 app.use((req, res, next) => {
   const ip = req.ip || req.connection.remoteAddress;
   const now = Date.now();
   const windowMs = 15 * 60 * 1000; // 15 minutes
-  const maxRequests = 100;
+  const maxRequests = 1000; // Increased limit for development
+  
+  // Skip rate limiting for localhost and development
+  if (ip === '127.0.0.1' || ip === '::1' || ip === '::ffff:127.0.0.1' || process.env.NODE_ENV === 'development') {
+    return next();
+  }
   
   if (!requestCounts.has(ip)) {
     requestCounts.set(ip, { count: 1, resetTime: now + windowMs });
