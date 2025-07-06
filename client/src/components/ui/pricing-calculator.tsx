@@ -37,6 +37,8 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
   const [isAnnual, setIsAnnual] = useState(true);
   const [selectedAddons, setSelectedAddons] = useState<string[]>([]);
   const [companySize, setCompanySize] = useState<'small' | 'medium' | 'large' | 'enterprise'>('medium');
+  const [promoCode, setPromoCode] = useState('');
+  const [appliedPromo, setAppliedPromo] = useState<any>(null);
 
   const pricingTiers: PricingTier[] = [
     {
@@ -116,6 +118,55 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
     { name: "24/7 Support", price: 75, description: "Round-the-clock phone support" }
   ];
 
+  // Promotional codes system
+  const promoCodes = {
+    'LAUNCH25': { type: 'percentage', value: 25, description: 'Launch Special - 25% Off', maxDiscount: 500, validUntil: '2025-12-31' },
+    'NEWCLIENT': { type: 'percentage', value: 20, description: 'New Client Discount - 20% Off', maxDiscount: 300, validUntil: '2025-06-30' },
+    'SUMMER2025': { type: 'percentage', value: 30, description: 'Summer Special - 30% Off', maxDiscount: 750, validUntil: '2025-08-31' },
+    'SAVE100': { type: 'fixed', value: 100, description: '$100 Off Your First Year', validUntil: '2025-12-31' },
+    'ENTERPRISE50': { type: 'percentage', value: 15, description: 'Enterprise Special - 15% Off', minEmployees: 500, validUntil: '2025-12-31' },
+    'SMALLBIZ': { type: 'percentage', value: 35, description: 'Small Business Special - 35% Off', maxEmployees: 50, validUntil: '2025-12-31' },
+    'FREEMONTH': { type: 'months', value: 1, description: 'First Month Free', validUntil: '2025-12-31' },
+    'QUARTER50': { type: 'percentage', value: 50, description: 'Q1 Special - 50% Off First Quarter', duration: 3, validUntil: '2025-03-31' }
+  };
+
+  const applyPromoCode = () => {
+    const code = promoCode.toUpperCase();
+    const promo = promoCodes[code as keyof typeof promoCodes];
+    
+    if (!promo) {
+      setAppliedPromo({ error: 'Invalid promo code' });
+      return;
+    }
+
+    // Check if promo is still valid
+    const now = new Date();
+    const validUntil = new Date(promo.validUntil);
+    if (now > validUntil) {
+      setAppliedPromo({ error: 'Promo code has expired' });
+      return;
+    }
+
+    // Check employee count restrictions
+    const employees = employeeCount[0];
+    const promoAny = promo as any;
+    if (promoAny.minEmployees && employees < promoAny.minEmployees) {
+      setAppliedPromo({ error: `This promo requires at least ${promoAny.minEmployees} employees` });
+      return;
+    }
+    if (promoAny.maxEmployees && employees > promoAny.maxEmployees) {
+      setAppliedPromo({ error: `This promo is only for companies with up to ${promoAny.maxEmployees} employees` });
+      return;
+    }
+
+    setAppliedPromo({ ...promo, code });
+  };
+
+  const clearPromo = () => {
+    setAppliedPromo(null);
+    setPromoCode('');
+  };
+
   const calculatePrice = (tier: PricingTier) => {
     const employees = employeeCount[0];
     const baseMonthly = tier.basePrice + (employees * tier.perEmployee);
@@ -125,14 +176,40 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
     }, 0);
     
     const monthlyTotal = baseMonthly + addonsTotal;
-    const discount = isAnnual ? 0.15 : 0; // 15% annual discount
-    const finalPrice = monthlyTotal * (1 - discount);
+    let finalPrice = monthlyTotal;
+    let promoDiscount = 0;
+    let promoSavings = 0;
+    
+    // Apply promotional discount if valid
+    if (appliedPromo && !appliedPromo.error) {
+      if (appliedPromo.type === 'percentage') {
+        promoDiscount = (monthlyTotal * appliedPromo.value) / 100;
+        if (appliedPromo.maxDiscount) {
+          promoDiscount = Math.min(promoDiscount, appliedPromo.maxDiscount);
+        }
+      } else if (appliedPromo.type === 'fixed') {
+        promoDiscount = appliedPromo.value;
+      } else if (appliedPromo.type === 'months') {
+        // Free months handled separately in UI
+        promoSavings = monthlyTotal * appliedPromo.value;
+      }
+      
+      finalPrice = Math.max(0, monthlyTotal - promoDiscount);
+    }
+    
+    // Apply annual discount
+    const annualDiscount = isAnnual ? 0.15 : 0; // 15% annual discount
+    const annualDiscountAmount = finalPrice * annualDiscount;
+    const finalAnnualPrice = finalPrice * (1 - annualDiscount);
     
     return {
       monthly: monthlyTotal,
-      annual: finalPrice * 12,
-      discount: monthlyTotal * discount,
-      savings: isAnnual ? monthlyTotal * discount * 12 : 0
+      monthlyWithPromo: finalPrice,
+      annual: finalAnnualPrice * 12,
+      promoDiscount,
+      promoSavings,
+      annualDiscount: annualDiscountAmount,
+      totalSavings: (isAnnual ? annualDiscountAmount * 12 : 0) + promoSavings + (isAnnual && promoDiscount ? promoDiscount * 12 : 0)
     };
   };
 
@@ -211,6 +288,65 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
             </div>
           </div>
 
+          {/* Promotional Code */}
+          <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <div className="font-medium text-blue-900 mb-2">Have a Promo Code?</div>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                placeholder="Enter promo code"
+                value={promoCode}
+                onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
+                className="flex-1 px-3 py-2 border rounded-md text-sm"
+                onKeyPress={(e) => e.key === 'Enter' && applyPromoCode()}
+              />
+              <Button 
+                onClick={applyPromoCode} 
+                size="sm"
+                disabled={!promoCode.trim()}
+              >
+                Apply
+              </Button>
+              {appliedPromo && !appliedPromo.error && (
+                <Button 
+                  onClick={clearPromo} 
+                  variant="outline" 
+                  size="sm"
+                >
+                  Clear
+                </Button>
+              )}
+            </div>
+            
+            {/* Promo Status */}
+            {appliedPromo && (
+              <div className="mt-3">
+                {appliedPromo.error ? (
+                  <div className="text-sm text-red-600 flex items-center gap-1">
+                    <span>❌</span> {appliedPromo.error}
+                  </div>
+                ) : (
+                  <div className="text-sm text-green-600 flex items-center gap-1">
+                    <span>✅</span> <strong>{appliedPromo.code}</strong> applied: {appliedPromo.description}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Sample Promo Codes */}
+            <div className="mt-3 text-xs text-blue-700">
+              <div className="font-medium mb-1">Try these sample codes:</div>
+              <div className="flex flex-wrap gap-2">
+                <code className="bg-blue-100 px-2 py-1 rounded cursor-pointer hover:bg-blue-200" 
+                      onClick={() => setPromoCode('LAUNCH25')}>LAUNCH25</code>
+                <code className="bg-blue-100 px-2 py-1 rounded cursor-pointer hover:bg-blue-200" 
+                      onClick={() => setPromoCode('SMALLBIZ')}>SMALLBIZ</code>
+                <code className="bg-blue-100 px-2 py-1 rounded cursor-pointer hover:bg-blue-200" 
+                      onClick={() => setPromoCode('FREEMONTH')}>FREEMONTH</code>
+              </div>
+            </div>
+          </div>
+
           {/* Add-ons */}
           <div className="space-y-3">
             <label className="text-sm font-medium">Add-on Services</label>
@@ -268,15 +404,38 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
                   {tier.name}
                 </CardTitle>
                 <div className="space-y-2">
-                  <div className="text-3xl font-bold">
-                    ${Math.round(isAnnual ? pricing.annual / 12 : pricing.monthly)}
-                    <span className="text-sm font-normal text-gray-500">/month</span>
-                  </div>
-                  {isAnnual && pricing.savings > 0 && (
-                    <div className="text-sm text-green-600">
-                      Save ${Math.round(pricing.savings)}/year
+                  {/* Show original price if promo is applied */}
+                  {pricing.promoDiscount > 0 && (
+                    <div className="text-lg text-gray-400 line-through">
+                      ${Math.round(isAnnual ? pricing.monthly : pricing.monthly)}
                     </div>
                   )}
+                  
+                  <div className="text-3xl font-bold">
+                    ${Math.round(isAnnual ? pricing.annual / 12 : pricing.monthlyWithPromo)}
+                    <span className="text-sm font-normal text-gray-500">/month</span>
+                  </div>
+                  
+                  {/* Show promotional savings */}
+                  {pricing.promoDiscount > 0 && (
+                    <div className="text-sm text-orange-600 font-medium">
+                      🎉 Promo: Save ${Math.round(pricing.promoDiscount)}/month
+                    </div>
+                  )}
+                  
+                  {/* Show free months */}
+                  {appliedPromo && appliedPromo.type === 'months' && (
+                    <div className="text-sm text-purple-600 font-medium">
+                      🆓 {appliedPromo.value} month{appliedPromo.value > 1 ? 's' : ''} FREE
+                    </div>
+                  )}
+                  
+                  {isAnnual && pricing.totalSavings > 0 && (
+                    <div className="text-sm text-green-600">
+                      Total Savings: ${Math.round(pricing.totalSavings)}/year
+                    </div>
+                  )}
+                  
                   <div className="text-sm text-gray-500">
                     Up to {tier.maxEmployees} employees
                   </div>
