@@ -712,7 +712,10 @@ export default function LandingPage() {
           <div className="border-t border-gray-700 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <div className="text-sm text-gray-400 mb-4 md:mb-0">
-                &copy; {new Date().getFullYear()} SafetySync Software. All rights reserved.
+                &copy; {new Date().getFullYear()} SafetySync Software. All rights reserved.<br/>
+                <span className="text-xs text-gray-500">
+                  Unauthorized copying, reproduction, or distribution is strictly prohibited.
+                </span>
               </div>
               <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm">
                 <div className="flex items-center">
