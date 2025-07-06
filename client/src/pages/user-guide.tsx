@@ -42,6 +42,15 @@ export default function UserGuidePage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Back to Dashboard Button */}
+        <div className="mb-6">
+          <Link href="/dashboard">
+            <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white">
+              ← Back to Dashboard
+            </Button>
+          </Link>
+        </div>
+        
         <UserGuide userPlan="professional" />
       </div>
     </div>
