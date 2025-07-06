@@ -21,6 +21,7 @@ export function TrialSignupDialog({ isOpen, onClose }: TrialSignupDialogProps) {
     email: "",
     company: "",
     phone: "",
+    password: "",
     message: "",
     leadType: "trial"
   });
@@ -43,6 +44,12 @@ export function TrialSignupDialog({ isOpen, onClose }: TrialSignupDialogProps) {
     if (!formData.company.trim()) {
       newErrors.company = "Company name is required";
     }
+
+    if (!formData.password.trim()) {
+      newErrors.password = "Password is required";
+    } else if (formData.password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters";
+    }
     
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -58,24 +65,36 @@ export function TrialSignupDialog({ isOpen, onClose }: TrialSignupDialogProps) {
     setIsSubmitting(true);
     
     try {
-      const response = await apiRequest("POST", "/api/leads", formData);
-      const result = await response.json();
+      // First create the user account
+      const { leadType, message, ...userData } = formData;
+      const userResponse = await apiRequest("POST", "/api/auth/register", userData);
+      const userResult = await userResponse.json();
       
-      if (result.success) {
+      if (userResult.success) {
+        // Then create the lead record
+        const leadResponse = await apiRequest("POST", "/api/leads", {
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          phone: formData.phone,
+          message: formData.message,
+          leadType: formData.leadType
+        });
+        
         setIsSuccess(true);
         toast({
-          title: "Trial Started Successfully!",
-          description: "We'll send you login details within 5 minutes.",
+          title: "Account Created Successfully!",
+          description: "Your SafetySync account is ready. You can now sign in.",
           duration: 5000,
         });
       } else {
-        throw new Error(result.message || "Failed to submit form");
+        throw new Error(userResult.message || "Failed to create account");
       }
     } catch (error) {
-      console.error("Error submitting trial form:", error);
+      console.error("Error creating account:", error);
       toast({
-        title: "Error",
-        description: "Failed to start your trial. Please try again.",
+        title: "Account Creation Failed", 
+        description: "Unable to create your account. Please try again or contact support.",
         variant: "destructive",
       });
     } finally {
@@ -92,7 +111,7 @@ export function TrialSignupDialog({ isOpen, onClose }: TrialSignupDialogProps) {
 
   const handleClose = () => {
     setIsSuccess(false);
-    setFormData({ name: "", email: "", company: "", phone: "", message: "", leadType: "trial" });
+    setFormData({ name: "", email: "", company: "", phone: "", password: "", message: "", leadType: "trial" });
     setErrors({});
     onClose();
   };
@@ -178,6 +197,19 @@ export function TrialSignupDialog({ isOpen, onClose }: TrialSignupDialogProps) {
               onChange={(e) => handleInputChange("phone", e.target.value)}
               placeholder="(555) 123-4567"
             />
+          </div>
+          
+          <div className="space-y-2">
+            <Label htmlFor="password">Password *</Label>
+            <Input
+              id="password"
+              type="password"
+              value={formData.password}
+              onChange={(e) => handleInputChange("password", e.target.value)}
+              placeholder="Create a secure password"
+              className={errors.password ? "border-red-500" : ""}
+            />
+            {errors.password && <p className="text-sm text-red-500">{errors.password}</p>}
           </div>
           
           <div className="space-y-2">
