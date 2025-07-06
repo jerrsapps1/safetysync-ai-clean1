@@ -4,8 +4,14 @@ import { z } from "zod";
 
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
-  username: text("username").notNull().unique(),
+  email: text("email").notNull().unique(),
   password: text("password").notNull(),
+  name: text("name").notNull(),
+  company: text("company"),
+  phone: text("phone"),
+  isActive: boolean("is_active").default(true),
+  createdAt: timestamp("created_at").defaultNow(),
+  lastLoginAt: timestamp("last_login_at"),
 });
 
 export const leads = pgTable("leads", {
@@ -20,7 +26,15 @@ export const leads = pgTable("leads", {
 });
 
 export const insertUserSchema = createInsertSchema(users).pick({
-  username: true,
+  email: true,
+  password: true,
+  name: true,
+  company: true,
+  phone: true,
+});
+
+export const loginUserSchema = createInsertSchema(users).pick({
+  email: true,
   password: true,
 });
 

@@ -4,6 +4,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Navigation } from "@/components/ui/navigation";
 import { TrialSignupDialog } from "@/components/ui/trial-signup-dialog";
 import { DemoRequestDialog } from "@/components/ui/demo-request-dialog";
+import { LoginDialog } from "@/components/ui/login-dialog";
+import { useToast } from "@/hooks/use-toast";
 import { 
   CheckCircle, 
   AlertCircle, 
@@ -24,6 +26,9 @@ import {
 export default function LandingPage() {
   const [isTrialDialogOpen, setIsTrialDialogOpen] = useState(false);
   const [isDemoDialogOpen, setIsDemoDialogOpen] = useState(false);
+  const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
+  const [user, setUser] = useState(null);
+  const { toast } = useToast();
 
   const handleTrialClick = () => {
     setIsTrialDialogOpen(true);
@@ -33,10 +38,43 @@ export default function LandingPage() {
     setIsDemoDialogOpen(true);
   };
 
+  const handleLoginClick = () => {
+    setIsLoginDialogOpen(true);
+  };
+
+  const handleLoginSuccess = (userData: any) => {
+    setUser(userData);
+    toast({
+      title: "Welcome back!",
+      description: `Signed in as ${userData.name}`,
+      duration: 3000,
+    });
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+    toast({
+      title: "Signed out",
+      description: "You have been successfully signed out.",
+      duration: 3000,
+    });
+  };
+
+  const handleSignupClick = () => {
+    setIsLoginDialogOpen(false);
+    setIsTrialDialogOpen(true);
+  };
+
   return (
     <div className="bg-white text-gray-900 font-sans">
       {/* Navigation */}
-      <Navigation onTrialClick={handleTrialClick} onDemoClick={handleDemoClick} />
+      <Navigation 
+        onTrialClick={handleTrialClick} 
+        onDemoClick={handleDemoClick}
+        onLoginClick={handleLoginClick}
+        user={user}
+        onLogout={handleLogout}
+      />
 
       {/* Hero Section */}
       <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 text-white pt-24 pb-16 px-4 sm:px-6 lg:px-8">
@@ -572,6 +610,12 @@ export default function LandingPage() {
       {/* Dialogs */}
       <TrialSignupDialog isOpen={isTrialDialogOpen} onClose={() => setIsTrialDialogOpen(false)} />
       <DemoRequestDialog isOpen={isDemoDialogOpen} onClose={() => setIsDemoDialogOpen(false)} />
+      <LoginDialog 
+        isOpen={isLoginDialogOpen} 
+        onClose={() => setIsLoginDialogOpen(false)}
+        onSuccess={handleLoginSuccess}
+        onSignupClick={handleSignupClick}
+      />
     </div>
   );
 }

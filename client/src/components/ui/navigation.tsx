@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, User } from "lucide-react";
 
 interface NavigationProps {
   onTrialClick: () => void;
   onDemoClick: () => void;
+  onLoginClick: () => void;
+  user?: any;
+  onLogout?: () => void;
 }
 
-export function Navigation({ onTrialClick, onDemoClick }: NavigationProps) {
+export function Navigation({ onTrialClick, onDemoClick, onLoginClick, user, onLogout }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const scrollToSection = (sectionId: string) => {
@@ -62,18 +65,39 @@ export function Navigation({ onTrialClick, onDemoClick }: NavigationProps) {
           </div>
           
           <div className="flex items-center space-x-4">
-            <Button 
-              variant="ghost" 
-              className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium"
-            >
-              Sign In
-            </Button>
-            <Button 
-              onClick={onTrialClick}
-              className="bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors"
-            >
-              Start Free Trial
-            </Button>
+            {user ? (
+              <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-2">
+                  <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
+                    <User className="w-4 h-4 text-white" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-700">{user.name}</span>
+                </div>
+                <Button 
+                  variant="ghost" 
+                  onClick={onLogout}
+                  className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium"
+                >
+                  Sign Out
+                </Button>
+              </div>
+            ) : (
+              <>
+                <Button 
+                  variant="ghost" 
+                  onClick={onLoginClick}
+                  className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium"
+                >
+                  Sign In
+                </Button>
+                <Button 
+                  onClick={onTrialClick}
+                  className="bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors"
+                >
+                  Start Free Trial
+                </Button>
+              </>
+            )}
           </div>
           
           {/* Mobile menu button */}
