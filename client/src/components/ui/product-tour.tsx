@@ -216,7 +216,7 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
               Explore More
             </Button>
             <Button onClick={() => { onComplete?.(); onClose(); }}>
-              Start Using SafetySync
+              Start Using SafetySync Software
             </Button>
           </div>
         </div>

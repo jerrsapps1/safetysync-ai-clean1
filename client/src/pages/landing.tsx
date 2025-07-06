@@ -277,7 +277,7 @@ export default function LandingPage() {
               </span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              SafetySync leverages cutting-edge AI and machine learning to transform your compliance workflow. 
+              SafetySync Software leverages cutting-edge AI and machine learning to transform your compliance workflow. 
               Smart automation that learns and adapts to your business needs.
             </p>
           </div>
@@ -448,7 +448,7 @@ export default function LandingPage() {
               We Understand Your Concerns
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Here's why SafetySync is the right choice for your compliance needs.
+              Here's why SafetySync Software is the right choice for your compliance needs.
             </p>
           </div>
           
@@ -503,7 +503,7 @@ export default function LandingPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">"Will it work with our systems?"</h3>
-                    <p className="text-gray-600">SafetySync integrates seamlessly with popular HR systems, LMS platforms, and training providers. Our API connections ensure zero workflow disruption during implementation.</p>
+                    <p className="text-gray-600">SafetySync Software integrates seamlessly with popular HR systems, LMS platforms, and training providers. Our API connections ensure zero workflow disruption during implementation.</p>
                   </div>
                 </div>
               </CardContent>
@@ -520,7 +520,7 @@ export default function LandingPage() {
               Our Customers Trust Us—And You Can Too
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              See how SafetySync has transformed compliance management for businesses like yours.
+              See how SafetySync Software has transformed compliance management for businesses like yours.
             </p>
           </div>
           
@@ -554,7 +554,7 @@ export default function LandingPage() {
                   </div>
                 </div>
                 <blockquote className="text-gray-700 mb-6">
-                  "With SafetySync, I can generate a comprehensive compliance report in just minutes. We've never felt more confident during an OSHA audit."
+                  "With SafetySync Software, I can generate a comprehensive compliance report in just minutes. We've never felt more confident during an OSHA audit."
                 </blockquote>
                 <div className="border-t border-gray-200 pt-6">
                   <p className="font-semibold text-gray-900">Michael Chen</p>
@@ -663,7 +663,7 @@ export default function LandingPage() {
                 <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center mr-3">
                   <Brain className="w-5 h-5 text-white" />
                 </div>
-                <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">SafetySync</span>
+                <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">SafetySync Software</span>
               </div>
               <p className="text-gray-300 mb-4 max-w-md">
                 Next-generation AI-powered compliance intelligence platform. Deploy automated OSHA tracking 
@@ -747,7 +747,7 @@ export default function LandingPage() {
         onClose={() => setShowProductTour(false)}
         onComplete={() => {
           toast({
-            title: "Welcome to SafetySync!",
+            title: "Welcome to SafetySync Software!",
             description: "You're ready to start managing OSHA compliance.",
             duration: 5000,
           });
