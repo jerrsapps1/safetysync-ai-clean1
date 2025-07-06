@@ -11,6 +11,10 @@ export const users = pgTable("users", {
   phone: text("phone"),
   isActive: boolean("is_active").default(true),
   isAdmin: boolean("is_admin").default(false),
+  userTier: text("user_tier", { enum: ["free_trial", "basic", "professional", "enterprise"] }).default("free_trial"),
+  subscriptionStatus: text("subscription_status", { enum: ["active", "expired", "cancelled", "pending"] }).default("pending"),
+  subscriptionExpiresAt: timestamp("subscription_expires_at"),
+  totalLogins: integer("total_logins").default(0),
   createdAt: timestamp("created_at").defaultNow(),
   lastLoginAt: timestamp("last_login_at"),
 });

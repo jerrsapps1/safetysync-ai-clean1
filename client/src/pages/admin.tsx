@@ -51,6 +51,11 @@ interface User {
   company?: string;
   phone?: string;
   isActive: boolean;
+  isAdmin: boolean;
+  userTier: 'free_trial' | 'basic' | 'professional' | 'enterprise';
+  subscriptionStatus: 'active' | 'expired' | 'cancelled' | 'pending';
+  subscriptionExpiresAt?: string;
+  totalLogins?: number;
   createdAt: string;
   lastLoginAt?: string;
 }
@@ -70,6 +75,8 @@ export default function AdminPanel() {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterType, setFilterType] = useState<'all' | 'trial' | 'demo'>('all');
   const [hasAdminAccess, setHasAdminAccess] = useState(false);
+  const [userFilter, setUserFilter] = useState<'all' | 'free_trial' | 'basic' | 'professional' | 'enterprise'>('all');
+  const [subscriptionFilter, setSubscriptionFilter] = useState<'all' | 'active' | 'expired' | 'cancelled' | 'pending'>('all');
 
   // Custom query function with admin authentication
   const adminQueryFn = async ({ queryKey }: { queryKey: string[] }) => {
@@ -100,6 +107,75 @@ export default function AdminPanel() {
     retry: false
   });
 
+  // User management mutations
+  const updateUserTierMutation = useMutation({
+    mutationFn: async ({ userId, tier }: { userId: number; tier: string }) => {
+      const adminKey = localStorage.getItem('admin_key');
+      const response = await fetch(`/api/admin/users/${userId}/tier`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-admin-key': adminKey || ''
+        },
+        body: JSON.stringify({ tier })
+      });
+      if (!response.ok) throw new Error('Failed to update user tier');
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/admin/users'] });
+      toast({ title: "User tier updated successfully" });
+    },
+    onError: () => {
+      toast({ title: "Failed to update user tier", variant: "destructive" });
+    }
+  });
+
+  const updateSubscriptionMutation = useMutation({
+    mutationFn: async ({ userId, status, expiresAt }: { userId: number; status: string; expiresAt?: string }) => {
+      const adminKey = localStorage.getItem('admin_key');
+      const response = await fetch(`/api/admin/users/${userId}/subscription`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-admin-key': adminKey || ''
+        },
+        body: JSON.stringify({ status, expiresAt })
+      });
+      if (!response.ok) throw new Error('Failed to update subscription');
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/admin/users'] });
+      toast({ title: "Subscription updated successfully" });
+    },
+    onError: () => {
+      toast({ title: "Failed to update subscription", variant: "destructive" });
+    }
+  });
+
+  const toggleUserActiveMutation = useMutation({
+    mutationFn: async ({ userId, activate }: { userId: number; activate: boolean }) => {
+      const adminKey = localStorage.getItem('admin_key');
+      const endpoint = activate ? 'activate' : 'deactivate';
+      const response = await fetch(`/api/admin/users/${userId}/${endpoint}`, {
+        method: 'PUT',
+        headers: {
+          'x-admin-key': adminKey || ''
+        }
+      });
+      if (!response.ok) throw new Error(`Failed to ${endpoint} user`);
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/admin/users'] });
+      toast({ title: "User status updated successfully" });
+    },
+    onError: () => {
+      toast({ title: "Failed to update user status", variant: "destructive" });
+    }
+  });
+
   // Calculate stats
   const stats: AdminStats = {
     totalLeads: leads.length,
@@ -117,6 +193,17 @@ export default function AdminPanel() {
                          (lead.company?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false);
     const matchesFilter = filterType === 'all' || lead.leadType === filterType;
     return matchesSearch && matchesFilter;
+  });
+
+  // Enhanced user filtering
+  const filteredUsers = users.filter((user: User) => {
+    const matchesSearch = user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         user.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         user.company?.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesTier = userFilter === 'all' || user.userTier === userFilter;
+    const matchesSubscription = subscriptionFilter === 'all' || user.subscriptionStatus === subscriptionFilter;
+    
+    return matchesSearch && matchesTier && matchesSubscription;
   });
 
   const formatDate = (dateString: string) => {
@@ -411,17 +498,49 @@ export default function AdminPanel() {
               <CardHeader>
                 <CardTitle>User Management</CardTitle>
                 <CardDescription>
-                  Manage registered users and their accounts
+                  Manage registered users, subscriptions, and account tiers
                 </CardDescription>
               </CardHeader>
               <CardContent>
+                {/* User Filters */}
+                <div className="flex flex-wrap gap-4 mb-6">
+                  <div className="flex items-center gap-2">
+                    <label className="text-sm font-medium">Tier:</label>
+                    <select 
+                      value={userFilter} 
+                      onChange={(e) => setUserFilter(e.target.value as any)}
+                      className="px-3 py-1 border rounded-md text-sm"
+                    >
+                      <option value="all">All Tiers</option>
+                      <option value="free_trial">Free Trial</option>
+                      <option value="basic">Basic</option>
+                      <option value="professional">Professional</option>
+                      <option value="enterprise">Enterprise</option>
+                    </select>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <label className="text-sm font-medium">Subscription:</label>
+                    <select 
+                      value={subscriptionFilter} 
+                      onChange={(e) => setSubscriptionFilter(e.target.value as any)}
+                      className="px-3 py-1 border rounded-md text-sm"
+                    >
+                      <option value="all">All Status</option>
+                      <option value="active">Active</option>
+                      <option value="pending">Pending</option>
+                      <option value="expired">Expired</option>
+                      <option value="cancelled">Cancelled</option>
+                    </select>
+                  </div>
+                </div>
+
                 {usersLoading ? (
                   <div className="text-center py-8">Loading users...</div>
-                ) : users.length === 0 ? (
+                ) : filteredUsers.length === 0 ? (
                   <div className="text-center py-8 text-gray-500">No users found</div>
                 ) : (
                   <div className="space-y-4">
-                    {users.map((user: User) => (
+                    {filteredUsers.map((user: User) => (
                       <Card key={user.id} className="p-4">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-4">
@@ -451,11 +570,81 @@ export default function AdminPanel() {
                             </div>
                           </div>
                           <div className="flex items-center gap-4">
+                            {/* User Tier Badge */}
+                            <Badge className={
+                              user.userTier === 'enterprise' ? 'bg-purple-100 text-purple-800' :
+                              user.userTier === 'professional' ? 'bg-blue-100 text-blue-800' :
+                              user.userTier === 'basic' ? 'bg-green-100 text-green-800' :
+                              'bg-gray-100 text-gray-800'
+                            }>
+                              {user.userTier?.replace('_', ' ').toUpperCase() || 'FREE TRIAL'}
+                            </Badge>
+
+                            {/* Subscription Status Badge */}
+                            <Badge className={
+                              user.subscriptionStatus === 'active' ? 'bg-green-100 text-green-800' :
+                              user.subscriptionStatus === 'pending' ? 'bg-yellow-100 text-yellow-800' :
+                              user.subscriptionStatus === 'expired' ? 'bg-orange-100 text-orange-800' :
+                              'bg-red-100 text-red-800'
+                            }>
+                              {user.subscriptionStatus?.toUpperCase() || 'PENDING'}
+                            </Badge>
+
+                            {/* Active Status Badge */}
                             <Badge className={user.isActive ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}>
                               {user.isActive ? 'Active' : 'Inactive'}
                             </Badge>
+
+                            {/* Admin Controls */}
+                            <div className="flex items-center gap-2">
+                              {/* Tier Management */}
+                              <select 
+                                value={user.userTier || 'free_trial'} 
+                                onChange={(e) => updateUserTierMutation.mutate({ userId: user.id, tier: e.target.value })}
+                                className="px-2 py-1 border rounded text-xs"
+                                disabled={updateUserTierMutation.isPending}
+                              >
+                                <option value="free_trial">Free Trial</option>
+                                <option value="basic">Basic</option>
+                                <option value="professional">Professional</option>
+                                <option value="enterprise">Enterprise</option>
+                              </select>
+
+                              {/* Subscription Management */}
+                              <select 
+                                value={user.subscriptionStatus || 'pending'} 
+                                onChange={(e) => updateSubscriptionMutation.mutate({ 
+                                  userId: user.id, 
+                                  status: e.target.value,
+                                  expiresAt: e.target.value === 'active' ? new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString() : undefined
+                                })}
+                                className="px-2 py-1 border rounded text-xs"
+                                disabled={updateSubscriptionMutation.isPending}
+                              >
+                                <option value="pending">Pending</option>
+                                <option value="active">Active</option>
+                                <option value="expired">Expired</option>
+                                <option value="cancelled">Cancelled</option>
+                              </select>
+
+                              {/* User Activation Toggle */}
+                              <Button
+                                size="sm"
+                                variant={user.isActive ? "destructive" : "default"}
+                                onClick={() => toggleUserActiveMutation.mutate({ userId: user.id, activate: !user.isActive })}
+                                disabled={toggleUserActiveMutation.isPending}
+                              >
+                                {user.isActive ? 'Deactivate' : 'Activate'}
+                              </Button>
+                            </div>
+
                             <div className="text-right">
                               <p className="text-sm font-medium">Joined {formatDate(user.createdAt)}</p>
+                              {user.subscriptionExpiresAt && (
+                                <p className="text-xs text-gray-500">
+                                  Expires: {formatDate(user.subscriptionExpiresAt)}
+                                </p>
+                              )}
                             </div>
                           </div>
                         </div>
