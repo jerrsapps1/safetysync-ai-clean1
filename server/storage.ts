@@ -21,6 +21,15 @@ export interface IStorage {
   getCloneDetectionScans(userId: number): Promise<CloneDetectionScan[]>;
   getCloneDetectionScanById(id: number): Promise<CloneDetectionScan | undefined>;
   updateCloneDetectionScan(id: number, updates: Partial<CloneDetectionScan>): Promise<void>;
+  
+  // Admin-only user management functions
+  updateUserTier(userId: number, tier: string): Promise<void>;
+  updateSubscriptionStatus(userId: number, status: string, expiresAt?: Date): Promise<void>;
+  deactivateUser(userId: number): Promise<void>;
+  activateUser(userId: number): Promise<void>;
+  getUsersByTier(tier: string): Promise<User[]>;
+  getSubscriptionStats(): Promise<{ total: number; active: number; expired: number; cancelled: number; pending: number }>;
+  getUserAnalytics(): Promise<{ totalUsers: number; activeUsers: number; newUsersThisMonth: number; usersByTier: Record<string, number> }>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -109,6 +118,76 @@ export class DatabaseStorage implements IStorage {
     await db.update(cloneDetectionScans)
       .set(updates)
       .where(eq(cloneDetectionScans.id, id));
+  }
+
+  // Admin-only user management functions
+  async updateUserTier(userId: number, tier: string): Promise<void> {
+    await db
+      .update(users)
+      .set({ userTier: tier as any })
+      .where(eq(users.id, userId));
+  }
+
+  async updateSubscriptionStatus(userId: number, status: string, expiresAt?: Date): Promise<void> {
+    await db
+      .update(users)
+      .set({ 
+        subscriptionStatus: status as any,
+        subscriptionExpiresAt: expiresAt
+      })
+      .where(eq(users.id, userId));
+  }
+
+  async deactivateUser(userId: number): Promise<void> {
+    await db
+      .update(users)
+      .set({ isActive: false })
+      .where(eq(users.id, userId));
+  }
+
+  async activateUser(userId: number): Promise<void> {
+    await db
+      .update(users)
+      .set({ isActive: true })
+      .where(eq(users.id, userId));
+  }
+
+  async getUsersByTier(tier: string): Promise<User[]> {
+    return await db
+      .select()
+      .from(users)
+      .where(eq(users.userTier, tier as any));
+  }
+
+  async getSubscriptionStats(): Promise<{ total: number; active: number; expired: number; cancelled: number; pending: number }> {
+    const allUsers = await db.select().from(users);
+    
+    return {
+      total: allUsers.length,
+      active: allUsers.filter(u => u.subscriptionStatus === 'active').length,
+      expired: allUsers.filter(u => u.subscriptionStatus === 'expired').length,
+      cancelled: allUsers.filter(u => u.subscriptionStatus === 'cancelled').length,
+      pending: allUsers.filter(u => u.subscriptionStatus === 'pending').length
+    };
+  }
+
+  async getUserAnalytics(): Promise<{ totalUsers: number; activeUsers: number; newUsersThisMonth: number; usersByTier: Record<string, number> }> {
+    const allUsers = await db.select().from(users);
+    const currentMonth = new Date();
+    currentMonth.setDate(1);
+    
+    const usersByTier = allUsers.reduce((acc, user) => {
+      const tier = user.userTier || 'free_trial';
+      acc[tier] = (acc[tier] || 0) + 1;
+      return acc;
+    }, {} as Record<string, number>);
+
+    return {
+      totalUsers: allUsers.length,
+      activeUsers: allUsers.filter(u => u.isActive).length,
+      newUsersThisMonth: allUsers.filter(u => u.createdAt && u.createdAt >= currentMonth).length,
+      usersByTier
+    };
   }
 }
 

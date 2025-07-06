@@ -267,6 +267,86 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Admin user management endpoints
+  app.put('/api/admin/users/:id/tier', requireAdmin, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { tier } = req.body;
+      
+      if (!['free_trial', 'basic', 'professional', 'enterprise'].includes(tier)) {
+        return res.status(400).json({ error: 'Invalid tier' });
+      }
+      
+      await storage.updateUserTier(parseInt(id), tier);
+      res.json({ success: true });
+    } catch (error) {
+      console.error('Error updating user tier:', error);
+      res.status(500).json({ error: 'Failed to update user tier' });
+    }
+  });
+
+  app.put('/api/admin/users/:id/subscription', requireAdmin, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { status, expiresAt } = req.body;
+      
+      if (!['active', 'expired', 'cancelled', 'pending'].includes(status)) {
+        return res.status(400).json({ error: 'Invalid subscription status' });
+      }
+      
+      const expirationDate = expiresAt ? new Date(expiresAt) : undefined;
+      await storage.updateSubscriptionStatus(parseInt(id), status, expirationDate);
+      res.json({ success: true });
+    } catch (error) {
+      console.error('Error updating subscription:', error);
+      res.status(500).json({ error: 'Failed to update subscription' });
+    }
+  });
+
+  app.put('/api/admin/users/:id/deactivate', requireAdmin, async (req, res) => {
+    try {
+      const { id } = req.params;
+      await storage.deactivateUser(parseInt(id));
+      res.json({ success: true });
+    } catch (error) {
+      console.error('Error deactivating user:', error);
+      res.status(500).json({ error: 'Failed to deactivate user' });
+    }
+  });
+
+  app.put('/api/admin/users/:id/activate', requireAdmin, async (req, res) => {
+    try {
+      const { id } = req.params;
+      await storage.activateUser(parseInt(id));
+      res.json({ success: true });
+    } catch (error) {
+      console.error('Error activating user:', error);
+      res.status(500).json({ error: 'Failed to activate user' });
+    }
+  });
+
+  app.get('/api/admin/analytics', requireAdmin, async (req, res) => {
+    try {
+      const analytics = await storage.getUserAnalytics();
+      const subscriptionStats = await storage.getSubscriptionStats();
+      res.json({ userAnalytics: analytics, subscriptionStats });
+    } catch (error) {
+      console.error('Error fetching analytics:', error);
+      res.status(500).json({ error: 'Failed to fetch analytics' });
+    }
+  });
+
+  app.get('/api/admin/users/tier/:tier', requireAdmin, async (req, res) => {
+    try {
+      const { tier } = req.params;
+      const users = await storage.getUsersByTier(tier);
+      res.json(users);
+    } catch (error) {
+      console.error('Error fetching users by tier:', error);
+      res.status(500).json({ error: 'Failed to fetch users by tier' });
+    }
+  });
+
   // Generate compliance report endpoint
   app.post("/api/compliance/reports/generate", async (req, res) => {
     try {
