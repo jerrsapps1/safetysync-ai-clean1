@@ -1,0 +1,114 @@
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { CheckCircle, AlertCircle } from "lucide-react";
+
+export default function LandingPage() {
+  return (
+    <div className="bg-white text-gray-900 font-sans">
+      {/* Hero Section */}
+      <section className="min-h-screen bg-gradient-to-br from-[#0f172a] to-[#1e293b] text-white py-24 px-8 text-center flex flex-col items-center justify-center">
+        <h1 className="text-4xl md:text-6xl font-bold max-w-4xl">
+          Simplify Your OSHA Compliance—Automate Tracking, Stay Audit-Ready, and Protect Your Business
+        </h1>
+        <p className="mt-6 text-lg md:text-xl max-w-2xl">
+          The easiest way to keep track of employee training and certifications—without the stress of paperwork, deadlines, or audits.
+        </p>
+        <div className="mt-8 flex gap-4">
+          <Button className="text-lg px-6 py-3">Start Your Free Trial</Button>
+          <Button variant="outline" className="text-lg px-6 py-3">See How It Works</Button>
+        </div>
+      </section>
+
+      {/* Problem Section */}
+      <section className="py-20 px-8 bg-gray-100 text-center">
+        <h2 className="text-3xl font-bold mb-6">Is Your OSHA Compliance Tracking a Nightmare?</h2>
+        <p className="max-w-2xl mx-auto mb-10">
+          Keeping track of training requirements, certifications, and deadlines shouldn't be a burden. If you’re like most compliance officers, you’re overwhelmed with paperwork, tracking spreadsheets, and reminders that never stick.
+        </p>
+        <ul className="grid gap-4 md:grid-cols-2 max-w-4xl mx-auto text-left">
+          <li className="flex items-start gap-3"><AlertCircle className="text-red-500" /> Spending hours on manual tracking and reports?</li>
+          <li className="flex items-start gap-3"><AlertCircle className="text-red-500" /> Afraid of missing a deadline and risking fines?</li>
+          <li className="flex items-start gap-3"><AlertCircle className="text-red-500" /> Facing audit stress with incomplete records?</li>
+          <li className="flex items-start gap-3"><AlertCircle className="text-red-500" /> Juggling systems that don’t communicate?</li>
+        </ul>
+      </section>
+
+      {/* Solution Section */}
+      <section className="py-20 px-8 bg-white text-center">
+        <h2 className="text-3xl font-bold mb-6">A Simple Solution to Stay OSHA-Compliant—Automated, Accurate, and Always Ready.</h2>
+        <p className="max-w-3xl mx-auto mb-10">
+          SafetySync Software is the all-in-one compliance tracker built for businesses like yours. We handle the tedious documentation—so you don’t have to.
+        </p>
+        <div className="grid gap-6 md:grid-cols-2 max-w-5xl mx-auto text-left">
+          <Card><CardContent className="p-6"><CheckCircle className="text-green-600" /> Automated tracking & reminders</CardContent></Card>
+          <Card><CardContent className="p-6"><CheckCircle className="text-green-600" /> Centralized training and certification database</CardContent></Card>
+          <Card><CardContent className="p-6"><CheckCircle className="text-green-600" /> Instant audit-ready reporting</CardContent></Card>
+          <Card><CardContent className="p-6"><CheckCircle className="text-green-600" /> Seamless integration with HR/training tools</CardContent></Card>
+          <Card><CardContent className="p-6"><CheckCircle className="text-green-600" /> Secure and compliant data storage</CardContent></Card>
+        </div>
+        <div className="mt-10">
+          <Button className="text-lg px-6 py-3">Try It for Free – No Credit Card Required</Button>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="py-20 px-8 bg-gray-50 text-center">
+        <h2 className="text-3xl font-bold mb-6">Compliance Tracking Made Effortless</h2>
+        <p className="mb-10 max-w-2xl mx-auto">
+          Here’s how we simplify your job in 3 easy steps.
+        </p>
+        <div className="grid gap-8 md:grid-cols-3 max-w-5xl mx-auto">
+          <Card><CardContent className="p-6">Step 1: <strong>Setup in Minutes</strong><br/> Upload your records—our dashboard guides you through it. No tech skills needed.</CardContent></Card>
+          <Card><CardContent className="p-6">Step 2: <strong>Automated Tracking</strong><br/> Track training, certifications, and reminders with zero manual effort.</CardContent></Card>
+          <Card><CardContent className="p-6">Step 3: <strong>Generate Reports</strong><br/> One click to export a complete audit-ready report. Easy and organized.</CardContent></Card>
+        </div>
+      </section>
+
+      {/* Objections Section */}
+      <section className="py-20 px-8 bg-white text-center">
+        <h2 className="text-3xl font-bold mb-6">We Understand Your Concerns—Here’s Why SafetySync Is the Right Choice</h2>
+        <div className="grid gap-8 md:grid-cols-2 max-w-5xl mx-auto text-left">
+          <Card><CardContent className="p-6"><strong>“We’re on a tight budget.”</strong><br/> We offer flexible pricing and save hours of manual work—cutting costs long term.</CardContent></Card>
+          <Card><CardContent className="p-6"><strong>“What if it's too complicated?”</strong><br/> Our platform is intuitive, no tech skills required. Full onboarding and support included.</CardContent></Card>
+          <Card><CardContent className="p-6"><strong>“How secure is our data?”</strong><br/> Bank-grade encryption and full industry compliance. Your data is safe with us.</CardContent></Card>
+          <Card><CardContent className="p-6"><strong>“Will it work with our systems?”</strong><br/> Seamless integration with HR and LMS tools—zero workflow disruption.</CardContent></Card>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 px-8 bg-gray-100 text-center">
+        <h2 className="text-3xl font-bold mb-10">Our Customers Trust Us—And You Can Too</h2>
+        <div className="grid gap-8 md:grid-cols-3 max-w-6xl mx-auto">
+          <Card><CardContent className="p-6">“No more spreadsheets—everything is in one place. I get automatic reminders so I never miss a deadline.”<br/><span className="mt-4 block font-semibold">— Safety Manager, [Company]</span></CardContent></Card>
+          <Card><CardContent className="p-6">“With SafetySync, I generate a full report in minutes. We’ve never felt more confident during an audit.”<br/><span className="mt-4 block font-semibold">— HR Manager, [Company]</span></CardContent></Card>
+          <Card><CardContent className="p-6">“It integrates perfectly with our HR system, and I know our data is secure and compliant.”<br/><span className="mt-4 block font-semibold">— Compliance Officer, [Company]</span></CardContent></Card>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-20 px-8 bg-white text-center">
+        <h2 className="text-3xl font-bold mb-4">Why Wait? Take Control of Your Compliance Today.</h2>
+        <p className="max-w-2xl mx-auto mb-8">
+          Compliance doesn’t have to be complicated. SafetySync makes it easy to manage OSHA training, organize records, and prepare for audits—all in one place.
+        </p>
+        <Button className="text-lg px-6 py-3">Start My Free Trial</Button>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 px-8 bg-[#0f172a] text-white text-center">
+        <div className="mb-4">&copy; {new Date().getFullYear()} SafetySync Software</div>
+        <ul className="flex justify-center space-x-6 mb-4">
+          <li><a href="#" className="hover:underline">About Us</a></li>
+          <li><a href="#" className="hover:underline">Features</a></li>
+          <li><a href="#" className="hover:underline">Pricing</a></li>
+          <li><a href="#" className="hover:underline">FAQ</a></li>
+          <li><a href="#" className="hover:underline">Contact Support</a></li>
+        </ul>
+        <div className="text-sm">
+          Support: <a href="mailto:support@safetysync.ai" className="underline">support@safetysync.ai</a> | Phone: (555) 123-4567
+        </div>
+      </footer>
+    </div>
+  );
+}
