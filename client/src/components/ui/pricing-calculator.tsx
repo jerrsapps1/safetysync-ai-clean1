@@ -118,16 +118,98 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
     { name: "24/7 Support", price: 75, description: "Round-the-clock phone support" }
   ];
 
-  // Promotional codes system
+  // Tier-based promotional codes system for maximum profitability
   const promoCodes = {
-    'LAUNCH25': { type: 'percentage', value: 25, description: 'Launch Special - 25% Off', maxDiscount: 500, validUntil: '2025-12-31' },
-    'NEWCLIENT': { type: 'percentage', value: 20, description: 'New Client Discount - 20% Off', maxDiscount: 300, validUntil: '2025-06-30' },
-    'SUMMER2025': { type: 'percentage', value: 30, description: 'Summer Special - 30% Off', maxDiscount: 750, validUntil: '2025-08-31' },
-    'SAVE100': { type: 'fixed', value: 100, description: '$100 Off Your First Year', validUntil: '2025-12-31' },
-    'ENTERPRISE50': { type: 'percentage', value: 15, description: 'Enterprise Special - 15% Off', minEmployees: 500, validUntil: '2025-12-31' },
-    'SMALLBIZ': { type: 'percentage', value: 35, description: 'Small Business Special - 35% Off', maxEmployees: 50, validUntil: '2025-12-31' },
-    'FREEMONTH': { type: 'months', value: 1, description: 'First Month Free', validUntil: '2025-12-31' },
-    'QUARTER50': { type: 'percentage', value: 50, description: 'Q1 Special - 50% Off First Quarter', duration: 3, validUntil: '2025-03-31' }
+    // Essential Tier - Generous discounts for customer acquisition
+    'SMALLBIZ': { 
+      type: 'percentage', 
+      value: 35, 
+      description: 'Small Business Special - 35% Off', 
+      maxEmployees: 50,
+      allowedTiers: ['Essential'],
+      validUntil: '2025-12-31' 
+    },
+    'FREEMONTH': { 
+      type: 'months', 
+      value: 1, 
+      description: 'First Month Free', 
+      maxEmployees: 50,
+      allowedTiers: ['Essential'],
+      validUntil: '2025-12-31' 
+    },
+    'STARTUP40': { 
+      type: 'percentage', 
+      value: 40, 
+      description: 'Startup Special - 40% Off First 3 Months', 
+      maxEmployees: 25,
+      allowedTiers: ['Essential'],
+      duration: 3,
+      validUntil: '2025-12-31' 
+    },
+    
+    // Professional Tier - Moderate discounts for growth companies
+    'NEWCLIENT': { 
+      type: 'percentage', 
+      value: 20, 
+      description: 'New Client Discount - 20% Off', 
+      maxDiscount: 300,
+      allowedTiers: ['Essential', 'Professional'],
+      validUntil: '2025-06-30' 
+    },
+    'LAUNCH25': { 
+      type: 'percentage', 
+      value: 25, 
+      description: 'Launch Special - 25% Off', 
+      maxDiscount: 500,
+      allowedTiers: ['Professional'],
+      validUntil: '2025-12-31' 
+    },
+    'SAVE100': { 
+      type: 'fixed', 
+      value: 100, 
+      description: '$100 Off Your First Year', 
+      allowedTiers: ['Professional'],
+      validUntil: '2025-12-31' 
+    },
+    'GROWTH15': { 
+      type: 'percentage', 
+      value: 15, 
+      description: 'Growth Company Special - 15% Off', 
+      minEmployees: 51,
+      maxEmployees: 250,
+      allowedTiers: ['Professional'],
+      validUntil: '2025-12-31' 
+    },
+    
+    // Enterprise Tier - Conservative discounts for high-value clients
+    'ENTERPRISE15': { 
+      type: 'percentage', 
+      value: 15, 
+      description: 'Enterprise Special - 15% Off', 
+      minEmployees: 251,
+      maxEmployees: 1000,
+      allowedTiers: ['Enterprise'],
+      validUntil: '2025-12-31' 
+    },
+    'CORP500': { 
+      type: 'fixed', 
+      value: 500, 
+      description: '$500 Off Enterprise Setup', 
+      minEmployees: 500,
+      allowedTiers: ['Enterprise'],
+      validUntil: '2025-12-31' 
+    },
+    
+    // Enterprise Plus - No promo codes, volume discounts only
+    // Custom negotiations and relationship-based pricing
+  };
+
+  // Determine which tier a customer qualifies for based on employee count
+  const getQualifyingTier = (employeeCount: number): string => {
+    if (employeeCount <= 50) return 'Essential';
+    if (employeeCount <= 250) return 'Professional';
+    if (employeeCount <= 1000) return 'Enterprise';
+    return 'Enterprise Plus';
   };
 
   const applyPromoCode = () => {
@@ -159,12 +241,47 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
       return;
     }
 
+    // Check tier restrictions - NEW PROFITABILITY LOGIC
+    const customerTier = getQualifyingTier(employees);
+    if (promoAny.allowedTiers && !promoAny.allowedTiers.includes(customerTier)) {
+      const tierNames = promoAny.allowedTiers.join(' or ');
+      setAppliedPromo({ error: `This promo code is only valid for ${tierNames} tier customers` });
+      return;
+    }
+
+    // Additional validation for Enterprise Plus (no promo codes allowed)
+    if (customerTier === 'Enterprise Plus') {
+      setAppliedPromo({ error: 'Enterprise Plus customers receive volume discounts instead of promo codes. Contact sales for custom pricing.' });
+      return;
+    }
+
     setAppliedPromo({ ...promo, code });
   };
 
   const clearPromo = () => {
     setAppliedPromo(null);
     setPromoCode('');
+  };
+
+  // Get available promo codes for current customer tier
+  const getAvailablePromoCodes = (employeeCount: number) => {
+    const customerTier = getQualifyingTier(employeeCount);
+    const available = Object.entries(promoCodes).filter(([code, promo]) => {
+      const promoAny = promo as any;
+      // Check if promo is valid for this tier
+      if (promoAny.allowedTiers && !promoAny.allowedTiers.includes(customerTier)) {
+        return false;
+      }
+      // Check employee count restrictions
+      if (promoAny.minEmployees && employeeCount < promoAny.minEmployees) {
+        return false;
+      }
+      if (promoAny.maxEmployees && employeeCount > promoAny.maxEmployees) {
+        return false;
+      }
+      return true;
+    });
+    return available;
   };
 
   const calculatePrice = (tier: PricingTier) => {
@@ -290,6 +407,66 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
               <span>5,000</span>
               <span>10,000</span>
             </div>
+          </div>
+
+          {/* Tier Indicator and Available Promo Codes */}
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 space-y-3">
+            <div className="flex items-center gap-2">
+              <Shield className="w-5 h-5 text-blue-600" />
+              <span className="font-medium text-blue-900">
+                Your Qualifying Tier: {getQualifyingTier(employeeCount[0])}
+              </span>
+            </div>
+            
+            {(() => {
+              const availablePromos = getAvailablePromoCodes(employeeCount[0]);
+              const currentTier = getQualifyingTier(employeeCount[0]);
+              
+              if (currentTier === 'Enterprise Plus') {
+                return (
+                  <div className="space-y-2">
+                    <p className="text-sm text-blue-700">
+                      Enterprise Plus customers receive automatic volume discounts up to 20% off.
+                    </p>
+                    <p className="text-xs text-blue-600">
+                      Contact our sales team for custom enterprise pricing and dedicated support.
+                    </p>
+                  </div>
+                );
+              }
+              
+              if (availablePromos.length > 0) {
+                return (
+                  <div className="space-y-2">
+                    <p className="text-sm text-blue-700 font-medium">
+                      Available Promo Codes for {currentTier} Tier:
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {availablePromos.slice(0, 3).map(([code, promo]) => (
+                        <button
+                          key={code}
+                          onClick={() => setPromoCode(code)}
+                          className="text-xs bg-blue-100 hover:bg-blue-200 text-blue-800 px-2 py-1 rounded font-mono transition-colors"
+                        >
+                          {code}
+                        </button>
+                      ))}
+                    </div>
+                    {availablePromos.length > 3 && (
+                      <p className="text-xs text-blue-600">
+                        +{availablePromos.length - 3} more codes available
+                      </p>
+                    )}
+                  </div>
+                );
+              }
+              
+              return (
+                <p className="text-sm text-blue-700">
+                  No promo codes available for your current configuration.
+                </p>
+              );
+            })()}
           </div>
 
           {/* Billing Cycle */}
