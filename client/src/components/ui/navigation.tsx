@@ -62,12 +62,6 @@ export function Navigation({ onTrialClick, onDemoClick, onLoginClick, user, onLo
                 Pricing
               </a>
               <button 
-                onClick={() => scrollToSection('pricing')}
-                className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium"
-              >
-                Pricing
-              </button>
-              <button 
                 onClick={() => scrollToSection('contact')}
                 className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium"
               >
