@@ -169,7 +169,16 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
 
   const calculatePrice = (tier: PricingTier) => {
     const employees = employeeCount[0];
-    const baseMonthly = tier.basePrice + (employees * tier.perEmployee);
+    
+    // Apply volume discounts for large enterprises
+    let perEmployeeCost = tier.perEmployee;
+    if (tier.name === 'Enterprise Plus' && employees >= 5000) {
+      perEmployeeCost = tier.perEmployee * 0.8; // 20% volume discount for 5000+ employees
+    } else if (tier.name === 'Enterprise Plus' && employees >= 2000) {
+      perEmployeeCost = tier.perEmployee * 0.9; // 10% volume discount for 2000+ employees
+    }
+    
+    const baseMonthly = tier.basePrice + (employees * perEmployeeCost);
     const addonsTotal = selectedAddons.reduce((sum, addonName) => {
       const addon = addons.find(a => a.name === addonName);
       return sum + (addon?.price || 0);
@@ -179,6 +188,13 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
     let finalPrice = monthlyTotal;
     let promoDiscount = 0;
     let promoSavings = 0;
+    let volumeDiscount = 0;
+    
+    // Calculate volume discount amount for display
+    if (employees >= 2000 && tier.name === 'Enterprise Plus') {
+      const originalCost = tier.basePrice + (employees * tier.perEmployee);
+      volumeDiscount = originalCost - baseMonthly;
+    }
     
     // Apply promotional discount if valid
     if (appliedPromo && !appliedPromo.error) {
@@ -208,8 +224,9 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
       annual: finalAnnualPrice * 12,
       promoDiscount,
       promoSavings,
+      volumeDiscount,
       annualDiscount: annualDiscountAmount,
-      totalSavings: (isAnnual ? annualDiscountAmount * 12 : 0) + promoSavings + (isAnnual && promoDiscount ? promoDiscount * 12 : 0)
+      totalSavings: (isAnnual ? annualDiscountAmount * 12 : 0) + promoSavings + (isAnnual && promoDiscount ? promoDiscount * 12 : 0) + (volumeDiscount * 12)
     };
   };
 
@@ -262,15 +279,16 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
             <Slider
               value={employeeCount}
               onValueChange={setEmployeeCount}
-              max={1000}
+              max={10000}
               min={1}
-              step={1}
+              step={employeeCount[0] > 1000 ? 100 : 1}
               className="w-full"
             />
             <div className="flex justify-between text-xs text-gray-500">
               <span>1</span>
-              <span>500</span>
-              <span>1000+</span>
+              <span>1,000</span>
+              <span>5,000</span>
+              <span>10,000</span>
             </div>
           </div>
 
@@ -415,6 +433,13 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
                     ${Math.round(isAnnual ? pricing.annual / 12 : pricing.monthlyWithPromo)}
                     <span className="text-sm font-normal text-gray-500">/month</span>
                   </div>
+                  
+                  {/* Show volume discount */}
+                  {pricing.volumeDiscount > 0 && (
+                    <div className="text-sm text-blue-600 font-medium">
+                      💼 Volume Discount: Save ${Math.round(pricing.volumeDiscount)}/month
+                    </div>
+                  )}
                   
                   {/* Show promotional savings */}
                   {pricing.promoDiscount > 0 && (

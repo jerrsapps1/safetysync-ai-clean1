@@ -15,6 +15,7 @@ export const users = pgTable("users", {
   subscriptionStatus: text("subscription_status", { enum: ["active", "expired", "cancelled", "pending"] }).default("pending"),
   subscriptionExpiresAt: timestamp("subscription_expires_at"),
   totalLogins: integer("total_logins").default(0),
+  employeeCount: integer("employee_count").default(0),
   createdAt: timestamp("created_at").defaultNow(),
   lastLoginAt: timestamp("last_login_at"),
 });
