@@ -25,6 +25,17 @@ export const leads = pgTable("leads", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const complianceReports = pgTable("compliance_reports", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id),
+  reportName: text("report_name").notNull(),
+  reportType: text("report_type").notNull(), // 'full', 'summary', 'audit', 'training'
+  reportData: text("report_data").notNull(), // JSON string containing report data
+  generatedAt: timestamp("generated_at").defaultNow(),
+  periodStart: timestamp("period_start"),
+  periodEnd: timestamp("period_end"),
+});
+
 export const insertUserSchema = createInsertSchema(users).pick({
   email: true,
   password: true,
@@ -43,7 +54,14 @@ export const insertLeadSchema = createInsertSchema(leads).omit({
   createdAt: true,
 });
 
+export const insertComplianceReportSchema = createInsertSchema(complianceReports).omit({
+  id: true,
+  generatedAt: true,
+});
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type InsertLead = z.infer<typeof insertLeadSchema>;
 export type Lead = typeof leads.$inferSelect;
+export type InsertComplianceReport = z.infer<typeof insertComplianceReportSchema>;
+export type ComplianceReport = typeof complianceReports.$inferSelect;

@@ -1,4 +1,4 @@
-import { users, leads, type User, type InsertUser, type Lead, type InsertLead } from "@shared/schema";
+import { users, leads, complianceReports, type User, type InsertUser, type Lead, type InsertLead, type ComplianceReport, type InsertComplianceReport } from "@shared/schema";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
 
@@ -14,6 +14,9 @@ export interface IStorage {
   createLead(lead: InsertLead): Promise<Lead>;
   getLeads(): Promise<Lead[]>;
   getLeadById(id: number): Promise<Lead | undefined>;
+  createComplianceReport(report: InsertComplianceReport): Promise<ComplianceReport>;
+  getComplianceReports(userId: number): Promise<ComplianceReport[]>;
+  getComplianceReportById(id: number): Promise<ComplianceReport | undefined>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -60,6 +63,23 @@ export class DatabaseStorage implements IStorage {
 
   async getAllUsers(): Promise<User[]> {
     return await db.select().from(users);
+  }
+
+  async createComplianceReport(insertReport: InsertComplianceReport): Promise<ComplianceReport> {
+    const [report] = await db
+      .insert(complianceReports)
+      .values(insertReport)
+      .returning();
+    return report;
+  }
+
+  async getComplianceReports(userId: number): Promise<ComplianceReport[]> {
+    return await db.select().from(complianceReports).where(eq(complianceReports.userId, userId));
+  }
+
+  async getComplianceReportById(id: number): Promise<ComplianceReport | undefined> {
+    const [report] = await db.select().from(complianceReports).where(eq(complianceReports.id, id));
+    return report || undefined;
   }
 }
 
