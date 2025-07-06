@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ComplianceReportGenerator } from "@/components/ui/compliance-report-generator";
+import { AICloneDetector } from "@/components/ui/ai-clone-detector";
 import { 
   CheckCircle, 
   AlertTriangle, 
@@ -199,12 +200,13 @@ export default function Dashboard() {
 
         {/* Main Content Tabs */}
         <Tabs defaultValue="overview" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-5">
+          <TabsList className="grid w-full grid-cols-6">
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="employees">Employees</TabsTrigger>
             <TabsTrigger value="training">Training</TabsTrigger>
             <TabsTrigger value="reports">Reports</TabsTrigger>
             <TabsTrigger value="generator">Report Generator</TabsTrigger>
+            <TabsTrigger value="clone-detector">Clone Detector</TabsTrigger>
           </TabsList>
 
           <TabsContent value="overview" className="space-y-6">
@@ -427,6 +429,14 @@ export default function Dashboard() {
 
           <TabsContent value="generator" className="space-y-6">
             <ComplianceReportGenerator />
+          </TabsContent>
+
+          <TabsContent value="clone-detector" className="space-y-6">
+            <AICloneDetector 
+              onScanComplete={(results) => {
+                console.log('Clone detection scan completed:', results);
+              }}
+            />
           </TabsContent>
         </Tabs>
       </div>
