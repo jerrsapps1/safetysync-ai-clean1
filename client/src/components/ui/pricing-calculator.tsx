@@ -101,8 +101,6 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
         "Custom development",
         "On-premise deployment",
         "Advanced security features",
-        "Compliance consulting",
-        "Custom training development",
         "White-label solution",
         "Unlimited integrations",
         "Dedicated infrastructure"
