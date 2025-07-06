@@ -11,6 +11,8 @@ import AdminPanel from "@/pages/admin";
 import TestimonialsPage from "@/pages/testimonials";
 import CaseStudiesPage from "@/pages/case-studies";
 import PricingPage from "@/pages/pricing";
+import DeveloperPortal from "@/pages/developer-portal";
+import AnalyticsPage from "@/pages/analytics";
 
 function Router() {
   return (
@@ -21,6 +23,8 @@ function Router() {
       <Route path="/testimonials" component={TestimonialsPage} />
       <Route path="/case-studies" component={CaseStudiesPage} />
       <Route path="/pricing" component={PricingPage} />
+      <Route path="/developers" component={DeveloperPortal} />
+      <Route path="/analytics" component={AnalyticsPage} />
       <Route component={NotFound} />
     </Switch>
   );
