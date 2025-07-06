@@ -9,6 +9,7 @@ import { Switch } from "@/components/ui/switch";
 import { ComplianceReportGenerator } from "@/components/ui/compliance-report-generator";
 import { AICloneDetector } from "@/components/ui/ai-clone-detector";
 import { CollaborationLayer } from "@/components/ui/collaboration-layer";
+import { AIQuickActions } from "@/components/ui/ai-quick-actions";
 import { 
   CheckCircle, 
   AlertTriangle, 
@@ -123,6 +124,15 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* AI Quick Actions Sidebar */}
+      <AIQuickActions 
+        currentPage="dashboard"
+        onActionExecute={(actionId) => {
+          console.log('AI Action executed:', actionId);
+          // Handle specific actions based on actionId
+        }}
+      />
+      
       {/* Navigation Header */}
       <div className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 py-4">
