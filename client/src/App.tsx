@@ -13,6 +13,7 @@ import CaseStudiesPage from "@/pages/case-studies";
 import PricingPage from "@/pages/pricing";
 import DeveloperPortal from "@/pages/developer-portal";
 import AnalyticsPage from "@/pages/analytics";
+import UserGuidePage from "@/pages/user-guide";
 
 function Router() {
   return (
@@ -23,6 +24,7 @@ function Router() {
       <Route path="/testimonials" component={TestimonialsPage} />
       <Route path="/case-studies" component={CaseStudiesPage} />
       <Route path="/pricing" component={PricingPage} />
+      <Route path="/user-guide" component={UserGuidePage} />
       <Route path="/developers" component={DeveloperPortal} />
       <Route path="/analytics" component={AnalyticsPage} />
       <Route component={NotFound} />
