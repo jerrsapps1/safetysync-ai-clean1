@@ -237,8 +237,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Get all users endpoint (for admin purposes)
-  app.get("/api/admin/users", async (req, res) => {
+  // Admin authentication middleware
+  const requireAdmin = (req: any, res: any, next: any) => {
+    // Simple admin protection - can be enhanced with proper authentication
+    const adminKey = req.headers['x-admin-key'];
+    const expectedKey = process.env.ADMIN_KEY || 'dev-admin-key';
+    
+    if (adminKey !== expectedKey) {
+      return res.status(403).json({ 
+        success: false, 
+        message: "Admin access required" 
+      });
+    }
+    
+    next();
+  };
+
+  // Get all users endpoint (admin only)
+  app.get("/api/admin/users", requireAdmin, async (req, res) => {
     try {
       const users = await storage.getAllUsers();
       res.json(users);

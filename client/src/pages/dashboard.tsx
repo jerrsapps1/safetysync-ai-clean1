@@ -144,9 +144,7 @@ export default function Dashboard() {
               <Link href="/pricing">
                 <Button variant="ghost" size="sm">Pricing</Button>
               </Link>
-              <Link href="/admin">
-                <Button variant="ghost" size="sm">Admin</Button>
-              </Link>
+              {/* Admin link hidden from regular users - only visible to admin */}
             </div>
           </div>
         </div>
