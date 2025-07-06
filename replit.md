@@ -157,6 +157,7 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Enhanced landing page with product tour launch button and live chat integration
   - All components feature responsive design and smooth animations
   - Fixed duplicate pricing tabs in navigation menu
+  - Removed custom training options from pricing calculator (focus on certification tracking)
 
 ## Changelog
 
