@@ -146,9 +146,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/leads", async (req, res) => {
     try {
       const leads = await storage.getLeads();
-      res.json({ success: true, leads });
+      res.json(leads);
     } catch (error) {
       console.error("Error fetching leads:", error);
+      res.status(500).json({ 
+        success: false, 
+        message: "Internal server error" 
+      });
+    }
+  });
+
+  // Get all users endpoint (for admin purposes)
+  app.get("/api/admin/users", async (req, res) => {
+    try {
+      const users = await storage.getAllUsers();
+      res.json(users);
+    } catch (error) {
+      console.error("Error fetching users:", error);
       res.status(500).json({ 
         success: false, 
         message: "Internal server error" 
