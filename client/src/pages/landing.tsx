@@ -5,6 +5,8 @@ import { Navigation } from "@/components/ui/navigation";
 import { TrialSignupDialog } from "@/components/ui/trial-signup-dialog";
 import { DemoRequestDialog } from "@/components/ui/demo-request-dialog";
 import { LoginDialog } from "@/components/ui/login-dialog";
+import { ProductTour } from "@/components/ui/product-tour";
+import { LiveChatWidget } from "@/components/ui/live-chat-widget";
 import { useToast } from "@/hooks/use-toast";
 import { 
   CheckCircle, 
@@ -33,6 +35,8 @@ export default function LandingPage() {
   const [isTrialDialogOpen, setIsTrialDialogOpen] = useState(false);
   const [isDemoDialogOpen, setIsDemoDialogOpen] = useState(false);
   const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
+  const [showProductTour, setShowProductTour] = useState(false);
+  const [showLiveChat, setShowLiveChat] = useState(false);
   const [user, setUser] = useState(null);
   const { toast } = useToast();
 
@@ -140,7 +144,7 @@ export default function LandingPage() {
                 See How It Works
               </Button>
             </div>
-            <div className="flex items-center justify-center space-x-8 text-sm text-gray-400">
+            <div className="flex items-center justify-center space-x-8 text-sm text-gray-400 mb-8">
               <div className="flex items-center">
                 <CheckCircle className="w-5 h-5 mr-2" />
                 No Credit Card Required
@@ -153,6 +157,17 @@ export default function LandingPage() {
                 <Clock className="w-5 h-5 mr-2" />
                 Setup in Minutes
               </div>
+            </div>
+            
+            {/* Product Tour Button */}
+            <div className="text-center">
+              <Button
+                onClick={() => setShowProductTour(true)}
+                variant="ghost"
+                className="text-white/80 hover:text-white hover:bg-white/10 px-6 py-2 rounded-lg backdrop-blur-sm"
+              >
+                🎥 Take a Quick Tour
+              </Button>
             </div>
           </div>
         </div>
@@ -722,6 +737,26 @@ export default function LandingPage() {
         onClose={() => setIsLoginDialogOpen(false)}
         onSuccess={handleLoginSuccess}
         onSignupClick={handleSignupClick}
+      />
+      
+      {/* Product Tour */}
+      <ProductTour
+        isOpen={showProductTour}
+        onClose={() => setShowProductTour(false)}
+        onComplete={() => {
+          toast({
+            title: "Welcome to SafetySync!",
+            description: "You're ready to start managing OSHA compliance.",
+            duration: 5000,
+          });
+        }}
+      />
+      
+      {/* Live Chat Widget */}
+      <LiveChatWidget
+        isOpen={showLiveChat}
+        onToggle={() => setShowLiveChat(!showLiveChat)}
+        onClose={() => setShowLiveChat(false)}
       />
     </div>
   );

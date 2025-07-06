@@ -9,6 +9,7 @@ import Dashboard from "@/pages/dashboard";
 import AdminPanel from "@/pages/admin";
 import TestimonialsPage from "@/pages/testimonials";
 import CaseStudiesPage from "@/pages/case-studies";
+import PricingPage from "@/pages/pricing";
 
 function Router() {
   return (
@@ -18,6 +19,7 @@ function Router() {
       <Route path="/admin" component={AdminPanel} />
       <Route path="/testimonials" component={TestimonialsPage} />
       <Route path="/case-studies" component={CaseStudiesPage} />
+      <Route path="/pricing" component={PricingPage} />
       <Route component={NotFound} />
     </Switch>
   );
