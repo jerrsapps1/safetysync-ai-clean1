@@ -64,22 +64,50 @@ export function TermsAndConditions({
             {/* Key Terms Summary */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="bg-green-50 p-4 rounded-lg border border-green-200">
-                <h4 className="font-semibold text-green-900 mb-2">✓ Service Access</h4>
-                <ul className="text-green-800 space-y-1">
-                  <li>• Immediate platform access upon payment</li>
-                  <li>• 24/7 compliance monitoring</li>
-                  <li>• Full feature access per your plan</li>
-                  <li>• Monthly billing cycle</li>
+                <h4 className="font-semibold text-green-900 mb-2">✓ Platform Features</h4>
+                <ul className="text-green-800 space-y-1 text-sm">
+                  <li>• AI-powered compliance analysis and risk assessment</li>
+                  <li>• Real-time collaboration and team annotation tools</li>
+                  <li>• Multi-location management and custom branding</li>
+                  <li>• API access and developer portal (Pro+ plans)</li>
+                  <li>• Automated audit reviews and intelligent insights</li>
+                  <li>• Clone detection and security monitoring</li>
+                </ul>
+              </div>
+              
+              <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                <h4 className="font-semibold text-blue-900 mb-2">🔒 Data & Privacy</h4>
+                <ul className="text-blue-800 space-y-1 text-sm">
+                  <li>• End-to-end encryption for all data</li>
+                  <li>• GDPR and CCPA compliance</li>
+                  <li>• AI processing within secure environments</li>
+                  <li>• Your data never used for external AI training</li>
+                  <li>• Team collaboration data stays within your org</li>
+                  <li>• Full data export tools available</li>
+                </ul>
+              </div>
+              
+              <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                <h4 className="font-semibold text-purple-900 mb-2">⚡ AI Services</h4>
+                <ul className="text-purple-800 space-y-1 text-sm">
+                  <li>• Intelligent compliance gap analysis</li>
+                  <li>• Automated training schedule optimization</li>
+                  <li>• Real-time risk assessment and alerts</li>
+                  <li>• Smart certification monitoring</li>
+                  <li>• AI chat assistant for compliance guidance</li>
+                  <li>• Verify all AI recommendations independently</li>
                 </ul>
               </div>
               
               <div className="bg-orange-50 p-4 rounded-lg border border-orange-200">
                 <h4 className="font-semibold text-orange-900 mb-2">⚠️ Cancellation Policy</h4>
-                <ul className="text-orange-800 space-y-1">
+                <ul className="text-orange-800 space-y-1 text-sm">
                   <li>• Cancel anytime with 30-day notice</li>
                   <li>• No prorated refunds issued</li>
                   <li>• 30-day data migration period</li>
                   <li>• Export tools available during migration</li>
+                  <li>• Automated audit reviews can be disabled</li>
+                  <li>• Volume discounts apply at 2000+ employees</li>
                 </ul>
               </div>
             </div>
@@ -94,9 +122,11 @@ export function TermsAndConditions({
                 <div>
                   <h4 className="font-semibold text-gray-900">1. SERVICE DESCRIPTION</h4>
                   <p className="mt-1">
-                    SafetySync.AI provides AI-powered OSHA compliance management software as a service (SaaS). 
-                    Our platform includes compliance tracking, automated reporting, training management, 
-                    and regulatory update notifications.
+                    SafetySync.AI provides comprehensive AI-powered OSHA compliance management software as a service (SaaS). 
+                    Our platform includes: compliance tracking, automated reporting, training management, regulatory updates, 
+                    AI-powered clone detection, real-time collaboration tools, multi-location management, custom branding services, 
+                    advanced analytics, API access, developer portal, automated audit reviews, real-time risk assessment, 
+                    intelligent quick actions, and AI chat assistance for compliance guidance.
                   </p>
                 </div>
 
@@ -112,7 +142,59 @@ export function TermsAndConditions({
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900">3. CANCELLATION AND REFUND POLICY</h4>
+                  <h4 className="font-semibold text-gray-900">3. AI SERVICES AND DATA PROCESSING</h4>
+                  <p className="mt-1">
+                    <strong>AI Features:</strong> Our platform uses artificial intelligence for clone detection, compliance analysis, risk assessment, and chat assistance.
+                    <br />
+                    <strong>Data Processing:</strong> You consent to AI processing of your compliance data to provide intelligent insights and recommendations.
+                    <br />
+                    <strong>Data Privacy:</strong> AI processing occurs within secure, encrypted environments. Your data is not used to train external AI models.
+                    <br />
+                    <strong>Accuracy Disclaimer:</strong> AI insights are recommendations only. You remain responsible for verifying and acting on compliance requirements.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-gray-900">4. API ACCESS AND DEVELOPER SERVICES</h4>
+                  <p className="mt-1">
+                    <strong>API Usage:</strong> API access is governed by rate limits and fair use policies outlined in our developer portal.
+                    <br />
+                    <strong>Integration Rights:</strong> You may integrate our API with your systems for legitimate business purposes only.
+                    <br />
+                    <strong>Developer Portal:</strong> Access to documentation, SDKs, and testing tools is included with Professional and Enterprise plans.
+                    <br />
+                    <strong>API Restrictions:</strong> You may not reverse engineer, resell, or use our API to compete with our services.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-gray-900">5. CUSTOM BRANDING AND WHITE-LABEL SERVICES</h4>
+                  <p className="mt-1">
+                    <strong>Branding Rights:</strong> Essential, Professional, and Enterprise plans include custom branding capabilities.
+                    <br />
+                    <strong>Logo Usage:</strong> You grant us license to display your logo within your branded platform instance only.
+                    <br />
+                    <strong>Brand Guidelines:</strong> Custom branding must comply with professional standards and applicable laws.
+                    <br />
+                    <strong>Intellectual Property:</strong> Your branding remains your property; our platform technology remains ours.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-gray-900">6. COLLABORATION AND MULTI-LOCATION FEATURES</h4>
+                  <p className="mt-1">
+                    <strong>Team Collaboration:</strong> Real-time collaboration tools enable secure team communication within your organization.
+                    <br />
+                    <strong>Multi-Location Management:</strong> Enterprise features support unlimited locations with centralized oversight.
+                    <br />
+                    <strong>Data Sharing:</strong> Collaboration features share data only within your authorized team members.
+                    <br />
+                    <strong>Access Controls:</strong> You control user permissions and data access for your team members.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-gray-900">7. CANCELLATION AND REFUND POLICY</h4>
                   <p className="mt-1">
                     <strong>Cancellation:</strong> You may cancel your subscription at any time with 30 days written notice.
                     <br />
@@ -149,38 +231,82 @@ export function TermsAndConditions({
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900">6. COMPLIANCE AND LIABILITY</h4>
+                  <h4 className="font-semibold text-gray-900">8. AUTOMATED AUDIT REVIEW SERVICES</h4>
+                  <p className="mt-1">
+                    <strong>Service Description:</strong> Optional automated monthly compliance gap analysis available for $99/month.
+                    <br />
+                    <strong>Opt-Out Rights:</strong> You may disable automated audit reviews at any time through your dashboard settings.
+                    <br />
+                    <strong>Review Scope:</strong> Automated reviews analyze your data for compliance gaps and provide recommendations.
+                    <br />
+                    <strong>Professional Responsibility:</strong> Automated reviews supplement but do not replace professional compliance oversight.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-gray-900">9. TIER-BASED FEATURES AND LIMITATIONS</h4>
+                  <p className="mt-1">
+                    <strong>Essential Plan:</strong> Up to 50 employees, basic features, custom branding, email support.
+                    <br />
+                    <strong>Professional Plan:</strong> Up to 500 employees, advanced analytics, API access, priority support.
+                    <br />
+                    <strong>Enterprise Plan:</strong> Up to 2,000 employees, unlimited locations, real-time risk assessment, dedicated support.
+                    <br />
+                    <strong>Enterprise Plus:</strong> Up to 10,000 employees, white-label options, volume discounts, custom integrations.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-gray-900">10. COMPLIANCE AND LIABILITY</h4>
                   <p className="mt-1">
                     <strong>Compliance Tool:</strong> Our platform is a tool to assist with OSHA compliance but does not guarantee compliance.
                     <br />
                     <strong>Professional Responsibility:</strong> You remain responsible for ensuring actual compliance with all applicable regulations.
+                    <br />
+                    <strong>AI Accuracy:</strong> AI insights, clone detection, and automated recommendations are tools only; verify all results independently.
                     <br />
                     <strong>Limitation of Liability:</strong> Our liability is limited to the amount paid for services in the preceding 12 months.
                   </p>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900">7. ACCEPTABLE USE</h4>
+                  <h4 className="font-semibold text-gray-900">11. ACCEPTABLE USE</h4>
                   <p className="mt-1">
                     You agree not to: (a) violate any laws, (b) infringe intellectual property rights, 
-                    (c) transmit malicious code, (d) attempt to gain unauthorized access, or (e) use the service 
-                    for any unlawful or prohibited purpose.
+                    (c) transmit malicious code, (d) attempt to gain unauthorized access, (e) use the service 
+                    for any unlawful purpose, (f) abuse AI features or API rate limits, (g) reverse engineer our algorithms,
+                    or (h) use collaboration tools for non-business purposes.
                   </p>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900">8. MODIFICATIONS</h4>
+                  <h4 className="font-semibold text-gray-900">12. DATA SECURITY AND PRIVACY</h4>
+                  <p className="mt-1">
+                    <strong>Encryption:</strong> All data is encrypted in transit and at rest using industry-standard protocols.
+                    <br />
+                    <strong>Data Retention:</strong> Your data is retained for the duration of your subscription plus 90 days for backups.
+                    <br />
+                    <strong>GDPR Compliance:</strong> We comply with applicable data protection regulations including GDPR and CCPA.
+                    <br />
+                    <strong>Third-Party Access:</strong> We do not sell or share your data with third parties except as required by law.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-gray-900">13. MODIFICATIONS</h4>
                   <p className="mt-1">
                     We reserve the right to modify these terms with 30 days notice. Continued use of the service 
-                    constitutes acceptance of modified terms.
+                    constitutes acceptance of modified terms. Material changes affecting pricing or core functionality 
+                    will include opt-out provisions.
                   </p>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900">9. GOVERNING LAW</h4>
+                  <h4 className="font-semibold text-gray-900">14. GOVERNING LAW</h4>
                   <p className="mt-1">
                     This agreement is governed by the laws of the jurisdiction where SafetySync.AI is incorporated. 
-                    Any disputes will be resolved through binding arbitration.
+                    Any disputes will be resolved through binding arbitration. Class action lawsuits are waived except 
+                    where prohibited by law.
                   </p>
                 </div>
               </div>
