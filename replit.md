@@ -83,12 +83,17 @@ The application uses Drizzle ORM with PostgreSQL, featuring:
 - **@radix-ui/***: Accessible UI primitives
 - **zod**: Runtime type validation
 - **wouter**: Lightweight routing
+- **openai**: OpenAI API integration for AI clone detection
 
 ### Development Dependencies
 - **Vite**: Fast build tool with HMR
 - **TypeScript**: Type safety across the stack
 - **Tailwind CSS**: Utility-first styling
 - **PostCSS**: CSS processing pipeline
+
+### API Keys & Environment
+- **OPENAI_API_KEY**: Configured for AI-powered clone detection analysis
+- **DATABASE_URL**: PostgreSQL connection string for persistent storage
 
 ## Deployment Strategy
 
