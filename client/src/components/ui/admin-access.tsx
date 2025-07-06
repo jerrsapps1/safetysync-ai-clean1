@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
+import { Link } from "wouter";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Shield, Lock, Eye, EyeOff } from "lucide-react";
+import { Shield, Lock, Eye, EyeOff, Home, Brain } from "lucide-react";
 
 interface AdminAccessProps {
   onAccessGranted: () => void;
@@ -55,7 +56,43 @@ export function AdminAccess({ onAccessGranted }: AdminAccessProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gray-50">
+      {/* Navigation Header */}
+      <div className="bg-white shadow-sm border-b">
+        <div className="max-w-7xl mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <Link href="/">
+                <Button variant="ghost" size="sm" className="text-gray-600 hover:text-gray-900">
+                  <Home className="w-4 h-4 mr-2" />
+                  Home
+                </Button>
+              </Link>
+              <div className="flex items-center space-x-2">
+                <div className="w-6 h-6 bg-gradient-to-r from-blue-600 to-purple-600 rounded-md flex items-center justify-center">
+                  <Brain className="w-4 h-4 text-white" />
+                </div>
+                <span className="text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  SafetySync.AI
+                </span>
+              </div>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Link href="/testimonials">
+                <Button variant="ghost" size="sm">Testimonials</Button>
+              </Link>
+              <Link href="/case-studies">
+                <Button variant="ghost" size="sm">Case Studies</Button>
+              </Link>
+              <Link href="/pricing">
+                <Button variant="ghost" size="sm">Pricing</Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex items-center justify-center px-4 py-16">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <div className="flex justify-center mb-4">
@@ -116,6 +153,7 @@ export function AdminAccess({ onAccessGranted }: AdminAccessProps) {
           </div>
         </CardContent>
       </Card>
+      </div>
     </div>
   );
 }
