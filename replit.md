@@ -256,6 +256,7 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Enabled customers to customize review parameters and disable service if desired
   - Updated pricing calculator to reflect "Automated Audit Review" at $99/month
   - Focused service offering on automated platform features rather than manual consulting
+  - Moved custom branding to Essential plan for future customer profile identification
 
 ## Changelog
 
