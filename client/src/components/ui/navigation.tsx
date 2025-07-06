@@ -43,12 +43,18 @@ export function Navigation({ onTrialClick, onDemoClick, onLoginClick, user, onLo
               >
                 Features
               </button>
-              <button 
-                onClick={() => scrollToSection('how-it-works')}
+              <a 
+                href="/testimonials"
                 className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium"
               >
-                How It Works
-              </button>
+                Testimonials
+              </a>
+              <a 
+                href="/case-studies"
+                className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium"
+              >
+                Case Studies
+              </a>
               <button 
                 onClick={() => scrollToSection('pricing')}
                 className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium"
@@ -67,6 +73,12 @@ export function Navigation({ onTrialClick, onDemoClick, onLoginClick, user, onLo
           <div className="flex items-center space-x-4">
             {user ? (
               <div className="flex items-center space-x-3">
+                <a 
+                  href="/dashboard"
+                  className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium"
+                >
+                  Dashboard
+                </a>
                 <div className="flex items-center space-x-2">
                   <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
                     <User className="w-4 h-4 text-white" />
