@@ -247,6 +247,15 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Added tier indicator showing customers their qualifying tier and available codes
   - Implemented smart validation preventing tier misuse and margin erosion
   - Enhanced pricing calculator with real-time tier-appropriate promo suggestions
+- **July 06, 2025** - Refined Service Model and Automated Audit Review System:
+  - Removed compliance consulting and custom training development services
+  - Transformed audit support into automated monthly compliance gap analysis
+  - Created Audit Settings dashboard tab for customer control and opt-out capability
+  - Implemented automated review system with configurable scheduling and reporting
+  - Added comprehensive audit review settings: schedule, format, recipients, and scope options
+  - Enabled customers to customize review parameters and disable service if desired
+  - Updated pricing calculator to reflect "Automated Audit Review" at $99/month
+  - Focused service offering on automated platform features rather than manual consulting
 
 ## Changelog
 

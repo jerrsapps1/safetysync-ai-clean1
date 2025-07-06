@@ -114,7 +114,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
     { name: "Advanced Analytics", price: 50, description: "Enhanced reporting and insights" },
     { name: "Mobile App", price: 30, description: "iOS and Android applications" },
     { name: "API Access", price: 40, description: "Full REST API integration" },
-    { name: "Audit Support", price: 200, description: "Professional audit assistance" },
+    { name: "Automated Audit Review", price: 99, description: "Monthly automated compliance gap analysis with auto-generated reports" },
     { name: "24/7 Support", price: 75, description: "Round-the-clock phone support" }
   ];
 
