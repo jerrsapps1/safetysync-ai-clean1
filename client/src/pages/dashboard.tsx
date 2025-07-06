@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Switch } from "@/components/ui/switch";
 import { ComplianceReportGenerator } from "@/components/ui/compliance-report-generator";
 import { AICloneDetector } from "@/components/ui/ai-clone-detector";
+import { CollaborationLayer } from "@/components/ui/collaboration-layer";
 import { 
   CheckCircle, 
   AlertTriangle, 
@@ -248,13 +249,14 @@ export default function Dashboard() {
 
         {/* Main Content Tabs */}
         <Tabs defaultValue="overview" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-9">
+          <TabsList className="grid w-full grid-cols-10">
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="employees">Employees</TabsTrigger>
             <TabsTrigger value="training">Training</TabsTrigger>
             <TabsTrigger value="locations">Locations</TabsTrigger>
             <TabsTrigger value="reports">Reports</TabsTrigger>
             <TabsTrigger value="generator">Report Generator</TabsTrigger>
+            <TabsTrigger value="collaboration">Team Review</TabsTrigger>
             <TabsTrigger value="branding">Branding</TabsTrigger>
             <TabsTrigger value="audit-settings">Audit Settings</TabsTrigger>
             <TabsTrigger value="clone-detector">Clone Detector</TabsTrigger>
@@ -733,6 +735,60 @@ export default function Dashboard() {
 
           <TabsContent value="generator" className="space-y-6">
             <ComplianceReportGenerator />
+          </TabsContent>
+
+          <TabsContent value="collaboration" className="space-y-6">
+            <CollaborationLayer
+              documentId="safety-review-2025"
+              teamMembers={[
+                {
+                  id: '1',
+                  name: 'Sarah Johnson',
+                  role: 'Safety Manager',
+                  isOnline: true,
+                  avatar: undefined
+                },
+                {
+                  id: '2',
+                  name: 'Mike Chen',
+                  role: 'Compliance Officer',
+                  isOnline: true,
+                  avatar: undefined
+                },
+                {
+                  id: '3',
+                  name: 'David Wilson',
+                  role: 'HR Director',
+                  isOnline: false,
+                  avatar: undefined,
+                  lastSeen: '2 hours ago'
+                },
+                {
+                  id: '4',
+                  name: 'Lisa Martinez',
+                  role: 'Operations Manager',
+                  isOnline: true,
+                  avatar: undefined
+                },
+                {
+                  id: '5',
+                  name: 'John Smith',
+                  role: 'Site Supervisor',
+                  isOnline: false,
+                  avatar: undefined,
+                  lastSeen: '1 day ago'
+                }
+              ]}
+              onAnnotationAdd={(annotation) => {
+                console.log('New annotation added:', annotation);
+              }}
+              onAnnotationUpdate={(annotation) => {
+                console.log('Annotation updated:', annotation);
+              }}
+              onAnnotationDelete={(annotationId) => {
+                console.log('Annotation deleted:', annotationId);
+              }}
+            />
           </TabsContent>
 
           <TabsContent value="branding" className="space-y-6">
