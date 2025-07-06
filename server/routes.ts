@@ -1,7 +1,8 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertLeadSchema, insertUserSchema, loginUserSchema, insertComplianceReportSchema } from "@shared/schema";
+import { cloneDetector } from "./ai-clone-detection";
+import { insertLeadSchema, insertUserSchema, loginUserSchema, insertComplianceReportSchema, insertCloneDetectionScanSchema } from "@shared/schema";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
 
@@ -320,6 +321,196 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
     }
   });
+
+  // Clone Detection API Routes
+  // Store active scans in memory (in production, use Redis or database)
+  const activeScanStatuses = new Map<number, any>();
+
+  // Initialize original website fingerprint
+  app.post("/api/clone-detection/init", async (req, res) => {
+    try {
+      const { html, url } = req.body;
+      await cloneDetector.setOriginalWebsite(html, url);
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Failed to initialize clone detector:", error);
+      res.status(500).json({ error: "Failed to initialize clone detector" });
+    }
+  });
+
+  // Start clone detection scan
+  app.post("/api/clone-detection/scan", async (req, res) => {
+    try {
+      const { urls, scanType = 'manual' } = req.body;
+      const userId = 1; // For demo purposes, use actual user from session
+
+      if (!Array.isArray(urls) || urls.length === 0) {
+        return res.status(400).json({ error: "URLs array is required" });
+      }
+
+      // Create scan record
+      const scan = await storage.createCloneDetectionScan({
+        userId,
+        scanType,
+        targetUrls: urls,
+        results: [],
+        status: 'pending',
+        totalSites: urls.length,
+        clonesDetected: 0,
+        highRiskSites: 0
+      });
+
+      // Initialize scan status
+      activeScanStatuses.set(scan.id, {
+        scanId: scan.id,
+        status: 'running',
+        progress: 0,
+        currentUrl: '',
+        results: [],
+        totalUrls: urls.length,
+        processedUrls: 0
+      });
+
+      // Start scanning in background
+      processScanAsync(scan.id, urls);
+
+      res.json({ scanId: scan.id, status: 'started' });
+    } catch (error) {
+      console.error("Failed to start scan:", error);
+      res.status(500).json({ error: "Failed to start scan" });
+    }
+  });
+
+  // Get scan status
+  app.get("/api/clone-detection/scan/:scanId/status", async (req, res) => {
+    try {
+      const scanId = parseInt(req.params.scanId);
+      const status = activeScanStatuses.get(scanId);
+      
+      if (!status) {
+        const scan = await storage.getCloneDetectionScanById(scanId);
+        if (!scan) {
+          return res.status(404).json({ error: "Scan not found" });
+        }
+        return res.json({ 
+          status: scan.status, 
+          progress: 100,
+          results: scan.results,
+          clonesDetected: scan.clonesDetected 
+        });
+      }
+
+      res.json(status);
+    } catch (error) {
+      console.error("Failed to get scan status:", error);
+      res.status(500).json({ error: "Failed to get scan status" });
+    }
+  });
+
+  // Get clone detection scans for user
+  app.get("/api/clone-detection/scans", async (req, res) => {
+    try {
+      const userId = 1; // For demo purposes, use actual user from session
+      const scans = await storage.getCloneDetectionScans(userId);
+      res.json(scans);
+    } catch (error) {
+      console.error("Failed to fetch scans:", error);
+      res.status(500).json({ error: "Failed to fetch scans" });
+    }
+  });
+
+  // Background scan processing function
+  async function processScanAsync(scanId: number, urls: string[]) {
+    const status = activeScanStatuses.get(scanId);
+    if (!status) return;
+
+    try {
+      const results = [];
+      let clonesDetected = 0;
+      let highRiskSites = 0;
+
+      for (let i = 0; i < urls.length; i++) {
+        const url = urls[i];
+        status.currentUrl = url;
+        status.progress = Math.round((i / urls.length) * 100);
+        
+        try {
+          // Fetch website content
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 10000);
+          
+          const response = await fetch(url, { 
+            signal: controller.signal,
+            headers: { 'User-Agent': 'SafetySync Clone Detector 1.0' }
+          });
+          clearTimeout(timeoutId);
+          
+          if (response.ok) {
+            const html = await response.text();
+            const result = await cloneDetector.detectClone(html, url);
+            results.push(result);
+            
+            if (result.recommendation === 'potential_clone' || result.recommendation === 'high_risk') {
+              clonesDetected++;
+            }
+            if (result.recommendation === 'high_risk' || result.recommendation === 'potential_clone') {
+              highRiskSites++;
+            }
+          } else {
+            results.push({
+              url,
+              similarityScore: 0,
+              analysis: { contentSimilarity: 0, structureSimilarity: 0, designSimilarity: 0, brandingSimilarity: 0 },
+              suspiciousElements: [],
+              recommendation: 'low_risk' as const,
+              aiAnalysis: 'Unable to access website for analysis.',
+              timestamp: new Date().toISOString()
+            });
+          }
+        } catch (error) {
+          console.error(`Error scanning ${url}:`, error);
+          results.push({
+            url,
+            similarityScore: 0,
+            analysis: { contentSimilarity: 0, structureSimilarity: 0, designSimilarity: 0, brandingSimilarity: 0 },
+            suspiciousElements: [],
+            recommendation: 'low_risk' as const,
+            aiAnalysis: 'Error occurred during analysis.',
+            timestamp: new Date().toISOString()
+          });
+        }
+        
+        status.processedUrls = i + 1;
+      }
+
+      // Update scan in database
+      await storage.updateCloneDetectionScan(scanId, {
+        status: 'completed',
+        results: results,
+        clonesDetected,
+        highRiskSites,
+        completedAt: new Date()
+      });
+
+      // Update status
+      status.status = 'completed';
+      status.progress = 100;
+      status.results = results;
+      status.clonesDetected = clonesDetected;
+
+    } catch (error) {
+      console.error(`Scan ${scanId} failed:`, error);
+      await storage.updateCloneDetectionScan(scanId, {
+        status: 'failed',
+        completedAt: new Date()
+      });
+      
+      if (status) {
+        status.status = 'failed';
+        status.error = error instanceof Error ? error.message : 'Unknown error';
+      }
+    }
+  }
 
   const httpServer = createServer(app);
 

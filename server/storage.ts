@@ -1,4 +1,4 @@
-import { users, leads, complianceReports, type User, type InsertUser, type Lead, type InsertLead, type ComplianceReport, type InsertComplianceReport } from "@shared/schema";
+import { users, leads, complianceReports, cloneDetectionScans, type User, type InsertUser, type Lead, type InsertLead, type ComplianceReport, type InsertComplianceReport, type CloneDetectionScan, type InsertCloneDetectionScan } from "@shared/schema";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
 
@@ -17,6 +17,10 @@ export interface IStorage {
   createComplianceReport(report: InsertComplianceReport): Promise<ComplianceReport>;
   getComplianceReports(userId: number): Promise<ComplianceReport[]>;
   getComplianceReportById(id: number): Promise<ComplianceReport | undefined>;
+  createCloneDetectionScan(scan: InsertCloneDetectionScan): Promise<CloneDetectionScan>;
+  getCloneDetectionScans(userId: number): Promise<CloneDetectionScan[]>;
+  getCloneDetectionScanById(id: number): Promise<CloneDetectionScan | undefined>;
+  updateCloneDetectionScan(id: number, updates: Partial<CloneDetectionScan>): Promise<void>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -80,6 +84,31 @@ export class DatabaseStorage implements IStorage {
   async getComplianceReportById(id: number): Promise<ComplianceReport | undefined> {
     const [report] = await db.select().from(complianceReports).where(eq(complianceReports.id, id));
     return report || undefined;
+  }
+
+  async createCloneDetectionScan(insertScan: InsertCloneDetectionScan): Promise<CloneDetectionScan> {
+    const [scan] = await db
+      .insert(cloneDetectionScans)
+      .values(insertScan)
+      .returning();
+    return scan;
+  }
+
+  async getCloneDetectionScans(userId: number): Promise<CloneDetectionScan[]> {
+    return await db.select().from(cloneDetectionScans)
+      .where(eq(cloneDetectionScans.userId, userId))
+      .orderBy(cloneDetectionScans.createdAt);
+  }
+
+  async getCloneDetectionScanById(id: number): Promise<CloneDetectionScan | undefined> {
+    const [scan] = await db.select().from(cloneDetectionScans).where(eq(cloneDetectionScans.id, id));
+    return scan || undefined;
+  }
+
+  async updateCloneDetectionScan(id: number, updates: Partial<CloneDetectionScan>): Promise<void> {
+    await db.update(cloneDetectionScans)
+      .set(updates)
+      .where(eq(cloneDetectionScans.id, id));
   }
 }
 

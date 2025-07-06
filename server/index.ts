@@ -111,5 +111,15 @@ app.use((req, res, next) => {
     reusePort: true,
   }, () => {
     log(`serving on port ${port}`);
+    
+    // Initialize clone detector after server starts
+    setTimeout(async () => {
+      try {
+        const { initializeCloneDetector } = await import("./init-clone-detector");
+        // Function will self-execute
+      } catch (error) {
+        console.log('Clone detector initialization skipped:', error instanceof Error ? error.message : error);
+      }
+    }, 3000);
   });
 })();

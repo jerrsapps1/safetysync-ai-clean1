@@ -1,4 +1,4 @@
-import { pgTable, text, serial, integer, boolean, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, boolean, timestamp, jsonb } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -36,6 +36,20 @@ export const complianceReports = pgTable("compliance_reports", {
   periodEnd: timestamp("period_end"),
 });
 
+export const cloneDetectionScans = pgTable("clone_detection_scans", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").notNull(),
+  scanType: text("scan_type").notNull(), // 'manual', 'scheduled', 'bulk'
+  targetUrls: jsonb("target_urls").notNull(), // Array of URLs to scan
+  results: jsonb("results").notNull(), // Detection results
+  status: text("status").notNull(), // 'pending', 'running', 'completed', 'failed'
+  totalSites: integer("total_sites").notNull().default(0),
+  clonesDetected: integer("clones_detected").notNull().default(0),
+  highRiskSites: integer("high_risk_sites").notNull().default(0),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  completedAt: timestamp("completed_at"),
+});
+
 export const insertUserSchema = createInsertSchema(users).pick({
   email: true,
   password: true,
@@ -59,9 +73,17 @@ export const insertComplianceReportSchema = createInsertSchema(complianceReports
   generatedAt: true,
 });
 
+export const insertCloneDetectionScanSchema = createInsertSchema(cloneDetectionScans).omit({
+  id: true,
+  createdAt: true,
+  completedAt: true,
+});
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type InsertLead = z.infer<typeof insertLeadSchema>;
 export type Lead = typeof leads.$inferSelect;
 export type InsertComplianceReport = z.infer<typeof insertComplianceReportSchema>;
 export type ComplianceReport = typeof complianceReports.$inferSelect;
+export type InsertCloneDetectionScan = z.infer<typeof insertCloneDetectionScanSchema>;
+export type CloneDetectionScan = typeof cloneDetectionScans.$inferSelect;
