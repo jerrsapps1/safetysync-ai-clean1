@@ -33,7 +33,7 @@ export function CopyrightProtection() {
     console.log('%c⚠️ COPYRIGHT NOTICE', 'color: red; font-size: 20px; font-weight: bold;');
     console.log('%cThis website and its content are protected by copyright law.', 'color: red; font-size: 14px;');
     console.log('%cUnauthorized copying, reproduction, or distribution is prohibited.', 'color: red; font-size: 14px;');
-    console.log('%c© 2025 SafetySync Software. All rights reserved.', 'color: red; font-size: 14px;');
+    console.log('%c© 2025 SafetySync.AI. All rights reserved.', 'color: red; font-size: 14px;');
 
     // Cleanup
     return () => {

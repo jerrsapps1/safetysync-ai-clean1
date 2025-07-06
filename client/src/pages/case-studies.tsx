@@ -170,7 +170,7 @@ export default function CaseStudiesPage() {
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
             Discover how industry leaders across construction, manufacturing, and energy 
-            sectors achieved dramatic compliance improvements with SafetySync Software
+            sectors achieved dramatic compliance improvements with SafetySync.AI
           </p>
           
           {/* Industry Metrics */}

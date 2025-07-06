@@ -267,7 +267,7 @@ export default function TestimonialsPage() {
         <Card className="bg-gradient-to-br from-blue-600 to-purple-600 text-white">
           <CardContent className="p-8 text-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Join 1,200+ Companies Already Using SafetySync Software
+              Join 1,200+ Companies Already Using SafetySync.AI
             </h2>
             <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
               Don't let compliance be your bottleneck. Start your transformation today 
