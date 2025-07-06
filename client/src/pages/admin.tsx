@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { getQueryFn } from "@/lib/queryClient";
+import { AdminAccess } from "@/components/ui/admin-access";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -68,17 +69,34 @@ export default function AdminPanel() {
   const queryClient = useQueryClient();
   const [searchTerm, setSearchTerm] = useState("");
   const [filterType, setFilterType] = useState<'all' | 'trial' | 'demo'>('all');
+  const [hasAdminAccess, setHasAdminAccess] = useState(false);
+
+  // Custom query function with admin authentication
+  const adminQueryFn = async ({ queryKey }: { queryKey: string[] }) => {
+    const adminKey = localStorage.getItem('admin_key');
+    const res = await fetch(queryKey[0], {
+      headers: adminKey ? { 'x-admin-key': adminKey } : {},
+      credentials: "include",
+    });
+    
+    if (!res.ok) {
+      throw new Error('Failed to fetch data');
+    }
+    return await res.json();
+  };
 
   // Fetch leads
   const { data: leads = [], isLoading: leadsLoading } = useQuery({
     queryKey: ['/api/leads'],
-    queryFn: getQueryFn({ on401: "returnNull" })
+    queryFn: adminQueryFn,
+    enabled: hasAdminAccess
   });
 
   // Fetch users
   const { data: users = [], isLoading: usersLoading } = useQuery({
     queryKey: ['/api/admin/users'],
-    queryFn: getQueryFn({ on401: "returnNull" }),
+    queryFn: adminQueryFn,
+    enabled: hasAdminAccess,
     retry: false
   });
 
@@ -137,6 +155,11 @@ export default function AdminPanel() {
     a.click();
     window.URL.revokeObjectURL(url);
   };
+
+  // Show admin access form if not authenticated
+  if (!hasAdminAccess) {
+    return <AdminAccess onAccessGranted={() => setHasAdminAccess(true)} />;
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
