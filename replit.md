@@ -116,6 +116,11 @@ Preferred communication style: Simple, everyday language.
   - Navigation with smooth scrolling
   - Responsive design optimized for conversions
   - Lead capture system with separate flows for trials and demos
+- **July 06, 2025** - Added PostgreSQL database integration:
+  - Created database connection with Neon PostgreSQL
+  - Migrated from MemStorage to DatabaseStorage
+  - Schema pushed to database with users and leads tables
+  - Full CRUD operations now use persistent database storage
 
 ## Changelog
 
