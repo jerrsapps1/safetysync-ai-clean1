@@ -28,6 +28,8 @@ export const leads = pgTable("leads", {
   phone: text("phone"),
   message: text("message"),
   leadType: text("lead_type").notNull(), // 'trial' or 'demo'
+  termsAccepted: boolean("terms_accepted").default(false),
+  termsAcceptedAt: timestamp("terms_accepted_at"),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
