@@ -286,7 +286,7 @@ export default function Dashboard() {
 
         {/* Main Content Tabs */}
         <Tabs defaultValue="overview" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-10">
+          <TabsList className="grid w-full grid-cols-9">
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="employees">Employees</TabsTrigger>
             <TabsTrigger value="training">Training</TabsTrigger>
@@ -296,7 +296,6 @@ export default function Dashboard() {
             <TabsTrigger value="collaboration">Team Review</TabsTrigger>
             <TabsTrigger value="locations">Locations</TabsTrigger>
             <TabsTrigger value="audit-settings">Audit Settings</TabsTrigger>
-            <TabsTrigger value="clone-detector">Clone Detector</TabsTrigger>
           </TabsList>
 
           <TabsContent value="overview" className="space-y-6">
@@ -1071,13 +1070,7 @@ export default function Dashboard() {
             </Card>
           </TabsContent>
 
-          <TabsContent value="clone-detector" className="space-y-6">
-            <AICloneDetector 
-              onScanComplete={(results) => {
-                console.log('Clone detection scan completed:', results);
-              }}
-            />
-          </TabsContent>
+
         </Tabs>
       </div>
     </div>
