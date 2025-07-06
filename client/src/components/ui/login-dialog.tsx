@@ -106,7 +106,7 @@ export function LoginDialog({ isOpen, onClose, onSuccess, onSignupClick }: Login
         <DialogHeader>
           <DialogTitle>Welcome Back</DialogTitle>
           <DialogDescription>
-            Sign in to your SafetySync Software account to continue.
+            Sign in to your SafetySync.AI account to continue.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
