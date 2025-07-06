@@ -69,8 +69,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
         "Multi-location support",
         "Advanced dashboard",
         "API integrations",
-        "Priority support",
-        "Custom branding"
+        "Priority support"
       ]
     },
     {
