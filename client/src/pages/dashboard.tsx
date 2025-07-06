@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Switch } from "@/components/ui/switch";
 import { ComplianceReportGenerator } from "@/components/ui/compliance-report-generator";
 import { AICloneDetector } from "@/components/ui/ai-clone-detector";
 import { 
@@ -240,12 +241,13 @@ export default function Dashboard() {
 
         {/* Main Content Tabs */}
         <Tabs defaultValue="overview" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-6">
+          <TabsList className="grid w-full grid-cols-7">
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="employees">Employees</TabsTrigger>
             <TabsTrigger value="training">Training</TabsTrigger>
             <TabsTrigger value="reports">Reports</TabsTrigger>
             <TabsTrigger value="generator">Report Generator</TabsTrigger>
+            <TabsTrigger value="audit-settings">Audit Settings</TabsTrigger>
             <TabsTrigger value="clone-detector">Clone Detector</TabsTrigger>
           </TabsList>
 
@@ -469,6 +471,90 @@ export default function Dashboard() {
 
           <TabsContent value="generator" className="space-y-6">
             <ComplianceReportGenerator />
+          </TabsContent>
+
+          <TabsContent value="audit-settings" className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Search className="w-5 h-5" />
+                  Automated Audit Review Settings
+                </CardTitle>
+                <CardDescription>
+                  Configure automated monthly compliance gap analysis and reporting
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="flex items-center justify-between p-4 bg-blue-50 rounded-lg">
+                  <div className="flex-1">
+                    <h3 className="font-medium text-blue-900">Monthly Audit Review</h3>
+                    <p className="text-sm text-blue-700 mt-1">
+                      Automated analysis of your compliance data to identify gaps and generate improvement recommendations
+                    </p>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-sm text-blue-700">Enable</span>
+                    <Switch defaultChecked={true} />
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <label className="text-sm font-medium">Review Schedule</label>
+                    <select className="px-3 py-2 border rounded-md">
+                      <option>1st of every month</option>
+                      <option>15th of every month</option>
+                      <option>Last day of every month</option>
+                    </select>
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                    <label className="text-sm font-medium">Report Format</label>
+                    <select className="px-3 py-2 border rounded-md">
+                      <option>PDF Report</option>
+                      <option>Email Summary</option>
+                      <option>Both PDF and Email</option>
+                    </select>
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                    <label className="text-sm font-medium">Notification Recipients</label>
+                    <input 
+                      type="email" 
+                      placeholder="admin@company.com"
+                      className="px-3 py-2 border rounded-md w-64"
+                    />
+                  </div>
+                </div>
+
+                <div className="border-t pt-4">
+                  <h4 className="font-medium mb-3">Review Scope</h4>
+                  <div className="space-y-2">
+                    <div className="flex items-center space-x-2">
+                      <input type="checkbox" defaultChecked className="rounded" />
+                      <label className="text-sm">Training completion gaps</label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <input type="checkbox" defaultChecked className="rounded" />
+                      <label className="text-sm">Expiring certifications</label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <input type="checkbox" defaultChecked className="rounded" />
+                      <label className="text-sm">Compliance score trends</label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <input type="checkbox" defaultChecked className="rounded" />
+                      <label className="text-sm">Risk assessment updates</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex justify-end space-x-3">
+                  <Button variant="outline">Preview Sample Report</Button>
+                  <Button>Save Settings</Button>
+                </div>
+              </CardContent>
+            </Card>
           </TabsContent>
 
           <TabsContent value="clone-detector" className="space-y-6">
