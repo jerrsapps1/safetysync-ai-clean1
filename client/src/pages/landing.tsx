@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Navigation } from "@/components/ui/navigation";
@@ -12,7 +12,13 @@ import {
   Database, 
   BarChart3, 
   Link as LinkIcon, 
-  Shield, 
+  Shield,
+  Cpu,
+  Globe,
+  Layers,
+  Code,
+  Brain,
+  Zap, 
   Clock, 
   DollarSign,
   Lightbulb,
@@ -77,27 +83,59 @@ export default function LandingPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 text-white pt-24 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 text-white pt-24 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        {/* Tech Grid Background */}
+        <div className="absolute inset-0 tech-grid opacity-30"></div>
+        
+        {/* Floating Tech Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-20 left-10 floating-animation">
+            <Cpu className="w-8 h-8 text-blue-400 opacity-30" />
+          </div>
+          <div className="absolute top-32 right-20 floating-animation" style={{ animationDelay: '0.5s' }}>
+            <Database className="w-6 h-6 text-purple-400 opacity-30" />
+          </div>
+          <div className="absolute bottom-20 left-20 floating-animation" style={{ animationDelay: '1s' }}>
+            <Globe className="w-7 h-7 text-green-400 opacity-30" />
+          </div>
+          <div className="absolute bottom-32 right-10 floating-animation" style={{ animationDelay: '1.5s' }}>
+            <Layers className="w-5 h-5 text-yellow-400 opacity-30" />
+          </div>
+          <div className="absolute top-1/2 left-1/2 floating-animation" style={{ animationDelay: '2s' }}>
+            <Code className="w-6 h-6 text-indigo-400 opacity-20" />
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center">
+            <div className="mb-6">
+              <span className="inline-flex items-center px-4 py-2 rounded-full bg-blue-500/20 text-blue-300 text-sm font-medium backdrop-blur-sm border border-blue-500/30">
+                <Brain className="w-4 h-4 mr-2" />
+                AI-Powered Compliance Platform
+              </span>
+            </div>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
               <span className="block">Simplify Your</span>
-              <span className="block text-green-400">OSHA Compliance</span>
+              <span className="block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                OSHA Compliance
+              </span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
-              Automate tracking, stay audit-ready, and protect your business with the easiest compliance management platform.
+              Next-generation automated tracking with AI-powered insights, real-time compliance monitoring, 
+              and predictive analytics for proactive safety management.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
               <Button 
                 onClick={handleTrialClick}
-                className="bg-green-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-green-700 transition-colors shadow-lg min-w-[200px]"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-lg text-lg font-semibold pulse-glow border-0 min-w-[200px]"
               >
+                <Zap className="w-5 h-5 mr-2" />
                 Start Your Free Trial
               </Button>
               <Button 
                 onClick={handleDemoClick}
                 variant="outline"
-                className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-slate-900 transition-colors min-w-[200px]"
+                className="glass-effect border-white/30 text-white hover:bg-white/10 px-8 py-4 rounded-lg text-lg font-semibold backdrop-blur-sm min-w-[200px]"
               >
                 See How It Works
               </Button>
@@ -124,15 +162,24 @@ export default function LandingPage() {
       </section>
 
       {/* Problem Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-gray-100 relative overflow-hidden">
+        {/* Subtle tech pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_1px_1px,_rgba(59,130,246,0.3)_1px,_transparent_0)] bg-[length:20px_20px]"></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-red-100 text-red-700 text-sm font-medium mb-4">
+              <AlertCircle className="w-4 h-4 mr-2" />
+              Critical Pain Points
+            </div>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-              Is Your OSHA Compliance Tracking a Nightmare?
+              Is Your OSHA Compliance Tracking a <span className="text-red-600">Nightmare?</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Keeping track of training requirements, certifications, and deadlines shouldn't be a burden. 
-              If you're like most compliance officers, you're overwhelmed with manual processes.
+              Legacy systems and manual processes are costing you time, money, and peace of mind. 
+              Modern businesses need intelligent solutions.
             </p>
           </div>
           
@@ -197,98 +244,130 @@ export default function LandingPage() {
       </section>
 
       {/* Solution Section */}
-      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
+      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-900 to-slate-800 text-white relative overflow-hidden">
+        {/* Tech background elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(45deg,_transparent_24%,_rgba(59,130,246,0.3)_25%,_rgba(59,130,246,0.3)_26%,_transparent_27%,_transparent_74%,_rgba(59,130,246,0.3)_75%,_rgba(59,130,246,0.3)_76%,_transparent_77%)] bg-[length:20px_20px]"></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-              A Simple Solution to Stay OSHA-Compliant
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-green-500/20 text-green-300 text-sm font-medium mb-4 backdrop-blur-sm border border-green-500/30">
+              <Zap className="w-4 h-4 mr-2" />
+              Intelligent Solution
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              AI-Powered <span className="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
+                Compliance Intelligence
+              </span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              SafetySync Software is the all-in-one compliance tracker built for businesses like yours. 
-              We handle the tedious documentation—so you don't have to.
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              SafetySync leverages cutting-edge AI and machine learning to transform your compliance workflow. 
+              Smart automation that learns and adapts to your business needs.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            <Card className="bg-green-50 rounded-xl border border-green-200">
+            <Card className="glass-effect border-green-500/30 bg-green-500/10 backdrop-blur-sm hover:bg-green-500/20 transition-all duration-300 group">
               <CardContent className="p-8">
                 <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mr-4">
-                    <CheckCircle className="w-6 h-6 text-white" />
+                  <div className="w-12 h-12 bg-gradient-to-r from-green-600 to-green-500 rounded-lg flex items-center justify-center mr-4 group-hover:pulse-glow">
+                    <Brain className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-lg font-semibold text-green-900">Automated Tracking</h3>
+                  <h3 className="text-lg font-semibold text-green-300">AI-Powered Tracking</h3>
                 </div>
-                <p className="text-green-700">Never miss a deadline with intelligent reminders and automatic renewal tracking for all certifications.</p>
+                <p className="text-gray-300">Machine learning algorithms predict and prevent compliance issues before they happen. Intelligent automation that gets smarter over time.</p>
               </CardContent>
             </Card>
             
-            <Card className="bg-green-50 rounded-xl border border-green-200">
+            <Card className="glass-effect border-blue-500/30 bg-blue-500/10 backdrop-blur-sm hover:bg-blue-500/20 transition-all duration-300 group">
               <CardContent className="p-8">
                 <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mr-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-blue-500 rounded-lg flex items-center justify-center mr-4 group-hover:pulse-glow">
                     <Database className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-lg font-semibold text-green-900">Centralized Database</h3>
+                  <h3 className="text-lg font-semibold text-blue-300">Cloud-Native Database</h3>
                 </div>
-                <p className="text-green-700">All training records, certifications, and employee data in one secure, searchable location.</p>
+                <p className="text-gray-300">Enterprise-grade cloud infrastructure with real-time synchronization, advanced security, and 99.9% uptime guarantee.</p>
               </CardContent>
             </Card>
             
-            <Card className="bg-green-50 rounded-xl border border-green-200">
+            <Card className="glass-effect border-purple-500/30 bg-purple-500/10 backdrop-blur-sm hover:bg-purple-500/20 transition-all duration-300 group">
               <CardContent className="p-8">
                 <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mr-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-purple-500 rounded-lg flex items-center justify-center mr-4 group-hover:pulse-glow">
                     <BarChart3 className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-lg font-semibold text-green-900">Instant Reports</h3>
+                  <h3 className="text-lg font-semibold text-purple-300">Predictive Analytics</h3>
                 </div>
-                <p className="text-green-700">Generate comprehensive, audit-ready reports in seconds with just one click.</p>
+                <p className="text-gray-300">Advanced data visualization and predictive modeling to forecast compliance risks and optimize training schedules.</p>
               </CardContent>
             </Card>
             
-            <Card className="bg-green-50 rounded-xl border border-green-200">
+            <Card className="glass-effect border-cyan-500/30 bg-cyan-500/10 backdrop-blur-sm hover:bg-cyan-500/20 transition-all duration-300 group">
               <CardContent className="p-8">
                 <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mr-4">
-                    <LinkIcon className="w-6 h-6 text-white" />
+                  <div className="w-12 h-12 bg-gradient-to-r from-cyan-600 to-cyan-500 rounded-lg flex items-center justify-center mr-4 group-hover:pulse-glow">
+                    <Globe className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-lg font-semibold text-green-900">Seamless Integration</h3>
+                  <h3 className="text-lg font-semibold text-cyan-300">API-First Integration</h3>
                 </div>
-                <p className="text-green-700">Connect with your existing HR systems, LMS platforms, and training providers effortlessly.</p>
+                <p className="text-gray-300">RESTful APIs and webhooks for seamless integration with existing enterprise systems and third-party platforms.</p>
               </CardContent>
             </Card>
             
-            <Card className="bg-green-50 rounded-xl border border-green-200">
+            <Card className="glass-effect border-yellow-500/30 bg-yellow-500/10 backdrop-blur-sm hover:bg-yellow-500/20 transition-all duration-300 group">
               <CardContent className="p-8">
                 <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mr-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-yellow-600 to-yellow-500 rounded-lg flex items-center justify-center mr-4 group-hover:pulse-glow">
                     <Shield className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-lg font-semibold text-green-900">Secure & Compliant</h3>
+                  <h3 className="text-lg font-semibold text-yellow-300">Zero-Trust Security</h3>
                 </div>
-                <p className="text-green-700">Bank-grade security with full data encryption and industry compliance standards.</p>
+                <p className="text-gray-300">Enterprise-grade security with end-to-end encryption, multi-factor authentication, and SOC 2 compliance.</p>
               </CardContent>
             </Card>
             
-            <Card className="bg-green-50 rounded-xl border border-green-200">
+            <Card className="glass-effect border-indigo-500/30 bg-indigo-500/10 backdrop-blur-sm hover:bg-indigo-500/20 transition-all duration-300 group">
               <CardContent className="p-8">
                 <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mr-4">
-                    <Settings className="w-6 h-6 text-white" />
+                  <div className="w-12 h-12 bg-gradient-to-r from-indigo-600 to-indigo-500 rounded-lg flex items-center justify-center mr-4 group-hover:pulse-glow">
+                    <Cpu className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-lg font-semibold text-green-900">24/7 Support</h3>
+                  <h3 className="text-lg font-semibold text-indigo-300">Edge Computing</h3>
                 </div>
-                <p className="text-green-700">Expert support team available around the clock to help you stay compliant and productive.</p>
+                <p className="text-gray-300">Distributed processing for real-time compliance monitoring and instant notifications across global operations.</p>
               </CardContent>
             </Card>
           </div>
           
+          {/* Tech Stats Section */}
+          <div className="mt-20 grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+            <div className="text-center">
+              <div className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-2">99.9%</div>
+              <div className="text-sm text-gray-400">Uptime SLA</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold bg-gradient-to-r from-green-400 to-cyan-400 bg-clip-text text-transparent mb-2">&lt; 200ms</div>
+              <div className="text-sm text-gray-400">Response Time</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">256-bit</div>
+              <div className="text-sm text-gray-400">Encryption</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent mb-2">24/7</div>
+              <div className="text-sm text-gray-400">AI Monitoring</div>
+            </div>
+          </div>
+
           <div className="text-center">
             <Button 
               onClick={handleTrialClick}
-              className="bg-green-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-green-700 transition-colors shadow-lg"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-lg text-lg font-semibold pulse-glow border-0 shadow-lg"
             >
-              Try It for Free – No Credit Card Required
+              <Zap className="w-5 h-5 mr-2" />
+              Deploy Intelligence – No Credit Card Required
             </Button>
           </div>
         </div>
@@ -492,60 +571,88 @@ export default function LandingPage() {
       </section>
 
       {/* Final CTA Section */}
-      <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-            Why Wait? Take Control of Your Compliance Today.
+      <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 text-white relative overflow-hidden">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-10 right-10 floating-animation">
+            <Brain className="w-12 h-12 text-blue-400" />
+          </div>
+          <div className="absolute bottom-10 left-10 floating-animation" style={{ animationDelay: '1s' }}>
+            <Cpu className="w-10 h-10 text-purple-400" />
+          </div>
+          <div className="absolute top-1/2 left-1/4 floating-animation" style={{ animationDelay: '2s' }}>
+            <Code className="w-8 h-8 text-cyan-400" />
+          </div>
+        </div>
+        
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <div className="mb-6">
+            <span className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-300 text-sm font-medium backdrop-blur-sm border border-blue-500/30">
+              <Zap className="w-4 h-4 mr-2" />
+              Ready to Deploy
+            </span>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            Why Wait? <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              Deploy Intelligence
+            </span> Today.
           </h2>
-          <p className="text-xl text-gray-600 mb-8">
-            Compliance doesn't have to be complicated. SafetySync makes it easy to manage OSHA training, 
-            organize records, and prepare for audits—all in one place.
+          <p className="text-xl text-gray-300 mb-8">
+            Transform regulatory overhead into competitive advantage. Deploy AI-powered compliance 
+            intelligence that learns, adapts, and scales with your business.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
             <Button 
               onClick={handleTrialClick}
-              className="bg-green-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-green-700 transition-colors shadow-lg min-w-[200px]"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-lg text-lg font-semibold pulse-glow border-0 shadow-lg min-w-[200px]"
             >
-              Start My Free Trial
+              <Zap className="w-5 h-5 mr-2" />
+              Launch Intelligence
             </Button>
             <Button 
               onClick={handleDemoClick}
               variant="outline"
-              className="border-2 border-green-600 text-green-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-green-600 hover:text-white transition-colors min-w-[200px]"
+              className="glass-effect border-white/30 text-white hover:bg-white/10 px-8 py-4 rounded-lg text-lg font-semibold backdrop-blur-sm min-w-[200px]"
             >
-              Schedule a Demo
+              Preview Platform
             </Button>
           </div>
-          <div className="flex flex-col sm:flex-row gap-8 justify-center text-sm text-gray-600">
+          <div className="flex flex-col sm:flex-row gap-8 justify-center text-sm text-gray-400">
             <div className="flex items-center justify-center">
-              <CheckCircle className="w-5 h-5 text-green-600 mr-2" />
-              14-day free trial
+              <CheckCircle className="w-5 h-5 text-blue-400 mr-2" />
+              14-day neural training
             </div>
             <div className="flex items-center justify-center">
-              <CheckCircle className="w-5 h-5 text-green-600 mr-2" />
-              No setup fees
+              <CheckCircle className="w-5 h-5 text-blue-400 mr-2" />
+              Zero deployment cost
             </div>
             <div className="flex items-center justify-center">
-              <CheckCircle className="w-5 h-5 text-green-600 mr-2" />
-              Cancel anytime
+              <CheckCircle className="w-5 h-5 text-blue-400 mr-2" />
+              Instant scale-down
             </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer id="contact" className="py-16 px-4 sm:px-6 lg:px-8 bg-slate-900 text-white">
-        <div className="max-w-7xl mx-auto">
+      <footer id="contact" className="py-16 px-4 sm:px-6 lg:px-8 bg-slate-950 text-white relative overflow-hidden">
+        {/* Subtle tech background */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_1px_1px,_rgba(59,130,246,0.3)_1px,_transparent_0)] bg-[length:40px_40px]"></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div className="col-span-1 md:col-span-2">
               <div className="flex items-center mb-4">
-                <div className="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center mr-3">
-                  <CheckCircle className="w-5 h-5 text-white" />
+                <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center mr-3">
+                  <Brain className="w-5 h-5 text-white" />
                 </div>
-                <span className="text-xl font-bold">SafetySync</span>
+                <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">SafetySync</span>
               </div>
               <p className="text-gray-300 mb-4 max-w-md">
-                The complete OSHA compliance tracking solution that automates your safety management and keeps you audit-ready.
+                Next-generation AI-powered compliance intelligence platform. Deploy automated OSHA tracking 
+                that learns, adapts, and scales with your business.
               </p>
               <div className="flex space-x-4">
                 <a href="#" className="text-gray-400 hover:text-white transition-colors">
