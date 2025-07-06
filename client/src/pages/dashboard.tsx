@@ -32,7 +32,8 @@ import {
   RefreshCw,
   Building,
   MapPin,
-  Edit
+  Edit,
+  BookOpen
 } from "lucide-react";
 
 interface ComplianceRecord {
@@ -183,6 +184,29 @@ export default function Dashboard() {
           </p>
         </div>
 
+        {/* Quick Navigation Helper */}
+        <Card className="mb-6 bg-blue-50 border-blue-200">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                  <Brain className="w-4 h-4 text-white" />
+                </div>
+                <div>
+                  <h3 className="font-medium text-blue-900">Getting Started Guide</h3>
+                  <p className="text-sm text-blue-700">Follow the tabs in order: Employees → Training → Branding → Reports for optimal setup</p>
+                </div>
+              </div>
+              <Link href="/user-guide">
+                <Button variant="outline" size="sm" className="border-blue-300 text-blue-700 hover:bg-blue-100">
+                  <BookOpen className="w-4 h-4 mr-2" />
+                  Full Guide
+                </Button>
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <Card>
@@ -266,11 +290,11 @@ export default function Dashboard() {
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="employees">Employees</TabsTrigger>
             <TabsTrigger value="training">Training</TabsTrigger>
-            <TabsTrigger value="locations">Locations</TabsTrigger>
+            <TabsTrigger value="branding">Branding</TabsTrigger>
             <TabsTrigger value="reports">Reports</TabsTrigger>
             <TabsTrigger value="generator">Report Generator</TabsTrigger>
             <TabsTrigger value="collaboration">Team Review</TabsTrigger>
-            <TabsTrigger value="branding">Branding</TabsTrigger>
+            <TabsTrigger value="locations">Locations</TabsTrigger>
             <TabsTrigger value="audit-settings">Audit Settings</TabsTrigger>
             <TabsTrigger value="clone-detector">Clone Detector</TabsTrigger>
           </TabsList>
