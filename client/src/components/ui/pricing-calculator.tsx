@@ -46,7 +46,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
       maxEmployees: 100,
       features: [
         "Basic compliance tracking",
-        "Employee training records",
+        "Employee certification records",
         "Standard reports",
         "Email notifications",
         "Basic dashboard",
@@ -61,7 +61,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
       popular: true,
       features: [
         "Advanced compliance analytics",
-        "Custom training programs",
+        "Custom certification tracking",
         "Automated report generation",
         "Multi-location support",
         "Advanced dashboard",
@@ -112,7 +112,6 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
     { name: "Advanced Analytics", price: 50, description: "Enhanced reporting and insights" },
     { name: "Mobile App", price: 30, description: "iOS and Android applications" },
     { name: "API Access", price: 40, description: "Full REST API integration" },
-    { name: "Custom Training", price: 100, description: "Tailored training modules" },
     { name: "Audit Support", price: 200, description: "Professional audit assistance" },
     { name: "24/7 Support", price: 75, description: "Round-the-clock phone support" }
   ];
