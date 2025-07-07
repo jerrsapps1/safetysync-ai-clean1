@@ -343,6 +343,8 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - All certificate generation now integrated into subscription plans with consistent 90-day free period across all tiers
   - Updated printer terminology from "HID printer" to "card printer" for broader compatibility
   - Added file format specification (.efi) for certificate and wallet card generation
+  - Added professional sample certificate and wallet card examples to pricing page showing actual output quality
+  - Enhanced visual examples with OSHA compliance references, unique certificate numbers, and professional formatting
 
 ## Changelog
 
