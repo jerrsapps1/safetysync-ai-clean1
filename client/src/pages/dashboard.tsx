@@ -539,32 +539,193 @@ export default function Dashboard() {
             <Card>
               <CardHeader>
                 <div className="flex items-center justify-between">
-                  <CardTitle>Training Programs</CardTitle>
+                  <CardTitle>Training Programs & OSHA Requirements</CardTitle>
                   <Button>
                     <Plus className="w-4 h-4 mr-2" />
                     Create Training
                   </Button>
                 </div>
+                <CardDescription>
+                  Each training includes the complete OSHA-required syllabus to ensure full compliance
+                </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="space-y-6">
                   {[
-                    { name: "OSHA 10-Hour Construction", enrolled: 12, completed: 10 },
-                    { name: "Hazard Communication", enrolled: 8, completed: 6 },
-                    { name: "Fall Protection", enrolled: 15, completed: 13 },
-                    { name: "Respiratory Protection", enrolled: 6, completed: 5 },
-                    { name: "Lockout/Tagout", enrolled: 10, completed: 8 },
-                    { name: "Confined Space Entry", enrolled: 4, completed: 3 }
+                    { 
+                      name: "OSHA 10-Hour Construction", 
+                      enrolled: 12, 
+                      completed: 10,
+                      duration: "10 hours",
+                      regulation: "29 CFR 1926",
+                      syllabus: [
+                        "Introduction to OSHA and the Construction Industry",
+                        "OSHA Focus Four Hazards: Falls, Electrocution, Struck-by Objects, Caught-in/Between",
+                        "Personal Protective Equipment (PPE) Requirements",
+                        "Health Hazards in Construction",
+                        "Stairways and Ladders Safety",
+                        "Scaffolding Safety Standards",
+                        "Tools and Equipment Safety",
+                        "Materials Handling and Storage",
+                        "Construction Site Safety Planning"
+                      ],
+                      recertification: "3 years"
+                    },
+                    { 
+                      name: "Hazard Communication (HazCom)", 
+                      enrolled: 8, 
+                      completed: 6,
+                      duration: "4 hours",
+                      regulation: "29 CFR 1910.1200",
+                      syllabus: [
+                        "Chemical Hazard Classification System",
+                        "Safety Data Sheets (SDS) Requirements and Interpretation",
+                        "Labeling Systems and Pictograms",
+                        "Written Hazard Communication Program Development",
+                        "Employee Training on Chemical Hazards",
+                        "Chemical Inventory Management",
+                        "Globally Harmonized System (GHS) Standards",
+                        "Emergency Response Procedures for Chemical Exposure"
+                      ],
+                      recertification: "Annual"
+                    },
+                    { 
+                      name: "Fall Protection", 
+                      enrolled: 15, 
+                      completed: 13,
+                      duration: "8 hours",
+                      regulation: "29 CFR 1926.501-503",
+                      syllabus: [
+                        "Fall Protection Standards and Requirements",
+                        "Personal Fall Arrest Systems (PFAS)",
+                        "Guardrail Systems Design and Installation",
+                        "Safety Net Systems Requirements",
+                        "Positioning Device Systems",
+                        "Warning Line Systems",
+                        "Controlled Access Zones",
+                        "Equipment Inspection and Maintenance",
+                        "Rescue Planning and Procedures"
+                      ],
+                      recertification: "Annual"
+                    },
+                    { 
+                      name: "Respiratory Protection", 
+                      enrolled: 6, 
+                      completed: 5,
+                      duration: "6 hours",
+                      regulation: "29 CFR 1910.134",
+                      syllabus: [
+                        "Respiratory Hazard Assessment",
+                        "Medical Evaluation Requirements",
+                        "Fit Testing Procedures and Requirements",
+                        "Respirator Selection Criteria",
+                        "Proper Use and Maintenance Procedures",
+                        "Cleaning, Disinfecting, and Storage",
+                        "Training and Program Evaluation",
+                        "Emergency Use Procedures",
+                        "Voluntary Use Guidelines"
+                      ],
+                      recertification: "Annual"
+                    },
+                    { 
+                      name: "Lockout/Tagout (LOTO)", 
+                      enrolled: 10, 
+                      completed: 8,
+                      duration: "4 hours",
+                      regulation: "29 CFR 1910.147",
+                      syllabus: [
+                        "Energy Control Program Development",
+                        "Hazardous Energy Source Identification",
+                        "Lockout/Tagout Device Requirements",
+                        "Energy Isolation Procedures",
+                        "Authorized vs. Affected Employee Training",
+                        "Group Lockout Procedures",
+                        "Shift or Personnel Changes",
+                        "Periodic Inspection Requirements",
+                        "Outside Personnel Coordination"
+                      ],
+                      recertification: "Annual"
+                    },
+                    { 
+                      name: "Confined Space Entry", 
+                      enrolled: 4, 
+                      completed: 3,
+                      duration: "8 hours",
+                      regulation: "29 CFR 1910.146",
+                      syllabus: [
+                        "Confined Space Identification and Classification",
+                        "Permit-Required vs. Non-Permit Spaces",
+                        "Entry Permit System and Procedures",
+                        "Atmospheric Testing and Monitoring",
+                        "Ventilation Requirements",
+                        "Entrant, Attendant, and Entry Supervisor Duties",
+                        "Emergency and Rescue Procedures",
+                        "Equipment and PPE Requirements",
+                        "Contractor Coordination and Communication"
+                      ],
+                      recertification: "Annual"
+                    }
                   ].map((training, index) => (
-                    <Card key={index}>
-                      <CardContent className="p-4">
-                        <h3 className="font-medium mb-2">{training.name}</h3>
-                        <div className="space-y-2">
-                          <div className="flex justify-between text-sm">
-                            <span>Progress</span>
-                            <span>{training.completed}/{training.enrolled}</span>
+                    <Card key={index} className="hover:shadow-md transition-shadow">
+                      <CardContent className="p-6">
+                        <div className="flex items-start justify-between mb-4">
+                          <div className="flex-1">
+                            <h3 className="font-medium text-lg mb-2">{training.name}</h3>
+                            <div className="flex flex-wrap gap-4 text-sm text-gray-600 mb-3">
+                              <span className="flex items-center gap-1">
+                                <Clock className="w-3 h-3" />
+                                {training.duration}
+                              </span>
+                              <span className="flex items-center gap-1">
+                                <FileText className="w-3 h-3" />
+                                {training.regulation}
+                              </span>
+                              <span className="flex items-center gap-1">
+                                <RefreshCw className="w-3 h-3" />
+                                Recert: {training.recertification}
+                              </span>
+                            </div>
                           </div>
+                          <div className="text-right">
+                            <div className="text-2xl font-bold text-blue-600 mb-1">
+                              {training.completed}/{training.enrolled}
+                            </div>
+                            <div className="text-sm text-gray-600">Completed</div>
+                          </div>
+                        </div>
+                        
+                        <div className="mb-4">
                           <Progress value={(training.completed / training.enrolled) * 100} className="h-2" />
+                        </div>
+
+                        <div className="border-t pt-4">
+                          <h4 className="font-medium text-sm mb-3 flex items-center gap-2">
+                            <Shield className="w-4 h-4 text-blue-600" />
+                            OSHA Required Syllabus Content
+                          </h4>
+                          <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
+                            {training.syllabus.map((item, idx) => (
+                              <div key={idx} className="flex items-start gap-2 text-sm">
+                                <CheckCircle className="w-3 h-3 text-green-600 mt-0.5 flex-shrink-0" />
+                                <span className="text-gray-700">{item}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="flex gap-2 mt-4 pt-4 border-t">
+                          <Button size="sm" variant="outline">
+                            <Eye className="w-3 h-3 mr-1" />
+                            View Details
+                          </Button>
+                          <Button size="sm" variant="outline">
+                            <Download className="w-3 h-3 mr-1" />
+                            Syllabus PDF
+                          </Button>
+                          <Button size="sm">
+                            <Users className="w-3 h-3 mr-1" />
+                            Assign Training
+                          </Button>
                         </div>
                       </CardContent>
                     </Card>
