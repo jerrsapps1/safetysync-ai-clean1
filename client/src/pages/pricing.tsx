@@ -35,7 +35,7 @@ export default function PricingPage() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Professional Certificate & Card Services</h2>
             <p className="text-xl text-gray-600">
-              Essential plan includes certificate generation (FREE first 90 days, then $0.50 per item). Higher tiers available for bulk needs.
+              All subscription plans include certificate generation (FREE first 90 days, then $0.50 per item added to monthly billing).
             </p>
           </div>
 
@@ -47,7 +47,7 @@ export default function PricingPage() {
                   <Award className="w-6 h-6 text-blue-600" />
                   Certificate Generation Service
                 </CardTitle>
-                <div className="text-2xl font-bold text-blue-600">$15/certificate</div>
+                <div className="text-lg font-semibold text-blue-600">FREE for 90 days, then $0.50/certificate</div>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 mb-6">
@@ -82,7 +82,7 @@ export default function PricingPage() {
                   <CreditCard className="w-6 h-6 text-green-600" />
                   Printable Wallet Card Service
                 </CardTitle>
-                <div className="text-2xl font-bold text-green-600">$8/card</div>
+                <div className="text-lg font-semibold text-green-600">FREE for 90 days, then $0.50/card</div>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 mb-6">
@@ -172,74 +172,7 @@ export default function PricingPage() {
               </CardContent>
             </Card>
 
-            {/* Premium Stand-alone Service */}
-            <Card className="border-2 border-blue-200 hover:border-blue-300 transition-colors">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3">
-                  <Award className="w-6 h-6 text-blue-600" />
-                  Premium Stand-alone Service
-                </CardTitle>
-                <div className="text-2xl font-bold text-blue-600">$15/certificate</div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 mb-4">
-                  For companies needing one-time certificate generation without a subscription.
-                </p>
-                
-                <div className="space-y-4">
-                  <div className="border-l-4 border-blue-500 pl-4">
-                    <h4 className="font-semibold text-gray-900">Professional Certificate Includes:</h4>
-                    <ul className="text-sm text-gray-600 mt-2 space-y-1">
-                      <li>• Centered layout with employee name</li>
-                      <li>• OSHA/ANSI/CFR compliance references</li>
-                      <li>• Contact hours and expiration dates</li>
-                      <li>• Unique certificate number</li>
-                      <li>• High-resolution PDF (300 DPI)</li>
-                    </ul>
-                  </div>
-                  
-                  <div className="bg-blue-50 p-3 rounded-lg">
-                    <p className="text-sm font-medium text-blue-900">Perfect For:</p>
-                    <p className="text-sm text-blue-800">One-time needs, occasional use, or contractor certifications</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
 
-            {/* Wallet Card Service */}
-            <Card className="border-2 border-purple-200 hover:border-purple-300 transition-colors">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3">
-                  <CreditCard className="w-6 h-6 text-purple-600" />
-                  Wallet Card Service
-                </CardTitle>
-                <div className="text-2xl font-bold text-purple-600">$8/card</div>
-                <div className="text-sm text-gray-600">(Or $0.50 with Essential plan)</div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 mb-4">
-                  Professional wallet-sized certification cards for PVC card printing systems.
-                </p>
-                
-                <div className="space-y-4">
-                  <div className="border-l-4 border-purple-500 pl-4">
-                    <h4 className="font-semibold text-gray-900">Wallet Card Features:</h4>
-                    <ul className="text-sm text-gray-600 mt-2 space-y-1">
-                      <li>• CR80 format (3.375" x 2.125")</li>
-                      <li>• Front: Company logo, employee name</li>
-                      <li>• Back: Equipment authorizations</li>
-                      <li>• OSHA compliance statements</li>
-                      <li>• HID printer compatible</li>
-                    </ul>
-                  </div>
-                  
-                  <div className="bg-purple-50 p-3 rounded-lg">
-                    <p className="text-sm font-medium text-purple-900">Your Setup:</p>
-                    <p className="text-sm text-purple-800">We generate files, you print with HID printer on 30mil PVC cards</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
           </div>
 
           {/* Billing Notice */}
