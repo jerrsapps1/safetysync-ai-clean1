@@ -1548,12 +1548,15 @@ export default function Dashboard() {
                         <div className="flex gap-2">
                           <Button className="flex-1">
                             <Award className="w-4 h-4 mr-2" />
-                            Generate Certificate ($15)
+                            Generate Certificate ($0.50*)
                           </Button>
                           <Button variant="outline" size="sm">
                             <Eye className="w-4 h-4" />
                           </Button>
                         </div>
+                        <p className="text-xs text-gray-500 mt-2">
+                          *FREE for first 90 days with Essential plan, then $0.50 per certificate
+                        </p>
                       </div>
                     </CardContent>
                   </Card>
@@ -1605,12 +1608,15 @@ export default function Dashboard() {
                         <div className="flex gap-2">
                           <Button className="flex-1">
                             <CreditCard className="w-4 h-4 mr-2" />
-                            Generate Wallet Card ($8)
+                            Generate Wallet Card ($0.50*)
                           </Button>
                           <Button variant="outline" size="sm">
                             <Eye className="w-4 h-4" />
                           </Button>
                         </div>
+                        <p className="text-xs text-gray-500 mt-2">
+                          *FREE for first 90 days with Essential plan, then $0.50 per card
+                        </p>
                       </div>
                     </CardContent>
                   </Card>

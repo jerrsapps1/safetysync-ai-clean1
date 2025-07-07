@@ -53,7 +53,8 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
         "Email notifications",
         "Basic dashboard",
         "Custom branding",
-        "CSV exports"
+        "CSV exports",
+        "Certificate & card generation (FREE first 90 days, then $0.50 per item)"
       ]
     },
     {

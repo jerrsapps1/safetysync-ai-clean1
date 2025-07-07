@@ -317,6 +317,15 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Added sample output previews showing professional certificate format and front/back wallet card designs
   - Integrated equipment authorization lists and detailed compliance statements for wallet cards
   - Created preview functionality with eye icons for customers to see exact output quality before ordering
+- **July 06, 2025** - Implemented Essential Plan Certificate Generation Benefits:
+  - Added certificate and card generation to Essential plan with 90-day free period
+  - After 90 days, Essential plan users pay only $0.50 per certificate or card (added to monthly billing)
+  - Updated pricing calculator to show "Certificate & card generation (FREE first 90 days, then $0.50 per item)"
+  - Restructured pricing page to highlight Essential plan benefits alongside premium stand-alone services
+  - Added automatic billing integration for usage-based certificate generation charges
+  - Updated dashboard certificate generation buttons to reflect new $0.50 pricing with 90-day free period notice
+  - Created tiered pricing structure: Essential ($0.50 after 90 days), Premium Stand-alone ($15), Wallet Cards ($8 or $0.50 with Essential)
+  - Enhanced value proposition for safety professionals by making certificates accessible from day one
 
 ## Changelog
 
