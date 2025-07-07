@@ -255,6 +255,7 @@ export default function PricingPage() {
                       
                       <div className="text-xs text-gray-500 border-t pt-2">
                         <div>Certified: 07/06/2025 | Expires: 07/06/2028</div>
+                        <div>Instructor: [Name], CSHO | [Company] EH&S</div>
                         <div className="font-medium text-orange-600">Continued on Card 2...</div>
                       </div>
                     </div>
