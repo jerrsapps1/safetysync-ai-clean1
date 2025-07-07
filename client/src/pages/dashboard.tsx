@@ -378,6 +378,8 @@ export default function Dashboard() {
                   <div className="border-t pt-3">
                     <h4 className="text-sm font-medium mb-2">AI Recommendations</h4>
                     <div className="space-y-2 text-xs">
+                      <p className="text-gray-600">• Upload missing practical evaluations for 3 forklift operators</p>
+                      <p className="text-gray-600">• Schedule annual evaluation uploads for respiratory protection training</p>
                       <p className="text-gray-600">• Prioritize renewal for 3 expired fall protection certifications</p>
                       <p className="text-gray-600">• Schedule mandatory safety meeting for Manufacturing team</p>
                       <p className="text-gray-600">• Review incident reports from Q4 2024</p>
@@ -392,7 +394,7 @@ export default function Dashboard() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Calendar className="w-5 h-5" />
-                  Upcoming Deadlines
+                  Upcoming Deadlines & Evaluation Reminders
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -411,6 +413,34 @@ export default function Dashboard() {
                       </div>
                     </div>
                   ))}
+                  
+                  {/* Training Evaluation Reminders */}
+                  <div className="border-t pt-3">
+                    <h4 className="text-sm font-semibold mb-3 text-orange-800">Training Evaluation Reminders</h4>
+                    {[
+                      { employee: "Mark Anderson", training: "Power Industrial Trucks", type: "Practical Evaluation", dueDate: "2025-01-15", priority: "REQUIRED" },
+                      { employee: "Jennifer Wong", training: "Fall Protection", type: "Hands-on Assessment", dueDate: "2025-01-20", priority: "REQUIRED" },
+                      { employee: "Carlos Rivera", training: "Earth-moving Equipment", type: "Field Evaluation", dueDate: "2025-01-25", priority: "REQUIRED" },
+                      { employee: "All Staff", training: "Respiratory Protection", type: "Annual Evaluation Upload", dueDate: "2025-02-01", priority: "RECOMMENDED" },
+                      { employee: "Warehouse Team", training: "Material Handling", type: "Yearly Assessment", dueDate: "2025-02-15", priority: "RECOMMENDED" }
+                    ].map((reminder, index) => (
+                      <div key={index} className="flex items-center justify-between p-3 bg-orange-50 border border-orange-200 rounded-lg mb-2">
+                        <div>
+                          <p className="font-medium text-orange-900">{reminder.employee}</p>
+                          <p className="text-sm text-orange-700">{reminder.training} - {reminder.type}</p>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-sm font-medium text-orange-900">{reminder.dueDate}</p>
+                          <Badge 
+                            variant={reminder.priority === "REQUIRED" ? "destructive" : "outline"} 
+                            className="text-xs"
+                          >
+                            {reminder.priority}
+                          </Badge>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -881,10 +911,10 @@ export default function Dashboard() {
                     { month: "June", training: "Respiratory Protection (1910.134)", audience: "Respirator users", type: "Annual", duration: "2 hrs + fit" },
                     { month: "July", training: "HAZWOPER Refresher (1910.120)", audience: "Hazardous waste workers", type: "Annual", duration: "8 hrs" },
                     { month: "August", training: "Hearing Conservation (1910.95)", audience: ">85 dBA exposure group", type: "Annual", duration: "2 hrs" },
-                    { month: "September", training: "Power Industrial Trucks (1910.178)", audience: "Forklift and PIT operators", type: "3-Year", duration: "4 hrs + practical" },
-                    { month: "October", training: "Material Handling Equipment (1910.176/1926.602)", audience: "Equipment operators, warehouse staff", type: "Annual", duration: "3 hrs + demo" },
-                    { month: "November", training: "Earth-moving Equipment (1926.602)", audience: "Heavy equipment operators", type: "3-Year", duration: "6 hrs + field demo" },
-                    { month: "December", training: "Refresher/Missed Training Catch-Up", audience: "All employees", type: "As needed", duration: "Varies" }
+                    { month: "September", training: "Power Industrial Trucks (1910.178) + Evaluation", audience: "Forklift and PIT operators", type: "3-Year", duration: "4 hrs + practical" },
+                    { month: "October", training: "Material Handling Equipment (1910.176/1926.602) + Evaluation", audience: "Equipment operators, warehouse staff", type: "Annual", duration: "3 hrs + demo" },
+                    { month: "November", training: "Earth-moving Equipment (1926.602) + Evaluation", audience: "Heavy equipment operators", type: "3-Year", duration: "6 hrs + field demo" },
+                    { month: "December", training: "Annual Evaluation Upload Reminder", audience: "All employees with practical training", type: "Yearly", duration: "Document upload" }
                   ].map((item, index) => (
                     <Card key={index} className="hover:shadow-md transition-shadow border-l-4 border-l-blue-500">
                       <CardContent className="p-4">
