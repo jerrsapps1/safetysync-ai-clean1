@@ -1514,13 +1514,14 @@ export default function Dashboard() {
                     <CardContent>
                       <div className="space-y-4">
                         <div className="bg-blue-50 p-4 rounded-lg">
-                          <h4 className="font-semibold text-blue-900 mb-2">Professional Features:</h4>
+                          <h4 className="font-semibold text-blue-900 mb-2">Professional Certificate Features:</h4>
                           <ul className="text-sm text-blue-800 space-y-1">
-                            <li>• High-resolution PDF (300 DPI)</li>
-                            <li>• Custom company branding</li>
-                            <li>• OSHA-compliant format</li>
-                            <li>• Unique verification numbers</li>
-                            <li>• Ready for printing</li>
+                            <li>• Professional centered layout with employee name prominently displayed</li>
+                            <li>• Specific OSHA/ANSI/CFR compliance references (29 CFR 1910.178, etc.)</li>
+                            <li>• Contact hours (CEU), completion date, and expiration date</li>
+                            <li>• Unique certificate number for verification and audit trails</li>
+                            <li>• Instructor credentials and company contact information</li>
+                            <li>• High-resolution PDF (300 DPI) ready for professional printing</li>
                           </ul>
                         </div>
                         
@@ -1544,10 +1545,15 @@ export default function Dashboard() {
                           </select>
                         </div>
                         
-                        <Button className="w-full">
-                          <Award className="w-4 h-4 mr-2" />
-                          Generate Certificate ($15)
-                        </Button>
+                        <div className="flex gap-2">
+                          <Button className="flex-1">
+                            <Award className="w-4 h-4 mr-2" />
+                            Generate Certificate ($15)
+                          </Button>
+                          <Button variant="outline" size="sm">
+                            <Eye className="w-4 h-4" />
+                          </Button>
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
@@ -1564,13 +1570,15 @@ export default function Dashboard() {
                     <CardContent>
                       <div className="space-y-4">
                         <div className="bg-green-50 p-4 rounded-lg">
-                          <h4 className="font-semibold text-green-900 mb-2">Card Specifications:</h4>
+                          <h4 className="font-semibold text-green-900 mb-2">Professional Wallet Card Features:</h4>
                           <ul className="text-sm text-green-800 space-y-1">
-                            <li>• CR80 format (3.375" x 2.125")</li>
-                            <li>• Optimized for 30mil PVC cards</li>
-                            <li>• HID printer compatible</li>
-                            <li>• Employee photo included</li>
-                            <li>• Expiration date tracking</li>
+                            <li>• CR80 format (3.375" x 2.125") optimized for 30mil PVC cards</li>
+                            <li>• Front: Company logo, employee name, primary certification</li>
+                            <li>• Back: Detailed equipment authorizations and compliance references</li>
+                            <li>• Multiple certifications listed with training/expiry dates</li>
+                            <li>• OSHA compliance statements (29 CFR 1910.178, ANSI standards)</li>
+                            <li>• Instructor credentials and company contact information</li>
+                            <li>• HID printer compatible design for professional card printing</li>
                           </ul>
                         </div>
                         
@@ -1594,10 +1602,15 @@ export default function Dashboard() {
                           </select>
                         </div>
                         
-                        <Button className="w-full">
-                          <CreditCard className="w-4 h-4 mr-2" />
-                          Generate Wallet Card ($8)
-                        </Button>
+                        <div className="flex gap-2">
+                          <Button className="flex-1">
+                            <CreditCard className="w-4 h-4 mr-2" />
+                            Generate Wallet Card ($8)
+                          </Button>
+                          <Button variant="outline" size="sm">
+                            <Eye className="w-4 h-4" />
+                          </Button>
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
@@ -1634,6 +1647,81 @@ export default function Dashboard() {
                         <Calculator className="w-4 h-4 mr-2" />
                         Calculate Bulk Pricing
                       </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Sample Outputs */}
+                <Card className="mt-6">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Eye className="w-5 h-5" />
+                      Sample Certificate & Card Outputs
+                    </CardTitle>
+                    <CardDescription>
+                      Examples of professional-quality certificates and wallet cards generated by SafetySync.AI
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                      {/* Certificate Sample */}
+                      <div className="space-y-3">
+                        <h4 className="font-semibold">Professional Certificate Sample</h4>
+                        <div className="border rounded-lg p-6 bg-gray-50 text-center text-sm">
+                          <div className="text-lg font-bold mb-4">CERTIFICATE OF COMPLETION</div>
+                          <div className="text-xl font-semibold mb-4">Mark Anderson</div>
+                          <div className="mb-2">has successfully achieved the certification</div>
+                          <div className="text-lg font-bold mb-4">POWER INDUSTRIAL TRUCKS OPERATOR</div>
+                          <div className="text-sm mb-2">MEETS AND EXCEEDS OSHA 29 CFR 1910.178</div>
+                          <div className="flex justify-between text-xs mt-6">
+                            <div>
+                              <div>CEU: 3.2</div>
+                              <div>Contact Hours: 32</div>
+                              <div>Completion Date: January 06, 2025</div>
+                              <div>Expiration Date: January 06, 2027</div>
+                            </div>
+                            <div>
+                              <div>Certificate: 10015987</div>
+                              <div>Instructor: Safety Team</div>
+                              <div>SafetySync.AI Verified</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Wallet Card Sample */}
+                      <div className="space-y-3">
+                        <h4 className="font-semibold">Professional Wallet Card Sample</h4>
+                        <div className="grid grid-cols-2 gap-3">
+                          {/* Front of Card */}
+                          <div className="border rounded-lg p-4 bg-white text-xs aspect-[3.375/2.125]">
+                            <div className="font-bold text-lg mb-2">COMPANY LOGO</div>
+                            <div className="text-sm mb-1">Safety Training Certification Card</div>
+                            <div className="font-bold text-lg mt-3">Mark Anderson</div>
+                            <div className="text-xs mt-2">
+                              has successfully completed Power Industrial Trucks Training in compliance with OSHA 29 CFR 1910.178, ANSI Z359, and EM 385 1-1
+                            </div>
+                          </div>
+                          
+                          {/* Back of Card */}
+                          <div className="border rounded-lg p-4 bg-white text-xs aspect-[3.375/2.125]">
+                            <div className="text-xs mb-2">Training compliant with OSHA for MEWPs 1926.453, ANSI A92, PIT 1910.178, and MHE 1926.602, and is authorized to operate the following equipment:</div>
+                            <div className="space-y-1 text-xs">
+                              <div>• Power Industrial Trucks</div>
+                              <div>• Material Handling Equipment</div>
+                              <div>• Mobile Elevated Work Platforms</div>
+                            </div>
+                            <div className="mt-3 text-xs">
+                              <div>Training Conducted: 01/06/2025</div>
+                              <div>Training Expires: 01/06/2027</div>
+                              <div>Instructor: Safety Team, CHST</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="text-xs text-gray-500 text-center">
+                          CR80 Format (3.375" x 2.125") - Optimized for 30mil PVC Cards
+                        </div>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>

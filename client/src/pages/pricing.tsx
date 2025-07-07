@@ -65,14 +65,14 @@ export default function PricingPage() {
                 
                 <div className="space-y-4">
                   <div className="border-l-4 border-blue-500 pl-4">
-                    <h4 className="font-semibold text-gray-900">What You Get:</h4>
+                    <h4 className="font-semibold text-gray-900">Professional Certificate Includes:</h4>
                     <ul className="text-sm text-gray-600 mt-2 space-y-1">
-                      <li>• High-resolution PDF certificates (300 DPI)</li>
-                      <li>• Customizable with your company branding</li>
-                      <li>• OSHA-compliant training completion format</li>
-                      <li>• Employee name, training type, completion date</li>
-                      <li>• Unique certificate number for verification</li>
-                      <li>• Professional layout ready for printing</li>
+                      <li>• Centered layout with employee name prominently displayed</li>
+                      <li>• Specific OSHA/ANSI/CFR compliance references</li>
+                      <li>• Contact hours (CEU), completion and expiration dates</li>
+                      <li>• Unique certificate number for verification and audits</li>
+                      <li>• Instructor credentials and company contact information</li>
+                      <li>• High-resolution PDF (300 DPI) ready for printing</li>
                     </ul>
                   </div>
                   
@@ -100,14 +100,14 @@ export default function PricingPage() {
                 
                 <div className="space-y-4">
                   <div className="border-l-4 border-green-500 pl-4">
-                    <h4 className="font-semibold text-gray-900">Card Specifications:</h4>
+                    <h4 className="font-semibold text-gray-900">Professional Wallet Card Features:</h4>
                     <ul className="text-sm text-gray-600 mt-2 space-y-1">
-                      <li>• CR80 format (3.375" x 2.125")</li>
-                      <li>• Optimized for 30mil PVC cards</li>
-                      <li>• HID printer compatible design</li>
-                      <li>• Employee photo, name, certification</li>
-                      <li>• Expiration date and company logo</li>
-                      <li>• Durable card stock recommendations</li>
+                      <li>• CR80 format (3.375" x 2.125") for 30mil PVC cards</li>
+                      <li>• Front: Company logo, employee name, primary certification</li>
+                      <li>• Back: Equipment authorizations and compliance references</li>
+                      <li>• Multiple certifications with training/expiry dates</li>
+                      <li>• OSHA compliance statements (29 CFR, ANSI standards)</li>
+                      <li>• HID printer compatible design for professional printing</li>
                     </ul>
                   </div>
                   
