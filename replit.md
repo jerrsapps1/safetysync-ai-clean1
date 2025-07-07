@@ -334,6 +334,11 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Enhanced dashboard certificate generation pricing notes to specify "any subscription plan" instead of Essential only
   - Unified certificate generation value proposition across all subscription levels for maximum accessibility
   - Maintained same professional quality and HID printer compatibility across all tiers
+- **July 06, 2025** - Removed Volume Discount Structure:
+  - Eliminated bulk pricing discounts (15%, 25%, 35%) from certificate and card generation services
+  - Removed volume discount sections from pricing page and dashboard certificate tabs
+  - Simplified pricing to flat rate: $0.50 per certificate/card after 90-day free period for all subscription plans
+  - Streamlined pricing structure focuses on usage-based billing without complexity of volume tiers
 
 ## Changelog
 
