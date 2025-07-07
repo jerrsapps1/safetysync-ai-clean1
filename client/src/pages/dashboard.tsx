@@ -1622,40 +1622,7 @@ export default function Dashboard() {
                   </Card>
                 </div>
 
-                {/* Bulk Services */}
-                <Card className="mt-6 bg-gradient-to-r from-purple-50 to-blue-50 border-purple-200">
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Package className="w-5 h-5 text-purple-600" />
-                      Bulk Services & Volume Discounts
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <div className="text-center">
-                        <div className="text-lg font-semibold text-purple-600">10-50 Items</div>
-                        <div className="text-sm text-gray-600">15% Discount</div>
-                        <div className="text-xs text-gray-500">Perfect for small teams</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-lg font-semibold text-purple-600">51-100 Items</div>
-                        <div className="text-sm text-gray-600">25% Discount</div>
-                        <div className="text-xs text-gray-500">Great for medium companies</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-lg font-semibold text-purple-600">100+ Items</div>
-                        <div className="text-sm text-gray-600">35% Discount</div>
-                        <div className="text-xs text-gray-500">Enterprise volume pricing</div>
-                      </div>
-                    </div>
-                    <div className="mt-4 flex justify-center">
-                      <Button variant="outline">
-                        <Calculator className="w-4 h-4 mr-2" />
-                        Calculate Bulk Pricing
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
+
 
                 {/* Sample Outputs */}
                 <Card className="mt-6">

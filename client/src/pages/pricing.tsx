@@ -111,26 +111,7 @@ export default function PricingPage() {
             </Card>
           </div>
 
-          {/* Bulk Pricing */}
-          <Card className="mt-8 bg-gradient-to-r from-purple-50 to-blue-50 border-purple-200">
-            <CardContent className="p-6">
-              <h3 className="text-xl font-bold text-center mb-4">Volume Discounts Available</h3>
-              <div className="grid md:grid-cols-3 gap-4 text-center">
-                <div>
-                  <div className="text-lg font-semibold text-purple-600">10-50 items</div>
-                  <div className="text-sm text-gray-600">15% discount</div>
-                </div>
-                <div>
-                  <div className="text-lg font-semibold text-purple-600">51-100 items</div>
-                  <div className="text-sm text-gray-600">25% discount</div>
-                </div>
-                <div>
-                  <div className="text-lg font-semibold text-purple-600">100+ items</div>
-                  <div className="text-sm text-gray-600">35% discount</div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+
         </section>
 
         {/* Pricing Calculator */}
