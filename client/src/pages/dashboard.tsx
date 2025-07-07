@@ -1555,7 +1555,7 @@ export default function Dashboard() {
                           </Button>
                         </div>
                         <p className="text-xs text-gray-500 mt-2">
-                          *FREE for first 90 days with Essential plan, then $0.50 per certificate
+                          *FREE for first 90 days with any subscription plan, then $0.50 per certificate
                         </p>
                       </div>
                     </CardContent>
@@ -1615,7 +1615,7 @@ export default function Dashboard() {
                           </Button>
                         </div>
                         <p className="text-xs text-gray-500 mt-2">
-                          *FREE for first 90 days with Essential plan, then $0.50 per card
+                          *FREE for first 90 days with any subscription plan, then $0.50 per card
                         </p>
                       </div>
                     </CardContent>

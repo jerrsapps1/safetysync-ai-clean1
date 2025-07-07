@@ -70,7 +70,8 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
         "Multi-location support",
         "Advanced dashboard",
         "API integrations",
-        "Priority support"
+        "Priority support",
+        "Certificate & card generation (FREE first 90 days, then $0.50 per item)"
       ]
     },
     {
@@ -88,7 +89,8 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
         "24/7 phone support",
         "SLA guarantee",
         "Custom workflows",
-        "Audit assistance"
+        "Audit assistance",
+        "Certificate & card generation (FREE first 90 days, then $0.50 per item)"
       ]
     },
     {
@@ -104,7 +106,8 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
         "Advanced security features",
         "White-label solution",
         "Unlimited integrations",
-        "Dedicated infrastructure"
+        "Dedicated infrastructure",
+        "Certificate & card generation (FREE first 90 days, then $0.50 per item)"
       ]
     }
   ];
