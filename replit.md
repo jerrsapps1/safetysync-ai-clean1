@@ -358,6 +358,11 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Implemented auto-fill company field from user's company profile
   - Created fillable instructor position field (EH&S Manager, Safety Director, etc.)
   - Updated sample cards to show [Company] [Position] placeholder format
+  - Added multi-card continuation feature for extensive equipment lists
+  - Implemented automatic additional card generation when equipment exceeds space
+  - Added checkbox option for instructors to enable multi-card generation
+  - Updated pricing to reflect additional card charges ($0.50 per card)
+  - Created multi-card example showing "Card 1 of 2" continuation format
 
 ## Changelog
 

@@ -1689,17 +1689,28 @@ export default function Dashboard() {
                           />
                         </div>
                         
+                        <div className="space-y-2">
+                          <div className="flex items-center space-x-2">
+                            <input type="checkbox" id="multi-card" className="rounded border-gray-300" />
+                            <label htmlFor="multi-card" className="text-sm font-medium">Generate additional cards if equipment list exceeds space</label>
+                          </div>
+                          <p className="text-xs text-gray-500">
+                            When checked, equipment will automatically continue on additional cards if the list is too long for one card. 
+                            Each additional card will be charged separately ($0.50 each).
+                          </p>
+                        </div>
+                        
                         <div className="flex gap-2">
                           <Button className="flex-1">
                             <CreditCard className="w-4 h-4 mr-2" />
-                            Generate Wallet Card ($0.50*)
+                            Generate Wallet Card(s) ($0.50* each)
                           </Button>
                           <Button variant="outline" size="sm">
                             <Eye className="w-4 h-4" />
                           </Button>
                         </div>
                         <p className="text-xs text-gray-500 mt-2">
-                          *FREE for first 90 days with any subscription plan, then $0.50 per card
+                          *FREE for first 90 days with any subscription plan, then $0.50 per card. Additional cards generated automatically if equipment list exceeds space.
                         </p>
                       </div>
                     </CardContent>

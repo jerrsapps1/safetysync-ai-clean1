@@ -195,6 +195,24 @@ export default function PricingPage() {
                     </div>
                   </div>
                 </div>
+                
+                {/* Multiple Card Example */}
+                <div className="mt-8 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                  <h5 className="font-semibold text-yellow-800 mb-2">Multiple Card Example</h5>
+                  <p className="text-sm text-yellow-700 mb-3">
+                    When equipment lists are extensive, additional cards are automatically generated to continue the authorization list:
+                  </p>
+                  <div className="flex gap-2 text-xs">
+                    <div className="bg-white border rounded p-2 flex-1">
+                      <div className="font-semibold">Card 1 of 2</div>
+                      <div>JLG 40 AJ, JLG 60 AJ, JLG 80 AJ, Genie Z62/40, CAT 315 FL...</div>
+                    </div>
+                    <div className="bg-white border rounded p-2 flex-1">
+                      <div className="font-semibold">Card 2 of 2</div>
+                      <div>...Volvo ECR88D, CAT TL 642, Custom Equipment A, Custom Equipment B</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             
@@ -204,7 +222,7 @@ export default function PricingPage() {
                 <p className="text-blue-800 text-sm">
                   All certificates and cards are generated with OSHA/ANSI/EM 385-1-1 compliance references, unique tracking numbers, 
                   specific equipment authorizations, and professional formatting. Available in horizontal or vertical orientations. 
-                  Ready for card printer output in .efi format for seamless printing on 30mil PVC cards.
+                  When equipment lists exceed card space, additional cards are automatically generated. Ready for card printer output in .efi format for seamless printing on 30mil PVC cards.
                 </p>
               </div>
             </div>
