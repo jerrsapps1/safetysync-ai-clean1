@@ -291,6 +291,12 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Updated annual training calendar to include equipment operation training in September-November schedule
   - Added comprehensive syllabi covering vehicle inspection, load capacity, stability principles, and emergency procedures
   - Implemented 3-year recertification cycles for specialized equipment operators to maintain compliance
+- **July 06, 2025** - Added Training Evaluation Storage Requirements:
+  - Implemented training evaluation storage guidelines in Training tab and User Guide
+  - Added requirement to store evaluations with training documents for OSHA standards compliance
+  - Specified requirements for Power Industrial Trucks, Fall Protection, Earth-moving Equipment practical evaluations
+  - Recommended yearly evaluation uploads as best practice even when not required
+  - Enhanced compliance documentation workflow for comprehensive audit readiness
 
 ## Changelog
 
