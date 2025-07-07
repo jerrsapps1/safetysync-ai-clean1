@@ -867,7 +867,7 @@ export default function Dashboard() {
                   Annual Training Calendar (OSHA Compliant Schedule)
                 </CardTitle>
                 <CardDescription>
-                  Template schedule aligned with OSHA Publication 2254 requirements
+                  Comprehensive training schedule for systematic compliance management
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -918,11 +918,11 @@ export default function Dashboard() {
                   <div className="flex items-start gap-3">
                     <Shield className="w-5 h-5 text-blue-600 mt-0.5" />
                     <div>
-                      <h4 className="font-medium text-blue-900 mb-2">OSHA Publication 2254 Compliance</h4>
+                      <h4 className="font-medium text-blue-900 mb-2">OSHA Compliance Training</h4>
                       <p className="text-sm text-blue-800">
-                        This training calendar is fully aligned with OSHA Publication 2254 federal mandates. 
-                        All syllabi include expanded modules, hands-on training, written/practical evaluations, 
-                        and built-in assessment records to exceed minimum compliance standards.
+                        Comprehensive training calendar with expanded modules, hands-on training, 
+                        written/practical evaluations, and built-in assessment records to exceed 
+                        minimum compliance standards.
                       </p>
                     </div>
                   </div>

@@ -281,10 +281,9 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Added comprehensive training modules: Fall Protection, HAZWOPER, HazCom, Hearing Conservation, PPE, First Aid/CPR, LOTO, Respiratory Protection
   - Included detailed syllabi with hands-on demonstrations, practical evaluations, and knowledge reviews
   - Added target audience specifications and recertification requirements for each training
-  - Created annual training calendar template aligned with OSHA Publication 2254 federal mandates
+  - Created annual training calendar template for systematic compliance management
   - Enhanced training cards with regulation citations, duration, audience, and compliance verification
-  - Integrated month-by-month scheduling system for systematic compliance management
-  - Added OSHA Publication 2254 compliance verification badge confirming regulatory alignment
+  - Integrated month-by-month scheduling system with comprehensive OSHA requirements
 - **July 06, 2025** - Added Equipment Operation Training Subjects:
   - Integrated Power Industrial Trucks training (29 CFR 1910.178) with 4-hour practical evaluation for forklift/PIT operators
   - Added Material Handling Equipment training (29 CFR 1910.176/1926.602) with 3-hour demonstration for warehouse staff
