@@ -927,6 +927,32 @@ export default function Dashboard() {
                     </div>
                   </div>
                 </div>
+
+                <div className="mt-4 p-4 bg-amber-50 rounded-lg border border-amber-200">
+                  <div className="flex items-start gap-3">
+                    <FileText className="w-5 h-5 text-amber-600 mt-0.5" />
+                    <div>
+                      <h4 className="font-medium text-amber-900 mb-2">Training Evaluation Storage Requirements</h4>
+                      <p className="text-sm text-amber-800 mb-3">
+                        Training evaluations must be stored with training documents, especially when OSHA standards require evaluations (such as for Forklift Operators under 29 CFR 1910.178).
+                      </p>
+                      <div className="space-y-2 text-sm text-amber-800">
+                        <div className="flex items-start gap-2">
+                          <div className="w-1.5 h-1.5 bg-amber-600 rounded-full mt-2"></div>
+                          <span><strong>Required for:</strong> Power Industrial Trucks, Fall Protection, Earth-moving Equipment, and other practical skill-based training</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <div className="w-1.5 h-1.5 bg-amber-600 rounded-full mt-2"></div>
+                          <span><strong>Best Practice:</strong> Upload new evaluations yearly, even when not required, to maintain comprehensive training records</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <div className="w-1.5 h-1.5 bg-amber-600 rounded-full mt-2"></div>
+                          <span><strong>Storage:</strong> Keep evaluations with corresponding training certificates for easy audit access</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </TabsContent>

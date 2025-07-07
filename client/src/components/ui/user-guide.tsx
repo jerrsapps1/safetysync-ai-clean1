@@ -136,6 +136,13 @@ export function UserGuide({ userPlan = 'professional' }: UserGuideProps) {
           description: 'Upload any new certificates or training completions',
           action: 'Dashboard → Employees → Upload Certificates',
           tips: ['Scan certificates clearly', 'Include expiration dates', 'Tag by department or role']
+        },
+        {
+          step: 5,
+          title: 'Store Training Evaluations',
+          description: 'Upload training evaluations with certificates, especially for OSHA-required evaluations',
+          action: 'Dashboard → Employees → Upload → Include Evaluations',
+          tips: ['Required for Power Industrial Trucks, Fall Protection, Earth-moving Equipment', 'Best practice: Upload yearly evaluations even when not required', 'Store evaluations with corresponding certificates for audit access']
         }
       ]
     },
