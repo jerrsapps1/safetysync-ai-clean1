@@ -342,7 +342,7 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Removed standalone pricing options ($15 certificates, $8 wallet cards) to focus exclusively on subscription-based services
   - All certificate generation now integrated into subscription plans with consistent 90-day free period across all tiers
   - Updated printer terminology from "HID printer" to "card printer" for broader compatibility
-  - Added file format specifications (.png, .pdf, or .efi) for certificate and wallet card generation
+  - Added file format specification (.efi) for certificate and wallet card generation
 
 ## Changelog
 
