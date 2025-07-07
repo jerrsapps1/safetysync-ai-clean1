@@ -363,6 +363,14 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Added checkbox option for instructors to enable multi-card generation
   - Updated pricing to reflect additional card charges ($0.50 per card)
   - Created multi-card example showing "Card 1 of 2" continuation format
+- **July 06, 2025** - Implemented Digital-Only Wallet Card Model:
+  - Changed wallet cards to digital-only format (view/display only) with no printing options
+  - Made all digital wallet cards completely FREE (removed $0.50 fee structure)
+  - Updated pricing page and dashboard to reflect "Always FREE - Digital View Only" for wallet cards
+  - Maintained certificate generation pricing: FREE for 90 days, then $0.50 per certificate
+  - Removed card orientation selection and printing specifications since cards are view-only
+  - Enhanced value proposition: unlimited digital cards accessible on phones, tablets, computers
+  - Updated multi-card generation to reflect FREE digital continuation cards
 
 ## Changelog
 

@@ -1497,7 +1497,7 @@ export default function Dashboard() {
                   Certificate & Card Services
                 </CardTitle>
                 <CardDescription>
-                  Generate professional certificates and printable wallet cards for completed training
+                  Generate professional certificates and digital wallet cards for completed training
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -1594,27 +1594,27 @@ export default function Dashboard() {
                     </CardContent>
                   </Card>
 
-                  {/* Wallet Card Service */}
+                  {/* Digital Wallet Card Service */}
                   <Card className="border-2 border-green-200">
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
                         <CreditCard className="w-5 h-5 text-green-600" />
-                        Printable Wallet Cards
+                        Digital Wallet Cards
                       </CardTitle>
-                      <CardDescription>$0.50 per card</CardDescription>
+                      <CardDescription>Always FREE - Digital View Only</CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-4">
                         <div className="bg-green-50 p-4 rounded-lg">
-                          <h4 className="font-semibold text-green-900 mb-2">Professional Wallet Card Features:</h4>
+                          <h4 className="font-semibold text-green-900 mb-2">Digital Wallet Card Features:</h4>
                           <ul className="text-sm text-green-800 space-y-1">
-                            <li>• CR80 format optimized for 30mil PVC cards (horizontal & vertical)</li>
+                            <li>• Digital-only format for viewing on phones, tablets, computers</li>
                             <li>• Front: Company logo, employee name, primary certification</li>
                             <li>• Back: Specific equipment authorizations (JLG, Genie, CAT, etc.)</li>
                             <li>• Multiple certifications consolidated on one card</li>
                             <li>• OSHA/ANSI/EM 385-1-1 compliance statements</li>
                             <li>• Custom equipment addition capability</li>
-                            <li>• Card printer compatible design (.efi file format)</li>
+                            <li>• Always accessible - never lost or damaged</li>
                           </ul>
                         </div>
                         
@@ -1628,19 +1628,7 @@ export default function Dashboard() {
                           </select>
                         </div>
                         
-                        <div className="space-y-2">
-                          <label className="text-sm font-medium">Card Orientation</label>
-                          <div className="flex gap-4">
-                            <div className="flex items-center space-x-2">
-                              <input type="radio" id="horizontal-card" name="card-orientation" value="horizontal" className="rounded border-gray-300" />
-                              <label htmlFor="horizontal-card" className="text-sm">Horizontal (3.375" × 2.125")</label>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                              <input type="radio" id="vertical-card" name="card-orientation" value="vertical" className="rounded border-gray-300" defaultChecked />
-                              <label htmlFor="vertical-card" className="text-sm">Vertical (2.125" × 3.375")</label>
-                            </div>
-                          </div>
-                        </div>
+
                         
                         <div className="grid grid-cols-2 gap-2">
                           <div className="space-y-2">
@@ -1695,22 +1683,22 @@ export default function Dashboard() {
                             <label htmlFor="multi-card" className="text-sm font-medium">Generate additional cards if equipment list exceeds space</label>
                           </div>
                           <p className="text-xs text-gray-500">
-                            When checked, equipment will automatically continue on additional cards if the list is too long for one card. 
-                            Each additional card will be charged separately ($0.50 each).
+                            When checked, equipment will automatically continue on additional digital cards if the list is too long for one card. 
+                            Always FREE - unlimited digital cards.
                           </p>
                         </div>
                         
                         <div className="flex gap-2">
                           <Button className="flex-1">
                             <CreditCard className="w-4 h-4 mr-2" />
-                            Generate Wallet Card(s) ($0.50* each)
+                            Generate Digital Wallet Card(s) (FREE)
                           </Button>
                           <Button variant="outline" size="sm">
                             <Eye className="w-4 h-4" />
                           </Button>
                         </div>
                         <p className="text-xs text-gray-500 mt-2">
-                          *FREE for first 90 days with any subscription plan, then $0.50 per card. Additional cards generated automatically if equipment list exceeds space.
+                          Digital wallet cards are always FREE. View on any device - never lost, always accessible.
                         </p>
                       </div>
                     </CardContent>
@@ -1727,7 +1715,7 @@ export default function Dashboard() {
                       Sample Certificate & Card Outputs
                     </CardTitle>
                     <CardDescription>
-                      Examples of professional-quality certificates and wallet cards generated by SafetySync.AI
+                      Examples of professional-quality certificates and digital wallet cards generated by SafetySync.AI
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
