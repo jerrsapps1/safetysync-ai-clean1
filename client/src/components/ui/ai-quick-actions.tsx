@@ -102,6 +102,16 @@ export function AIQuickActions({ onActionExecute, currentPage = 'dashboard' }: A
       action: () => console.log('Auto-assigning training...')
     },
     {
+      id: 'evaluation-reminder-check',
+      title: 'Check Missing Training Evaluations',
+      description: 'Scan for required evaluations missing from practical skill training records',
+      category: 'compliance',
+      priority: 'high',
+      estimatedTime: '30 sec',
+      icon: <FileText className="w-4 h-4" />,
+      action: () => console.log('Checking missing evaluations...')
+    },
+    {
       id: 'regulatory-updates',
       title: 'Latest Regulatory Updates',
       description: 'Get personalized OSHA and industry regulation updates relevant to your business',
@@ -165,12 +175,21 @@ export function AIQuickActions({ onActionExecute, currentPage = 'dashboard' }: A
     },
     {
       id: '2',
-      type: 'recommendation',
-      title: 'Training Efficiency Opportunity',
-      description: 'Manufacturing team could benefit from combined safety training sessions. 23% time savings estimated.',
-      confidence: 87,
+      type: 'alert',
+      title: 'Missing Training Evaluations Detected',
+      description: '7 employees completed practical training but are missing required evaluation documentation. Upload needed for audit compliance.',
+      confidence: 98,
       actionable: true,
       timestamp: '2025-01-06T10:15:00Z'
+    },
+    {
+      id: '2b',
+      type: 'recommendation',
+      title: 'Annual Evaluation Upload Reminder',
+      description: '12 employees eligible for yearly evaluation uploads. Best practice to maintain comprehensive training records.',
+      confidence: 85,
+      actionable: true,
+      timestamp: '2025-01-06T10:10:00Z'
     },
     {
       id: '3',

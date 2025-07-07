@@ -297,6 +297,13 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Specified requirements for Power Industrial Trucks, Fall Protection, Earth-moving Equipment practical evaluations
   - Recommended yearly evaluation uploads as best practice even when not required
   - Enhanced compliance documentation workflow for comprehensive audit readiness
+- **July 06, 2025** - Integrated Evaluation Alerts and Calendar Notifications:
+  - Added evaluation reminders to dashboard "Upcoming Deadlines & Evaluation Reminders" section
+  - Implemented separate tracking for required evaluations vs. recommended annual uploads
+  - Enhanced AI recommendations to prioritize missing practical evaluations for audit compliance
+  - Updated annual training calendar to include evaluation requirements for September-December
+  - Added AI Quick Actions for scanning missing evaluation documentation
+  - Integrated evaluation alerts into AI insights with high-confidence notifications for compliance gaps
 
 ## Changelog
 
