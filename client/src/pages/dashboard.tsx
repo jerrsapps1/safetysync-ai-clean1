@@ -1548,6 +1548,36 @@ export default function Dashboard() {
                           </select>
                         </div>
                         
+                        <div className="grid grid-cols-2 gap-2">
+                          <div className="space-y-2">
+                            <label className="text-sm font-medium">Instructor Name</label>
+                            <input 
+                              type="text" 
+                              className="w-full p-2 border rounded-md text-sm" 
+                              placeholder="Name, Credentials"
+                            />
+                          </div>
+                          <div className="space-y-2">
+                            <label className="text-sm font-medium">Instructor Position</label>
+                            <input 
+                              type="text" 
+                              className="w-full p-2 border rounded-md text-sm" 
+                              placeholder="EH&S Manager"
+                            />
+                          </div>
+                        </div>
+                        
+                        <div className="space-y-2">
+                          <label className="text-sm font-medium">Company</label>
+                          <input 
+                            type="text" 
+                            className="w-full p-2 border rounded-md text-sm bg-gray-50" 
+                            value="ACME Corp"
+                            readOnly
+                          />
+                          <p className="text-xs text-gray-500">Auto-filled from company profile</p>
+                        </div>
+                        
                         <div className="flex gap-2">
                           <Button className="flex-1">
                             <Award className="w-4 h-4 mr-2" />
@@ -1610,6 +1640,36 @@ export default function Dashboard() {
                               <label htmlFor="vertical-card" className="text-sm">Vertical (2.125" × 3.375")</label>
                             </div>
                           </div>
+                        </div>
+                        
+                        <div className="grid grid-cols-2 gap-2">
+                          <div className="space-y-2">
+                            <label className="text-sm font-medium">Instructor Name</label>
+                            <input 
+                              type="text" 
+                              className="w-full p-2 border rounded-md text-sm" 
+                              placeholder="Name, Credentials"
+                            />
+                          </div>
+                          <div className="space-y-2">
+                            <label className="text-sm font-medium">Instructor Position</label>
+                            <input 
+                              type="text" 
+                              className="w-full p-2 border rounded-md text-sm" 
+                              placeholder="EH&S Manager"
+                            />
+                          </div>
+                        </div>
+                        
+                        <div className="space-y-2">
+                          <label className="text-sm font-medium">Company</label>
+                          <input 
+                            type="text" 
+                            className="w-full p-2 border rounded-md text-sm bg-gray-50" 
+                            value="ACME Corp"
+                            readOnly
+                          />
+                          <p className="text-xs text-gray-500">Auto-filled from company profile</p>
                         </div>
                         
                         <div className="space-y-2">

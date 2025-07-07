@@ -173,7 +173,7 @@ export default function PricingPage() {
                     </div>
                     <div className="mt-4 text-xs">
                       <div>Instructor: [Name], [Credentials]</div>
-                      <div>Company EH&S Manager</div>
+                      <div>[Company] [Position]</div>
                     </div>
                   </div>
                   

@@ -354,6 +354,10 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Updated sample cards to show vertical orientation format with equipment authorization list on back
   - Enhanced pricing page examples to demonstrate vertical card layout with specific equipment models
   - Integrated professional instructor credentials display (CSHO, SHEP certifications)
+  - Added instructor company and position fields to certificate and card generators
+  - Implemented auto-fill company field from user's company profile
+  - Created fillable instructor position field (EH&S Manager, Safety Director, etc.)
+  - Updated sample cards to show [Company] [Position] placeholder format
 
 ## Changelog
 
