@@ -345,6 +345,15 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Added file format specification (.efi) for certificate and wallet card generation
   - Added professional sample certificate and wallet card examples to pricing page showing actual output quality
   - Enhanced visual examples with OSHA compliance references, unique certificate numbers, and professional formatting
+- **July 06, 2025** - Enhanced Certificate & Card Generation with EM 385-1-1 References and Equipment Specifications:
+  - Added EM 385-1-1 compliance references to all certificates and wallet cards alongside OSHA/ANSI standards
+  - Implemented specific equipment authorization system with predefined options (JLG 40 AJ, Genie Z62/40, CAT 315 FL, etc.)
+  - Added custom equipment addition capability for instructors to include company-specific machinery
+  - Created vertical and horizontal card orientation selection matching CR80 format requirements
+  - Built multi-equipment consolidation system allowing multiple certifications on single wallet card
+  - Updated sample cards to show vertical orientation format with equipment authorization list on back
+  - Enhanced pricing page examples to demonstrate vertical card layout with specific equipment models
+  - Integrated professional instructor credentials display (CSHO, SHEP certifications)
 
 ## Changelog
 

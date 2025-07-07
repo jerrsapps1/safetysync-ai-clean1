@@ -1509,7 +1509,7 @@ export default function Dashboard() {
                         <Award className="w-5 h-5 text-blue-600" />
                         Certificate Generation
                       </CardTitle>
-                      <CardDescription>$15 per certificate</CardDescription>
+                      <CardDescription>$0.50 per certificate</CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-4">
@@ -1517,7 +1517,7 @@ export default function Dashboard() {
                           <h4 className="font-semibold text-blue-900 mb-2">Professional Certificate Features:</h4>
                           <ul className="text-sm text-blue-800 space-y-1">
                             <li>• Professional centered layout with employee name prominently displayed</li>
-                            <li>• Specific OSHA/ANSI/CFR compliance references (29 CFR 1910.178, etc.)</li>
+                            <li>• OSHA/ANSI/CFR compliance references (29 CFR 1910.178, EM 385-1-1, etc.)</li>
                             <li>• Contact hours (CEU), completion date, and expiration date</li>
                             <li>• Unique certificate number for verification and audit trails</li>
                             <li>• Instructor credentials and company contact information</li>
@@ -1538,8 +1538,11 @@ export default function Dashboard() {
                         <div className="space-y-2">
                           <label className="text-sm font-medium">Training Completed</label>
                           <select className="w-full p-2 border rounded-md">
-                            <option>Power Industrial Trucks (29 CFR 1910.178)</option>
-                            <option>Fall Protection (29 CFR 1926.501)</option>
+                            <option>Power Industrial Trucks (29 CFR 1910.178, EM 385-1-1)</option>
+                            <option>Mobile Elevated Work Platforms (29 CFR 1926.453, EM 385-1-1)</option>
+                            <option>Material Handling Equipment (29 CFR 1926.602, EM 385-1-1)</option>
+                            <option>Earth-moving Equipment (29 CFR 1926.602, EM 385-1-1)</option>
+                            <option>Fall Protection (29 CFR 1926.501, EM 385-1-1)</option>
                             <option>HAZWOPER (29 CFR 1910.120)</option>
                             <option>First Aid/CPR</option>
                           </select>
@@ -1568,20 +1571,20 @@ export default function Dashboard() {
                         <CreditCard className="w-5 h-5 text-green-600" />
                         Printable Wallet Cards
                       </CardTitle>
-                      <CardDescription>$8 per card</CardDescription>
+                      <CardDescription>$0.50 per card</CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-4">
                         <div className="bg-green-50 p-4 rounded-lg">
                           <h4 className="font-semibold text-green-900 mb-2">Professional Wallet Card Features:</h4>
                           <ul className="text-sm text-green-800 space-y-1">
-                            <li>• CR80 format (3.375" x 2.125") optimized for 30mil PVC cards</li>
+                            <li>• CR80 format optimized for 30mil PVC cards (horizontal & vertical)</li>
                             <li>• Front: Company logo, employee name, primary certification</li>
-                            <li>• Back: Detailed equipment authorizations and compliance references</li>
-                            <li>• Multiple certifications listed with training/expiry dates</li>
-                            <li>• OSHA compliance statements (29 CFR 1910.178, ANSI standards)</li>
-                            <li>• Instructor credentials and company contact information</li>
-                            <li>• Card printer compatible design for professional printing (.efi file format)</li>
+                            <li>• Back: Specific equipment authorizations (JLG, Genie, CAT, etc.)</li>
+                            <li>• Multiple certifications consolidated on one card</li>
+                            <li>• OSHA/ANSI/EM 385-1-1 compliance statements</li>
+                            <li>• Custom equipment addition capability</li>
+                            <li>• Card printer compatible design (.efi file format)</li>
                           </ul>
                         </div>
                         
@@ -1596,13 +1599,34 @@ export default function Dashboard() {
                         </div>
                         
                         <div className="space-y-2">
-                          <label className="text-sm font-medium">Certification Type</label>
-                          <select className="w-full p-2 border rounded-md">
-                            <option>Power Industrial Trucks</option>
-                            <option>Fall Protection</option>
-                            <option>HAZWOPER Certified</option>
-                            <option>First Aid/CPR</option>
-                          </select>
+                          <label className="text-sm font-medium">Card Orientation</label>
+                          <div className="flex gap-4">
+                            <div className="flex items-center space-x-2">
+                              <input type="radio" id="horizontal-card" name="card-orientation" value="horizontal" className="rounded border-gray-300" />
+                              <label htmlFor="horizontal-card" className="text-sm">Horizontal (3.375" × 2.125")</label>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <input type="radio" id="vertical-card" name="card-orientation" value="vertical" className="rounded border-gray-300" defaultChecked />
+                              <label htmlFor="vertical-card" className="text-sm">Vertical (2.125" × 3.375")</label>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="space-y-2">
+                          <label className="text-sm font-medium">Specific Equipment Authorized</label>
+                          <div className="grid grid-cols-2 gap-1 max-h-32 overflow-y-auto border rounded p-2">
+                            {['JLG 40 AJ', 'JLG 60 AJ', 'JLG 80 AJ', 'Genie Z62/40', 'Genie GTH-636', 'CAT 315 FL Zero Turn Track Excavator', 'CAT TL 642', 'Volvo Excavator ECR88D', '259D3 CAT Skidsteer', 'Sit-down Forklift', 'Stand-up Forklift', 'Reach Truck'].map((equipment) => (
+                              <div key={equipment} className="flex items-center space-x-1">
+                                <input type="checkbox" id={`card-${equipment}`} className="rounded border-gray-300" />
+                                <label htmlFor={`card-${equipment}`} className="text-xs leading-tight">{equipment}</label>
+                              </div>
+                            ))}
+                          </div>
+                          <textarea 
+                            placeholder="Add custom equipment (one per line)..."
+                            className="w-full p-2 border rounded-md text-sm"
+                            rows={2}
+                          />
                         </div>
                         
                         <div className="flex gap-2">
