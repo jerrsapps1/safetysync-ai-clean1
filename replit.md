@@ -285,6 +285,13 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Enhanced training cards with regulation citations, duration, audience, and compliance verification
   - Integrated month-by-month scheduling system for systematic compliance management
   - Added OSHA Publication 2254 compliance verification badge confirming regulatory alignment
+- **July 06, 2025** - Added Equipment Operation Training Subjects:
+  - Integrated Power Industrial Trucks training (29 CFR 1910.178) with 4-hour practical evaluation for forklift/PIT operators
+  - Added Material Handling Equipment training (29 CFR 1910.176/1926.602) with 3-hour demonstration for warehouse staff
+  - Implemented Earth-moving Equipment training (29 CFR 1926.602) with 6-hour field demonstration for heavy equipment operators
+  - Updated annual training calendar to include equipment operation training in September-November schedule
+  - Added comprehensive syllabi covering vehicle inspection, load capacity, stability principles, and emergency procedures
+  - Implemented 3-year recertification cycles for specialized equipment operators to maintain compliance
 
 ## Changelog
 
