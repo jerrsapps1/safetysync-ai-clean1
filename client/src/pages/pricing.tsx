@@ -211,32 +211,97 @@ export default function PricingPage() {
               </div>
             </div>
             
-            {/* Multiple Card Example */}
-            <div className="mt-12 p-6 bg-yellow-50 border border-yellow-200 rounded-lg max-w-4xl mx-auto">
-              <h4 className="font-semibold text-yellow-800 mb-3">Multiple Card Example</h4>
-              <p className="text-sm text-yellow-700 mb-4">
-                When equipment lists are extensive, additional cards are automatically generated to continue the authorization list:
-              </p>
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="bg-white border-2 border-gray-300 rounded-lg p-4">
-                  <div className="font-semibold text-sm mb-2">Card 1 of 2</div>
-                  <div className="text-xs space-y-1">
-                    <div>JLG 40 AJ</div>
-                    <div>JLG 60 AJ</div>
-                    <div>JLG 80 AJ</div>
-                    <div>Genie Z62/40</div>
-                    <div>CAT 315 FL Zero Turn Track Excavator</div>
-                    <div className="text-gray-500">...continued on Card 2</div>
+            {/* Equipment Operation Cards Example */}
+            <div className="mt-12 max-w-6xl mx-auto">
+              <div className="text-center mb-8">
+                <h4 className="text-2xl font-bold text-gray-900 mb-2">Equipment Operation Authorization Cards</h4>
+                <p className="text-gray-600">
+                  Professional wallet cards for certified equipment operators with extensive machinery authorizations
+                </p>
+              </div>
+              
+              <div className="bg-gradient-to-r from-orange-50 to-yellow-50 border border-orange-200 rounded-xl p-8">
+                <div className="mb-6">
+                  <h5 className="font-semibold text-orange-800 mb-2">Multi-Card Series Example</h5>
+                  <p className="text-sm text-orange-700">
+                    When operators are certified for extensive equipment fleets, the system automatically generates additional cards to accommodate all authorized machinery:
+                  </p>
+                </div>
+                
+                <div className="grid lg:grid-cols-2 gap-8">
+                  {/* Card 1 */}
+                  <div className="bg-white border-2 border-gray-300 rounded-lg shadow-md">
+                    <div className="bg-blue-600 text-white p-3 rounded-t-lg">
+                      <div className="flex justify-between items-center">
+                        <span className="font-bold">EQUIPMENT OPERATOR CARD</span>
+                        <span className="text-sm">Card 1 of 2</span>
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <div className="font-bold text-lg mb-2">John Smith</div>
+                      <div className="text-sm text-gray-600 mb-3">Heavy Equipment Operator</div>
+                      
+                      <div className="mb-3">
+                        <h6 className="font-semibold text-sm mb-2">AUTHORIZED EQUIPMENT:</h6>
+                        <div className="grid grid-cols-1 gap-1 text-xs">
+                          <div>• JLG 40 AJ Boom Lift</div>
+                          <div>• JLG 60 AJ Boom Lift</div>
+                          <div>• JLG 80 AJ Boom Lift</div>
+                          <div>• Genie Z62/40 Articulating Boom</div>
+                          <div>• CAT 315 FL Zero Turn Track Excavator</div>
+                          <div>• Volvo ECR88D Compact Excavator</div>
+                        </div>
+                      </div>
+                      
+                      <div className="text-xs text-gray-500 border-t pt-2">
+                        <div>Certified: 07/06/2025 | Expires: 07/06/2028</div>
+                        <div className="font-medium text-orange-600">Continued on Card 2...</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Card 2 */}
+                  <div className="bg-white border-2 border-gray-300 rounded-lg shadow-md">
+                    <div className="bg-blue-600 text-white p-3 rounded-t-lg">
+                      <div className="flex justify-between items-center">
+                        <span className="font-bold">EQUIPMENT OPERATOR CARD</span>
+                        <span className="text-sm">Card 2 of 2</span>
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <div className="font-bold text-lg mb-2">John Smith</div>
+                      <div className="text-sm text-gray-600 mb-3">Heavy Equipment Operator</div>
+                      
+                      <div className="mb-3">
+                        <h6 className="font-semibold text-sm mb-2">ADDITIONAL AUTHORIZED EQUIPMENT:</h6>
+                        <div className="grid grid-cols-1 gap-1 text-xs">
+                          <div>• CAT TL 642 Telehandler</div>
+                          <div>• Genie GTH-636 Telehandler</div>
+                          <div>• 259D3 CAT Compact Track Loader</div>
+                          <div>• John Deere 310L Backhoe</div>
+                          <div>• Bobcat S650 Skid Steer</div>
+                          <div>• Komatsu PC210 Excavator</div>
+                        </div>
+                      </div>
+                      
+                      <div className="text-xs text-gray-500 border-t pt-2">
+                        <div>Certified: 07/06/2025 | Expires: 07/06/2028</div>
+                        <div>Instructor: [Name], CSHO | [Company] EH&S</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="bg-white border-2 border-gray-300 rounded-lg p-4">
-                  <div className="font-semibold text-sm mb-2">Card 2 of 2</div>
-                  <div className="text-xs space-y-1">
-                    <div>Volvo Excavator ECR88D</div>
-                    <div>CAT TL 642</div>
-                    <div>Genie GTH-636</div>
-                    <div>Custom Equipment A</div>
-                    <div>Custom Equipment B</div>
+                
+                <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                    <div>
+                      <p className="text-sm text-blue-800 font-medium">Professional Equipment Authorization</p>
+                      <p className="text-xs text-blue-700 mt-1">
+                        Each card maintains full compliance with OSHA 29 CFR, ANSI standards, and EM 385-1-1 requirements. 
+                        Additional cards are generated automatically when equipment lists exceed standard card capacity.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
