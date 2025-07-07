@@ -339,6 +339,8 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Removed volume discount sections from pricing page and dashboard certificate tabs
   - Simplified pricing to flat rate: $0.50 per certificate/card after 90-day free period for all subscription plans
   - Streamlined pricing structure focuses on usage-based billing without complexity of volume tiers
+  - Removed standalone pricing options ($15 certificates, $8 wallet cards) to focus exclusively on subscription-based services
+  - All certificate generation now integrated into subscription plans with consistent 90-day free period across all tiers
 
 ## Changelog
 
