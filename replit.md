@@ -309,7 +309,7 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Added dedicated "Certificates" tab to dashboard with full service ordering interface
   - Implemented certificate generation service with high-resolution PDF (300 DPI), custom branding, OSHA-compliant format
   - Built printable wallet card service optimized for CR80 format (3.375" x 2.125") and 30mil PVC cards
-  - Added HID printer compatibility specifications for client-side printing setup
+  - Added card printer compatibility specifications for client-side printing setup
   - Integrated volume discount structure (15% for 10-50 items, 25% for 51-100, 35% for 100+)
   - Created order history tracking and bulk pricing calculator for enterprise clients
   - Platform generates professional files, clients print with their own equipment and PVC card stock
@@ -333,7 +333,7 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Updated billing notices to apply to all subscription tiers rather than just Essential plan
   - Enhanced dashboard certificate generation pricing notes to specify "any subscription plan" instead of Essential only
   - Unified certificate generation value proposition across all subscription levels for maximum accessibility
-  - Maintained same professional quality and HID printer compatibility across all tiers
+  - Maintained same professional quality and card printer compatibility across all tiers
 - **July 06, 2025** - Removed Volume Discount Structure:
   - Eliminated bulk pricing discounts (15%, 25%, 35%) from certificate and card generation services
   - Removed volume discount sections from pricing page and dashboard certificate tabs
@@ -341,6 +341,8 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Streamlined pricing structure focuses on usage-based billing without complexity of volume tiers
   - Removed standalone pricing options ($15 certificates, $8 wallet cards) to focus exclusively on subscription-based services
   - All certificate generation now integrated into subscription plans with consistent 90-day free period across all tiers
+  - Updated printer terminology from "HID printer" to "card printer" for broader compatibility
+  - Added file format specifications (.png, .pdf, or .efi) for certificate and wallet card generation
 
 ## Changelog
 
