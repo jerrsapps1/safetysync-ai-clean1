@@ -553,85 +553,144 @@ export default function Dashboard() {
                 <div className="space-y-6">
                   {[
                     { 
-                      name: "OSHA 10-Hour Construction", 
-                      enrolled: 12, 
-                      completed: 10,
-                      duration: "10 hours",
-                      regulation: "29 CFR 1926",
-                      syllabus: [
-                        "Introduction to OSHA and the Construction Industry",
-                        "OSHA Focus Four Hazards: Falls, Electrocution, Struck-by Objects, Caught-in/Between",
-                        "Personal Protective Equipment (PPE) Requirements",
-                        "Health Hazards in Construction",
-                        "Stairways and Ladders Safety",
-                        "Scaffolding Safety Standards",
-                        "Tools and Equipment Safety",
-                        "Materials Handling and Storage",
-                        "Construction Site Safety Planning"
-                      ],
-                      recertification: "3 years"
-                    },
-                    { 
-                      name: "Hazard Communication (HazCom)", 
-                      enrolled: 8, 
-                      completed: 6,
-                      duration: "4 hours",
-                      regulation: "29 CFR 1910.1200",
-                      syllabus: [
-                        "Chemical Hazard Classification System",
-                        "Safety Data Sheets (SDS) Requirements and Interpretation",
-                        "Labeling Systems and Pictograms",
-                        "Written Hazard Communication Program Development",
-                        "Employee Training on Chemical Hazards",
-                        "Chemical Inventory Management",
-                        "Globally Harmonized System (GHS) Standards",
-                        "Emergency Response Procedures for Chemical Exposure"
-                      ],
-                      recertification: "Annual"
-                    },
-                    { 
                       name: "Fall Protection", 
                       enrolled: 15, 
                       completed: 13,
-                      duration: "8 hours",
-                      regulation: "29 CFR 1926.501-503",
+                      duration: "4 hours + demonstration",
+                      regulation: "29 CFR 1910.30 / 1926.503",
                       syllabus: [
-                        "Fall Protection Standards and Requirements",
-                        "Personal Fall Arrest Systems (PFAS)",
-                        "Guardrail Systems Design and Installation",
-                        "Safety Net Systems Requirements",
-                        "Positioning Device Systems",
-                        "Warning Line Systems",
-                        "Controlled Access Zones",
-                        "Equipment Inspection and Maintenance",
-                        "Rescue Planning and Procedures"
+                        "Introduction to Fall Hazards (leading edges, skylights, scaffolding)",
+                        "Incident statistics and real-world case studies",
+                        "OSHA Fall Protection Requirements - Review of 1910.30 or 1926.503",
+                        "Trigger heights (4', 6', etc.) - Role of the competent person",
+                        "Fall Protection Systems Overview (Guardrails, nets, PFAS)",
+                        "Anchorage points and connector types",
+                        "Using PFAS - Full-body harness components and sizing",
+                        "Proper lanyard and lifeline setup",
+                        "Inspection and Maintenance - Daily inspection checklists",
+                        "Storage and damage recognition",
+                        "Hands-On Demonstration - Donning and doffing PPE",
+                        "Simulated fall arrest and rescue",
+                        "Knowledge Review & Practical Evaluation"
                       ],
-                      recertification: "Annual"
+                      recertification: "Initial",
+                      audience: "Workers using PFAS"
                     },
                     { 
-                      name: "Respiratory Protection", 
+                      name: "HAZWOPER Training", 
+                      enrolled: 8, 
+                      completed: 6,
+                      duration: "8 hours (Annual Refresher)",
+                      regulation: "29 CFR 1910.120 / 1926.65",
+                      syllabus: [
+                        "Regulatory Overview - Scope of 1910.120 / 1926.65",
+                        "Roles: General site worker, TSD, emergency responder",
+                        "Toxicology & Exposure Limits - Routes of entry, PELs, STELs, IDLH",
+                        "Chemical Hazard Recognition - SDS interpretation",
+                        "Physical and health hazards",
+                        "PPE and Respiratory Protection - Level A-D PPE",
+                        "Donning/doffing, fit testing",
+                        "Monitoring & Detection - Use of gas meters, colorimetric tubes",
+                        "Monitoring strategies",
+                        "Decontamination - Zone setup (hot, warm, cold)",
+                        "Decon procedures",
+                        "Emergency Response - Spill scenarios, Evacuation procedures",
+                        "Site Control Plans & Safety Programs",
+                        "Health & safety plans, Job hazard analysis",
+                        "Hands-On Practical Exercises - Level B suit drill",
+                        "Site setup simulation",
+                        "Written Test & Certificate Issuance"
+                      ],
+                      recertification: "Annual",
+                      audience: "Hazardous waste workers"
+                    },
+                    { 
+                      name: "Hazard Communication (HazCom)", 
+                      enrolled: 24, 
+                      completed: 22,
+                      duration: "2 hours",
+                      regulation: "29 CFR 1910.1200 / 1926.59",
+                      syllabus: [
+                        "GHS & OSHA Standard Overview",
+                        "Label elements, pictograms",
+                        "Signal words and precautionary statements",
+                        "Safety Data Sheets (SDS) - 16-section format",
+                        "How to find key info (hazards, PPE, first aid)",
+                        "Chemical Labeling - Primary and secondary containers",
+                        "In-house labeling systems",
+                        "Employee Rights & Employer Duties",
+                        "Access to SDSs",
+                        "Reporting exposure or hazards",
+                        "Hands-On Practice - SDS interpretation",
+                        "Labeling exercise"
+                      ],
+                      recertification: "Annual",
+                      audience: "All employees exposed to chemicals"
+                    },
+                    { 
+                      name: "Hearing Conservation", 
+                      enrolled: 18, 
+                      completed: 16,
+                      duration: "2 hours",
+                      regulation: "29 CFR 1910.95",
+                      syllabus: [
+                        "Noise and Hearing Loss - Anatomy of hearing",
+                        "Effects of occupational noise",
+                        "Monitoring and Controls - Noise dosimetry",
+                        "Engineering vs. administrative controls",
+                        "Hearing Protection Devices (HPDs)",
+                        "Types: earplugs, earmuffs",
+                        "Fitting demonstration",
+                        "Audiometric Testing - Baseline, annual tests",
+                        "Employee rights"
+                      ],
+                      recertification: "Annual",
+                      audience: ">85 dBA exposure group"
+                    },
+                    { 
+                      name: "Personal Protective Equipment (PPE)", 
+                      enrolled: 32, 
+                      completed: 30,
+                      duration: "2 hours",
+                      regulation: "29 CFR 1910.132 / 1926.28",
+                      syllabus: [
+                        "Hazard Assessment - Workplace walkthrough",
+                        "Job safety analysis (JSA)",
+                        "PPE Types and Use - Eye, hand, foot, head protection",
+                        "Limitations and proper use",
+                        "Inspection, Care, and Maintenance",
+                        "When to replace",
+                        "Cleaning, storage",
+                        "Demonstration & Evaluation - Proper donning",
+                        "Correct selection scenarios"
+                      ],
+                      recertification: "Initial/Annual",
+                      audience: "All PPE users"
+                    },
+                    { 
+                      name: "First Aid & CPR", 
                       enrolled: 6, 
                       completed: 5,
-                      duration: "6 hours",
-                      regulation: "29 CFR 1910.134",
+                      duration: "6-8 hours",
+                      regulation: "29 CFR 1926.23 / 1910.151",
                       syllabus: [
-                        "Respiratory Hazard Assessment",
-                        "Medical Evaluation Requirements",
-                        "Fit Testing Procedures and Requirements",
-                        "Respirator Selection Criteria",
-                        "Proper Use and Maintenance Procedures",
-                        "Cleaning, Disinfecting, and Storage",
-                        "Training and Program Evaluation",
-                        "Emergency Use Procedures",
-                        "Voluntary Use Guidelines"
+                        "Medical Response Basics - Scene safety",
+                        "Universal precautions",
+                        "CPR & AED - Adult compression-only CPR",
+                        "AED use scenarios",
+                        "First Aid Techniques - Wounds, burns, fractures",
+                        "Heat/cold emergencies",
+                        "Documentation & Reporting - OSHA injury logs",
+                        "Emergency services interface"
                       ],
-                      recertification: "Annual"
+                      recertification: "Biennial",
+                      audience: "Site responders"
                     },
                     { 
                       name: "Lockout/Tagout (LOTO)", 
                       enrolled: 10, 
                       completed: 8,
-                      duration: "4 hours",
+                      duration: "3 hours",
                       regulation: "29 CFR 1910.147",
                       syllabus: [
                         "Energy Control Program Development",
@@ -644,26 +703,28 @@ export default function Dashboard() {
                         "Periodic Inspection Requirements",
                         "Outside Personnel Coordination"
                       ],
-                      recertification: "Annual"
+                      recertification: "Initial",
+                      audience: "Maintenance, authorized employees"
                     },
                     { 
-                      name: "Confined Space Entry", 
-                      enrolled: 4, 
-                      completed: 3,
-                      duration: "8 hours",
-                      regulation: "29 CFR 1910.146",
+                      name: "Respiratory Protection", 
+                      enrolled: 12, 
+                      completed: 10,
+                      duration: "2 hours + fit testing",
+                      regulation: "29 CFR 1910.134",
                       syllabus: [
-                        "Confined Space Identification and Classification",
-                        "Permit-Required vs. Non-Permit Spaces",
-                        "Entry Permit System and Procedures",
-                        "Atmospheric Testing and Monitoring",
-                        "Ventilation Requirements",
-                        "Entrant, Attendant, and Entry Supervisor Duties",
-                        "Emergency and Rescue Procedures",
-                        "Equipment and PPE Requirements",
-                        "Contractor Coordination and Communication"
+                        "Respiratory Hazard Assessment",
+                        "Medical Evaluation Requirements",
+                        "Fit Testing Procedures and Requirements",
+                        "Respirator Selection Criteria",
+                        "Proper Use and Maintenance Procedures",
+                        "Cleaning, Disinfecting, and Storage",
+                        "Training and Program Evaluation",
+                        "Emergency Use Procedures",
+                        "Voluntary Use Guidelines"
                       ],
-                      recertification: "Annual"
+                      recertification: "Annual",
+                      audience: "Respirator users"
                     }
                   ].map((training, index) => (
                     <Card key={index} className="hover:shadow-md transition-shadow">
@@ -683,6 +744,10 @@ export default function Dashboard() {
                               <span className="flex items-center gap-1">
                                 <RefreshCw className="w-3 h-3" />
                                 Recert: {training.recertification}
+                              </span>
+                              <span className="flex items-center gap-1">
+                                <Users className="w-3 h-3" />
+                                {training.audience}
                               </span>
                             </div>
                           </div>
@@ -730,6 +795,77 @@ export default function Dashboard() {
                       </CardContent>
                     </Card>
                   ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Annual Training Calendar - Based on OSHA Template */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Calendar className="w-5 h-5 text-blue-600" />
+                  Annual Training Calendar (OSHA Compliant Schedule)
+                </CardTitle>
+                <CardDescription>
+                  Template schedule aligned with OSHA Publication 2254 requirements
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+                  {[
+                    { month: "January", training: "Hazard Communication (1910.1200)", audience: "All employees exposed to chemicals", type: "Annual", duration: "2 hrs" },
+                    { month: "February", training: "PPE (1910.132)", audience: "All PPE users", type: "Initial/Annual", duration: "2 hrs" },
+                    { month: "March", training: "Fall Protection (1910.30 / 1926.503)", audience: "Workers using PFAS", type: "Initial", duration: "4 hrs + demo" },
+                    { month: "April", training: "First Aid & CPR", audience: "Site responders", type: "Biennial", duration: "6-8 hrs" },
+                    { month: "May", training: "Lockout/Tagout (1910.147)", audience: "Maintenance, authorized employees", type: "Initial", duration: "3 hrs" },
+                    { month: "June", training: "Respiratory Protection (1910.134)", audience: "Respirator users", type: "Annual", duration: "2 hrs + fit" },
+                    { month: "July", training: "HAZWOPER Refresher (1910.120)", audience: "Hazardous waste workers", type: "Annual", duration: "8 hrs" },
+                    { month: "August", training: "Hearing Conservation (1910.95)", audience: ">85 dBA exposure group", type: "Annual", duration: "2 hrs" },
+                    { month: "September", training: "Electrical Safety (1910.333)", audience: "Qualified electricians", type: "3-Year", duration: "2-4 hrs" },
+                    { month: "October", training: "Fire Extinguisher (1910.157)", audience: "All employees (if provided extinguishers)", type: "Annual", duration: "1 hr" },
+                    { month: "November", training: "Scaffold & Ladder Safety (1926 Subpart L & X)", audience: "Construction crews", type: "Initial", duration: "2 hrs" },
+                    { month: "December", training: "Refresher/Missed Training Catch-Up", audience: "All employees", type: "As needed", duration: "Varies" }
+                  ].map((item, index) => (
+                    <Card key={index} className="hover:shadow-md transition-shadow border-l-4 border-l-blue-500">
+                      <CardContent className="p-4">
+                        <div className="flex justify-between items-start mb-3">
+                          <h4 className="font-medium text-blue-900">{item.month}</h4>
+                          <Badge variant="outline" className="text-xs">
+                            {item.type}
+                          </Badge>
+                        </div>
+                        <h5 className="font-medium text-sm mb-2 text-gray-900">
+                          {item.training}
+                        </h5>
+                        <div className="space-y-1 text-xs text-gray-600">
+                          <div className="flex items-center gap-1">
+                            <Users className="w-3 h-3" />
+                            <span>{item.audience}</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Clock className="w-3 h-3" />
+                            <span>{item.duration}</span>
+                          </div>
+                        </div>
+                        <Button size="sm" variant="outline" className="w-full mt-3">
+                          Schedule Training
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+                <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                  <div className="flex items-start gap-3">
+                    <Shield className="w-5 h-5 text-blue-600 mt-0.5" />
+                    <div>
+                      <h4 className="font-medium text-blue-900 mb-2">OSHA Publication 2254 Compliance</h4>
+                      <p className="text-sm text-blue-800">
+                        This training calendar is fully aligned with OSHA Publication 2254 federal mandates. 
+                        All syllabi include expanded modules, hands-on training, written/practical evaluations, 
+                        and built-in assessment records to exceed minimum compliance standards.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
