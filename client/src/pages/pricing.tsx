@@ -147,24 +147,24 @@ export default function PricingPage() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Certificate & Card Generation Pricing</h2>
             <p className="text-xl text-gray-600">
-              Essential plan now includes certificate generation benefits. Higher tiers available for bulk needs.
+              All subscription plans include 90-day free certificate generation, then $0.50 per item. Stand-alone services also available.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {/* Essential Plan Included */}
+            {/* All Subscription Plans */}
             <Card className="border-2 border-green-200 hover:border-green-300 transition-colors">
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
                   <Award className="w-6 h-6 text-green-600" />
-                  Essential Plan Included
+                  All Subscription Plans
                 </CardTitle>
                 <div className="text-lg font-bold text-green-600">FREE first 90 days</div>
                 <div className="text-sm text-gray-600">Then $0.50 per certificate/card</div>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 mb-4">
-                  Perfect for small safety teams getting started with professional documentation.
+                  Every subscription tier includes certificate generation benefits from day one.
                 </p>
                 
                 <div className="space-y-3">
@@ -267,10 +267,10 @@ export default function PricingPage() {
               <h3 className="text-xl font-bold text-center mb-4">Important Billing Information</h3>
               <div className="text-center space-y-2">
                 <p className="text-gray-700">
-                  <strong>Essential Plan subscribers:</strong> After your 90-day free period, certificate and card generation charges ($0.50 per item) will be added to your monthly billing automatically.
+                  <strong>All subscription plans:</strong> After your 90-day free period, certificate and card generation charges ($0.50 per item) will be added to your monthly billing automatically.
                 </p>
                 <p className="text-sm text-gray-600">
-                  This usage-based billing ensures you only pay for what you actually generate while maintaining professional quality standards.
+                  This usage-based billing ensures you only pay for what you actually generate while maintaining professional quality standards across all tiers.
                 </p>
               </div>
             </CardContent>

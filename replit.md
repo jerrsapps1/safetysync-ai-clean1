@@ -326,6 +326,14 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Updated dashboard certificate generation buttons to reflect new $0.50 pricing with 90-day free period notice
   - Created tiered pricing structure: Essential ($0.50 after 90 days), Premium Stand-alone ($15), Wallet Cards ($8 or $0.50 with Essential)
   - Enhanced value proposition for safety professionals by making certificates accessible from day one
+- **July 06, 2025** - Extended 90-Day Certificate Generation Period to All Subscription Tiers:
+  - Added certificate and card generation benefits (FREE first 90 days, then $0.50 per item) to Professional, Enterprise, and Enterprise Plus plans
+  - Updated all pricing tier feature lists to include certificate generation with consistent 90-day free period
+  - Modified pricing page messaging to reflect "All subscription plans include 90-day free certificate generation"
+  - Updated billing notices to apply to all subscription tiers rather than just Essential plan
+  - Enhanced dashboard certificate generation pricing notes to specify "any subscription plan" instead of Essential only
+  - Unified certificate generation value proposition across all subscription levels for maximum accessibility
+  - Maintained same professional quality and HID printer compatibility across all tiers
 
 ## Changelog
 
