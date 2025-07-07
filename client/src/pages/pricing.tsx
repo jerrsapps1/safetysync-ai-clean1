@@ -196,23 +196,7 @@ export default function PricingPage() {
                   </div>
                 </div>
                 
-                {/* Multiple Card Example */}
-                <div className="mt-8 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-                  <h5 className="font-semibold text-yellow-800 mb-2">Multiple Card Example</h5>
-                  <p className="text-sm text-yellow-700 mb-3">
-                    When equipment lists are extensive, additional cards are automatically generated to continue the authorization list:
-                  </p>
-                  <div className="flex gap-2 text-xs">
-                    <div className="bg-white border rounded p-2 flex-1">
-                      <div className="font-semibold">Card 1 of 2</div>
-                      <div>JLG 40 AJ, JLG 60 AJ, JLG 80 AJ, Genie Z62/40, CAT 315 FL...</div>
-                    </div>
-                    <div className="bg-white border rounded p-2 flex-1">
-                      <div className="font-semibold">Card 2 of 2</div>
-                      <div>...Volvo ECR88D, CAT TL 642, Custom Equipment A, Custom Equipment B</div>
-                    </div>
-                  </div>
-                </div>
+
               </div>
             </div>
             
@@ -224,6 +208,37 @@ export default function PricingPage() {
                   specific equipment authorizations, and professional formatting. Available in horizontal or vertical orientations. 
                   When equipment lists exceed card space, additional cards are automatically generated. Ready for card printer output in .efi format for seamless printing on 30mil PVC cards.
                 </p>
+              </div>
+            </div>
+            
+            {/* Multiple Card Example */}
+            <div className="mt-12 p-6 bg-yellow-50 border border-yellow-200 rounded-lg max-w-4xl mx-auto">
+              <h4 className="font-semibold text-yellow-800 mb-3">Multiple Card Example</h4>
+              <p className="text-sm text-yellow-700 mb-4">
+                When equipment lists are extensive, additional cards are automatically generated to continue the authorization list:
+              </p>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="bg-white border-2 border-gray-300 rounded-lg p-4">
+                  <div className="font-semibold text-sm mb-2">Card 1 of 2</div>
+                  <div className="text-xs space-y-1">
+                    <div>JLG 40 AJ</div>
+                    <div>JLG 60 AJ</div>
+                    <div>JLG 80 AJ</div>
+                    <div>Genie Z62/40</div>
+                    <div>CAT 315 FL Zero Turn Track Excavator</div>
+                    <div className="text-gray-500">...continued on Card 2</div>
+                  </div>
+                </div>
+                <div className="bg-white border-2 border-gray-300 rounded-lg p-4">
+                  <div className="font-semibold text-sm mb-2">Card 2 of 2</div>
+                  <div className="text-xs space-y-1">
+                    <div>Volvo Excavator ECR88D</div>
+                    <div>CAT TL 642</div>
+                    <div>Genie GTH-636</div>
+                    <div>Custom Equipment A</div>
+                    <div>Custom Equipment B</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
