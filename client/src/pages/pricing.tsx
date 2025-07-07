@@ -98,13 +98,13 @@ export default function PricingPage() {
                       <li>• Back: Equipment authorizations and compliance references</li>
                       <li>• Multiple certifications with training/expiry dates</li>
                       <li>• OSHA compliance statements (29 CFR, ANSI standards)</li>
-                      <li>• Card printer compatible design for professional printing (.png, .pdf, or .efi file formats)</li>
+                      <li>• Card printer compatible design for professional printing (.efi file format)</li>
                     </ul>
                   </div>
                   
                   <div className="bg-green-50 p-4 rounded-lg">
                     <p className="text-sm font-medium text-green-900">Your Setup:</p>
-                    <p className="text-sm text-green-800">We generate the files, you print with your card printer on PVC cards. Files provided in .png, .pdf, or .efi formats for compatibility.</p>
+                    <p className="text-sm text-green-800">We generate the files, you print with your card printer on PVC cards. Files provided in .efi format for compatibility.</p>
                   </div>
                 </div>
               </CardContent>
@@ -165,7 +165,7 @@ export default function PricingPage() {
                       <li>• OSHA/ANSI/CFR compliance references</li>
                       <li>• Unique certificate numbers</li>
                       <li>• CR80 format wallet cards</li>
-                      <li>• Card printer compatible (.png, .pdf, or .efi formats)</li>
+                      <li>• Card printer compatible (.efi format)</li>
                     </ul>
                   </div>
                 </div>
