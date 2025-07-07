@@ -33,7 +33,11 @@ import {
   Building,
   MapPin,
   Edit,
-  BookOpen
+  BookOpen,
+  Award,
+  CreditCard,
+  Package,
+  Calculator
 } from "lucide-react";
 
 interface ComplianceRecord {
@@ -286,13 +290,14 @@ export default function Dashboard() {
 
         {/* Main Content Tabs */}
         <Tabs defaultValue="overview" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-9">
+          <TabsList className="grid w-full grid-cols-10">
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="employees">Employees</TabsTrigger>
             <TabsTrigger value="training">Training</TabsTrigger>
             <TabsTrigger value="branding">Branding</TabsTrigger>
             <TabsTrigger value="reports">Reports</TabsTrigger>
             <TabsTrigger value="generator">Report Generator</TabsTrigger>
+            <TabsTrigger value="certificates">Certificates</TabsTrigger>
             <TabsTrigger value="collaboration">Team Review</TabsTrigger>
             <TabsTrigger value="locations">Locations</TabsTrigger>
             <TabsTrigger value="audit-settings">Audit Settings</TabsTrigger>
@@ -1479,6 +1484,193 @@ export default function Dashboard() {
                   <Button variant="outline">Preview Sample Report</Button>
                   <Button>Save Settings</Button>
                 </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Certificate & Card Services */}
+          <TabsContent value="certificates" className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Award className="w-5 h-5" />
+                  Certificate & Card Services
+                </CardTitle>
+                <CardDescription>
+                  Generate professional certificates and printable wallet cards for completed training
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Certificate Generation */}
+                  <Card className="border-2 border-blue-200">
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2">
+                        <Award className="w-5 h-5 text-blue-600" />
+                        Certificate Generation
+                      </CardTitle>
+                      <CardDescription>$15 per certificate</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        <div className="bg-blue-50 p-4 rounded-lg">
+                          <h4 className="font-semibold text-blue-900 mb-2">Professional Features:</h4>
+                          <ul className="text-sm text-blue-800 space-y-1">
+                            <li>• High-resolution PDF (300 DPI)</li>
+                            <li>• Custom company branding</li>
+                            <li>• OSHA-compliant format</li>
+                            <li>• Unique verification numbers</li>
+                            <li>• Ready for printing</li>
+                          </ul>
+                        </div>
+                        
+                        <div className="space-y-2">
+                          <label className="text-sm font-medium">Select Employee</label>
+                          <select className="w-full p-2 border rounded-md">
+                            <option>Mark Anderson - Forklift Operator</option>
+                            <option>Jennifer Wong - Safety Coordinator</option>
+                            <option>Carlos Rivera - Equipment Technician</option>
+                            <option>Sarah Mitchell - Warehouse Supervisor</option>
+                          </select>
+                        </div>
+                        
+                        <div className="space-y-2">
+                          <label className="text-sm font-medium">Training Completed</label>
+                          <select className="w-full p-2 border rounded-md">
+                            <option>Power Industrial Trucks (29 CFR 1910.178)</option>
+                            <option>Fall Protection (29 CFR 1926.501)</option>
+                            <option>HAZWOPER (29 CFR 1910.120)</option>
+                            <option>First Aid/CPR</option>
+                          </select>
+                        </div>
+                        
+                        <Button className="w-full">
+                          <Award className="w-4 h-4 mr-2" />
+                          Generate Certificate ($15)
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Wallet Card Service */}
+                  <Card className="border-2 border-green-200">
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2">
+                        <CreditCard className="w-5 h-5 text-green-600" />
+                        Printable Wallet Cards
+                      </CardTitle>
+                      <CardDescription>$8 per card</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        <div className="bg-green-50 p-4 rounded-lg">
+                          <h4 className="font-semibold text-green-900 mb-2">Card Specifications:</h4>
+                          <ul className="text-sm text-green-800 space-y-1">
+                            <li>• CR80 format (3.375" x 2.125")</li>
+                            <li>• Optimized for 30mil PVC cards</li>
+                            <li>• HID printer compatible</li>
+                            <li>• Employee photo included</li>
+                            <li>• Expiration date tracking</li>
+                          </ul>
+                        </div>
+                        
+                        <div className="space-y-2">
+                          <label className="text-sm font-medium">Select Employee</label>
+                          <select className="w-full p-2 border rounded-md">
+                            <option>Mark Anderson - Forklift Operator</option>
+                            <option>Jennifer Wong - Safety Coordinator</option>
+                            <option>Carlos Rivera - Equipment Technician</option>
+                            <option>Sarah Mitchell - Warehouse Supervisor</option>
+                          </select>
+                        </div>
+                        
+                        <div className="space-y-2">
+                          <label className="text-sm font-medium">Certification Type</label>
+                          <select className="w-full p-2 border rounded-md">
+                            <option>Power Industrial Trucks</option>
+                            <option>Fall Protection</option>
+                            <option>HAZWOPER Certified</option>
+                            <option>First Aid/CPR</option>
+                          </select>
+                        </div>
+                        
+                        <Button className="w-full">
+                          <CreditCard className="w-4 h-4 mr-2" />
+                          Generate Wallet Card ($8)
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Bulk Services */}
+                <Card className="mt-6 bg-gradient-to-r from-purple-50 to-blue-50 border-purple-200">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Package className="w-5 h-5 text-purple-600" />
+                      Bulk Services & Volume Discounts
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="text-center">
+                        <div className="text-lg font-semibold text-purple-600">10-50 Items</div>
+                        <div className="text-sm text-gray-600">15% Discount</div>
+                        <div className="text-xs text-gray-500">Perfect for small teams</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-lg font-semibold text-purple-600">51-100 Items</div>
+                        <div className="text-sm text-gray-600">25% Discount</div>
+                        <div className="text-xs text-gray-500">Great for medium companies</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-lg font-semibold text-purple-600">100+ Items</div>
+                        <div className="text-sm text-gray-600">35% Discount</div>
+                        <div className="text-xs text-gray-500">Enterprise volume pricing</div>
+                      </div>
+                    </div>
+                    <div className="mt-4 flex justify-center">
+                      <Button variant="outline">
+                        <Calculator className="w-4 h-4 mr-2" />
+                        Calculate Bulk Pricing
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Order History */}
+                <Card className="mt-6">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <FileText className="w-5 h-5" />
+                      Recent Orders
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3">
+                      {[
+                        { date: "2025-01-05", type: "Certificate", employee: "Mark Anderson", training: "Power Industrial Trucks", status: "Completed", cost: "$15" },
+                        { date: "2025-01-04", type: "Wallet Card", employee: "Jennifer Wong", training: "Fall Protection", status: "Processing", cost: "$8" },
+                        { date: "2025-01-03", type: "Bulk Order", employee: "5 Employees", training: "HAZWOPER Certification", status: "Completed", cost: "$97.50" },
+                        { date: "2025-01-02", type: "Certificate", employee: "Carlos Rivera", training: "First Aid/CPR", status: "Completed", cost: "$15" }
+                      ].map((order, index) => (
+                        <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
+                          <div className="flex items-center gap-3">
+                            <div className={`w-3 h-3 rounded-full ${order.status === 'Completed' ? 'bg-green-500' : 'bg-yellow-500'}`} />
+                            <div>
+                              <div className="font-medium">{order.type} - {order.employee}</div>
+                              <div className="text-sm text-gray-600">{order.training}</div>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <div className="font-medium">{order.cost}</div>
+                            <div className="text-sm text-gray-600">{order.date}</div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
               </CardContent>
             </Card>
           </TabsContent>

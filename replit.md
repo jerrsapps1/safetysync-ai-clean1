@@ -304,6 +304,15 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Updated annual training calendar to include evaluation requirements for September-December
   - Added AI Quick Actions for scanning missing evaluation documentation
   - Integrated evaluation alerts into AI insights with high-confidence notifications for compliance gaps
+- **July 06, 2025** - Added Professional Certificate Generation and Printable Wallet Card Services:
+  - Created comprehensive add-on services section in pricing page ($15/certificate, $8/wallet card)
+  - Added dedicated "Certificates" tab to dashboard with full service ordering interface
+  - Implemented certificate generation service with high-resolution PDF (300 DPI), custom branding, OSHA-compliant format
+  - Built printable wallet card service optimized for CR80 format (3.375" x 2.125") and 30mil PVC cards
+  - Added HID printer compatibility specifications for client-side printing setup
+  - Integrated volume discount structure (15% for 10-50 items, 25% for 51-100, 35% for 100+)
+  - Created order history tracking and bulk pricing calculator for enterprise clients
+  - Platform generates professional files, clients print with their own equipment and PVC card stock
 
 ## Changelog
 
