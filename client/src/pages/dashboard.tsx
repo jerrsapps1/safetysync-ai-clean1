@@ -1581,7 +1581,7 @@ export default function Dashboard() {
                             <li>• Multiple certifications listed with training/expiry dates</li>
                             <li>• OSHA compliance statements (29 CFR 1910.178, ANSI standards)</li>
                             <li>• Instructor credentials and company contact information</li>
-                            <li>• HID printer compatible design for professional card printing</li>
+                            <li>• Card printer compatible design for professional printing (.png, .pdf, or .efi file formats)</li>
                           </ul>
                         </div>
                         
