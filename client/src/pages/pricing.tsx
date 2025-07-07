@@ -127,7 +127,7 @@ export default function PricingPage() {
                     <div className="text-gray-700 mb-2">has successfully achieved the certification</div>
                     <div className="text-xl font-bold text-blue-800 mb-4">POWER INDUSTRIAL TRUCKS OPERATOR</div>
                     <div className="text-sm text-gray-600 mb-4">
-                      in accordance with 29 CFR 1910.178 and ANSI/ITSDF B56.1 standards
+                      in accordance with 29 CFR 1910.178, ANSI/ITSDF B56.1, and EM 385-1-1 standards
                     </div>
                     <div className="grid grid-cols-2 gap-4 text-sm text-gray-700 mb-4">
                       <div>Contact Hours: 8 CEU</div>
@@ -144,36 +144,54 @@ export default function PricingPage() {
                 </div>
               </div>
 
-              {/* Wallet Card Sample */}
+              {/* Wallet Card Sample - Vertical Orientation */}
               <div className="space-y-4">
-                <h4 className="font-semibold text-lg text-center">Professional Wallet Card Sample</h4>
-                <div className="mx-auto" style={{ width: '3.375in', aspectRatio: '1.6' }}>
-                  {/* Front of Card */}
-                  <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-4 rounded-lg mb-3 text-xs">
-                    <div className="flex justify-between items-start mb-2">
-                      <div className="font-bold text-sm">ACME Corp</div>
-                      <div className="text-xs">ID: AC001847</div>
+                <h4 className="font-semibold text-lg text-center">Professional Wallet Card Sample (Vertical)</h4>
+                <div className="mx-auto flex gap-4" style={{ maxWidth: '400px' }}>
+                  {/* Front of Card - Vertical */}
+                  <div className="bg-white border-2 border-gray-300 rounded-lg p-3 text-center" style={{ width: '2.125in', height: '3.375in', fontSize: '8px' }}>
+                    <div className="font-bold text-base mb-2">ACME Corp</div>
+                    <div className="text-xs mb-3">Employee Equipment Training Certification Card</div>
+                    <div className="border-b border-gray-300 mb-3"></div>
+                    <div className="font-bold text-lg mb-3">Paul Carrion</div>
+                    <div className="space-y-2 text-xs">
+                      <div>
+                        <div className="font-semibold underline">Mobile Elevated Work Platforms</div>
+                        <div>(Training and Expiry Date)</div>
+                        <div>6/7/2025 - 6/7/2027</div>
+                      </div>
+                      <div>
+                        <div className="font-semibold underline">Power Industrial Trucks</div>
+                        <div>(Training and Expiry Date)</div>
+                        <div>6/7/2025 - 6/7/2027</div>
+                      </div>
+                      <div>
+                        <div className="font-semibold underline">Material Handling Equipment</div>
+                        <div>(Training and Expiry Date)</div>
+                        <div>6/7/2025 - 6/7/2027</div>
+                      </div>
                     </div>
-                    <div className="text-lg font-bold mb-1">Mark Anderson</div>
-                    <div className="text-sm mb-2">Certified Forklift Operator</div>
-                    <div className="text-xs">
-                      Issued: 07/06/2025 | Expires: 07/06/2028
+                    <div className="mt-4 text-xs">
+                      <div>Instructor Gerardo Hernandez, CSHO, SHEP</div>
+                      <div>Alamo1 EH&S Manager</div>
                     </div>
                   </div>
                   
-                  {/* Back of Card */}
-                  <div className="bg-gray-100 border border-gray-300 p-4 rounded-lg text-xs">
-                    <div className="font-semibold mb-2">EQUIPMENT AUTHORIZATIONS</div>
-                    <div className="grid grid-cols-2 gap-1 mb-2">
-                      <div>✓ Sit-down Forklift</div>
-                      <div>✓ Stand-up Forklift</div>
-                      <div>✓ Reach Truck</div>
-                      <div>✓ Order Picker</div>
+                  {/* Back of Card - Vertical */}
+                  <div className="bg-white border-2 border-gray-300 rounded-lg p-3" style={{ width: '2.125in', height: '3.375in', fontSize: '8px' }}>
+                    <div className="text-xs text-center mb-3">
+                      Training compliant with OSHA for MEWPs 1926.453, ANSI A92, PIT 1910.178, MHE 1926.602, and EM 385-1-1, and is authorized to operate the following equipment:
                     </div>
-                    <div className="border-t pt-2 mt-2">
-                      <div className="font-semibold">COMPLIANCE</div>
-                      <div>29 CFR 1910.178</div>
-                      <div>ANSI/ITSDF B56.1</div>
+                    <div className="space-y-1 text-xs">
+                      <div>JLG 40 AJ</div>
+                      <div>JLG 60 AJ</div>
+                      <div>JLG 80 AJ</div>
+                      <div>Genie Z62/40</div>
+                      <div>259D3 CAT Skidsteer</div>
+                      <div>Volvo Excavator ECR88D</div>
+                      <div>CAT 315 FL Zero Turn Track Excavator</div>
+                      <div>CAT TL 642</div>
+                      <div>Genie GTH-636</div>
                     </div>
                   </div>
                 </div>
@@ -184,8 +202,9 @@ export default function PricingPage() {
               <div className="bg-blue-50 p-6 rounded-lg max-w-4xl mx-auto">
                 <h4 className="font-semibold text-blue-900 mb-2">Professional Quality Guaranteed</h4>
                 <p className="text-blue-800 text-sm">
-                  All certificates and cards are generated with OSHA/ANSI compliance references, unique tracking numbers, 
-                  and professional formatting. Ready for card printer output in .efi format for seamless printing on 30mil PVC cards.
+                  All certificates and cards are generated with OSHA/ANSI/EM 385-1-1 compliance references, unique tracking numbers, 
+                  specific equipment authorizations, and professional formatting. Available in horizontal or vertical orientations. 
+                  Ready for card printer output in .efi format for seamless printing on 30mil PVC cards.
                 </p>
               </div>
             </div>
