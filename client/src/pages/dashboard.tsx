@@ -725,6 +725,66 @@ export default function Dashboard() {
                       ],
                       recertification: "Annual",
                       audience: "Respirator users"
+                    },
+                    { 
+                      name: "Power Industrial Trucks", 
+                      enrolled: 8, 
+                      completed: 6,
+                      duration: "4 hours + practical evaluation",
+                      regulation: "29 CFR 1910.178",
+                      syllabus: [
+                        "Power Industrial Truck Types and Classifications",
+                        "Vehicle Inspection Requirements (daily, weekly, annual)",
+                        "Load Capacity and Stability Principles",
+                        "Operating Procedures and Controls",
+                        "Hazard Recognition and Avoidance",
+                        "Fueling and Charging Safety",
+                        "Maintenance Requirements and Procedures",
+                        "Hands-on Vehicle Operation Training",
+                        "Written and Practical Evaluation"
+                      ],
+                      recertification: "3-Year",
+                      audience: "Forklift and PIT operators"
+                    },
+                    { 
+                      name: "Material Handling Equipment", 
+                      enrolled: 12, 
+                      completed: 10,
+                      duration: "3 hours + demonstration",
+                      regulation: "29 CFR 1910.176 / 1926.602",
+                      syllabus: [
+                        "Manual Material Handling Techniques",
+                        "Mechanical Lifting Aids and Equipment",
+                        "Conveyor Systems and Safety",
+                        "Equipment Inspection and Maintenance",
+                        "Load Securing and Storage Practices",
+                        "Ergonomic Principles and Injury Prevention",
+                        "Hazard Recognition in Material Handling",
+                        "Safe Lifting Demonstration",
+                        "Equipment Operation Training"
+                      ],
+                      recertification: "Annual",
+                      audience: "Equipment operators, warehouse staff"
+                    },
+                    { 
+                      name: "Earth-moving Equipment", 
+                      enrolled: 5, 
+                      completed: 4,
+                      duration: "6 hours + field demonstration",
+                      regulation: "29 CFR 1926.602",
+                      syllabus: [
+                        "Earth-moving Equipment Types and Applications",
+                        "Pre-operation Inspection Procedures",
+                        "Equipment Controls and Operating Systems",
+                        "Stability Factors and Safe Operating Practices",
+                        "Underground Utility Location and Protection",
+                        "Spotting and Communication Procedures",
+                        "Emergency Procedures and Equipment Shutdown",
+                        "Site-specific Hazard Recognition",
+                        "Hands-on Field Demonstration and Evaluation"
+                      ],
+                      recertification: "3-Year",
+                      audience: "Heavy equipment operators"
                     }
                   ].map((training, index) => (
                     <Card key={index} className="hover:shadow-md transition-shadow">
@@ -821,9 +881,9 @@ export default function Dashboard() {
                     { month: "June", training: "Respiratory Protection (1910.134)", audience: "Respirator users", type: "Annual", duration: "2 hrs + fit" },
                     { month: "July", training: "HAZWOPER Refresher (1910.120)", audience: "Hazardous waste workers", type: "Annual", duration: "8 hrs" },
                     { month: "August", training: "Hearing Conservation (1910.95)", audience: ">85 dBA exposure group", type: "Annual", duration: "2 hrs" },
-                    { month: "September", training: "Electrical Safety (1910.333)", audience: "Qualified electricians", type: "3-Year", duration: "2-4 hrs" },
-                    { month: "October", training: "Fire Extinguisher (1910.157)", audience: "All employees (if provided extinguishers)", type: "Annual", duration: "1 hr" },
-                    { month: "November", training: "Scaffold & Ladder Safety (1926 Subpart L & X)", audience: "Construction crews", type: "Initial", duration: "2 hrs" },
+                    { month: "September", training: "Power Industrial Trucks (1910.178)", audience: "Forklift and PIT operators", type: "3-Year", duration: "4 hrs + practical" },
+                    { month: "October", training: "Material Handling Equipment (1910.176/1926.602)", audience: "Equipment operators, warehouse staff", type: "Annual", duration: "3 hrs + demo" },
+                    { month: "November", training: "Earth-moving Equipment (1926.602)", audience: "Heavy equipment operators", type: "3-Year", duration: "6 hrs + field demo" },
                     { month: "December", training: "Refresher/Missed Training Catch-Up", audience: "All employees", type: "As needed", duration: "Varies" }
                   ].map((item, index) => (
                     <Card key={index} className="hover:shadow-md transition-shadow border-l-4 border-l-blue-500">
