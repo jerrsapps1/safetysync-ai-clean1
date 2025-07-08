@@ -241,6 +241,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Email automation API routes
   app.use("/api/email-automation", emailAutomationRoutes);
 
+  // A/B Testing API endpoint for tracking conversions
+  app.post("/api/ab-testing/conversion", async (req, res) => {
+    try {
+      const { testId, variantId, conversionValue } = req.body;
+      
+      // Log conversion for analytics
+      console.log(`A/B Test Conversion: ${testId} - ${variantId} - $${conversionValue}`);
+      
+      res.json({ 
+        success: true, 
+        message: "Conversion tracked successfully" 
+      });
+    } catch (error) {
+      console.error("Error tracking A/B test conversion:", error);
+      res.status(500).json({ 
+        success: false, 
+        message: "Failed to track conversion" 
+      });
+    }
+  });
+
   // Get all leads endpoint (for admin purposes)
   app.get("/api/leads", async (req, res) => {
     try {
