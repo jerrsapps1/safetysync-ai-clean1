@@ -35,7 +35,7 @@ export default function PricingPage() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Professional Certificate & Digital Card Services</h2>
             <p className="text-xl text-gray-600">
-              All subscription plans include certificate generation (FREE first 90 days, then $0.50 per certificate) and unlimited digital wallet cards.
+              Hybrid subscription model: $49/month base plan includes 50 certificates + 50 digital wallet cards. Additional usage: $0.75 each.
             </p>
           </div>
 
