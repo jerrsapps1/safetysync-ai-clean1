@@ -37,7 +37,8 @@ import {
   Award,
   CreditCard,
   Package,
-  Calculator
+  Calculator,
+  Database
 } from "lucide-react";
 
 interface ComplianceRecord {
