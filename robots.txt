@@ -1,20 +1,37 @@
-User-agent: *
-Disallow: /api/
-Disallow: /admin/
-Disallow: /dashboard/
-Disallow: /.env
-Disallow: /server/
-Disallow: /dist/
-Disallow: /node_modules/
+# Robots.txt for SafetySync.AI
+# Optimized for search engine crawling and SEO
 
-# Allow main pages
+User-agent: *
 Allow: /
+
+# Allow all major pages
+Allow: /dashboard
 Allow: /pricing
 Allow: /testimonials
 Allow: /case-studies
+Allow: /user-guide
+Allow: /developers
 
-# Crawl-delay for all bots
+# Block admin and internal pages
+Disallow: /admin
+Disallow: /api/
+Disallow: /conversion-tracking
+Disallow: /email-automation
+Disallow: /ab-testing
+
+# Allow search engines to access important resources
+Allow: /assets/
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.gif
+Allow: /*.svg
+Allow: /*.ico
+
+# Sitemap location
+Sitemap: https://safetysync-ai.replit.app/sitemap.xml
+
+# Crawl-delay for responsible crawling
 Crawl-delay: 1
-
-# Sitemap
-Sitemap: https://your-domain.replit.app/sitemap.xml

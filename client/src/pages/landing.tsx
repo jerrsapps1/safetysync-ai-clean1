@@ -31,7 +31,22 @@ import {
   Settings,
   Mail,
   Phone,
-  Star
+  Star,
+  Building,
+  Factory,
+  Heart,
+  Briefcase,
+  FileText,
+  ArrowRight,
+  TrendingUp,
+  Users,
+  Timer,
+  Award,
+  Target,
+  ChevronDown,
+  Play,
+  MessageCircle,
+  X
 } from "lucide-react";
 
 export default function LandingPage() {
@@ -791,6 +806,109 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* SEO Content Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+              Comprehensive OSHA Compliance Solutions for Every Industry
+            </h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-12">
+              SafetySync.AI serves construction companies, manufacturing facilities, healthcare organizations, 
+              and general industry businesses with specialized compliance management tailored to your regulatory requirements.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            <Card className="text-center hover:shadow-lg transition-shadow">
+              <CardContent className="p-6">
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Building className="w-8 h-8 text-blue-600" />
+                </div>
+                <h3 className="text-lg font-semibold mb-3">Construction Safety</h3>
+                <p className="text-gray-600 text-sm">
+                  Specialized tools for 29 CFR 1926 compliance, fall protection management, and construction site safety protocols.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="text-center hover:shadow-lg transition-shadow">
+              <CardContent className="p-6">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Factory className="w-8 h-8 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold mb-3">Manufacturing</h3>
+                <p className="text-gray-600 text-sm">
+                  Complete 29 CFR 1910 general industry compliance with machine safety, chemical handling, and process safety management.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="text-center hover:shadow-lg transition-shadow">
+              <CardContent className="p-6">
+                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Heart className="w-8 h-8 text-purple-600" />
+                </div>
+                <h3 className="text-lg font-semibold mb-3">Healthcare</h3>
+                <p className="text-gray-600 text-sm">
+                  Bloodborne pathogen compliance, workplace violence prevention, and healthcare-specific safety requirements.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="text-center hover:shadow-lg transition-shadow">
+              <CardContent className="p-6">
+                <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Briefcase className="w-8 h-8 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold mb-3">General Industry</h3>
+                <p className="text-gray-600 text-sm">
+                  Comprehensive workplace safety management for offices, warehouses, retail, and service industries.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+          
+          <div className="bg-gray-50 rounded-2xl p-8">
+            <h3 className="text-2xl font-bold text-center mb-8">Popular OSHA Compliance Topics</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+              <div className="p-4">
+                <h4 className="font-semibold text-gray-900 mb-2">Fall Protection</h4>
+                <p className="text-sm text-gray-600">29 CFR 1926.501-503</p>
+              </div>
+              <div className="p-4">
+                <h4 className="font-semibold text-gray-900 mb-2">HazCom GHS</h4>
+                <p className="text-sm text-gray-600">29 CFR 1910.1200</p>
+              </div>
+              <div className="p-4">
+                <h4 className="font-semibold text-gray-900 mb-2">Respiratory Protection</h4>
+                <p className="text-sm text-gray-600">29 CFR 1910.134</p>
+              </div>
+              <div className="p-4">
+                <h4 className="font-semibold text-gray-900 mb-2">Lockout/Tagout</h4>
+                <p className="text-sm text-gray-600">29 CFR 1910.147</p>
+              </div>
+              <div className="p-4">
+                <h4 className="font-semibold text-gray-900 mb-2">PPE Standards</h4>
+                <p className="text-sm text-gray-600">29 CFR 1910.132-138</p>
+              </div>
+              <div className="p-4">
+                <h4 className="font-semibold text-gray-900 mb-2">Machine Guarding</h4>
+                <p className="text-sm text-gray-600">29 CFR 1910.212</p>
+              </div>
+              <div className="p-4">
+                <h4 className="font-semibold text-gray-900 mb-2">Hearing Conservation</h4>
+                <p className="text-sm text-gray-600">29 CFR 1910.95</p>
+              </div>
+              <div className="p-4">
+                <h4 className="font-semibold text-gray-900 mb-2">Emergency Action</h4>
+                <p className="text-sm text-gray-600">29 CFR 1910.38</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer id="contact" className="py-16 px-4 sm:px-6 lg:px-8 bg-slate-950 text-white relative overflow-hidden">
         {/* Subtle tech background */}
@@ -833,20 +951,22 @@ export default function LandingPage() {
             <div>
               <h3 className="font-semibold mb-4">Product</h3>
               <ul className="space-y-2 text-sm">
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Features</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Pricing</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Integrations</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">API</a></li>
+                <li><a href="/dashboard" className="text-gray-300 hover:text-white transition-colors">Dashboard</a></li>
+                <li><a href="/pricing" className="text-gray-300 hover:text-white transition-colors">Pricing</a></li>
+                <li><a href="/testimonials" className="text-gray-300 hover:text-white transition-colors">Testimonials</a></li>
+                <li><a href="/case-studies" className="text-gray-300 hover:text-white transition-colors">Case Studies</a></li>
+                <li><a href="/user-guide" className="text-gray-300 hover:text-white transition-colors">User Guide</a></li>
               </ul>
             </div>
             
             <div>
-              <h3 className="font-semibold mb-4">Support</h3>
+              <h3 className="font-semibold mb-4">Resources</h3>
               <ul className="space-y-2 text-sm">
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Help Center</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Contact Us</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Status</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Security</a></li>
+                <li><a href="/blog" className="text-gray-300 hover:text-white transition-colors">Safety Blog</a></li>
+                <li><a href="/developers" className="text-gray-300 hover:text-white transition-colors">API Documentation</a></li>
+                <li><a href="/analytics" className="text-gray-300 hover:text-white transition-colors">Analytics</a></li>
+                <li><a href="/sitemap" className="text-gray-300 hover:text-white transition-colors">Sitemap</a></li>
+                <li><a href="/admin" className="text-gray-300 hover:text-white transition-colors">Admin Access</a></li>
               </ul>
             </div>
           </div>

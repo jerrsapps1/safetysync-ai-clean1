@@ -16,6 +16,8 @@ import AnalyticsPage from "@/pages/analytics";
 import AnalyticsDashboard from "@/pages/analytics-dashboard";
 import EmailPreviewPage from "@/pages/email-preview";
 import ABTestingDashboard from "@/pages/ab-testing-dashboard";
+import SEOBlogPage from "@/pages/seo-blog";
+import SitemapPage from "@/pages/sitemap";
 import UserGuidePage from "@/pages/user-guide";
 
 function Router() {
@@ -33,6 +35,8 @@ function Router() {
       <Route path="/conversion-tracking" component={AnalyticsDashboard} />
       <Route path="/email-automation" component={EmailPreviewPage} />
       <Route path="/ab-testing" component={ABTestingDashboard} />
+      <Route path="/blog" component={SEOBlogPage} />
+      <Route path="/sitemap" component={SitemapPage} />
       <Route component={NotFound} />
     </Switch>
   );
