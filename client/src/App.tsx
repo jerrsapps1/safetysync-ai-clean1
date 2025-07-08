@@ -14,6 +14,7 @@ import PricingPage from "@/pages/pricing";
 import DeveloperPortal from "@/pages/developer-portal";
 import AnalyticsPage from "@/pages/analytics";
 import AnalyticsDashboard from "@/pages/analytics-dashboard";
+import EmailPreviewPage from "@/pages/email-preview";
 import UserGuidePage from "@/pages/user-guide";
 
 function Router() {
@@ -29,6 +30,7 @@ function Router() {
       <Route path="/developers" component={DeveloperPortal} />
       <Route path="/analytics" component={AnalyticsPage} />
       <Route path="/conversion-tracking" component={AnalyticsDashboard} />
+      <Route path="/email-automation" component={EmailPreviewPage} />
       <Route component={NotFound} />
     </Switch>
   );

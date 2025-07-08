@@ -18,30 +18,83 @@ export interface EmailTemplate {
   ctaUrl: string;
 }
 
-// Trial User Email Sequence (5 emails over 14 days)
+// Professional Email Sequence for Trial Users (7 emails over 90 days)
 export const TRIAL_EMAIL_SEQUENCE: EmailSequence = {
-  id: 'trial_sequence',
-  name: 'Trial User Nurturing',
+  id: 'trial_nurture_2025',
+  name: 'Trial User Success Journey',
   type: 'trial',
   emails: [
     {
       id: 'trial_welcome',
-      subject: 'Welcome to SafetySync.AI! Here\'s your onboarding checklist',
+      subject: 'Welcome to SafetySync.AI! Your 90-day trial starts now 🚀',
       delay: 0,
       htmlContent: `
-        <h2>Welcome to SafetySync.AI!</h2>
-        <p>Thanks for starting your free trial. Here's your 90-day onboarding checklist:</p>
-        <ul>
-          <li>✅ Upload your first employee records</li>
-          <li>⏳ Set up automated training reminders</li>
-          <li>⏳ Generate your first compliance report</li>
-          <li>⏳ Configure your team dashboard</li>
-        </ul>
-        <p>Need help? Our support team is standing by.</p>
+        <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
+          <!-- Header -->
+          <div style="background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%); padding: 40px 30px; text-align: center; border-radius: 12px 12px 0 0;">
+            <h1 style="color: white; margin: 0; font-size: 32px; font-weight: 700;">Welcome to SafetySync.AI!</h1>
+            <p style="color: rgba(255,255,255,0.9); margin: 15px 0 0 0; font-size: 18px; font-weight: 300;">Your AI-powered compliance journey begins today</p>
+          </div>
+          
+          <!-- Main Content -->
+          <div style="padding: 40px 30px; background: white; border: 1px solid #e5e7eb; border-top: none;">
+            <p style="font-size: 18px; color: #374151; margin: 0 0 25px 0; line-height: 1.6;">Hi {{firstName}},</p>
+            
+            <p style="color: #6b7280; line-height: 1.7; margin-bottom: 30px; font-size: 16px;">
+              Congratulations! Your <strong>90-day free trial</strong> is now active. You have complete access to our enterprise-grade platform, 
+              including <strong>unlimited certificate generation</strong> for the first 90 days.
+            </p>
+            
+            <!-- Quick Start Guide -->
+            <div style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); padding: 30px; border-radius: 12px; margin: 30px 0; border-left: 5px solid #3B82F6;">
+              <h3 style="color: #1e293b; margin: 0 0 20px 0; font-size: 20px;">🎯 Your Success Roadmap</h3>
+              <div style="space-y: 15px;">
+                <div style="display: flex; align-items: flex-start; margin-bottom: 15px;">
+                  <span style="background: #22c55e; color: white; padding: 6px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; margin-right: 15px; min-width: 60px; text-align: center;">WEEK 1</span>
+                  <span style="color: #475569; line-height: 1.6;">Set up company profile, import employee data, generate first compliance report</span>
+                </div>
+                <div style="display: flex; align-items: flex-start; margin-bottom: 15px;">
+                  <span style="background: #3b82f6; color: white; padding: 6px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; margin-right: 15px; min-width: 60px; text-align: center;">WEEK 2</span>
+                  <span style="color: #475569; line-height: 1.6;">Create professional certificates, set up automated reminders, configure training schedules</span>
+                </div>
+                <div style="display: flex; align-items: flex-start;">
+                  <span style="background: #8b5cf6; color: white; padding: 6px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; margin-right: 15px; min-width: 60px; text-align: center;">WEEK 3+</span>
+                  <span style="color: #475569; line-height: 1.6;">Advanced features, API integration, team collaboration, audit preparation</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- CTA Button -->
+            <div style="text-align: center; margin: 40px 0;">
+              <a href="{{dashboardUrl}}" style="background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%); color: white; padding: 18px 36px; text-decoration: none; border-radius: 10px; font-weight: 600; display: inline-block; font-size: 16px; box-shadow: 0 4px 14px rgba(59, 130, 246, 0.25); transition: all 0.3s ease;">
+                Access Your Dashboard →
+              </a>
+            </div>
+            
+            <!-- Value Proposition -->
+            <div style="background: #fef3c7; padding: 20px; border-radius: 8px; margin: 30px 0; border: 1px solid #fbbf24;">
+              <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                <span style="font-size: 24px; margin-right: 10px;">💡</span>
+                <strong style="color: #92400e; font-size: 16px;">Did you know?</strong>
+              </div>
+              <p style="color: #92400e; margin: 0; line-height: 1.6; font-size: 14px;">
+                Companies using SafetySync.AI save an average of <strong>15 hours per week</strong> on compliance tasks and reduce 
+                administrative costs by <strong>$8,400 annually</strong>. Your ROI starts from day one.
+              </p>
+            </div>
+          </div>
+          
+          <!-- Footer -->
+          <div style="background: #f8fafc; padding: 25px 30px; text-align: center; border-radius: 0 0 12px 12px; border-top: 1px solid #e5e7eb;">
+            <p style="color: #6b7280; margin: 0; font-size: 14px; line-height: 1.6;">
+              Questions? Reply to this email or schedule a <a href="{{supportUrl}}" style="color: #3B82F6; text-decoration: none;">15-minute onboarding call</a> with our team.
+            </p>
+          </div>
+        </div>
       `,
-      textContent: 'Welcome to SafetySync.AI! Complete your onboarding checklist...',
-      ctaText: 'Start Your Setup',
-      ctaUrl: '/dashboard',
+      textContent: 'Welcome to SafetySync.AI! Your 90-day trial is active with unlimited certificate generation. Access your dashboard to begin your compliance automation journey.',
+      ctaText: 'Access Dashboard',
+      ctaUrl: '{{dashboardUrl}}'
     },
     {
       id: 'trial_features',
