@@ -68,10 +68,10 @@
     {
       "type": "TXT",
       "name": "@",
-      "value": "v=spf1 include:_spf.google.com ~all",
+      "value": "v=spf1 include:spf.protection.outlook.com -all",
       "ttl": 300,
       "priority": null,
-      "comment": "SPF record for email authentication"
+      "comment": "SPF record for Microsoft 365 email authentication"
     },
     {
       "type": "TXT",
@@ -108,10 +108,10 @@
     {
       "type": "MX",
       "name": "@",
-      "value": "mail.safetysync.ai",
-      "ttl": 300,
-      "priority": 10,
-      "comment": "Mail server (if using custom email)"
+      "value": "safetysync-ai.mail.protection.outlook.com",
+      "ttl": 3600,
+      "priority": 0,
+      "comment": "Microsoft 365 mail server via GoDaddy"
     },
     {
       "type": "A",

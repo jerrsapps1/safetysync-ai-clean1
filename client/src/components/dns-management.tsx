@@ -62,18 +62,26 @@ const DNS_RECORDS: DNSRecord[] = [
   {
     type: "MX",
     name: "@",
-    value: "ASPMX.L.GOOGLE.COM",
-    ttl: 300,
-    priority: 1,
-    comment: "Google Workspace primary mail server",
+    value: "safetysync-ai.mail.protection.outlook.com",
+    ttl: 3600,
+    priority: 0,
+    comment: "Microsoft 365 mail server via GoDaddy",
     status: "pending"
   },
   {
     type: "TXT",
     name: "@",
-    value: "v=spf1 include:_spf.google.com ~all",
+    value: "v=spf1 include:spf.protection.outlook.com -all",
     ttl: 300,
-    comment: "SPF record for Google Workspace email",
+    comment: "SPF record for Microsoft 365 email authentication",
+    status: "pending"
+  },
+  {
+    type: "CNAME",
+    name: "autodiscover",
+    value: "autodiscover.outlook.com",
+    ttl: 300,
+    comment: "Microsoft 365 autodiscover for email client setup",
     status: "pending"
   },
   {
@@ -234,17 +242,23 @@ export default function DNSManagement() {
               <Alert>
                 <Mail className="h-4 w-4" />
                 <AlertDescription>
-                  <strong>Recommended:</strong> Google Workspace for professional email handling
+                  <strong>✅ Configured:</strong> Microsoft 365 email service via GoDaddy
                 </AlertDescription>
               </Alert>
               
-              <div className="grid grid-cols-2 gap-4">
-                <Button variant="outline" onClick={() => window.open("https://workspace.google.com", "_blank")}>
-                  Set up Google Workspace
-                </Button>
-                <Button variant="outline" onClick={() => window.open("https://www.microsoft.com/microsoft-365/business/email", "_blank")}>
-                  Set up Microsoft 365
-                </Button>
+              <div className="space-y-2">
+                <p className="text-sm text-gray-600">
+                  Your email service is already configured with Microsoft 365 through GoDaddy. 
+                  Make sure to add the MX and SPF records shown in the DNS Records tab.
+                </p>
+                <div className="grid grid-cols-2 gap-4">
+                  <Button variant="outline" onClick={() => window.open("https://admin.microsoft.com", "_blank")}>
+                    Microsoft 365 Admin Center
+                  </Button>
+                  <Button variant="outline" onClick={() => window.open("https://dcc.godaddy.com/manage/", "_blank")}>
+                    GoDaddy Domain Management
+                  </Button>
+                </div>
               </div>
             </CardContent>
           </Card>
