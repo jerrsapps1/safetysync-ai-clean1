@@ -13,6 +13,7 @@ import CaseStudiesPage from "@/pages/case-studies";
 import PricingPage from "@/pages/pricing";
 import DeveloperPortal from "@/pages/developer-portal";
 import AnalyticsPage from "@/pages/analytics";
+import AnalyticsDashboard from "@/pages/analytics-dashboard";
 import UserGuidePage from "@/pages/user-guide";
 
 function Router() {
@@ -27,6 +28,7 @@ function Router() {
       <Route path="/user-guide" component={UserGuidePage} />
       <Route path="/developers" component={DeveloperPortal} />
       <Route path="/analytics" component={AnalyticsPage} />
+      <Route path="/conversion-tracking" component={AnalyticsDashboard} />
       <Route component={NotFound} />
     </Switch>
   );

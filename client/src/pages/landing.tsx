@@ -9,6 +9,7 @@ import { ProductTour } from "@/components/ui/product-tour";
 import { LiveChatWidget } from "@/components/ui/live-chat-widget";
 import { TermsAndConditions } from "@/components/ui/terms-and-conditions";
 import { useToast } from "@/hooks/use-toast";
+import { trackConversionEvent, CONVERSION_EVENTS } from "@/lib/analytics";
 import { 
   CheckCircle, 
   AlertCircle, 
@@ -70,6 +71,9 @@ export default function LandingPage() {
   };
 
   const handleTrialSubmit = (data: any) => {
+    // Track trial signup started
+    trackConversionEvent(CONVERSION_EVENTS.TRIAL_SIGNUP_STARTED);
+    
     // Show terms dialog before creating account
     setPendingSignupData({
       type: 'trial',
@@ -82,6 +86,9 @@ export default function LandingPage() {
   };
 
   const handleDemoSubmit = (data: any) => {
+    // Track demo request started
+    trackConversionEvent(CONVERSION_EVENTS.DEMO_REQUEST_STARTED);
+    
     // Show terms dialog before creating account
     setPendingSignupData({
       type: 'demo',
@@ -95,6 +102,9 @@ export default function LandingPage() {
 
   const handleTermsAccept = async () => {
     if (!pendingSignupData) return;
+
+    // Track terms acceptance
+    trackConversionEvent(CONVERSION_EVENTS.TERMS_ACCEPTED);
 
     try {
       const response = await fetch('/api/leads', {
@@ -112,6 +122,13 @@ export default function LandingPage() {
 
       if (!response.ok) {
         throw new Error('Failed to create account');
+      }
+
+      // Track successful conversion
+      if (pendingSignupData.type === 'trial') {
+        trackConversionEvent(CONVERSION_EVENTS.TRIAL_SIGNUP_COMPLETED);
+      } else {
+        trackConversionEvent(CONVERSION_EVENTS.DEMO_REQUEST_COMPLETED);
       }
 
       setShowTermsDialog(false);
@@ -212,7 +229,16 @@ export default function LandingPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
               <Button 
-                onClick={handleTrialClick}
+                onClick={() => {
+                  trackConversionEvent({
+                    event: 'Custom',
+                    action: 'hero_trial_cta_clicked',
+                    category: 'engagement',
+                    label: 'Hero Section - Start Your Free Trial',
+                    value: 49
+                  });
+                  handleTrialClick();
+                }}
                 className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-lg text-lg font-semibold pulse-glow border-0 min-w-[200px]"
               >
                 <Zap className="w-5 h-5 mr-2" />
@@ -227,7 +253,16 @@ export default function LandingPage() {
                 Demo Access
               </Button>
               <Button 
-                onClick={handleDemoClick}
+                onClick={() => {
+                  trackConversionEvent({
+                    event: 'Custom',
+                    action: 'hero_demo_cta_clicked',
+                    category: 'engagement',
+                    label: 'Hero Section - Request Demo',
+                    value: 200
+                  });
+                  handleDemoClick();
+                }}
                 variant="outline"
                 className="glass-effect border-white/30 text-white hover:bg-white/10 px-8 py-4 rounded-lg text-lg font-semibold backdrop-blur-sm min-w-[200px]"
               >
@@ -252,7 +287,10 @@ export default function LandingPage() {
             {/* Product Tour Button */}
             <div className="text-center">
               <Button
-                onClick={() => setShowProductTour(true)}
+                onClick={() => {
+                  trackConversionEvent(CONVERSION_EVENTS.PRODUCT_TOUR_STARTED);
+                  setShowProductTour(true);
+                }}
                 variant="ghost"
                 className="text-white/80 hover:text-white hover:bg-white/10 px-6 py-2 rounded-lg backdrop-blur-sm"
               >
