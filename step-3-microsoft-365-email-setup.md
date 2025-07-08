@@ -13,7 +13,7 @@ Type: MX
 Name: @
 Value: safetysync-ai.mail.protection.outlook.com
 Priority: 0
-TTL: 3600
+TTL: 600
 ```
 
 ### 2. Add SPF Record (CRITICAL - Required for email authentication)
@@ -21,16 +21,17 @@ TTL: 3600
 Type: TXT
 Name: @
 Value: v=spf1 include:spf.protection.outlook.com -all
-TTL: 300
+TTL: 600
 ```
 
-### 3. Add Autodiscover Record (RECOMMENDED - For email client setup)
+### 3. Add Autodiscover Record (OPTIONAL - Skip if conflicting)
 ```
 Type: CNAME
 Name: autodiscover
 Value: autodiscover.outlook.com
-TTL: 300
+TTL: 600
 ```
+**Note**: This record is optional. Skip if you have existing CNAME conflicts.
 
 ## How to Add These Records in GoDaddy
 
@@ -47,11 +48,12 @@ TTL: 300
    - Host: @ (leave blank or use @)
    - TXT Value: v=spf1 include:spf.protection.outlook.com -all
    - TTL: 5 minutes
-5. **For Autodiscover CNAME**:
+5. **For Autodiscover CNAME** (SKIP if conflicting):
    - Click "Add" → Select "CNAME"
    - Host: autodiscover
    - Points to: autodiscover.outlook.com
-   - TTL: 5 minutes
+   - TTL: 10 minutes
+   - **Note**: Skip this step if you have existing CNAME conflicts
 
 ## Email Addresses You Can Create
 
