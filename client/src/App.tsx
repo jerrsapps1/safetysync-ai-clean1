@@ -22,6 +22,7 @@ import SitemapPage from "@/pages/sitemap";
 import LeadMagnetsPage from "@/pages/lead-magnets";
 import UserGuidePage from "@/pages/user-guide";
 import DNSManagementPage from "@/pages/dns-management";
+import { SkeletonDemo } from "@/components/ui/skeleton-demo";
 
 function Router() {
   return (
@@ -43,6 +44,7 @@ function Router() {
       <Route path="/resources" component={LeadMagnetsPage} />
       <Route path="/sitemap" component={SitemapPage} />
       <Route path="/dns-management" component={DNSManagementPage} />
+      <Route path="/skeleton-demo" component={SkeletonDemo} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -10,6 +10,7 @@ import { ComplianceReportGenerator } from "@/components/ui/compliance-report-gen
 import { AICloneDetector } from "@/components/ui/ai-clone-detector";
 import { CollaborationLayer } from "@/components/ui/collaboration-layer";
 import { AIQuickActions } from "@/components/ui/ai-quick-actions";
+import { AIPatternSkeleton } from "@/components/ui/ai-skeleton";
 import { 
   CheckCircle, 
   AlertTriangle, 
@@ -60,6 +61,7 @@ interface DashboardStats {
 }
 
 export default function Dashboard() {
+  const [isLoading, setIsLoading] = useState(false);
   const [stats, setStats] = useState<DashboardStats>({
     totalEmployees: 45,
     compliantEmployees: 42,
@@ -109,6 +111,11 @@ export default function Dashboard() {
       dueDate: "2025-02-20"
     }
   ]);
+
+  const simulateLoading = () => {
+    setIsLoading(true);
+    setTimeout(() => setIsLoading(false), 2500);
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -193,6 +200,21 @@ export default function Dashboard() {
               <Link href="/user-guide">
                 <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300">User Guide</Button>
               </Link>
+              <Link href="/skeleton-demo">
+                <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300">
+                  <Brain className="w-4 h-4 mr-2" />
+                  AI Skeletons
+                </Button>
+              </Link>
+              <Button 
+                onClick={simulateLoading}
+                variant="ghost" 
+                size="sm" 
+                className="text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300"
+              >
+                <RefreshCw className={`w-4 h-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
+                Test Loading
+              </Button>
               {/* Admin link hidden from regular users - only visible to admin */}
             </div>
           </div>
@@ -241,61 +263,72 @@ export default function Dashboard() {
 
         {/* AI-Enhanced Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <Card className="glass-effect border-blue-500/30 bg-blue-500/10 backdrop-blur-sm hover:bg-blue-500/20 transition-all duration-300 group">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-blue-300">Total Employees</p>
-                  <p className="text-3xl font-bold text-white">{stats.totalEmployees}</p>
-                </div>
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-blue-500 rounded-lg flex items-center justify-center group-hover:pulse-glow">
-                  <Users className="w-6 h-6 text-white" />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          {isLoading ? (
+            <>
+              <AIPatternSkeleton variant="stats" />
+              <AIPatternSkeleton variant="stats" />
+              <AIPatternSkeleton variant="stats" />
+              <AIPatternSkeleton variant="stats" />
+            </>
+          ) : (
+            <>
+              <Card className="glass-effect border-blue-500/30 bg-blue-500/10 backdrop-blur-sm hover:bg-blue-500/20 transition-all duration-300 group">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-blue-300">🤖 AI-Verified Compliant</p>
+                      <p className="text-3xl font-bold text-white">{stats.totalEmployees}</p>
+                    </div>
+                    <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-blue-500 rounded-lg flex items-center justify-center group-hover:pulse-glow">
+                      <Users className="w-6 h-6 text-white" />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
 
-          <Card className="glass-effect border-green-500/30 bg-green-500/10 backdrop-blur-sm hover:bg-green-500/20 transition-all duration-300 group">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-green-300">AI-Verified Compliant</p>
-                  <p className="text-3xl font-bold text-white">{stats.compliantEmployees}</p>
-                </div>
-                <div className="w-12 h-12 bg-gradient-to-r from-green-600 to-green-500 rounded-lg flex items-center justify-center group-hover:pulse-glow">
-                  <CheckCircle className="w-6 h-6 text-white" />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+              <Card className="glass-effect border-green-500/30 bg-green-500/10 backdrop-blur-sm hover:bg-green-500/20 transition-all duration-300 group">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-green-300">🤖 AI Analysis: Compliant</p>
+                      <p className="text-3xl font-bold text-white">{stats.compliantEmployees}</p>
+                    </div>
+                    <div className="w-12 h-12 bg-gradient-to-r from-green-600 to-green-500 rounded-lg flex items-center justify-center group-hover:pulse-glow">
+                      <CheckCircle className="w-6 h-6 text-white" />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
 
-          <Card className="glass-effect border-yellow-500/30 bg-yellow-500/10 backdrop-blur-sm hover:bg-yellow-500/20 transition-all duration-300 group">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-yellow-300">Smart Training Queue</p>
-                  <p className="text-3xl font-bold text-white">{stats.pendingTraining}</p>
-                </div>
-                <div className="w-12 h-12 bg-gradient-to-r from-yellow-600 to-yellow-500 rounded-lg flex items-center justify-center group-hover:pulse-glow">
-                  <Clock className="w-6 h-6 text-white" />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+              <Card className="glass-effect border-yellow-500/30 bg-yellow-500/10 backdrop-blur-sm hover:bg-yellow-500/20 transition-all duration-300 group">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-yellow-300">Smart Training Queue</p>
+                      <p className="text-3xl font-bold text-white">{stats.pendingTraining}</p>
+                    </div>
+                    <div className="w-12 h-12 bg-gradient-to-r from-yellow-600 to-yellow-500 rounded-lg flex items-center justify-center group-hover:pulse-glow">
+                      <Clock className="w-6 h-6 text-white" />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
 
-          <Card className="glass-effect border-red-500/30 bg-red-500/10 backdrop-blur-sm hover:bg-red-500/20 transition-all duration-300 group">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-red-300">AI Risk Alerts</p>
-                  <p className="text-3xl font-bold text-white">{stats.expiringCertifications}</p>
-                </div>
-                <div className="w-12 h-12 bg-gradient-to-r from-red-600 to-red-500 rounded-lg flex items-center justify-center group-hover:pulse-glow">
-                  <AlertTriangle className="w-6 h-6 text-white" />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+              <Card className="glass-effect border-red-500/30 bg-red-500/10 backdrop-blur-sm hover:bg-red-500/20 transition-all duration-300 group">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-red-300">AI Alert: Expiring Soon</p>
+                      <p className="text-3xl font-bold text-white">{stats.expiringCertifications}</p>
+                    </div>
+                    <div className="w-12 h-12 bg-gradient-to-r from-red-600 to-red-500 rounded-lg flex items-center justify-center group-hover:pulse-glow">
+                      <AlertTriangle className="w-6 h-6 text-white" />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </>
+          )}
         </div>
 
         {/* Compliance Score */}
