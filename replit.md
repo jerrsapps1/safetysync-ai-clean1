@@ -371,6 +371,15 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Removed card orientation selection and printing specifications since cards are view-only
   - Enhanced value proposition: unlimited digital cards accessible on phones, tablets, computers
   - Updated multi-card generation to reflect FREE digital continuation cards
+- **July 06, 2025** - Implemented Model 4 Enhanced Hybrid Subscription Pricing Strategy:
+  - Replaced individual pricing model with hybrid subscription: $49/month base plan
+  - Base plan includes 50 certificates + 50 digital wallet cards monthly
+  - Additional usage beyond included amounts: $0.75 per certificate OR wallet card
+  - Guaranteed minimum revenue: $49/month per customer (2-4x increase over previous model)
+  - Updated pricing calculator, dashboard, and all customer-facing pricing information
+  - Enhanced value proposition: predictable monthly costs with fair overage pricing
+  - Scalable model: heavy users pay proportionally more while light users get great value
+  - Maintained 90-day free trial period for customer acquisition and onboarding
 
 ## Changelog
 

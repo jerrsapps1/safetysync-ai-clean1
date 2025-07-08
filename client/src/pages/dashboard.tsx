@@ -1509,7 +1509,7 @@ export default function Dashboard() {
                         <Award className="w-5 h-5 text-blue-600" />
                         Certificate Generation
                       </CardTitle>
-                      <CardDescription>$0.50 per certificate</CardDescription>
+                      <CardDescription>$49/month base (50 included), then $0.75 each</CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-4">
@@ -1581,14 +1581,14 @@ export default function Dashboard() {
                         <div className="flex gap-2">
                           <Button className="flex-1">
                             <Award className="w-4 h-4 mr-2" />
-                            Generate Certificate ($0.50*)
+                            Generate Certificate ($0.75*)
                           </Button>
                           <Button variant="outline" size="sm">
                             <Eye className="w-4 h-4" />
                           </Button>
                         </div>
                         <p className="text-xs text-gray-500 mt-2">
-                          *FREE for first 90 days with any subscription plan, then $0.50 per certificate
+                          *$49/month base plan includes 50 certificates. Additional certificates: $0.75 each.
                         </p>
                       </div>
                     </CardContent>
@@ -1601,7 +1601,7 @@ export default function Dashboard() {
                         <CreditCard className="w-5 h-5 text-green-600" />
                         Digital Wallet Cards
                       </CardTitle>
-                      <CardDescription>Always FREE - Digital View Only</CardDescription>
+                      <CardDescription>$49/month base (50 included), then $0.75 each</CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-4">
@@ -1684,21 +1684,21 @@ export default function Dashboard() {
                           </div>
                           <p className="text-xs text-gray-500">
                             When checked, equipment will automatically continue on additional digital cards if the list is too long for one card. 
-                            Always FREE - unlimited digital cards.
+                            Each additional card: $0.75.
                           </p>
                         </div>
                         
                         <div className="flex gap-2">
                           <Button className="flex-1">
                             <CreditCard className="w-4 h-4 mr-2" />
-                            Generate Digital Wallet Card(s) (FREE)
+                            Generate Digital Wallet Card(s) ($0.75*)
                           </Button>
                           <Button variant="outline" size="sm">
                             <Eye className="w-4 h-4" />
                           </Button>
                         </div>
                         <p className="text-xs text-gray-500 mt-2">
-                          Digital wallet cards are always FREE. View on any device - never lost, always accessible.
+                          *$49/month base plan includes 50 digital wallet cards. Additional cards: $0.75 each.
                         </p>
                       </div>
                     </CardContent>

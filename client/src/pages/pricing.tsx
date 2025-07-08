@@ -47,11 +47,11 @@ export default function PricingPage() {
                   <Award className="w-6 h-6 text-blue-600" />
                   Certificate Generation Service
                 </CardTitle>
-                <div className="text-lg font-semibold text-blue-600">FREE for 90 days, then $0.50/certificate</div>
+                <div className="text-lg font-semibold text-blue-600">$49/month base + $0.75 overage</div>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 mb-6">
-                  Professional completion certificates for your training programs, generated digitally for your printing needs.
+                  Base subscription includes 50 certificates monthly. Additional certificates beyond included amount: $0.75 each.
                 </p>
                 
                 <div className="space-y-4">
