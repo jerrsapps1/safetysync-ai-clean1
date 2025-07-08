@@ -285,6 +285,9 @@ export default function AdminPanel() {
               <Link href="/pricing">
                 <Button variant="ghost" size="sm">Pricing</Button>
               </Link>
+              <Link href="/dns-management">
+                <Button variant="ghost" size="sm">DNS Management</Button>
+              </Link>
             </div>
           </div>
         </div>
