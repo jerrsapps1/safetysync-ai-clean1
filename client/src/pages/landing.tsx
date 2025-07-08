@@ -963,6 +963,7 @@ export default function LandingPage() {
               <h3 className="font-semibold mb-4">Resources</h3>
               <ul className="space-y-2 text-sm">
                 <li><a href="/blog" className="text-gray-300 hover:text-white transition-colors">Safety Blog</a></li>
+                <li><a href="/resources" className="text-gray-300 hover:text-white transition-colors">Free Resources</a></li>
                 <li><a href="/developers" className="text-gray-300 hover:text-white transition-colors">API Documentation</a></li>
                 <li><a href="/analytics" className="text-gray-300 hover:text-white transition-colors">Analytics</a></li>
                 <li><a href="/sitemap" className="text-gray-300 hover:text-white transition-colors">Sitemap</a></li>
