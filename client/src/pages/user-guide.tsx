@@ -33,8 +33,8 @@ export default function UserGuidePage() {
               <Link href="/pricing">
                 <Button variant="outline" size="sm">Pricing</Button>
               </Link>
-              <Link href="/testimonials">
-                <Button variant="outline" size="sm">Testimonials</Button>
+              <Link href="/industry-research">
+                <Button variant="outline" size="sm">Industry Research</Button>
               </Link>
             </div>
           </div>

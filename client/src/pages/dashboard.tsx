@@ -159,8 +159,8 @@ export default function Dashboard() {
               </div>
             </div>
             <div className="flex items-center space-x-2">
-              <Link href="/testimonials">
-                <Button variant="ghost" size="sm">Testimonials</Button>
+              <Link href="/industry-research">
+                <Button variant="ghost" size="sm">Industry Research</Button>
               </Link>
               <Link href="/case-studies">
                 <Button variant="ghost" size="sm">Case Studies</Button>

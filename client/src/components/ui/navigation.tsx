@@ -44,10 +44,10 @@ export function Navigation({ onTrialClick, onDemoClick, onLoginClick, user, onLo
                 Features
               </button>
               <a 
-                href="/testimonials"
+                href="/industry-research"
                 className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium"
               >
-                Testimonials
+                Industry Research
               </a>
               <a 
                 href="/case-studies"
