@@ -2,6 +2,8 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { cloneDetector } from "./ai-clone-detection";
+import { emailAutomation } from "./email-automation";
+import emailAutomationRoutes from "./api/email-automation";
 import { insertLeadSchema, insertUserSchema, loginUserSchema, insertComplianceReportSchema, insertCloneDetectionScanSchema } from "@shared/schema";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
@@ -192,7 +194,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const leadData = insertLeadSchema.parse(req.body);
       const lead = await storage.createLead(leadData);
       
-      // Log the lead creation for demonstration (in production, this would send emails)
+      // Start automated email sequence for new lead
       console.log(`New ${lead.leadType} lead created:`, {
         name: lead.name,
         email: lead.email,
@@ -200,6 +202,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
         leadType: lead.leadType,
         createdAt: lead.createdAt
       });
+
+      // Start email automation sequence
+      try {
+        await emailAutomation.startSequence(lead.id, lead.leadType as 'trial' | 'demo', {
+          name: lead.name,
+          email: lead.email,
+          company: lead.company
+        });
+        console.log(`Email automation sequence started for ${lead.leadType} lead ${lead.id}`);
+      } catch (emailError) {
+        console.error(`Failed to start email sequence for lead ${lead.id}:`, emailError);
+        // Don't fail the lead creation if email fails
+      }
       
       res.status(201).json({ 
         success: true, 
@@ -222,6 +237,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
     }
   });
+
+  // Email automation API routes
+  app.use("/api/email-automation", emailAutomationRoutes);
 
   // Get all leads endpoint (for admin purposes)
   app.get("/api/leads", async (req, res) => {
