@@ -969,7 +969,6 @@ export default function LandingPage() {
                 <li><a href="/developers" className="text-gray-300 hover:text-white transition-colors">API Documentation</a></li>
                 <li><a href="/analytics" className="text-gray-300 hover:text-white transition-colors">Analytics</a></li>
                 <li><a href="/sitemap" className="text-gray-300 hover:text-white transition-colors">Sitemap</a></li>
-                <li><a href="/admin" className="text-gray-300 hover:text-white transition-colors">Admin Access</a></li>
               </ul>
             </div>
           </div>
