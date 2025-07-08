@@ -24,14 +24,14 @@ Value: v=spf1 include:spf.protection.outlook.com -all
 TTL: 600
 ```
 
-### 3. Add Autodiscover Record (OPTIONAL - Skip if conflicting)
+### 3. Add Autodiscover Record (RECOMMENDED - No conflicts found)
 ```
 Type: CNAME
 Name: autodiscover
 Value: autodiscover.outlook.com
 TTL: 600
 ```
-**Note**: This record is optional. Skip if you have existing CNAME conflicts.
+**Note**: Safe to add - no conflicts with your existing sip, www, or _domainconnect records.
 
 ## How to Add These Records in GoDaddy
 
@@ -48,12 +48,12 @@ TTL: 600
    - Host: @ (leave blank or use @)
    - TXT Value: v=spf1 include:spf.protection.outlook.com -all
    - TTL: 5 minutes
-5. **For Autodiscover CNAME** (SKIP if conflicting):
+5. **For Autodiscover CNAME** (RECOMMENDED):
    - Click "Add" → Select "CNAME"
    - Host: autodiscover
    - Points to: autodiscover.outlook.com
    - TTL: 10 minutes
-   - **Note**: Skip this step if you have existing CNAME conflicts
+   - **Note**: Safe to add - no conflicts with your existing records
 
 ## Email Addresses You Can Create
 

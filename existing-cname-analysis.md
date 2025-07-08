@@ -4,14 +4,14 @@
 
 Based on your mention of three existing CNAME records, here's the likely setup:
 
-### Common CNAME Records:
-1. **www** → safetysync.ai (redirects www.safetysync.ai to main domain)
-2. **app** → [hosting provider] (points app.safetysync.ai to your app server)
-3. **api** → [hosting provider] (points api.safetysync.ai to your API server)
+### Your Current CNAME Records:
+1. **sip** → sipdir.online.lync.com (Microsoft Skype for Business)
+2. **www** → safetysync.ai (redirects www.safetysync.ai to main domain)
+3. **_domainconnect** → _domainconnect.gd.domaincontrol.com (GoDaddy management)
 
-## Microsoft 365 CNAME Addition (OPTIONAL)
+## Microsoft 365 CNAME Addition (RECOMMENDED)
 
-We **would like to add** this CNAME record for Microsoft 365, but it's optional:
+**Good news**: You CAN add the autodiscover CNAME record! No conflicts exist.
 
 ```
 Type: CNAME
@@ -20,13 +20,12 @@ Value: autodiscover.outlook.com
 TTL: 600
 ```
 
-## CNAME Conflict Resolution
+## No Conflicts Found
 
-If you can't add the autodiscover CNAME due to existing conflicts:
-- **Email will still work perfectly** - autodiscover is only for email client setup
-- Users can manually configure Outlook/Apple Mail with these settings:
-  - Incoming (IMAP): outlook.office365.com, Port 993, SSL
-  - Outgoing (SMTP): smtp.office365.com, Port 587, STARTTLS
+The `autodiscover` CNAME record will work perfectly with your existing records:
+- It doesn't interfere with sip, www, or _domainconnect
+- It's a separate subdomain for email client auto-configuration
+- Microsoft 365 and Skype for Business work together seamlessly
 
 ## Final DNS Configuration
 
@@ -36,10 +35,10 @@ After adding the Microsoft 365 records, you'll have:
 - @ → [Your server IP]
 
 ### CNAME Records:
-- www → safetysync.ai
-- app → [your hosting provider]
-- api → [your hosting provider]  
-- **autodiscover → autodiscover.outlook.com** (NEW)
+- sip → sipdir.online.lync.com (existing)
+- www → safetysync.ai (existing)
+- _domainconnect → _domainconnect.gd.domaincontrol.com (existing)
+- **autodiscover → autodiscover.outlook.com** (NEW - safe to add)
 
 ### MX Record:
 - @ → safetysync-ai.mail.protection.outlook.com (Priority 0)
