@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Star, Quote, Building, Users, TrendingUp, ArrowLeft } from "lucide-react";
 import { Link } from "wouter";
 
-interface Testimonial {
+interface ResearchScenario {
   id: number;
   name: string;
   title: string;
@@ -11,7 +11,7 @@ interface Testimonial {
   companySize: string;
   industry: string;
   rating: number;
-  testimonial: string;
+  researchFindings: string;
   results: {
     timeReduction: string;
     complianceImprovement: string;
@@ -22,7 +22,7 @@ interface Testimonial {
 
 // Note: These are hypothetical business scenarios for educational purposes only
 // No actual customer testimonials or endorsements are represented
-const testimonials: Testimonial[] = [
+const researchScenarios: ResearchScenario[] = [
   {
     id: 1,
     name: "Construction Scenario #1",
@@ -31,7 +31,7 @@ const testimonials: Testimonial[] = [
     companySize: "150-200 employees",
     industry: "Construction",
     rating: 0, // Remove star ratings to avoid testimonial appearance
-    testimonial: "Industry research suggests construction companies of this size typically face challenges with manual compliance tracking, requiring 15-20 hours weekly for OSHA documentation. Implementation scenarios show potential for automation to reduce administrative burden.",
+    researchFindings: "Industry research suggests construction companies of this size typically face challenges with manual compliance tracking, requiring 15-20 hours weekly for OSHA documentation. Implementation scenarios show potential for automation to reduce administrative burden.",
     results: {
       timeReduction: "Research indicates: 60-80% reduction possible",
       complianceImprovement: "Industry studies show: 75-90% improvement potential",
@@ -46,7 +46,7 @@ const testimonials: Testimonial[] = [
     companySize: "300-500 employees",
     industry: "Manufacturing",
     rating: 0,
-    testimonial: "Manufacturing industry data indicates facilities this size often struggle with tracking certifications across multiple departments. Academic studies on compliance automation suggest digital systems can significantly reduce manual oversight requirements.",
+    researchFindings: "Manufacturing industry data indicates facilities this size often struggle with tracking certifications across multiple departments. Academic studies on compliance automation suggest digital systems can significantly reduce manual oversight requirements.",
     results: {
       timeReduction: "Studies suggest: 65-80% reduction potential",
       complianceImprovement: "Research indicates: 80-95% improvement possible",
@@ -61,7 +61,7 @@ const testimonials: Testimonial[] = [
     companySize: "50-100 employees",
     industry: "Technology",
     rating: 0,
-    testimonial: "Technology sector research indicates growing companies often face compliance scaling challenges as headcount increases. Studies suggest digital platforms can help standardize safety protocols during rapid expansion phases.",
+    researchFindings: "Technology sector research indicates growing companies often face compliance scaling challenges as headcount increases. Studies suggest digital platforms can help standardize safety protocols during rapid expansion phases.",
     results: {
       timeReduction: "Research suggests: 55-70% reduction potential",
       complianceImprovement: "Studies indicate: 75-90% improvement possible",
@@ -76,7 +76,7 @@ const testimonials: Testimonial[] = [
     companySize: "200-300 employees",
     industry: "Chemical Processing",
     rating: 0,
-    testimonial: "Chemical industry safety research highlights the complexity of managing multiple hazardous material certifications. Academic studies on high-risk facility automation suggest potential for reducing human error in compliance tracking.",
+    researchFindings: "Chemical industry safety research highlights the complexity of managing multiple hazardous material certifications. Academic studies on high-risk facility automation suggest potential for reducing human error in compliance tracking.",
     results: {
       timeReduction: "Industry studies show: 60-75% reduction possible",
       complianceImprovement: "Research indicates: 85-95% improvement potential",
@@ -91,7 +91,7 @@ const testimonials: Testimonial[] = [
     companySize: "100-150 employees",
     industry: "Logistics",
     rating: 0,
-    testimonial: "Logistics industry analysis shows warehousing operations typically manage diverse equipment certifications across multiple shifts. Research on automated systems suggests potential for improved training record integration.",
+    researchFindings: "Logistics industry analysis shows warehousing operations typically manage diverse equipment certifications across multiple shifts. Research on automated systems suggests potential for improved training record integration.",
     results: {
       timeReduction: "Studies suggest: 50-65% reduction potential",
       complianceImprovement: "Research indicates: 70-85% improvement possible",
@@ -106,7 +106,7 @@ const testimonials: Testimonial[] = [
     companySize: "500+ employees",
     industry: "Energy/Utilities",
     rating: 0,
-    testimonial: "Utilities sector research demonstrates the complexity of coordinating compliance across distributed facilities. Academic studies on centralized compliance platforms suggest potential for standardizing multi-location oversight.",
+    researchFindings: "Utilities sector research demonstrates the complexity of coordinating compliance across distributed facilities. Academic studies on centralized compliance platforms suggest potential for standardizing multi-location oversight.",
     results: {
       timeReduction: "Research shows: 65-80% reduction potential",
       complianceImprovement: "Studies indicate: 80-92% improvement possible",
@@ -146,7 +146,7 @@ export default function TestimonialsPage() {
             </Button>
           </Link>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Industry Research & Implementation Scenarios
+            Industry Research & Implementation Studies
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
             Hypothetical business scenarios based on industry research and academic studies of compliance management implementations. 
@@ -156,17 +156,17 @@ export default function TestimonialsPage() {
           {/* Legal Disclaimer */}
           <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-4xl mx-auto mb-8">
             <p className="text-sm text-gray-700 font-semibold mb-2">
-              IMPORTANT LEGAL NOTICE - NOT CUSTOMER TESTIMONIALS
+              EDUCATIONAL RESEARCH SCENARIOS - NOT CUSTOMER TESTIMONIALS OR ENDORSEMENTS
             </p>
             <p className="text-sm text-gray-700 mb-2">
-              The following scenarios are entirely hypothetical and created for educational purposes only. 
-              They do NOT represent actual customer experiences, testimonials, or endorsements. 
-              No real companies, individuals, or specific results are represented.
+              The following content presents hypothetical business scenarios based solely on published industry research. 
+              These are NOT customer testimonials, reviews, or endorsements of any kind. 
+              No actual customer experiences, real companies, or individual results are represented.
             </p>
             <p className="text-sm text-gray-700">
-              These scenarios are based on published industry research and academic studies. 
-              Actual results will vary significantly based on numerous factors. 
-              No guarantees, warranties, or promises of specific outcomes are made.
+              All data presented is derived from third-party industry studies and academic research. 
+              Individual results vary significantly and depend on numerous business-specific factors. 
+              These educational examples make no guarantees, warranties, or promises regarding specific outcomes.
             </p>
           </div>
           
@@ -193,48 +193,48 @@ export default function TestimonialsPage() {
 
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-          {testimonials.map((testimonial) => (
-            <Card key={testimonial.id} className="p-6 hover:shadow-lg transition-shadow">
+          {researchScenarios.map((scenario) => (
+            <Card key={scenario.id} className="p-6 hover:shadow-lg transition-shadow">
               <CardContent className="p-0">
                 {/* Header */}
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold">
-                      {testimonial.name.split(' ').map(n => n[0]).join('')}
+                      {scenario.name.split(' ').map(n => n[0]).join('')}
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900">{testimonial.name}</h3>
-                      <p className="text-sm text-gray-600">{testimonial.title}</p>
-                      <p className="text-sm text-blue-600 font-medium">{testimonial.company}</p>
+                      <h3 className="font-semibold text-gray-900">{scenario.name}</h3>
+                      <p className="text-sm text-gray-600">{scenario.title}</p>
+                      <p className="text-sm text-blue-600 font-medium">{scenario.company}</p>
                     </div>
                   </div>
                   <Quote className="w-8 h-8 text-gray-300" />
                 </div>
 
                 {/* Rating - Hidden for compliance scenarios */}
-                {testimonial.rating > 0 && (
+                {scenario.rating > 0 && (
                   <div className="flex items-center gap-2 mb-4">
                     <div className="flex gap-1">
-                      {renderStars(testimonial.rating)}
+                      {renderStars(scenario.rating)}
                     </div>
-                    <span className="text-sm text-gray-600">({testimonial.rating}/5)</span>
+                    <span className="text-sm text-gray-600">({scenario.rating}/5)</span>
                   </div>
                 )}
 
                 {/* Testimonial */}
                 <blockquote className="text-gray-700 mb-6 leading-relaxed">
-                  "{testimonial.testimonial}"
+                  "{scenario.researchFindings}"
                 </blockquote>
 
                 {/* Company Info */}
                 <div className="flex items-center gap-6 text-sm text-gray-600 mb-6">
                   <div className="flex items-center gap-1">
                     <Building className="w-4 h-4" />
-                    {testimonial.industry}
+                    {scenario.industry}
                   </div>
                   <div className="flex items-center gap-1">
                     <Users className="w-4 h-4" />
-                    {testimonial.companySize}
+                    {scenario.companySize}
                   </div>
                 </div>
 
@@ -246,15 +246,15 @@ export default function TestimonialsPage() {
                   </h4>
                   <div className="grid grid-cols-3 gap-4 text-center">
                     <div>
-                      <div className="text-lg font-bold text-green-600">{testimonial.results.timeReduction}</div>
+                      <div className="text-lg font-bold text-green-600">{scenario.results.timeReduction}</div>
                       <div className="text-xs text-gray-600">Time Reduction</div>
                     </div>
                     <div>
-                      <div className="text-lg font-bold text-blue-600">{testimonial.results.complianceImprovement}</div>
+                      <div className="text-lg font-bold text-blue-600">{scenario.results.complianceImprovement}</div>
                       <div className="text-xs text-gray-600">Compliance Score</div>
                     </div>
                     <div>
-                      <div className="text-lg font-bold text-purple-600">{testimonial.results.costSavings}</div>
+                      <div className="text-lg font-bold text-purple-600">{scenario.results.costSavings}</div>
                       <div className="text-xs text-gray-600">Annual Savings</div>
                     </div>
                   </div>
