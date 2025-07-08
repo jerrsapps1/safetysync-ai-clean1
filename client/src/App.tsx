@@ -18,6 +18,7 @@ import EmailPreviewPage from "@/pages/email-preview";
 import ABTestingDashboard from "@/pages/ab-testing-dashboard";
 import SEOBlogPage from "@/pages/seo-blog";
 import SitemapPage from "@/pages/sitemap";
+import LeadMagnetsPage from "@/pages/lead-magnets";
 import UserGuidePage from "@/pages/user-guide";
 
 function Router() {
@@ -36,6 +37,7 @@ function Router() {
       <Route path="/email-automation" component={EmailPreviewPage} />
       <Route path="/ab-testing" component={ABTestingDashboard} />
       <Route path="/blog" component={SEOBlogPage} />
+      <Route path="/resources" component={LeadMagnetsPage} />
       <Route path="/sitemap" component={SitemapPage} />
       <Route component={NotFound} />
     </Switch>
