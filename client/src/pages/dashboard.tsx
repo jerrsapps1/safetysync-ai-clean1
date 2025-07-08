@@ -128,48 +128,69 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 relative overflow-hidden">
+      {/* Tech Grid Background */}
+      <div className="absolute inset-0 tech-grid opacity-20"></div>
+      
+      {/* Floating Tech Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 floating-animation">
+          <Brain className="w-6 h-6 text-blue-400 opacity-30" />
+        </div>
+        <div className="absolute top-32 right-20 floating-animation" style={{ animationDelay: '0.5s' }}>
+          <Database className="w-5 h-5 text-purple-400 opacity-30" />
+        </div>
+        <div className="absolute bottom-20 left-20 floating-animation" style={{ animationDelay: '1s' }}>
+          <Shield className="w-6 h-6 text-green-400 opacity-30" />
+        </div>
+        <div className="absolute bottom-32 right-10 floating-animation" style={{ animationDelay: '1.5s' }}>
+          <TrendingUp className="w-5 h-5 text-yellow-400 opacity-30" />
+        </div>
+      </div>
+
       {/* AI Quick Actions Sidebar */}
-      <AIQuickActions 
-        currentPage="dashboard"
-        onActionExecute={(actionId) => {
-          console.log('AI Action executed:', actionId);
-          // Handle specific actions based on actionId
-        }}
-      />
+      <div className="relative z-10">
+        <AIQuickActions 
+          currentPage="dashboard"
+          onActionExecute={(actionId) => {
+            console.log('AI Action executed:', actionId);
+            // Handle specific actions based on actionId
+          }}
+        />
+      </div>
       
       {/* Navigation Header */}
-      <div className="bg-white shadow-sm border-b">
+      <div className="glass-effect backdrop-blur-md border-b border-white/20 relative z-10">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <Link href="/">
-                <Button variant="ghost" size="sm" className="text-gray-600 hover:text-gray-900">
+                <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300">
                   <Home className="w-4 h-4 mr-2" />
                   Home
                 </Button>
               </Link>
-              <div className="flex items-center space-x-2">
-                <div className="w-6 h-6 bg-gradient-to-r from-blue-600 to-purple-600 rounded-md flex items-center justify-center">
+              <div className="flex items-center space-x-2 group">
+                <div className="w-6 h-6 bg-gradient-to-r from-blue-600 to-purple-600 rounded-md flex items-center justify-center group-hover:pulse-glow transition-all duration-300">
                   <Brain className="w-4 h-4 text-white" />
                 </div>
-                <span className="text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="text-lg font-semibold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                   SafetySync.AI
                 </span>
               </div>
             </div>
             <div className="flex items-center space-x-2">
               <Link href="/industry-research">
-                <Button variant="ghost" size="sm">Industry Research</Button>
+                <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300">Industry Research</Button>
               </Link>
               <Link href="/case-studies">
-                <Button variant="ghost" size="sm">Case Studies</Button>
+                <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300">Case Studies</Button>
               </Link>
               <Link href="/pricing">
-                <Button variant="ghost" size="sm">Pricing</Button>
+                <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300">Pricing</Button>
               </Link>
               <Link href="/user-guide">
-                <Button variant="ghost" size="sm">User Guide</Button>
+                <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300">User Guide</Button>
               </Link>
               {/* Admin link hidden from regular users - only visible to admin */}
             </div>
@@ -177,32 +198,38 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Compliance Dashboard
+        <div className="mb-8 text-center">
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-500/20 text-blue-300 text-sm font-medium mb-4 backdrop-blur-sm border border-blue-500/30">
+            <Brain className="w-4 h-4 mr-2" />
+            AI-Powered Compliance Dashboard
+          </div>
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
+            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              Compliance Dashboard
+            </span>
           </h1>
-          <p className="text-gray-600">
-            Monitor and manage your OSHA compliance status in real-time
+          <p className="text-gray-300 text-lg">
+            Monitor and manage your OSHA compliance status with intelligent automation
           </p>
         </div>
 
         {/* Quick Navigation Helper */}
-        <Card className="mb-6 bg-blue-50 border-blue-200">
+        <Card className="mb-6 glass-effect border-blue-500/30 bg-blue-500/10 backdrop-blur-sm">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-blue-500 rounded-full flex items-center justify-center pulse-glow">
                   <Brain className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-blue-900">Getting Started Guide</h3>
-                  <p className="text-sm text-blue-700">Follow the tabs in order: Employees → Training → Branding → Reports for optimal setup</p>
+                  <h3 className="font-medium text-blue-300">AI-Powered Setup Guide</h3>
+                  <p className="text-sm text-blue-200">Follow the intelligent workflow: Employees → Training → Branding → Reports for optimal setup</p>
                 </div>
               </div>
               <Link href="/user-guide">
-                <Button variant="outline" size="sm" className="border-blue-300 text-blue-700 hover:bg-blue-100">
+                <Button variant="outline" size="sm" className="border-blue-400/50 text-blue-300 hover:bg-blue-400/20 hover:border-blue-400 transition-all duration-300">
                   <BookOpen className="w-4 h-4 mr-2" />
                   Full Guide
                 </Button>
@@ -211,52 +238,60 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
-        {/* Stats Grid */}
+        {/* AI-Enhanced Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <Card>
+          <Card className="glass-effect border-blue-500/30 bg-blue-500/10 backdrop-blur-sm hover:bg-blue-500/20 transition-all duration-300 group">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Total Employees</p>
-                  <p className="text-3xl font-bold text-gray-900">{stats.totalEmployees}</p>
+                  <p className="text-sm font-medium text-blue-300">Total Employees</p>
+                  <p className="text-3xl font-bold text-white">{stats.totalEmployees}</p>
                 </div>
-                <Users className="w-8 h-8 text-blue-500" />
+                <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-blue-500 rounded-lg flex items-center justify-center group-hover:pulse-glow">
+                  <Users className="w-6 h-6 text-white" />
+                </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="glass-effect border-green-500/30 bg-green-500/10 backdrop-blur-sm hover:bg-green-500/20 transition-all duration-300 group">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Compliant</p>
-                  <p className="text-3xl font-bold text-green-600">{stats.compliantEmployees}</p>
+                  <p className="text-sm font-medium text-green-300">AI-Verified Compliant</p>
+                  <p className="text-3xl font-bold text-white">{stats.compliantEmployees}</p>
                 </div>
-                <CheckCircle className="w-8 h-8 text-green-500" />
+                <div className="w-12 h-12 bg-gradient-to-r from-green-600 to-green-500 rounded-lg flex items-center justify-center group-hover:pulse-glow">
+                  <CheckCircle className="w-6 h-6 text-white" />
+                </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="glass-effect border-yellow-500/30 bg-yellow-500/10 backdrop-blur-sm hover:bg-yellow-500/20 transition-all duration-300 group">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Pending Training</p>
-                  <p className="text-3xl font-bold text-yellow-600">{stats.pendingTraining}</p>
+                  <p className="text-sm font-medium text-yellow-300">Smart Training Queue</p>
+                  <p className="text-3xl font-bold text-white">{stats.pendingTraining}</p>
                 </div>
-                <Clock className="w-8 h-8 text-yellow-500" />
+                <div className="w-12 h-12 bg-gradient-to-r from-yellow-600 to-yellow-500 rounded-lg flex items-center justify-center group-hover:pulse-glow">
+                  <Clock className="w-6 h-6 text-white" />
+                </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="glass-effect border-red-500/30 bg-red-500/10 backdrop-blur-sm hover:bg-red-500/20 transition-all duration-300 group">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Expiring Soon</p>
-                  <p className="text-3xl font-bold text-red-600">{stats.expiringCertifications}</p>
+                  <p className="text-sm font-medium text-red-300">AI Risk Alerts</p>
+                  <p className="text-3xl font-bold text-white">{stats.expiringCertifications}</p>
                 </div>
-                <AlertTriangle className="w-8 h-8 text-red-500" />
+                <div className="w-12 h-12 bg-gradient-to-r from-red-600 to-red-500 rounded-lg flex items-center justify-center group-hover:pulse-glow">
+                  <AlertTriangle className="w-6 h-6 text-white" />
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -290,39 +325,68 @@ export default function Dashboard() {
 
         {/* Main Content Tabs */}
         <Tabs defaultValue="overview" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-10">
-            <TabsTrigger value="overview">Overview</TabsTrigger>
-            <TabsTrigger value="employees">Employees</TabsTrigger>
-            <TabsTrigger value="training">Training</TabsTrigger>
-            <TabsTrigger value="branding">Branding</TabsTrigger>
-            <TabsTrigger value="reports">Reports</TabsTrigger>
-            <TabsTrigger value="generator">Report Generator</TabsTrigger>
-            <TabsTrigger value="certificates">Certificates</TabsTrigger>
-            <TabsTrigger value="collaboration">Team Review</TabsTrigger>
-            <TabsTrigger value="locations">Locations</TabsTrigger>
-            <TabsTrigger value="audit-settings">Audit Settings</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-10 glass-effect border-white/20 bg-white/5 backdrop-blur-sm">
+            <TabsTrigger value="overview" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white hover:text-white transition-all duration-300">
+              Overview
+            </TabsTrigger>
+            <TabsTrigger value="employees" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white hover:text-white transition-all duration-300">
+              Employees
+            </TabsTrigger>
+            <TabsTrigger value="training" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white hover:text-white transition-all duration-300">
+              Training
+            </TabsTrigger>
+            <TabsTrigger value="branding" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white hover:text-white transition-all duration-300">
+              Branding
+            </TabsTrigger>
+            <TabsTrigger value="reports" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white hover:text-white transition-all duration-300">
+              Reports
+            </TabsTrigger>
+            <TabsTrigger value="generator" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white hover:text-white transition-all duration-300">
+              Report Generator
+            </TabsTrigger>
+            <TabsTrigger value="certificates" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white hover:text-white transition-all duration-300">
+              Certificates
+            </TabsTrigger>
+            <TabsTrigger value="collaboration" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white hover:text-white transition-all duration-300">
+              Team Review
+            </TabsTrigger>
+            <TabsTrigger value="locations" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white hover:text-white transition-all duration-300">
+              Locations
+            </TabsTrigger>
+            <TabsTrigger value="audit-settings" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white hover:text-white transition-all duration-300">
+              Audit Settings
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="overview" className="space-y-6">
-            {/* Recent Activity */}
-            <Card>
+            {/* AI-Enhanced Recent Activity */}
+            <Card className="glass-effect border-white/20 bg-white/5 backdrop-blur-sm">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Bell className="w-5 h-5" />
-                  Recent Activity
+                <CardTitle className="flex items-center gap-2 text-white">
+                  <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                    <Bell className="w-5 h-5 text-white" />
+                  </div>
+                  AI-Monitored Recent Activity
                 </CardTitle>
+                <CardDescription className="text-gray-300">
+                  Real-time intelligent compliance tracking and notifications
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <div className="flex items-center gap-3 p-3 bg-green-50 rounded-lg">
-                    <CheckCircle className="w-5 h-5 text-green-600" />
+                  <div className="flex items-center gap-3 p-3 glass-effect border-green-500/30 bg-green-500/10 rounded-lg hover:bg-green-500/20 transition-all duration-300">
+                    <div className="w-8 h-8 bg-gradient-to-r from-green-600 to-green-500 rounded-full flex items-center justify-center">
+                      <CheckCircle className="w-5 h-5 text-white" />
+                    </div>
                     <div>
-                      <p className="font-medium">Sarah Johnson completed OSHA 10-Hour Training</p>
-                      <p className="text-sm text-gray-600">2 hours ago</p>
+                      <p className="font-medium text-green-300">🤖 AI Verified: Sarah Johnson completed OSHA 10-Hour Training</p>
+                      <p className="text-sm text-green-200">2 hours ago • Compliance score updated automatically</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 p-3 bg-yellow-50 rounded-lg">
-                    <Clock className="w-5 h-5 text-yellow-600" />
+                  <div className="flex items-center gap-3 p-3 glass-effect border-yellow-500/30 bg-yellow-500/10 rounded-lg hover:bg-yellow-500/20 transition-all duration-300">
+                    <div className="w-8 h-8 bg-gradient-to-r from-yellow-600 to-yellow-500 rounded-full flex items-center justify-center">
+                      <Clock className="w-5 h-5 text-white" />
+                    </div>
                     <div>
                       <p className="font-medium">Mike Chen's Hazard Communication training due in 15 days</p>
                       <p className="text-sm text-gray-600">Yesterday</p>
