@@ -62,10 +62,10 @@ export function Navigation({ onTrialClick, onDemoClick, onLoginClick, user, onLo
                 Pricing
               </a>
               <a 
-                href="/ab-testing"
+                href="/blog"
                 className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium"
               >
-                A/B Testing
+                Blog
               </a>
               <button 
                 onClick={() => scrollToSection('contact')}
