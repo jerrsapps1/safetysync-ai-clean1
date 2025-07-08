@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Navigation } from "@/components/ui/navigation";
 import { TrialSignupDialog } from "@/components/ui/trial-signup-dialog";
-import { DemoRequestDialog } from "@/components/ui/demo-request-dialog";
+// Demo dialog removed - coming soon functionality
 import { LoginDialog } from "@/components/ui/login-dialog";
 import { ProductTour } from "@/components/ui/product-tour";
 import { LiveChatWidget } from "@/components/ui/live-chat-widget";
@@ -51,7 +51,6 @@ import {
 
 export default function LandingPage() {
   const [isTrialDialogOpen, setIsTrialDialogOpen] = useState(false);
-  const [isDemoDialogOpen, setIsDemoDialogOpen] = useState(false);
   
   // A/B Testing hooks
   const heroCtaTest = useABTest('hero_cta_test');
@@ -76,9 +75,12 @@ export default function LandingPage() {
   };
 
   const handleDemoClick = () => {
-    // Track A/B test conversion
-    heroCtaTest.trackConversion(200);
-    setIsDemoDialogOpen(true);
+    // Coming soon functionality
+    toast({
+      title: "Demo Coming Soon",
+      description: "Demo access will be available once the platform is fully ready. Sign up for early access!",
+      duration: 4000,
+    });
   };
 
   const handleLoginClick = () => {
@@ -110,18 +112,12 @@ export default function LandingPage() {
   };
 
   const handleDemoSubmit = (data: any) => {
-    // Track demo request started
-    trackConversionEvent(CONVERSION_EVENTS.DEMO_REQUEST_STARTED);
-    
-    // Show terms dialog before creating account
-    setPendingSignupData({
-      type: 'demo',
-      data: data,
-      userEmail: data.email,
-      planName: 'Enterprise Demo'
+    // Demo functionality disabled for now
+    toast({
+      title: "Demo Coming Soon",
+      description: "Demo access will be available once the platform is fully ready.",
+      duration: 4000,
     });
-    setIsDemoDialogOpen(false);
-    setShowTermsDialog(true);
   };
 
   const handleTermsAccept = async () => {
@@ -274,12 +270,18 @@ export default function LandingPage() {
                 {heroCtaTest.isVariant('variant_a') ? 'Get Started Free' : 'Start Your Free Trial'}
               </Button>
               <Button 
-                onClick={() => window.location.href = '/dashboard'}
+                onClick={() => {
+                  toast({
+                    title: "Demo Coming Soon",
+                    description: "Full demo access will be available once the platform is ready for production use.",
+                    duration: 4000,
+                  });
+                }}
                 variant="outline"
                 className="bg-white/10 border-white/20 text-white hover:bg-white/20 px-8 py-4 rounded-lg text-lg font-semibold backdrop-blur-sm min-w-[200px]"
               >
                 <Settings className="w-5 h-5 mr-2" />
-                Demo Access
+                Demo Coming Soon
               </Button>
               <Button 
                 onClick={() => {
@@ -1001,11 +1003,7 @@ export default function LandingPage() {
         onClose={() => setIsTrialDialogOpen(false)} 
         onSubmit={handleTrialSubmit}
       />
-      <DemoRequestDialog 
-        isOpen={isDemoDialogOpen} 
-        onClose={() => setIsDemoDialogOpen(false)} 
-        onSubmit={handleDemoSubmit}
-      />
+      {/* Demo dialog removed - coming soon functionality */}
       <LoginDialog 
         isOpen={isLoginDialogOpen} 
         onClose={() => setIsLoginDialogOpen(false)}
