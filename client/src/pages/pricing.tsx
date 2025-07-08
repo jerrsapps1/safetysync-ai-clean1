@@ -387,10 +387,10 @@ export default function PricingPage() {
               <h3 className="text-xl font-bold text-center mb-4">Important Billing Information</h3>
               <div className="text-center space-y-2">
                 <p className="text-gray-700">
-                  <strong>All subscription plans:</strong> After your 90-day free period, certificate and card generation charges ($0.50 per item) will be added to your monthly billing automatically.
+                  <strong>Certificate & Card Generation:</strong> $49/month base plan includes 50 certificates + 50 digital wallet cards. Additional usage beyond included amounts is billed at $0.75 per item automatically.
                 </p>
                 <p className="text-sm text-gray-600">
-                  This usage-based billing ensures you only pay for what you actually generate while maintaining professional quality standards across all tiers.
+                  This hybrid subscription model provides predictable monthly costs with fair overage pricing for heavier usage while maintaining professional quality standards.
                 </p>
               </div>
             </CardContent>
