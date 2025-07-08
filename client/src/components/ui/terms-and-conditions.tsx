@@ -137,12 +137,33 @@ export function TermsAndConditions({
                     <br />
                     <strong>Payment Terms:</strong> Payment is due immediately upon subscription activation.
                     <br />
+                    <strong>Certificate & Card Generation:</strong> All plans include a $49/month base fee for certificate and digital wallet card generation, which includes 50 certificates and 50 digital wallet cards monthly. Additional usage beyond included amounts is billed at $0.75 per item.
+                    <br />
+                    <strong>Usage Billing:</strong> Certificate and digital wallet card overage charges are automatically added to your monthly billing based on actual usage.
+                    <br />
                     <strong>Plan Changes:</strong> Upgrades take effect immediately; downgrades take effect at the next billing cycle.
+                    <br />
+                    <strong>Auto-Renewal:</strong> Subscriptions automatically renew monthly unless cancelled with 30 days notice.
                   </p>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900">3. AI SERVICES AND DATA PROCESSING</h4>
+                  <h4 className="font-semibold text-gray-900">3. CERTIFICATE AND DIGITAL WALLET CARD PRICING</h4>
+                  <p className="mt-1">
+                    <strong>Hybrid Subscription Model:</strong> All plans include a $49/month base subscription for certificate and digital wallet card generation services.
+                    <br />
+                    <strong>Included Usage:</strong> The base subscription includes 50 certificates and 50 digital wallet cards per month.
+                    <br />
+                    <strong>Overage Charges:</strong> Additional certificates or digital wallet cards beyond the included amounts are charged at $0.75 per item.
+                    <br />
+                    <strong>Automatic Billing:</strong> Overage charges are automatically calculated and added to your monthly invoice based on actual usage.
+                    <br />
+                    <strong>Professional Quality:</strong> All generated certificates and digital wallet cards meet OSHA, ANSI, and EM 385-1-1 compliance standards.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-gray-900">4. AI SERVICES AND DATA PROCESSING</h4>
                   <p className="mt-1">
                     <strong>AI Features:</strong> Our platform uses artificial intelligence for clone detection, compliance analysis, risk assessment, and chat assistance.
                     <br />
@@ -155,7 +176,7 @@ export function TermsAndConditions({
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900">4. API ACCESS AND DEVELOPER SERVICES</h4>
+                  <h4 className="font-semibold text-gray-900">5. API ACCESS AND DEVELOPER SERVICES</h4>
                   <p className="mt-1">
                     <strong>API Usage:</strong> API access is governed by rate limits and fair use policies outlined in our developer portal.
                     <br />
@@ -181,7 +202,7 @@ export function TermsAndConditions({
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900">6. COLLABORATION AND MULTI-LOCATION FEATURES</h4>
+                  <h4 className="font-semibold text-gray-900">7. COLLABORATION AND MULTI-LOCATION FEATURES</h4>
                   <p className="mt-1">
                     <strong>Team Collaboration:</strong> Real-time collaboration tools enable secure team communication within your organization.
                     <br />
@@ -194,7 +215,7 @@ export function TermsAndConditions({
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900">7. CANCELLATION AND REFUND POLICY</h4>
+                  <h4 className="font-semibold text-gray-900">8. CANCELLATION AND REFUND POLICY</h4>
                   <p className="mt-1">
                     <strong>Cancellation:</strong> You may cancel your subscription at any time with 30 days written notice.
                     <br />
@@ -220,7 +241,7 @@ export function TermsAndConditions({
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900">5. SERVICE AVAILABILITY</h4>
+                  <h4 className="font-semibold text-gray-900">6. SERVICE AVAILABILITY</h4>
                   <p className="mt-1">
                     <strong>Uptime:</strong> We strive for 99.9% uptime but do not guarantee uninterrupted service.
                     <br />
