@@ -1,0 +1,171 @@
+{
+  "domain": "safetysync.ai",
+  "records": [
+    {
+      "type": "A",
+      "name": "@",
+      "value": "YOUR_SERVER_IP",
+      "ttl": 300,
+      "priority": null,
+      "comment": "Primary domain A record"
+    },
+    {
+      "type": "A",
+      "name": "app",
+      "value": "YOUR_SERVER_IP",
+      "ttl": 300,
+      "priority": null,
+      "comment": "Main application subdomain"
+    },
+    {
+      "type": "A",
+      "name": "api",
+      "value": "YOUR_SERVER_IP",
+      "ttl": 300,
+      "priority": null,
+      "comment": "API endpoint subdomain"
+    },
+    {
+      "type": "A",
+      "name": "admin",
+      "value": "YOUR_SERVER_IP",
+      "ttl": 300,
+      "priority": null,
+      "comment": "Admin portal subdomain"
+    },
+    {
+      "type": "CNAME",
+      "name": "www",
+      "value": "@",
+      "ttl": 300,
+      "priority": null,
+      "comment": "WWW redirect to primary domain"
+    },
+    {
+      "type": "CNAME",
+      "name": "docs",
+      "value": "app.safetysync.ai",
+      "ttl": 300,
+      "priority": null,
+      "comment": "Documentation subdomain"
+    },
+    {
+      "type": "CNAME",
+      "name": "blog",
+      "value": "app.safetysync.ai",
+      "ttl": 300,
+      "priority": null,
+      "comment": "Blog subdomain"
+    },
+    {
+      "type": "CNAME",
+      "name": "status",
+      "value": "status.replit.com",
+      "ttl": 300,
+      "priority": null,
+      "comment": "Status page (if using external service)"
+    },
+    {
+      "type": "TXT",
+      "name": "@",
+      "value": "v=spf1 include:_spf.google.com ~all",
+      "ttl": 300,
+      "priority": null,
+      "comment": "SPF record for email authentication"
+    },
+    {
+      "type": "TXT",
+      "name": "_dmarc",
+      "value": "v=DMARC1; p=quarantine; rua=mailto:admin@safetysync.ai",
+      "ttl": 300,
+      "priority": null,
+      "comment": "DMARC policy for email security"
+    },
+    {
+      "type": "TXT",
+      "name": "@",
+      "value": "google-site-verification=YOUR_VERIFICATION_CODE",
+      "ttl": 300,
+      "priority": null,
+      "comment": "Google Search Console verification"
+    },
+    {
+      "type": "CAA",
+      "name": "@",
+      "value": "0 issue \"letsencrypt.org\"",
+      "ttl": 300,
+      "priority": null,
+      "comment": "Certificate Authority Authorization for Let's Encrypt"
+    },
+    {
+      "type": "CAA",
+      "name": "@",
+      "value": "0 iodef \"mailto:admin@safetysync.ai\"",
+      "ttl": 300,
+      "priority": null,
+      "comment": "CAA incident reporting email"
+    },
+    {
+      "type": "MX",
+      "name": "@",
+      "value": "mail.safetysync.ai",
+      "ttl": 300,
+      "priority": 10,
+      "comment": "Mail server (if using custom email)"
+    },
+    {
+      "type": "A",
+      "name": "staging",
+      "value": "YOUR_STAGING_IP",
+      "ttl": 300,
+      "priority": null,
+      "comment": "Staging environment"
+    },
+    {
+      "type": "A",
+      "name": "dev",
+      "value": "YOUR_DEV_IP",
+      "ttl": 300,
+      "priority": null,
+      "comment": "Development environment"
+    }
+  ],
+  "ssl_certificates": [
+    {
+      "type": "wildcard",
+      "domain": "*.safetysync.ai",
+      "provider": "letsencrypt",
+      "auto_renew": true
+    },
+    {
+      "type": "single",
+      "domain": "safetysync.ai",
+      "provider": "letsencrypt",
+      "auto_renew": true
+    }
+  ],
+  "cdn_configuration": {
+    "provider": "cloudflare",
+    "settings": {
+      "ssl": "full",
+      "minify": {
+        "css": true,
+        "js": true,
+        "html": true
+      },
+      "compression": "gzip",
+      "browser_cache_ttl": 31536000,
+      "edge_cache_ttl": 86400
+    }
+  },
+  "monitoring": {
+    "uptime_checks": [
+      "https://app.safetysync.ai/health",
+      "https://api.safetysync.ai/health",
+      "https://admin.safetysync.ai/health"
+    ],
+    "dns_monitoring": true,
+    "ssl_monitoring": true,
+    "performance_monitoring": true
+  }
+}
