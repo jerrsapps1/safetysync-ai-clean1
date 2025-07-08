@@ -1,4 +1,4 @@
-import { DNSManagement } from "@/components/ui/dns-management";
+import DNSManagement from "@/components/dns-management";
 import { Navigation } from "@/components/ui/navigation";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";

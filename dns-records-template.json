@@ -1,0 +1,238 @@
+{
+  "domain": "safetysync.ai",
+  "instructions": "Replace the bracketed values with your actual information",
+  "records": [
+    {
+      "type": "A",
+      "name": "@",
+      "value": "[YOUR_REPLIT_IP_OR_USE_CNAME]",
+      "ttl": 300,
+      "priority": null,
+      "comment": "Primary domain - Get from Replit deployment settings"
+    },
+    {
+      "type": "A",
+      "name": "app",
+      "value": "[YOUR_REPLIT_IP_OR_USE_CNAME]",
+      "ttl": 300,
+      "priority": null,
+      "comment": "Main application subdomain"
+    },
+    {
+      "type": "A",
+      "name": "api",
+      "value": "[YOUR_REPLIT_IP_OR_USE_CNAME]",
+      "ttl": 300,
+      "priority": null,
+      "comment": "API endpoint subdomain"
+    },
+    {
+      "type": "A",
+      "name": "admin",
+      "value": "[YOUR_REPLIT_IP_OR_USE_CNAME]",
+      "ttl": 300,
+      "priority": null,
+      "comment": "Admin portal subdomain"
+    },
+    {
+      "type": "CNAME",
+      "name": "www",
+      "value": "safetysync.ai",
+      "ttl": 300,
+      "priority": null,
+      "comment": "WWW redirect to primary domain"
+    },
+    {
+      "type": "CNAME",
+      "name": "docs",
+      "value": "app.safetysync.ai",
+      "ttl": 300,
+      "priority": null,
+      "comment": "Documentation subdomain"
+    },
+    {
+      "type": "CNAME",
+      "name": "blog",
+      "value": "app.safetysync.ai",
+      "ttl": 300,
+      "priority": null,
+      "comment": "Blog subdomain"
+    },
+    {
+      "type": "CNAME",
+      "name": "assets",
+      "value": "app.safetysync.ai",
+      "ttl": 300,
+      "priority": null,
+      "comment": "Static assets subdomain"
+    },
+    {
+      "type": "CNAME",
+      "name": "cdn",
+      "value": "app.safetysync.ai",
+      "ttl": 300,
+      "priority": null,
+      "comment": "CDN subdomain"
+    },
+    {
+      "type": "MX",
+      "name": "@",
+      "value": "ASPMX.L.GOOGLE.COM",
+      "ttl": 300,
+      "priority": 1,
+      "comment": "Google Workspace primary mail server"
+    },
+    {
+      "type": "MX",
+      "name": "@",
+      "value": "ALT1.ASPMX.L.GOOGLE.COM",
+      "ttl": 300,
+      "priority": 5,
+      "comment": "Google Workspace backup mail server"
+    },
+    {
+      "type": "MX",
+      "name": "@",
+      "value": "ALT2.ASPMX.L.GOOGLE.COM",
+      "ttl": 300,
+      "priority": 5,
+      "comment": "Google Workspace backup mail server"
+    },
+    {
+      "type": "MX",
+      "name": "@",
+      "value": "ALT3.ASPMX.L.GOOGLE.COM",
+      "ttl": 300,
+      "priority": 10,
+      "comment": "Google Workspace backup mail server"
+    },
+    {
+      "type": "MX",
+      "name": "@",
+      "value": "ALT4.ASPMX.L.GOOGLE.COM",
+      "ttl": 300,
+      "priority": 10,
+      "comment": "Google Workspace backup mail server"
+    },
+    {
+      "type": "TXT",
+      "name": "@",
+      "value": "v=spf1 include:_spf.google.com ~all",
+      "ttl": 300,
+      "priority": null,
+      "comment": "SPF record for Google Workspace email"
+    },
+    {
+      "type": "TXT",
+      "name": "_dmarc",
+      "value": "v=DMARC1; p=quarantine; rua=mailto:admin@safetysync.ai; ruf=mailto:admin@safetysync.ai; fo=1",
+      "ttl": 300,
+      "priority": null,
+      "comment": "DMARC policy for email security"
+    },
+    {
+      "type": "TXT",
+      "name": "@",
+      "value": "google-site-verification=[GET_FROM_SEARCH_CONSOLE]",
+      "ttl": 300,
+      "priority": null,
+      "comment": "Google Search Console verification - Get from https://search.google.com/search-console"
+    },
+    {
+      "type": "TXT",
+      "name": "@",
+      "value": "facebook-domain-verification=[GET_FROM_FACEBOOK_BUSINESS]",
+      "ttl": 300,
+      "priority": null,
+      "comment": "Facebook domain verification - Get from Facebook Business Manager"
+    },
+    {
+      "type": "TXT",
+      "name": "@",
+      "value": "MS=[GET_FROM_BING_WEBMASTER]",
+      "ttl": 300,
+      "priority": null,
+      "comment": "Microsoft Bing verification - Get from https://www.bing.com/webmasters"
+    },
+    {
+      "type": "CAA",
+      "name": "@",
+      "value": "0 issue \"letsencrypt.org\"",
+      "ttl": 300,
+      "priority": null,
+      "comment": "Certificate Authority Authorization for Let's Encrypt"
+    },
+    {
+      "type": "CAA",
+      "name": "@",
+      "value": "0 iodef \"mailto:admin@safetysync.ai\"",
+      "ttl": 300,
+      "priority": null,
+      "comment": "CAA incident reporting email"
+    },
+    {
+      "type": "A",
+      "name": "staging",
+      "value": "[YOUR_STAGING_IP_OR_SUBDOMAIN]",
+      "ttl": 300,
+      "priority": null,
+      "comment": "Staging environment - Can be same as production initially"
+    },
+    {
+      "type": "A",
+      "name": "dev",
+      "value": "[YOUR_DEV_IP_OR_SUBDOMAIN]",
+      "ttl": 300,
+      "priority": null,
+      "comment": "Development environment - Can be same as production initially"
+    }
+  ],
+  "verification_steps": {
+    "google_search_console": {
+      "url": "https://search.google.com/search-console",
+      "steps": [
+        "Add property: safetysync.ai",
+        "Choose 'Domain' verification method",
+        "Copy the TXT record value",
+        "Add to DNS with name '@'"
+      ]
+    },
+    "facebook_business": {
+      "url": "https://business.facebook.com",
+      "steps": [
+        "Go to Brand Safety → Domains",
+        "Add safetysync.ai",
+        "Copy verification code",
+        "Add as TXT record with name '@'"
+      ]
+    },
+    "bing_webmaster": {
+      "url": "https://www.bing.com/webmasters",
+      "steps": [
+        "Add site: safetysync.ai",
+        "Choose DNS verification",
+        "Copy verification code",
+        "Add as TXT record with name '@'"
+      ]
+    },
+    "google_workspace": {
+      "url": "https://workspace.google.com",
+      "steps": [
+        "Sign up for Google Workspace",
+        "Add safetysync.ai domain",
+        "Follow domain verification steps",
+        "Configure MX records as shown above"
+      ]
+    }
+  },
+  "replit_deployment": {
+    "custom_domain_setup": [
+      "Go to your Replit deployment",
+      "Navigate to 'Domains' tab",
+      "Add safetysync.ai as custom domain",
+      "Copy the provided IP or CNAME target",
+      "Update DNS records accordingly"
+    ],
+    "ssl_certificate": "Automatically handled by Replit for custom domains"
+  }
+}
