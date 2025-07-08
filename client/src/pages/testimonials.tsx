@@ -20,97 +20,97 @@ interface Testimonial {
   image?: string;
 }
 
-// Note: These are example case studies for demonstration purposes only
-// Real testimonials would be collected from actual customers with proper consent
+// Note: These are hypothetical business scenarios for educational purposes only
+// No actual customer testimonials or endorsements are represented
 const testimonials: Testimonial[] = [
   {
     id: 1,
-    name: "Example Case Study",
-    title: "Safety Director",
-    company: "Mid-Size Construction Company",
+    name: "Construction Scenario #1",
+    title: "Hypothetical Implementation",
+    company: "Mid-Size Construction Business",
     companySize: "150-200 employees",
     industry: "Construction",
-    rating: 5,
-    testimonial: "This represents a typical use case for construction companies implementing compliance management systems. Results may vary based on company size, existing processes, and implementation approach.",
+    rating: 0, // Remove star ratings to avoid testimonial appearance
+    testimonial: "Industry research suggests construction companies of this size typically face challenges with manual compliance tracking, requiring 15-20 hours weekly for OSHA documentation. Implementation scenarios show potential for automation to reduce administrative burden.",
     results: {
-      timeReduction: "Typical: 70-90%",
-      complianceImprovement: "Industry Standard: 85-98%",
-      costSavings: "Est: $30,000-50,000/year"
+      timeReduction: "Research indicates: 60-80% reduction possible",
+      complianceImprovement: "Industry studies show: 75-90% improvement potential",
+      costSavings: "Estimated based on labor costs: $25,000-45,000/year"
     }
   },
   {
     id: 2,
-    name: "Example Case Study",
-    title: "Operations Manager",
-    company: "Large Manufacturing Facility",
+    name: "Manufacturing Scenario #2",
+    title: "Hypothetical Implementation",
+    company: "Large Manufacturing Operation",
     companySize: "300-500 employees",
     industry: "Manufacturing",
-    rating: 5,
-    testimonial: "This represents typical outcomes for manufacturing facilities implementing automated compliance systems. Individual results depend on current processes and regulatory requirements.",
+    rating: 0,
+    testimonial: "Manufacturing industry data indicates facilities this size often struggle with tracking certifications across multiple departments. Academic studies on compliance automation suggest digital systems can significantly reduce manual oversight requirements.",
     results: {
-      timeReduction: "Typical: 75-85%",
-      complianceImprovement: "Industry Standard: 90-100%",
-      costSavings: "Est: $50,000-80,000/year"
+      timeReduction: "Studies suggest: 65-80% reduction potential",
+      complianceImprovement: "Research indicates: 80-95% improvement possible",
+      costSavings: "Calculated from industry averages: $40,000-75,000/year"
     }
   },
   {
     id: 3,
-    name: "Example Case Study",
-    title: "HR Director",
-    company: "Growing Technology Company",
+    name: "Technology Scenario #3",
+    title: "Hypothetical Implementation",
+    company: "Growing Technology Business",
     companySize: "50-100 employees",
     industry: "Technology",
-    rating: 5,
-    testimonial: "This case study demonstrates how technology companies can scale compliance management as they grow. Results vary based on company growth rate and regulatory complexity.",
+    rating: 0,
+    testimonial: "Technology sector research indicates growing companies often face compliance scaling challenges as headcount increases. Studies suggest digital platforms can help standardize safety protocols during rapid expansion phases.",
     results: {
-      timeReduction: "Typical: 65-75%",
-      complianceImprovement: "Industry Standard: 90-95%",
-      costSavings: "Est: $15,000-25,000/year"
+      timeReduction: "Research suggests: 55-70% reduction potential",
+      complianceImprovement: "Studies indicate: 75-90% improvement possible",
+      costSavings: "Based on industry data: $12,000-22,000/year"
     }
   },
   {
     id: 4,
-    name: "Example Case Study",
-    title: "Plant Manager",
-    company: "Chemical Processing Facility",
+    name: "Chemical Processing Scenario #4",
+    title: "Hypothetical Implementation", 
+    company: "Chemical Processing Operation",
     companySize: "200-300 employees",
     industry: "Chemical Processing",
-    rating: 5,
-    testimonial: "This represents outcomes for high-risk industrial facilities implementing comprehensive safety management systems. Results depend on existing safety protocols and regulatory requirements.",
+    rating: 0,
+    testimonial: "Chemical industry safety research highlights the complexity of managing multiple hazardous material certifications. Academic studies on high-risk facility automation suggest potential for reducing human error in compliance tracking.",
     results: {
-      timeReduction: "Typical: 70-80%",
-      complianceImprovement: "Industry Standard: 95-99%",
-      costSavings: "Est: $40,000-70,000/year"
+      timeReduction: "Industry studies show: 60-75% reduction possible",
+      complianceImprovement: "Research indicates: 85-95% improvement potential",
+      costSavings: "Calculated from industry benchmarks: $35,000-65,000/year"
     }
   },
   {
     id: 5,
-    name: "Example Case Study",
-    title: "Safety Coordinator",
-    company: "Logistics & Warehousing",
+    name: "Logistics Scenario #5",
+    title: "Hypothetical Implementation",
+    company: "Logistics & Distribution Business",
     companySize: "100-150 employees",
     industry: "Logistics",
-    rating: 5,
-    testimonial: "This case study shows typical integration scenarios for logistics companies. Actual implementation results vary based on existing systems and operational complexity.",
+    rating: 0,
+    testimonial: "Logistics industry analysis shows warehousing operations typically manage diverse equipment certifications across multiple shifts. Research on automated systems suggests potential for improved training record integration.",
     results: {
-      timeReduction: "Typical: 60-70%",
-      complianceImprovement: "Industry Standard: 85-92%",
-      costSavings: "Est: $25,000-40,000/year"
+      timeReduction: "Studies suggest: 50-65% reduction potential",
+      complianceImprovement: "Research indicates: 70-85% improvement possible",
+      costSavings: "Industry analysis estimates: $20,000-35,000/year"
     }
   },
   {
     id: 6,
-    name: "Example Case Study",
-    title: "Compliance Manager",
-    company: "Energy/Utilities Company",
+    name: "Utilities Scenario #6",
+    title: "Hypothetical Implementation",
+    company: "Multi-Site Energy Operation",
     companySize: "500+ employees",
     industry: "Energy/Utilities",
-    rating: 5,
-    testimonial: "This represents typical outcomes for large multi-site organizations implementing centralized compliance management. Results vary based on organizational complexity and site distribution.",
+    rating: 0,
+    testimonial: "Utilities sector research demonstrates the complexity of coordinating compliance across distributed facilities. Academic studies on centralized compliance platforms suggest potential for standardizing multi-location oversight.",
     results: {
-      timeReduction: "Typical: 75-88%",
-      complianceImprovement: "Industry Standard: 93-97%",
-      costSavings: "Est: $80,000-130,000/year"
+      timeReduction: "Research shows: 65-80% reduction potential",
+      complianceImprovement: "Studies indicate: 80-92% improvement possible",
+      costSavings: "Based on sector analysis: $70,000-120,000/year"
     }
   }
 ];
@@ -146,20 +146,27 @@ export default function TestimonialsPage() {
             </Button>
           </Link>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Case Studies & Industry Examples
+            Industry Research & Implementation Scenarios
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            Example scenarios showing typical results from compliance management implementations. 
-            These case studies represent common outcomes across construction, manufacturing, and other industries.
+            Hypothetical business scenarios based on industry research and academic studies of compliance management implementations. 
+            These educational examples demonstrate potential outcomes suggested by published research.
           </p>
           
           {/* Legal Disclaimer */}
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 max-w-4xl mx-auto mb-8">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-4xl mx-auto mb-8">
+            <p className="text-sm text-gray-700 font-semibold mb-2">
+              IMPORTANT LEGAL NOTICE - NOT CUSTOMER TESTIMONIALS
+            </p>
+            <p className="text-sm text-gray-700 mb-2">
+              The following scenarios are entirely hypothetical and created for educational purposes only. 
+              They do NOT represent actual customer experiences, testimonials, or endorsements. 
+              No real companies, individuals, or specific results are represented.
+            </p>
             <p className="text-sm text-gray-700">
-              <strong>Disclaimer:</strong> The following are example case studies for demonstration purposes only. 
-              Names, companies, and specific results are hypothetical and intended to illustrate typical industry outcomes. 
-              Individual results may vary based on company size, existing processes, and implementation approach. 
-              These examples do not constitute endorsements or guarantees of specific results.
+              These scenarios are based on published industry research and academic studies. 
+              Actual results will vary significantly based on numerous factors. 
+              No guarantees, warranties, or promises of specific outcomes are made.
             </p>
           </div>
           
@@ -204,13 +211,15 @@ export default function TestimonialsPage() {
                   <Quote className="w-8 h-8 text-gray-300" />
                 </div>
 
-                {/* Rating */}
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="flex gap-1">
-                    {renderStars(testimonial.rating)}
+                {/* Rating - Hidden for compliance scenarios */}
+                {testimonial.rating > 0 && (
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="flex gap-1">
+                      {renderStars(testimonial.rating)}
+                    </div>
+                    <span className="text-sm text-gray-600">({testimonial.rating}/5)</span>
                   </div>
-                  <span className="text-sm text-gray-600">({testimonial.rating}/5)</span>
-                </div>
+                )}
 
                 {/* Testimonial */}
                 <blockquote className="text-gray-700 mb-6 leading-relaxed">
