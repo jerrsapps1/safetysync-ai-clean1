@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Copy, Check, AlertCircle, Globe, Mail, Shield, Search } from "lucide-react";
+import { Copy, Check, AlertCircle, Globe, Mail, Shield, Search, Send } from "lucide-react";
 
 interface DNSRecord {
   type: string;
@@ -188,11 +188,12 @@ export default function DNSManagement() {
       </Card>
 
       <Tabs defaultValue="setup" className="w-full">
-        <TabsList className="grid w-full grid-cols-4">
+        <TabsList className="grid w-full grid-cols-5">
           <TabsTrigger value="setup">Quick Setup</TabsTrigger>
           <TabsTrigger value="records">DNS Records</TabsTrigger>
           <TabsTrigger value="verification">Verification</TabsTrigger>
           <TabsTrigger value="status">Status Check</TabsTrigger>
+          <TabsTrigger value="email-test">Email Test</TabsTrigger>
         </TabsList>
 
         {/* Quick Setup Tab */}
@@ -398,7 +399,128 @@ export default function DNSManagement() {
             </CardContent>
           </Card>
         </TabsContent>
+
+        <TabsContent value="email-test" className="space-y-6">
+          <div className="glass-card p-6">
+            <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+              <Mail className="w-5 h-5" />
+              Email Testing
+            </h3>
+            <p className="text-gray-600 mb-6">
+              Test your Microsoft 365 email setup after DNS records have propagated (usually 15-30 minutes).
+            </p>
+            
+            <EmailTestForm />
+          </div>
+        </TabsContent>
       </Tabs>
     </div>
+  );
+}
+
+function EmailTestForm() {
+  const [formData, setFormData] = useState({
+    to: '',
+    subject: 'SafetySync.AI Email Test',
+    message: 'This is a test email from SafetySync.AI platform.'
+  });
+  const [isLoading, setIsLoading] = useState(false);
+  const [result, setResult] = useState<{ success: boolean; message: string } | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setResult(null);
+
+    try {
+      const response = await fetch('/api/test-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      setResult(data);
+    } catch (error) {
+      setResult({
+        success: false,
+        message: 'Failed to send test email. Please try again.'
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div>
+        <label htmlFor="to" className="block text-sm font-medium text-gray-700 mb-1">
+          Send To Email
+        </label>
+        <input
+          type="email"
+          id="to"
+          value={formData.to}
+          onChange={(e) => setFormData(prev => ({ ...prev, to: e.target.value }))}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="admin@safetysync.ai"
+          required
+        />
+      </div>
+
+      <div>
+        <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
+          Subject
+        </label>
+        <input
+          type="text"
+          id="subject"
+          value={formData.subject}
+          onChange={(e) => setFormData(prev => ({ ...prev, subject: e.target.value }))}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+          Message
+        </label>
+        <textarea
+          id="message"
+          value={formData.message}
+          onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+          rows={4}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      <button
+        type="submit"
+        disabled={isLoading}
+        className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+      >
+        {isLoading ? (
+          <>
+            <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            Sending...
+          </>
+        ) : (
+          <>
+            <Send className="w-4 h-4" />
+            Send Test Email
+          </>
+        )}
+      </button>
+
+      {result && (
+        <div className={`p-4 rounded-md ${result.success ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`}>
+          <p className={`text-sm ${result.success ? 'text-green-700' : 'text-red-700'}`}>
+            {result.message}
+          </p>
+        </div>
+      )}
+    </form>
   );
 }

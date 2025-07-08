@@ -241,6 +241,53 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Email automation API routes
   app.use("/api/email-automation", emailAutomationRoutes);
 
+  // Email test endpoint (for testing Microsoft 365 setup)
+  app.post('/api/test-email', async (req, res) => {
+    const { to, subject, message } = req.body;
+    
+    try {
+      const { emailService } = await import('./email-service-microsoft365');
+      
+      // Test connection first
+      const connectionTest = await emailService.testConnection();
+      if (!connectionTest) {
+        return res.status(500).json({ 
+          success: false, 
+          message: 'Email service connection failed. Check EMAIL_USER and EMAIL_PASSWORD environment variables.' 
+        });
+      }
+      
+      // Send test email
+      await emailService.sendEmail({
+        to,
+        subject: subject || 'SafetySync.AI Email Test',
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #3B82F6;">SafetySync.AI Email Test</h2>
+            <p>${message || 'This is a test email from your SafetySync.AI platform.'}</p>
+            <p>If you receive this email, your Microsoft 365 email configuration is working correctly!</p>
+            <hr style="margin: 20px 0; border: none; border-top: 1px solid #eee;">
+            <p style="color: #666; font-size: 12px;">
+              Sent from SafetySync.AI Email Testing System<br>
+              Time: ${new Date().toLocaleString()}
+            </p>
+          </div>
+        `
+      });
+      
+      res.json({ 
+        success: true, 
+        message: `Test email sent successfully to ${to}` 
+      });
+    } catch (error) {
+      console.error('Email test error:', error);
+      res.status(500).json({ 
+        success: false, 
+        message: `Email test failed: ${error.message}` 
+      });
+    }
+  });
+
   // A/B Testing API endpoint for tracking conversions
   app.post("/api/ab-testing/conversion", async (req, res) => {
     try {
