@@ -54,7 +54,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
         "Basic dashboard",
         "Custom branding",
         "CSV exports",
-        "Certificate & card generation (FREE first 90 days, then $0.50 per item)"
+        "Certificate & card generation ($49/month base: 50 items included, $0.75 overage)"
       ]
     },
     {
@@ -71,7 +71,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
         "Advanced dashboard",
         "API integrations",
         "Priority support",
-        "Certificate & card generation (FREE first 90 days, then $0.50 per item)"
+        "Certificate & card generation ($49/month base: 50 items included, $0.75 overage)"
       ]
     },
     {
@@ -90,7 +90,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
         "SLA guarantee",
         "Custom workflows",
         "Audit assistance",
-        "Certificate & card generation (FREE first 90 days, then $0.50 per item)"
+        "Certificate & card generation ($49/month base: 50 items included, $0.75 overage)"
       ]
     },
     {
@@ -107,7 +107,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
         "White-label solution",
         "Unlimited integrations",
         "Dedicated infrastructure",
-        "Certificate & card generation (FREE first 90 days, then $0.50 per item)"
+        "Certificate & card generation ($49/month base: 50 items included, $0.75 overage)"
       ]
     }
   ];
