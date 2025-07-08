@@ -190,7 +190,12 @@ export default function SEOBlogPage() {
                       <Calendar className="w-4 h-4 ml-3 mr-1" />
                       {new Date(post.publishDate).toLocaleDateString()}
                     </div>
-                    <Button variant="ghost" size="sm" className="text-blue-600 hover:text-blue-800">
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      className="text-blue-600 hover:text-blue-800"
+                      onClick={() => window.open(`/blog/${post.slug}`, '_blank')}
+                    >
                       Read More <ArrowRight className="w-4 h-4 ml-1" />
                     </Button>
                   </div>
@@ -226,7 +231,10 @@ export default function SEOBlogPage() {
                       {post.readTime}m
                     </div>
                   </div>
-                  <CardTitle className="text-lg leading-tight hover:text-blue-600 cursor-pointer line-clamp-2">
+                  <CardTitle 
+                    className="text-lg leading-tight hover:text-blue-600 cursor-pointer line-clamp-2"
+                    onClick={() => window.open(`/blog/${post.slug}`, '_blank')}
+                  >
                     {post.title}
                   </CardTitle>
                 </CardHeader>
@@ -240,7 +248,12 @@ export default function SEOBlogPage() {
                     <span>{new Date(post.publishDate).toLocaleDateString()}</span>
                   </div>
                   
-                  <Button variant="outline" size="sm" className="w-full text-xs">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="w-full text-xs"
+                    onClick={() => window.open(`/blog/${post.slug}`, '_blank')}
+                  >
                     Read Article
                   </Button>
                 </CardContent>
