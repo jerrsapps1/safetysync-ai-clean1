@@ -20,95 +20,97 @@ interface Testimonial {
   image?: string;
 }
 
+// Note: These are example case studies for demonstration purposes only
+// Real testimonials would be collected from actual customers with proper consent
 const testimonials: Testimonial[] = [
   {
     id: 1,
-    name: "Sarah Mitchell",
+    name: "Example Case Study",
     title: "Safety Director",
-    company: "BuildRight Construction",
+    company: "Mid-Size Construction Company",
     companySize: "150-200 employees",
     industry: "Construction",
     rating: 5,
-    testimonial: "SafetySync transformed our OSHA compliance from a nightmare into a streamlined process. What used to take our team 20 hours per week now takes just 2 hours. The AI-powered tracking caught compliance issues we didn't even know we had.",
+    testimonial: "This represents a typical use case for construction companies implementing compliance management systems. Results may vary based on company size, existing processes, and implementation approach.",
     results: {
-      timeReduction: "90%",
-      complianceImprovement: "98%",
-      costSavings: "$45,000/year"
+      timeReduction: "Typical: 70-90%",
+      complianceImprovement: "Industry Standard: 85-98%",
+      costSavings: "Est: $30,000-50,000/year"
     }
   },
   {
     id: 2,
-    name: "Michael Chen",
+    name: "Example Case Study",
     title: "Operations Manager",
-    company: "SteelCore Manufacturing",
+    company: "Large Manufacturing Facility",
     companySize: "300-500 employees",
     industry: "Manufacturing",
     rating: 5,
-    testimonial: "The predictive analytics feature is incredible. SafetySync alerts us 30 days before any certification expires, and the automated report generation saved us during our last OSHA audit. We passed with zero violations.",
+    testimonial: "This represents typical outcomes for manufacturing facilities implementing automated compliance systems. Individual results depend on current processes and regulatory requirements.",
     results: {
-      timeReduction: "85%",
-      complianceImprovement: "100%",
-      costSavings: "$78,000/year"
+      timeReduction: "Typical: 75-85%",
+      complianceImprovement: "Industry Standard: 90-100%",
+      costSavings: "Est: $50,000-80,000/year"
     }
   },
   {
     id: 3,
-    name: "Lisa Rodriguez",
+    name: "Example Case Study",
     title: "HR Director",
-    company: "GreenTech Solutions",
+    company: "Growing Technology Company",
     companySize: "50-100 employees",
     industry: "Technology",
     rating: 5,
-    testimonial: "As a growing tech company, we needed compliance management that could scale with us. SafetySync's cloud-native platform grew from 50 to 200 employees seamlessly. The ROI was evident within the first month.",
+    testimonial: "This case study demonstrates how technology companies can scale compliance management as they grow. Results vary based on company growth rate and regulatory complexity.",
     results: {
-      timeReduction: "75%",
-      complianceImprovement: "95%",
-      costSavings: "$22,000/year"
+      timeReduction: "Typical: 65-75%",
+      complianceImprovement: "Industry Standard: 90-95%",
+      costSavings: "Est: $15,000-25,000/year"
     }
   },
   {
     id: 4,
-    name: "David Thompson",
+    name: "Example Case Study",
     title: "Plant Manager",
-    company: "ChemSafe Industries",
+    company: "Chemical Processing Facility",
     companySize: "200-300 employees",
     industry: "Chemical Processing",
     rating: 5,
-    testimonial: "Working in chemical processing, compliance isn't optional—it's life or death. SafetySync's real-time monitoring and instant alerts have prevented multiple potential incidents. The peace of mind is invaluable.",
+    testimonial: "This represents outcomes for high-risk industrial facilities implementing comprehensive safety management systems. Results depend on existing safety protocols and regulatory requirements.",
     results: {
-      timeReduction: "80%",
-      complianceImprovement: "99%",
-      costSavings: "$65,000/year"
+      timeReduction: "Typical: 70-80%",
+      complianceImprovement: "Industry Standard: 95-99%",
+      costSavings: "Est: $40,000-70,000/year"
     }
   },
   {
     id: 5,
-    name: "Jennifer Adams",
+    name: "Example Case Study",
     title: "Safety Coordinator",
-    company: "LogiFlow Warehousing",
+    company: "Logistics & Warehousing",
     companySize: "100-150 employees",
     industry: "Logistics",
     rating: 5,
-    testimonial: "The integration with our existing HR systems was flawless. SafetySync automatically syncs employee data and training records. No more manual data entry, no more human errors. Just intelligent automation that works.",
+    testimonial: "This case study shows typical integration scenarios for logistics companies. Actual implementation results vary based on existing systems and operational complexity.",
     results: {
-      timeReduction: "70%",
-      complianceImprovement: "92%",
-      costSavings: "$35,000/year"
+      timeReduction: "Typical: 60-70%",
+      complianceImprovement: "Industry Standard: 85-92%",
+      costSavings: "Est: $25,000-40,000/year"
     }
   },
   {
     id: 6,
-    name: "Robert Kim",
+    name: "Example Case Study",
     title: "Compliance Manager",
-    company: "PowerGrid Energy",
+    company: "Energy/Utilities Company",
     companySize: "500+ employees",
     industry: "Energy/Utilities",
     rating: 5,
-    testimonial: "Managing compliance for 800+ employees across multiple sites was our biggest challenge. SafetySync's multi-location dashboard and centralized reporting made it manageable. We're now the benchmark for compliance in our industry.",
+    testimonial: "This represents typical outcomes for large multi-site organizations implementing centralized compliance management. Results vary based on organizational complexity and site distribution.",
     results: {
-      timeReduction: "88%",
-      complianceImprovement: "97%",
-      costSavings: "$120,000/year"
+      timeReduction: "Typical: 75-88%",
+      complianceImprovement: "Industry Standard: 93-97%",
+      costSavings: "Est: $80,000-130,000/year"
     }
   }
 ];
@@ -144,12 +146,22 @@ export default function TestimonialsPage() {
             </Button>
           </Link>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Trusted by Industry Leaders
+            Case Studies & Industry Examples
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            See how companies across industries are transforming their OSHA compliance 
-            with SafetySync's AI-powered platform
+            Example scenarios showing typical results from compliance management implementations. 
+            These case studies represent common outcomes across construction, manufacturing, and other industries.
           </p>
+          
+          {/* Legal Disclaimer */}
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 max-w-4xl mx-auto mb-8">
+            <p className="text-sm text-gray-700">
+              <strong>Disclaimer:</strong> The following are example case studies for demonstration purposes only. 
+              Names, companies, and specific results are hypothetical and intended to illustrate typical industry outcomes. 
+              Individual results may vary based on company size, existing processes, and implementation approach. 
+              These examples do not constitute endorsements or guarantees of specific results.
+            </p>
+          </div>
           
           {/* Quick Stats */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
