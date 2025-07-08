@@ -10,6 +10,7 @@ import { LiveChatWidget } from "@/components/ui/live-chat-widget";
 import { TermsAndConditions } from "@/components/ui/terms-and-conditions";
 import { useToast } from "@/hooks/use-toast";
 import { trackConversionEvent, CONVERSION_EVENTS } from "@/lib/analytics";
+import { useABTest } from "@/lib/ab-testing";
 import { 
   CheckCircle, 
   AlertCircle, 
@@ -36,6 +37,10 @@ import {
 export default function LandingPage() {
   const [isTrialDialogOpen, setIsTrialDialogOpen] = useState(false);
   const [isDemoDialogOpen, setIsDemoDialogOpen] = useState(false);
+  
+  // A/B Testing hooks
+  const heroCtaTest = useABTest('hero_cta_test');
+  const pricingTest = useABTest('pricing_display_test');
   const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
   const [showProductTour, setShowProductTour] = useState(false);
   const [showLiveChat, setShowLiveChat] = useState(false);
@@ -50,10 +55,14 @@ export default function LandingPage() {
   const { toast } = useToast();
 
   const handleTrialClick = () => {
+    // Track A/B test conversion
+    heroCtaTest.trackConversion(49);
     setIsTrialDialogOpen(true);
   };
 
   const handleDemoClick = () => {
+    // Track A/B test conversion
+    heroCtaTest.trackConversion(200);
     setIsDemoDialogOpen(true);
   };
 
@@ -229,6 +238,7 @@ export default function LandingPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
               <Button 
+                id="hero-cta-primary"
                 onClick={() => {
                   trackConversionEvent({
                     event: 'Custom',
@@ -239,10 +249,14 @@ export default function LandingPage() {
                   });
                   handleTrialClick();
                 }}
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-lg text-lg font-semibold pulse-glow border-0 min-w-[200px]"
+                className={`${
+                  heroCtaTest.isVariant('variant_a') 
+                    ? 'bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700' 
+                    : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700'
+                } text-white px-8 py-4 rounded-lg text-lg font-semibold pulse-glow border-0 min-w-[200px]`}
               >
                 <Zap className="w-5 h-5 mr-2" />
-                Start Your Free Trial
+                {heroCtaTest.isVariant('variant_a') ? 'Get Started Free' : 'Start Your Free Trial'}
               </Button>
               <Button 
                 onClick={() => window.location.href = '/dashboard'}
