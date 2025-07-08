@@ -22,6 +22,10 @@ import SitemapPage from "@/pages/sitemap";
 import LeadMagnetsPage from "@/pages/lead-magnets";
 import UserGuidePage from "@/pages/user-guide";
 import DNSManagementPage from "@/pages/dns-management";
+import BackupRecoveryPage from "@/pages/backup-recovery";
+import SystemHealthPage from "@/pages/system-health";
+import IncidentResponsePage from "@/pages/incident-response";
+import OperationsDashboardPage from "@/pages/operations-dashboard";
 import { SkeletonDemo } from "@/components/ui/skeleton-demo";
 
 function Router() {
@@ -44,6 +48,10 @@ function Router() {
       <Route path="/resources" component={LeadMagnetsPage} />
       <Route path="/sitemap" component={SitemapPage} />
       <Route path="/dns-management" component={DNSManagementPage} />
+      <Route path="/backup-recovery" component={BackupRecoveryPage} />
+      <Route path="/system-health" component={SystemHealthPage} />
+      <Route path="/incident-response" component={IncidentResponsePage} />
+      <Route path="/operations" component={OperationsDashboardPage} />
       <Route path="/skeleton-demo" component={SkeletonDemo} />
       <Route component={NotFound} />
     </Switch>
