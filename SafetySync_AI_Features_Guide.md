@@ -260,6 +260,16 @@
 - Smart issue resolution while keeping hands free for safety tasks
 - Seamless escalation to human support when needed
 
+**SYNC Operating Parameters:**
+- OSHA compliance guidance and regulatory interpretation
+- Training schedule optimization and certification tracking
+- Equipment inspection procedures and safety protocols
+- Incident reporting assistance and documentation
+- Emergency response procedures and contact information
+- Cannot override safety protocols or approve unsafe practices
+- Escalates complex safety decisions to qualified human experts
+- Maintains audit trail of all safety-related interactions
+
 ---
 
 ## 💰 Pricing Benefits
