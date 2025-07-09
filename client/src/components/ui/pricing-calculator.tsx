@@ -287,17 +287,8 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
   };
 
   const calculatePrice = (tier: PricingTier) => {
-    const employees = employeeCount;
-    
-    // Apply volume discounts for large enterprises
-    let perEmployeeCost = tier.perEmployee;
-    if (tier.name === 'Enterprise Plus' && employees >= 5000) {
-      perEmployeeCost = tier.perEmployee * 0.8; // 20% volume discount for 5000+ employees
-    } else if (tier.name === 'Enterprise Plus' && employees >= 2000) {
-      perEmployeeCost = tier.perEmployee * 0.9; // 10% volume discount for 2000+ employees
-    }
-    
-    const baseMonthly = tier.basePrice + (employees * perEmployeeCost);
+    // Show base price for each tier, not dynamic pricing
+    const baseMonthly = tier.basePrice;
     const addonsTotal = selectedAddons.reduce((sum, addonName) => {
       const addon = addons.find(a => a.name === addonName);
       return sum + (addon?.price || 0);
@@ -308,12 +299,6 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
     let promoDiscount = 0;
     let promoSavings = 0;
     let volumeDiscount = 0;
-    
-    // Calculate volume discount amount for display
-    if (employees >= 2000 && tier.name === 'Enterprise Plus') {
-      const originalCost = tier.basePrice + (employees * tier.perEmployee);
-      volumeDiscount = originalCost - baseMonthly;
-    }
     
     // Apply promotional discount if valid
     if (appliedPromo && !appliedPromo.error) {
@@ -351,6 +336,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
 
   const getRecommendedPlan = () => {
     const employees = employeeCount;
+    if (employees === 0) return "Essential"; // Default for 0 employees
     if (employees <= 50) return "Essential";
     if (employees <= 250) return "Professional";
     if (employees <= 1000) return "Enterprise";
