@@ -9,6 +9,7 @@ import { ProductTour } from "@/components/ui/product-tour";
 import { LiveChatWidget } from "@/components/ui/live-chat-widget";
 import { TermsAndConditions } from "@/components/ui/terms-and-conditions";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/useAuth";
 import { trackConversionEvent, CONVERSION_EVENTS } from "@/lib/analytics";
 import { useABTest } from "@/lib/ab-testing";
 import { 
@@ -53,6 +54,9 @@ export default function LandingPage() {
   const [isTrialDialogOpen, setIsTrialDialogOpen] = useState(false);
   const [isDemoDialogOpen, setIsDemoDialogOpen] = useState(false);
   
+  // Authentication hook
+  const { user, isLoading: authLoading, isAuthenticated, logout } = useAuth();
+  
   // A/B Testing hooks
   const heroCtaTest = useABTest('hero_cta_test');
   const pricingTest = useABTest('pricing_display_test');
@@ -66,7 +70,6 @@ export default function LandingPage() {
     userEmail: string;
     planName: string;
   } | null>(null);
-  const [user, setUser] = useState(null);
   const { toast } = useToast();
 
   const handleTrialClick = () => {
@@ -80,8 +83,13 @@ export default function LandingPage() {
   };
 
   const handleLoginClick = () => {
-    // Navigate directly to dashboard which has the login form
-    window.location.href = '/dashboard';
+    if (isAuthenticated) {
+      // User is already logged in, go to dashboard
+      window.location.href = '/dashboard';
+    } else {
+      // User needs to log in, go to dashboard login form
+      window.location.href = '/dashboard';
+    }
   };
 
 
@@ -218,7 +226,7 @@ export default function LandingPage() {
         onDemoClick={handleDemoClick}
         onLoginClick={handleLoginClick}
         user={user}
-        onLogout={handleLogout}
+        onLogout={logout}
       />
 
       {/* Hero Section */}
