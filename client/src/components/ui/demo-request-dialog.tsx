@@ -234,7 +234,7 @@ export function DemoRequestDialog({ isOpen, onClose, onSubmit }: DemoRequestDial
               </div>
               
               <p className="text-sm text-blue-700 mb-4">
-                As a demo request, you have access to our best promotional offers. Use these codes during checkout to maximize your savings:
+                As a demo request, you have access to our best promotional offers. Each code is valid for 30 days from purchase and can only be used once:
               </p>
               
               <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2">
@@ -279,7 +279,7 @@ export function DemoRequestDialog({ isOpen, onClose, onSubmit }: DemoRequestDial
               
               <div className="mt-4 p-3 bg-blue-100 rounded-lg">
                 <p className="text-xs text-blue-800 font-medium">
-                  💡 Pro Tip: These codes will be automatically applied at checkout when you choose the right plan tier. Our expert will help you select the best option during your demo.
+                  💡 Pro Tip: Your 30-day countdown begins the day you purchase. Each code can only be used once, so choose the plan that gives you the best value during your demo.
                 </p>
               </div>
             </div>
