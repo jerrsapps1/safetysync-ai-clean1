@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Slider } from "@/components/ui/slider";
+import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
@@ -33,7 +33,7 @@ interface PricingCalculatorProps {
 }
 
 export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
-  const [employeeCount, setEmployeeCount] = useState([50]);
+  const [employeeCount, setEmployeeCount] = useState(50);
   const [isAnnual, setIsAnnual] = useState(true);
   const [selectedAddons, setSelectedAddons] = useState<string[]>([]);
   const [companySize, setCompanySize] = useState<'small' | 'medium' | 'large' | 'enterprise'>('medium');
@@ -232,7 +232,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
     }
 
     // Check employee count restrictions
-    const employees = employeeCount[0];
+    const employees = employeeCount;
     const promoAny = promo as any;
     if (promoAny.minEmployees && employees < promoAny.minEmployees) {
       setAppliedPromo({ error: `This promo requires at least ${promoAny.minEmployees} employees` });
@@ -287,7 +287,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
   };
 
   const calculatePrice = (tier: PricingTier) => {
-    const employees = employeeCount[0];
+    const employees = employeeCount;
     
     // Apply volume discounts for large enterprises
     let perEmployeeCost = tier.perEmployee;
@@ -350,7 +350,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
   };
 
   const getRecommendedPlan = () => {
-    const employees = employeeCount[0];
+    const employees = employeeCount;
     if (employees <= 50) return "Essential";
     if (employees <= 250) return "Professional";
     if (employees <= 1000) return "Enterprise";
@@ -393,21 +393,23 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <label className="text-sm font-medium">Number of Employees</label>
-              <Badge variant="outline">{employeeCount[0]} employees</Badge>
+              <Badge variant="outline">{employeeCount} employees</Badge>
             </div>
-            <Slider
+            <Input
+              type="number"
               value={employeeCount}
-              onValueChange={setEmployeeCount}
-              max={10000}
+              onChange={(e) => {
+                const value = parseInt(e.target.value) || 0;
+                setEmployeeCount(Math.max(1, Math.min(10000, value)));
+              }}
               min={1}
-              step={employeeCount[0] > 1000 ? 100 : 1}
+              max={10000}
+              placeholder="Enter number of employees"
               className="w-full"
             />
             <div className="flex justify-between text-xs text-gray-500">
-              <span>1</span>
-              <span>1,000</span>
-              <span>5,000</span>
-              <span>10,000</span>
+              <span>Minimum: 1</span>
+              <span>Maximum: 10,000</span>
             </div>
           </div>
 
@@ -416,13 +418,13 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
             <div className="flex items-center gap-2">
               <Shield className="w-5 h-5 text-blue-600" />
               <span className="font-medium text-blue-900">
-                Your Qualifying Tier: {getQualifyingTier(employeeCount[0])}
+                Your Qualifying Tier: {getQualifyingTier(employeeCount)}
               </span>
             </div>
             
             {(() => {
-              const availablePromos = getAvailablePromoCodes(employeeCount[0]);
-              const currentTier = getQualifyingTier(employeeCount[0]);
+              const availablePromos = getAvailablePromoCodes(employeeCount);
+              const currentTier = getQualifyingTier(employeeCount);
               
               if (currentTier === 'Enterprise Plus') {
                 return (
@@ -579,7 +581,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
         {pricingTiers.map((tier) => {
           const pricing = calculatePrice(tier);
           const isRecommended = tier.name === getRecommendedPlan();
-          const isAvailable = employeeCount[0] <= tier.maxEmployees;
+          const isAvailable = employeeCount <= tier.maxEmployees;
 
           return (
             <Card key={tier.name} className={`relative ${isRecommended ? 'ring-2 ring-blue-500' : ''} ${!isAvailable ? 'opacity-60' : ''}`}>
@@ -785,7 +787,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
               {getRecommendedPlan()} - ${Math.round(calculatePrice(pricingTiers.find(t => t.name === getRecommendedPlan())!).annual / 12)}/month
             </div>
             <p className="text-gray-600">
-              Based on {employeeCount[0]} employees with {selectedAddons.length} add-ons
+              Based on {employeeCount} employees with {selectedAddons.length} add-ons
             </p>
             <div className="flex justify-center gap-4">
               <Button size="lg">Start Free Trial</Button>
