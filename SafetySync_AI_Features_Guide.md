@@ -139,9 +139,9 @@
   - Strategic guidance and consultation
   - Implementation support
 
-- **24/7 Phone Support**
-  - Round-the-clock assistance
-  - Emergency support hotline
+- **Business Hours Phone Support**
+  - Dedicated support during business hours
+  - Priority support hotline
   - Dedicated enterprise support team
   - Escalation procedures
 
@@ -250,10 +250,10 @@
 - Email and PDF delivery options
 - Opt-out capability
 
-### 24/7 Support - $75/month
-- Round-the-clock phone support
-- Emergency assistance
-- Priority ticket resolution
+### Priority Support - $75/month
+- Enhanced business hours phone support
+- Priority assistance
+- Faster ticket resolution
 - Dedicated support team
 
 ---

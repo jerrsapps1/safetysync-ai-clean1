@@ -86,7 +86,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
         "Advanced analytics",
         "Custom integrations",
         "Dedicated account manager",
-        "24/7 phone support",
+        "Business hours phone support",
         "SLA guarantee",
         "Custom workflows",
         "Audit assistance",
@@ -117,7 +117,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
     { name: "Mobile App", price: 30, description: "iOS and Android applications" },
     { name: "API Access", price: 40, description: "Full REST API integration" },
     { name: "Automated Audit Review", price: 99, description: "Monthly automated compliance gap analysis with auto-generated reports" },
-    { name: "24/7 Support", price: 75, description: "Round-the-clock phone support" }
+    { name: "Priority Support", price: 75, description: "Enhanced business hours phone support" }
   ];
 
   // Tier-based promotional codes system for maximum profitability
