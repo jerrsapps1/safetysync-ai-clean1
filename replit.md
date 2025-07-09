@@ -579,6 +579,16 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Updated Professional Quality Guaranteed paragraph to reflect current plan-specific pricing model
   - Changed from outdated "$0.50 per certificate" to current "$5.95 each, automatically billed to monthly subscription"
   - Streamlined visual presentation to focus on core certificate generation capabilities
+- **July 09, 2025** - Implemented Comprehensive 30-Day Promo Code Tracking System:
+  - Created promoCodeUsage database table with 30-day expiration tracking from purchase date
+  - Built complete API endpoints for promo code validation, application, and management
+  - Added storage methods for create, validate, and track active promo codes with days remaining
+  - Implemented one-time use validation to prevent duplicate promo code usage
+  - Updated demo request dialog messaging to reflect new 30-day business model
+  - Added clear user messaging: "Each code is valid for 30 days from purchase and can only be used once"
+  - System properly tracks purchase activation date, prevents duplicate usage, and calculates remaining days
+  - Enhanced promo code business logic: codes begin countdown from purchase date, not signup date
+  - All API endpoints tested and fully functional with proper error handling and validation
 - **July 09, 2025** - Added Comprehensive Digital Wallet Card Examples:
   - Created 6 professional credit card-sized examples showcasing generator capabilities
   - Equipment operator cards: Heavy Equipment (Michael Torres), Material Handling (Jennifer Rodriguez), Crane Operator (Robert Kim), Forklift Operator (Maria Santos)

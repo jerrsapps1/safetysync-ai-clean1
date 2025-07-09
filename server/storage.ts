@@ -297,11 +297,17 @@ export class DatabaseStorage implements IStorage {
       if (!existingUsage.isActive) {
         return { valid: false, reason: "Promo code has been deactivated" };
       }
-      return { valid: true, usage: existingUsage };
+      return { valid: false, reason: "Promo code has already been used. Each code can only be used once." };
     }
     
     // New promo code - check if it exists in the system
-    // This would typically check against a promo codes configuration
+    // Define valid promo codes (in production, this would be a database table)
+    const validCodes = ['SMALLBIZ', 'STARTUP40', 'FREEMONTH', 'LAUNCH25', 'GROWTH15', 'ENTERPRISE15', 'CORP500'];
+    
+    if (!validCodes.includes(promoCode)) {
+      return { valid: false, reason: "Invalid promo code" };
+    }
+    
     return { valid: true, reason: "New promo code available for use" };
   }
 
