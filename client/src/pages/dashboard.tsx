@@ -277,13 +277,13 @@ export default function Dashboard() {
       
       {/* Navigation Header */}
       <div className="glass-effect backdrop-blur-md border-b border-white/20 relative z-10">
-        <div className="max-w-7xl mx-auto px-4 py-4">
+        <div className="max-w-7xl mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 md:space-x-4">
               <Link href="/">
                 <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300">
-                  <Home className="w-4 h-4 mr-2" />
-                  Home
+                  <Home className="w-4 h-4 mr-1" />
+                  <span className="hidden sm:inline">Home</span>
                 </Button>
               </Link>
               <div className="flex items-center space-x-2 group">
@@ -295,19 +295,22 @@ export default function Dashboard() {
                 </span>
               </div>
             </div>
-            <div className="flex items-center space-x-2">
-              <Link href="/industry-research">
-                <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300">Industry Research</Button>
-              </Link>
-              <Link href="/case-studies">
-                <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300">Case Studies</Button>
-              </Link>
-              <Link href="/pricing">
-                <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300">Pricing</Button>
-              </Link>
+            <div className="flex items-center space-x-1">
               <Link href="/user-guide">
-                <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300">User Guide</Button>
+                <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300">
+                  <span className="hidden sm:inline">Guide</span>
+                  <BookOpen className="w-4 h-4 sm:hidden" />
+                </Button>
               </Link>
+              <Button 
+                onClick={simulateLoading}
+                variant="ghost" 
+                size="sm" 
+                className="text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300"
+                title="Test Loading"
+              >
+                <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
+              </Button>
               <Button
                 variant="ghost"
                 size="sm"
@@ -316,22 +319,6 @@ export default function Dashboard() {
               >
                 Sign Out
               </Button>
-              <Link href="/skeleton-demo">
-                <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300">
-                  <Brain className="w-4 h-4 mr-2" />
-                  AI Skeletons
-                </Button>
-              </Link>
-              <Button 
-                onClick={simulateLoading}
-                variant="ghost" 
-                size="sm" 
-                className="text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300"
-              >
-                <RefreshCw className={`w-4 h-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
-                Test Loading
-              </Button>
-              {/* Admin link hidden from regular users - only visible to admin */}
             </div>
           </div>
         </div>
