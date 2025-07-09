@@ -397,10 +397,22 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
             </div>
             <Input
               type="number"
-              value={employeeCount}
+              value={employeeCount.toString()}
               onChange={(e) => {
-                const value = parseInt(e.target.value) || 0;
-                setEmployeeCount(Math.max(1, Math.min(10000, value)));
+                const value = parseInt(e.target.value);
+                if (!isNaN(value) && value >= 1 && value <= 10000) {
+                  setEmployeeCount(value);
+                } else if (e.target.value === '') {
+                  setEmployeeCount(1);
+                }
+              }}
+              onBlur={(e) => {
+                const value = parseInt(e.target.value);
+                if (isNaN(value) || value < 1) {
+                  setEmployeeCount(1);
+                } else if (value > 10000) {
+                  setEmployeeCount(10000);
+                }
               }}
               min={1}
               max={10000}
