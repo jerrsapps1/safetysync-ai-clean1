@@ -85,7 +85,7 @@ function LoginForm() {
         title: "Login Successful",
         description: "Welcome back to SafetySync.AI!",
       });
-      setLocation("/dashboard");
+      // The component will re-render automatically when the user state changes
     } else {
       toast({
         title: "Login Failed",
@@ -148,21 +148,8 @@ function LoginForm() {
 }
 
 export default function Dashboard() {
-  const { user, isLoading: authLoading, isAuthenticated } = useAuth();
+  const { user, isLoading: authLoading, isAuthenticated, logout } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
-  
-  // Show login form if not authenticated
-  if (authLoading) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 flex items-center justify-center">
-        <div className="text-white">Loading...</div>
-      </div>
-    );
-  }
-
-  if (!isAuthenticated) {
-    return <LoginForm />;
-  }
   const [stats, setStats] = useState<DashboardStats>({
     totalEmployees: 45,
     compliantEmployees: 42,
@@ -236,6 +223,20 @@ export default function Dashboard() {
     }
   };
 
+  // Show loading state while checking authentication
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 flex items-center justify-center">
+        <div className="text-white">Loading...</div>
+      </div>
+    );
+  }
+
+  // Show login form if not authenticated
+  if (!isAuthenticated) {
+    return <LoginForm />;
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 relative overflow-hidden">
       {/* Tech Grid Background */}
@@ -301,6 +302,14 @@ export default function Dashboard() {
               <Link href="/user-guide">
                 <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300">User Guide</Button>
               </Link>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300"
+                onClick={logout}
+              >
+                Sign Out
+              </Button>
               <Link href="/skeleton-demo">
                 <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300">
                   <Brain className="w-4 h-4 mr-2" />

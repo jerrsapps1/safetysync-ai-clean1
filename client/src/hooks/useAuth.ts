@@ -58,6 +58,7 @@ export function useAuth() {
       if (result.success) {
         localStorage.setItem('auth_token', result.token);
         setUser(result.user);
+        console.log('Login successful, user set:', result.user);
         return { success: true, user: result.user };
       } else {
         return { success: false, message: result.message };
