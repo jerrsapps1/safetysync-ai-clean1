@@ -694,6 +694,155 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   }
 
+  // Email testing endpoint
+  app.post('/api/test-email', async (req, res) => {
+    try {
+      const { to, subject, testType = 'basic' } = req.body;
+      
+      if (!to || !subject) {
+        return res.status(400).json({ error: 'Email recipient and subject are required' });
+      }
+
+      // Test email content
+      const testEmails = {
+        basic: {
+          subject: `Test Email: ${subject}`,
+          html: `
+            <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+              <div style="background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%); padding: 40px; text-align: center; border-radius: 12px 12px 0 0;">
+                <h1 style="color: white; margin: 0; font-size: 32px; font-weight: 700;">SafetySync.AI Email Test</h1>
+                <p style="color: rgba(255,255,255,0.9); margin: 15px 0 0 0; font-size: 18px;">Microsoft 365 Integration Test</p>
+              </div>
+              
+              <div style="padding: 40px; background: white;">
+                <p style="font-size: 18px; color: #374151; margin: 0 0 25px 0;">Email Test Successful!</p>
+                
+                <div style="background: #f8fafc; padding: 30px; border-radius: 12px; margin: 30px 0; border-left: 5px solid #10B981;">
+                  <h3 style="color: #1e293b; margin: 0 0 20px 0;">✅ Test Details</h3>
+                  <div style="margin-bottom: 15px;"><strong>Test Type:</strong> ${testType}</div>
+                  <div style="margin-bottom: 15px;"><strong>Timestamp:</strong> ${new Date().toLocaleString()}</div>
+                  <div style="margin-bottom: 15px;"><strong>From:</strong> SafetySync.AI Platform</div>
+                  <div><strong>DNS Status:</strong> Microsoft 365 records configured</div>
+                </div>
+                
+                <p style="color: #6b7280; line-height: 1.7; margin-bottom: 30px;">
+                  Your Microsoft 365 email integration is working correctly. The platform can now send:
+                </p>
+                
+                <ul style="color: #6b7280; line-height: 1.7;">
+                  <li>Welcome emails for new trial users</li>
+                  <li>Trial reminder notifications</li>
+                  <li>Support request notifications</li>
+                  <li>Automated compliance reports</li>
+                </ul>
+              </div>
+            </div>
+          `
+        },
+        welcome: {
+          subject: 'Welcome to SafetySync.AI - Test Email',
+          html: `
+            <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+              <div style="background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%); padding: 40px; text-align: center; border-radius: 12px 12px 0 0;">
+                <h1 style="color: white; margin: 0; font-size: 32px; font-weight: 700;">Welcome to SafetySync.AI!</h1>
+                <p style="color: rgba(255,255,255,0.9); margin: 15px 0 0 0; font-size: 18px;">Your AI-powered compliance journey begins today</p>
+              </div>
+              
+              <div style="padding: 40px; background: white;">
+                <p style="font-size: 18px; color: #374151; margin: 0 0 25px 0;">This is a test of the welcome email system.</p>
+                
+                <div style="background: #f8fafc; padding: 30px; border-radius: 12px; margin: 30px 0; border-left: 5px solid #3B82F6;">
+                  <h3 style="color: #1e293b; margin: 0 0 20px 0;">🎯 Your Success Roadmap</h3>
+                  <div style="margin-bottom: 15px;">✅ Week 1: Company setup, employee import, first report</div>
+                  <div style="margin-bottom: 15px;">📄 Week 2: Professional certificates, automated reminders</div>
+                  <div>🚀 Week 3+: Advanced features, API integration, team collaboration</div>
+                </div>
+                
+                <div style="text-align: center; margin: 40px 0;">
+                  <a href="https://app.safetysync.ai/dashboard" style="background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: 600; display: inline-block;">
+                    Access Your Dashboard
+                  </a>
+                </div>
+              </div>
+            </div>
+          `
+        }
+      };
+
+      const emailContent = testEmails[testType as keyof typeof testEmails] || testEmails.basic;
+      
+      // Try to send actual email if credentials are configured
+      if (process.env.EMAIL_USER && process.env.EMAIL_PASSWORD) {
+        try {
+          const { emailService } = await import('./email-service-microsoft365');
+          await emailService.sendEmail({
+            to,
+            subject: emailContent.subject,
+            html: emailContent.html,
+            replyTo: 'jerry@safetysync.ai'
+          });
+          
+          console.log('=== EMAIL SENT SUCCESSFULLY ===');
+          console.log(`To: ${to}`);
+          console.log(`Subject: ${emailContent.subject}`);
+          console.log(`Type: ${testType}`);
+          console.log(`Timestamp: ${new Date().toLocaleString()}`);
+          console.log('================================');
+
+          res.json({ 
+            success: true, 
+            message: 'Email sent successfully!',
+            details: {
+              to,
+              subject: emailContent.subject,
+              testType,
+              timestamp: new Date().toLocaleString(),
+              status: 'sent'
+            }
+          });
+        } catch (emailError) {
+          console.error('Email sending failed:', emailError);
+          res.json({ 
+            success: false, 
+            message: 'Failed to send email',
+            details: {
+              to,
+              subject: emailContent.subject,
+              testType,
+              timestamp: new Date().toLocaleString(),
+              error: emailError instanceof Error ? emailError.message : 'Unknown error',
+              note: 'Check EMAIL_USER and EMAIL_PASSWORD environment variables'
+            }
+          });
+        }
+      } else {
+        // Log email for testing without credentials
+        console.log('=== EMAIL TEST (No Credentials) ===');
+        console.log(`To: ${to}`);
+        console.log(`Subject: ${emailContent.subject}`);
+        console.log(`Type: ${testType}`);
+        console.log(`Timestamp: ${new Date().toLocaleString()}`);
+        console.log('HTML Content Length:', emailContent.html.length);
+        console.log('===================================');
+
+        res.json({ 
+          success: true, 
+          message: 'Email test completed (logged to console)',
+          details: {
+            to,
+            subject: emailContent.subject,
+            testType,
+            timestamp: new Date().toLocaleString(),
+            note: 'Configure EMAIL_USER and EMAIL_PASSWORD to send real emails'
+          }
+        });
+      }
+    } catch (error) {
+      console.error('Email test error:', error);
+      res.status(500).json({ error: 'Email test failed' });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;

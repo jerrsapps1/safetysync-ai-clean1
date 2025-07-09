@@ -32,16 +32,16 @@ class Microsoft365EmailService {
       port: 587,
       secure: false, // true for 465, false for other ports
       auth: {
-        user: process.env.EMAIL_USER || 'noreply@safetysync.ai',
+        user: process.env.EMAIL_USER || 'jerry@safetysync.ai',
         pass: process.env.EMAIL_PASSWORD || '', // Use app password
       },
       from: {
         name: 'SafetySync.AI',
-        address: process.env.EMAIL_FROM || 'noreply@safetysync.ai'
+        address: process.env.EMAIL_FROM || 'jerry@safetysync.ai'
       }
     };
 
-    this.transporter = nodemailer.createTransporter(this.config);
+    this.transporter = nodemailer.createTransport(this.config);
   }
 
   async sendEmail(options: EmailOptions): Promise<void> {

@@ -422,10 +422,10 @@ function EmailTestForm() {
   const [formData, setFormData] = useState({
     to: '',
     subject: 'SafetySync.AI Email Test',
-    message: 'This is a test email from SafetySync.AI platform.'
+    testType: 'basic'
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [result, setResult] = useState<{ success: boolean; message: string } | null>(null);
+  const [result, setResult] = useState<any>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -484,16 +484,18 @@ function EmailTestForm() {
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-          Message
+        <label htmlFor="testType" className="block text-sm font-medium text-gray-700 mb-1">
+          Email Template
         </label>
-        <textarea
-          id="message"
-          value={formData.message}
-          onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-          rows={4}
+        <select
+          id="testType"
+          value={formData.testType}
+          onChange={(e) => setFormData(prev => ({ ...prev, testType: e.target.value }))}
           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
+        >
+          <option value="basic">Basic Email Test</option>
+          <option value="welcome">Welcome Email Template</option>
+        </select>
       </div>
 
       <button
