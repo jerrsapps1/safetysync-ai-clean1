@@ -85,10 +85,8 @@ function LoginForm() {
         title: "Login Successful",
         description: "Welcome back to SafetySync.AI!",
       });
-      // Force a small delay to ensure state update
-      setTimeout(() => {
-        // The component will re-render automatically when the user state changes
-      }, 100);
+      // Force a page refresh to ensure proper state update
+      window.location.reload();
     } else {
       toast({
         title: "Login Failed",

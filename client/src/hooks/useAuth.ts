@@ -58,6 +58,7 @@ export function useAuth() {
       if (result.success) {
         localStorage.setItem('auth_token', result.token);
         setUser(result.user);
+        setIsLoading(false); // Ensure loading is false after successful login
         console.log('Login successful, user set:', result.user);
         return { success: true, user: result.user };
       } else {
