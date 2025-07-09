@@ -244,13 +244,38 @@ export default function LandingPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative bg-navy-900 text-white pt-20 pb-24 px-4 sm:px-6 lg:px-8">
-        {/* Subtle pattern background */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)',
-            backgroundSize: '20px 20px'
-          }}></div>
+      <section className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 text-white pt-20 pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Tech Grid Pattern */}
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute inset-0" style={{
+              backgroundImage: 'linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)',
+              backgroundSize: '30px 30px'
+            }}></div>
+          </div>
+          
+          {/* Floating Tech Icons */}
+          <div className="absolute inset-0">
+            <div className="absolute top-20 left-20 animate-float">
+              <Cpu className="w-8 h-8 text-blue-400 opacity-60" />
+            </div>
+            <div className="absolute top-40 right-32 animate-float-delay-1">
+              <Database className="w-6 h-6 text-purple-400 opacity-60" />
+            </div>
+            <div className="absolute bottom-32 left-40 animate-float-delay-2">
+              <Globe className="w-10 h-10 text-cyan-400 opacity-60" />
+            </div>
+            <div className="absolute top-60 right-20 animate-float-delay-3">
+              <Layers className="w-7 h-7 text-indigo-400 opacity-60" />
+            </div>
+            <div className="absolute bottom-20 right-60 animate-float-delay-4">
+              <Code className="w-8 h-8 text-green-400 opacity-60" />
+            </div>
+            <div className="absolute top-32 right-1/2 animate-float-delay-5">
+              <Brain className="w-9 h-9 text-pink-400 opacity-60" />
+            </div>
+          </div>
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
@@ -258,17 +283,19 @@ export default function LandingPage() {
             {/* Left content */}
             <div className="text-left">
               <div className="mb-6">
-                <span className="inline-flex items-center px-3 py-1 rounded-md bg-emerald-500/10 text-emerald-400 text-sm font-medium">
-                  <Shield className="w-4 h-4 mr-2" />
-                  OSHA Compliance Platform
+                <span className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-cyan-300 text-sm font-medium backdrop-blur-sm border border-cyan-300/30">
+                  <Brain className="w-4 h-4 mr-2" />
+                  AI-Powered OSHA Platform
                 </span>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                <span className="block text-white">Streamline Your</span>
-                <span className="block text-emerald-400">Safety Management</span>
+                <span className="block text-white">Next-Generation</span>
+                <span className="block bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                  Safety Intelligence
+                </span>
               </h1>
               <p className="text-xl text-gray-300 max-w-xl mb-8 leading-relaxed">
-                Comprehensive OSHA compliance tracking, automated reporting, and intelligent safety management for modern organizations.
+                Revolutionary AI-powered OSHA compliance platform with automated tracking, intelligent reporting, and real-time safety insights.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <Button 
@@ -283,10 +310,10 @@ export default function LandingPage() {
                     });
                     handleTrialClick();
                   }}
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-lg text-lg font-semibold"
+                  className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold shadow-lg transform hover:scale-105 transition-all duration-300 pulse-glow"
                 >
                   <Zap className="w-5 h-5 mr-2" />
-                  {heroCtaTest.isVariant('variant_a') ? 'Get Started Free' : 'Start Your Free Trial'}
+                  {heroCtaTest.isVariant('variant_a') ? 'Launch AI Trial' : 'Start AI-Powered Trial'}
                 </Button>
                 <Button 
                   onClick={() => {
@@ -297,7 +324,7 @@ export default function LandingPage() {
                     });
                   }}
                   variant="outline"
-                  className="border-white/30 text-white hover:bg-white/10 px-8 py-4 rounded-lg text-lg font-semibold"
+                  className="border-cyan-400/50 text-cyan-300 hover:bg-cyan-400/10 px-8 py-4 rounded-lg text-lg font-semibold backdrop-blur-sm"
                 >
                   <Settings className="w-5 h-5 mr-2" />
                   Demo Coming Soon
@@ -311,7 +338,7 @@ export default function LandingPage() {
                 </div>
                 <div className="flex items-center">
                   <Shield className="w-4 h-4 mr-2" />
-                  OSHA Compliant
+                  Enterprise Security
                 </div>
                 <div className="flex items-center">
                   <Clock className="w-4 h-4 mr-2" />
