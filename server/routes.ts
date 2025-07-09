@@ -7,6 +7,7 @@ import emailAutomationRoutes from "./api/email-automation";
 import { insertLeadSchema, insertUserSchema, loginUserSchema, insertComplianceReportSchema, insertCloneDetectionScanSchema, insertHelpDeskTicketSchema, insertPromoCodeUsageSchema } from "@shared/schema";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 // Generate compliance report data based on type
 async function generateComplianceReportData(reportType: string, periodStart?: string, periodEnd?: string) {
@@ -88,6 +89,34 @@ async function generateComplianceReportData(reportType: string, periodStart?: st
   return reportData;
 }
 
+// JWT authentication middleware
+function authenticateToken(req: any, res: any, next: any) {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if (!token) {
+    return res.status(401).json({ success: false, message: 'Access token required' });
+  }
+
+  jwt.verify(token, process.env.JWT_SECRET || 'development-secret-key', async (err: any, decoded: any) => {
+    if (err) {
+      return res.status(403).json({ success: false, message: 'Invalid or expired token' });
+    }
+
+    try {
+      const user = await storage.getUser(decoded.userId);
+      if (!user) {
+        return res.status(404).json({ success: false, message: 'User not found' });
+      }
+
+      req.user = user;
+      next();
+    } catch (error) {
+      return res.status(500).json({ success: false, message: 'Authentication error' });
+    }
+  });
+}
+
 export async function registerRoutes(app: Express): Promise<Server> {
   // User registration endpoint
   app.post("/api/auth/register", async (req, res) => {
@@ -163,13 +192,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Update last login
       await storage.updateUserLogin(user.id);
 
+      // Generate JWT token
+      const token = jwt.sign(
+        { userId: user.id, email: user.email },
+        process.env.JWT_SECRET || 'development-secret-key',
+        { expiresIn: '24h' }
+      );
+
       // Don't return password in response
       const { password, ...userWithoutPassword } = user;
 
       res.json({ 
         success: true, 
         message: "Login successful",
-        user: userWithoutPassword 
+        user: userWithoutPassword,
+        token 
       });
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -185,6 +222,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
           message: "Internal server error" 
         });
       }
+    }
+  });
+
+  // Get current user endpoint (protected)
+  app.get("/api/auth/me", authenticateToken, async (req: any, res) => {
+    try {
+      const { password, ...userWithoutPassword } = req.user;
+      res.json({ 
+        success: true, 
+        user: userWithoutPassword 
+      });
+    } catch (error) {
+      console.error("Error getting current user:", error);
+      res.status(500).json({ 
+        success: false, 
+        message: "Internal server error" 
+      });
     }
   });
 

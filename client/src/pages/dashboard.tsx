@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
-import { Link } from "wouter";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Link, useLocation } from "wouter";
+import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useToast } from "@/hooks/use-toast";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -62,8 +66,103 @@ interface DashboardStats {
   complianceScore: number;
 }
 
-export default function Dashboard() {
+function LoginForm() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const { login } = useAuth();
+  const { toast } = useToast();
+  const [, setLocation] = useLocation();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    const result = await login(email, password);
+    
+    if (result.success) {
+      toast({
+        title: "Login Successful",
+        description: "Welcome back to SafetySync.AI!",
+      });
+      setLocation("/dashboard");
+    } else {
+      toast({
+        title: "Login Failed",
+        description: result.message || "Please check your credentials and try again.",
+        variant: "destructive",
+      });
+    }
+
+    setIsLoading(false);
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 flex items-center justify-center p-4">
+      <div className="w-full max-w-md">
+        <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-6 shadow-2xl">
+          <div className="text-center mb-6">
+            <h1 className="text-2xl font-bold text-white mb-2">SafetySync.AI</h1>
+            <p className="text-white/70">Sign in to your dashboard</p>
+          </div>
+          
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <Label htmlFor="email" className="text-white">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="bg-white/10 border-white/20 text-white placeholder-white/50"
+                placeholder="Enter your email"
+              />
+            </div>
+            
+            <div>
+              <Label htmlFor="password" className="text-white">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="bg-white/10 border-white/20 text-white placeholder-white/50"
+                placeholder="Enter your password"
+              />
+            </div>
+            
+            <Button
+              type="submit"
+              disabled={isLoading}
+              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+            >
+              {isLoading ? "Signing in..." : "Sign In"}
+            </Button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function Dashboard() {
+  const { user, isLoading: authLoading, isAuthenticated } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
+  
+  // Show login form if not authenticated
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 flex items-center justify-center">
+        <div className="text-white">Loading...</div>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return <LoginForm />;
+  }
   const [stats, setStats] = useState<DashboardStats>({
     totalEmployees: 45,
     compliantEmployees: 42,

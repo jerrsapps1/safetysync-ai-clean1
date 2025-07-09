@@ -16,7 +16,6 @@ interface TrialSignupDialogProps {
 
 export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDialogProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -65,36 +64,18 @@ export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDial
     setIsSubmitting(true);
     
     try {
-      // First create the user account
-      const { leadType, message, ...userData } = formData;
-      const userResponse = await apiRequest("POST", "/api/auth/register", userData);
-      const userResult = await userResponse.json();
-      
-      if (userResult.success) {
-        // Then create the lead record
-        const leadResponse = await apiRequest("POST", "/api/leads", {
-          name: formData.name,
-          email: formData.email,
-          company: formData.company,
-          phone: formData.phone,
-          message: formData.message,
-          leadType: formData.leadType
-        });
-        
-        setIsSuccess(true);
-        toast({
-          title: "Account Created Successfully!",
-          description: "Your SafetySync account is ready. You can now sign in.",
-          duration: 5000,
-        });
-      } else {
-        throw new Error(userResult.message || "Failed to create account");
+      // Call the parent component's submit handler
+      if (onSubmit) {
+        onSubmit(formData);
       }
+      
+      // Close the dialog after successful submission
+      handleClose();
     } catch (error) {
-      console.error("Error creating account:", error);
+      console.error("Error during submission:", error);
       toast({
-        title: "Account Creation Failed", 
-        description: "Unable to create your account. Please try again or contact support.",
+        title: "Submission Failed", 
+        description: "Unable to process your request. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -110,36 +91,12 @@ export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDial
   };
 
   const handleClose = () => {
-    setIsSuccess(false);
     setFormData({ name: "", email: "", company: "", password: "", message: "", leadType: "trial" });
     setErrors({});
     onClose();
   };
 
-  if (isSuccess) {
-    return (
-      <Dialog open={isOpen} onOpenChange={handleClose}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <div className="flex items-center justify-center mb-4">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
-                <CheckCircle className="w-8 h-8 text-green-600" />
-              </div>
-            </div>
-            <DialogTitle className="text-center">Welcome to SafetySync!</DialogTitle>
-            <DialogDescription className="text-center">
-              Your 14-day free trial is starting now. We'll send you login details and setup instructions to your email within 5 minutes.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="flex justify-center pt-4">
-            <Button onClick={handleClose} className="bg-green-600 hover:bg-green-700">
-              Get Started
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
-    );
-  }
+
 
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>

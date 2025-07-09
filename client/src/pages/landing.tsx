@@ -90,6 +90,11 @@ export default function LandingPage() {
       description: `Signed in as ${userData.name}`,
       duration: 3000,
     });
+    
+    // Redirect to dashboard after successful login
+    setTimeout(() => {
+      window.location.href = '/dashboard';
+    }, 1000); // Small delay to show the success message
   };
 
   const handleTrialSubmit = (data: any) => {
@@ -119,18 +124,41 @@ export default function LandingPage() {
     trackConversionEvent(CONVERSION_EVENTS.TERMS_ACCEPTED);
 
     try {
-      const response = await fetch('/api/leads', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...pendingSignupData.data,
-          leadType: pendingSignupData.type,
-          termsAccepted: true,
-          termsAcceptedAt: new Date().toISOString()
-        }),
-      });
+      let response;
+      
+      if (pendingSignupData.type === 'trial') {
+        // Create user account for trial users
+        response = await fetch('/api/auth/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: pendingSignupData.data.name,
+            email: pendingSignupData.data.email,
+            password: pendingSignupData.data.password,
+            company: pendingSignupData.data.company,
+            userTier: 'free_trial',
+            subscriptionStatus: 'active',
+            termsAccepted: true,
+            termsAcceptedAt: new Date().toISOString()
+          }),
+        });
+      } else {
+        // Create lead for demo requests
+        response = await fetch('/api/leads', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            ...pendingSignupData.data,
+            leadType: pendingSignupData.type,
+            termsAccepted: true,
+            termsAcceptedAt: new Date().toISOString()
+          }),
+        });
+      }
 
       if (!response.ok) {
         throw new Error('Failed to create account');
@@ -151,6 +179,13 @@ export default function LandingPage() {
         description: `Welcome to SafetySync.AI! Your ${pendingSignupData.type === 'trial' ? 'free trial' : 'demo'} is now active.`,
         duration: 5000,
       });
+      
+      // Redirect new trial users to dashboard
+      if (pendingSignupData.type === 'trial') {
+        setTimeout(() => {
+          window.location.href = '/dashboard';
+        }, 2000); // Longer delay to show success message
+      }
     } catch (error) {
       toast({
         title: "Error",
