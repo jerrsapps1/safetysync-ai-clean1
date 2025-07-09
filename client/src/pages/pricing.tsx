@@ -268,7 +268,7 @@ export default function PricingPage() {
                     <div className="text-xs text-gray-500 border-t pt-2">
                       <div>Training compliant with OSHA 29 CFR 1910.178,</div>
                       <div>1926.453, 1926.602, ANSI/ITSDF B56.1,</div>
-                      <div>ANSI A92, and EM 385-1-1 standards</div>
+                      <div>and ANSI A92 standards</div>
                     </div>
                   </div>
                 </div>
@@ -404,8 +404,7 @@ export default function PricingPage() {
                     
                     <div className="text-xs text-gray-500 border-t pt-2">
                       <div>Training compliant with OSHA 29 CFR 1926.1400,</div>
-                      <div>ASME B30.5, NCCCO certification standards,</div>
-                      <div>and EM 385-1-1 crane operation requirements</div>
+                      <div>ASME B30.5, and NCCCO certification standards</div>
                     </div>
                   </div>
                 </div>
@@ -530,7 +529,6 @@ export default function PricingPage() {
                       <div className="text-xs text-gray-500 border-t pt-2">
                         <div>OSHA 29 CFR 1910.178, 1926.453</div>
                         <div>ANSI A92, ITSDF B56.1</div>
-                        <div>EM 385-1-1 standards</div>
                         <div className="font-medium text-orange-600">Continued on Card 2...</div>
                       </div>
                     </div>
@@ -598,7 +596,6 @@ export default function PricingPage() {
                       <div className="text-xs text-gray-500 border-t pt-2">
                         <div>OSHA 29 CFR 1926.602</div>
                         <div>ANSI B56.1, A92 standards</div>
-                        <div>EM 385-1-1 compliance</div>
                         <div className="font-medium text-green-600">Series Complete</div>
                       </div>
                     </div>
@@ -611,7 +608,7 @@ export default function PricingPage() {
                     <div>
                       <p className="text-sm text-blue-800 font-medium">Professional Equipment Authorization</p>
                       <p className="text-xs text-blue-700 mt-1">
-                        Each card maintains full compliance with OSHA 29 CFR, ANSI standards, and EM 385-1-1 requirements. 
+                        Each card maintains full compliance with OSHA 29 CFR and ANSI standards. 
                         Additional cards are generated automatically when equipment lists exceed standard card capacity.
                       </p>
                     </div>
