@@ -35,7 +35,7 @@ export default function PricingPage() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Professional Certificate & Digital Card Services</h2>
             <p className="text-xl text-gray-600">
-              Plan-specific certificate and digital wallet card allowances included. Additional certificates and cards: $5.95 each.
+              Plan-specific certificate and digital wallet card allowances included. Additional certificates and cards: $5.95 each, automatically billed to your monthly subscription.
             </p>
           </div>
 
@@ -51,7 +51,7 @@ export default function PricingPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 mb-6">
-                  Each plan includes different certificate allowances for the first month. Additional certificates: $5.95 each.
+                  Each plan includes different certificate allowances for the first month. Additional certificates: $5.95 each, automatically added to your monthly bill.
                 </p>
                 
                 <div className="bg-blue-50 p-4 rounded-lg mb-6">
@@ -81,6 +81,11 @@ export default function PricingPage() {
                     <p className="text-sm font-medium text-blue-900">Perfect For:</p>
                     <p className="text-sm text-blue-800">Companies needing official documentation for audits, regulatory compliance, or employee records</p>
                   </div>
+                  
+                  <div className="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
+                    <p className="text-sm font-medium text-yellow-900">Billing Information:</p>
+                    <p className="text-sm text-yellow-800">Additional certificates beyond your plan's allowance are automatically billed at $5.95 each as usage charges added to your monthly subscription. No service interruption - generate certificates as needed and pay for actual usage.</p>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -96,7 +101,7 @@ export default function PricingPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 mb-6">
-                  Each plan includes different digital wallet card allowances for the first month. Additional cards: $5.95 each.
+                  Each plan includes different digital wallet card allowances for the first month. Additional cards: $5.95 each, automatically added to your monthly bill.
                 </p>
                 
                 <div className="bg-green-50 p-4 rounded-lg mb-6">
@@ -132,7 +137,12 @@ export default function PricingPage() {
                   
                   <div className="bg-blue-50 p-4 rounded-lg">
                     <p className="text-sm font-medium text-blue-900">Key Benefits:</p>
-                    <p className="text-sm text-blue-800">Always available, never lost, environmentally friendly, and completely free for all employees</p>
+                    <p className="text-sm text-blue-800">Always available, never lost, environmentally friendly, and accessible on any device</p>
+                  </div>
+                  
+                  <div className="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
+                    <p className="text-sm font-medium text-yellow-900">Billing Information:</p>
+                    <p className="text-sm text-yellow-800">Additional digital wallet cards beyond your plan's allowance are automatically billed at $5.95 each as usage charges added to your monthly subscription. No service interruption - generate cards as needed and pay for actual usage.</p>
                   </div>
                 </div>
               </CardContent>
