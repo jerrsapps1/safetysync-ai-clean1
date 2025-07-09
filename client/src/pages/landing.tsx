@@ -244,138 +244,89 @@ export default function LandingPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 text-white pt-20 pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          {/* Tech Grid Pattern */}
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute inset-0" style={{
-              backgroundImage: 'linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)',
-              backgroundSize: '30px 30px'
-            }}></div>
+      <section className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-purple-800 text-white pt-32 pb-32 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center">
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <div className="mb-8">
+            <span className="inline-flex items-center px-4 py-2 rounded-full bg-blue-500/20 text-blue-200 text-sm font-medium backdrop-blur-sm border border-blue-300/30">
+              <Shield className="w-4 h-4 mr-2" />
+              AI-Powered Compliance Platform
+            </span>
           </div>
           
-          {/* Floating Tech Icons */}
-          <div className="absolute inset-0">
-            <div className="absolute top-20 left-20 animate-float">
-              <Cpu className="w-8 h-8 text-blue-400 opacity-60" />
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+            <span className="block text-white">Simplify Your</span>
+            <span className="block text-blue-200">OSHA Compliance</span>
+          </h1>
+          
+          <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-12 leading-relaxed">
+            Next-generation automated tracking with AI-powered insights, real-time compliance monitoring, and predictive analytics for proactive safety management.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <Button 
+              id="hero-cta-primary"
+              onClick={() => {
+                trackConversionEvent({
+                  event: 'Custom',
+                  action: 'hero_trial_cta_clicked',
+                  category: 'engagement',
+                  label: 'Hero Section - Start Your Free Trial',
+                  value: 49
+                });
+                handleTrialClick();
+              }}
+              className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 rounded-lg text-lg font-semibold shadow-lg transition-all duration-300"
+            >
+              Get Started Free
+            </Button>
+            <Button 
+              onClick={() => {
+                toast({
+                  title: "Demo Coming Soon",
+                  description: "Full demo access will be available once the platform is ready for production use.",
+                  duration: 4000,
+                });
+              }}
+              variant="outline"
+              className="border-white/30 text-white hover:bg-white/10 px-8 py-4 rounded-lg text-lg font-semibold backdrop-blur-sm"
+            >
+              <Settings className="w-5 h-5 mr-2" />
+              Demo Coming Soon
+            </Button>
+            <Button 
+              onClick={() => setShowProductTour(true)}
+              variant="outline"
+              className="border-white/30 text-white hover:bg-white/10 px-8 py-4 rounded-lg text-lg font-semibold backdrop-blur-sm"
+            >
+              See How It Works
+            </Button>
+          </div>
+          
+          <div className="flex flex-col sm:flex-row gap-8 justify-center text-sm text-blue-200 mb-8">
+            <div className="flex items-center justify-center">
+              <CheckCircle className="w-4 h-4 mr-2" />
+              No Credit Card Required
             </div>
-            <div className="absolute top-40 right-32 animate-float-delay-1">
-              <Database className="w-6 h-6 text-purple-400 opacity-60" />
+            <div className="flex items-center justify-center">
+              <Shield className="w-4 h-4 mr-2" />
+              OSHA Compliant
             </div>
-            <div className="absolute bottom-32 left-40 animate-float-delay-2">
-              <Globe className="w-10 h-10 text-cyan-400 opacity-60" />
-            </div>
-            <div className="absolute top-60 right-20 animate-float-delay-3">
-              <Layers className="w-7 h-7 text-indigo-400 opacity-60" />
-            </div>
-            <div className="absolute bottom-20 right-60 animate-float-delay-4">
-              <Code className="w-8 h-8 text-green-400 opacity-60" />
-            </div>
-            <div className="absolute top-32 right-1/2 animate-float-delay-5">
-              <Brain className="w-9 h-9 text-pink-400 opacity-60" />
+            <div className="flex items-center justify-center">
+              <Timer className="w-4 h-4 mr-2" />
+              Setup in Minutes
             </div>
           </div>
-        </div>
-
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left content */}
-            <div className="text-left">
-              <div className="mb-6">
-                <span className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-cyan-300 text-sm font-medium backdrop-blur-sm border border-cyan-300/30">
-                  <Brain className="w-4 h-4 mr-2" />
-                  AI-Powered OSHA Platform
-                </span>
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                <span className="block text-white">Next-Generation</span>
-                <span className="block bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-                  Safety Intelligence
-                </span>
-              </h1>
-              <p className="text-xl text-gray-300 max-w-xl mb-8 leading-relaxed">
-                Revolutionary AI-powered OSHA compliance platform with automated tracking, intelligent reporting, and real-time safety insights.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Button 
-                  id="hero-cta-primary"
-                  onClick={() => {
-                    trackConversionEvent({
-                      event: 'Custom',
-                      action: 'hero_trial_cta_clicked',
-                      category: 'engagement',
-                      label: 'Hero Section - Start Your Free Trial',
-                      value: 49
-                    });
-                    handleTrialClick();
-                  }}
-                  className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold shadow-lg transform hover:scale-105 transition-all duration-300 pulse-glow"
-                >
-                  <Zap className="w-5 h-5 mr-2" />
-                  {heroCtaTest.isVariant('variant_a') ? 'Launch AI Trial' : 'Start AI-Powered Trial'}
-                </Button>
-                <Button 
-                  onClick={() => {
-                    toast({
-                      title: "Demo Coming Soon",
-                      description: "Full demo access will be available once the platform is ready for production use.",
-                      duration: 4000,
-                    });
-                  }}
-                  variant="outline"
-                  className="border-cyan-400/50 text-cyan-300 hover:bg-cyan-400/10 px-8 py-4 rounded-lg text-lg font-semibold backdrop-blur-sm"
-                >
-                  <Settings className="w-5 h-5 mr-2" />
-                  Demo Coming Soon
-                </Button>
-              </div>
-              
-              <div className="flex flex-col sm:flex-row gap-6 text-sm text-gray-400 mb-8">
-                <div className="flex items-center">
-                  <CheckCircle className="w-4 h-4 mr-2" />
-                  No Credit Card Required
-                </div>
-                <div className="flex items-center">
-                  <Shield className="w-4 h-4 mr-2" />
-                  Enterprise Security
-                </div>
-                <div className="flex items-center">
-                  <Clock className="w-4 h-4 mr-2" />
-                  Setup in Minutes
-                </div>
-              </div>
-            </div>
-            
-            {/* Right side - Features showcase */}
-            <div className="relative">
-              <div className="bg-navy-800 rounded-lg p-8 border border-navy-700">
-                <h3 className="text-xl font-semibold text-white mb-6">Platform Features</h3>
-                <div className="space-y-4">
-                  <div className="flex items-center text-gray-300">
-                    <div className="w-2 h-2 bg-emerald-500 rounded-full mr-3"></div>
-                    Automated compliance tracking
-                  </div>
-                  <div className="flex items-center text-gray-300">
-                    <div className="w-2 h-2 bg-emerald-500 rounded-full mr-3"></div>
-                    Digital certification management
-                  </div>
-                  <div className="flex items-center text-gray-300">
-                    <div className="w-2 h-2 bg-emerald-500 rounded-full mr-3"></div>
-                    Real-time safety monitoring
-                  </div>
-                  <div className="flex items-center text-gray-300">
-                    <div className="w-2 h-2 bg-emerald-500 rounded-full mr-3"></div>
-                    Professional reporting tools
-                  </div>
-                </div>
-              </div>
-            </div>
+          
+          <div className="text-center">
+            <Button 
+              onClick={() => setShowProductTour(true)}
+              variant="link"
+              className="text-blue-200 hover:text-white underline"
+            >
+              Take a Quick Tour
+            </Button>
           </div>
         </div>
-        
-        {/* Hero Visual Element */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
       </section>
 
       {/* Features Section */}
