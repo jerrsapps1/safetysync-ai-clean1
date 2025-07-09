@@ -616,6 +616,29 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
                     <span className="text-sm font-normal text-gray-500">/month</span>
                   </div>
                   
+                  {/* Show both pricing options */}
+                  <div className="text-sm space-y-1">
+                    {isAnnual ? (
+                      <div className="space-y-1">
+                        <div className="text-green-600 font-medium">
+                          Annual: ${Math.round(pricing.annual / 12)}/month (billed annually)
+                        </div>
+                        <div className="text-gray-600">
+                          Monthly: ${Math.round(pricing.monthlyWithPromo)}/month (billed monthly)
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="space-y-1">
+                        <div className="text-blue-600 font-medium">
+                          Monthly: ${Math.round(pricing.monthlyWithPromo)}/month (billed monthly)
+                        </div>
+                        <div className="text-gray-600">
+                          Annual: ${Math.round(pricing.annual / 12)}/month (save 15%)
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  
                   {/* Show after promo pricing for billing transparency */}
                   {pricing.promoDiscount > 0 && (
                     <div className="text-sm text-gray-600">
@@ -799,14 +822,37 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
           <div className="text-center space-y-4">
             <h3 className="text-xl font-bold">Your Recommended Plan</h3>
             <div className="text-3xl font-bold text-blue-600">
-              {getRecommendedPlan()} - ${Math.round(calculatePrice(pricingTiers.find(t => t.name === getRecommendedPlan())!).monthlyWithPromo)}/month
+              {getRecommendedPlan()} - ${Math.round(isAnnual ? calculatePrice(pricingTiers.find(t => t.name === getRecommendedPlan())!).annual / 12 : calculatePrice(pricingTiers.find(t => t.name === getRecommendedPlan())!).monthlyWithPromo)}/month
             </div>
             {(() => {
               const recommendedTier = pricingTiers.find(t => t.name === getRecommendedPlan())!;
               const pricing = calculatePrice(recommendedTier);
-              return pricing.promoDiscount > 0 && (
-                <div className="text-sm text-gray-600">
-                  After promo: ${Math.round(pricing.monthly)}/month
+              return (
+                <div className="text-sm space-y-1">
+                  {isAnnual ? (
+                    <div className="space-y-1">
+                      <div className="text-green-600 font-medium">
+                        Annual: ${Math.round(pricing.annual / 12)}/month (billed annually)
+                      </div>
+                      <div className="text-gray-600">
+                        Monthly: ${Math.round(pricing.monthlyWithPromo)}/month (billed monthly)
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="space-y-1">
+                      <div className="text-blue-600 font-medium">
+                        Monthly: ${Math.round(pricing.monthlyWithPromo)}/month (billed monthly)
+                      </div>
+                      <div className="text-gray-600">
+                        Annual: ${Math.round(pricing.annual / 12)}/month (save 15%)
+                      </div>
+                    </div>
+                  )}
+                  {pricing.promoDiscount > 0 && (
+                    <div className="text-gray-600">
+                      After promo: ${Math.round(pricing.monthly)}/month
+                    </div>
+                  )}
                 </div>
               );
             })()}
