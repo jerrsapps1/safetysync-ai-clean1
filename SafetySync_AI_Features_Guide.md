@@ -250,11 +250,11 @@
 - Email and PDF delivery options
 - Opt-out capability
 
-### Priority Support - $75/month
-- Enhanced business hours phone support
-- Priority assistance
-- Faster ticket resolution
-- Dedicated support team
+### AI Priority Support - $75/month
+- AI-powered support with instant responses
+- Smart troubleshooting and issue resolution
+- 24/7 AI agent availability
+- Seamless escalation to human support when needed
 
 ---
 
