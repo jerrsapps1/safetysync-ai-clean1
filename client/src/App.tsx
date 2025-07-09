@@ -27,6 +27,7 @@ import BackupRecoveryPage from "@/pages/backup-recovery";
 import SystemHealthPage from "@/pages/system-health";
 import IncidentResponsePage from "@/pages/incident-response";
 import OperationsDashboardPage from "@/pages/operations-dashboard";
+import SafetyTrendsPage from "@/pages/safety-trends";
 import { SkeletonDemo } from "@/components/ui/skeleton-demo";
 
 function Router() {
@@ -54,6 +55,7 @@ function Router() {
       <Route path="/system-health" component={SystemHealthPage} />
       <Route path="/incident-response" component={IncidentResponsePage} />
       <Route path="/operations" component={OperationsDashboardPage} />
+      <Route path="/safety-trends" component={SafetyTrendsPage} />
       <Route path="/skeleton-demo" component={SkeletonDemo} />
       <Route component={NotFound} />
     </Switch>

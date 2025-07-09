@@ -39,7 +39,9 @@ import {
   CreditCard,
   Package,
   Calculator,
-  Database
+  Database,
+  Activity,
+  BarChart3
 } from "lucide-react";
 
 interface ComplianceRecord {
@@ -359,7 +361,7 @@ export default function Dashboard() {
 
         {/* Main Content Tabs */}
         <Tabs defaultValue="overview" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-10 glass-effect border-white/20 bg-white/5 backdrop-blur-sm">
+          <TabsList className="grid w-full grid-cols-11 glass-effect border-white/20 bg-white/5 backdrop-blur-sm">
             <TabsTrigger value="overview" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white hover:text-white transition-all duration-300">
               Overview
             </TabsTrigger>
@@ -386,6 +388,9 @@ export default function Dashboard() {
             </TabsTrigger>
             <TabsTrigger value="locations" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white hover:text-white transition-all duration-300">
               Locations
+            </TabsTrigger>
+            <TabsTrigger value="safety-trends" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white hover:text-white transition-all duration-300">
+              Safety Trends
             </TabsTrigger>
             <TabsTrigger value="audit-settings" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white hover:text-white transition-all duration-300">
               Audit Settings
@@ -1917,6 +1922,32 @@ export default function Dashboard() {
             </Card>
           </TabsContent>
 
+          <TabsContent value="safety-trends" className="space-y-6">
+            <Card className="glass-effect border-white/20 bg-white/5 backdrop-blur-sm">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-white">
+                  <Activity className="w-5 h-5 text-blue-400" />
+                  Interactive Safety Trends Dashboard
+                </CardTitle>
+                <CardDescription className="text-gray-300">
+                  Real-time safety analytics with predictive intelligence and animated trend visualizations
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="p-4">
+                  <Link href="/safety-trends">
+                    <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 hover:scale-105">
+                      <BarChart3 className="w-5 h-5 mr-2" />
+                      Launch Safety Trends Dashboard
+                    </Button>
+                  </Link>
+                  <p className="text-sm text-gray-400 mt-3 text-center">
+                    Access comprehensive safety trend analysis, real-time metrics, and AI-powered insights
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
 
         </Tabs>
       </div>
