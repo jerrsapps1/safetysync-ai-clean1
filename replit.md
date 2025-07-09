@@ -565,6 +565,14 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Updated all system documentation to remove incident reporting references
   - SYNC focuses on: OSHA compliance guidance, training optimization, equipment procedures, safety documentation
   - Help desk system remains for escalating complex safety decisions to qualified experts
+- **July 09, 2025** - Moved Promo Codes to Demo Welcome Screen:
+  - Transferred complete promo code system from pricing page to demo request success screen
+  - Enhanced demo welcome screen with exclusive promotional offers display
+  - Top 3 most valuable promo codes shown with copy functionality and tier restrictions
+  - Codes include: SMALLBIZ (35% off), STARTUP40 (40% off), FREEMONTH (first month free), LAUNCH25 (25% off)
+  - Professional layout with gradient backgrounds, badges, and copy-to-clipboard functionality
+  - Re-enabled demo requests on landing page to showcase new promotional welcome experience
+  - Promo codes remain functional for checkout while being removed from pricing page display
 - **July 09, 2025** - Updated Certificate & Card Sample Display:
   - Removed Professional wallet card sample (Vertical) formatting from pricing page
   - Simplified sample output section to focus on certificate sample only
