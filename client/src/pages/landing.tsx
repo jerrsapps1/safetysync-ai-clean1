@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Navigation } from "@/components/ui/navigation";
 import { TrialSignupDialog } from "@/components/ui/trial-signup-dialog";
 import { DemoRequestDialog } from "@/components/ui/demo-request-dialog";
-import { LoginDialog } from "@/components/ui/login-dialog";
+
 import { ProductTour } from "@/components/ui/product-tour";
 import { LiveChatWidget } from "@/components/ui/live-chat-widget";
 import { TermsAndConditions } from "@/components/ui/terms-and-conditions";
@@ -56,7 +56,7 @@ export default function LandingPage() {
   // A/B Testing hooks
   const heroCtaTest = useABTest('hero_cta_test');
   const pricingTest = useABTest('pricing_display_test');
-  const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
+
   const [showProductTour, setShowProductTour] = useState(false);
   const [showLiveChat, setShowLiveChat] = useState(false);
   const [showTermsDialog, setShowTermsDialog] = useState(false);
@@ -80,22 +80,11 @@ export default function LandingPage() {
   };
 
   const handleLoginClick = () => {
-    setIsLoginDialogOpen(true);
+    // Navigate directly to dashboard which has the login form
+    window.location.href = '/dashboard';
   };
 
-  const handleLoginSuccess = (userData: any) => {
-    setUser(userData);
-    toast({
-      title: "Welcome back!",
-      description: `Signed in as ${userData.name}`,
-      duration: 3000,
-    });
-    
-    // Redirect to dashboard after successful login
-    setTimeout(() => {
-      window.location.href = '/dashboard';
-    }, 1000); // Small delay to show the success message
-  };
+
 
   const handleTrialSubmit = (data: any) => {
     // Track trial signup started
@@ -1034,12 +1023,7 @@ export default function LandingPage() {
         onClose={() => setIsDemoDialogOpen(false)} 
         onSubmit={handleDemoSubmit}
       />
-      <LoginDialog 
-        isOpen={isLoginDialogOpen} 
-        onClose={() => setIsLoginDialogOpen(false)}
-        onSuccess={handleLoginSuccess}
-        onSignupClick={handleTrialClick}
-      />
+
       
       {/* Terms and Conditions Dialog */}
       <TermsAndConditions
