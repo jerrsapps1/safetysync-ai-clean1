@@ -33,7 +33,7 @@ interface PricingCalculatorProps {
 }
 
 export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
-  const [employeeCount, setEmployeeCount] = useState(50);
+  const [employeeCount, setEmployeeCount] = useState(0);
   const [isAnnual, setIsAnnual] = useState(true);
   const [selectedAddons, setSelectedAddons] = useState<string[]>([]);
   const [companySize, setCompanySize] = useState<'small' | 'medium' | 'large' | 'enterprise'>('medium');
@@ -397,30 +397,29 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
             </div>
             <Input
               type="number"
-              value={employeeCount.toString()}
+              value={employeeCount}
               onChange={(e) => {
-                const value = parseInt(e.target.value);
-                if (!isNaN(value) && value >= 1 && value <= 10000) {
-                  setEmployeeCount(value);
-                } else if (e.target.value === '') {
-                  setEmployeeCount(1);
+                const value = e.target.value;
+                // Allow empty input or valid numbers
+                if (value === '' || (parseInt(value) >= 0 && parseInt(value) <= 10000)) {
+                  setEmployeeCount(value === '' ? 0 : parseInt(value));
                 }
               }}
               onBlur={(e) => {
                 const value = parseInt(e.target.value);
-                if (isNaN(value) || value < 1) {
-                  setEmployeeCount(1);
+                if (isNaN(value) || value < 0) {
+                  setEmployeeCount(0);
                 } else if (value > 10000) {
                   setEmployeeCount(10000);
                 }
               }}
-              min={1}
+              min={0}
               max={10000}
               placeholder="Enter number of employees"
               className="w-full"
             />
             <div className="flex justify-between text-xs text-gray-500">
-              <span>Minimum: 1</span>
+              <span>Minimum: 0</span>
               <span>Maximum: 10,000</span>
             </div>
           </div>
