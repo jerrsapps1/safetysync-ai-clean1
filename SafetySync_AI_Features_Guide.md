@@ -251,9 +251,11 @@
 - Opt-out capability
 
 ### SYNC AI Priority Support - $75/month
-- SYNC AI assistant with instant responses
-- Smart troubleshooting and issue resolution
-- 24/7 SYNC availability
+- Voice-enabled SYNC AI assistant with instant responses
+- Hands-free troubleshooting perfect for field work
+- Works on phones, tablets, and PCs with microphone
+- 24/7 SYNC availability via voice or text
+- Smart issue resolution while keeping hands free for safety tasks
 - Seamless escalation to human support when needed
 
 ---

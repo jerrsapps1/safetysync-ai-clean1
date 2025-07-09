@@ -549,12 +549,13 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Updated pricing page and dashboard to inform instructors they can add specific EM 385-1-1 references during generation
   - Provides flexibility for instructors to customize compliance references based on specific training requirements
   - Maintains professional compliance standards while giving instructors control over regulatory citations
-- **July 09, 2025** - Updated Support Model to SYNC AI-Powered System:
+- **July 09, 2025** - Updated Support Model to Voice-Enabled SYNC AI System:
   - Changed "24/7 phone support" to "Business hours phone support" in Enterprise plan
-  - Updated add-on service to "SYNC AI Priority Support" ($75/month) with SYNC AI assistant
-  - SYNC AI provides 24/7 availability with smart troubleshooting and issue resolution
+  - Updated add-on service to "SYNC AI Priority Support" ($75/month) with voice-enabled SYNC AI assistant
+  - Voice interaction perfect for safety personnel needing hands-free assistance in the field
+  - Works on phones, tablets, and PCs with microphone for maximum accessibility
+  - 24/7 SYNC availability via voice or text with smart troubleshooting
   - Seamless escalation to human support during business hours when needed
-  - Cost-effective SYNC AI support model more realistic than human agents at $75/month price point
   - AI assistant named "SYNC" (Safety & Compliance Navigation Center) to align with SafetySync brand
 - **July 09, 2025** - Updated Certificate & Card Sample Display:
   - Removed Professional wallet card sample (Vertical) formatting from pricing page
