@@ -54,12 +54,12 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
         "Basic dashboard",
         "Custom branding",
         "CSV exports",
-        "Certificate & card generation ($49/month base: 50 items included, $0.75 overage)"
+        "Certificate & card generation (15 certificates + 15 digital cards included first month, $5.95 per additional item)"
       ]
     },
     {
       name: "Professional",
-      basePrice: 129,
+      basePrice: 112,
       perEmployee: 2.5,
       maxEmployees: 250,
       popular: true,
@@ -71,12 +71,12 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
         "Advanced dashboard",
         "API integrations",
         "Priority support",
-        "Certificate & card generation ($49/month base: 50 items included, $0.75 overage)"
+        "Certificate & card generation (50 certificates + 50 digital cards included first month, $5.95 per additional item)"
       ]
     },
     {
       name: "Enterprise",
-      basePrice: 299,
+      basePrice: 258,
       perEmployee: 4,
       maxEmployees: 1000,
       features: [
@@ -90,12 +90,12 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
         "SLA guarantee",
         "Custom workflows",
         "Audit assistance",
-        "Certificate & card generation ($49/month base: 50 items included, $0.75 overage)"
+        "Certificate & card generation (100 certificates + 100 digital cards included first month, $5.95 per additional item)"
       ]
     },
     {
       name: "Enterprise Plus",
-      basePrice: 799,
+      basePrice: 686,
       perEmployee: 8,
       maxEmployees: 10000,
       enterprise: true,
@@ -107,7 +107,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
         "White-label solution",
         "Unlimited integrations",
         "Dedicated infrastructure",
-        "Certificate & card generation ($49/month base: 50 items included, $0.75 overage)"
+        "Certificate & card generation (250 certificates + 250 digital cards included first month, $5.95 per additional item)"
       ]
     }
   ];

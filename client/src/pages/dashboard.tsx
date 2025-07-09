@@ -1607,7 +1607,7 @@ export default function Dashboard() {
                         <Award className="w-5 h-5 text-blue-600" />
                         Certificate Generation
                       </CardTitle>
-                      <CardDescription>$49/month base (15 included first month), then $5.95 each</CardDescription>
+                      <CardDescription>Plan-specific allowances (15-250 included first month), then $5.95 each</CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-4">
@@ -1686,7 +1686,7 @@ export default function Dashboard() {
                           </Button>
                         </div>
                         <p className="text-xs text-gray-500 mt-2">
-                          *$49/month base plan includes 15 certificates for the first month. Additional certificates: $5.95 each.
+                          *Plan-specific allowances: Essential (15), Professional (50), Enterprise (100), Enterprise Plus (250). Additional certificates: $5.95 each.
                         </p>
                       </div>
                     </CardContent>
@@ -1699,7 +1699,7 @@ export default function Dashboard() {
                         <CreditCard className="w-5 h-5 text-green-600" />
                         Digital Wallet Cards
                       </CardTitle>
-                      <CardDescription>$49/month base (15 included first month), then $5.95 each</CardDescription>
+                      <CardDescription>Plan-specific allowances (15-250 included first month), then $5.95 each</CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-4">
@@ -1796,7 +1796,7 @@ export default function Dashboard() {
                           </Button>
                         </div>
                         <p className="text-xs text-gray-500 mt-2">
-                          *$49/month base plan includes 15 digital wallet cards for the first month. Additional cards: $5.95 each.
+                          *Plan-specific allowances: Essential (15), Professional (50), Enterprise (100), Enterprise Plus (250). Additional cards: $5.95 each.
                         </p>
                       </div>
                     </CardContent>

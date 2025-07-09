@@ -522,6 +522,14 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Updated pricing page and dashboard to reflect new pricing structure
   - Significantly increased per-unit revenue from $0.75 to $5.95 while maintaining competitive base pricing
   - Enhanced profitability model targeting maximum value from certificate generation services
+- **July 09, 2025** - Implemented Plan-Specific Certificate Generation Pricing:
+  - Essential Plan: $49/month includes 15 certificates + 15 digital wallet cards for first month
+  - Professional Plan: $112/month includes 50 certificates + 50 digital wallet cards for first month
+  - Enterprise Plan: $258/month includes 100 certificates + 100 digital wallet cards for first month
+  - Enterprise Plus Plan: $686/month includes 250 certificates + 250 digital wallet cards for first month
+  - All plans: Additional certificates and digital wallet cards at $5.95 each (one-time fee)
+  - Updated pricing calculator, pricing page, and dashboard with plan-specific allowances
+  - Maintained $5.95 per-unit pricing across all tiers for consistency and profitability
 
 ## Changelog
 
