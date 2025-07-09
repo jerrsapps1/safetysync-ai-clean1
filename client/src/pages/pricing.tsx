@@ -195,13 +195,204 @@ export default function PricingPage() {
               </div>
             </div>
             
-            {/* Equipment Operation Cards Example */}
+            {/* Digital Wallet Card Examples */}
             <div className="mt-12 max-w-6xl mx-auto">
               <div className="text-center mb-8">
-                <h4 className="text-2xl font-bold text-gray-900 mb-2">Equipment Operation Authorization Cards</h4>
+                <h4 className="text-2xl font-bold text-gray-900 mb-2">Digital Wallet Card Examples</h4>
                 <p className="text-gray-600">
-                  Professional wallet cards for certified equipment operators with extensive machinery authorizations
+                  Professional digital wallet cards showcasing equipment operator authorizations and fall protection certifications
                 </p>
+              </div>
+              
+              {/* Equipment Operator Cards */}
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                {/* Equipment Operator Card 1 */}
+                <div className="bg-white border-2 border-gray-300 rounded-lg shadow-lg overflow-hidden" style={{ aspectRatio: '1.586/1' }}>
+                  <div className="bg-blue-600 text-white p-3">
+                    <div className="flex justify-between items-center">
+                      <span className="font-bold text-sm">EQUIPMENT OPERATOR</span>
+                      <span className="text-xs">ID: EO-2025-001</span>
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <div className="font-bold text-lg mb-1">Michael Torres</div>
+                    <div className="text-sm text-gray-600 mb-3">Heavy Equipment Operator</div>
+                    
+                    <div className="mb-3">
+                      <h6 className="font-semibold text-xs mb-2">AUTHORIZED EQUIPMENT:</h6>
+                      <div className="text-xs space-y-1">
+                        <div>• JLG 40 AJ Boom Lift</div>
+                        <div>• CAT 315 FL Excavator</div>
+                        <div>• Volvo ECR88D Compact</div>
+                        <div>• Genie Z62/40 Articulating</div>
+                      </div>
+                    </div>
+                    
+                    <div className="text-xs text-gray-500 border-t pt-2">
+                      <div>Certified: 07/09/2025 | Expires: 07/09/2028</div>
+                      <div>Sarah Mitchell, CSP | SafetySync.AI</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Equipment Operator Card 2 */}
+                <div className="bg-white border-2 border-gray-300 rounded-lg shadow-lg overflow-hidden" style={{ aspectRatio: '1.586/1' }}>
+                  <div className="bg-green-600 text-white p-3">
+                    <div className="flex justify-between items-center">
+                      <span className="font-bold text-sm">EQUIPMENT OPERATOR</span>
+                      <span className="text-xs">ID: EO-2025-002</span>
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <div className="font-bold text-lg mb-1">Jennifer Rodriguez</div>
+                    <div className="text-sm text-gray-600 mb-3">Material Handling Specialist</div>
+                    
+                    <div className="mb-3">
+                      <h6 className="font-semibold text-xs mb-2">AUTHORIZED EQUIPMENT:</h6>
+                      <div className="text-xs space-y-1">
+                        <div>• CAT TL 642 Telehandler</div>
+                        <div>• JLG 60 AJ Boom Lift</div>
+                        <div>• 259D3 CAT Skidsteer</div>
+                        <div>• Genie GTH-636 Telehandler</div>
+                      </div>
+                    </div>
+                    
+                    <div className="text-xs text-gray-500 border-t pt-2">
+                      <div>Certified: 07/09/2025 | Expires: 07/09/2028</div>
+                      <div>Mark Johnson, CHST | SafetySync.AI</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Fall Protection Card */}
+                <div className="bg-white border-2 border-gray-300 rounded-lg shadow-lg overflow-hidden" style={{ aspectRatio: '1.586/1' }}>
+                  <div className="bg-red-600 text-white p-3">
+                    <div className="flex justify-between items-center">
+                      <span className="font-bold text-sm">FALL PROTECTION</span>
+                      <span className="text-xs">ID: FP-2025-047</span>
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <div className="font-bold text-lg mb-1">David Chen</div>
+                    <div className="text-sm text-gray-600 mb-3">Construction Safety Specialist</div>
+                    
+                    <div className="mb-3">
+                      <h6 className="font-semibold text-xs mb-2">CERTIFICATIONS:</h6>
+                      <div className="text-xs space-y-1">
+                        <div>• Fall Protection Systems (29 CFR 1926.501)</div>
+                        <div>• Personal Fall Arrest Systems</div>
+                        <div>• Guardrail & Safety Net Systems</div>
+                        <div>• Ladder & Scaffold Safety</div>
+                      </div>
+                    </div>
+                    
+                    <div className="text-xs text-gray-500 border-t pt-2">
+                      <div>Certified: 07/09/2025 | Expires: 07/09/2026</div>
+                      <div>Lisa Adams, CSP | SafetySync.AI</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Additional Equipment Cards Row */}
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                {/* Crane Operator Card */}
+                <div className="bg-white border-2 border-gray-300 rounded-lg shadow-lg overflow-hidden" style={{ aspectRatio: '1.586/1' }}>
+                  <div className="bg-orange-600 text-white p-3">
+                    <div className="flex justify-between items-center">
+                      <span className="font-bold text-sm">CRANE OPERATOR</span>
+                      <span className="text-xs">ID: CO-2025-019</span>
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <div className="font-bold text-lg mb-1">Robert Kim</div>
+                    <div className="text-sm text-gray-600 mb-3">Certified Crane Operator</div>
+                    
+                    <div className="mb-3">
+                      <h6 className="font-semibold text-xs mb-2">AUTHORIZED EQUIPMENT:</h6>
+                      <div className="text-xs space-y-1">
+                        <div>• Mobile Crane 25-Ton</div>
+                        <div>• Tower Crane TC-6015</div>
+                        <div>• Overhead Bridge Crane</div>
+                        <div>• Rough Terrain Crane RT540</div>
+                      </div>
+                    </div>
+                    
+                    <div className="text-xs text-gray-500 border-t pt-2">
+                      <div>Certified: 07/09/2025 | Expires: 07/09/2028</div>
+                      <div>Tom Wilson, CIH | SafetySync.AI</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Forklift Operator Card */}
+                <div className="bg-white border-2 border-gray-300 rounded-lg shadow-lg overflow-hidden" style={{ aspectRatio: '1.586/1' }}>
+                  <div className="bg-purple-600 text-white p-3">
+                    <div className="flex justify-between items-center">
+                      <span className="font-bold text-sm">FORKLIFT OPERATOR</span>
+                      <span className="text-xs">ID: FO-2025-083</span>
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <div className="font-bold text-lg mb-1">Maria Santos</div>
+                    <div className="text-sm text-gray-600 mb-3">Warehouse Operations</div>
+                    
+                    <div className="mb-3">
+                      <h6 className="font-semibold text-xs mb-2">AUTHORIZED EQUIPMENT:</h6>
+                      <div className="text-xs space-y-1">
+                        <div>• Sit-Down Counterbalance</div>
+                        <div>• Stand-Up Reach Truck</div>
+                        <div>• Order Picker</div>
+                        <div>• Pallet Jack (Electric)</div>
+                      </div>
+                    </div>
+                    
+                    <div className="text-xs text-gray-500 border-t pt-2">
+                      <div>Certified: 07/09/2025 | Expires: 07/09/2028</div>
+                      <div>Carlos Rodriguez, CSP | SafetySync.AI</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Scaffolding Safety Card */}
+                <div className="bg-white border-2 border-gray-300 rounded-lg shadow-lg overflow-hidden" style={{ aspectRatio: '1.586/1' }}>
+                  <div className="bg-indigo-600 text-white p-3">
+                    <div className="flex justify-between items-center">
+                      <span className="font-bold text-sm">SCAFFOLDING SAFETY</span>
+                      <span className="text-xs">ID: SS-2025-056</span>
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <div className="font-bold text-lg mb-1">James Thompson</div>
+                    <div className="text-sm text-gray-600 mb-3">Scaffolding Specialist</div>
+                    
+                    <div className="mb-3">
+                      <h6 className="font-semibold text-xs mb-2">CERTIFICATIONS:</h6>
+                      <div className="text-xs space-y-1">
+                        <div>• Scaffolding Erection (29 CFR 1926.451)</div>
+                        <div>• Scaffold Inspection</div>
+                        <div>• Supported Scaffold Systems</div>
+                        <div>• Suspended Scaffold Systems</div>
+                      </div>
+                    </div>
+                    
+                    <div className="text-xs text-gray-500 border-t pt-2">
+                      <div>Certified: 07/09/2025 | Expires: 07/09/2026</div>
+                      <div>Angela Davis, CHST | SafetySync.AI</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="text-center mb-8">
+                <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-6 max-w-4xl mx-auto">
+                  <h5 className="font-semibold text-blue-900 mb-2">Professional Digital Wallet Cards</h5>
+                  <p className="text-blue-800 text-sm">
+                    Each card is generated with professional formatting, unique tracking numbers, specific equipment authorizations, 
+                    OSHA compliance references, and instructor credentials. Cards are optimized for mobile viewing and include 
+                    certification details, expiration dates, and regulatory compliance information.
+                  </p>
+                </div>
               </div>
               
               <div className="bg-gradient-to-r from-orange-50 to-yellow-50 border border-orange-200 rounded-xl p-8">
