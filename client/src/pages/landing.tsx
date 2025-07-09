@@ -955,7 +955,6 @@ export default function LandingPage() {
             <div>
               <h3 className="font-semibold mb-4">Product</h3>
               <ul className="space-y-2 text-sm">
-                <li><a href="/dashboard" className="text-gray-300 hover:text-white transition-colors">Dashboard</a></li>
                 <li><a href="/pricing" className="text-gray-300 hover:text-white transition-colors">Pricing</a></li>
                 <li><a href="/industry-research" className="text-gray-300 hover:text-white transition-colors">Industry Research</a></li>
                 <li><a href="/case-studies" className="text-gray-300 hover:text-white transition-colors">Case Studies</a></li>
@@ -986,7 +985,7 @@ export default function LandingPage() {
               <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm">
                 <div className="flex items-center">
                   <Mail className="w-4 h-4 mr-2" />
-                  <a href="mailto:contact@safetysync.com" className="text-gray-300 hover:text-white transition-colors">contact@safetysync.com</a>
+                  <a href="mailto:support@safetysync.ai" className="text-gray-300 hover:text-white transition-colors">support@safetysync.ai</a>
                 </div>
                 <div className="text-xs text-gray-400">
                   Support email available to paying customers
