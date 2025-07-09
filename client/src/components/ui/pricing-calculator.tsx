@@ -621,19 +621,19 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
                     {isAnnual ? (
                       <div className="space-y-1">
                         <div className="text-green-600 font-medium">
-                          Annual: ${Math.round(pricing.annual / 12)}/month (billed annually)
+                          Annual: ${Math.round(pricing.annual / 12)}/month (${Math.round(pricing.annual)}/year)
                         </div>
                         <div className="text-gray-600">
-                          Monthly: ${Math.round(pricing.monthlyWithPromo)}/month (billed monthly)
+                          Monthly: ${Math.round(pricing.monthlyWithPromo)}/month (${Math.round(pricing.monthlyWithPromo * 12)}/year)
                         </div>
                       </div>
                     ) : (
                       <div className="space-y-1">
                         <div className="text-blue-600 font-medium">
-                          Monthly: ${Math.round(pricing.monthlyWithPromo)}/month (billed monthly)
+                          Monthly: ${Math.round(pricing.monthlyWithPromo)}/month (${Math.round(pricing.monthlyWithPromo * 12)}/year)
                         </div>
                         <div className="text-gray-600">
-                          Annual: ${Math.round(pricing.annual / 12)}/month (save 15%)
+                          Annual: ${Math.round(pricing.annual / 12)}/month (${Math.round(pricing.annual)}/year - save 15%)
                         </div>
                       </div>
                     )}
@@ -832,19 +832,19 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
                   {isAnnual ? (
                     <div className="space-y-1">
                       <div className="text-green-600 font-medium">
-                        Annual: ${Math.round(pricing.annual / 12)}/month (billed annually)
+                        Annual: ${Math.round(pricing.annual / 12)}/month (${Math.round(pricing.annual)}/year)
                       </div>
                       <div className="text-gray-600">
-                        Monthly: ${Math.round(pricing.monthlyWithPromo)}/month (billed monthly)
+                        Monthly: ${Math.round(pricing.monthlyWithPromo)}/month (${Math.round(pricing.monthlyWithPromo * 12)}/year)
                       </div>
                     </div>
                   ) : (
                     <div className="space-y-1">
                       <div className="text-blue-600 font-medium">
-                        Monthly: ${Math.round(pricing.monthlyWithPromo)}/month (billed monthly)
+                        Monthly: ${Math.round(pricing.monthlyWithPromo)}/month (${Math.round(pricing.monthlyWithPromo * 12)}/year)
                       </div>
                       <div className="text-gray-600">
-                        Annual: ${Math.round(pricing.annual / 12)}/month (save 15%)
+                        Annual: ${Math.round(pricing.annual / 12)}/month (${Math.round(pricing.annual)}/year - save 15%)
                       </div>
                     </div>
                   )}
