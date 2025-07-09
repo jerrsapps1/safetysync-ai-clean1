@@ -7,6 +7,7 @@ import { CopyrightProtection } from "@/components/ui/copyright-protection";
 import NotFound from "@/pages/not-found";
 import LandingPage from "@/pages/landing";
 import Dashboard from "@/pages/dashboard";
+import WorkspacePage from "@/pages/workspace";
 import AdminPanel from "@/pages/admin";
 import TestimonialsPage from "@/pages/testimonials";
 import CaseStudiesPage from "@/pages/case-studies";
@@ -35,6 +36,7 @@ function Router() {
     <Switch>
       <Route path="/" component={LandingPage} />
       <Route path="/dashboard" component={Dashboard} />
+      <Route path="/workspace" component={WorkspacePage} />
       <Route path="/admin" component={AdminPanel} />
       <Route path="/industry-research" component={TestimonialsPage} />
       <Route path="/case-studies" component={CaseStudiesPage} />
