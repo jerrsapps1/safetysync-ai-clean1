@@ -250,10 +250,10 @@
 - Email and PDF delivery options
 - Opt-out capability
 
-### AI Priority Support - $75/month
-- AI-powered support with instant responses
+### SYNC AI Priority Support - $75/month
+- SYNC AI assistant with instant responses
 - Smart troubleshooting and issue resolution
-- 24/7 AI agent availability
+- 24/7 SYNC availability
 - Seamless escalation to human support when needed
 
 ---
