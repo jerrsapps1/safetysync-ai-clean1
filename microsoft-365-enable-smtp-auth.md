@@ -1,38 +1,38 @@
-# Enable SMTP Authentication for jerry@safetysync.ai
-
-## Quick Fix (5 minutes)
-
-Since you're the admin, you can enable SMTP authentication:
-
-### Method 1: Enable for Your User Only
-1. Go to: https://admin.microsoft.com
-2. Sign in with your admin account
-3. Navigate to: **Users** → **Active users**
-4. Click on **jerry@safetysync.ai**
-5. Click **Mail** tab
-6. Look for **SMTP AUTH** and **enable** it
-7. Click **Save changes**
-
-### Method 2: Enable for Entire Organization
-1. Go to: https://admin.microsoft.com
-2. Navigate to: **Settings** → **Org settings** → **Services**
-3. Find **Modern authentication**
-4. Enable **SMTP AUTH**
-5. Save (takes 5-10 minutes to propagate)
+# Microsoft 365 SMTP Authentication Still Disabled
 
 ## Current Status
-- ✅ DNS records configured
-- ✅ Email service ready
-- ✅ Credentials configured
-- ❌ SMTP auth disabled (needs enabling)
+The error shows: "SmtpClientAuthentication is disabled for the Tenant"
 
-## After Enabling
-Test with:
-```bash
-curl -X POST http://localhost:5000/api/test-email \
-  -H "Content-Type: application/json" \
-  -d '{"to": "jerry@safetysync.ai", "subject": "Test", "testType": "welcome"}'
+This means SMTP authentication needs to be enabled at the **tenant level** (organization-wide) or for the specific user.
+
+## Solutions to Try:
+
+### Option 1: Enable for Specific User (Recommended)
+1. Go to **Users** → **Active users**
+2. Find and click **jerry@safetysync.ai**
+3. Click the **Mail** tab
+4. Look for **"SMTP AUTH"** setting
+5. **Enable** it for this specific user
+
+### Option 2: Enable Organization-Wide
+1. Go to **Settings** → **Org settings**
+2. Click **Services** tab
+3. Find **"Modern authentication"**
+4. Enable **SMTP AUTH** for the entire organization
+
+### Option 3: PowerShell Command (If available)
+```powershell
+Set-CASMailbox -Identity jerry@safetysync.ai -SmtpClientAuthenticationDisabled $false
 ```
 
-## Why This Happens
-Microsoft 365 disables SMTP authentication by default for security. This is normal for business accounts.
+## What We Need
+The setting "SmtpClientAuthentication" needs to be enabled either:
+- For the user jerry@safetysync.ai specifically
+- Or for the entire tenant/organization
+
+## Current Error
+```
+535 5.7.139 Authentication unsuccessful, SmtpClientAuthentication is disabled for the Tenant
+```
+
+This confirms SMTP authentication is still disabled and needs to be enabled.
