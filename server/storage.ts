@@ -1,4 +1,4 @@
-import { users, leads, complianceReports, cloneDetectionScans, type User, type InsertUser, type Lead, type InsertLead, type ComplianceReport, type InsertComplianceReport, type CloneDetectionScan, type InsertCloneDetectionScan } from "@shared/schema";
+import { users, leads, complianceReports, cloneDetectionScans, helpDeskTickets, type User, type InsertUser, type Lead, type InsertLead, type ComplianceReport, type InsertComplianceReport, type CloneDetectionScan, type InsertCloneDetectionScan, type HelpDeskTicket, type InsertHelpDeskTicket } from "@shared/schema";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
 
@@ -21,6 +21,14 @@ export interface IStorage {
   getCloneDetectionScans(userId: number): Promise<CloneDetectionScan[]>;
   getCloneDetectionScanById(id: number): Promise<CloneDetectionScan | undefined>;
   updateCloneDetectionScan(id: number, updates: Partial<CloneDetectionScan>): Promise<void>;
+  
+  // Help desk ticket operations
+  createHelpDeskTicket(ticket: InsertHelpDeskTicket): Promise<HelpDeskTicket>;
+  getHelpDeskTickets(): Promise<HelpDeskTicket[]>;
+  getHelpDeskTicketById(id: number): Promise<HelpDeskTicket | undefined>;
+  updateHelpDeskTicket(id: number, updates: Partial<HelpDeskTicket>): Promise<void>;
+  assignHelpDeskTicket(id: number, assignedTo: string): Promise<void>;
+  resolveHelpDeskTicket(id: number, resolutionNotes: string): Promise<void>;
   
   // Admin-only user management functions
   updateUserTier(userId: number, tier: string): Promise<void>;
@@ -118,6 +126,55 @@ export class DatabaseStorage implements IStorage {
     await db.update(cloneDetectionScans)
       .set(updates)
       .where(eq(cloneDetectionScans.id, id));
+  }
+
+  // Help desk ticket operations
+  async createHelpDeskTicket(insertTicket: InsertHelpDeskTicket): Promise<HelpDeskTicket> {
+    // Generate unique ticket number
+    const ticketNumber = `SYNC-${Date.now()}-${Math.random().toString(36).substr(2, 4).toUpperCase()}`;
+    
+    const [ticket] = await db
+      .insert(helpDeskTickets)
+      .values({ ...insertTicket, ticketNumber })
+      .returning();
+    return ticket;
+  }
+
+  async getHelpDeskTickets(): Promise<HelpDeskTicket[]> {
+    return await db.select().from(helpDeskTickets)
+      .orderBy(helpDeskTickets.createdAt);
+  }
+
+  async getHelpDeskTicketById(id: number): Promise<HelpDeskTicket | undefined> {
+    const [ticket] = await db.select().from(helpDeskTickets).where(eq(helpDeskTickets.id, id));
+    return ticket || undefined;
+  }
+
+  async updateHelpDeskTicket(id: number, updates: Partial<HelpDeskTicket>): Promise<void> {
+    await db.update(helpDeskTickets)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(helpDeskTickets.id, id));
+  }
+
+  async assignHelpDeskTicket(id: number, assignedTo: string): Promise<void> {
+    await db.update(helpDeskTickets)
+      .set({ 
+        assignedTo, 
+        status: 'in_progress',
+        updatedAt: new Date()
+      })
+      .where(eq(helpDeskTickets.id, id));
+  }
+
+  async resolveHelpDeskTicket(id: number, resolutionNotes: string): Promise<void> {
+    await db.update(helpDeskTickets)
+      .set({ 
+        status: 'resolved',
+        resolutionNotes,
+        resolvedAt: new Date(),
+        updatedAt: new Date()
+      })
+      .where(eq(helpDeskTickets.id, id));
   }
 
   // Admin-only user management functions
