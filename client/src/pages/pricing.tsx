@@ -35,7 +35,7 @@ export default function PricingPage() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Professional Certificate & Digital Card Services</h2>
             <p className="text-xl text-gray-600">
-              Base subscription: $49/month includes 15 certificates + 15 digital wallet cards for the first month. Additional certificates and cards: $5.95 each.
+              Plan-specific certificate and digital wallet card allowances included. Additional certificates and cards: $5.95 each.
             </p>
           </div>
 
@@ -47,12 +47,22 @@ export default function PricingPage() {
                   <Award className="w-6 h-6 text-blue-600" />
                   Certificate Generation Service
                 </CardTitle>
-                <div className="text-lg font-semibold text-blue-600">$49/month base + $5.95 per certificate</div>
+                <div className="text-lg font-semibold text-blue-600">Plan-specific allowances + $5.95 per certificate</div>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 mb-6">
-                  Base subscription includes 15 certificates for the first month. Additional certificates: $5.95 each.
+                  Each plan includes different certificate allowances for the first month. Additional certificates: $5.95 each.
                 </p>
+                
+                <div className="bg-blue-50 p-4 rounded-lg mb-6">
+                  <h4 className="font-semibold text-blue-900 mb-2">Certificate Allowances by Plan:</h4>
+                  <ul className="text-sm text-blue-800 space-y-1">
+                    <li>• <strong>Essential:</strong> 15 certificates included</li>
+                    <li>• <strong>Professional:</strong> 50 certificates included</li>
+                    <li>• <strong>Enterprise:</strong> 100 certificates included</li>
+                    <li>• <strong>Enterprise Plus:</strong> 250 certificates included</li>
+                  </ul>
+                </div>
                 
                 <div className="space-y-4">
                   <div className="border-l-4 border-blue-500 pl-4">
@@ -82,12 +92,22 @@ export default function PricingPage() {
                   <CreditCard className="w-6 h-6 text-green-600" />
                   Digital Wallet Card Service
                 </CardTitle>
-                <div className="text-lg font-semibold text-green-600">$5.95 per card</div>
+                <div className="text-lg font-semibold text-green-600">Plan-specific allowances + $5.95 per card</div>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 mb-6">
-                  Base subscription includes 15 digital wallet cards for the first month. Additional cards: $5.95 each.
+                  Each plan includes different digital wallet card allowances for the first month. Additional cards: $5.95 each.
                 </p>
+                
+                <div className="bg-green-50 p-4 rounded-lg mb-6">
+                  <h4 className="font-semibold text-green-900 mb-2">Digital Card Allowances by Plan:</h4>
+                  <ul className="text-sm text-green-800 space-y-1">
+                    <li>• <strong>Essential:</strong> 15 digital wallet cards included</li>
+                    <li>• <strong>Professional:</strong> 50 digital wallet cards included</li>
+                    <li>• <strong>Enterprise:</strong> 100 digital wallet cards included</li>
+                    <li>• <strong>Enterprise Plus:</strong> 250 digital wallet cards included</li>
+                  </ul>
+                </div>
                 
                 <div className="space-y-4">
                   <div className="border-l-4 border-green-500 pl-4">
