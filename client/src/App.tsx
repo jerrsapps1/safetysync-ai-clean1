@@ -11,6 +11,7 @@ import AdminPanel from "@/pages/admin";
 import TestimonialsPage from "@/pages/testimonials";
 import CaseStudiesPage from "@/pages/case-studies";
 import PricingPage from "@/pages/pricing";
+import CertificateServicesPage from "@/pages/certificate-services";
 import DeveloperPortal from "@/pages/developer-portal";
 import AnalyticsPage from "@/pages/analytics";
 import AnalyticsDashboard from "@/pages/analytics-dashboard";
@@ -37,6 +38,7 @@ function Router() {
       <Route path="/industry-research" component={TestimonialsPage} />
       <Route path="/case-studies" component={CaseStudiesPage} />
       <Route path="/pricing" component={PricingPage} />
+      <Route path="/certificate-services" component={CertificateServicesPage} />
       <Route path="/user-guide" component={UserGuidePage} />
       <Route path="/developers" component={DeveloperPortal} />
       <Route path="/analytics" component={AnalyticsPage} />
