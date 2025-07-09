@@ -108,12 +108,8 @@ export default function LandingPage() {
   };
 
   const handleDemoSubmit = (data: any) => {
-    // Demo functionality disabled for now
-    toast({
-      title: "Demo Coming Soon",
-      description: "Demo access will be available once the platform is fully ready.",
-      duration: 4000,
-    });
+    // Demo requests are now enabled and handled by the DemoRequestDialog
+    console.log("Demo request submitted:", data);
   };
 
   const handleTermsAccept = async () => {
@@ -1001,6 +997,7 @@ export default function LandingPage() {
       <DemoRequestDialog 
         isOpen={isDemoDialogOpen} 
         onClose={() => setIsDemoDialogOpen(false)} 
+        onSubmit={handleDemoSubmit}
       />
       <LoginDialog 
         isOpen={isLoginDialogOpen} 

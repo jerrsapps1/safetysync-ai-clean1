@@ -65,7 +65,7 @@ export function DemoRequestDialog({ isOpen, onClose, onSubmit }: DemoRequestDial
       description: 'New Client Discount - 20% Off', 
       maxDiscount: 300,
       allowedTiers: ['Essential', 'Professional'],
-      validUntil: '2025-06-30' 
+      validUntil: '2025-12-31' 
     },
     'LAUNCH25': { 
       type: 'percentage', 
