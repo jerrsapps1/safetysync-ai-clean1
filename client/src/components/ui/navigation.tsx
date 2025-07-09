@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, User } from "lucide-react";
+import { Shield, User } from "lucide-react";
 
 interface NavigationProps {
   onTrialClick: () => void;
@@ -27,10 +27,10 @@ export function Navigation({ onTrialClick, onDemoClick, onLoginClick, user, onLo
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0 flex items-center">
-              <div className="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center mr-3">
-                <CheckCircle className="w-5 h-5 text-white" />
+              <div className="w-8 h-8 bg-navy-900 rounded-lg flex items-center justify-center mr-3">
+                <Shield className="w-5 h-5 text-white" />
               </div>
-              <span className="text-xl font-bold text-gray-900">SafetySync.AI</span>
+              <span className="text-xl font-bold text-navy-900">SafetySync.AI</span>
             </div>
           </div>
           
@@ -39,43 +39,43 @@ export function Navigation({ onTrialClick, onDemoClick, onLoginClick, user, onLo
             <div className="ml-10 flex items-baseline space-x-8">
               <button 
                 onClick={() => scrollToSection('features')}
-                className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium"
+                className="text-gray-700 hover:text-navy-900 px-3 py-2 text-sm font-medium"
               >
                 Features
               </button>
               <a 
                 href="/industry-research"
-                className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium"
+                className="text-gray-700 hover:text-navy-900 px-3 py-2 text-sm font-medium"
               >
                 Industry Research
               </a>
               <a 
                 href="/case-studies"
-                className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium"
+                className="text-gray-700 hover:text-navy-900 px-3 py-2 text-sm font-medium"
               >
                 Case Studies
               </a>
               <a 
                 href="/pricing"
-                className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium"
+                className="text-gray-700 hover:text-navy-900 px-3 py-2 text-sm font-medium"
               >
                 Pricing
               </a>
               <a 
                 href="/blog"
-                className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium"
+                className="text-gray-700 hover:text-navy-900 px-3 py-2 text-sm font-medium"
               >
                 Blog
               </a>
               <a 
                 href="/resources"
-                className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium"
+                className="text-gray-700 hover:text-navy-900 px-3 py-2 text-sm font-medium"
               >
                 Resources
               </a>
               <button 
                 onClick={() => scrollToSection('contact')}
-                className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium"
+                className="text-gray-700 hover:text-navy-900 px-3 py-2 text-sm font-medium"
               >
                 Contact
               </button>
@@ -92,7 +92,7 @@ export function Navigation({ onTrialClick, onDemoClick, onLoginClick, user, onLo
                   Dashboard
                 </a>
                 <div className="flex items-center space-x-2">
-                  <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
+                  <div className="w-8 h-8 bg-navy-900 rounded-full flex items-center justify-center">
                     <User className="w-4 h-4 text-white" />
                   </div>
                   <span className="text-sm font-medium text-gray-700">{user.name}</span>
@@ -110,13 +110,13 @@ export function Navigation({ onTrialClick, onDemoClick, onLoginClick, user, onLo
                 <Button 
                   variant="ghost" 
                   onClick={onLoginClick}
-                  className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium"
+                  className="text-gray-700 hover:text-navy-900 px-3 py-2 text-sm font-medium"
                 >
                   Sign In
                 </Button>
                 <Button 
                   onClick={onTrialClick}
-                  className="bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors"
+                  className="bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-emerald-700 transition-colors"
                 >
                   Start Free Trial
                 </Button>

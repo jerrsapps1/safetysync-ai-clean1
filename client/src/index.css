@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Zywave-inspired color scheme */
+:root {
+  --navy-50: #f8fafc;
+  --navy-100: #f1f5f9;
+  --navy-200: #e2e8f0;
+  --navy-300: #cbd5e1;
+  --navy-400: #94a3b8;
+  --navy-500: #64748b;
+  --navy-600: #475569;
+  --navy-700: #334155;
+  --navy-800: #1e293b;
+  --navy-900: #0f172a;
+  --green-500: #10b981;
+  --green-600: #059669;
+  --green-700: #047857;
+}
+
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
