@@ -541,6 +541,12 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Updated pricing page and dashboard to inform instructors they can add specific EM 385-1-1 references during generation
   - Provides flexibility for instructors to customize compliance references based on specific training requirements
   - Maintains professional compliance standards while giving instructors control over regulatory citations
+- **July 09, 2025** - Updated Certificate & Card Sample Display:
+  - Removed Professional wallet card sample (Vertical) formatting from pricing page
+  - Simplified sample output section to focus on certificate sample only
+  - Updated Professional Quality Guaranteed paragraph to reflect current plan-specific pricing model
+  - Changed from outdated "$0.50 per certificate" to current "$5.95 each, automatically billed to monthly subscription"
+  - Streamlined visual presentation to focus on core certificate generation capabilities
 
 ## Changelog
 
