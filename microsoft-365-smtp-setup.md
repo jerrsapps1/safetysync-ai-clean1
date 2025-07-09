@@ -1,53 +1,52 @@
-# Microsoft 365 SMTP Authentication Setup
+# Microsoft 365 SMTP Authentication Setup Guide
 
-## Current Issue
-Your Microsoft 365 tenant has SMTP authentication disabled. Error: "SmtpClientAuthentication is disabled for the Tenant"
+## Current Status
+- Organization-wide SMTP authentication was enabled
+- Still getting error: "SmtpClientAuthentication is disabled for the Tenant"
+- May need time to propagate (up to 30 minutes)
 
-## Solution Options
+## Alternative Authentication Methods
 
-### Option 1: Enable SMTP Authentication (Recommended)
-1. Go to: https://admin.microsoft.com
-2. Sign in with your admin account
-3. Navigate to: **Settings** → **Org settings** → **Services** → **Modern authentication**
-4. Look for **SMTP AUTH** and enable it
-5. Save settings (takes 5-10 minutes to propagate)
+### Option 1: App Password (Recommended)
+Instead of using the regular password, Microsoft 365 may require an "App Password":
 
-### Option 2: Enable for Specific User
-1. Go to: https://admin.microsoft.com
-2. Navigate to: **Users** → **Active users**
-3. Find and click on `jerry@safetysync.ai`
-4. Go to **Mail** tab
-5. Look for **SMTP AUTH** and enable it
+1. Go to **Users** → **Active users** → **jerry@safetysync.ai**
+2. Click **Reset password**
+3. Look for **"App passwords"** or **"App-specific passwords"**
+4. Generate a new app password for "SafetySync.AI Email Service"
+5. Use this app password instead of the regular password
 
-### Option 3: PowerShell Command (Admin Only)
-```powershell
-# Connect to Exchange Online
-Connect-ExchangeOnline
+### Option 2: Check Security Defaults
+If Security Defaults are enabled, they might block SMTP:
 
-# Enable SMTP AUTH for specific user
-Set-CASMailbox -Identity jerry@safetysync.ai -SmtpClientAuthenticationDisabled $false
+1. Go to **Azure Active Directory** → **Properties**
+2. Click **"Manage security defaults"**
+3. Check if Security Defaults are **Enabled**
+4. If enabled, they might be blocking SMTP authentication
 
-# Or enable for entire organization
-Set-OrganizationConfig -SmtpClientAuthenticationDisabled $false
-```
+### Option 3: Conditional Access
+Check if Conditional Access policies are blocking SMTP:
 
-### Option 4: Alternative Email Service
-If you can't enable SMTP AUTH, we can switch to:
-- SendGrid API
-- Mailgun API
-- AWS SES
-- Another email service
+1. Go to **Azure Active Directory** → **Security** → **Conditional Access**
+2. Look for policies that might affect SMTP authentication
+3. Add exception for SMTP if needed
 
-## Testing After Changes
-Once enabled, test with:
+## Current Configuration
+- **Host**: smtp.office365.com
+- **Port**: 587
+- **Security**: STARTTLS
+- **Username**: jerry@safetysync.ai
+- **Password**: [Current password - may need app password]
+
+## Next Steps
+1. **Wait 15-30 minutes** for organization setting to propagate
+2. **Try app password** if regular password fails
+3. **Check security defaults** if still failing
+4. **Contact Microsoft Support** if needed
+
+## Test Command
 ```bash
 curl -X POST http://localhost:5000/api/test-email \
   -H "Content-Type: application/json" \
-  -d '{"to": "jerry@safetysync.ai", "subject": "Test", "testType": "basic"}'
+  -d '{"to": "jerry@safetysync.ai", "subject": "Test", "testType": "welcome"}'
 ```
-
-## Current Status
-- DNS records: ✅ Configured
-- Email service: ✅ Ready
-- SMTP auth: ❌ Disabled (needs enabling)
-- Credentials: ✅ Configured
