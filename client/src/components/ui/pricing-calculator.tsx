@@ -612,23 +612,23 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
                   )}
                   
                   <div className="text-3xl font-bold">
-                    ${(isAnnual ? pricing.annual / 12 : pricing.monthlyWithPromo).toFixed(2)}
-                    <span className="text-sm font-normal text-gray-500">/month</span>
+                    ${(isAnnual ? pricing.annual : pricing.monthlyWithPromo).toFixed(2)}
+                    <span className="text-sm font-normal text-gray-500">/{isAnnual ? 'year' : 'month'}</span>
                   </div>
                   
-                  {/* Show selected billing cycle info */}
+                  {/* Show billing cycle info */}
                   <div className="text-sm space-y-1">
                     {isAnnual ? (
                       <div className="space-y-1">
                         <div className="text-green-600 font-medium">
-                          Annual billing: ${pricing.annual.toFixed(2)}/year
+                          Billed annually (Save 15%)
                         </div>
-                        <div className="text-xs text-gray-500">Save 15% vs monthly billing</div>
+                        <div className="text-xs text-gray-500">One payment per year</div>
                       </div>
                     ) : (
                       <div className="space-y-1">
                         <div className="text-blue-600 font-medium">
-                          Monthly billing: ${pricing.monthlyWithPromo.toFixed(2)}/month
+                          Billed monthly
                         </div>
                         <div className="text-xs text-gray-500">Switch to annual and save 15%</div>
                       </div>
@@ -818,7 +818,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
           <div className="text-center space-y-4">
             <h3 className="text-xl font-bold">Your Recommended Plan</h3>
             <div className="text-3xl font-bold text-blue-600">
-              {getRecommendedPlan()} - ${(isAnnual ? calculatePrice(pricingTiers.find(t => t.name === getRecommendedPlan())!).annual / 12 : calculatePrice(pricingTiers.find(t => t.name === getRecommendedPlan())!).monthlyWithPromo).toFixed(2)}/month
+              {getRecommendedPlan()} - ${(isAnnual ? calculatePrice(pricingTiers.find(t => t.name === getRecommendedPlan())!).annual : calculatePrice(pricingTiers.find(t => t.name === getRecommendedPlan())!).monthlyWithPromo).toFixed(2)}/{isAnnual ? 'year' : 'month'}
             </div>
             {(() => {
               const recommendedTier = pricingTiers.find(t => t.name === getRecommendedPlan())!;
@@ -828,21 +828,21 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
                   {isAnnual ? (
                     <div className="space-y-1">
                       <div className="text-green-600 font-medium">
-                        Annual billing: ${pricing.annual.toFixed(2)}/year
+                        Billed annually (Save 15%)
                       </div>
-                      <div className="text-xs text-gray-500">Save 15% vs monthly billing</div>
+                      <div className="text-xs text-gray-500">One payment per year</div>
                     </div>
                   ) : (
                     <div className="space-y-1">
                       <div className="text-blue-600 font-medium">
-                        Monthly billing: ${pricing.monthlyWithPromo.toFixed(2)}/month
+                        Billed monthly
                       </div>
                       <div className="text-xs text-gray-500">Switch to annual and save 15%</div>
                     </div>
                   )}
                   {pricing.promoDiscount > 0 && (
                     <div className="text-gray-600">
-                      After promo: ${Math.round(pricing.monthly)}/month
+                      After promo: ${pricing.monthly.toFixed(2)}/{isAnnual ? 'year' : 'month'}
                     </div>
                   )}
                 </div>
