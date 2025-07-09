@@ -467,57 +467,128 @@ export default function PricingPage() {
                   </p>
                 </div>
                 
-                <div className="grid lg:grid-cols-2 gap-8">
-                  {/* Card 1 */}
-                  <div className="bg-white border-2 border-gray-300 rounded-lg shadow-md">
-                    <div className="bg-blue-600 text-white p-3 rounded-t-lg">
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {/* Card 1 - FRONT */}
+                  <div className="bg-white border-2 border-gray-300 rounded-lg shadow-lg overflow-hidden" style={{ aspectRatio: '1/1.586' }}>
+                    <div className="bg-blue-600 text-white p-3">
                       <div className="flex justify-between items-center">
-                        <span className="font-bold">EQUIPMENT OPERATOR CARD</span>
-                        <span className="text-sm">Card 1 of 2</span>
+                        <span className="font-bold text-xs">EQUIPMENT OPERATOR</span>
+                        <span className="text-xs">FRONT</span>
                       </div>
                     </div>
-                    <div className="p-4">
-                      <div className="font-bold text-lg mb-2">John Smith</div>
-                      <div className="text-sm text-gray-600 mb-3">Heavy Equipment Operator</div>
+                    <div className="p-3">
+                      <div className="flex items-center mb-3">
+                        <div className="w-6 h-6 bg-gray-200 rounded border mr-2 flex items-center justify-center">
+                          <span className="text-xs text-gray-500">LG</span>
+                        </div>
+                        <div>
+                          <div className="font-bold text-sm">John Smith</div>
+                          <div className="text-xs text-gray-600">Heavy Equipment Operator</div>
+                        </div>
+                      </div>
                       
                       <div className="mb-3">
-                        <h6 className="font-semibold text-sm mb-2">AUTHORIZED EQUIPMENT:</h6>
-                        <div className="grid grid-cols-1 gap-1 text-xs">
-                          <div>• JLG 40 AJ Boom Lift</div>
-                          <div>• JLG 60 AJ Boom Lift</div>
-                          <div>• JLG 80 AJ Boom Lift</div>
-                          <div>• Genie Z62/40 Articulating Boom</div>
-                          <div>• CAT 315 FL Zero Turn Track Excavator</div>
-                          <div>• Volvo ECR88D Compact Excavator</div>
+                        <h6 className="font-semibold text-xs mb-2">CERTIFICATIONS:</h6>
+                        <div className="text-xs space-y-1">
+                          <div>• Power Industrial Trucks</div>
+                          <div>• Mobile Elevated Work Platforms</div>
+                          <div>• Material Handling Equipment</div>
+                          <div>• Earth-moving Equipment</div>
                         </div>
                       </div>
                       
                       <div className="text-xs text-gray-500 border-t pt-2">
-                        <div>Certified: 07/06/2025 | Expires: 07/06/2028</div>
-                        <div>Instructor: [Name] | [Company] [Position]</div>
+                        <div>Certified: 07/09/2025</div>
+                        <div>Expires: 07/09/2028</div>
+                        <div>Sarah Mitchell, CSP</div>
+                        <div className="font-medium text-orange-600">Card 1 of 2</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Card 1 - BACK */}
+                  <div className="bg-white border-2 border-gray-300 rounded-lg shadow-lg overflow-hidden" style={{ aspectRatio: '1/1.586' }}>
+                    <div className="bg-blue-600 text-white p-3">
+                      <div className="flex justify-between items-center">
+                        <span className="font-bold text-xs">EQUIPMENT OPERATOR</span>
+                        <span className="text-xs">BACK</span>
+                      </div>
+                    </div>
+                    <div className="p-3">
+                      <div className="mb-3">
+                        <h6 className="font-semibold text-xs mb-2">AUTHORIZED EQUIPMENT:</h6>
+                        <div className="text-xs space-y-1">
+                          <div>• JLG 40 AJ Boom Lift</div>
+                          <div>• JLG 60 AJ Boom Lift</div>
+                          <div>• JLG 80 AJ Boom Lift</div>
+                          <div>• Genie Z62/40 Articulating</div>
+                          <div>• CAT 315 FL Excavator</div>
+                          <div>• Volvo ECR88D Compact</div>
+                        </div>
+                      </div>
+                      
+                      <div className="text-xs text-gray-500 border-t pt-2">
+                        <div>OSHA 29 CFR 1910.178, 1926.453</div>
+                        <div>ANSI A92, ITSDF B56.1</div>
+                        <div>EM 385-1-1 standards</div>
                         <div className="font-medium text-orange-600">Continued on Card 2...</div>
                       </div>
                     </div>
                   </div>
 
-                  {/* Card 2 */}
-                  <div className="bg-white border-2 border-gray-300 rounded-lg shadow-md">
-                    <div className="bg-blue-600 text-white p-3 rounded-t-lg">
+                  {/* Card 2 - FRONT */}
+                  <div className="bg-white border-2 border-gray-300 rounded-lg shadow-lg overflow-hidden" style={{ aspectRatio: '1/1.586' }}>
+                    <div className="bg-blue-600 text-white p-3">
                       <div className="flex justify-between items-center">
-                        <span className="font-bold">EQUIPMENT OPERATOR CARD</span>
-                        <span className="text-sm">Card 2 of 2</span>
+                        <span className="font-bold text-xs">EQUIPMENT OPERATOR</span>
+                        <span className="text-xs">FRONT</span>
                       </div>
                     </div>
-                    <div className="p-4">
-                      <div className="font-bold text-lg mb-2">John Smith</div>
-                      <div className="text-sm text-gray-600 mb-3">Heavy Equipment Operator</div>
+                    <div className="p-3">
+                      <div className="flex items-center mb-3">
+                        <div className="w-6 h-6 bg-gray-200 rounded border mr-2 flex items-center justify-center">
+                          <span className="text-xs text-gray-500">LG</span>
+                        </div>
+                        <div>
+                          <div className="font-bold text-sm">John Smith</div>
+                          <div className="text-xs text-gray-600">Heavy Equipment Operator</div>
+                        </div>
+                      </div>
                       
                       <div className="mb-3">
-                        <h6 className="font-semibold text-sm mb-2">ADDITIONAL AUTHORIZED EQUIPMENT:</h6>
-                        <div className="grid grid-cols-1 gap-1 text-xs">
+                        <h6 className="font-semibold text-xs mb-2">CERTIFICATIONS:</h6>
+                        <div className="text-xs space-y-1">
+                          <div>• Power Industrial Trucks</div>
+                          <div>• Mobile Elevated Work Platforms</div>
+                          <div>• Material Handling Equipment</div>
+                          <div>• Earth-moving Equipment</div>
+                        </div>
+                      </div>
+                      
+                      <div className="text-xs text-gray-500 border-t pt-2">
+                        <div>Certified: 07/09/2025</div>
+                        <div>Expires: 07/09/2028</div>
+                        <div>Sarah Mitchell, CSP</div>
+                        <div className="font-medium text-orange-600">Card 2 of 2</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Card 2 - BACK */}
+                  <div className="bg-white border-2 border-gray-300 rounded-lg shadow-lg overflow-hidden" style={{ aspectRatio: '1/1.586' }}>
+                    <div className="bg-blue-600 text-white p-3">
+                      <div className="flex justify-between items-center">
+                        <span className="font-bold text-xs">EQUIPMENT OPERATOR</span>
+                        <span className="text-xs">BACK</span>
+                      </div>
+                    </div>
+                    <div className="p-3">
+                      <div className="mb-3">
+                        <h6 className="font-semibold text-xs mb-2">ADDITIONAL EQUIPMENT:</h6>
+                        <div className="text-xs space-y-1">
                           <div>• CAT TL 642 Telehandler</div>
                           <div>• Genie GTH-636 Telehandler</div>
-                          <div>• 259D3 CAT Compact Track Loader</div>
+                          <div>• 259D3 CAT Compact Track</div>
                           <div>• John Deere 310L Backhoe</div>
                           <div>• Bobcat S650 Skid Steer</div>
                           <div>• Komatsu PC210 Excavator</div>
@@ -525,8 +596,10 @@ export default function PricingPage() {
                       </div>
                       
                       <div className="text-xs text-gray-500 border-t pt-2">
-                        <div>Certified: 07/06/2025 | Expires: 07/06/2028</div>
-                        <div>Instructor: [Name] | [Company] [Position]</div>
+                        <div>OSHA 29 CFR 1926.602</div>
+                        <div>ANSI B56.1, A92 standards</div>
+                        <div>EM 385-1-1 compliance</div>
+                        <div className="font-medium text-green-600">Series Complete</div>
                       </div>
                     </div>
                   </div>
