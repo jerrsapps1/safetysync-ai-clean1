@@ -238,8 +238,52 @@ export function AIQuickActions({ onActionExecute, currentPage = 'dashboard' }: A
         aiResponse = 'I can generate several types of reports: compliance summary, training status, certification tracking, department analysis, or audit preparation. Which type would be most helpful right now?';
       } else if (userMessage.toLowerCase().includes('schedule')) {
         aiResponse = 'I can create intelligent schedules for training, renewals, meetings, or audits. Based on your team\'s availability and certification deadlines, I recommend prioritizing fall protection training for the manufacturing team next week. Shall I create the schedule?';
+      } else if (userMessage.toLowerCase().includes('help') || userMessage.toLowerCase().includes('support') || userMessage.toLowerCase().includes('issue')) {
+        aiResponse = 'I understand you need assistance beyond my current capabilities. I\'m creating a help desk ticket for you - ticket number will be provided shortly. A qualified expert will review your request and provide support during business hours.';
+        
+        // Create help desk ticket
+        try {
+          const ticketData = {
+            userId: 1, // Default user ID for demo
+            title: `SYNC AI Escalation: ${userMessage.slice(0, 50)}...`,
+            description: `User requested assistance with: ${userMessage}\n\nSYNC AI Response: This request requires expert attention and has been escalated automatically.`,
+            priority: 'medium' as const,
+            category: 'sync_escalation',
+            syncContext: {
+              userMessage,
+              timestamp: new Date().toISOString(),
+              conversationHistory: chatHistory.slice(-5) // Last 5 messages for context
+            }
+          };
+          
+          fetch('/api/help-desk/tickets', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(ticketData),
+          })
+          .then(response => response.json())
+          .then(ticket => {
+            setChatHistory(prev => [...prev, {
+              role: 'ai',
+              content: `Help desk ticket created successfully! Ticket #${ticket.ticketNumber}. An expert will review your request and contact you during business hours. You can reference this ticket number for follow-up.`,
+              timestamp: new Date().toISOString()
+            }]);
+          })
+          .catch(error => {
+            console.error('Error creating help desk ticket:', error);
+            setChatHistory(prev => [...prev, {
+              role: 'ai',
+              content: 'I encountered an issue creating your help desk ticket. Please contact support directly at support@safetysync.ai or try again later.',
+              timestamp: new Date().toISOString()
+            }]);
+          });
+        } catch (error) {
+          console.error('Error creating help desk ticket:', error);
+        }
       } else {
-        aiResponse = 'I understand you need help with compliance management. I can assist with training schedules, certification tracking, regulatory updates, automated reporting, and compliance gap analysis. What specific task would you like to tackle first?';
+        aiResponse = 'I understand you need help with compliance management. I can assist with training schedules, certification tracking, regulatory updates, automated reporting, and compliance gap analysis. For complex issues beyond my capabilities, I can create a help desk ticket for expert review. What specific task would you like to tackle first?';
       }
 
       setChatHistory(prev => [...prev, {

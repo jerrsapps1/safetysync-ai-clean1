@@ -4,7 +4,7 @@ import { storage } from "./storage";
 import { cloneDetector } from "./ai-clone-detection";
 import { emailAutomation } from "./email-automation";
 import emailAutomationRoutes from "./api/email-automation";
-import { insertLeadSchema, insertUserSchema, loginUserSchema, insertComplianceReportSchema, insertCloneDetectionScanSchema } from "@shared/schema";
+import { insertLeadSchema, insertUserSchema, loginUserSchema, insertComplianceReportSchema, insertCloneDetectionScanSchema, insertHelpDeskTicketSchema } from "@shared/schema";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
 
@@ -430,6 +430,84 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error('Error fetching users by tier:', error);
       res.status(500).json({ error: 'Failed to fetch users by tier' });
+    }
+  });
+
+  // Help Desk Ticket API endpoints
+  app.post("/api/help-desk/tickets", async (req, res) => {
+    try {
+      const ticketData = insertHelpDeskTicketSchema.parse(req.body);
+      const ticket = await storage.createHelpDeskTicket(ticketData);
+      res.json(ticket);
+    } catch (error) {
+      console.error("Error creating help desk ticket:", error);
+      res.status(500).json({ 
+        success: false, 
+        message: "Failed to create help desk ticket" 
+      });
+    }
+  });
+
+  app.get("/api/help-desk/tickets", requireAdmin, async (req, res) => {
+    try {
+      const tickets = await storage.getHelpDeskTickets();
+      res.json(tickets);
+    } catch (error) {
+      console.error("Error fetching help desk tickets:", error);
+      res.status(500).json({ 
+        success: false, 
+        message: "Failed to fetch help desk tickets" 
+      });
+    }
+  });
+
+  app.get("/api/help-desk/tickets/:id", requireAdmin, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const ticket = await storage.getHelpDeskTicketById(parseInt(id));
+      if (!ticket) {
+        return res.status(404).json({ 
+          success: false, 
+          message: "Ticket not found" 
+        });
+      }
+      res.json(ticket);
+    } catch (error) {
+      console.error("Error fetching help desk ticket:", error);
+      res.status(500).json({ 
+        success: false, 
+        message: "Failed to fetch help desk ticket" 
+      });
+    }
+  });
+
+  app.put("/api/help-desk/tickets/:id/assign", requireAdmin, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { assignedTo } = req.body;
+      await storage.assignHelpDeskTicket(parseInt(id), assignedTo);
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error assigning help desk ticket:", error);
+      res.status(500).json({ 
+        success: false, 
+        message: "Failed to assign help desk ticket" 
+      });
+    }
+  });
+
+  app.put("/api/help-desk/tickets/:id/resolve", requireAdmin, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { resolutionNotes } = req.body;
+      await storage.resolveHelpDeskTicket(parseInt(id), resolutionNotes);
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error resolving help desk ticket:", error);
+      res.status(500).json({ 
+        success: false, 
+        message: "Failed to resolve help desk ticket" 
+      });
     }
   });
 

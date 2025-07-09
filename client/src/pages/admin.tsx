@@ -4,6 +4,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { getQueryFn } from "@/lib/queryClient";
 import { AdminAccess } from "@/components/ui/admin-access";
 import { AICloneDetector } from "@/components/ui/ai-clone-detector";
+import HelpDeskManagement from "@/components/ui/help-desk-management";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -30,7 +31,8 @@ import {
   CheckCircle,
   Home,
   Brain,
-  Shield
+  Shield,
+  Ticket
 } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
@@ -381,9 +383,10 @@ export default function AdminPanel() {
 
         {/* Main Content Tabs */}
         <Tabs defaultValue="leads" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4">
+          <TabsList className="grid w-full grid-cols-5">
             <TabsTrigger value="leads">Lead Management</TabsTrigger>
             <TabsTrigger value="users">User Management</TabsTrigger>
+            <TabsTrigger value="help-desk">Help Desk</TabsTrigger>
             <TabsTrigger value="analytics">Analytics</TabsTrigger>
             <TabsTrigger value="security">Platform Security</TabsTrigger>
           </TabsList>
@@ -660,6 +663,19 @@ export default function AdminPanel() {
                 )}
               </CardContent>
             </Card>
+          </TabsContent>
+
+          <TabsContent value="help-desk" className="space-y-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-lg font-semibold flex items-center gap-2">
+                  <Ticket className="w-5 h-5 text-blue-600" />
+                  Help Desk Management
+                </h3>
+                <p className="text-gray-600">Manage SYNC AI escalations and customer support tickets</p>
+              </div>
+            </div>
+            <HelpDeskManagement />
           </TabsContent>
 
           <TabsContent value="analytics" className="space-y-6">

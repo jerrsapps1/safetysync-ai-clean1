@@ -58,6 +58,23 @@ export const cloneDetectionScans = pgTable("clone_detection_scans", {
   completedAt: timestamp("completed_at"),
 });
 
+export const helpDeskTickets = pgTable("help_desk_tickets", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").notNull(),
+  ticketNumber: text("ticket_number").notNull().unique(),
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  priority: text("priority", { enum: ["low", "medium", "high", "urgent"] }).default("medium"),
+  status: text("status", { enum: ["open", "in_progress", "resolved", "closed"] }).default("open"),
+  category: text("category").notNull(), // 'sync_escalation', 'technical_support', 'compliance_question', 'training_issue'
+  syncContext: jsonb("sync_context"), // SYNC conversation context and parameters
+  assignedTo: text("assigned_to"), // Admin user who takes the ticket
+  resolutionNotes: text("resolution_notes"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  resolvedAt: timestamp("resolved_at"),
+});
+
 export const insertUserSchema = createInsertSchema(users).pick({
   email: true,
   password: true,
@@ -87,6 +104,14 @@ export const insertCloneDetectionScanSchema = createInsertSchema(cloneDetectionS
   completedAt: true,
 });
 
+export const insertHelpDeskTicketSchema = createInsertSchema(helpDeskTickets).omit({
+  id: true,
+  ticketNumber: true,
+  createdAt: true,
+  updatedAt: true,
+  resolvedAt: true,
+});
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type InsertLead = z.infer<typeof insertLeadSchema>;
@@ -95,3 +120,5 @@ export type InsertComplianceReport = z.infer<typeof insertComplianceReportSchema
 export type ComplianceReport = typeof complianceReports.$inferSelect;
 export type InsertCloneDetectionScan = z.infer<typeof insertCloneDetectionScanSchema>;
 export type CloneDetectionScan = typeof cloneDetectionScans.$inferSelect;
+export type InsertHelpDeskTicket = z.infer<typeof insertHelpDeskTicketSchema>;
+export type HelpDeskTicket = typeof helpDeskTickets.$inferSelect;
