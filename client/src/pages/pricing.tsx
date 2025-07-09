@@ -215,8 +215,15 @@ export default function PricingPage() {
                     </div>
                   </div>
                   <div className="p-4">
-                    <div className="font-bold text-lg mb-1">Michael Torres</div>
-                    <div className="text-sm text-gray-600 mb-3">Heavy Equipment Operator</div>
+                    <div className="flex items-center mb-3">
+                      <div className="w-8 h-8 bg-gray-200 rounded border mr-3 flex items-center justify-center">
+                        <span className="text-xs text-gray-500">LOGO</span>
+                      </div>
+                      <div>
+                        <div className="font-bold text-lg">Michael Torres</div>
+                        <div className="text-sm text-gray-600">Heavy Equipment Operator</div>
+                      </div>
+                    </div>
                     
                     <div className="mb-3">
                       <h6 className="font-semibold text-xs mb-2">AUTHORIZED EQUIPMENT:</h6>
@@ -244,8 +251,15 @@ export default function PricingPage() {
                     </div>
                   </div>
                   <div className="p-4">
-                    <div className="font-bold text-lg mb-1">Jennifer Rodriguez</div>
-                    <div className="text-sm text-gray-600 mb-3">Material Handling Specialist</div>
+                    <div className="flex items-center mb-3">
+                      <div className="w-8 h-8 bg-gray-200 rounded border mr-3 flex items-center justify-center">
+                        <span className="text-xs text-gray-500">LOGO</span>
+                      </div>
+                      <div>
+                        <div className="font-bold text-lg">Jennifer Rodriguez</div>
+                        <div className="text-sm text-gray-600">Material Handling Specialist</div>
+                      </div>
+                    </div>
                     
                     <div className="mb-3">
                       <h6 className="font-semibold text-xs mb-2">AUTHORIZED EQUIPMENT:</h6>
@@ -273,8 +287,15 @@ export default function PricingPage() {
                     </div>
                   </div>
                   <div className="p-4">
-                    <div className="font-bold text-lg mb-1">David Chen</div>
-                    <div className="text-sm text-gray-600 mb-3">Construction Safety Specialist</div>
+                    <div className="flex items-center mb-3">
+                      <div className="w-8 h-8 bg-gray-200 rounded border mr-3 flex items-center justify-center">
+                        <span className="text-xs text-gray-500">LOGO</span>
+                      </div>
+                      <div>
+                        <div className="font-bold text-lg">David Chen</div>
+                        <div className="text-sm text-gray-600">Construction Safety Specialist</div>
+                      </div>
+                    </div>
                     
                     <div className="mb-3">
                       <h6 className="font-semibold text-xs mb-2">CERTIFICATIONS:</h6>
@@ -305,8 +326,15 @@ export default function PricingPage() {
                     </div>
                   </div>
                   <div className="p-4">
-                    <div className="font-bold text-lg mb-1">Robert Kim</div>
-                    <div className="text-sm text-gray-600 mb-3">Certified Crane Operator</div>
+                    <div className="flex items-center mb-3">
+                      <div className="w-8 h-8 bg-gray-200 rounded border mr-3 flex items-center justify-center">
+                        <span className="text-xs text-gray-500">LOGO</span>
+                      </div>
+                      <div>
+                        <div className="font-bold text-lg">Robert Kim</div>
+                        <div className="text-sm text-gray-600">Certified Crane Operator</div>
+                      </div>
+                    </div>
                     
                     <div className="mb-3">
                       <h6 className="font-semibold text-xs mb-2">AUTHORIZED EQUIPMENT:</h6>
@@ -334,8 +362,15 @@ export default function PricingPage() {
                     </div>
                   </div>
                   <div className="p-4">
-                    <div className="font-bold text-lg mb-1">Maria Santos</div>
-                    <div className="text-sm text-gray-600 mb-3">Warehouse Operations</div>
+                    <div className="flex items-center mb-3">
+                      <div className="w-8 h-8 bg-gray-200 rounded border mr-3 flex items-center justify-center">
+                        <span className="text-xs text-gray-500">LOGO</span>
+                      </div>
+                      <div>
+                        <div className="font-bold text-lg">Maria Santos</div>
+                        <div className="text-sm text-gray-600">Warehouse Operations</div>
+                      </div>
+                    </div>
                     
                     <div className="mb-3">
                       <h6 className="font-semibold text-xs mb-2">AUTHORIZED EQUIPMENT:</h6>
@@ -363,8 +398,15 @@ export default function PricingPage() {
                     </div>
                   </div>
                   <div className="p-4">
-                    <div className="font-bold text-lg mb-1">James Thompson</div>
-                    <div className="text-sm text-gray-600 mb-3">Scaffolding Specialist</div>
+                    <div className="flex items-center mb-3">
+                      <div className="w-8 h-8 bg-gray-200 rounded border mr-3 flex items-center justify-center">
+                        <span className="text-xs text-gray-500">LOGO</span>
+                      </div>
+                      <div>
+                        <div className="font-bold text-lg">James Thompson</div>
+                        <div className="text-sm text-gray-600">Scaffolding Specialist</div>
+                      </div>
+                    </div>
                     
                     <div className="mb-3">
                       <h6 className="font-semibold text-xs mb-2">CERTIFICATIONS:</h6>
@@ -388,7 +430,7 @@ export default function PricingPage() {
                 <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-6 max-w-4xl mx-auto">
                   <h5 className="font-semibold text-blue-900 mb-2">Professional Digital Wallet Cards</h5>
                   <p className="text-blue-800 text-sm">
-                    Each card is generated with professional formatting, unique tracking numbers, specific equipment authorizations, 
+                    Each card is generated with professional formatting, company logo placement, unique tracking numbers, specific equipment authorizations, 
                     OSHA compliance references, and instructor credentials. Cards are optimized for mobile viewing and include 
                     certification details, expiration dates, and regulatory compliance information.
                   </p>
