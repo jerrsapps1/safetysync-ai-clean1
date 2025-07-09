@@ -175,6 +175,58 @@ class Microsoft365EmailService {
       return false;
     }
   }
+
+  async sendEmailWithErrorHandling(options: EmailOptions): Promise<{ success: boolean; message: string; details?: any }> {
+    try {
+      await this.sendEmail(options);
+      return {
+        success: true,
+        message: 'Email sent successfully!',
+        details: {
+          to: options.to,
+          subject: options.subject,
+          timestamp: new Date().toLocaleString(),
+          status: 'sent'
+        }
+      };
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      
+      if (errorMessage.includes('SmtpClientAuthentication is disabled') || 
+          errorMessage.includes('535 5.7.139') ||
+          errorMessage.includes('Authentication unsuccessful')) {
+        return {
+          success: false,
+          message: 'Microsoft 365 SMTP authentication is disabled for your tenant',
+          details: {
+            to: options.to,
+            subject: options.subject,
+            timestamp: new Date().toLocaleString(),
+            error: 'SMTP AUTH disabled',
+            solution: 'Enable SMTP authentication in Microsoft 365 Admin Center',
+            link: 'https://admin.microsoft.com → Settings → Modern authentication → Enable SMTP AUTH',
+            instructions: [
+              '1. Go to Microsoft 365 Admin Center',
+              '2. Navigate to Settings → Org settings → Services',
+              '3. Find "Modern authentication" and enable SMTP AUTH',
+              '4. Wait 5-10 minutes for changes to propagate'
+            ]
+          }
+        };
+      }
+      
+      return {
+        success: false,
+        message: 'Failed to send email',
+        details: {
+          to: options.to,
+          subject: options.subject,
+          timestamp: new Date().toLocaleString(),
+          error: errorMessage
+        }
+      };
+    }
+  }
 }
 
 export const emailService = new Microsoft365EmailService();
