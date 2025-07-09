@@ -775,45 +775,87 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (process.env.EMAIL_USER && process.env.EMAIL_PASSWORD) {
         try {
           const { emailService } = await import('./email-service-microsoft365');
-          await emailService.sendEmail({
+          const result = await emailService.sendEmailWithErrorHandling({
             to,
             subject: emailContent.subject,
             html: emailContent.html,
             replyTo: 'jerry@safetysync.ai'
           });
           
-          console.log('=== EMAIL SENT SUCCESSFULLY ===');
-          console.log(`To: ${to}`);
-          console.log(`Subject: ${emailContent.subject}`);
-          console.log(`Type: ${testType}`);
-          console.log(`Timestamp: ${new Date().toLocaleString()}`);
-          console.log('================================');
+          if (result.success) {
+            console.log('=== EMAIL SENT SUCCESSFULLY ===');
+            console.log(`To: ${to}`);
+            console.log(`Subject: ${emailContent.subject}`);
+            console.log(`Type: ${testType}`);
+            console.log(`Timestamp: ${new Date().toLocaleString()}`);
+            console.log('================================');
+          } else {
+            // If SMTP auth is disabled, show preview instead
+            console.log('=== EMAIL PREVIEW (SMTP AUTH DISABLED) ===');
+            console.log(`To: ${to}`);
+            console.log(`Subject: ${emailContent.subject}`);
+            console.log(`Type: ${testType}`);
+            console.log(`Timestamp: ${new Date().toLocaleString()}`);
+            console.log('===================================');
+            
+            // Return preview with admin instructions
+            result.details = {
+              ...result.details,
+              testType,
+              previewHtml: emailContent.html,
+              previewText: emailContent.text || 'Email preview available',
+              instructions: 'Enable SMTP authentication in Microsoft 365 Admin Center to send actual emails'
+            };
+          }
 
           res.json({ 
-            success: true, 
-            message: 'Email sent successfully!',
+            ...result,
             details: {
-              to,
-              subject: emailContent.subject,
-              testType,
-              timestamp: new Date().toLocaleString(),
-              status: 'sent'
+              ...result.details,
+              testType
             }
           });
         } catch (emailError) {
-          console.error('Email sending failed:', emailError);
-          res.json({ 
-            success: false, 
-            message: 'Failed to send email',
-            details: {
-              to,
-              subject: emailContent.subject,
-              testType,
-              timestamp: new Date().toLocaleString(),
-              error: emailError instanceof Error ? emailError.message : 'Unknown error',
-              note: 'Check EMAIL_USER and EMAIL_PASSWORD environment variables'
-            }
-          });
+          console.error('Email service error:', emailError);
+          
+          // Check if this is an SMTP auth error
+          const errorMessage = emailError instanceof Error ? emailError.message : 'Unknown error';
+          if (errorMessage.includes('535 5.7.139') || errorMessage.includes('SmtpClientAuthentication is disabled')) {
+            res.json({ 
+              success: false, 
+              message: 'Microsoft 365 SMTP authentication is disabled for your tenant',
+              details: {
+                to,
+                subject: emailContent.subject,
+                testType,
+                timestamp: new Date().toLocaleString(),
+                error: 'SMTP AUTH disabled',
+                solution: 'Enable SMTP authentication in Microsoft 365 Admin Center',
+                link: 'https://admin.microsoft.com → Settings → Modern authentication → Enable SMTP AUTH',
+                previewHtml: emailContent.html,
+                instructions: [
+                  '1. Go to Microsoft 365 Admin Center',
+                  '2. Navigate to Settings → Org settings → Services',
+                  '3. Find "Modern authentication" and enable SMTP AUTH',
+                  '4. Wait 5-10 minutes for changes to propagate'
+                ]
+              }
+            });
+          } else {
+            res.json({ 
+              success: false, 
+              message: 'Email service connection failed',
+              details: {
+                to,
+                subject: emailContent.subject,
+                testType,
+                timestamp: new Date().toLocaleString(),
+                error: errorMessage,
+                previewHtml: emailContent.html,
+                note: 'Preview mode - enable SMTP authentication to send actual emails'
+              }
+            });
+          }
         }
       } else {
         // Log email for testing without credentials
