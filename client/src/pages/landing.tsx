@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Navigation } from "@/components/ui/navigation";
 import { TrialSignupDialog } from "@/components/ui/trial-signup-dialog";
-// Demo dialog removed - coming soon functionality
+import { DemoRequestDialog } from "@/components/ui/demo-request-dialog";
 import { LoginDialog } from "@/components/ui/login-dialog";
 import { ProductTour } from "@/components/ui/product-tour";
 import { LiveChatWidget } from "@/components/ui/live-chat-widget";
@@ -51,6 +51,7 @@ import {
 
 export default function LandingPage() {
   const [isTrialDialogOpen, setIsTrialDialogOpen] = useState(false);
+  const [isDemoDialogOpen, setIsDemoDialogOpen] = useState(false);
   
   // A/B Testing hooks
   const heroCtaTest = useABTest('hero_cta_test');
@@ -75,12 +76,7 @@ export default function LandingPage() {
   };
 
   const handleDemoClick = () => {
-    // Coming soon functionality
-    toast({
-      title: "Demo Coming Soon",
-      description: "Demo access will be available once the platform is fully ready. Sign up for early access!",
-      duration: 4000,
-    });
+    setIsDemoDialogOpen(true);
   };
 
   const handleLoginClick = () => {
@@ -1002,7 +998,10 @@ export default function LandingPage() {
         onClose={() => setIsTrialDialogOpen(false)} 
         onSubmit={handleTrialSubmit}
       />
-      {/* Demo dialog removed - coming soon functionality */}
+      <DemoRequestDialog 
+        isOpen={isDemoDialogOpen} 
+        onClose={() => setIsDemoDialogOpen(false)} 
+      />
       <LoginDialog 
         isOpen={isLoginDialogOpen} 
         onClose={() => setIsLoginDialogOpen(false)}
