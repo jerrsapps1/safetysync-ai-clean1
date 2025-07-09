@@ -373,9 +373,10 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Updated multi-card generation to reflect FREE digital continuation cards
 - **July 06, 2025** - Implemented Model 4 Enhanced Hybrid Subscription Pricing Strategy:
   - Replaced individual pricing model with hybrid subscription: $49/month base plan
-  - Base plan includes 50 certificates + 50 digital wallet cards monthly
-  - Additional usage beyond included amounts: $0.75 per certificate OR wallet card
-  - Guaranteed minimum revenue: $49/month per customer (2-4x increase over previous model)
+  - Base plan includes 15 certificates + 15 digital wallet cards for the first month
+  - Additional certificates: $5.95 each (one-time fee, not monthly)
+  - Additional digital wallet cards: $5.95 each (one-time fee, not monthly)
+  - Guaranteed minimum revenue: $49/month per customer with significantly higher per-unit revenue
   - Updated pricing calculator, dashboard, and all customer-facing pricing information
   - Enhanced value proposition: predictable monthly costs with fair overage pricing
   - Scalable model: heavy users pay proportionally more while light users get great value
@@ -514,6 +515,13 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Fixed landing page footer security: removed dashboard link, updated email to support@safetysync.ai
   - Email system architecture complete - waiting for Microsoft 365 SMTP authentication propagation (0-30 minutes)
   - All components ready for production: DNS, templates, service, credentials, and authentication enabled
+- **July 09, 2025** - Updated Certificate Generation Pricing Model:
+  - Changed from $49/month (50 items) + $0.75 overage to $49/month (15 items first month) + $5.95 per item
+  - Certificates: $5.95 each (one-time fee, not monthly) after first 15 included
+  - Digital wallet cards: $5.95 each (one-time fee, not monthly) after first 15 included
+  - Updated pricing page and dashboard to reflect new pricing structure
+  - Significantly increased per-unit revenue from $0.75 to $5.95 while maintaining competitive base pricing
+  - Enhanced profitability model targeting maximum value from certificate generation services
 
 ## Changelog
 

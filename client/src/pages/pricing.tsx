@@ -35,7 +35,7 @@ export default function PricingPage() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Professional Certificate & Digital Card Services</h2>
             <p className="text-xl text-gray-600">
-              Hybrid subscription model: $49/month base plan includes 50 certificates + 50 digital wallet cards. Additional usage: $0.75 each.
+              Base subscription: $49/month includes 15 certificates + 15 digital wallet cards for the first month. Additional certificates and cards: $5.95 each.
             </p>
           </div>
 
@@ -47,11 +47,11 @@ export default function PricingPage() {
                   <Award className="w-6 h-6 text-blue-600" />
                   Certificate Generation Service
                 </CardTitle>
-                <div className="text-lg font-semibold text-blue-600">$49/month base + $0.75 overage</div>
+                <div className="text-lg font-semibold text-blue-600">$49/month base + $5.95 per certificate</div>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 mb-6">
-                  Base subscription includes 50 certificates monthly. Additional certificates beyond included amount: $0.75 each.
+                  Base subscription includes 15 certificates for the first month. Additional certificates: $5.95 each.
                 </p>
                 
                 <div className="space-y-4">
@@ -82,11 +82,11 @@ export default function PricingPage() {
                   <CreditCard className="w-6 h-6 text-green-600" />
                   Digital Wallet Card Service
                 </CardTitle>
-                <div className="text-lg font-semibold text-green-600">Always FREE - Unlimited Digital Cards</div>
+                <div className="text-lg font-semibold text-green-600">$5.95 per card</div>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 mb-6">
-                  Professional digital wallet cards for viewing and displaying certifications on mobile devices or computers.
+                  Base subscription includes 15 digital wallet cards for the first month. Additional cards: $5.95 each.
                 </p>
                 
                 <div className="space-y-4">
