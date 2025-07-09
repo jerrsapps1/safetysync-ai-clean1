@@ -120,6 +120,13 @@ The application uses Drizzle ORM with PostgreSQL, featuring:
 Preferred communication style: Simple, everyday language.
 User satisfied with comprehensive platform features including dashboard, admin panel, testimonials, and case studies.
 
+**Digital Wallet Card Requirements:**
+- Cards must closely mimic physical certification cards that employees traditionally carry
+- Front side shows certification details (company logo, employee info, certifications, dates, instructor credentials)
+- Back side shows authorized equipment lists (specific machinery models, compliance standards)
+- Purpose: Employees will show digital versions instead of carrying multiple physical cards
+- Design priority: Professional appearance matching real-world certification card standards
+
 ## Recent Changes
 
 - **July 06, 2025** - Initial SafetySync platform setup completed
