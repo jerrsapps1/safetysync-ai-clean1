@@ -1686,7 +1686,7 @@ export default function Dashboard() {
                           </Button>
                         </div>
                         <p className="text-xs text-gray-500 mt-2">
-                          *Plan-specific allowances: Essential (15), Professional (50), Enterprise (100), Enterprise Plus (250). Additional certificates: $5.95 each.
+                          *Plan-specific allowances: Essential (15), Professional (50), Enterprise (100), Enterprise Plus (250). Additional certificates: $5.95 each, automatically billed to monthly subscription.
                         </p>
                       </div>
                     </CardContent>
@@ -1796,7 +1796,7 @@ export default function Dashboard() {
                           </Button>
                         </div>
                         <p className="text-xs text-gray-500 mt-2">
-                          *Plan-specific allowances: Essential (15), Professional (50), Enterprise (100), Enterprise Plus (250). Additional cards: $5.95 each.
+                          *Plan-specific allowances: Essential (15), Professional (50), Enterprise (100), Enterprise Plus (250). Additional cards: $5.95 each, automatically billed to monthly subscription.
                         </p>
                       </div>
                     </CardContent>

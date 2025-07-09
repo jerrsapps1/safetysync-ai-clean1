@@ -137,9 +137,9 @@ export function TermsAndConditions({
                     <br />
                     <strong>Payment Terms:</strong> Payment is due immediately upon subscription activation.
                     <br />
-                    <strong>Certificate & Card Generation:</strong> All plans include a $49/month base fee for certificate and digital wallet card generation, which includes 50 certificates and 50 digital wallet cards monthly. Additional usage beyond included amounts is billed at $0.75 per item.
+                    <strong>Certificate & Card Generation:</strong> Each plan includes specific certificate and digital wallet card allowances for the first month (Essential: 15, Professional: 50, Enterprise: 100, Enterprise Plus: 250). Additional usage beyond included amounts is automatically billed at $5.95 per item.
                     <br />
-                    <strong>Usage Billing:</strong> Certificate and digital wallet card overage charges are automatically added to your monthly billing based on actual usage.
+                    <strong>Usage Billing:</strong> Certificate and digital wallet card overage charges at $5.95 per item are automatically added to your monthly billing based on actual usage. Service remains uninterrupted - you can generate certificates and cards as needed.
                     <br />
                     <strong>Plan Changes:</strong> Upgrades take effect immediately; downgrades take effect at the next billing cycle.
                     <br />
@@ -150,13 +150,13 @@ export function TermsAndConditions({
                 <div>
                   <h4 className="font-semibold text-gray-900">3. CERTIFICATE AND DIGITAL WALLET CARD PRICING</h4>
                   <p className="mt-1">
-                    <strong>Hybrid Subscription Model:</strong> All plans include a $49/month base subscription for certificate and digital wallet card generation services.
+                    <strong>Plan-Specific Allowances:</strong> Each subscription plan includes different certificate and digital wallet card allowances for the first month: Essential (15), Professional (50), Enterprise (100), Enterprise Plus (250).
                     <br />
-                    <strong>Included Usage:</strong> The base subscription includes 50 certificates and 50 digital wallet cards per month.
+                    <strong>Overage Charges:</strong> Additional certificates or digital wallet cards beyond the included amounts are automatically charged at $5.95 per item.
                     <br />
-                    <strong>Overage Charges:</strong> Additional certificates or digital wallet cards beyond the included amounts are charged at $0.75 per item.
+                    <strong>Automatic Billing:</strong> Overage charges are automatically calculated and added to your monthly invoice based on actual usage. Service remains uninterrupted regardless of usage.
                     <br />
-                    <strong>Automatic Billing:</strong> Overage charges are automatically calculated and added to your monthly invoice based on actual usage.
+                    <strong>No Service Interruption:</strong> You can generate certificates and cards as needed without service limitations - additional usage is simply billed to your monthly subscription.
                     <br />
                     <strong>Professional Quality:</strong> All generated certificates and digital wallet cards meet OSHA, ANSI, and EM 385-1-1 compliance standards.
                   </p>

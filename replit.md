@@ -530,6 +530,12 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - All plans: Additional certificates and digital wallet cards at $5.95 each (one-time fee)
   - Updated pricing calculator, pricing page, and dashboard with plan-specific allowances
   - Maintained $5.95 per-unit pricing across all tiers for consistency and profitability
+- **July 09, 2025** - Clarified Certificate & Card Billing Structure:
+  - Updated all pricing pages to clarify that additional certificates and cards are billed as usage charges added to monthly subscription
+  - Added clear messaging that service remains uninterrupted - customers can generate certificates and cards as needed
+  - Updated terms and conditions to reflect automatic billing of overages at $5.95 per item to monthly subscription
+  - Enhanced billing transparency with explicit "automatically billed to monthly subscription" language throughout platform
+  - Ensures customers understand they won't lose ability to order certificates/cards - only additional charges apply
 
 ## Changelog
 
