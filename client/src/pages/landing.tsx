@@ -85,11 +85,11 @@ export default function LandingPage() {
 
   const handleLoginClick = () => {
     if (isAuthenticated) {
-      // User is already logged in, go to dashboard
-      window.location.href = '/dashboard';
+      // User is already logged in, go to workspace
+      window.location.href = '/workspace';
     } else {
-      // User needs to log in, go to dashboard login form
-      window.location.href = '/dashboard';
+      // User needs to log in, go to workspace login form
+      window.location.href = '/workspace';
     }
   };
 
@@ -178,10 +178,10 @@ export default function LandingPage() {
         duration: 5000,
       });
       
-      // Redirect new trial users to dashboard
+      // Redirect new trial users to workspace
       if (pendingSignupData.type === 'trial') {
         setTimeout(() => {
-          window.location.href = '/dashboard';
+          window.location.href = '/workspace';
         }, 2000); // Longer delay to show success message
       }
     } catch (error) {
@@ -226,9 +226,9 @@ export default function LandingPage() {
       duration: 5000,
     });
     
-    // Redirect to dashboard after a short delay
+    // Redirect to workspace after a short delay
     setTimeout(() => {
-      window.location.href = '/dashboard';
+      window.location.href = '/workspace';
     }, 2000);
   };
 
