@@ -251,6 +251,8 @@
 - Opt-out capability
 
 ### SYNC AI Priority Support - $75/month
+*SYNC = Safety & Compliance Navigation Center*
+
 - Voice-enabled SYNC AI assistant with instant responses
 - Hands-free troubleshooting perfect for field work
 - Works on phones, tablets, and PCs with microphone

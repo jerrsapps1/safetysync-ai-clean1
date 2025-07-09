@@ -64,7 +64,7 @@ export function AIQuickActions({ onActionExecute, currentPage = 'dashboard' }: A
   const [chatHistory, setChatHistory] = useState<Array<{role: 'user' | 'ai', content: string, timestamp: string}>>([
     {
       role: 'ai',
-      content: 'Hello! I\'m your AI compliance assistant. I can help you with training schedules, regulatory updates, compliance gaps, and automated reporting. What would you like to work on?',
+      content: 'Hello! I\'m SYNC (Safety & Compliance Navigation Center), your AI compliance assistant. I can help you with training schedules, regulatory updates, compliance gaps, and automated reporting. What would you like to work on?',
       timestamp: new Date().toISOString()
     }
   ]);
