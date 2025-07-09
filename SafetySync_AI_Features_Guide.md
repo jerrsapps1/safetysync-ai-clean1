@@ -118,8 +118,8 @@
 - **Real-Time Risk Assessment**
   - Continuous risk monitoring
   - Automated risk scoring
-  - Incident prediction models
   - Proactive safety alerts
+  - Risk trend analysis
 
 - **Advanced Analytics**
   - Comprehensive reporting suite
@@ -264,7 +264,7 @@
 - OSHA compliance guidance and regulatory interpretation
 - Training schedule optimization and certification tracking
 - Equipment inspection procedures and safety protocols
-- Incident reporting assistance and documentation
+- Safety documentation and compliance assistance
 - Emergency response procedures and contact information
 - Cannot override safety protocols or approve unsafe practices
 - Escalates complex safety decisions to qualified human experts

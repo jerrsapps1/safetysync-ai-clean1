@@ -64,7 +64,7 @@ export function AIQuickActions({ onActionExecute, currentPage = 'dashboard' }: A
   const [chatHistory, setChatHistory] = useState<Array<{role: 'user' | 'ai', content: string, timestamp: string}>>([
     {
       role: 'ai',
-      content: 'Hello! I\'m SYNC (Safety & Compliance Navigation Center), your AI compliance assistant. I operate within OSHA guidelines and can help with training schedules, regulatory updates, compliance gaps, and automated reporting. I cannot override safety protocols but will escalate complex decisions to qualified experts. What would you like to work on?',
+      content: 'Hello! I\'m SYNC (Safety & Compliance Navigation Center), your AI compliance assistant. I operate within OSHA guidelines and can help with training schedules, regulatory updates, compliance gaps, equipment procedures, and automated reporting. I cannot override safety protocols but will escalate complex decisions to qualified experts. What would you like to work on?',
       timestamp: new Date().toISOString()
     }
   ]);
