@@ -589,6 +589,9 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Fixed React hooks ordering issues to prevent component rendering errors
   - Added logout functionality with secure token cleanup
   - Enhanced security with proper token validation and refresh mechanisms
+  - Fixed landing page sign-in navigation to go directly to dashboard instead of separate login dialog
+  - Authentication correctly recognizes already logged-in users and takes them straight to dashboard
+  - Removed separate LoginDialog component to simplify authentication flow to single entry point
 - **July 09, 2025** - Implemented Comprehensive 30-Day Promo Code Tracking System:
   - Created promoCodeUsage database table with 30-day expiration tracking from purchase date
   - Built complete API endpoints for promo code validation, application, and management
