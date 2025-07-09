@@ -244,7 +244,29 @@ export default function LandingPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-purple-800 text-white pt-32 pb-32 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center">
+      <section className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-purple-800 text-white pt-32 pb-32 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center overflow-hidden">
+        {/* Floating Background Icons */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-20 left-20 animate-float opacity-20">
+            <Shield className="w-6 h-6 text-white" />
+          </div>
+          <div className="absolute top-40 right-32 animate-float-delay-1 opacity-15">
+            <Database className="w-5 h-5 text-blue-200" />
+          </div>
+          <div className="absolute bottom-32 left-40 animate-float-delay-2 opacity-25">
+            <BarChart3 className="w-7 h-7 text-white" />
+          </div>
+          <div className="absolute top-60 right-20 animate-float-delay-3 opacity-20">
+            <Users className="w-6 h-6 text-blue-100" />
+          </div>
+          <div className="absolute bottom-20 right-60 animate-float-delay-4 opacity-15">
+            <FileText className="w-5 h-5 text-white" />
+          </div>
+          <div className="absolute top-32 right-1/2 animate-float-delay-5 opacity-20">
+            <CheckCircle className="w-6 h-6 text-blue-200" />
+          </div>
+        </div>
+        
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <div className="mb-8">
             <span className="inline-flex items-center px-4 py-2 rounded-full bg-blue-500/20 text-blue-200 text-sm font-medium backdrop-blur-sm border border-blue-300/30">
