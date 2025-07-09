@@ -2,6 +2,85 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Floating animations for background icons */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes float-delay-1 {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes float-delay-2 {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-25px);
+  }
+}
+
+@keyframes float-delay-3 {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
+}
+
+@keyframes float-delay-4 {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-22px);
+  }
+}
+
+@keyframes float-delay-5 {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-16px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delay-1 {
+  animation: float-delay-1 7s ease-in-out infinite 1s;
+}
+
+.animate-float-delay-2 {
+  animation: float-delay-2 8s ease-in-out infinite 2s;
+}
+
+.animate-float-delay-3 {
+  animation: float-delay-3 6.5s ease-in-out infinite 1.5s;
+}
+
+.animate-float-delay-4 {
+  animation: float-delay-4 7.5s ease-in-out infinite 2.5s;
+}
+
+.animate-float-delay-5 {
+  animation: float-delay-5 8.5s ease-in-out infinite 3s;
+}
+
 /* Zywave-inspired color scheme */
 :root {
   --navy-50: #f8fafc;
