@@ -126,6 +126,7 @@ User satisfied with comprehensive platform features including dashboard, admin p
 - Back side shows authorized equipment lists (specific machinery models, compliance standards)
 - Purpose: Employees will show digital versions instead of carrying multiple physical cards
 - Design priority: Professional appearance matching real-world certification card standards
+- EM 385-1-1 references: Used primarily for fall protection cards, not typically required for equipment operator cards
 
 ## Recent Changes
 
