@@ -1,4 +1,4 @@
-import { pgTable, text, serial, integer, boolean, timestamp, jsonb } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, boolean, timestamp, jsonb, decimal } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -75,6 +75,20 @@ export const helpDeskTickets = pgTable("help_desk_tickets", {
   resolvedAt: timestamp("resolved_at"),
 });
 
+// Promo code usage tracking - 30-day expiration from purchase
+export const promoCodeUsage = pgTable("promo_code_usage", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id),
+  promoCode: text("promo_code").notNull(),
+  usedAt: timestamp("used_at").defaultNow().notNull(),
+  expiresAt: timestamp("expires_at").notNull(), // 30 days from usedAt
+  discountAmount: decimal("discount_amount", { precision: 10, scale: 2 }),
+  discountType: text("discount_type").notNull(), // 'percentage', 'fixed', 'months'
+  planTier: text("plan_tier").notNull(),
+  isActive: boolean("is_active").default(true),
+  orderId: text("order_id"), // Link to billing system
+});
+
 export const insertUserSchema = createInsertSchema(users).pick({
   email: true,
   password: true,
@@ -112,6 +126,11 @@ export const insertHelpDeskTicketSchema = createInsertSchema(helpDeskTickets).om
   resolvedAt: true,
 });
 
+export const insertPromoCodeUsageSchema = createInsertSchema(promoCodeUsage).omit({
+  id: true,
+  usedAt: true,
+});
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type InsertLead = z.infer<typeof insertLeadSchema>;
@@ -122,3 +141,5 @@ export type InsertCloneDetectionScan = z.infer<typeof insertCloneDetectionScanSc
 export type CloneDetectionScan = typeof cloneDetectionScans.$inferSelect;
 export type InsertHelpDeskTicket = z.infer<typeof insertHelpDeskTicketSchema>;
 export type HelpDeskTicket = typeof helpDeskTickets.$inferSelect;
+export type InsertPromoCodeUsage = z.infer<typeof insertPromoCodeUsageSchema>;
+export type PromoCodeUsage = typeof promoCodeUsage.$inferSelect;

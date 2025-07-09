@@ -4,7 +4,7 @@ import { storage } from "./storage";
 import { cloneDetector } from "./ai-clone-detection";
 import { emailAutomation } from "./email-automation";
 import emailAutomationRoutes from "./api/email-automation";
-import { insertLeadSchema, insertUserSchema, loginUserSchema, insertComplianceReportSchema, insertCloneDetectionScanSchema, insertHelpDeskTicketSchema } from "@shared/schema";
+import { insertLeadSchema, insertUserSchema, loginUserSchema, insertComplianceReportSchema, insertCloneDetectionScanSchema, insertHelpDeskTicketSchema, insertPromoCodeUsageSchema } from "@shared/schema";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
 
@@ -240,6 +240,95 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Email automation API routes
   app.use("/api/email-automation", emailAutomationRoutes);
+
+  // Promo Code API Routes - 30-day expiration system
+  app.post("/api/promo-codes/apply", async (req, res) => {
+    try {
+      const { promoCode, userId, planTier, discountAmount, discountType } = req.body;
+      
+      // Validate promo code
+      const validation = await storage.validatePromoCode(promoCode, userId);
+      if (!validation.valid) {
+        return res.status(400).json({
+          success: false,
+          message: validation.reason
+        });
+      }
+      
+      // Calculate expiration date (30 days from now)
+      const expiresAt = new Date();
+      expiresAt.setDate(expiresAt.getDate() + 30);
+      
+      // Create promo code usage record
+      const usage = await storage.createPromoCodeUsage({
+        userId,
+        promoCode,
+        expiresAt,
+        discountAmount,
+        discountType,
+        planTier,
+        isActive: true
+      });
+      
+      res.json({
+        success: true,
+        message: "Promo code applied successfully",
+        usage: {
+          ...usage,
+          daysRemaining: 30
+        }
+      });
+    } catch (error) {
+      console.error("Error applying promo code:", error);
+      res.status(500).json({
+        success: false,
+        message: "Failed to apply promo code"
+      });
+    }
+  });
+
+  app.get("/api/promo-codes/validate/:code/:userId", async (req, res) => {
+    try {
+      const { code, userId } = req.params;
+      const validation = await storage.validatePromoCode(code, parseInt(userId));
+      
+      res.json({
+        success: true,
+        valid: validation.valid,
+        reason: validation.reason,
+        usage: validation.usage
+      });
+    } catch (error) {
+      console.error("Error validating promo code:", error);
+      res.status(500).json({
+        success: false,
+        message: "Failed to validate promo code"
+      });
+    }
+  });
+
+  app.get("/api/promo-codes/active/:userId", async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const activeCodes = await storage.getActivePromoCodes(parseInt(userId));
+      
+      const codesWithDaysRemaining = activeCodes.map(code => ({
+        ...code,
+        daysRemaining: Math.max(0, Math.ceil((new Date(code.expiresAt).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24)))
+      }));
+      
+      res.json({
+        success: true,
+        codes: codesWithDaysRemaining
+      });
+    } catch (error) {
+      console.error("Error fetching active promo codes:", error);
+      res.status(500).json({
+        success: false,
+        message: "Failed to fetch active promo codes"
+      });
+    }
+  });
 
   // Email test endpoint (for testing Microsoft 365 setup)
   app.post('/api/test-email', async (req, res) => {

@@ -1,6 +1,6 @@
-import { users, leads, complianceReports, cloneDetectionScans, helpDeskTickets, type User, type InsertUser, type Lead, type InsertLead, type ComplianceReport, type InsertComplianceReport, type CloneDetectionScan, type InsertCloneDetectionScan, type HelpDeskTicket, type InsertHelpDeskTicket } from "@shared/schema";
+import { users, leads, complianceReports, cloneDetectionScans, helpDeskTickets, promoCodeUsage, type User, type InsertUser, type Lead, type InsertLead, type ComplianceReport, type InsertComplianceReport, type CloneDetectionScan, type InsertCloneDetectionScan, type HelpDeskTicket, type InsertHelpDeskTicket, type PromoCodeUsage, type InsertPromoCodeUsage } from "@shared/schema";
 import { db } from "./db";
-import { eq } from "drizzle-orm";
+import { eq, and, gt } from "drizzle-orm";
 
 // modify the interface with any CRUD methods
 // you might need
@@ -38,6 +38,13 @@ export interface IStorage {
   getUsersByTier(tier: string): Promise<User[]>;
   getSubscriptionStats(): Promise<{ total: number; active: number; expired: number; cancelled: number; pending: number }>;
   getUserAnalytics(): Promise<{ totalUsers: number; activeUsers: number; newUsersThisMonth: number; usersByTier: Record<string, number> }>;
+  
+  // Promo code management - 30-day expiration system
+  createPromoCodeUsage(usage: InsertPromoCodeUsage): Promise<PromoCodeUsage>;
+  getPromoCodeUsage(userId: number, promoCode: string): Promise<PromoCodeUsage | undefined>;
+  getActivePromoCodes(userId: number): Promise<PromoCodeUsage[]>;
+  validatePromoCode(promoCode: string, userId: number): Promise<{ valid: boolean; usage?: PromoCodeUsage; reason?: string }>;
+  deactivatePromoCode(userId: number, promoCode: string): Promise<void>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -245,6 +252,69 @@ export class DatabaseStorage implements IStorage {
       newUsersThisMonth: allUsers.filter(u => u.createdAt && u.createdAt >= currentMonth).length,
       usersByTier
     };
+  }
+
+  // Promo code management - 30-day expiration system
+  async createPromoCodeUsage(insertUsage: InsertPromoCodeUsage): Promise<PromoCodeUsage> {
+    const [usage] = await db
+      .insert(promoCodeUsage)
+      .values(insertUsage)
+      .returning();
+    return usage;
+  }
+
+  async getPromoCodeUsage(userId: number, promoCode: string): Promise<PromoCodeUsage | undefined> {
+    const [usage] = await db
+      .select()
+      .from(promoCodeUsage)
+      .where(and(eq(promoCodeUsage.userId, userId), eq(promoCodeUsage.promoCode, promoCode)));
+    return usage || undefined;
+  }
+
+  async getActivePromoCodes(userId: number): Promise<PromoCodeUsage[]> {
+    const now = new Date();
+    return await db
+      .select()
+      .from(promoCodeUsage)
+      .where(
+        and(
+          eq(promoCodeUsage.userId, userId),
+          eq(promoCodeUsage.isActive, true),
+          gt(promoCodeUsage.expiresAt, now)
+        )
+      );
+  }
+
+  async validatePromoCode(promoCode: string, userId: number): Promise<{ valid: boolean; usage?: PromoCodeUsage; reason?: string }> {
+    // Check if user has already used this promo code
+    const existingUsage = await this.getPromoCodeUsage(userId, promoCode);
+    
+    if (existingUsage) {
+      const now = new Date();
+      if (existingUsage.expiresAt < now) {
+        return { valid: false, reason: "Promo code has expired (30 days from purchase)" };
+      }
+      if (!existingUsage.isActive) {
+        return { valid: false, reason: "Promo code has been deactivated" };
+      }
+      return { valid: true, usage: existingUsage };
+    }
+    
+    // New promo code - check if it exists in the system
+    // This would typically check against a promo codes configuration
+    return { valid: true, reason: "New promo code available for use" };
+  }
+
+  async deactivatePromoCode(userId: number, promoCode: string): Promise<void> {
+    await db
+      .update(promoCodeUsage)
+      .set({ isActive: false })
+      .where(
+        and(
+          eq(promoCodeUsage.userId, userId),
+          eq(promoCodeUsage.promoCode, promoCode)
+        )
+      );
   }
 }
 
