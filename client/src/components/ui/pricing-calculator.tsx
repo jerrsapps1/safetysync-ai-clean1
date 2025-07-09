@@ -616,6 +616,20 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
                     <span className="text-sm font-normal text-gray-500">/month</span>
                   </div>
                   
+                  {/* Show after promo pricing for billing transparency */}
+                  {pricing.promoDiscount > 0 && (
+                    <div className="text-sm text-gray-600">
+                      After promo: ${Math.round(pricing.monthly)}/month
+                    </div>
+                  )}
+                  
+                  {/* Show free months billing info */}
+                  {appliedPromo && appliedPromo.type === 'months' && (
+                    <div className="text-sm text-gray-600">
+                      Regular billing: ${Math.round(pricing.monthly)}/month
+                    </div>
+                  )}
+                  
                   {/* Show volume discount */}
                   {pricing.volumeDiscount > 0 && (
                     <div className="text-sm text-blue-600 font-medium">
@@ -785,8 +799,17 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
           <div className="text-center space-y-4">
             <h3 className="text-xl font-bold">Your Recommended Plan</h3>
             <div className="text-3xl font-bold text-blue-600">
-              {getRecommendedPlan()} - ${Math.round(calculatePrice(pricingTiers.find(t => t.name === getRecommendedPlan())!).annual / 12)}/month
+              {getRecommendedPlan()} - ${Math.round(calculatePrice(pricingTiers.find(t => t.name === getRecommendedPlan())!).monthlyWithPromo)}/month
             </div>
+            {(() => {
+              const recommendedTier = pricingTiers.find(t => t.name === getRecommendedPlan())!;
+              const pricing = calculatePrice(recommendedTier);
+              return pricing.promoDiscount > 0 && (
+                <div className="text-sm text-gray-600">
+                  After promo: ${Math.round(pricing.monthly)}/month
+                </div>
+              );
+            })()}
             <p className="text-gray-600">
               Based on {employeeCount} employees with {selectedAddons.length} add-ons
             </p>
