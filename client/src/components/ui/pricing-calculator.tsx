@@ -117,7 +117,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
     { name: "Mobile App", price: 30, description: "iOS and Android applications" },
     { name: "API Access", price: 40, description: "Full REST API integration" },
     { name: "Automated Audit Review", price: 99, description: "Monthly automated compliance gap analysis with auto-generated reports" },
-    { name: "AI Priority Support", price: 75, description: "AI-powered support with instant responses and smart troubleshooting" }
+    { name: "SYNC AI Priority Support", price: 75, description: "SYNC AI assistant with instant responses and smart troubleshooting" }
   ];
 
   // Tier-based promotional codes system for maximum profitability
