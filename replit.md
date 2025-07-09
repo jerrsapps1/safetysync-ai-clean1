@@ -567,6 +567,14 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Logo placeholders are positioned for optimal branding visibility and professional presentation
   - Updated explanatory text to highlight company logo placement as a key feature of the generator
   - Cards now demonstrate complete professional branding integration for enterprise clients
+- **July 09, 2025** - Implemented Front/Back Card Structure and Vertical Multi-Card Examples:
+  - Restructured all card examples to show front side (certification details) and back side (equipment authorizations)
+  - Cards now closely mimic physical certification cards that employees traditionally carry
+  - Front side: company logo, employee info, certifications, dates, instructor credentials
+  - Back side: specific equipment models, compliance standards, regulatory citations
+  - Updated multi-card examples to vertical format (1:1.586 aspect ratio) for consistency
+  - Multi-card series shows proper front/back structure across Card 1 and Card 2 for extensive equipment fleets
+  - All examples now match real-world physical certification card standards for employee use
 
 ## Changelog
 
