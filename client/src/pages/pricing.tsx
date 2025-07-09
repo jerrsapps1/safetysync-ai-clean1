@@ -51,7 +51,7 @@ export default function PricingPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 mb-6">
-                  Each plan includes different certificate allowances for the first month. Additional certificates: $5.95 each, automatically added to your monthly bill.
+                  Each plan includes different certificate allowances for the first month. Additional certificates: $5.95 each, automatically added to your monthly bill. If the instructor needs to add an EM 385-1-1 reference to specific training, they'll be able to add it themselves when instructing the generators to produce the cert.
                 </p>
                 
                 <div className="bg-blue-50 p-4 rounded-lg mb-6">
@@ -101,7 +101,7 @@ export default function PricingPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 mb-6">
-                  Each plan includes different digital wallet card allowances for the first month. Additional cards: $5.95 each, automatically added to your monthly bill.
+                  Each plan includes different digital wallet card allowances for the first month. Additional cards: $5.95 each, automatically added to your monthly bill. If the instructor needs to add an EM 385-1-1 reference to specific training, they'll be able to add it themselves when instructing the generators to produce the card.
                 </p>
                 
                 <div className="bg-green-50 p-4 rounded-lg mb-6">

@@ -536,6 +536,11 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Updated terms and conditions to reflect automatic billing of overages at $5.95 per item to monthly subscription
   - Enhanced billing transparency with explicit "automatically billed to monthly subscription" language throughout platform
   - Ensures customers understand they won't lose ability to order certificates/cards - only additional charges apply
+- **July 09, 2025** - Enhanced EM 385-1-1 Reference Capability:
+  - Added instructor capability to add EM 385-1-1 references themselves when generating certificates and cards
+  - Updated pricing page and dashboard to inform instructors they can add specific EM 385-1-1 references during generation
+  - Provides flexibility for instructors to customize compliance references based on specific training requirements
+  - Maintains professional compliance standards while giving instructors control over regulatory citations
 
 ## Changelog
 
