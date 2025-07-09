@@ -85,7 +85,10 @@ function LoginForm() {
         title: "Login Successful",
         description: "Welcome back to SafetySync.AI!",
       });
-      // The component will re-render automatically when the user state changes
+      // Force a small delay to ensure state update
+      setTimeout(() => {
+        // The component will re-render automatically when the user state changes
+      }, 100);
     } else {
       toast({
         title: "Login Failed",
@@ -149,6 +152,9 @@ function LoginForm() {
 
 export default function Dashboard() {
   const { user, isLoading: authLoading, isAuthenticated, logout } = useAuth();
+  
+  // Debug logging
+  console.log('Dashboard render - isAuthenticated:', isAuthenticated, 'user:', user, 'authLoading:', authLoading);
   const [isLoading, setIsLoading] = useState(false);
   const [stats, setStats] = useState<DashboardStats>({
     totalEmployees: 45,
