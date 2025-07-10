@@ -16,7 +16,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { ComplianceReportGenerator } from "@/components/ui/compliance-report-generator";
 import { AICloneDetector } from "@/components/ui/ai-clone-detector";
 import { CollaborationLayer } from "@/components/ui/collaboration-layer";
-import { AIQuickActions } from "@/components/ui/ai-quick-actions";
+
 import { AIPatternSkeleton } from "@/components/ui/ai-skeleton";
 import SafetyTrendsDashboard from "@/components/safety-trends-dashboard";
 import QuickSearchWidget from "@/components/safetytracker/QuickSearchWidget";
@@ -2530,9 +2530,6 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           )}
         </div>
       </div>
-
-      {/* AI Quick Actions */}
-      <AIQuickActions />
 
       {/* Add Employee Dialog */}
       <Dialog open={showAddEmployee} onOpenChange={setShowAddEmployee}>
