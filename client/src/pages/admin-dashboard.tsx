@@ -95,14 +95,20 @@ function AdminLoginCheck() {
   const handleAdminLogin = async () => {
     setIsValidating(true);
     
+    console.log("Admin key entered:", adminKey);
+    console.log("Expected key:", "SafetySyncai2025!Admin#Key");
+    console.log("Keys match:", adminKey === "SafetySyncai2025!Admin#Key");
+    
     // Admin key validation - only your secure custom key
     if (adminKey === "SafetySyncai2025!Admin#Key") {
+      console.log("Access granted - setting localStorage");
       localStorage.setItem('admin-authenticated', 'true');
       window.location.reload();
     } else {
+      console.log("Access denied - showing error");
       toast({
         title: "Access Denied",
-        description: "Invalid admin key provided.",
+        description: "Invalid admin key provided. Please check your key and try again.",
         variant: "destructive",
       });
     }
