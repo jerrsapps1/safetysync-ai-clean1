@@ -382,6 +382,7 @@ export default function WorkspacePage() {
     email: "",
     phone: "",
     department: "",
+    division: "",
     position: "",
     hireDate: "",
     status: "Active"
@@ -392,6 +393,23 @@ export default function WorkspacePage() {
   const [statusFilter, setStatusFilter] = useState("all");
   const [divisionFilter, setDivisionFilter] = useState("all");
   const [departmentFilter, setDepartmentFilter] = useState("all");
+
+  // Department and Division options
+  const divisions = [
+    "Operations",
+    "Safety",
+    "Administration",
+    "Engineering",
+    "Quality Control"
+  ];
+
+  const departmentsByDivision = {
+    "Operations": ["Construction", "Manufacturing", "Maintenance", "Production", "Field Services"],
+    "Safety": ["Safety Management", "Environmental Health", "Emergency Response", "Risk Management"],
+    "Administration": ["Human Resources", "Finance", "IT", "Legal", "Procurement"],
+    "Engineering": ["Project Engineering", "Design", "Quality Engineering", "Technical Support"],
+    "Quality Control": ["Quality Assurance", "Testing", "Inspection", "Compliance"]
+  };
   const [employees, setEmployees] = useState<any[]>([
     { id: 1, name: "John Smith", department: "Construction", email: "john.smith@company.com", phone: "(555) 123-4567", position: "Site Manager", hireDate: "2023-01-15", certifications: ["Fall Protection", "First Aid/CPR"], status: "Active" },
     { id: 2, name: "Sarah Johnson", department: "Manufacturing", email: "sarah.johnson@company.com", phone: "(555) 234-5678", position: "Safety Coordinator", hireDate: "2022-08-20", certifications: ["OSHA 30", "Forklift Operation"], status: "Active" },
@@ -482,10 +500,10 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
   const handleSubmitEmployee = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newEmployee.name || !newEmployee.email || !newEmployee.department) {
+    if (!newEmployee.name || !newEmployee.email || !newEmployee.department || !newEmployee.division) {
       toast({
         title: "Error",
-        description: "Please fill in all required fields.",
+        description: "Please fill in all required fields including division and department.",
         variant: "destructive",
       });
       return;
@@ -504,6 +522,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
       email: "",
       phone: "",
       department: "",
+      division: "",
       position: "",
       hireDate: "",
       status: "Active"
@@ -512,7 +531,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
     
     toast({
       title: "Employee Added",
-      description: `${employee.name} has been successfully added to the system.`,
+      description: `${employee.name} has been successfully added to ${employee.division} - ${employee.department}.`,
     });
   };
 
@@ -521,13 +540,12 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
     const matchesSearch = employee.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          employee.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          employee.department.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         employee.position?.toLowerCase().includes(searchTerm.toLowerCase());
+                         employee.position?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         employee.division?.toLowerCase().includes(searchTerm.toLowerCase());
     
     const matchesStatus = statusFilter === "all" || employee.status === statusFilter;
     const matchesDepartment = departmentFilter === "all" || employee.department === departmentFilter;
-    
-    const division = employee.department === 'Construction' || employee.department === 'Manufacturing' || employee.department === 'Maintenance' ? 'Operations' : 'Administration';
-    const matchesDivision = divisionFilter === "all" || division === divisionFilter;
+    const matchesDivision = divisionFilter === "all" || employee.division === divisionFilter;
     
     return matchesSearch && matchesStatus && matchesDepartment && matchesDivision;
   });
@@ -1060,7 +1078,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             onClick={() => setActiveTab("trends")}
           >
             <TrendingUp className="w-5 h-5 mr-3" />
-            {sidebarOpen && "Safety Trends"}
+            {sidebarOpen && "Trends"}
           </Button>
           <Button
             variant={activeTab === "instructors" ? "secondary" : "ghost"}
@@ -1084,7 +1102,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             onClick={() => setActiveTab("employee-portal")}
           >
             <FileUser className="w-5 h-5 mr-3" />
-            {sidebarOpen && "Employee Portal"}
+            {sidebarOpen && "Portal"}
           </Button>
           <Button
             variant={activeTab === "notifications" ? "secondary" : "ghost"}
@@ -1100,7 +1118,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             onClick={() => setActiveTab("workplace-poster")}
           >
             <FileText className="w-5 h-5 mr-3" />
-            {sidebarOpen && "Workplace Poster"}
+            {sidebarOpen && "Poster"}
           </Button>
           <Button
             variant={activeTab === "training-calendar" ? "secondary" : "ghost"}
@@ -1108,7 +1126,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             onClick={() => setActiveTab("training-calendar")}
           >
             <Calendar className="w-5 h-5 mr-3" />
-            {sidebarOpen && "Training Calendar"}
+            {sidebarOpen && "Calendar"}
           </Button>
           <Button
             variant={activeTab === "subscription-billing" ? "secondary" : "ghost"}
@@ -1116,7 +1134,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             onClick={() => setActiveTab("subscription-billing")}
           >
             <CreditCard className="w-5 h-5 mr-3" />
-            {sidebarOpen && "Subscription"}
+            {sidebarOpen && "Billing"}
           </Button>
           <Button
             variant={activeTab === "analytics-reports" ? "secondary" : "ghost"}
@@ -1492,9 +1510,9 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="all">All Divisions</SelectItem>
-                          <SelectItem value="Operations">Operations</SelectItem>
-                          <SelectItem value="Safety">Safety</SelectItem>
-                          <SelectItem value="Administration">Administration</SelectItem>
+                          {divisions.map(division => (
+                            <SelectItem key={division} value={division}>{division}</SelectItem>
+                          ))}
                         </SelectContent>
                       </Select>
                     </div>
@@ -1555,9 +1573,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                                 </div>
                               </div>
                             </td>
-                            <td className="p-3 whitespace-nowrap text-sm text-gray-900">
-                              {employee.department === 'Construction' || employee.department === 'Manufacturing' || employee.department === 'Maintenance' ? 'Operations' : 'Administration'}
-                            </td>
+                            <td className="p-3 whitespace-nowrap text-sm text-gray-900">{employee.division || 'Not Assigned'}</td>
                             <td className="p-3 whitespace-nowrap text-sm text-gray-900">{employee.department}</td>
                             <td className="p-3 whitespace-nowrap text-sm text-gray-900">{employee.position}</td>
                             <td className="p-3 whitespace-nowrap">
@@ -2439,26 +2455,38 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="department" className="text-white">Department *</Label>
-                <Select value={newEmployee.department} onValueChange={(value) => setNewEmployee({...newEmployee, department: value})}>
+                <Label htmlFor="division" className="text-white">Division *</Label>
+                <Select value={newEmployee.division} onValueChange={(value) => setNewEmployee({...newEmployee, division: value, department: ""})}>
                   <SelectTrigger className="bg-gray-800/50 border-gray-700 text-white">
-                    <SelectValue placeholder="Select Department" />
+                    <SelectValue placeholder="Select Division" />
                   </SelectTrigger>
                   <SelectContent className="bg-gray-800 border-gray-700 text-white">
-                    <SelectItem value="Construction">Construction</SelectItem>
-                    <SelectItem value="Manufacturing">Manufacturing</SelectItem>
-                    <SelectItem value="Maintenance">Maintenance</SelectItem>
-                    <SelectItem value="Safety">Safety</SelectItem>
-                    <SelectItem value="Administration">Administration</SelectItem>
-                    <SelectItem value="Operations">Operations</SelectItem>
-                    <SelectItem value="Quality Control">Quality Control</SelectItem>
-                    <SelectItem value="Warehouse">Warehouse</SelectItem>
+                    {divisions.map(division => (
+                      <SelectItem key={division} value={division}>{division}</SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="department" className="text-white">Department *</Label>
+                <Select 
+                  value={newEmployee.department} 
+                  onValueChange={(value) => setNewEmployee({...newEmployee, department: value})}
+                  disabled={!newEmployee.division}
+                >
+                  <SelectTrigger className="bg-gray-800/50 border-gray-700 text-white">
+                    <SelectValue placeholder={newEmployee.division ? "Select Department" : "Select Division First"} />
+                  </SelectTrigger>
+                  <SelectContent className="bg-gray-800 border-gray-700 text-white">
+                    {newEmployee.division && departmentsByDivision[newEmployee.division as keyof typeof departmentsByDivision]?.map(dept => (
+                      <SelectItem key={dept} value={dept}>{dept}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
               <div className="space-y-2">
                 <Label htmlFor="position" className="text-white">Position/Title</Label>
                 <Input
@@ -2469,6 +2497,9 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   placeholder="Site Manager"
                 />
               </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="hireDate" className="text-white">Hire Date</Label>
                 <Input
@@ -2479,21 +2510,20 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   className="bg-gray-800/50 border-gray-700 text-white"
                 />
               </div>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="status" className="text-white">Employment Status</Label>
-              <Select value={newEmployee.status} onValueChange={(value) => setNewEmployee({...newEmployee, status: value})}>
-                <SelectTrigger className="bg-gray-800/50 border-gray-700 text-white">
-                  <SelectValue placeholder="Select Status" />
-                </SelectTrigger>
-                <SelectContent className="bg-gray-800 border-gray-700 text-white">
-                  <SelectItem value="Active">Active</SelectItem>
-                  <SelectItem value="Inactive">Inactive</SelectItem>
-                  <SelectItem value="On Leave">On Leave</SelectItem>
-                  <SelectItem value="Terminated">Terminated</SelectItem>
-                </SelectContent>
-              </Select>
+              <div className="space-y-2">
+                <Label htmlFor="status" className="text-white">Employment Status</Label>
+                <Select value={newEmployee.status} onValueChange={(value) => setNewEmployee({...newEmployee, status: value})}>
+                  <SelectTrigger className="bg-gray-800/50 border-gray-700 text-white">
+                    <SelectValue placeholder="Select Status" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-gray-800 border-gray-700 text-white">
+                    <SelectItem value="Active">Active</SelectItem>
+                    <SelectItem value="Inactive">Inactive</SelectItem>
+                    <SelectItem value="On Leave">On Leave</SelectItem>
+                    <SelectItem value="Terminated">Terminated</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
 
             <div className="flex justify-end space-x-3 pt-4">
