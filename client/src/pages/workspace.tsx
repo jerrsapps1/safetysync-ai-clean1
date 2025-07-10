@@ -317,7 +317,10 @@ export default function WorkspacePage() {
 
   const [layouts, setLayouts] = useState(() => {
     const saved = localStorage.getItem('workspace-layouts');
-    return saved ? JSON.parse(saved) : {};
+    console.log('Loading layouts from localStorage:', saved);
+    const parsedLayouts = saved ? JSON.parse(saved) : {};
+    console.log('Parsed layouts:', parsedLayouts);
+    return parsedLayouts;
   });
   
   const [showWidgetManager, setShowWidgetManager] = useState(false);
@@ -333,6 +336,7 @@ export default function WorkspacePage() {
 
   // Save layouts to localStorage whenever they change
   useEffect(() => {
+    console.log('Saving layouts to localStorage:', layouts);
     localStorage.setItem('workspace-layouts', JSON.stringify(layouts));
   }, [layouts]);
 
@@ -356,6 +360,7 @@ export default function WorkspacePage() {
   };
 
   const handleLayoutChange = (layout: any, layouts: any) => {
+    console.log('handleLayoutChange called with:', { layout, layouts });
     setLayouts(layouts);
   };
 
