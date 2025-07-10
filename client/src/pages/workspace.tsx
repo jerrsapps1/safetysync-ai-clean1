@@ -435,66 +435,74 @@ export default function WorkspacePage() {
     }
   };
 
-  // Generate widget content
+  // Generate widget content with size-aware styling
   const generateWidgetContent = (widget: DashboardWidget) => {
+    const isSmall = widget.size === 'small';
+    const textSize = isSmall ? 'text-lg' : 'text-2xl';
+    const iconSize = isSmall ? 'w-6 h-6' : 'w-8 h-8';
+    const labelSize = isSmall ? 'text-xs' : 'text-sm';
+    
     switch (widget.id) {
       case "total-employees":
         return (
           <div className="flex items-center justify-between h-full">
-            <div>
-              <p className="text-gray-400 text-sm">Total Employees</p>
-              <p className="text-2xl font-bold text-white">{stats.totalEmployees}</p>
+            <div className="flex-1 min-w-0">
+              <p className={`text-gray-400 ${labelSize} truncate`}>Total Employees</p>
+              <p className={`${textSize} font-bold text-white truncate`}>{stats.totalEmployees}</p>
             </div>
-            <Users className="w-8 h-8 text-blue-400" />
+            <Users className={`${iconSize} text-blue-400 flex-shrink-0 ml-2`} />
           </div>
         );
       case "compliant-employees":
         return (
           <div className="flex items-center justify-between h-full">
-            <div>
-              <p className="text-gray-400 text-sm">Compliant</p>
-              <p className="text-2xl font-bold text-emerald-400">{stats.compliantEmployees}</p>
+            <div className="flex-1 min-w-0">
+              <p className={`text-gray-400 ${labelSize} truncate`}>Compliant</p>
+              <p className={`${textSize} font-bold text-emerald-400 truncate`}>{stats.compliantEmployees}</p>
             </div>
-            <CheckCircle className="w-8 h-8 text-emerald-400" />
+            <CheckCircle className={`${iconSize} text-emerald-400 flex-shrink-0 ml-2`} />
           </div>
         );
       case "pending-training":
         return (
           <div className="flex items-center justify-between h-full">
-            <div>
-              <p className="text-gray-400 text-sm">Pending Training</p>
-              <p className="text-2xl font-bold text-yellow-400">{stats.pendingTraining}</p>
+            <div className="flex-1 min-w-0">
+              <p className={`text-gray-400 ${labelSize} truncate`}>Pending Training</p>
+              <p className={`${textSize} font-bold text-yellow-400 truncate`}>{stats.pendingTraining}</p>
             </div>
-            <Clock className="w-8 h-8 text-yellow-400" />
+            <Clock className={`${iconSize} text-yellow-400 flex-shrink-0 ml-2`} />
           </div>
         );
       case "compliance-score":
         return (
           <div className="flex items-center justify-between h-full">
-            <div>
-              <p className="text-gray-400 text-sm">Compliance Score</p>
-              <p className="text-2xl font-bold text-white">{stats.complianceScore}%</p>
+            <div className="flex-1 min-w-0">
+              <p className={`text-gray-400 ${labelSize} truncate`}>Compliance Score</p>
+              <p className={`${textSize} font-bold text-white truncate`}>{stats.complianceScore}%</p>
             </div>
-            <TrendingUp className="w-8 h-8 text-blue-400" />
+            <TrendingUp className={`${iconSize} text-blue-400 flex-shrink-0 ml-2`} />
           </div>
         );
       case "recent-activity":
         return (
-          <div className="h-full">
-            <h3 className="text-lg font-semibold text-white mb-4">Recent Activity</h3>
-            <div className="space-y-3">
-              {complianceRecords.slice(0, 3).map((record) => (
+          <div className="h-full overflow-hidden">
+            <h3 className={`${isSmall ? 'text-sm' : 'text-lg'} font-semibold text-white mb-2`}>Recent Activity</h3>
+            <div className="space-y-2 overflow-y-auto" style={{ maxHeight: 'calc(100% - 2rem)' }}>
+              {complianceRecords.slice(0, isSmall ? 2 : 3).map((record) => (
                 <div key={record.id} className="flex items-center justify-between p-2 bg-gray-800/50 rounded-lg">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center">
-                      <User className="w-4 h-4 text-white" />
+                  <div className="flex items-center space-x-2 flex-1 min-w-0">
+                    <div className={`${isSmall ? 'w-6 h-6' : 'w-8 h-8'} bg-emerald-500 rounded-full flex items-center justify-center flex-shrink-0`}>
+                      <User className={`${isSmall ? 'w-3 h-3' : 'w-4 h-4'} text-white`} />
                     </div>
-                    <div>
-                      <p className="text-white text-sm font-medium">{record.employeeName}</p>
-                      <p className="text-gray-400 text-xs">{record.training}</p>
+                    <div className="min-w-0 flex-1">
+                      <p className={`text-white ${isSmall ? 'text-xs' : 'text-sm'} font-medium truncate`}>{record.employeeName}</p>
+                      <p className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-xs'} truncate`}>{record.training}</p>
                     </div>
                   </div>
-                  <Badge variant={record.status === 'completed' ? 'default' : record.status === 'pending' ? 'secondary' : 'destructive'}>
+                  <Badge 
+                    variant={record.status === 'completed' ? 'default' : record.status === 'pending' ? 'secondary' : 'destructive'}
+                    className={`${isSmall ? 'text-xs px-1' : ''} flex-shrink-0`}
+                  >
                     {record.status}
                   </Badge>
                 </div>
@@ -504,50 +512,54 @@ export default function WorkspacePage() {
         );
       case "training-calendar":
         return (
-          <div className="h-full">
-            <h3 className="text-lg font-semibold text-white mb-4">Upcoming Training</h3>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3 p-2 bg-gray-800/50 rounded-lg">
-                <Calendar className="w-5 h-5 text-blue-400" />
-                <div>
-                  <p className="text-white text-sm font-medium">Fall Protection Training</p>
-                  <p className="text-gray-400 text-xs">July 15, 2025 - 9:00 AM</p>
+          <div className="h-full overflow-hidden">
+            <h3 className={`${isSmall ? 'text-sm' : 'text-lg'} font-semibold text-white mb-2`}>Upcoming Training</h3>
+            <div className="space-y-2 overflow-y-auto" style={{ maxHeight: 'calc(100% - 2rem)' }}>
+              <div className="flex items-center space-x-2 p-2 bg-gray-800/50 rounded-lg">
+                <Calendar className={`${isSmall ? 'w-4 h-4' : 'w-5 h-5'} text-blue-400 flex-shrink-0`} />
+                <div className="min-w-0 flex-1">
+                  <p className={`text-white ${isSmall ? 'text-xs' : 'text-sm'} font-medium truncate`}>Fall Protection Training</p>
+                  <p className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-xs'} truncate`}>July 15, 2025 - 9:00 AM</p>
                 </div>
               </div>
-              <div className="flex items-center space-x-3 p-2 bg-gray-800/50 rounded-lg">
-                <Calendar className="w-5 h-5 text-green-400" />
-                <div>
-                  <p className="text-white text-sm font-medium">OSHA 30 Hour</p>
-                  <p className="text-gray-400 text-xs">July 22, 2025 - 8:00 AM</p>
-                </div>
-              </div>
-              <div className="flex items-center space-x-3 p-2 bg-gray-800/50 rounded-lg">
-                <Calendar className="w-5 h-5 text-yellow-400" />
-                <div>
-                  <p className="text-white text-sm font-medium">First Aid/CPR</p>
-                  <p className="text-gray-400 text-xs">July 29, 2025 - 1:00 PM</p>
-                </div>
-              </div>
+              {!isSmall && (
+                <>
+                  <div className="flex items-center space-x-2 p-2 bg-gray-800/50 rounded-lg">
+                    <Calendar className="w-5 h-5 text-green-400 flex-shrink-0" />
+                    <div className="min-w-0 flex-1">
+                      <p className="text-white text-sm font-medium truncate">OSHA 30 Hour</p>
+                      <p className="text-gray-400 text-xs truncate">July 22, 2025 - 8:00 AM</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-2 p-2 bg-gray-800/50 rounded-lg">
+                    <Calendar className="w-5 h-5 text-yellow-400 flex-shrink-0" />
+                    <div className="min-w-0 flex-1">
+                      <p className="text-white text-sm font-medium truncate">First Aid/CPR</p>
+                      <p className="text-gray-400 text-xs truncate">July 29, 2025 - 1:00 PM</p>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         );
       case "safety-alerts":
         return (
-          <div className="h-full">
-            <h3 className="text-lg font-semibold text-white mb-4">Safety Alerts</h3>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3 p-2 bg-red-900/20 rounded-lg border border-red-500/20">
-                <AlertTriangle className="w-5 h-5 text-red-400" />
-                <div>
-                  <p className="text-white text-sm font-medium">3 Expired Certifications</p>
-                  <p className="text-gray-400 text-xs">Immediate action required</p>
+          <div className="h-full overflow-hidden">
+            <h3 className={`${isSmall ? 'text-sm' : 'text-lg'} font-semibold text-white mb-2`}>Safety Alerts</h3>
+            <div className="space-y-2 overflow-y-auto" style={{ maxHeight: 'calc(100% - 2rem)' }}>
+              <div className="flex items-center space-x-2 p-2 bg-red-900/20 rounded-lg border border-red-500/20">
+                <AlertTriangle className={`${isSmall ? 'w-4 h-4' : 'w-5 h-5'} text-red-400 flex-shrink-0`} />
+                <div className="min-w-0 flex-1">
+                  <p className={`text-white ${isSmall ? 'text-xs' : 'text-sm'} font-medium truncate`}>3 Expired Certifications</p>
+                  <p className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-xs'} truncate`}>Immediate action required</p>
                 </div>
               </div>
-              <div className="flex items-center space-x-3 p-2 bg-yellow-900/20 rounded-lg border border-yellow-500/20">
-                <Clock className="w-5 h-5 text-yellow-400" />
-                <div>
-                  <p className="text-white text-sm font-medium">8 Certifications Expiring Soon</p>
-                  <p className="text-gray-400 text-xs">Within 30 days</p>
+              <div className="flex items-center space-x-2 p-2 bg-yellow-900/20 rounded-lg border border-yellow-500/20">
+                <Clock className={`${isSmall ? 'w-4 h-4' : 'w-5 h-5'} text-yellow-400 flex-shrink-0`} />
+                <div className="min-w-0 flex-1">
+                  <p className={`text-white ${isSmall ? 'text-xs' : 'text-sm'} font-medium truncate`}>8 Certifications Expiring Soon</p>
+                  <p className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-xs'} truncate`}>Within 30 days</p>
                 </div>
               </div>
             </div>
@@ -555,59 +567,63 @@ export default function WorkspacePage() {
         );
       case "certification-progress":
         return (
-          <div className="h-full">
-            <h3 className="text-lg font-semibold text-white mb-4">Certification Progress</h3>
-            <div className="space-y-4">
+          <div className="h-full overflow-hidden">
+            <h3 className={`${isSmall ? 'text-sm' : 'text-lg'} font-semibold text-white mb-2`}>Certification Progress</h3>
+            <div className="space-y-3 overflow-y-auto" style={{ maxHeight: 'calc(100% - 2rem)' }}>
               <div>
                 <div className="flex justify-between mb-1">
-                  <span className="text-sm text-gray-400">Fall Protection</span>
-                  <span className="text-sm text-white">87%</span>
+                  <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-gray-400 truncate`}>Fall Protection</span>
+                  <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-white flex-shrink-0`}>87%</span>
                 </div>
                 <Progress value={87} className="h-2" />
               </div>
               <div>
                 <div className="flex justify-between mb-1">
-                  <span className="text-sm text-gray-400">OSHA 10</span>
-                  <span className="text-sm text-white">92%</span>
+                  <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-gray-400 truncate`}>OSHA 10</span>
+                  <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-white flex-shrink-0`}>92%</span>
                 </div>
                 <Progress value={92} className="h-2" />
               </div>
-              <div>
-                <div className="flex justify-between mb-1">
-                  <span className="text-sm text-gray-400">First Aid</span>
-                  <span className="text-sm text-white">76%</span>
+              {!isSmall && (
+                <div>
+                  <div className="flex justify-between mb-1">
+                    <span className="text-sm text-gray-400 truncate">First Aid</span>
+                    <span className="text-sm text-white flex-shrink-0">76%</span>
+                  </div>
+                  <Progress value={76} className="h-2" />
                 </div>
-                <Progress value={76} className="h-2" />
-              </div>
+              )}
             </div>
           </div>
         );
       case "compliance-trends":
         return (
-          <div className="h-full">
-            <h3 className="text-lg font-semibold text-white mb-4">Compliance Trends</h3>
-            <div className="space-y-3">
+          <div className="h-full overflow-hidden">
+            <h3 className={`${isSmall ? 'text-sm' : 'text-lg'} font-semibold text-white mb-2`}>Compliance Trends</h3>
+            <div className="space-y-2 overflow-y-auto" style={{ maxHeight: 'calc(100% - 2rem)' }}>
               <div className="flex items-center justify-between">
-                <span className="text-gray-400 text-sm">This Month</span>
-                <div className="flex items-center space-x-2">
-                  <TrendingUp className="w-4 h-4 text-green-400" />
-                  <span className="text-green-400 text-sm">+5%</span>
+                <span className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-sm'} truncate`}>This Month</span>
+                <div className="flex items-center space-x-1 flex-shrink-0">
+                  <TrendingUp className={`${isSmall ? 'w-3 h-3' : 'w-4 h-4'} text-green-400`} />
+                  <span className={`text-green-400 ${isSmall ? 'text-xs' : 'text-sm'}`}>+5%</span>
                 </div>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-gray-400 text-sm">Last Quarter</span>
-                <div className="flex items-center space-x-2">
-                  <TrendingUp className="w-4 h-4 text-green-400" />
-                  <span className="text-green-400 text-sm">+12%</span>
+                <span className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-sm'} truncate`}>Last Quarter</span>
+                <div className="flex items-center space-x-1 flex-shrink-0">
+                  <TrendingUp className={`${isSmall ? 'w-3 h-3' : 'w-4 h-4'} text-green-400`} />
+                  <span className={`text-green-400 ${isSmall ? 'text-xs' : 'text-sm'}`}>+12%</span>
                 </div>
               </div>
-              <div className="flex items-center justify-between">
-                <span className="text-gray-400 text-sm">YTD</span>
-                <div className="flex items-center space-x-2">
-                  <TrendingUp className="w-4 h-4 text-green-400" />
-                  <span className="text-green-400 text-sm">+18%</span>
+              {!isSmall && (
+                <div className="flex items-center justify-between">
+                  <span className="text-gray-400 text-sm truncate">YTD</span>
+                  <div className="flex items-center space-x-1 flex-shrink-0">
+                    <TrendingUp className="w-4 h-4 text-green-400" />
+                    <span className="text-green-400 text-sm">+18%</span>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         );
