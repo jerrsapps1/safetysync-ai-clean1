@@ -4,6 +4,7 @@ import { storage } from "./storage";
 import { cloneDetector } from "./ai-clone-detection";
 import { emailAutomation } from "./email-automation";
 import emailAutomationRoutes from "./api/email-automation";
+import { billingAnalytics } from "./billing-analytics";
 import { insertLeadSchema, insertUserSchema, loginUserSchema, insertComplianceReportSchema, insertCloneDetectionScanSchema, insertHelpDeskTicketSchema, insertPromoCodeUsageSchema } from "@shared/schema";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
@@ -582,6 +583,38 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error('Error fetching analytics:', error);
       res.status(500).json({ error: 'Failed to fetch analytics' });
+    }
+  });
+
+  // Billing analytics endpoints
+  app.get('/api/admin/billing-analytics', requireAdmin, async (req, res) => {
+    try {
+      const billing = await billingAnalytics.getBillingAnalytics();
+      res.json(billing);
+    } catch (error) {
+      console.error('Error fetching billing analytics:', error);
+      res.status(500).json({ error: 'Failed to fetch billing analytics' });
+    }
+  });
+
+  app.get('/api/admin/subscription-tiers', requireAdmin, async (req, res) => {
+    try {
+      const tiers = await billingAnalytics.getSubscriptionsByTier();
+      res.json(tiers);
+    } catch (error) {
+      console.error('Error fetching subscription tiers:', error);
+      res.status(500).json({ error: 'Failed to fetch subscription tiers' });
+    }
+  });
+
+  app.get('/api/admin/recent-transactions', requireAdmin, async (req, res) => {
+    try {
+      const limit = parseInt(req.query.limit as string) || 10;
+      const transactions = await billingAnalytics.getRecentTransactions(limit);
+      res.json(transactions);
+    } catch (error) {
+      console.error('Error fetching recent transactions:', error);
+      res.status(500).json({ error: 'Failed to fetch recent transactions' });
     }
   });
 

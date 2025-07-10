@@ -237,7 +237,13 @@ export default function AdminDashboard() {
         const demoRequests = leads.filter((lead: any) => lead.leadType === 'demo').length;
         const conversionRate = leads.length > 0 ? (totalUsers / leads.length * 100) : 0;
 
-        // Update with real data
+        // Fetch billing data from Stripe
+        const billingResponse = await fetch('/api/admin/billing-analytics', {
+          headers: { 'x-admin-key': 'SafetySyncai2025!Admin#Key' }
+        });
+        const billing = billingResponse.ok ? await billingResponse.json() : null;
+
+        // Update with real data including billing
         setStats({
           totalUsers,
           activeUsers,
@@ -245,8 +251,8 @@ export default function AdminDashboard() {
             const today = new Date().toDateString();
             return new Date(user.createdAt).toDateString() === today;
           }).length,
-          totalRevenue: 0, // Will need billing data
-          monthlyRevenue: 0, // Will need billing data
+          totalRevenue: billing?.totalRevenue || 0,
+          monthlyRevenue: billing?.monthlyRevenue || 0,
           conversionRate,
           systemUptime: 99.9, // System metric
           serverLoad: 15, // System metric
@@ -255,14 +261,14 @@ export default function AdminDashboard() {
           bounceRate: 25, // Analytics metric
           avgSessionDuration: 180, // Analytics metric
           securityAlerts: 0, // Security metric
-          failedLogins: 0, // Security metric
+          failedLogins: billing?.failedPayments || 0,
           emailsSent: leads.length * 2, // Estimated from email automation
           apiCalls: totalUsers * 50, // Estimated API usage
           errorRate: 0.05, // System metric
           responseTime: 120, // System metric
           activeTrials: trialSignups,
-          expiredTrials: 0, // Will need subscription data
-          subscriptionChurn: 0, // Will need subscription data
+          expiredTrials: billing?.expiredSubscriptions || 0,
+          subscriptionChurn: billing?.churnRate || 0,
           supportTickets: 0 // Will need support data
         });
       } catch (error) {
