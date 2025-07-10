@@ -5,7 +5,13 @@ import { cloneDetector } from "./ai-clone-detection";
 import { emailAutomation } from "./email-automation";
 import emailAutomationRoutes from "./api/email-automation";
 import { billingAnalytics } from "./billing-analytics";
-import { insertLeadSchema, insertUserSchema, loginUserSchema, insertComplianceReportSchema, insertCloneDetectionScanSchema, insertHelpDeskTicketSchema, insertPromoCodeUsageSchema } from "@shared/schema";
+import { 
+  insertLeadSchema, insertUserSchema, loginUserSchema, insertComplianceReportSchema, 
+  insertCloneDetectionScanSchema, insertHelpDeskTicketSchema, insertPromoCodeUsageSchema,
+  insertEmployeeSchema, insertTrainingProgramSchema, insertTrainingSessionSchema,
+  insertEmployeeTrainingSchema, insertCertificateSchema, insertDocumentSchema,
+  insertAuditLogSchema, insertNotificationSchema, insertIntegrationSchema, insertLocationSchema
+} from "@shared/schema";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -1158,6 +1164,381 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ error: 'Email test failed' });
     }
   });
+
+  // Employee Management API
+  app.post("/api/employees", authenticateToken, async (req, res) => {
+    try {
+      const employeeData = insertEmployeeSchema.parse(req.body);
+      const employee = await storage.createEmployee(employeeData);
+      res.json(employee);
+    } catch (error) {
+      console.error("Error creating employee:", error);
+      res.status(500).json({ error: "Failed to create employee" });
+    }
+  });
+
+  app.get("/api/employees", authenticateToken, async (req, res) => {
+    try {
+      const userId = (req as any).user.id;
+      const employees = await storage.getEmployees(userId);
+      res.json(employees);
+    } catch (error) {
+      console.error("Error fetching employees:", error);
+      res.status(500).json({ error: "Failed to fetch employees" });
+    }
+  });
+
+  app.get("/api/employees/:id", authenticateToken, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const employee = await storage.getEmployeeById(id);
+      if (!employee) {
+        return res.status(404).json({ error: "Employee not found" });
+      }
+      res.json(employee);
+    } catch (error) {
+      console.error("Error fetching employee:", error);
+      res.status(500).json({ error: "Failed to fetch employee" });
+    }
+  });
+
+  app.put("/api/employees/:id", authenticateToken, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const updates = req.body;
+      await storage.updateEmployee(id, updates);
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error updating employee:", error);
+      res.status(500).json({ error: "Failed to update employee" });
+    }
+  });
+
+  app.delete("/api/employees/:id", authenticateToken, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      await storage.deleteEmployee(id);
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error deleting employee:", error);
+      res.status(500).json({ error: "Failed to delete employee" });
+    }
+  });
+
+  // Training Program Management API
+  app.post("/api/training-programs", authenticateToken, async (req, res) => {
+    try {
+      const programData = insertTrainingProgramSchema.parse(req.body);
+      const program = await storage.createTrainingProgram(programData);
+      res.json(program);
+    } catch (error) {
+      console.error("Error creating training program:", error);
+      res.status(500).json({ error: "Failed to create training program" });
+    }
+  });
+
+  app.get("/api/training-programs", authenticateToken, async (req, res) => {
+    try {
+      const userId = (req as any).user.id;
+      const programs = await storage.getTrainingPrograms(userId);
+      res.json(programs);
+    } catch (error) {
+      console.error("Error fetching training programs:", error);
+      res.status(500).json({ error: "Failed to fetch training programs" });
+    }
+  });
+
+  app.get("/api/training-programs/:id", authenticateToken, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const program = await storage.getTrainingProgramById(id);
+      if (!program) {
+        return res.status(404).json({ error: "Training program not found" });
+      }
+      res.json(program);
+    } catch (error) {
+      console.error("Error fetching training program:", error);
+      res.status(500).json({ error: "Failed to fetch training program" });
+    }
+  });
+
+  app.put("/api/training-programs/:id", authenticateToken, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const updates = req.body;
+      await storage.updateTrainingProgram(id, updates);
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error updating training program:", error);
+      res.status(500).json({ error: "Failed to update training program" });
+    }
+  });
+
+  app.delete("/api/training-programs/:id", authenticateToken, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      await storage.deleteTrainingProgram(id);
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error deleting training program:", error);
+      res.status(500).json({ error: "Failed to delete training program" });
+    }
+  });
+
+  // Certificate Management API
+  app.post("/api/certificates", authenticateToken, async (req, res) => {
+    try {
+      const certificateData = insertCertificateSchema.parse(req.body);
+      const certificate = await storage.createCertificate(certificateData);
+      res.json(certificate);
+    } catch (error) {
+      console.error("Error creating certificate:", error);
+      res.status(500).json({ error: "Failed to create certificate" });
+    }
+  });
+
+  app.get("/api/certificates", authenticateToken, async (req, res) => {
+    try {
+      const userId = (req as any).user.id;
+      const certificates = await storage.getCertificates(userId);
+      res.json(certificates);
+    } catch (error) {
+      console.error("Error fetching certificates:", error);
+      res.status(500).json({ error: "Failed to fetch certificates" });
+    }
+  });
+
+  app.get("/api/certificates/employee/:employeeId", authenticateToken, async (req, res) => {
+    try {
+      const employeeId = parseInt(req.params.employeeId);
+      const certificates = await storage.getCertificatesByEmployee(employeeId);
+      res.json(certificates);
+    } catch (error) {
+      console.error("Error fetching employee certificates:", error);
+      res.status(500).json({ error: "Failed to fetch employee certificates" });
+    }
+  });
+
+  app.get("/api/certificates/expiring", authenticateToken, async (req, res) => {
+    try {
+      const userId = (req as any).user.id;
+      const days = parseInt(req.query.days as string) || 30;
+      const certificates = await storage.getExpiringCertificates(userId, days);
+      res.json(certificates);
+    } catch (error) {
+      console.error("Error fetching expiring certificates:", error);
+      res.status(500).json({ error: "Failed to fetch expiring certificates" });
+    }
+  });
+
+  // Document Management API
+  app.post("/api/documents", authenticateToken, async (req, res) => {
+    try {
+      const documentData = insertDocumentSchema.parse(req.body);
+      const document = await storage.createDocument(documentData);
+      res.json(document);
+    } catch (error) {
+      console.error("Error creating document:", error);
+      res.status(500).json({ error: "Failed to create document" });
+    }
+  });
+
+  app.get("/api/documents", authenticateToken, async (req, res) => {
+    try {
+      const userId = (req as any).user.id;
+      const documents = await storage.getDocuments(userId);
+      res.json(documents);
+    } catch (error) {
+      console.error("Error fetching documents:", error);
+      res.status(500).json({ error: "Failed to fetch documents" });
+    }
+  });
+
+  // Training Session Management API
+  app.post("/api/training-sessions", authenticateToken, async (req, res) => {
+    try {
+      const sessionData = insertTrainingSessionSchema.parse(req.body);
+      const session = await storage.createTrainingSession(sessionData);
+      res.json(session);
+    } catch (error) {
+      console.error("Error creating training session:", error);
+      res.status(500).json({ error: "Failed to create training session" });
+    }
+  });
+
+  app.get("/api/training-sessions", authenticateToken, async (req, res) => {
+    try {
+      const userId = (req as any).user.id;
+      const sessions = await storage.getTrainingSessions(userId);
+      res.json(sessions);
+    } catch (error) {
+      console.error("Error fetching training sessions:", error);
+      res.status(500).json({ error: "Failed to fetch training sessions" });
+    }
+  });
+
+  app.get("/api/training-sessions/upcoming", authenticateToken, async (req, res) => {
+    try {
+      const userId = (req as any).user.id;
+      const sessions = await storage.getUpcomingTrainingSessions(userId);
+      res.json(sessions);
+    } catch (error) {
+      console.error("Error fetching upcoming training sessions:", error);
+      res.status(500).json({ error: "Failed to fetch upcoming training sessions" });
+    }
+  });
+
+  // Employee Training Management API
+  app.post("/api/employee-training", authenticateToken, async (req, res) => {
+    try {
+      const trainingData = insertEmployeeTrainingSchema.parse(req.body);
+      const training = await storage.createEmployeeTraining(trainingData);
+      res.json(training);
+    } catch (error) {
+      console.error("Error creating employee training:", error);
+      res.status(500).json({ error: "Failed to create employee training" });
+    }
+  });
+
+  app.get("/api/employee-training/employee/:employeeId", authenticateToken, async (req, res) => {
+    try {
+      const employeeId = parseInt(req.params.employeeId);
+      const training = await storage.getEmployeeTrainingByEmployee(employeeId);
+      res.json(training);
+    } catch (error) {
+      console.error("Error fetching employee training:", error);
+      res.status(500).json({ error: "Failed to fetch employee training" });
+    }
+  });
+
+  // Notification Management API
+  app.post("/api/notifications", authenticateToken, async (req, res) => {
+    try {
+      const notificationData = insertNotificationSchema.parse(req.body);
+      const notification = await storage.createNotification(notificationData);
+      res.json(notification);
+    } catch (error) {
+      console.error("Error creating notification:", error);
+      res.status(500).json({ error: "Failed to create notification" });
+    }
+  });
+
+  app.get("/api/notifications", authenticateToken, async (req, res) => {
+    try {
+      const userId = (req as any).user.id;
+      const notifications = await storage.getNotifications(userId);
+      res.json(notifications);
+    } catch (error) {
+      console.error("Error fetching notifications:", error);
+      res.status(500).json({ error: "Failed to fetch notifications" });
+    }
+  });
+
+  // Bulk Operations API
+  app.post("/api/bulk/employees/import", authenticateToken, async (req, res) => {
+    try {
+      const { employees } = req.body;
+      const userId = (req as any).user.id;
+      
+      const results = [];
+      for (const employeeData of employees) {
+        try {
+          const employee = await storage.createEmployee({
+            ...employeeData,
+            userId
+          });
+          results.push({ success: true, employee });
+        } catch (error) {
+          results.push({ success: false, error: error.message, data: employeeData });
+        }
+      }
+      
+      res.json({ results });
+    } catch (error) {
+      console.error("Error importing employees:", error);
+      res.status(500).json({ error: "Failed to import employees" });
+    }
+  });
+
+  app.get("/api/bulk/employees/export", authenticateToken, async (req, res) => {
+    try {
+      const userId = (req as any).user.id;
+      const employees = await storage.getEmployees(userId);
+      
+      // Convert to CSV format
+      const csvHeaders = ['Employee ID', 'First Name', 'Last Name', 'Email', 'Phone', 'Position', 'Department', 'Division', 'Location', 'Status'];
+      const csvData = employees.map(emp => [
+        emp.employeeId,
+        emp.firstName,
+        emp.lastName,
+        emp.email,
+        emp.phone || '',
+        emp.position || '',
+        emp.department || '',
+        emp.division || '',
+        emp.location || '',
+        emp.status
+      ]);
+      
+      const csvContent = [csvHeaders, ...csvData].map(row => row.join(',')).join('\n');
+      
+      res.setHeader('Content-Type', 'text/csv');
+      res.setHeader('Content-Disposition', 'attachment; filename=employees.csv');
+      res.send(csvContent);
+    } catch (error) {
+      console.error("Error exporting employees:", error);
+      res.status(500).json({ error: "Failed to export employees" });
+    }
+  });
+
+  // Audit Log API
+  app.post("/api/audit-logs", authenticateToken, async (req, res) => {
+    try {
+      const auditData = insertAuditLogSchema.parse(req.body);
+      const log = await storage.createAuditLog(auditData);
+      res.json(log);
+    } catch (error) {
+      console.error("Error creating audit log:", error);
+      res.status(500).json({ error: "Failed to create audit log" });
+    }
+  });
+
+  app.get("/api/audit-logs", authenticateToken, async (req, res) => {
+    try {
+      const userId = (req as any).user.id;
+      const logs = await storage.getAuditLogs(userId);
+      res.json(logs);
+    } catch (error) {
+      console.error("Error fetching audit logs:", error);
+      res.status(500).json({ error: "Failed to fetch audit logs" });
+    }
+  });
+
+  // Location Management API
+  app.post("/api/locations", authenticateToken, async (req, res) => {
+    try {
+      const locationData = insertLocationSchema.parse(req.body);
+      const location = await storage.createLocation(locationData);
+      res.json(location);
+    } catch (error) {
+      console.error("Error creating location:", error);
+      res.status(500).json({ error: "Failed to create location" });
+    }
+  });
+
+  app.get("/api/locations", authenticateToken, async (req, res) => {
+    try {
+      const userId = (req as any).user.id;
+      const locations = await storage.getLocations(userId);
+      res.json(locations);
+    } catch (error) {
+      console.error("Error fetching locations:", error);
+      res.status(500).json({ error: "Failed to fetch locations" });
+    }
+  });
+
+  // Email automation API
+  app.use("/api/email", emailAutomationRoutes);
 
   const httpServer = createServer(app);
 
