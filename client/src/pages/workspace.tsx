@@ -10,6 +10,9 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Switch } from "@/components/ui/switch";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 import { ComplianceReportGenerator } from "@/components/ui/compliance-report-generator";
 import { AICloneDetector } from "@/components/ui/ai-clone-detector";
 import { CollaborationLayer } from "@/components/ui/collaboration-layer";
@@ -372,6 +375,17 @@ export default function WorkspacePage() {
   const [selectedTraining, setSelectedTraining] = useState<any>(null);
   const [showEmployeeDetails, setShowEmployeeDetails] = useState(false);
   const [showTrainingDetails, setShowTrainingDetails] = useState(false);
+  
+  // Form state for Add Employee
+  const [newEmployee, setNewEmployee] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    department: "",
+    position: "",
+    hireDate: "",
+    status: "Active"
+  });
   const [employees, setEmployees] = useState<any[]>([
     { id: 1, name: "John Smith", department: "Construction", email: "john.smith@company.com", phone: "(555) 123-4567", position: "Site Manager", hireDate: "2023-01-15", certifications: ["Fall Protection", "First Aid/CPR"], status: "Active" },
     { id: 2, name: "Sarah Johnson", department: "Manufacturing", email: "sarah.johnson@company.com", phone: "(555) 234-5678", position: "Safety Coordinator", hireDate: "2022-08-20", certifications: ["OSHA 30", "Forklift Operation"], status: "Active" },
@@ -391,9 +405,41 @@ export default function WorkspacePage() {
   // Handler functions for interactive buttons
   const handleAddEmployee = () => {
     setShowAddEmployee(true);
+  };
+
+  const handleSubmitEmployee = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newEmployee.name || !newEmployee.email || !newEmployee.department) {
+      toast({
+        title: "Error",
+        description: "Please fill in all required fields.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const employee = {
+      ...newEmployee,
+      id: employees.length + 1,
+      certifications: [],
+      hireDate: newEmployee.hireDate || new Date().toISOString().split('T')[0]
+    };
+
+    setEmployees([...employees, employee]);
+    setNewEmployee({
+      name: "",
+      email: "",
+      phone: "",
+      department: "",
+      position: "",
+      hireDate: "",
+      status: "Active"
+    });
+    setShowAddEmployee(false);
+    
     toast({
-      title: "Add Employee",
-      description: "Opening employee registration form...",
+      title: "Employee Added",
+      description: `${employee.name} has been successfully added to the system.`,
     });
   };
 
@@ -2040,6 +2086,133 @@ export default function WorkspacePage() {
 
       {/* AI Quick Actions */}
       <AIQuickActions />
+
+      {/* Add Employee Dialog */}
+      <Dialog open={showAddEmployee} onOpenChange={setShowAddEmployee}>
+        <DialogContent className="bg-gray-900 border-gray-800 text-white max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold text-white">Add New Employee</DialogTitle>
+            <DialogDescription className="text-gray-400">
+              Enter employee information to add them to your SafetySync.AI workspace
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleSubmitEmployee} className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="name" className="text-white">Full Name *</Label>
+                <Input
+                  id="name"
+                  value={newEmployee.name}
+                  onChange={(e) => setNewEmployee({...newEmployee, name: e.target.value})}
+                  className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+                  placeholder="John Smith"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-white">Email Address *</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={newEmployee.email}
+                  onChange={(e) => setNewEmployee({...newEmployee, email: e.target.value})}
+                  className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+                  placeholder="john.smith@company.com"
+                  required
+                />
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="phone" className="text-white">Phone Number</Label>
+                <Input
+                  id="phone"
+                  type="tel"
+                  value={newEmployee.phone}
+                  onChange={(e) => setNewEmployee({...newEmployee, phone: e.target.value})}
+                  className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+                  placeholder="(555) 123-4567"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="department" className="text-white">Department *</Label>
+                <Select value={newEmployee.department} onValueChange={(value) => setNewEmployee({...newEmployee, department: value})}>
+                  <SelectTrigger className="bg-gray-800/50 border-gray-700 text-white">
+                    <SelectValue placeholder="Select Department" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-gray-800 border-gray-700 text-white">
+                    <SelectItem value="Construction">Construction</SelectItem>
+                    <SelectItem value="Manufacturing">Manufacturing</SelectItem>
+                    <SelectItem value="Maintenance">Maintenance</SelectItem>
+                    <SelectItem value="Safety">Safety</SelectItem>
+                    <SelectItem value="Administration">Administration</SelectItem>
+                    <SelectItem value="Operations">Operations</SelectItem>
+                    <SelectItem value="Quality Control">Quality Control</SelectItem>
+                    <SelectItem value="Warehouse">Warehouse</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="position" className="text-white">Position/Title</Label>
+                <Input
+                  id="position"
+                  value={newEmployee.position}
+                  onChange={(e) => setNewEmployee({...newEmployee, position: e.target.value})}
+                  className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+                  placeholder="Site Manager"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="hireDate" className="text-white">Hire Date</Label>
+                <Input
+                  id="hireDate"
+                  type="date"
+                  value={newEmployee.hireDate}
+                  onChange={(e) => setNewEmployee({...newEmployee, hireDate: e.target.value})}
+                  className="bg-gray-800/50 border-gray-700 text-white"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="status" className="text-white">Employment Status</Label>
+              <Select value={newEmployee.status} onValueChange={(value) => setNewEmployee({...newEmployee, status: value})}>
+                <SelectTrigger className="bg-gray-800/50 border-gray-700 text-white">
+                  <SelectValue placeholder="Select Status" />
+                </SelectTrigger>
+                <SelectContent className="bg-gray-800 border-gray-700 text-white">
+                  <SelectItem value="Active">Active</SelectItem>
+                  <SelectItem value="Inactive">Inactive</SelectItem>
+                  <SelectItem value="On Leave">On Leave</SelectItem>
+                  <SelectItem value="Terminated">Terminated</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="flex justify-end space-x-3 pt-4">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setShowAddEmployee(false)}
+                className="border-gray-700 text-gray-300 hover:bg-gray-800"
+              >
+                Cancel
+              </Button>
+              <Button
+                type="submit"
+                className="bg-emerald-500 hover:bg-emerald-600 text-white"
+              >
+                <Users className="w-4 h-4 mr-2" />
+                Add Employee
+              </Button>
+            </div>
+          </form>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
