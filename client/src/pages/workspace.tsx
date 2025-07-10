@@ -74,7 +74,6 @@ interface DashboardWidget {
   };
   icon: React.ReactNode;
   visible: boolean;
-  size: 'small' | 'large';
 }
 
 interface ComplianceRecord {
@@ -240,64 +239,55 @@ export default function WorkspacePage() {
       id: "total-employees",
       title: "Total Employees",
       defaultProps: { x: 0, y: 0, w: 3, h: 2 },
-      visible: true,
-      size: 'small' as const
+      visible: true
     },
     {
       id: "compliant-employees",
       title: "Compliant Employees",
       defaultProps: { x: 3, y: 0, w: 3, h: 2 },
-      visible: true,
-      size: 'small' as const
+      visible: true
     },
     {
       id: "pending-training",
       title: "Pending Training",
       defaultProps: { x: 6, y: 0, w: 3, h: 2 },
-      visible: true,
-      size: 'small' as const
+      visible: true
     },
     {
       id: "compliance-score",
       title: "Compliance Score",
       defaultProps: { x: 9, y: 0, w: 3, h: 2 },
-      visible: true,
-      size: 'small' as const
+      visible: true
     },
     {
       id: "recent-activity",
       title: "Recent Activity",
       defaultProps: { x: 0, y: 2, w: 6, h: 4 },
-      visible: true,
-      size: 'large' as const
+      visible: true
     },
     {
       id: "training-calendar",
       title: "Training Calendar",
       defaultProps: { x: 6, y: 2, w: 6, h: 4 },
-      visible: true,
-      size: 'large' as const
+      visible: true
     },
     {
       id: "safety-alerts",
       title: "Safety Alerts",
       defaultProps: { x: 0, y: 6, w: 4, h: 3 },
-      visible: true,
-      size: 'small' as const
+      visible: true
     },
     {
       id: "certification-progress",
       title: "Certification Progress",
       defaultProps: { x: 4, y: 6, w: 4, h: 3 },
-      visible: true,
-      size: 'small' as const
+      visible: true
     },
     {
       id: "compliance-trends",
       title: "Compliance Trends",
       defaultProps: { x: 8, y: 6, w: 4, h: 3 },
-      visible: true,
-      size: 'small' as const
+      visible: true
     }
   ];
 
@@ -306,8 +296,7 @@ export default function WorkspacePage() {
     return config.map(widget => ({
       ...widget,
       component: null,
-      icon: getWidgetIcon(widget.id),
-      size: widget.size || 'small'
+      icon: getWidgetIcon(widget.id)
     }));
   };
 
@@ -317,13 +306,12 @@ export default function WorkspacePage() {
     if (saved) {
       const savedWidgets = JSON.parse(saved);
       console.log('Loaded saved widgets:', savedWidgets);
-      // Merge saved visibility and size state with default widget configuration
+      // Merge saved visibility state with default widget configuration
       const mergedConfig = defaultWidgetConfig.map(widget => {
         const savedWidget = savedWidgets.find((w: any) => w.id === widget.id);
         return savedWidget ? { 
           ...widget, 
-          visible: savedWidget.visible,
-          size: savedWidget.size || widget.size
+          visible: savedWidget.visible
         } : widget;
       });
       return createWidgets(mergedConfig);
@@ -358,12 +346,11 @@ export default function WorkspacePage() {
   
   const [showWidgetManager, setShowWidgetManager] = useState(false);
 
-  // Save widget visibility and size to localStorage (not the full widget objects with React components)
+  // Save widget visibility to localStorage (not the full widget objects with React components)
   useEffect(() => {
     const widgetSettings = widgets.map(widget => ({
       id: widget.id,
-      visible: widget.visible,
-      size: widget.size
+      visible: widget.visible
     }));
     localStorage.setItem('workspace-widgets', JSON.stringify(widgetSettings));
   }, [widgets]);
@@ -382,33 +369,7 @@ export default function WorkspacePage() {
     ));
   };
 
-  const toggleWidgetSize = (widgetId: string) => {
-    setWidgets(prev => prev.map(widget => 
-      widget.id === widgetId 
-        ? { ...widget, size: widget.size === 'small' ? 'large' : 'small' }
-        : widget
-    ));
-    
-    // Update the layout to reflect the new size
-    setLayouts(prevLayouts => {
-      const newLayouts = { ...prevLayouts };
-      Object.keys(newLayouts).forEach(breakpoint => {
-        newLayouts[breakpoint] = newLayouts[breakpoint].map((layout: any) => {
-          if (layout.i === widgetId) {
-            const widget = widgets.find(w => w.id === widgetId);
-            const newSize = widget?.size === 'small' ? 'large' : 'small';
-            return {
-              ...layout,
-              w: newSize === 'large' ? layout.w * 2 : Math.max(3, Math.floor(layout.w / 2)),
-              h: newSize === 'large' ? layout.h + 1 : Math.max(2, layout.h - 1)
-            };
-          }
-          return layout;
-        });
-      });
-      return newLayouts;
-    });
-  };
+
 
   const resetWidgetLayout = () => {
     // Reset to default layout and visibility
@@ -435,9 +396,10 @@ export default function WorkspacePage() {
     }
   };
 
-  // Generate widget content with size-aware styling
-  const generateWidgetContent = (widget: DashboardWidget) => {
-    const isSmall = widget.size === 'small';
+  // Generate widget content with responsive styling based on widget dimensions
+  const generateWidgetContent = (widget: DashboardWidget, layoutItem?: any) => {
+    // Determine if widget is small based on actual dimensions
+    const isSmall = layoutItem ? (layoutItem.w <= 3 && layoutItem.h <= 2) : false;
     const textSize = isSmall ? 'text-lg' : 'text-2xl';
     const iconSize = isSmall ? 'w-6 h-6' : 'w-8 h-8';
     const labelSize = isSmall ? 'text-xs' : 'text-sm';
@@ -865,7 +827,7 @@ export default function WorkspacePage() {
 
                 </div>
                 <div className="text-sm text-gray-400">
-                  Drag widgets to reposition • Click manage to show/hide
+                  Drag widgets to reposition • Drag corners to resize • Click manage to show/hide
                 </div>
               </div>
 
@@ -875,7 +837,7 @@ export default function WorkspacePage() {
                   <CardHeader>
                     <CardTitle className="text-white">Widget Manager</CardTitle>
                     <CardDescription className="text-gray-400">
-                      Toggle widgets on/off and adjust their size to customize your dashboard
+                      Toggle widgets on/off and drag to resize them on your dashboard
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
@@ -895,24 +857,8 @@ export default function WorkspacePage() {
                               <span className="text-white text-sm">{widget.title}</span>
                             </div>
                           </div>
-                          <div className="flex items-center space-x-2">
-                            <span className="text-gray-400 text-xs">Size:</span>
-                            <Button
-                              variant={widget.size === 'small' ? 'default' : 'outline'}
-                              size="sm"
-                              onClick={() => toggleWidgetSize(widget.id)}
-                              className="h-7 px-2 text-xs"
-                            >
-                              Small
-                            </Button>
-                            <Button
-                              variant={widget.size === 'large' ? 'default' : 'outline'}
-                              size="sm"
-                              onClick={() => toggleWidgetSize(widget.id)}
-                              className="h-7 px-2 text-xs"
-                            >
-                              Large
-                            </Button>
+                          <div className="text-gray-400 text-xs">
+                            Drag to resize
                           </div>
                         </div>
                       ))}
@@ -940,7 +886,11 @@ export default function WorkspacePage() {
                 >
                   {widgets
                     .filter(widget => widget.visible)
-                    .map((widget) => (
+                    .map((widget) => {
+                      // Get current layout for this widget
+                      const currentLayout = layouts.lg?.find(l => l.i === widget.id);
+                      
+                      return (
                         <div
                           key={widget.id}
                           className="widget-container"
@@ -954,12 +904,13 @@ export default function WorkspacePage() {
                               
                               {/* Widget Content */}
                               <div className="h-full">
-                                {generateWidgetContent(widget)}
+                                {generateWidgetContent(widget, currentLayout)}
                               </div>
                             </CardContent>
                           </Card>
                         </div>
-                    ))}
+                      );
+                    })}
                 </ResponsiveGridLayout>
               </div>
             </div>
