@@ -323,6 +323,11 @@ export default function WorkspacePage() {
     return parsedLayouts;
   });
   
+  // Debug component mount
+  useEffect(() => {
+    console.log('WorkspacePage mounted, current layouts:', layouts);
+  }, []);
+  
   const [showWidgetManager, setShowWidgetManager] = useState(false);
 
   // Save widget visibility to localStorage (not the full widget objects with React components)
@@ -360,8 +365,11 @@ export default function WorkspacePage() {
   };
 
   const handleLayoutChange = (layout: any, layouts: any) => {
-    console.log('handleLayoutChange called with:', { layout, layouts });
-    setLayouts(layouts);
+    console.log('handleLayoutChange called with layout:', layout);
+    console.log('handleLayoutChange called with layouts:', layouts);
+    if (layouts && Object.keys(layouts).length > 0) {
+      setLayouts(layouts);
+    }
   };
 
   // Generate widget content
