@@ -74,6 +74,7 @@ interface DashboardWidget {
   };
   icon: React.ReactNode;
   visible: boolean;
+  size: 'small' | 'large';
 }
 
 interface ComplianceRecord {
@@ -239,55 +240,64 @@ export default function WorkspacePage() {
       id: "total-employees",
       title: "Total Employees",
       defaultProps: { x: 0, y: 0, w: 3, h: 2 },
-      visible: true
+      visible: true,
+      size: 'small' as const
     },
     {
       id: "compliant-employees",
       title: "Compliant Employees",
       defaultProps: { x: 3, y: 0, w: 3, h: 2 },
-      visible: true
+      visible: true,
+      size: 'small' as const
     },
     {
       id: "pending-training",
       title: "Pending Training",
       defaultProps: { x: 6, y: 0, w: 3, h: 2 },
-      visible: true
+      visible: true,
+      size: 'small' as const
     },
     {
       id: "compliance-score",
       title: "Compliance Score",
       defaultProps: { x: 9, y: 0, w: 3, h: 2 },
-      visible: true
+      visible: true,
+      size: 'small' as const
     },
     {
       id: "recent-activity",
       title: "Recent Activity",
       defaultProps: { x: 0, y: 2, w: 6, h: 4 },
-      visible: true
+      visible: true,
+      size: 'large' as const
     },
     {
       id: "training-calendar",
       title: "Training Calendar",
       defaultProps: { x: 6, y: 2, w: 6, h: 4 },
-      visible: true
+      visible: true,
+      size: 'large' as const
     },
     {
       id: "safety-alerts",
       title: "Safety Alerts",
       defaultProps: { x: 0, y: 6, w: 4, h: 3 },
-      visible: true
+      visible: true,
+      size: 'small' as const
     },
     {
       id: "certification-progress",
       title: "Certification Progress",
       defaultProps: { x: 4, y: 6, w: 4, h: 3 },
-      visible: true
+      visible: true,
+      size: 'small' as const
     },
     {
       id: "compliance-trends",
       title: "Compliance Trends",
       defaultProps: { x: 8, y: 6, w: 4, h: 3 },
-      visible: true
+      visible: true,
+      size: 'small' as const
     }
   ];
 
@@ -296,7 +306,8 @@ export default function WorkspacePage() {
     return config.map(widget => ({
       ...widget,
       component: null,
-      icon: getWidgetIcon(widget.id)
+      icon: getWidgetIcon(widget.id),
+      size: widget.size || 'small'
     }));
   };
 
@@ -306,10 +317,14 @@ export default function WorkspacePage() {
     if (saved) {
       const savedWidgets = JSON.parse(saved);
       console.log('Loaded saved widgets:', savedWidgets);
-      // Merge saved visibility state with default widget configuration
+      // Merge saved visibility and size state with default widget configuration
       const mergedConfig = defaultWidgetConfig.map(widget => {
         const savedWidget = savedWidgets.find((w: any) => w.id === widget.id);
-        return savedWidget ? { ...widget, visible: savedWidget.visible } : widget;
+        return savedWidget ? { 
+          ...widget, 
+          visible: savedWidget.visible,
+          size: savedWidget.size || widget.size
+        } : widget;
       });
       return createWidgets(mergedConfig);
     }
@@ -343,13 +358,14 @@ export default function WorkspacePage() {
   
   const [showWidgetManager, setShowWidgetManager] = useState(false);
 
-  // Save widget visibility to localStorage (not the full widget objects with React components)
+  // Save widget visibility and size to localStorage (not the full widget objects with React components)
   useEffect(() => {
-    const widgetVisibility = widgets.map(widget => ({
+    const widgetSettings = widgets.map(widget => ({
       id: widget.id,
-      visible: widget.visible
+      visible: widget.visible,
+      size: widget.size
     }));
-    localStorage.setItem('workspace-widgets', JSON.stringify(widgetVisibility));
+    localStorage.setItem('workspace-widgets', JSON.stringify(widgetSettings));
   }, [widgets]);
 
   // Save layouts to localStorage whenever they change
@@ -364,6 +380,34 @@ export default function WorkspacePage() {
         ? { ...widget, visible: !widget.visible }
         : widget
     ));
+  };
+
+  const toggleWidgetSize = (widgetId: string) => {
+    setWidgets(prev => prev.map(widget => 
+      widget.id === widgetId 
+        ? { ...widget, size: widget.size === 'small' ? 'large' : 'small' }
+        : widget
+    ));
+    
+    // Update the layout to reflect the new size
+    setLayouts(prevLayouts => {
+      const newLayouts = { ...prevLayouts };
+      Object.keys(newLayouts).forEach(breakpoint => {
+        newLayouts[breakpoint] = newLayouts[breakpoint].map((layout: any) => {
+          if (layout.i === widgetId) {
+            const widget = widgets.find(w => w.id === widgetId);
+            const newSize = widget?.size === 'small' ? 'large' : 'small';
+            return {
+              ...layout,
+              w: newSize === 'large' ? layout.w * 2 : Math.max(3, Math.floor(layout.w / 2)),
+              h: newSize === 'large' ? layout.h + 1 : Math.max(2, layout.h - 1)
+            };
+          }
+          return layout;
+        });
+      });
+      return newLayouts;
+    });
   };
 
   const resetWidgetLayout = () => {
@@ -802,31 +846,7 @@ export default function WorkspacePage() {
                     <RotateCcw className="w-4 h-4 mr-2" />
                     Reset Layout
                   </Button>
-                  <Button
-                    variant="outline"
-                    onClick={() => {
-                      localStorage.clear();
-                      window.location.reload();
-                    }}
-                    className="text-gray-300 border-gray-600 hover:bg-gray-800"
-                  >
-                    <RefreshCw className="w-4 h-4 mr-2" />
-                    Clear All Data
-                  </Button>
-                  <Button
-                    variant="outline"
-                    onClick={() => {
-                      console.log('Current localStorage data:');
-                      console.log('workspace-layouts:', localStorage.getItem('workspace-layouts'));
-                      console.log('workspace-widgets:', localStorage.getItem('workspace-widgets'));
-                      console.log('Current state layouts:', layouts);
-                      console.log('Current state widgets:', widgets);
-                    }}
-                    className="text-gray-300 border-gray-600 hover:bg-gray-800"
-                  >
-                    <Eye className="w-4 h-4 mr-2" />
-                    Debug State
-                  </Button>
+
                 </div>
                 <div className="text-sm text-gray-400">
                   Drag widgets to reposition • Click manage to show/hide
@@ -839,23 +859,44 @@ export default function WorkspacePage() {
                   <CardHeader>
                     <CardTitle className="text-white">Widget Manager</CardTitle>
                     <CardDescription className="text-gray-400">
-                      Toggle widgets on/off to customize your dashboard
+                      Toggle widgets on/off and adjust their size to customize your dashboard
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {widgets.map((widget) => (
                         <div
                           key={widget.id}
-                          className="flex items-center space-x-3 p-3 bg-gray-800/50 rounded-lg"
+                          className="flex items-center justify-between p-4 bg-gray-800/50 rounded-lg"
                         >
-                          <Switch
-                            checked={widget.visible}
-                            onCheckedChange={() => toggleWidgetVisibility(widget.id)}
-                          />
+                          <div className="flex items-center space-x-3">
+                            <Switch
+                              checked={widget.visible}
+                              onCheckedChange={() => toggleWidgetVisibility(widget.id)}
+                            />
+                            <div className="flex items-center space-x-2">
+                              {widget.icon}
+                              <span className="text-white text-sm">{widget.title}</span>
+                            </div>
+                          </div>
                           <div className="flex items-center space-x-2">
-                            {widget.icon}
-                            <span className="text-white text-sm">{widget.title}</span>
+                            <span className="text-gray-400 text-xs">Size:</span>
+                            <Button
+                              variant={widget.size === 'small' ? 'default' : 'outline'}
+                              size="sm"
+                              onClick={() => toggleWidgetSize(widget.id)}
+                              className="h-7 px-2 text-xs"
+                            >
+                              Small
+                            </Button>
+                            <Button
+                              variant={widget.size === 'large' ? 'default' : 'outline'}
+                              size="sm"
+                              onClick={() => toggleWidgetSize(widget.id)}
+                              className="h-7 px-2 text-xs"
+                            >
+                              Large
+                            </Button>
                           </div>
                         </div>
                       ))}
