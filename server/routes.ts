@@ -118,6 +118,26 @@ function authenticateToken(req: any, res: any, next: any) {
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Create a test user for debugging
+  app.post("/api/create-test-user", async (req, res) => {
+    try {
+      const hashedPassword = await bcrypt.hash("test123", 10);
+      const user = await storage.createUser({
+        email: "test@safetysync.ai",
+        password: hashedPassword,
+        name: "Test User",
+        company: "SafetySync Test",
+        phone: "555-0123"
+      });
+      
+      const { password, ...userWithoutPassword } = user;
+      res.json({ success: true, user: userWithoutPassword });
+    } catch (error) {
+      console.error("Error creating test user:", error);
+      res.status(500).json({ success: false, message: error.message });
+    }
+  });
+
   // User registration endpoint
   app.post("/api/auth/register", async (req, res) => {
     try {
