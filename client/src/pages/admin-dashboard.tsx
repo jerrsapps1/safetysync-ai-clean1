@@ -96,7 +96,7 @@ function AdminLoginCheck() {
     setIsValidating(true);
     
     // Simple admin key validation (in production, this would be more secure)
-    if (adminKey === "dev-admin-key" || adminKey === "admin-2025") {
+    if (adminKey === "dev-admin-key" || adminKey === "admin-2025" || adminKey === "SafetySyncai2025!Admin#Key") {
       localStorage.setItem('admin-authenticated', 'true');
       window.location.reload();
     } else {
