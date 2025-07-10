@@ -781,6 +781,31 @@ export default function WorkspacePage() {
                     <RotateCcw className="w-4 h-4 mr-2" />
                     Reset Layout
                   </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      localStorage.clear();
+                      window.location.reload();
+                    }}
+                    className="text-gray-300 border-gray-600 hover:bg-gray-800"
+                  >
+                    <RefreshCw className="w-4 h-4 mr-2" />
+                    Clear All Data
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      console.log('Current localStorage data:');
+                      console.log('workspace-layouts:', localStorage.getItem('workspace-layouts'));
+                      console.log('workspace-widgets:', localStorage.getItem('workspace-widgets'));
+                      console.log('Current state layouts:', layouts);
+                      console.log('Current state widgets:', widgets);
+                    }}
+                    className="text-gray-300 border-gray-600 hover:bg-gray-800"
+                  >
+                    <Eye className="w-4 h-4 mr-2" />
+                    Debug State
+                  </Button>
                 </div>
                 <div className="text-sm text-gray-400">
                   Drag widgets to reposition • Click manage to show/hide
