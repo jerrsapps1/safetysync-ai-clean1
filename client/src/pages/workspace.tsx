@@ -386,6 +386,12 @@ export default function WorkspacePage() {
     hireDate: "",
     status: "Active"
   });
+
+  // Search and filter state
+  const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [divisionFilter, setDivisionFilter] = useState("all");
+  const [departmentFilter, setDepartmentFilter] = useState("all");
   const [employees, setEmployees] = useState<any[]>([
     { id: 1, name: "John Smith", department: "Construction", email: "john.smith@company.com", phone: "(555) 123-4567", position: "Site Manager", hireDate: "2023-01-15", certifications: ["Fall Protection", "First Aid/CPR"], status: "Active" },
     { id: 2, name: "Sarah Johnson", department: "Manufacturing", email: "sarah.johnson@company.com", phone: "(555) 234-5678", position: "Safety Coordinator", hireDate: "2022-08-20", certifications: ["OSHA 30", "Forklift Operation"], status: "Active" },
@@ -405,6 +411,73 @@ export default function WorkspacePage() {
   // Handler functions for interactive buttons
   const handleAddEmployee = () => {
     setShowAddEmployee(true);
+  };
+
+  const handleDownloadTemplate = () => {
+    // Create CSV content
+    const csvContent = `firstName,lastName,employeeId,email,department,position,status
+John,Doe,EMP001,john.doe@company.com,Construction,Site Manager,active
+Jane,Smith,EMP002,jane.smith@company.com,Safety,Safety Officer,active
+Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
+    
+    // Create and download file
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'employee_template.csv';
+    a.click();
+    window.URL.revokeObjectURL(url);
+    
+    toast({
+      title: "Template Downloaded",
+      description: "Employee import template has been downloaded successfully.",
+    });
+  };
+
+  const handleImportEmployees = () => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.csv';
+    input.onchange = (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const text = e.target?.result as string;
+          // Parse CSV and add employees
+          const lines = text.split('\n');
+          const headers = lines[0].split(',');
+          let importedCount = 0;
+          
+          for (let i = 1; i < lines.length; i++) {
+            const values = lines[i].split(',');
+            if (values.length >= headers.length && values[0].trim()) {
+              const employee = {
+                id: employees.length + importedCount + 1,
+                name: `${values[0].trim()} ${values[1].trim()}`,
+                email: values[3].trim(),
+                phone: "",
+                department: values[4].trim(),
+                position: values[5].trim(),
+                hireDate: new Date().toISOString().split('T')[0],
+                status: values[6].trim() === 'active' ? 'Active' : 'Inactive',
+                certifications: []
+              };
+              setEmployees(prev => [...prev, employee]);
+              importedCount++;
+            }
+          }
+          
+          toast({
+            title: "Import Successful",
+            description: `Successfully imported ${importedCount} employees.`,
+          });
+        };
+        reader.readAsText(file);
+      }
+    };
+    input.click();
   };
 
   const handleSubmitEmployee = (e: React.FormEvent) => {
@@ -442,6 +515,22 @@ export default function WorkspacePage() {
       description: `${employee.name} has been successfully added to the system.`,
     });
   };
+
+  // Filter employees based on search and filter criteria
+  const filteredEmployees = employees.filter(employee => {
+    const matchesSearch = employee.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         employee.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         employee.department.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         employee.position?.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    const matchesStatus = statusFilter === "all" || employee.status === statusFilter;
+    const matchesDepartment = departmentFilter === "all" || employee.department === departmentFilter;
+    
+    const division = employee.department === 'Construction' || employee.department === 'Manufacturing' || employee.department === 'Maintenance' ? 'Operations' : 'Administration';
+    const matchesDivision = divisionFilter === "all" || division === divisionFilter;
+    
+    return matchesSearch && matchesStatus && matchesDepartment && matchesDivision;
+  });
 
   const handleAddTraining = () => {
     setShowAddTraining(true);
@@ -1260,19 +1349,233 @@ export default function WorkspacePage() {
 
           {activeTab === "employees" && (
             <div className="space-y-6">
+              {/* Header with Action Buttons */}
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-semibold text-white">Employee Management</h2>
-                <Button className="bg-emerald-500 hover:bg-emerald-600" onClick={handleAddEmployee}>
-                  <Plus className="w-4 h-4 mr-2" />
-                  Add Employee
-                </Button>
+                <div className="flex items-center space-x-3">
+                  <Button 
+                    variant="outline" 
+                    className="border-gray-600 text-gray-300 hover:bg-gray-800"
+                    onClick={() => handleDownloadTemplate()}
+                  >
+                    <Download className="w-4 h-4 mr-2" />
+                    Download Template
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    className="border-gray-600 text-gray-300 hover:bg-gray-800"
+                    onClick={() => handleImportEmployees()}
+                  >
+                    <Upload className="w-4 h-4 mr-2" />
+                    Import Employees
+                  </Button>
+                  <Button 
+                    className="bg-blue-500 hover:bg-blue-600 text-white"
+                    onClick={handleAddEmployee}
+                  >
+                    <Plus className="w-4 h-4 mr-2" />
+                    Add Employee
+                  </Button>
+                </div>
               </div>
-              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
-                <CardContent className="p-6">
-                  <div className="text-center py-8">
-                    <Users className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                    <h3 className="text-lg font-semibold text-white mb-2">Employee Management</h3>
-                    <p className="text-gray-400">Your SafetyTracker app integration will display all employee management features here.</p>
+
+              {/* Import Template Instructions */}
+              <Card className="bg-blue-50 border-blue-200">
+                <CardContent className="p-4">
+                  <div className="text-blue-800">
+                    <h3 className="font-semibold mb-2">How to use the Employee Import Template:</h3>
+                    <ul className="text-sm space-y-1 list-disc list-inside">
+                      <li><strong>Download Template:</strong> Click "Download Template" to get a pre-formatted CSV file with sample data</li>
+                      <li><strong>Fill Your Data:</strong> Replace the sample entries with your actual employee information</li>
+                      <li><strong>Required Fields:</strong> firstName, lastName, employeeId, email, department, position, status (active/inactive)</li>
+                      <li><strong>Import File:</strong> Save as CSV and click "Import Employees" to upload your completed file</li>
+                    </ul>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Employee Statistics */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <Card className="bg-white border-gray-200">
+                  <CardContent className="p-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="p-2 bg-blue-100 rounded-lg">
+                        <Users className="w-6 h-6 text-blue-600" />
+                      </div>
+                      <div>
+                        <div className="text-2xl font-bold text-gray-900">{employees.length}</div>
+                        <div className="text-sm text-gray-500">Total Employees</div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card className="bg-white border-gray-200">
+                  <CardContent className="p-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="p-2 bg-green-100 rounded-lg">
+                        <CheckCircle className="w-6 h-6 text-green-600" />
+                      </div>
+                      <div>
+                        <div className="text-2xl font-bold text-gray-900">{employees.filter(e => e.status === 'Active').length}</div>
+                        <div className="text-sm text-gray-500">Active</div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card className="bg-white border-gray-200">
+                  <CardContent className="p-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="p-2 bg-orange-100 rounded-lg">
+                        <Users className="w-6 h-6 text-orange-600" />
+                      </div>
+                      <div>
+                        <div className="text-2xl font-bold text-gray-900">{employees.filter(e => e.status !== 'Active').length}</div>
+                        <div className="text-sm text-gray-500">Inactive</div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card className="bg-white border-gray-200">
+                  <CardContent className="p-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="p-2 bg-purple-100 rounded-lg">
+                        <Building className="w-6 h-6 text-purple-600" />
+                      </div>
+                      <div>
+                        <div className="text-2xl font-bold text-gray-900">{[...new Set(employees.map(e => e.department))].length}</div>
+                        <div className="text-sm text-gray-500">Departments</div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Search & Filter */}
+              <Card className="bg-white border-gray-200">
+                <CardContent className="p-4">
+                  <div className="flex items-center space-x-4 mb-4">
+                    <div className="flex items-center space-x-2">
+                      <Search className="w-5 h-5 text-gray-400" />
+                      <span className="text-gray-700 font-medium">Search & Filter</span>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
+                      <Label className="text-gray-700">Search Employees</Label>
+                      <Input
+                        placeholder="Search by name, ID, department, or position..."
+                        className="mt-1"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                      />
+                    </div>
+                    <div>
+                      <Label className="text-gray-700">Status</Label>
+                      <Select value={statusFilter} onValueChange={setStatusFilter}>
+                        <SelectTrigger className="mt-1">
+                          <SelectValue placeholder="All Statuses" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="all">All Statuses</SelectItem>
+                          <SelectItem value="Active">Active</SelectItem>
+                          <SelectItem value="Inactive">Inactive</SelectItem>
+                          <SelectItem value="On Leave">On Leave</SelectItem>
+                          <SelectItem value="Terminated">Terminated</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div>
+                      <Label className="text-gray-700">Division</Label>
+                      <Select value={divisionFilter} onValueChange={setDivisionFilter}>
+                        <SelectTrigger className="mt-1">
+                          <SelectValue placeholder="All Divisions" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="all">All Divisions</SelectItem>
+                          <SelectItem value="Operations">Operations</SelectItem>
+                          <SelectItem value="Safety">Safety</SelectItem>
+                          <SelectItem value="Administration">Administration</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div>
+                      <Label className="text-gray-700">Department</Label>
+                      <Select value={departmentFilter} onValueChange={setDepartmentFilter}>
+                        <SelectTrigger className="mt-1">
+                          <SelectValue placeholder="All Departments" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="all">All Departments</SelectItem>
+                          {[...new Set(employees.map(e => e.department))].map(dept => (
+                            <SelectItem key={dept} value={dept}>{dept}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Employee Table */}
+              <Card className="bg-white border-gray-200">
+                <CardContent className="p-0">
+                  <div className="flex items-center justify-between p-4 border-b">
+                    <h3 className="text-lg font-semibold text-gray-900">Employee Search</h3>
+                    <div className="text-sm text-gray-500">{filteredEmployees.length} total employees</div>
+                  </div>
+                  <div className="overflow-x-auto">
+                    <table className="w-full">
+                      <thead className="bg-gray-50">
+                        <tr>
+                          <th className="p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <input type="checkbox" className="rounded" />
+                          </th>
+                          <th className="p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Employee</th>
+                          <th className="p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Division</th>
+                          <th className="p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department</th>
+                          <th className="p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Position</th>
+                          <th className="p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                          <th className="p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hire Date</th>
+                        </tr>
+                      </thead>
+                      <tbody className="bg-white divide-y divide-gray-200">
+                        {filteredEmployees.map((employee) => (
+                          <tr key={employee.id} className="hover:bg-gray-50">
+                            <td className="p-3 whitespace-nowrap">
+                              <input type="checkbox" className="rounded" />
+                            </td>
+                            <td className="p-3 whitespace-nowrap">
+                              <div className="flex items-center">
+                                <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-medium">
+                                  {employee.name.charAt(0)}
+                                </div>
+                                <div className="ml-3">
+                                  <div className="text-sm font-medium text-gray-900">{employee.name}</div>
+                                  <div className="text-sm text-gray-500">{employee.email}</div>
+                                </div>
+                              </div>
+                            </td>
+                            <td className="p-3 whitespace-nowrap text-sm text-gray-900">
+                              {employee.department === 'Construction' || employee.department === 'Manufacturing' || employee.department === 'Maintenance' ? 'Operations' : 'Administration'}
+                            </td>
+                            <td className="p-3 whitespace-nowrap text-sm text-gray-900">{employee.department}</td>
+                            <td className="p-3 whitespace-nowrap text-sm text-gray-900">{employee.position}</td>
+                            <td className="p-3 whitespace-nowrap">
+                              <Badge 
+                                className={
+                                  employee.status === 'Active' ? 'bg-green-100 text-green-800' : 
+                                  employee.status === 'Inactive' ? 'bg-red-100 text-red-800' : 
+                                  'bg-yellow-100 text-yellow-800'
+                                }
+                              >
+                                {employee.status}
+                              </Badge>
+                            </td>
+                            <td className="p-3 whitespace-nowrap text-sm text-gray-900">{employee.hireDate}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
                   </div>
                 </CardContent>
               </Card>
