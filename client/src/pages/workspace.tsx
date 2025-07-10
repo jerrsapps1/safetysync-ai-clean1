@@ -67,7 +67,8 @@ import {
   Network,
   FileUser,
   Inbox,
-  Monitor
+  Monitor,
+  Trash2
 } from "lucide-react";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
@@ -394,22 +395,30 @@ export default function WorkspacePage() {
   const [divisionFilter, setDivisionFilter] = useState("all");
   const [departmentFilter, setDepartmentFilter] = useState("all");
 
-  // Department and Division options
-  const divisions = [
-    "Operations",
-    "Safety",
-    "Administration",
-    "Engineering",
-    "Quality Control"
-  ];
+  // Dynamic organizational structure
+  const [organizationalStructure, setOrganizationalStructure] = useState({
+    divisions: [
+      "Operations",
+      "Safety",
+      "Administration",
+      "Engineering",
+      "Quality Control"
+    ],
+    departmentsByDivision: {
+      "Operations": ["Construction", "Manufacturing", "Maintenance", "Production", "Field Services"],
+      "Safety": ["Safety Management", "Environmental Health", "Emergency Response", "Risk Management"],
+      "Administration": ["Human Resources", "Finance", "IT", "Legal", "Procurement"],
+      "Engineering": ["Project Engineering", "Design", "Quality Engineering", "Technical Support"],
+      "Quality Control": ["Quality Assurance", "Testing", "Inspection", "Compliance"]
+    }
+  });
 
-  const departmentsByDivision = {
-    "Operations": ["Construction", "Manufacturing", "Maintenance", "Production", "Field Services"],
-    "Safety": ["Safety Management", "Environmental Health", "Emergency Response", "Risk Management"],
-    "Administration": ["Human Resources", "Finance", "IT", "Legal", "Procurement"],
-    "Engineering": ["Project Engineering", "Design", "Quality Engineering", "Technical Support"],
-    "Quality Control": ["Quality Assurance", "Testing", "Inspection", "Compliance"]
-  };
+  // Dialog states for organization management
+  const [showAddDivision, setShowAddDivision] = useState(false);
+  const [showAddDepartment, setShowAddDepartment] = useState(false);
+  const [newDivisionName, setNewDivisionName] = useState("");
+  const [newDepartmentName, setNewDepartmentName] = useState("");
+  const [selectedDivisionForDepartment, setSelectedDivisionForDepartment] = useState("");
   const [employees, setEmployees] = useState<any[]>([
     { id: 1, name: "John Smith", department: "Construction", email: "john.smith@company.com", phone: "(555) 123-4567", position: "Site Manager", hireDate: "2023-01-15", certifications: ["Fall Protection", "First Aid/CPR"], status: "Active" },
     { id: 2, name: "Sarah Johnson", department: "Manufacturing", email: "sarah.johnson@company.com", phone: "(555) 234-5678", position: "Safety Coordinator", hireDate: "2022-08-20", certifications: ["OSHA 30", "Forklift Operation"], status: "Active" },
@@ -532,6 +541,139 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
     toast({
       title: "Employee Added",
       description: `${employee.name} has been successfully added to ${employee.division} - ${employee.department}.`,
+    });
+  };
+
+  // Organization management functions
+  const handleAddDivision = () => {
+    if (!newDivisionName.trim()) {
+      toast({
+        title: "Error",
+        description: "Please enter a division name.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (organizationalStructure.divisions.includes(newDivisionName.trim())) {
+      toast({
+        title: "Error",
+        description: "This division already exists.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setOrganizationalStructure(prev => ({
+      ...prev,
+      divisions: [...prev.divisions, newDivisionName.trim()],
+      departmentsByDivision: {
+        ...prev.departmentsByDivision,
+        [newDivisionName.trim()]: []
+      }
+    }));
+
+    setNewDivisionName("");
+    setShowAddDivision(false);
+    
+    toast({
+      title: "Division Added",
+      description: `${newDivisionName.trim()} division has been created successfully.`,
+    });
+  };
+
+  const handleAddDepartment = () => {
+    if (!newDepartmentName.trim() || !selectedDivisionForDepartment) {
+      toast({
+        title: "Error",
+        description: "Please enter a department name and select a division.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (organizationalStructure.departmentsByDivision[selectedDivisionForDepartment]?.includes(newDepartmentName.trim())) {
+      toast({
+        title: "Error",
+        description: "This department already exists in the selected division.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setOrganizationalStructure(prev => ({
+      ...prev,
+      departmentsByDivision: {
+        ...prev.departmentsByDivision,
+        [selectedDivisionForDepartment]: [
+          ...(prev.departmentsByDivision[selectedDivisionForDepartment] || []),
+          newDepartmentName.trim()
+        ]
+      }
+    }));
+
+    setNewDepartmentName("");
+    setSelectedDivisionForDepartment("");
+    setShowAddDepartment(false);
+    
+    toast({
+      title: "Department Added",
+      description: `${newDepartmentName.trim()} department has been added to ${selectedDivisionForDepartment}.`,
+    });
+  };
+
+  const handleDeleteDivision = (divisionName: string) => {
+    // Check if any employees are assigned to this division
+    const employeesInDivision = employees.filter(emp => emp.division === divisionName);
+    if (employeesInDivision.length > 0) {
+      toast({
+        title: "Cannot Delete Division",
+        description: `${employeesInDivision.length} employees are assigned to this division. Reassign them first.`,
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setOrganizationalStructure(prev => {
+      const newDivisions = prev.divisions.filter(div => div !== divisionName);
+      const newDepartmentsByDivision = { ...prev.departmentsByDivision };
+      delete newDepartmentsByDivision[divisionName];
+      
+      return {
+        divisions: newDivisions,
+        departmentsByDivision: newDepartmentsByDivision
+      };
+    });
+
+    toast({
+      title: "Division Deleted",
+      description: `${divisionName} division has been removed.`,
+    });
+  };
+
+  const handleDeleteDepartment = (divisionName: string, departmentName: string) => {
+    // Check if any employees are assigned to this department
+    const employeesInDepartment = employees.filter(emp => emp.department === departmentName);
+    if (employeesInDepartment.length > 0) {
+      toast({
+        title: "Cannot Delete Department",
+        description: `${employeesInDepartment.length} employees are assigned to this department. Reassign them first.`,
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setOrganizationalStructure(prev => ({
+      ...prev,
+      departmentsByDivision: {
+        ...prev.departmentsByDivision,
+        [divisionName]: prev.departmentsByDivision[divisionName].filter(dept => dept !== departmentName)
+      }
+    }));
+
+    toast({
+      title: "Department Deleted",
+      description: `${departmentName} department has been removed from ${divisionName}.`,
     });
   };
 
@@ -1510,7 +1652,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="all">All Divisions</SelectItem>
-                          {divisions.map(division => (
+                          {organizationalStructure.divisions.map(division => (
                             <SelectItem key={division} value={division}>{division}</SelectItem>
                           ))}
                         </SelectContent>
@@ -1755,97 +1897,83 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-semibold text-white">Organization Structure</h2>
-                <Button className="bg-emerald-500 hover:bg-emerald-600" onClick={() => toast({ title: "Add Department", description: "Opening department creation form..." })}>
-                  <Plus className="w-4 h-4 mr-2" />
-                  Add Department
-                </Button>
+                <div className="flex gap-2">
+                  <Button className="bg-blue-500 hover:bg-blue-600" onClick={() => setShowAddDivision(true)}>
+                    <Plus className="w-4 h-4 mr-2" />
+                    Add Division
+                  </Button>
+                  <Button className="bg-emerald-500 hover:bg-emerald-600" onClick={() => setShowAddDepartment(true)}>
+                    <Plus className="w-4 h-4 mr-2" />
+                    Add Department
+                  </Button>
+                </div>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6">
                 <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
                   <CardHeader>
-                    <CardTitle className="text-white">Department Structure</CardTitle>
+                    <CardTitle className="text-white">Division & Department Structure</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
-                        <div className="flex items-center space-x-3">
-                          <Building className="w-5 h-5 text-blue-400" />
-                          <div>
-                            <p className="text-white font-medium">Construction</p>
-                            <p className="text-gray-400 text-sm">45 employees</p>
+                    <div className="space-y-6">
+                      {organizationalStructure.divisions.map((division, divisionIndex) => (
+                        <div key={division} className="border border-gray-700 rounded-lg p-4 bg-gray-800/30">
+                          <div className="flex items-center justify-between mb-4">
+                            <div className="flex items-center space-x-3">
+                              <Building className="w-6 h-6 text-blue-400" />
+                              <div>
+                                <p className="text-white font-semibold text-lg">{division}</p>
+                                <p className="text-gray-400 text-sm">
+                                  {employees.filter(emp => emp.division === division).length} employees
+                                </p>
+                              </div>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <Badge className="bg-green-100 text-green-700">
+                                {Math.round((employees.filter(emp => emp.division === division && emp.status === 'Active').length / Math.max(employees.filter(emp => emp.division === division).length, 1)) * 100)}% Active
+                              </Badge>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-red-400 border-red-400 hover:bg-red-400/10"
+                                onClick={() => handleDeleteDivision(division)}
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </Button>
+                            </div>
+                          </div>
+                          <div className="pl-6 space-y-2">
+                            {organizationalStructure.departmentsByDivision[division]?.map((department, deptIndex) => (
+                              <div key={department} className="flex items-center justify-between p-2 bg-gray-700/50 rounded-lg">
+                                <div className="flex items-center space-x-2">
+                                  <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                                  <div>
+                                    <p className="text-white font-medium">{department}</p>
+                                    <p className="text-gray-400 text-sm">
+                                      {employees.filter(emp => emp.department === department).length} employees
+                                    </p>
+                                  </div>
+                                </div>
+                                <div className="flex items-center space-x-2">
+                                  <Badge variant="outline" className="text-gray-300 border-gray-600">
+                                    {Math.round((employees.filter(emp => emp.department === department && emp.status === 'Active').length / Math.max(employees.filter(emp => emp.department === department).length, 1)) * 100)}% Active
+                                  </Badge>
+                                  <Button
+                                    variant="outline"
+                                    size="sm"
+                                    className="text-red-400 border-red-400 hover:bg-red-400/10"
+                                    onClick={() => handleDeleteDepartment(division, department)}
+                                  >
+                                    <Trash2 className="w-3 h-3" />
+                                  </Button>
+                                </div>
+                              </div>
+                            ))}
+                            {(!organizationalStructure.departmentsByDivision[division] || organizationalStructure.departmentsByDivision[division].length === 0) && (
+                              <p className="text-gray-500 text-sm italic pl-4">No departments yet</p>
+                            )}
                           </div>
                         </div>
-                        <Badge className="bg-green-100 text-green-700">93% Compliant</Badge>
-                      </div>
-                      <div className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
-                        <div className="flex items-center space-x-3">
-                          <Building className="w-5 h-5 text-purple-400" />
-                          <div>
-                            <p className="text-white font-medium">Safety</p>
-                            <p className="text-gray-400 text-sm">12 employees</p>
-                          </div>
-                        </div>
-                        <Badge className="bg-green-100 text-green-700">100% Compliant</Badge>
-                      </div>
-                      <div className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
-                        <div className="flex items-center space-x-3">
-                          <Building className="w-5 h-5 text-orange-400" />
-                          <div>
-                            <p className="text-white font-medium">Operations</p>
-                            <p className="text-gray-400 text-sm">68 employees</p>
-                          </div>
-                        </div>
-                        <Badge className="bg-yellow-100 text-yellow-700">87% Compliant</Badge>
-                      </div>
-                      <div className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
-                        <div className="flex items-center space-x-3">
-                          <Building className="w-5 h-5 text-green-400" />
-                          <div>
-                            <p className="text-white font-medium">Management</p>
-                            <p className="text-gray-400 text-sm">22 employees</p>
-                          </div>
-                        </div>
-                        <Badge className="bg-green-100 text-green-700">95% Compliant</Badge>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
-                  <CardHeader>
-                    <CardTitle className="text-white">Location Management</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
-                        <div className="flex items-center space-x-3">
-                          <MapPin className="w-5 h-5 text-red-400" />
-                          <div>
-                            <p className="text-white font-medium">Site A - Downtown</p>
-                            <p className="text-gray-400 text-sm">89 employees</p>
-                          </div>
-                        </div>
-                        <Badge className="bg-green-100 text-green-700">91% Compliant</Badge>
-                      </div>
-                      <div className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
-                        <div className="flex items-center space-x-3">
-                          <MapPin className="w-5 h-5 text-blue-400" />
-                          <div>
-                            <p className="text-white font-medium">Site B - Industrial</p>
-                            <p className="text-gray-400 text-sm">58 employees</p>
-                          </div>
-                        </div>
-                        <Badge className="bg-yellow-100 text-yellow-700">85% Compliant</Badge>
-                      </div>
-                      <div className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
-                        <div className="flex items-center space-x-3">
-                          <MapPin className="w-5 h-5 text-green-400" />
-                          <div>
-                            <p className="text-white font-medium">Main Office</p>
-                            <p className="text-gray-400 text-sm">35 employees</p>
-                          </div>
-                        </div>
-                        <Badge className="bg-green-100 text-green-700">97% Compliant</Badge>
-                      </div>
+                      ))}
                     </div>
                   </CardContent>
                 </Card>
@@ -2461,7 +2589,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     <SelectValue placeholder="Select Division" />
                   </SelectTrigger>
                   <SelectContent className="bg-gray-800 border-gray-700 text-white">
-                    {divisions.map(division => (
+                    {organizationalStructure.divisions.map(division => (
                       <SelectItem key={division} value={division}>{division}</SelectItem>
                     ))}
                   </SelectContent>
@@ -2481,7 +2609,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     <SelectValue placeholder={newEmployee.division ? "Select Department" : "Select Division First"} />
                   </SelectTrigger>
                   <SelectContent className="bg-gray-800 border-gray-700 text-white">
-                    {newEmployee.division && departmentsByDivision[newEmployee.division as keyof typeof departmentsByDivision]?.map(dept => (
+                    {newEmployee.division && organizationalStructure.departmentsByDivision[newEmployee.division]?.map(dept => (
                       <SelectItem key={dept} value={dept}>{dept}</SelectItem>
                     ))}
                   </SelectContent>
@@ -2544,6 +2672,96 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </Button>
             </div>
           </form>
+        </DialogContent>
+      </Dialog>
+
+      {/* Add Division Dialog */}
+      <Dialog open={showAddDivision} onOpenChange={setShowAddDivision}>
+        <DialogContent className="bg-gray-900 border-gray-800 text-white">
+          <DialogHeader>
+            <DialogTitle className="text-white">Add New Division</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div>
+              <Label className="text-gray-300">Division Name</Label>
+              <Input
+                value={newDivisionName}
+                onChange={(e) => setNewDivisionName(e.target.value)}
+                placeholder="Enter division name"
+                className="bg-gray-800/50 border-gray-700 text-white mt-1"
+              />
+            </div>
+            <div className="flex justify-end space-x-2">
+              <Button 
+                variant="outline" 
+                onClick={() => {
+                  setShowAddDivision(false);
+                  setNewDivisionName("");
+                }}
+                className="border-gray-600 text-gray-300 hover:bg-gray-800"
+              >
+                Cancel
+              </Button>
+              <Button 
+                onClick={handleAddDivision}
+                className="bg-blue-500 hover:bg-blue-600"
+              >
+                Add Division
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Add Department Dialog */}
+      <Dialog open={showAddDepartment} onOpenChange={setShowAddDepartment}>
+        <DialogContent className="bg-gray-900 border-gray-800 text-white">
+          <DialogHeader>
+            <DialogTitle className="text-white">Add New Department</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div>
+              <Label className="text-gray-300">Select Division</Label>
+              <Select value={selectedDivisionForDepartment} onValueChange={setSelectedDivisionForDepartment}>
+                <SelectTrigger className="bg-gray-800/50 border-gray-700 text-white mt-1">
+                  <SelectValue placeholder="Select a division" />
+                </SelectTrigger>
+                <SelectContent className="bg-gray-800 border-gray-700 text-white">
+                  {organizationalStructure.divisions.map(division => (
+                    <SelectItem key={division} value={division}>{division}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <Label className="text-gray-300">Department Name</Label>
+              <Input
+                value={newDepartmentName}
+                onChange={(e) => setNewDepartmentName(e.target.value)}
+                placeholder="Enter department name"
+                className="bg-gray-800/50 border-gray-700 text-white mt-1"
+              />
+            </div>
+            <div className="flex justify-end space-x-2">
+              <Button 
+                variant="outline" 
+                onClick={() => {
+                  setShowAddDepartment(false);
+                  setNewDepartmentName("");
+                  setSelectedDivisionForDepartment("");
+                }}
+                className="border-gray-600 text-gray-300 hover:bg-gray-800"
+              >
+                Cancel
+              </Button>
+              <Button 
+                onClick={handleAddDepartment}
+                className="bg-emerald-500 hover:bg-emerald-600"
+              >
+                Add Department
+              </Button>
+            </div>
+          </div>
         </DialogContent>
       </Dialog>
     </div>
