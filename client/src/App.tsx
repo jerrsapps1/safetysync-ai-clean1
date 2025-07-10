@@ -9,6 +9,7 @@ import LandingPage from "@/pages/landing";
 import Dashboard from "@/pages/dashboard";
 import WorkspacePage from "@/pages/workspace";
 import AdminPanel from "@/pages/admin";
+import AdminDashboard from "@/pages/admin-dashboard";
 import TestimonialsPage from "@/pages/testimonials";
 import CaseStudiesPage from "@/pages/case-studies";
 import PricingPage from "@/pages/pricing";
@@ -38,6 +39,7 @@ function Router() {
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/workspace" component={WorkspacePage} />
       <Route path="/admin" component={AdminPanel} />
+      <Route path="/admin-dashboard" component={AdminDashboard} />
       <Route path="/industry-research" component={TestimonialsPage} />
       <Route path="/case-studies" component={CaseStudiesPage} />
       <Route path="/pricing" component={PricingPage} />
