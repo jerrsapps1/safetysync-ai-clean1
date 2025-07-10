@@ -217,84 +217,124 @@ export default function WorkspacePage() {
     showBranding: true
   });
 
-  // Widget management state
-  const [widgets, setWidgets] = useState<DashboardWidget[]>([
+  // Widget icon mapping
+  const getWidgetIcon = (id: string) => {
+    const iconMap: Record<string, React.ReactNode> = {
+      "total-employees": <Users className="w-5 h-5" />,
+      "compliant-employees": <CheckCircle className="w-5 h-5" />,
+      "pending-training": <Clock className="w-5 h-5" />,
+      "compliance-score": <TrendingUp className="w-5 h-5" />,
+      "recent-activity": <Activity className="w-5 h-5" />,
+      "training-calendar": <Calendar className="w-5 h-5" />,
+      "safety-alerts": <AlertTriangle className="w-5 h-5" />,
+      "certification-progress": <Award className="w-5 h-5" />,
+      "compliance-trends": <BarChart3 className="w-5 h-5" />,
+    };
+    return iconMap[id] || <Settings className="w-5 h-5" />;
+  };
+
+  // Default widget configuration (without React components)
+  const defaultWidgetConfig = [
     {
       id: "total-employees",
       title: "Total Employees",
-      component: null,
       defaultProps: { x: 0, y: 0, w: 3, h: 2 },
-      icon: <Users className="w-5 h-5" />,
       visible: true
     },
     {
       id: "compliant-employees",
       title: "Compliant Employees",
-      component: null,
       defaultProps: { x: 3, y: 0, w: 3, h: 2 },
-      icon: <CheckCircle className="w-5 h-5" />,
       visible: true
     },
     {
       id: "pending-training",
       title: "Pending Training",
-      component: null,
       defaultProps: { x: 6, y: 0, w: 3, h: 2 },
-      icon: <Clock className="w-5 h-5" />,
       visible: true
     },
     {
       id: "compliance-score",
       title: "Compliance Score",
-      component: null,
       defaultProps: { x: 9, y: 0, w: 3, h: 2 },
-      icon: <TrendingUp className="w-5 h-5" />,
       visible: true
     },
     {
       id: "recent-activity",
       title: "Recent Activity",
-      component: null,
       defaultProps: { x: 0, y: 2, w: 6, h: 4 },
-      icon: <Activity className="w-5 h-5" />,
       visible: true
     },
     {
       id: "training-calendar",
       title: "Training Calendar",
-      component: null,
       defaultProps: { x: 6, y: 2, w: 6, h: 4 },
-      icon: <Calendar className="w-5 h-5" />,
       visible: true
     },
     {
       id: "safety-alerts",
       title: "Safety Alerts",
-      component: null,
       defaultProps: { x: 0, y: 6, w: 4, h: 3 },
-      icon: <AlertTriangle className="w-5 h-5" />,
       visible: true
     },
     {
       id: "certification-progress",
       title: "Certification Progress",
-      component: null,
       defaultProps: { x: 4, y: 6, w: 4, h: 3 },
-      icon: <Award className="w-5 h-5" />,
       visible: true
     },
     {
       id: "compliance-trends",
       title: "Compliance Trends",
-      component: null,
       defaultProps: { x: 8, y: 6, w: 4, h: 3 },
-      icon: <BarChart3 className="w-5 h-5" />,
       visible: true
     }
-  ]);
+  ];
 
-  const [layouts, setLayouts] = useState({});
+  // Create widgets with icons
+  const createWidgets = (config: any[]) => {
+    return config.map(widget => ({
+      ...widget,
+      component: null,
+      icon: getWidgetIcon(widget.id)
+    }));
+  };
+
+  // Widget management state with persistence
+  const [widgets, setWidgets] = useState<DashboardWidget[]>(() => {
+    const saved = localStorage.getItem('workspace-widgets');
+    if (saved) {
+      const savedWidgets = JSON.parse(saved);
+      // Merge saved visibility state with default widget configuration
+      const mergedConfig = defaultWidgetConfig.map(widget => {
+        const savedWidget = savedWidgets.find((w: any) => w.id === widget.id);
+        return savedWidget ? { ...widget, visible: savedWidget.visible } : widget;
+      });
+      return createWidgets(mergedConfig);
+    }
+    return createWidgets(defaultWidgetConfig);
+  });
+
+  const [layouts, setLayouts] = useState(() => {
+    const saved = localStorage.getItem('workspace-layouts');
+    return saved ? JSON.parse(saved) : {};
+  });
+  
   const [showWidgetManager, setShowWidgetManager] = useState(false);
+
+  // Save widget visibility to localStorage (not the full widget objects with React components)
+  useEffect(() => {
+    const widgetVisibility = widgets.map(widget => ({
+      id: widget.id,
+      visible: widget.visible
+    }));
+    localStorage.setItem('workspace-widgets', JSON.stringify(widgetVisibility));
+  }, [widgets]);
+
+  // Save layouts to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('workspace-layouts', JSON.stringify(layouts));
+  }, [layouts]);
 
   // Widget management functions
   const toggleWidgetVisibility = (widgetId: string) => {
@@ -306,8 +346,13 @@ export default function WorkspacePage() {
   };
 
   const resetWidgetLayout = () => {
+    // Reset to default layout and visibility
     setLayouts({});
-    setWidgets(prev => prev.map(widget => ({ ...widget, visible: true })));
+    setWidgets(createWidgets(defaultWidgetConfig));
+    
+    // Clear localStorage
+    localStorage.removeItem('workspace-layouts');
+    localStorage.removeItem('workspace-widgets');
   };
 
   const handleLayoutChange = (layout: any, layouts: any) => {
