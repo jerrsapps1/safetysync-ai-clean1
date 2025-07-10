@@ -275,6 +275,12 @@ export default function AdminPanel() {
               </div>
             </div>
             <div className="flex items-center space-x-2">
+              <Link href="/admin-dashboard">
+                <Button variant="ghost" size="sm" className="text-red-600 hover:text-red-700">
+                  <BarChart3 className="w-4 h-4 mr-2" />
+                  Admin Analytics
+                </Button>
+              </Link>
               <Link href="/dashboard">
                 <Button variant="ghost" size="sm">Dashboard</Button>
               </Link>
