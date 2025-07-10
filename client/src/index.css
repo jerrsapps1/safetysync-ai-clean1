@@ -307,3 +307,63 @@
     @apply font-sans antialiased bg-background text-foreground;
   }
 }
+
+/* React Grid Layout Styling */
+.react-grid-layout {
+  position: relative;
+}
+
+.react-grid-item {
+  transition: all 200ms ease;
+  transition-property: left, top;
+}
+
+.react-grid-item.cssTransforms {
+  transition-property: transform;
+}
+
+.react-grid-item.resizing {
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.react-grid-item.react-draggable-dragging {
+  transition: none;
+  z-index: 3;
+  opacity: 0.8;
+  transform: rotate(2deg);
+}
+
+.react-grid-item > .react-resizable-handle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  bottom: 0;
+  right: 0;
+  background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNiIgaGVpZ2h0PSI2IiB2aWV3Qm94PSIwIDAgNiA2IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8ZG90cyBmaWxsPSIjODg4IiBkPSJtMTUgMTJjMCAxLjA5My0uOTA3IDItMiAycy0yLS45MDctMi0yIC45MDctMiAyLTIgMiAuOTA3IDIgMnptMCAzYzAgMS4wOTMtLjkwNyAyLTIgMnMtMi0uOTA3LTItMiAuOTA3LTIgMi0yIDIgLjkwNyAyIDJ6bTAgM2MwIDEuMDkzLS45MDcgMi0yIDJzLTItLjkwNy0yLTIgLjkwNy0yIDItMiAyIC45MDcgMiAyeiIvPgo8L3N2Zz4K');
+  background-position: bottom right;
+  padding: 0 3px 3px 0;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  box-sizing: border-box;
+  cursor: se-resize;
+  opacity: 0.4;
+  transition: opacity 0.2s;
+}
+
+.react-grid-item:hover > .react-resizable-handle {
+  opacity: 0.8;
+}
+
+.widget-container {
+  position: relative;
+}
+
+.drag-handle {
+  z-index: 10;
+}
+
+.react-grid-item.react-draggable-dragging .drag-handle {
+  opacity: 1 !important;
+  color: #10b981;
+}

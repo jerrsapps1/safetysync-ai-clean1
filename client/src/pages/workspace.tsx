@@ -16,6 +16,9 @@ import { CollaborationLayer } from "@/components/ui/collaboration-layer";
 import { AIQuickActions } from "@/components/ui/ai-quick-actions";
 import { AIPatternSkeleton } from "@/components/ui/ai-skeleton";
 import SafetyTrendsDashboard from "@/components/safety-trends-dashboard";
+import { Responsive, WidthProvider } from "react-grid-layout";
+import "react-grid-layout/css/styles.css";
+import "react-resizable/css/styles.css";
 import { 
   CheckCircle, 
   AlertTriangle, 
@@ -51,8 +54,27 @@ import {
   User,
   LogOut,
   Menu,
-  X
+  X,
+  GripVertical,
+  EyeOff,
+  RotateCcw
 } from "lucide-react";
+
+const ResponsiveGridLayout = WidthProvider(Responsive);
+
+interface DashboardWidget {
+  id: string;
+  title: string;
+  component: React.ReactNode;
+  defaultProps: {
+    x: number;
+    y: number;
+    w: number;
+    h: number;
+  };
+  icon: React.ReactNode;
+  visible: boolean;
+}
 
 interface ComplianceRecord {
   id: number;
@@ -194,6 +216,284 @@ export default function WorkspacePage() {
     customDomain: "",
     showBranding: true
   });
+
+  // Widget management state
+  const [widgets, setWidgets] = useState<DashboardWidget[]>([
+    {
+      id: "total-employees",
+      title: "Total Employees",
+      component: null,
+      defaultProps: { x: 0, y: 0, w: 3, h: 2 },
+      icon: <Users className="w-5 h-5" />,
+      visible: true
+    },
+    {
+      id: "compliant-employees",
+      title: "Compliant Employees",
+      component: null,
+      defaultProps: { x: 3, y: 0, w: 3, h: 2 },
+      icon: <CheckCircle className="w-5 h-5" />,
+      visible: true
+    },
+    {
+      id: "pending-training",
+      title: "Pending Training",
+      component: null,
+      defaultProps: { x: 6, y: 0, w: 3, h: 2 },
+      icon: <Clock className="w-5 h-5" />,
+      visible: true
+    },
+    {
+      id: "compliance-score",
+      title: "Compliance Score",
+      component: null,
+      defaultProps: { x: 9, y: 0, w: 3, h: 2 },
+      icon: <TrendingUp className="w-5 h-5" />,
+      visible: true
+    },
+    {
+      id: "recent-activity",
+      title: "Recent Activity",
+      component: null,
+      defaultProps: { x: 0, y: 2, w: 6, h: 4 },
+      icon: <Activity className="w-5 h-5" />,
+      visible: true
+    },
+    {
+      id: "training-calendar",
+      title: "Training Calendar",
+      component: null,
+      defaultProps: { x: 6, y: 2, w: 6, h: 4 },
+      icon: <Calendar className="w-5 h-5" />,
+      visible: true
+    },
+    {
+      id: "safety-alerts",
+      title: "Safety Alerts",
+      component: null,
+      defaultProps: { x: 0, y: 6, w: 4, h: 3 },
+      icon: <AlertTriangle className="w-5 h-5" />,
+      visible: true
+    },
+    {
+      id: "certification-progress",
+      title: "Certification Progress",
+      component: null,
+      defaultProps: { x: 4, y: 6, w: 4, h: 3 },
+      icon: <Award className="w-5 h-5" />,
+      visible: true
+    },
+    {
+      id: "compliance-trends",
+      title: "Compliance Trends",
+      component: null,
+      defaultProps: { x: 8, y: 6, w: 4, h: 3 },
+      icon: <BarChart3 className="w-5 h-5" />,
+      visible: true
+    }
+  ]);
+
+  const [layouts, setLayouts] = useState({});
+  const [showWidgetManager, setShowWidgetManager] = useState(false);
+
+  // Widget management functions
+  const toggleWidgetVisibility = (widgetId: string) => {
+    setWidgets(prev => prev.map(widget => 
+      widget.id === widgetId 
+        ? { ...widget, visible: !widget.visible }
+        : widget
+    ));
+  };
+
+  const resetWidgetLayout = () => {
+    setLayouts({});
+    setWidgets(prev => prev.map(widget => ({ ...widget, visible: true })));
+  };
+
+  const handleLayoutChange = (layout: any, layouts: any) => {
+    setLayouts(layouts);
+  };
+
+  // Generate widget content
+  const generateWidgetContent = (widget: DashboardWidget) => {
+    switch (widget.id) {
+      case "total-employees":
+        return (
+          <div className="flex items-center justify-between h-full">
+            <div>
+              <p className="text-gray-400 text-sm">Total Employees</p>
+              <p className="text-2xl font-bold text-white">{stats.totalEmployees}</p>
+            </div>
+            <Users className="w-8 h-8 text-blue-400" />
+          </div>
+        );
+      case "compliant-employees":
+        return (
+          <div className="flex items-center justify-between h-full">
+            <div>
+              <p className="text-gray-400 text-sm">Compliant</p>
+              <p className="text-2xl font-bold text-emerald-400">{stats.compliantEmployees}</p>
+            </div>
+            <CheckCircle className="w-8 h-8 text-emerald-400" />
+          </div>
+        );
+      case "pending-training":
+        return (
+          <div className="flex items-center justify-between h-full">
+            <div>
+              <p className="text-gray-400 text-sm">Pending Training</p>
+              <p className="text-2xl font-bold text-yellow-400">{stats.pendingTraining}</p>
+            </div>
+            <Clock className="w-8 h-8 text-yellow-400" />
+          </div>
+        );
+      case "compliance-score":
+        return (
+          <div className="flex items-center justify-between h-full">
+            <div>
+              <p className="text-gray-400 text-sm">Compliance Score</p>
+              <p className="text-2xl font-bold text-white">{stats.complianceScore}%</p>
+            </div>
+            <TrendingUp className="w-8 h-8 text-blue-400" />
+          </div>
+        );
+      case "recent-activity":
+        return (
+          <div className="h-full">
+            <h3 className="text-lg font-semibold text-white mb-4">Recent Activity</h3>
+            <div className="space-y-3">
+              {complianceRecords.slice(0, 3).map((record) => (
+                <div key={record.id} className="flex items-center justify-between p-2 bg-gray-800/50 rounded-lg">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center">
+                      <User className="w-4 h-4 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-white text-sm font-medium">{record.employeeName}</p>
+                      <p className="text-gray-400 text-xs">{record.training}</p>
+                    </div>
+                  </div>
+                  <Badge variant={record.status === 'completed' ? 'default' : record.status === 'pending' ? 'secondary' : 'destructive'}>
+                    {record.status}
+                  </Badge>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      case "training-calendar":
+        return (
+          <div className="h-full">
+            <h3 className="text-lg font-semibold text-white mb-4">Upcoming Training</h3>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-3 p-2 bg-gray-800/50 rounded-lg">
+                <Calendar className="w-5 h-5 text-blue-400" />
+                <div>
+                  <p className="text-white text-sm font-medium">Fall Protection Training</p>
+                  <p className="text-gray-400 text-xs">July 15, 2025 - 9:00 AM</p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-3 p-2 bg-gray-800/50 rounded-lg">
+                <Calendar className="w-5 h-5 text-green-400" />
+                <div>
+                  <p className="text-white text-sm font-medium">OSHA 30 Hour</p>
+                  <p className="text-gray-400 text-xs">July 22, 2025 - 8:00 AM</p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-3 p-2 bg-gray-800/50 rounded-lg">
+                <Calendar className="w-5 h-5 text-yellow-400" />
+                <div>
+                  <p className="text-white text-sm font-medium">First Aid/CPR</p>
+                  <p className="text-gray-400 text-xs">July 29, 2025 - 1:00 PM</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      case "safety-alerts":
+        return (
+          <div className="h-full">
+            <h3 className="text-lg font-semibold text-white mb-4">Safety Alerts</h3>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-3 p-2 bg-red-900/20 rounded-lg border border-red-500/20">
+                <AlertTriangle className="w-5 h-5 text-red-400" />
+                <div>
+                  <p className="text-white text-sm font-medium">3 Expired Certifications</p>
+                  <p className="text-gray-400 text-xs">Immediate action required</p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-3 p-2 bg-yellow-900/20 rounded-lg border border-yellow-500/20">
+                <Clock className="w-5 h-5 text-yellow-400" />
+                <div>
+                  <p className="text-white text-sm font-medium">8 Certifications Expiring Soon</p>
+                  <p className="text-gray-400 text-xs">Within 30 days</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      case "certification-progress":
+        return (
+          <div className="h-full">
+            <h3 className="text-lg font-semibold text-white mb-4">Certification Progress</h3>
+            <div className="space-y-4">
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span className="text-sm text-gray-400">Fall Protection</span>
+                  <span className="text-sm text-white">87%</span>
+                </div>
+                <Progress value={87} className="h-2" />
+              </div>
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span className="text-sm text-gray-400">OSHA 10</span>
+                  <span className="text-sm text-white">92%</span>
+                </div>
+                <Progress value={92} className="h-2" />
+              </div>
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span className="text-sm text-gray-400">First Aid</span>
+                  <span className="text-sm text-white">76%</span>
+                </div>
+                <Progress value={76} className="h-2" />
+              </div>
+            </div>
+          </div>
+        );
+      case "compliance-trends":
+        return (
+          <div className="h-full">
+            <h3 className="text-lg font-semibold text-white mb-4">Compliance Trends</h3>
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-gray-400 text-sm">This Month</span>
+                <div className="flex items-center space-x-2">
+                  <TrendingUp className="w-4 h-4 text-green-400" />
+                  <span className="text-green-400 text-sm">+5%</span>
+                </div>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-gray-400 text-sm">Last Quarter</span>
+                <div className="flex items-center space-x-2">
+                  <TrendingUp className="w-4 h-4 text-green-400" />
+                  <span className="text-green-400 text-sm">+12%</span>
+                </div>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-gray-400 text-sm">YTD</span>
+                <div className="flex items-center space-x-2">
+                  <TrendingUp className="w-4 h-4 text-green-400" />
+                  <span className="text-green-400 text-sm">+18%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      default:
+        return <div className="h-full flex items-center justify-center text-gray-400">Widget content</div>;
+    }
+  };
 
   // Mock data - in production this would come from your API
   const [stats, setStats] = useState<DashboardStats>({
@@ -406,80 +706,102 @@ export default function WorkspacePage() {
         <div className="flex-1 p-6 overflow-y-auto">
           {activeTab === "overview" && (
             <div className="space-y-6">
-              {/* Stats Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-gray-400 text-sm">Total Employees</p>
-                        <p className="text-2xl font-bold text-white">{stats.totalEmployees}</p>
-                      </div>
-                      <Users className="w-8 h-8 text-blue-400" />
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-gray-400 text-sm">Compliant</p>
-                        <p className="text-2xl font-bold text-emerald-400">{stats.compliantEmployees}</p>
-                      </div>
-                      <CheckCircle className="w-8 h-8 text-emerald-400" />
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-gray-400 text-sm">Pending Training</p>
-                        <p className="text-2xl font-bold text-yellow-400">{stats.pendingTraining}</p>
-                      </div>
-                      <Clock className="w-8 h-8 text-yellow-400" />
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-gray-400 text-sm">Compliance Score</p>
-                        <p className="text-2xl font-bold text-white">{stats.complianceScore}%</p>
-                      </div>
-                      <TrendingUp className="w-8 h-8 text-blue-400" />
-                    </div>
-                  </CardContent>
-                </Card>
+              {/* Widget Management Controls */}
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center space-x-4">
+                  <Button
+                    variant="outline"
+                    onClick={() => setShowWidgetManager(!showWidgetManager)}
+                    className="text-gray-300 border-gray-600 hover:bg-gray-800"
+                  >
+                    <Settings className="w-4 h-4 mr-2" />
+                    Manage Widgets
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={resetWidgetLayout}
+                    className="text-gray-300 border-gray-600 hover:bg-gray-800"
+                  >
+                    <RotateCcw className="w-4 h-4 mr-2" />
+                    Reset Layout
+                  </Button>
+                </div>
+                <div className="text-sm text-gray-400">
+                  Drag widgets to reposition • Click manage to show/hide
+                </div>
               </div>
 
-              {/* Recent Activity */}
-              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
-                <CardHeader>
-                  <CardTitle className="text-white">Recent Activity</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    {complianceRecords.slice(0, 3).map((record) => (
-                      <div key={record.id} className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
-                        <div className="flex items-center space-x-3">
-                          <div className="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center">
-                            <User className="w-4 h-4 text-white" />
-                          </div>
-                          <div>
-                            <p className="text-white font-medium">{record.employeeName}</p>
-                            <p className="text-gray-400 text-sm">{record.training}</p>
+              {/* Widget Manager Panel */}
+              {showWidgetManager && (
+                <Card className="bg-black/20 backdrop-blur-sm border-gray-800 mb-6">
+                  <CardHeader>
+                    <CardTitle className="text-white">Widget Manager</CardTitle>
+                    <CardDescription className="text-gray-400">
+                      Toggle widgets on/off to customize your dashboard
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                      {widgets.map((widget) => (
+                        <div
+                          key={widget.id}
+                          className="flex items-center space-x-3 p-3 bg-gray-800/50 rounded-lg"
+                        >
+                          <Switch
+                            checked={widget.visible}
+                            onCheckedChange={() => toggleWidgetVisibility(widget.id)}
+                          />
+                          <div className="flex items-center space-x-2">
+                            {widget.icon}
+                            <span className="text-white text-sm">{widget.title}</span>
                           </div>
                         </div>
-                        <Badge variant={record.status === 'completed' ? 'default' : record.status === 'pending' ? 'secondary' : 'destructive'}>
-                          {record.status}
-                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* Repositionable Widget Dashboard */}
+              <div className="dashboard-container" style={{ minHeight: '800px' }}>
+                <ResponsiveGridLayout
+                  className="layout"
+                  layouts={layouts}
+                  onLayoutChange={handleLayoutChange}
+                  breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
+                  cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
+                  rowHeight={60}
+                  isDraggable={true}
+                  isResizable={true}
+                  draggableHandle=".drag-handle"
+                  containerPadding={[0, 0]}
+                  margin={[16, 16]}
+                >
+                  {widgets
+                    .filter(widget => widget.visible)
+                    .map((widget) => (
+                      <div
+                        key={widget.id}
+                        data-grid={widget.defaultProps}
+                        className="widget-container"
+                      >
+                        <Card className="bg-black/20 backdrop-blur-sm border-gray-800 h-full group relative">
+                          <CardContent className="p-4 h-full">
+                            {/* Drag Handle */}
+                            <div className="drag-handle absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity cursor-move">
+                              <GripVertical className="w-4 h-4 text-gray-400" />
+                            </div>
+                            
+                            {/* Widget Content */}
+                            <div className="h-full">
+                              {generateWidgetContent(widget)}
+                            </div>
+                          </CardContent>
+                        </Card>
                       </div>
                     ))}
-                  </div>
-                </CardContent>
-              </Card>
+                </ResponsiveGridLayout>
+              </div>
             </div>
           )}
 
