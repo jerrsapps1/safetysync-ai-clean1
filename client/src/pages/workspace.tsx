@@ -57,7 +57,8 @@ import {
   X,
   GripVertical,
   EyeOff,
-  RotateCcw
+  RotateCcw,
+  Save
 } from "lucide-react";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
@@ -208,6 +209,7 @@ export default function WorkspacePage() {
   const { user, isLoading: authLoading, isAuthenticated, logout } = useAuth();
   const [activeTab, setActiveTab] = useState("overview");
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const { toast } = useToast();
   const [workspaceSettings, setWorkspaceSettings] = useState<WorkspaceSettings>({
     companyName: "SafetySync.AI",
     companyLogo: "",
@@ -379,6 +381,61 @@ export default function WorkspacePage() {
     // Clear localStorage
     localStorage.removeItem('workspace-layouts');
     localStorage.removeItem('workspace-widgets');
+    localStorage.removeItem('workspace-custom-defaults');
+    
+    // Show success toast
+    toast({
+      title: "Layout Reset",
+      description: "Dashboard has been reset to the original default layout.",
+    });
+  };
+
+  const saveAsDefault = () => {
+    // Save current layout and widget settings as user's personal default
+    const currentDefaults = {
+      widgets: widgets.map(widget => ({
+        id: widget.id,
+        visible: widget.visible
+      })),
+      layouts: layouts
+    };
+    
+    localStorage.setItem('workspace-custom-defaults', JSON.stringify(currentDefaults));
+    
+    // Show success toast
+    toast({
+      title: "Default Layout Saved",
+      description: "Your current layout has been saved as your personal default.",
+    });
+  };
+
+  const loadCustomDefaults = () => {
+    const customDefaults = localStorage.getItem('workspace-custom-defaults');
+    if (customDefaults) {
+      const defaults = JSON.parse(customDefaults);
+      
+      // Apply custom default widget visibility
+      const mergedConfig = defaultWidgetConfig.map(widget => {
+        const savedWidget = defaults.widgets.find((w: any) => w.id === widget.id);
+        return savedWidget ? { 
+          ...widget, 
+          visible: savedWidget.visible
+        } : widget;
+      });
+      
+      setWidgets(createWidgets(mergedConfig));
+      setLayouts(defaults.layouts);
+      
+      // Show success toast
+      toast({
+        title: "Custom Default Loaded",
+        description: "Your personal default layout has been applied to the dashboard.",
+      });
+    }
+  };
+
+  const hasCustomDefaults = () => {
+    return localStorage.getItem('workspace-custom-defaults') !== null;
   };
 
   const handleLayoutChange = (layout: any, layouts: any) => {
@@ -818,13 +875,30 @@ export default function WorkspacePage() {
                   </Button>
                   <Button
                     variant="outline"
+                    onClick={saveAsDefault}
+                    className="text-gray-300 border-gray-600 hover:bg-gray-800"
+                  >
+                    <Save className="w-4 h-4 mr-2" />
+                    Save as Default
+                  </Button>
+                  {hasCustomDefaults() && (
+                    <Button
+                      variant="outline"
+                      onClick={loadCustomDefaults}
+                      className="text-gray-300 border-gray-600 hover:bg-gray-800"
+                    >
+                      <Upload className="w-4 h-4 mr-2" />
+                      Load My Default
+                    </Button>
+                  )}
+                  <Button
+                    variant="outline"
                     onClick={resetWidgetLayout}
                     className="text-gray-300 border-gray-600 hover:bg-gray-800"
                   >
                     <RotateCcw className="w-4 h-4 mr-2" />
-                    Reset Layout
+                    Reset to Original
                   </Button>
-
                 </div>
                 <div className="text-sm text-gray-400">
                   Drag widgets to reposition • Drag corners to resize • Click manage to show/hide
