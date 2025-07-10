@@ -16,6 +16,7 @@ import { CollaborationLayer } from "@/components/ui/collaboration-layer";
 import { AIQuickActions } from "@/components/ui/ai-quick-actions";
 import { AIPatternSkeleton } from "@/components/ui/ai-skeleton";
 import SafetyTrendsDashboard from "@/components/safety-trends-dashboard";
+import QuickSearchWidget from "@/components/safetytracker/QuickSearchWidget";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
@@ -58,7 +59,12 @@ import {
   GripVertical,
   EyeOff,
   RotateCcw,
-  Save
+  Save,
+  GraduationCap,
+  Network,
+  FileUser,
+  Inbox,
+  Monitor
 } from "lucide-react";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
@@ -231,6 +237,7 @@ export default function WorkspacePage() {
       "safety-alerts": <AlertTriangle className="w-5 h-5" />,
       "certification-progress": <Award className="w-5 h-5" />,
       "compliance-trends": <BarChart3 className="w-5 h-5" />,
+      "quick-search": <Search className="w-5 h-5" />,
     };
     return iconMap[id] || <Settings className="w-5 h-5" />;
   };
@@ -289,6 +296,12 @@ export default function WorkspacePage() {
       id: "compliance-trends",
       title: "Compliance Trends",
       defaultProps: { x: 8, y: 6, w: 4, h: 3 },
+      visible: true
+    },
+    {
+      id: "quick-search",
+      title: "Quick Search",
+      defaultProps: { x: 0, y: 9, w: 12, h: 6 },
       visible: true
     }
   ];
@@ -646,6 +659,12 @@ export default function WorkspacePage() {
             </div>
           </div>
         );
+      case "quick-search":
+        return (
+          <div className="h-full overflow-hidden">
+            <QuickSearchWidget />
+          </div>
+        );
       default:
         return <div className="h-full flex items-center justify-center text-gray-400">Widget content</div>;
     }
@@ -786,6 +805,70 @@ export default function WorkspacePage() {
             {sidebarOpen && "Safety Trends"}
           </Button>
           <Button
+            variant={activeTab === "instructors" ? "secondary" : "ghost"}
+            className="w-full justify-start text-gray-300 hover:text-white"
+            onClick={() => setActiveTab("instructors")}
+          >
+            <GraduationCap className="w-5 h-5 mr-3" />
+            {sidebarOpen && "Instructors"}
+          </Button>
+          <Button
+            variant={activeTab === "organization" ? "secondary" : "ghost"}
+            className="w-full justify-start text-gray-300 hover:text-white"
+            onClick={() => setActiveTab("organization")}
+          >
+            <Network className="w-5 h-5 mr-3" />
+            {sidebarOpen && "Organization"}
+          </Button>
+          <Button
+            variant={activeTab === "employee-portal" ? "secondary" : "ghost"}
+            className="w-full justify-start text-gray-300 hover:text-white"
+            onClick={() => setActiveTab("employee-portal")}
+          >
+            <FileUser className="w-5 h-5 mr-3" />
+            {sidebarOpen && "Employee Portal"}
+          </Button>
+          <Button
+            variant={activeTab === "notifications" ? "secondary" : "ghost"}
+            className="w-full justify-start text-gray-300 hover:text-white"
+            onClick={() => setActiveTab("notifications")}
+          >
+            <Inbox className="w-5 h-5 mr-3" />
+            {sidebarOpen && "Notifications"}
+          </Button>
+          <Button
+            variant={activeTab === "workplace-poster" ? "secondary" : "ghost"}
+            className="w-full justify-start text-gray-300 hover:text-white"
+            onClick={() => setActiveTab("workplace-poster")}
+          >
+            <FileText className="w-5 h-5 mr-3" />
+            {sidebarOpen && "Workplace Poster"}
+          </Button>
+          <Button
+            variant={activeTab === "training-calendar" ? "secondary" : "ghost"}
+            className="w-full justify-start text-gray-300 hover:text-white"
+            onClick={() => setActiveTab("training-calendar")}
+          >
+            <Calendar className="w-5 h-5 mr-3" />
+            {sidebarOpen && "Training Calendar"}
+          </Button>
+          <Button
+            variant={activeTab === "subscription-billing" ? "secondary" : "ghost"}
+            className="w-full justify-start text-gray-300 hover:text-white"
+            onClick={() => setActiveTab("subscription-billing")}
+          >
+            <CreditCard className="w-5 h-5 mr-3" />
+            {sidebarOpen && "Subscription"}
+          </Button>
+          <Button
+            variant={activeTab === "analytics-reports" ? "secondary" : "ghost"}
+            className="w-full justify-start text-gray-300 hover:text-white"
+            onClick={() => setActiveTab("analytics-reports")}
+          >
+            <BarChart3 className="w-5 h-5 mr-3" />
+            {sidebarOpen && "Analytics"}
+          </Button>
+          <Button
             variant={activeTab === "settings" ? "secondary" : "ghost"}
             className="w-full justify-start text-gray-300 hover:text-white"
             onClick={() => setActiveTab("settings")}
@@ -834,6 +917,14 @@ export default function WorkspacePage() {
                 {activeTab === "certificates" && "Certificate Generation"}
                 {activeTab === "reports" && "Compliance Reports"}
                 {activeTab === "trends" && "Safety Trends"}
+                {activeTab === "instructors" && "Instructor Management"}
+                {activeTab === "organization" && "Organization Structure"}
+                {activeTab === "employee-portal" && "Employee Portal"}
+                {activeTab === "notifications" && "Notifications & Alerts"}
+                {activeTab === "workplace-poster" && "Workplace Poster Management"}
+                {activeTab === "training-calendar" && "Training Calendar"}
+                {activeTab === "subscription-billing" && "Subscription & Billing"}
+                {activeTab === "analytics-reports" && "Analytics & Reports"}
                 {activeTab === "settings" && "Workspace Settings"}
               </h1>
               <p className="text-gray-400">
@@ -843,6 +934,14 @@ export default function WorkspacePage() {
                 {activeTab === "certificates" && "Generate professional certificates and cards"}
                 {activeTab === "reports" && "Generate compliance reports for audits"}
                 {activeTab === "trends" && "Analyze safety trends and performance"}
+                {activeTab === "instructors" && "Manage certified instructors and their credentials"}
+                {activeTab === "organization" && "Configure departments and organizational structure"}
+                {activeTab === "employee-portal" && "Self-service portal for employee access"}
+                {activeTab === "notifications" && "Manage alerts and notification preferences"}
+                {activeTab === "workplace-poster" && "Track and manage mandatory workplace safety posters"}
+                {activeTab === "training-calendar" && "Schedule and manage training sessions"}
+                {activeTab === "subscription-billing" && "Manage your plan and billing information"}
+                {activeTab === "analytics-reports" && "Generate comprehensive analytics and reports"}
                 {activeTab === "settings" && "Configure your workspace and branding"}
               </p>
             </div>
@@ -1062,6 +1161,693 @@ export default function WorkspacePage() {
           {activeTab === "trends" && (
             <div className="space-y-6">
               <SafetyTrendsDashboard />
+            </div>
+          )}
+
+          {activeTab === "instructors" && (
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-semibold text-white">Instructor Management</h2>
+                <Button className="bg-emerald-500 hover:bg-emerald-600">
+                  <Plus className="w-4 h-4 mr-2" />
+                  Add Instructor
+                </Button>
+              </div>
+              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+                <CardContent className="p-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <Card className="bg-gray-800/50 border-gray-700">
+                      <CardContent className="p-4">
+                        <div className="flex items-center space-x-3 mb-3">
+                          <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
+                            <GraduationCap className="w-6 h-6 text-white" />
+                          </div>
+                          <div>
+                            <h3 className="text-white font-semibold">John Smith</h3>
+                            <p className="text-gray-400 text-sm">Senior Safety Instructor</p>
+                          </div>
+                        </div>
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between">
+                            <span className="text-gray-400 text-sm">Certifications</span>
+                            <Badge className="bg-green-100 text-green-700">5 Active</Badge>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <span className="text-gray-400 text-sm">Students Trained</span>
+                            <span className="text-white">247</span>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <span className="text-gray-400 text-sm">Specialization</span>
+                            <span className="text-white">Fall Protection</span>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                    <Card className="bg-gray-800/50 border-gray-700">
+                      <CardContent className="p-4">
+                        <div className="flex items-center space-x-3 mb-3">
+                          <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center">
+                            <GraduationCap className="w-6 h-6 text-white" />
+                          </div>
+                          <div>
+                            <h3 className="text-white font-semibold">Sarah Johnson</h3>
+                            <p className="text-gray-400 text-sm">Equipment Training Specialist</p>
+                          </div>
+                        </div>
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between">
+                            <span className="text-gray-400 text-sm">Certifications</span>
+                            <Badge className="bg-green-100 text-green-700">7 Active</Badge>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <span className="text-gray-400 text-sm">Students Trained</span>
+                            <span className="text-white">189</span>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <span className="text-gray-400 text-sm">Specialization</span>
+                            <span className="text-white">Forklift Operation</span>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                    <Card className="bg-gray-800/50 border-gray-700">
+                      <CardContent className="p-4">
+                        <div className="flex items-center space-x-3 mb-3">
+                          <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center">
+                            <GraduationCap className="w-6 h-6 text-white" />
+                          </div>
+                          <div>
+                            <h3 className="text-white font-semibold">Mike Rodriguez</h3>
+                            <p className="text-gray-400 text-sm">OSHA Training Coordinator</p>
+                          </div>
+                        </div>
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between">
+                            <span className="text-gray-400 text-sm">Certifications</span>
+                            <Badge className="bg-green-100 text-green-700">4 Active</Badge>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <span className="text-gray-400 text-sm">Students Trained</span>
+                            <span className="text-white">312</span>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <span className="text-gray-400 text-sm">Specialization</span>
+                            <span className="text-white">OSHA 30 Hour</span>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
+          {activeTab === "organization" && (
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-semibold text-white">Organization Structure</h2>
+                <Button className="bg-emerald-500 hover:bg-emerald-600">
+                  <Plus className="w-4 h-4 mr-2" />
+                  Add Department
+                </Button>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+                  <CardHeader>
+                    <CardTitle className="text-white">Department Structure</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
+                        <div className="flex items-center space-x-3">
+                          <Building className="w-5 h-5 text-blue-400" />
+                          <div>
+                            <p className="text-white font-medium">Construction</p>
+                            <p className="text-gray-400 text-sm">45 employees</p>
+                          </div>
+                        </div>
+                        <Badge className="bg-green-100 text-green-700">93% Compliant</Badge>
+                      </div>
+                      <div className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
+                        <div className="flex items-center space-x-3">
+                          <Building className="w-5 h-5 text-purple-400" />
+                          <div>
+                            <p className="text-white font-medium">Safety</p>
+                            <p className="text-gray-400 text-sm">12 employees</p>
+                          </div>
+                        </div>
+                        <Badge className="bg-green-100 text-green-700">100% Compliant</Badge>
+                      </div>
+                      <div className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
+                        <div className="flex items-center space-x-3">
+                          <Building className="w-5 h-5 text-orange-400" />
+                          <div>
+                            <p className="text-white font-medium">Operations</p>
+                            <p className="text-gray-400 text-sm">68 employees</p>
+                          </div>
+                        </div>
+                        <Badge className="bg-yellow-100 text-yellow-700">87% Compliant</Badge>
+                      </div>
+                      <div className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
+                        <div className="flex items-center space-x-3">
+                          <Building className="w-5 h-5 text-green-400" />
+                          <div>
+                            <p className="text-white font-medium">Management</p>
+                            <p className="text-gray-400 text-sm">22 employees</p>
+                          </div>
+                        </div>
+                        <Badge className="bg-green-100 text-green-700">95% Compliant</Badge>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+                  <CardHeader>
+                    <CardTitle className="text-white">Location Management</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
+                        <div className="flex items-center space-x-3">
+                          <MapPin className="w-5 h-5 text-red-400" />
+                          <div>
+                            <p className="text-white font-medium">Site A - Downtown</p>
+                            <p className="text-gray-400 text-sm">89 employees</p>
+                          </div>
+                        </div>
+                        <Badge className="bg-green-100 text-green-700">91% Compliant</Badge>
+                      </div>
+                      <div className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
+                        <div className="flex items-center space-x-3">
+                          <MapPin className="w-5 h-5 text-blue-400" />
+                          <div>
+                            <p className="text-white font-medium">Site B - Industrial</p>
+                            <p className="text-gray-400 text-sm">58 employees</p>
+                          </div>
+                        </div>
+                        <Badge className="bg-yellow-100 text-yellow-700">85% Compliant</Badge>
+                      </div>
+                      <div className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
+                        <div className="flex items-center space-x-3">
+                          <MapPin className="w-5 h-5 text-green-400" />
+                          <div>
+                            <p className="text-white font-medium">Main Office</p>
+                            <p className="text-gray-400 text-sm">35 employees</p>
+                          </div>
+                        </div>
+                        <Badge className="bg-green-100 text-green-700">97% Compliant</Badge>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          )}
+
+          {activeTab === "employee-portal" && (
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-semibold text-white">Employee Portal</h2>
+                <Button className="bg-emerald-500 hover:bg-emerald-600">
+                  <Eye className="w-4 h-4 mr-2" />
+                  Preview Portal
+                </Button>
+              </div>
+              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+                <CardHeader>
+                  <CardTitle className="text-white">Self-Service Portal Features</CardTitle>
+                  <CardDescription className="text-gray-400">
+                    Employees can access their training records, certificates, and schedule through the portal
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="p-4 bg-gray-800/50 rounded-lg">
+                      <div className="flex items-center space-x-3 mb-3">
+                        <FileUser className="w-8 h-8 text-blue-400" />
+                        <div>
+                          <h3 className="text-white font-semibold">Training Records</h3>
+                          <p className="text-gray-400 text-sm">View completion status</p>
+                        </div>
+                      </div>
+                      <p className="text-gray-300 text-sm">Employees can view their training history, upcoming requirements, and completion certificates.</p>
+                    </div>
+                    <div className="p-4 bg-gray-800/50 rounded-lg">
+                      <div className="flex items-center space-x-3 mb-3">
+                        <Calendar className="w-8 h-8 text-green-400" />
+                        <div>
+                          <h3 className="text-white font-semibold">Training Schedule</h3>
+                          <p className="text-gray-400 text-sm">Book training sessions</p>
+                        </div>
+                      </div>
+                      <p className="text-gray-300 text-sm">Self-service scheduling for upcoming training sessions and recertification requirements.</p>
+                    </div>
+                    <div className="p-4 bg-gray-800/50 rounded-lg">
+                      <div className="flex items-center space-x-3 mb-3">
+                        <Download className="w-8 h-8 text-purple-400" />
+                        <div>
+                          <h3 className="text-white font-semibold">Certificate Downloads</h3>
+                          <p className="text-gray-400 text-sm">Access digital certificates</p>
+                        </div>
+                      </div>
+                      <p className="text-gray-300 text-sm">Download and print certificates and wallet cards for field verification.</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
+          {activeTab === "notifications" && (
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-semibold text-white">Notifications & Alerts</h2>
+                <Button className="bg-emerald-500 hover:bg-emerald-600">
+                  <Plus className="w-4 h-4 mr-2" />
+                  Create Alert
+                </Button>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+                  <CardHeader>
+                    <CardTitle className="text-white">Active Alerts</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <div className="flex items-center space-x-3 p-3 bg-red-900/20 rounded-lg border border-red-500/20">
+                        <AlertTriangle className="w-5 h-5 text-red-400" />
+                        <div className="flex-1">
+                          <p className="text-white font-medium">3 Certifications Expired</p>
+                          <p className="text-gray-400 text-sm">Immediate action required</p>
+                        </div>
+                        <Badge className="bg-red-100 text-red-700">High Priority</Badge>
+                      </div>
+                      <div className="flex items-center space-x-3 p-3 bg-yellow-900/20 rounded-lg border border-yellow-500/20">
+                        <Clock className="w-5 h-5 text-yellow-400" />
+                        <div className="flex-1">
+                          <p className="text-white font-medium">8 Certifications Expiring Soon</p>
+                          <p className="text-gray-400 text-sm">Within 30 days</p>
+                        </div>
+                        <Badge className="bg-yellow-100 text-yellow-700">Medium Priority</Badge>
+                      </div>
+                      <div className="flex items-center space-x-3 p-3 bg-blue-900/20 rounded-lg border border-blue-500/20">
+                        <Bell className="w-5 h-5 text-blue-400" />
+                        <div className="flex-1">
+                          <p className="text-white font-medium">New Training Session Available</p>
+                          <p className="text-gray-400 text-sm">Fall Protection - July 15</p>
+                        </div>
+                        <Badge className="bg-blue-100 text-blue-700">Info</Badge>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+                  <CardHeader>
+                    <CardTitle className="text-white">Notification Settings</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-white font-medium">Email Notifications</p>
+                          <p className="text-gray-400 text-sm">Receive alerts via email</p>
+                        </div>
+                        <Switch defaultChecked />
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-white font-medium">SMS Alerts</p>
+                          <p className="text-gray-400 text-sm">Critical alerts via SMS</p>
+                        </div>
+                        <Switch />
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-white font-medium">Dashboard Notifications</p>
+                          <p className="text-gray-400 text-sm">Show in-app notifications</p>
+                        </div>
+                        <Switch defaultChecked />
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-white font-medium">Weekly Reports</p>
+                          <p className="text-gray-400 text-sm">Weekly compliance summary</p>
+                        </div>
+                        <Switch defaultChecked />
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          )}
+
+          {activeTab === "workplace-poster" && (
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-semibold text-white">Workplace Poster Management</h2>
+                <Button className="bg-emerald-500 hover:bg-emerald-600">
+                  <Plus className="w-4 h-4 mr-2" />
+                  Add Poster
+                </Button>
+              </div>
+              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+                <CardHeader>
+                  <CardTitle className="text-white">Required OSHA Posters</CardTitle>
+                  <CardDescription className="text-gray-400">
+                    Track and manage mandatory workplace safety posters
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
+                        <div className="flex items-center space-x-3">
+                          <CheckCircle className="w-5 h-5 text-green-400" />
+                          <div>
+                            <p className="text-white font-medium">OSHA Job Safety Poster</p>
+                            <p className="text-gray-400 text-sm">Current - Updated 2024</p>
+                          </div>
+                        </div>
+                        <Button variant="outline" size="sm">
+                          <Eye className="w-4 h-4 mr-2" />
+                          View
+                        </Button>
+                      </div>
+                      <div className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
+                        <div className="flex items-center space-x-3">
+                          <CheckCircle className="w-5 h-5 text-green-400" />
+                          <div>
+                            <p className="text-white font-medium">Emergency Contact Info</p>
+                            <p className="text-gray-400 text-sm">Current - Updated 2024</p>
+                          </div>
+                        </div>
+                        <Button variant="outline" size="sm">
+                          <Eye className="w-4 h-4 mr-2" />
+                          View
+                        </Button>
+                      </div>
+                      <div className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
+                        <div className="flex items-center space-x-3">
+                          <AlertTriangle className="w-5 h-5 text-yellow-400" />
+                          <div>
+                            <p className="text-white font-medium">Equal Opportunity Poster</p>
+                            <p className="text-gray-400 text-sm">Needs Update - 2023</p>
+                          </div>
+                        </div>
+                        <Button variant="outline" size="sm">
+                          <Upload className="w-4 h-4 mr-2" />
+                          Update
+                        </Button>
+                      </div>
+                    </div>
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
+                        <div className="flex items-center space-x-3">
+                          <CheckCircle className="w-5 h-5 text-green-400" />
+                          <div>
+                            <p className="text-white font-medium">Workers' Compensation</p>
+                            <p className="text-gray-400 text-sm">Current - Updated 2024</p>
+                          </div>
+                        </div>
+                        <Button variant="outline" size="sm">
+                          <Eye className="w-4 h-4 mr-2" />
+                          View
+                        </Button>
+                      </div>
+                      <div className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
+                        <div className="flex items-center space-x-3">
+                          <CheckCircle className="w-5 h-5 text-green-400" />
+                          <div>
+                            <p className="text-white font-medium">Right to Know Act</p>
+                            <p className="text-gray-400 text-sm">Current - Updated 2024</p>
+                          </div>
+                        </div>
+                        <Button variant="outline" size="sm">
+                          <Eye className="w-4 h-4 mr-2" />
+                          View
+                        </Button>
+                      </div>
+                      <div className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
+                        <div className="flex items-center space-x-3">
+                          <Clock className="w-5 h-5 text-blue-400" />
+                          <div>
+                            <p className="text-white font-medium">Minimum Wage Notice</p>
+                            <p className="text-gray-400 text-sm">Review Due - July 2025</p>
+                          </div>
+                        </div>
+                        <Button variant="outline" size="sm">
+                          <Calendar className="w-4 h-4 mr-2" />
+                          Schedule
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
+          {activeTab === "training-calendar" && (
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-semibold text-white">Training Calendar</h2>
+                <Button className="bg-emerald-500 hover:bg-emerald-600">
+                  <Plus className="w-4 h-4 mr-2" />
+                  Schedule Training
+                </Button>
+              </div>
+              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+                <CardHeader>
+                  <CardTitle className="text-white">Upcoming Training Sessions</CardTitle>
+                  <CardDescription className="text-gray-400">
+                    View and manage scheduled training sessions
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between p-4 bg-gray-800/50 rounded-lg">
+                      <div className="flex items-center space-x-4">
+                        <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
+                          <Calendar className="w-6 h-6 text-white" />
+                        </div>
+                        <div>
+                          <h3 className="text-white font-semibold">Fall Protection Training</h3>
+                          <p className="text-gray-400">July 15, 2025 - 9:00 AM to 12:00 PM</p>
+                          <p className="text-gray-400 text-sm">Instructor: John Smith • Room: Training Center A</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <Badge className="bg-blue-100 text-blue-700">12 Enrolled</Badge>
+                        <Button variant="outline" size="sm">
+                          <Users className="w-4 h-4 mr-2" />
+                          Manage
+                        </Button>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between p-4 bg-gray-800/50 rounded-lg">
+                      <div className="flex items-center space-x-4">
+                        <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center">
+                          <Calendar className="w-6 h-6 text-white" />
+                        </div>
+                        <div>
+                          <h3 className="text-white font-semibold">OSHA 30 Hour Course</h3>
+                          <p className="text-gray-400">July 22, 2025 - 8:00 AM to 5:00 PM</p>
+                          <p className="text-gray-400 text-sm">Instructor: Mike Rodriguez • Room: Training Center B</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <Badge className="bg-green-100 text-green-700">8 Enrolled</Badge>
+                        <Button variant="outline" size="sm">
+                          <Users className="w-4 h-4 mr-2" />
+                          Manage
+                        </Button>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between p-4 bg-gray-800/50 rounded-lg">
+                      <div className="flex items-center space-x-4">
+                        <div className="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center">
+                          <Calendar className="w-6 h-6 text-white" />
+                        </div>
+                        <div>
+                          <h3 className="text-white font-semibold">First Aid/CPR Certification</h3>
+                          <p className="text-gray-400">July 29, 2025 - 1:00 PM to 4:00 PM</p>
+                          <p className="text-gray-400 text-sm">Instructor: Sarah Johnson • Room: Training Center A</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <Badge className="bg-purple-100 text-purple-700">15 Enrolled</Badge>
+                        <Button variant="outline" size="sm">
+                          <Users className="w-4 h-4 mr-2" />
+                          Manage
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
+          {activeTab === "subscription-billing" && (
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-semibold text-white">Subscription & Billing</h2>
+                <Button className="bg-emerald-500 hover:bg-emerald-600">
+                  <CreditCard className="w-4 h-4 mr-2" />
+                  Manage Billing
+                </Button>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+                  <CardHeader>
+                    <CardTitle className="text-white">Current Plan</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <div className="text-center p-4 bg-emerald-900/20 rounded-lg border border-emerald-500/20">
+                        <h3 className="text-2xl font-bold text-white">Professional</h3>
+                        <p className="text-emerald-400 font-semibold">$95.00/month</p>
+                        <p className="text-gray-400 text-sm">Billed annually</p>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex justify-between">
+                          <span className="text-gray-400">Plan Started</span>
+                          <span className="text-white">January 1, 2025</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-400">Next Billing</span>
+                          <span className="text-white">August 1, 2025</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-400">Payment Method</span>
+                          <span className="text-white">•••• 4242</span>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+                  <CardHeader>
+                    <CardTitle className="text-white">Usage This Month</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <div className="space-y-2">
+                        <div className="flex justify-between">
+                          <span className="text-gray-400">Certificates Generated</span>
+                          <span className="text-white">23 / 50</span>
+                        </div>
+                        <div className="w-full bg-gray-700 rounded-full h-2">
+                          <div className="bg-blue-500 h-2 rounded-full" style={{ width: '46%' }}></div>
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex justify-between">
+                          <span className="text-gray-400">Digital Wallet Cards</span>
+                          <span className="text-white">31 / 50</span>
+                        </div>
+                        <div className="w-full bg-gray-700 rounded-full h-2">
+                          <div className="bg-green-500 h-2 rounded-full" style={{ width: '62%' }}></div>
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex justify-between">
+                          <span className="text-gray-400">Additional Charges</span>
+                          <span className="text-white">$0.00</span>
+                        </div>
+                        <p className="text-gray-400 text-sm">Usage within plan limits</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          )}
+
+          {activeTab === "analytics-reports" && (
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-semibold text-white">Analytics & Reports</h2>
+                <Button className="bg-emerald-500 hover:bg-emerald-600">
+                  <Download className="w-4 h-4 mr-2" />
+                  Export Report
+                </Button>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-gray-400 text-sm">Total Employees</p>
+                        <p className="text-2xl font-bold text-white">147</p>
+                      </div>
+                      <Users className="w-8 h-8 text-blue-400" />
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-gray-400 text-sm">Compliance Rate</p>
+                        <p className="text-2xl font-bold text-white">88%</p>
+                      </div>
+                      <CheckCircle className="w-8 h-8 text-green-400" />
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-gray-400 text-sm">Training Hours</p>
+                        <p className="text-2xl font-bold text-white">1,247</p>
+                      </div>
+                      <Clock className="w-8 h-8 text-purple-400" />
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-gray-400 text-sm">Certificates Issued</p>
+                        <p className="text-2xl font-bold text-white">89</p>
+                      </div>
+                      <Award className="w-8 h-8 text-yellow-400" />
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+                <CardHeader>
+                  <CardTitle className="text-white">Report Templates</CardTitle>
+                  <CardDescription className="text-gray-400">
+                    Generate comprehensive reports for compliance tracking
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <Button variant="outline" className="h-auto p-4 flex flex-col items-center space-y-2">
+                      <BarChart3 className="w-8 h-8 text-blue-400" />
+                      <span className="text-white">Monthly Compliance</span>
+                      <span className="text-gray-400 text-sm">Department breakdown</span>
+                    </Button>
+                    <Button variant="outline" className="h-auto p-4 flex flex-col items-center space-y-2">
+                      <TrendingUp className="w-8 h-8 text-green-400" />
+                      <span className="text-white">Training Analytics</span>
+                      <span className="text-gray-400 text-sm">Progress tracking</span>
+                    </Button>
+                    <Button variant="outline" className="h-auto p-4 flex flex-col items-center space-y-2">
+                      <FileText className="w-8 h-8 text-purple-400" />
+                      <span className="text-white">Audit Ready Report</span>
+                      <span className="text-gray-400 text-sm">OSHA compliance</span>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           )}
 
