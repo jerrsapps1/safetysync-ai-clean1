@@ -23,6 +23,7 @@ import {
   CheckCircle,
   Clock,
   Eye,
+  EyeOff,
   CreditCard,
   FileText,
   Mail,
@@ -90,6 +91,7 @@ interface AdminStats {
 function AdminLoginCheck() {
   const [adminKey, setAdminKey] = useState("");
   const [isValidating, setIsValidating] = useState(false);
+  const [showKey, setShowKey] = useState(false);
   const { toast } = useToast();
 
   const handleAdminLogin = async () => {
@@ -135,14 +137,23 @@ function AdminLoginCheck() {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              <input
-                type="password"
-                placeholder="Enter admin key"
-                value={adminKey}
-                onChange={(e) => setAdminKey(e.target.value)}
-                className="w-full p-3 bg-gray-800/50 border border-red-800/50 rounded-lg text-white placeholder-gray-400"
-                onKeyPress={(e) => e.key === 'Enter' && handleAdminLogin()}
-              />
+              <div className="relative">
+                <input
+                  type={showKey ? "text" : "password"}
+                  placeholder="Enter admin key"
+                  value={adminKey}
+                  onChange={(e) => setAdminKey(e.target.value)}
+                  className="w-full p-3 pr-12 bg-gray-800/50 border border-red-800/50 rounded-lg text-white placeholder-gray-400"
+                  onKeyPress={(e) => e.key === 'Enter' && handleAdminLogin()}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowKey(!showKey)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
+                >
+                  {showKey ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                </button>
+              </div>
               <Button
                 onClick={handleAdminLogin}
                 disabled={isValidating || !adminKey}
