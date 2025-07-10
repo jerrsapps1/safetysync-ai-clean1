@@ -305,6 +305,7 @@ export default function WorkspacePage() {
     const saved = localStorage.getItem('workspace-widgets');
     if (saved) {
       const savedWidgets = JSON.parse(saved);
+      console.log('Loaded saved widgets:', savedWidgets);
       // Merge saved visibility state with default widget configuration
       const mergedConfig = defaultWidgetConfig.map(widget => {
         const savedWidget = savedWidgets.find((w: any) => w.id === widget.id);
@@ -312,12 +313,32 @@ export default function WorkspacePage() {
       });
       return createWidgets(mergedConfig);
     }
+    console.log('Using default widgets');
     return createWidgets(defaultWidgetConfig);
   });
 
   const [layouts, setLayouts] = useState(() => {
     const saved = localStorage.getItem('workspace-layouts');
-    return saved ? JSON.parse(saved) : {};
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        console.log('Loaded saved layouts:', parsed);
+        return parsed;
+      } catch (error) {
+        console.error('Error parsing saved layouts:', error);
+      }
+    }
+    
+    // Return default layouts if no saved layouts
+    const defaultLayouts = {
+      lg: defaultWidgetConfig.map(widget => ({ ...widget.defaultProps, i: widget.id })),
+      md: defaultWidgetConfig.map(widget => ({ ...widget.defaultProps, i: widget.id })),
+      sm: defaultWidgetConfig.map(widget => ({ ...widget.defaultProps, i: widget.id })),
+      xs: defaultWidgetConfig.map(widget => ({ ...widget.defaultProps, i: widget.id })),
+      xxs: defaultWidgetConfig.map(widget => ({ ...widget.defaultProps, i: widget.id })),
+    };
+    console.log('Using default layouts:', defaultLayouts);
+    return defaultLayouts;
   });
   
   const [showWidgetManager, setShowWidgetManager] = useState(false);
@@ -857,29 +878,30 @@ export default function WorkspacePage() {
                   draggableHandle=".drag-handle"
                   containerPadding={[0, 0]}
                   margin={[16, 16]}
+                  compactType="vertical"
+                  preventCollision={false}
                 >
                   {widgets
                     .filter(widget => widget.visible)
                     .map((widget) => (
-                      <div
-                        key={widget.id}
-                        data-grid={widget.defaultProps}
-                        className="widget-container"
-                      >
-                        <Card className="bg-black/20 backdrop-blur-sm border-gray-800 h-full group relative">
-                          <CardContent className="p-4 h-full">
-                            {/* Drag Handle */}
-                            <div className="drag-handle absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity cursor-move">
-                              <GripVertical className="w-4 h-4 text-gray-400" />
-                            </div>
-                            
-                            {/* Widget Content */}
-                            <div className="h-full">
-                              {generateWidgetContent(widget)}
-                            </div>
-                          </CardContent>
-                        </Card>
-                      </div>
+                        <div
+                          key={widget.id}
+                          className="widget-container"
+                        >
+                          <Card className="bg-black/20 backdrop-blur-sm border-gray-800 h-full group relative">
+                            <CardContent className="p-4 h-full">
+                              {/* Drag Handle */}
+                              <div className="drag-handle absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity cursor-move">
+                                <GripVertical className="w-4 h-4 text-gray-400" />
+                              </div>
+                              
+                              {/* Widget Content */}
+                              <div className="h-full">
+                                {generateWidgetContent(widget)}
+                              </div>
+                            </CardContent>
+                          </Card>
+                        </div>
                     ))}
                 </ResponsiveGridLayout>
               </div>
