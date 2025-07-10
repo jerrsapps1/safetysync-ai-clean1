@@ -317,16 +317,8 @@ export default function WorkspacePage() {
 
   const [layouts, setLayouts] = useState(() => {
     const saved = localStorage.getItem('workspace-layouts');
-    console.log('Loading layouts from localStorage:', saved);
-    const parsedLayouts = saved ? JSON.parse(saved) : {};
-    console.log('Parsed layouts:', parsedLayouts);
-    return parsedLayouts;
+    return saved ? JSON.parse(saved) : {};
   });
-  
-  // Debug component mount
-  useEffect(() => {
-    console.log('WorkspacePage mounted, current layouts:', layouts);
-  }, []);
   
   const [showWidgetManager, setShowWidgetManager] = useState(false);
 
@@ -341,7 +333,6 @@ export default function WorkspacePage() {
 
   // Save layouts to localStorage whenever they change
   useEffect(() => {
-    console.log('Saving layouts to localStorage:', layouts);
     localStorage.setItem('workspace-layouts', JSON.stringify(layouts));
   }, [layouts]);
 
@@ -365,10 +356,17 @@ export default function WorkspacePage() {
   };
 
   const handleLayoutChange = (layout: any, layouts: any) => {
-    console.log('handleLayoutChange called with layout:', layout);
-    console.log('handleLayoutChange called with layouts:', layouts);
+    // Only update if the layouts are actually different to prevent infinite loops
     if (layouts && Object.keys(layouts).length > 0) {
-      setLayouts(layouts);
+      setLayouts(prevLayouts => {
+        // Check if the layouts are actually different
+        const layoutsString = JSON.stringify(layouts);
+        const prevLayoutsString = JSON.stringify(prevLayouts);
+        if (layoutsString !== prevLayoutsString) {
+          return layouts;
+        }
+        return prevLayouts;
+      });
     }
   };
 
