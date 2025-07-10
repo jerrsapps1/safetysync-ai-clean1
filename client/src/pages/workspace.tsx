@@ -361,6 +361,129 @@ export default function WorkspacePage() {
   
   const [showWidgetManager, setShowWidgetManager] = useState(false);
 
+  // Interactive functionality state
+  const [showAddEmployee, setShowAddEmployee] = useState(false);
+  const [showAddTraining, setShowAddTraining] = useState(false);
+  const [showAddCertificate, setShowAddCertificate] = useState(false);
+  const [showAddInstructor, setShowAddInstructor] = useState(false);
+  const [showAddPoster, setShowAddPoster] = useState(false);
+  const [showScheduleTraining, setShowScheduleTraining] = useState(false);
+  const [selectedEmployee, setSelectedEmployee] = useState<any>(null);
+  const [selectedTraining, setSelectedTraining] = useState<any>(null);
+  const [showEmployeeDetails, setShowEmployeeDetails] = useState(false);
+  const [showTrainingDetails, setShowTrainingDetails] = useState(false);
+  const [employees, setEmployees] = useState<any[]>([
+    { id: 1, name: "John Smith", department: "Construction", email: "john.smith@company.com", phone: "(555) 123-4567", position: "Site Manager", hireDate: "2023-01-15", certifications: ["Fall Protection", "First Aid/CPR"], status: "Active" },
+    { id: 2, name: "Sarah Johnson", department: "Manufacturing", email: "sarah.johnson@company.com", phone: "(555) 234-5678", position: "Safety Coordinator", hireDate: "2022-08-20", certifications: ["OSHA 30", "Forklift Operation"], status: "Active" },
+    { id: 3, name: "Mike Davis", department: "Maintenance", email: "mike.davis@company.com", phone: "(555) 345-6789", position: "Maintenance Lead", hireDate: "2021-03-10", certifications: ["Lockout/Tagout", "Electrical Safety"], status: "Active" },
+  ]);
+  const [trainingSessions, setTrainingSessions] = useState<any[]>([
+    { id: 1, title: "Fall Protection Training", date: "2025-07-15", time: "9:00 AM - 12:00 PM", instructor: "John Smith", location: "Training Center A", enrolled: 12, capacity: 20, type: "Mandatory" },
+    { id: 2, title: "OSHA 10 Construction", date: "2025-07-22", time: "8:00 AM - 5:00 PM", instructor: "Sarah Johnson", location: "Conference Room B", enrolled: 8, capacity: 15, type: "Certification" },
+    { id: 3, title: "First Aid/CPR", date: "2025-07-29", time: "1:00 PM - 4:00 PM", instructor: "Mike Davis", location: "Training Center A", enrolled: 15, capacity: 20, type: "Mandatory" },
+  ]);
+  const [instructors, setInstructors] = useState<any[]>([
+    { id: 1, name: "John Smith", certifications: ["OSHA 30", "First Aid/CPR"], specialties: ["Fall Protection", "Construction Safety"], email: "john.smith@company.com", phone: "(555) 123-4567", experience: "10 years" },
+    { id: 2, name: "Sarah Johnson", certifications: ["OSHA 500", "Safety Management"], specialties: ["Industrial Safety", "Training Development"], email: "sarah.johnson@company.com", phone: "(555) 234-5678", experience: "8 years" },
+    { id: 3, name: "Mike Davis", certifications: ["Electrical Safety", "Lockout/Tagout"], specialties: ["Electrical Safety", "Maintenance"], email: "mike.davis@company.com", phone: "(555) 345-6789", experience: "12 years" },
+  ]);
+
+  // Handler functions for interactive buttons
+  const handleAddEmployee = () => {
+    setShowAddEmployee(true);
+    toast({
+      title: "Add Employee",
+      description: "Opening employee registration form...",
+    });
+  };
+
+  const handleAddTraining = () => {
+    setShowAddTraining(true);
+    toast({
+      title: "Add Training",
+      description: "Opening training creation form...",
+    });
+  };
+
+  const handleAddCertificate = () => {
+    setShowAddCertificate(true);
+    toast({
+      title: "Generate Certificate",
+      description: "Opening certificate generation wizard...",
+    });
+  };
+
+  const handleAddInstructor = () => {
+    setShowAddInstructor(true);
+    toast({
+      title: "Add Instructor",
+      description: "Opening instructor registration form...",
+    });
+  };
+
+  const handleAddPoster = () => {
+    setShowAddPoster(true);
+    toast({
+      title: "Add Poster",
+      description: "Opening poster upload form...",
+    });
+  };
+
+  const handleScheduleTraining = () => {
+    setShowScheduleTraining(true);
+    toast({
+      title: "Schedule Training",
+      description: "Opening training scheduler...",
+    });
+  };
+
+  const handleViewEmployee = (employee: any) => {
+    setSelectedEmployee(employee);
+    setShowEmployeeDetails(true);
+    toast({
+      title: `Viewing ${employee.name}`,
+      description: "Loading employee details...",
+    });
+  };
+
+  const handleViewTraining = (training: any) => {
+    setSelectedTraining(training);
+    setShowTrainingDetails(true);
+    toast({
+      title: `Viewing ${training.title}`,
+      description: "Loading training details...",
+    });
+  };
+
+  const handleManageTraining = (training: any) => {
+    setSelectedTraining(training);
+    toast({
+      title: `Managing ${training.title}`,
+      description: "Opening training management panel...",
+    });
+  };
+
+  const handleViewPoster = (posterName: string) => {
+    toast({
+      title: `Viewing ${posterName}`,
+      description: "Opening poster in viewer...",
+    });
+  };
+
+  const handleUpdatePoster = (posterName: string) => {
+    toast({
+      title: `Updating ${posterName}`,
+      description: "Opening poster update form...",
+    });
+  };
+
+  const handleSchedulePoster = (posterName: string) => {
+    toast({
+      title: `Scheduling ${posterName}`,
+      description: "Opening poster review scheduler...",
+    });
+  };
+
   // Save widget visibility to localStorage (not the full widget objects with React components)
   useEffect(() => {
     const widgetSettings = widgets.map(widget => ({
@@ -1093,7 +1216,7 @@ export default function WorkspacePage() {
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-semibold text-white">Employee Management</h2>
-                <Button className="bg-emerald-500 hover:bg-emerald-600">
+                <Button className="bg-emerald-500 hover:bg-emerald-600" onClick={handleAddEmployee}>
                   <Plus className="w-4 h-4 mr-2" />
                   Add Employee
                 </Button>
@@ -1135,7 +1258,7 @@ export default function WorkspacePage() {
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-semibold text-white">Certificate Generation</h2>
-                <Button className="bg-emerald-500 hover:bg-emerald-600">
+                <Button className="bg-emerald-500 hover:bg-emerald-600" onClick={handleAddCertificate}>
                   <Plus className="w-4 h-4 mr-2" />
                   Generate Certificate
                 </Button>
@@ -1168,7 +1291,7 @@ export default function WorkspacePage() {
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-semibold text-white">Instructor Management</h2>
-                <Button className="bg-emerald-500 hover:bg-emerald-600">
+                <Button className="bg-emerald-500 hover:bg-emerald-600" onClick={handleAddInstructor}>
                   <Plus className="w-4 h-4 mr-2" />
                   Add Instructor
                 </Button>
@@ -1267,7 +1390,7 @@ export default function WorkspacePage() {
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-semibold text-white">Organization Structure</h2>
-                <Button className="bg-emerald-500 hover:bg-emerald-600">
+                <Button className="bg-emerald-500 hover:bg-emerald-600" onClick={() => toast({ title: "Add Department", description: "Opening department creation form..." })}>
                   <Plus className="w-4 h-4 mr-2" />
                   Add Department
                 </Button>
@@ -1423,7 +1546,7 @@ export default function WorkspacePage() {
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-semibold text-white">Notifications & Alerts</h2>
-                <Button className="bg-emerald-500 hover:bg-emerald-600">
+                <Button className="bg-emerald-500 hover:bg-emerald-600" onClick={() => toast({ title: "Create Alert", description: "Opening alert creation form..." })}>
                   <Plus className="w-4 h-4 mr-2" />
                   Create Alert
                 </Button>
@@ -1507,7 +1630,7 @@ export default function WorkspacePage() {
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-semibold text-white">Workplace Poster Management</h2>
-                <Button className="bg-emerald-500 hover:bg-emerald-600">
+                <Button className="bg-emerald-500 hover:bg-emerald-600" onClick={handleAddPoster}>
                   <Plus className="w-4 h-4 mr-2" />
                   Add Poster
                 </Button>
@@ -1530,7 +1653,7 @@ export default function WorkspacePage() {
                             <p className="text-gray-400 text-sm">Current - Updated 2024</p>
                           </div>
                         </div>
-                        <Button variant="outline" size="sm">
+                        <Button variant="outline" size="sm" onClick={() => handleViewPoster("OSHA Job Safety Poster")}>
                           <Eye className="w-4 h-4 mr-2" />
                           View
                         </Button>
@@ -1556,7 +1679,7 @@ export default function WorkspacePage() {
                             <p className="text-gray-400 text-sm">Needs Update - 2023</p>
                           </div>
                         </div>
-                        <Button variant="outline" size="sm">
+                        <Button variant="outline" size="sm" onClick={() => handleUpdatePoster("Equal Opportunity Poster")}>
                           <Upload className="w-4 h-4 mr-2" />
                           Update
                         </Button>
@@ -1597,7 +1720,7 @@ export default function WorkspacePage() {
                             <p className="text-gray-400 text-sm">Review Due - July 2025</p>
                           </div>
                         </div>
-                        <Button variant="outline" size="sm">
+                        <Button variant="outline" size="sm" onClick={() => handleSchedulePoster("Minimum Wage Notice")}>
                           <Calendar className="w-4 h-4 mr-2" />
                           Schedule
                         </Button>
@@ -1613,7 +1736,7 @@ export default function WorkspacePage() {
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-semibold text-white">Training Calendar</h2>
-                <Button className="bg-emerald-500 hover:bg-emerald-600">
+                <Button className="bg-emerald-500 hover:bg-emerald-600" onClick={handleScheduleTraining}>
                   <Plus className="w-4 h-4 mr-2" />
                   Schedule Training
                 </Button>
@@ -1694,7 +1817,7 @@ export default function WorkspacePage() {
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-semibold text-white">Subscription & Billing</h2>
-                <Button className="bg-emerald-500 hover:bg-emerald-600">
+                <Button className="bg-emerald-500 hover:bg-emerald-600" onClick={() => toast({ title: "Manage Billing", description: "Opening billing management panel..." })}>
                   <CreditCard className="w-4 h-4 mr-2" />
                   Manage Billing
                 </Button>
@@ -1770,7 +1893,7 @@ export default function WorkspacePage() {
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-semibold text-white">Analytics & Reports</h2>
-                <Button className="bg-emerald-500 hover:bg-emerald-600">
+                <Button className="bg-emerald-500 hover:bg-emerald-600" onClick={() => toast({ title: "Export Report", description: "Generating report for download..." })}>
                   <Download className="w-4 h-4 mr-2" />
                   Export Report
                 </Button>
