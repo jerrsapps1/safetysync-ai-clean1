@@ -18,7 +18,7 @@ import { AICloneDetector } from "@/components/ui/ai-clone-detector";
 import { CollaborationLayer } from "@/components/ui/collaboration-layer";
 import EmployeeManagement from "@/components/enterprise/EmployeeManagement";
 import DocumentManager from "@/components/enterprise/DocumentManager";
-import IncidentReporting from "@/components/enterprise/IncidentReporting";
+
 
 import { AIPatternSkeleton } from "@/components/ui/ai-skeleton";
 import SafetyTrendsDashboard from "@/components/safety-trends-dashboard";
@@ -1232,14 +1232,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             <Database className="w-5 h-5 mr-3" />
             {sidebarOpen && "Documents"}
           </Button>
-          <Button
-            variant={activeTab === "incident-reporting" ? "secondary" : "ghost"}
-            className="w-full justify-start text-gray-300 hover:text-white"
-            onClick={() => handleTabSwitch("incident-reporting")}
-          >
-            <AlertTriangle className="w-5 h-5 mr-3" />
-            {sidebarOpen && "Incidents"}
-          </Button>
+
           <Button
             variant={activeTab === "trends" ? "secondary" : "ghost"}
             className="w-full justify-start text-gray-300 hover:text-white"
@@ -1370,7 +1363,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 {activeTab === "subscription-billing" && "Subscription & Billing"}
                 {activeTab === "analytics-reports" && "Analytics & Reports"}
                 {activeTab === "document-manager" && "Document Management"}
-                {activeTab === "incident-reporting" && "Incident Reporting"}
+
                 {activeTab === "settings" && "Workspace Settings"}
               </h1>
               <p className="text-gray-400">
@@ -1389,7 +1382,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 {activeTab === "subscription-billing" && "Manage your plan and billing information"}
                 {activeTab === "analytics-reports" && "Generate comprehensive analytics and reports"}
                 {activeTab === "document-manager" && "Upload, organize, and manage safety documents"}
-                {activeTab === "incident-reporting" && "Track and investigate safety incidents"}
+
                 {activeTab === "settings" && "Configure your workspace and branding"}
               </p>
             </div>
@@ -1599,11 +1592,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             </div>
           )}
 
-          {activeTab === "incident-reporting" && (
-            <div className="space-y-6">
-              <IncidentReporting />
-            </div>
-          )}
+
 
           {activeTab === "trends" && (
             <div className="space-y-6">
