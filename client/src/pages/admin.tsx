@@ -34,6 +34,7 @@ import {
   Shield,
   Ticket
 } from "lucide-react";
+import { SafetySyncIcon } from "@/components/ui/safetysync-icon";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 

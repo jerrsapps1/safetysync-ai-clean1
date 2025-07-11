@@ -23,6 +23,7 @@ import DocumentManager from "@/components/enterprise/DocumentManager";
 import { AIPatternSkeleton } from "@/components/ui/ai-skeleton";
 import SafetyTrendsDashboard from "@/components/safety-trends-dashboard";
 import QuickSearchWidget from "@/components/safetytracker/QuickSearchWidget";
+import { SafetySyncIcon } from "@/components/ui/safetysync-icon";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
@@ -153,9 +154,7 @@ function LoginForm() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
-            <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center">
-              <Shield className="w-8 h-8 text-blue-600" />
-            </div>
+            <SafetySyncIcon size={64} className="rounded-lg" />
           </div>
           <h1 className="text-3xl font-bold text-white mb-2">SafetySync.AI</h1>
           <p className="text-blue-100">Access your safety management workspace</p>
@@ -1315,11 +1314,9 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         {/* Header */}
         <div className="p-4 border-b border-gray-800">
           <div className="flex items-center justify-between">
-            {sidebarOpen && (
+            {sidebarOpen ? (
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center">
-                  <Shield className="w-6 h-6 text-white" />
-                </div>
+                <SafetySyncIcon size={40} className="rounded-lg" />
                 <div>
                   <h2 className="text-white font-semibold">
                     {workspaceSettings.showBranding ? workspaceSettings.companyName : "SafetySync.AI"}
@@ -1327,6 +1324,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <p className="text-gray-400 text-sm">Workspace</p>
                 </div>
               </div>
+            ) : (
+              <SafetySyncIcon size={32} className="rounded-lg" />
             )}
             <Button
               variant="ghost"
