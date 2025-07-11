@@ -522,8 +522,8 @@ export default function LandingPage() {
       {/* Dialogs */}
       <TrialSignupDialog 
         isOpen={isTrialDialogOpen} 
-        onOpenChange={setIsTrialDialogOpen}
-        onSuccess={handleSignupSuccess}
+        onClose={() => setIsTrialDialogOpen(false)}
+        onSubmit={handleSignupSuccess}
       />
       
       <Toaster />
