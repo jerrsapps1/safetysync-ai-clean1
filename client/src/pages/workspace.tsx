@@ -17,6 +17,8 @@ import { ComplianceReportGenerator } from "@/components/ui/compliance-report-gen
 import { AICloneDetector } from "@/components/ui/ai-clone-detector";
 import { CollaborationLayer } from "@/components/ui/collaboration-layer";
 import EmployeeManagement from "@/components/enterprise/EmployeeManagement";
+import DocumentManager from "@/components/enterprise/DocumentManager";
+import IncidentReporting from "@/components/enterprise/IncidentReporting";
 
 import { AIPatternSkeleton } from "@/components/ui/ai-skeleton";
 import SafetyTrendsDashboard from "@/components/safety-trends-dashboard";
@@ -1223,6 +1225,22 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             {sidebarOpen && "Reports"}
           </Button>
           <Button
+            variant={activeTab === "document-manager" ? "secondary" : "ghost"}
+            className="w-full justify-start text-gray-300 hover:text-white"
+            onClick={() => handleTabSwitch("document-manager")}
+          >
+            <Database className="w-5 h-5 mr-3" />
+            {sidebarOpen && "Documents"}
+          </Button>
+          <Button
+            variant={activeTab === "incident-reporting" ? "secondary" : "ghost"}
+            className="w-full justify-start text-gray-300 hover:text-white"
+            onClick={() => handleTabSwitch("incident-reporting")}
+          >
+            <AlertTriangle className="w-5 h-5 mr-3" />
+            {sidebarOpen && "Incidents"}
+          </Button>
+          <Button
             variant={activeTab === "trends" ? "secondary" : "ghost"}
             className="w-full justify-start text-gray-300 hover:text-white"
             onClick={() => handleTabSwitch("trends")}
@@ -1568,6 +1586,18 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           {activeTab === "reports" && (
             <div className="space-y-6">
               <ComplianceReportGenerator />
+            </div>
+          )}
+
+          {activeTab === "document-manager" && (
+            <div className="space-y-6">
+              <DocumentManager />
+            </div>
+          )}
+
+          {activeTab === "incident-reporting" && (
+            <div className="space-y-6">
+              <IncidentReporting />
             </div>
           )}
 
