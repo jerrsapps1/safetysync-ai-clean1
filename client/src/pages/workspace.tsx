@@ -1369,6 +1369,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 {activeTab === "training-calendar" && "Training Calendar"}
                 {activeTab === "subscription-billing" && "Subscription & Billing"}
                 {activeTab === "analytics-reports" && "Analytics & Reports"}
+                {activeTab === "document-manager" && "Document Management"}
+                {activeTab === "incident-reporting" && "Incident Reporting"}
                 {activeTab === "settings" && "Workspace Settings"}
               </h1>
               <p className="text-gray-400">
@@ -1386,6 +1388,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 {activeTab === "training-calendar" && "Schedule and manage training sessions"}
                 {activeTab === "subscription-billing" && "Manage your plan and billing information"}
                 {activeTab === "analytics-reports" && "Generate comprehensive analytics and reports"}
+                {activeTab === "document-manager" && "Upload, organize, and manage safety documents"}
+                {activeTab === "incident-reporting" && "Track and investigate safety incidents"}
                 {activeTab === "settings" && "Configure your workspace and branding"}
               </p>
             </div>
