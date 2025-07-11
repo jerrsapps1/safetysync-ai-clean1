@@ -276,6 +276,14 @@ export default function WorkspacePage() {
       "certification-progress": <Award className="w-5 h-5" />,
       "compliance-trends": <BarChart3 className="w-5 h-5" />,
       "quick-search": <Search className="w-5 h-5" />,
+      // Trends widget icons
+      "safety-trends-chart": <Activity className="w-5 h-5" />,
+      "compliance-metrics": <TrendingUp className="w-5 h-5" />,
+      "department-performance": <Users className="w-5 h-5" />,
+      "risk-analysis": <Shield className="w-5 h-5" />,
+      "training-completion": <GraduationCap className="w-5 h-5" />,
+      "ai-insights": <Brain className="w-5 h-5" />,
+      "safety-score": <CheckCircle className="w-5 h-5" />,
     };
     return iconMap[id] || <Settings className="w-5 h-5" />;
   };
@@ -353,6 +361,61 @@ export default function WorkspacePage() {
     }));
   };
 
+  // Trends widget configuration
+  const trendsWidgetConfig = [
+    {
+      id: "safety-trends-chart",
+      title: "Safety Trends Chart",
+      defaultProps: { x: 0, y: 0, w: 8, h: 6 },
+      visible: true
+    },
+    {
+      id: "compliance-metrics",
+      title: "Compliance Metrics",
+      defaultProps: { x: 8, y: 0, w: 4, h: 6 },
+      visible: true
+    },
+    {
+      id: "department-performance",
+      title: "Department Performance",
+      defaultProps: { x: 0, y: 6, w: 6, h: 5 },
+      visible: true
+    },
+    {
+      id: "risk-analysis",
+      title: "Risk Analysis",
+      defaultProps: { x: 6, y: 6, w: 6, h: 5 },
+      visible: true
+    },
+    {
+      id: "training-completion",
+      title: "Training Completion",
+      defaultProps: { x: 0, y: 11, w: 4, h: 4 },
+      visible: true
+    },
+    {
+      id: "ai-insights",
+      title: "AI Safety Insights",
+      defaultProps: { x: 4, y: 11, w: 4, h: 4 },
+      visible: true
+    },
+    {
+      id: "safety-score",
+      title: "Safety Score",
+      defaultProps: { x: 8, y: 11, w: 4, h: 4 },
+      visible: true
+    }
+  ];
+
+  // Create trends widgets
+  const createTrendsWidgets = (config: any[]) => {
+    return config.map(widget => ({
+      ...widget,
+      component: null,
+      icon: getWidgetIcon(widget.id)
+    }));
+  };
+
   // Widget management state with persistence
   const [widgets, setWidgets] = useState<DashboardWidget[]>(() => {
     const saved = localStorage.getItem('workspace-widgets');
@@ -398,6 +461,50 @@ export default function WorkspacePage() {
   });
   
   const [showWidgetManager, setShowWidgetManager] = useState(false);
+
+  // Trends widget management state
+  const [trendsWidgets, setTrendsWidgets] = useState<DashboardWidget[]>(() => {
+    const saved = localStorage.getItem('trends-widgets');
+    if (saved) {
+      const savedWidgets = JSON.parse(saved);
+      console.log('Loaded saved trends widgets:', savedWidgets);
+      const mergedConfig = trendsWidgetConfig.map(widget => {
+        const savedWidget = savedWidgets.find((w: any) => w.id === widget.id);
+        return savedWidget ? { 
+          ...widget, 
+          visible: savedWidget.visible
+        } : widget;
+      });
+      return createTrendsWidgets(mergedConfig);
+    }
+    console.log('Using default trends widgets');
+    return createTrendsWidgets(trendsWidgetConfig);
+  });
+
+  const [trendsLayouts, setTrendsLayouts] = useState(() => {
+    const saved = localStorage.getItem('trends-layouts');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        console.log('Loaded saved trends layouts:', parsed);
+        return parsed;
+      } catch (error) {
+        console.error('Error parsing saved trends layouts:', error);
+      }
+    }
+    
+    const defaultLayouts = {
+      lg: trendsWidgetConfig.map(widget => ({ ...widget.defaultProps, i: widget.id })),
+      md: trendsWidgetConfig.map(widget => ({ ...widget.defaultProps, i: widget.id })),
+      sm: trendsWidgetConfig.map(widget => ({ ...widget.defaultProps, i: widget.id })),
+      xs: trendsWidgetConfig.map(widget => ({ ...widget.defaultProps, i: widget.id })),
+      xxs: trendsWidgetConfig.map(widget => ({ ...widget.defaultProps, i: widget.id })),
+    };
+    console.log('Using default trends layouts:', defaultLayouts);
+    return defaultLayouts;
+  });
+  
+  const [showTrendsWidgetManager, setShowTrendsWidgetManager] = useState(false);
 
   // Interactive functionality state
   const [showAddEmployee, setShowAddEmployee] = useState(false);
@@ -827,6 +934,20 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
     localStorage.setItem('workspace-layouts', JSON.stringify(layouts));
   }, [layouts]);
 
+  // Save trends widget visibility to localStorage
+  useEffect(() => {
+    const trendsWidgetSettings = trendsWidgets.map(widget => ({
+      id: widget.id,
+      visible: widget.visible
+    }));
+    localStorage.setItem('trends-widgets', JSON.stringify(trendsWidgetSettings));
+  }, [trendsWidgets]);
+
+  // Save trends layouts to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('trends-layouts', JSON.stringify(trendsLayouts));
+  }, [trendsLayouts]);
+
   // Widget management functions
   const toggleWidgetVisibility = useCallback((widgetId: string) => {
     setWidgets(prev => prev.map(widget => 
@@ -835,6 +956,31 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         : widget
     ));
   }, []);
+
+  // Layout change handler with proper comparison
+  const handleLayoutChange = useCallback((newLayout: any, allLayouts: any) => {
+    // Deep comparison to prevent infinite loops
+    if (JSON.stringify(allLayouts) !== JSON.stringify(layouts)) {
+      console.log('Layout changed, updating layouts');
+      setLayouts(allLayouts);
+    }
+  }, [layouts]);
+
+  // Trends widget management functions
+  const toggleTrendsWidgetVisibility = useCallback((widgetId: string) => {
+    setTrendsWidgets(prev => prev.map(widget => 
+      widget.id === widgetId 
+        ? { ...widget, visible: !widget.visible }
+        : widget
+    ));
+  }, []);
+
+  const handleTrendsLayoutChange = useCallback((newLayout: any, allLayouts: any) => {
+    if (JSON.stringify(allLayouts) !== JSON.stringify(trendsLayouts)) {
+      console.log('Trends layout changed, updating layouts');
+      setTrendsLayouts(allLayouts);
+    }
+  }, [trendsLayouts]);
 
 
 
@@ -903,20 +1049,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
     return localStorage.getItem('workspace-custom-defaults') !== null;
   };
 
-  const handleLayoutChange = useCallback((layout: any, layouts: any) => {
-    // Only update if the layouts are actually different to prevent infinite loops
-    if (layouts && Object.keys(layouts).length > 0) {
-      setLayouts(prevLayouts => {
-        // Check if the layouts are actually different
-        const layoutsString = JSON.stringify(layouts);
-        const prevLayoutsString = JSON.stringify(prevLayouts);
-        if (layoutsString !== prevLayoutsString) {
-          return layouts;
-        }
-        return prevLayouts;
-      });
-    }
-  }, []);
+
 
   // Generate widget content with responsive styling based on widget dimensions
   const generateWidgetContent = (widget: DashboardWidget, layoutItem?: any) => {
@@ -1173,6 +1306,184 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
   const handleLogout = () => {
     logout();
     window.location.href = '/';
+  };
+
+
+
+  // Generate trends widget content
+  const generateTrendsWidgetContent = (widget: DashboardWidget, layoutItem?: any) => {
+    const isSmall = layoutItem ? (layoutItem.w <= 3 && layoutItem.h <= 3) : false;
+    
+    switch (widget.id) {
+      case "safety-trends-chart":
+        return (
+          <div className="h-full overflow-hidden">
+            <div className="space-y-2 overflow-y-auto" style={{ maxHeight: 'calc(100% - 1rem)' }}>
+              <div className="flex items-center justify-between">
+                <span className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-sm'}`}>Compliance Rate</span>
+                <div className="flex items-center space-x-1">
+                  <TrendingUp className={`${isSmall ? 'w-3 h-3' : 'w-4 h-4'} text-green-400`} />
+                  <span className={`text-green-400 ${isSmall ? 'text-xs' : 'text-sm'}`}>96%</span>
+                </div>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-sm'}`}>Training Completion</span>
+                <div className="flex items-center space-x-1">
+                  <TrendingUp className={`${isSmall ? 'w-3 h-3' : 'w-4 h-4'} text-blue-400`} />
+                  <span className={`text-blue-400 ${isSmall ? 'text-xs' : 'text-sm'}`}>89%</span>
+                </div>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-sm'}`}>Safety Score</span>
+                <div className="flex items-center space-x-1">
+                  <TrendingUp className={`${isSmall ? 'w-3 h-3' : 'w-4 h-4'} text-yellow-400`} />
+                  <span className={`text-yellow-400 ${isSmall ? 'text-xs' : 'text-sm'}`}>92%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      case "compliance-metrics":
+        return (
+          <div className="h-full overflow-hidden">
+            <div className="space-y-3 overflow-y-auto" style={{ maxHeight: 'calc(100% - 1rem)' }}>
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-sm'}`}>Overall Compliance</span>
+                  <span className={`text-green-400 ${isSmall ? 'text-xs' : 'text-sm'}`}>96%</span>
+                </div>
+                <Progress value={96} className="h-2" />
+              </div>
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-sm'}`}>Training Progress</span>
+                  <span className={`text-blue-400 ${isSmall ? 'text-xs' : 'text-sm'}`}>89%</span>
+                </div>
+                <Progress value={89} className="h-2" />
+              </div>
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-sm'}`}>Safety Score</span>
+                  <span className={`text-yellow-400 ${isSmall ? 'text-xs' : 'text-sm'}`}>92%</span>
+                </div>
+                <Progress value={92} className="h-2" />
+              </div>
+            </div>
+          </div>
+        );
+      case "department-performance":
+        return (
+          <div className="h-full overflow-hidden">
+            <div className="space-y-2 overflow-y-auto" style={{ maxHeight: 'calc(100% - 1rem)' }}>
+              <div className="flex items-center justify-between p-2 bg-gray-800/50 rounded-lg">
+                <span className={`text-gray-300 ${isSmall ? 'text-xs' : 'text-sm'}`}>Construction</span>
+                <span className={`text-green-400 ${isSmall ? 'text-xs' : 'text-sm'}`}>96%</span>
+              </div>
+              <div className="flex items-center justify-between p-2 bg-gray-800/50 rounded-lg">
+                <span className={`text-gray-300 ${isSmall ? 'text-xs' : 'text-sm'}`}>Manufacturing</span>
+                <span className={`text-green-400 ${isSmall ? 'text-xs' : 'text-sm'}`}>98%</span>
+              </div>
+              <div className="flex items-center justify-between p-2 bg-gray-800/50 rounded-lg">
+                <span className={`text-gray-300 ${isSmall ? 'text-xs' : 'text-sm'}`}>Maintenance</span>
+                <span className={`text-yellow-400 ${isSmall ? 'text-xs' : 'text-sm'}`}>94%</span>
+              </div>
+            </div>
+          </div>
+        );
+      case "risk-analysis":
+        return (
+          <div className="h-full overflow-hidden">
+            <div className="space-y-2 overflow-y-auto" style={{ maxHeight: 'calc(100% - 1rem)' }}>
+              <div className="flex items-center space-x-2 p-2 bg-green-900/20 rounded-lg border border-green-500/20">
+                <CheckCircle className={`${isSmall ? 'w-4 h-4' : 'w-5 h-5'} text-green-400`} />
+                <div className="min-w-0 flex-1">
+                  <p className={`text-white ${isSmall ? 'text-xs' : 'text-sm'} font-medium`}>Low Risk</p>
+                  <p className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-xs'}`}>65% of operations</p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-2 p-2 bg-yellow-900/20 rounded-lg border border-yellow-500/20">
+                <AlertTriangle className={`${isSmall ? 'w-4 h-4' : 'w-5 h-5'} text-yellow-400`} />
+                <div className="min-w-0 flex-1">
+                  <p className={`text-white ${isSmall ? 'text-xs' : 'text-sm'} font-medium`}>Medium Risk</p>
+                  <p className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-xs'}`}>25% of operations</p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-2 p-2 bg-red-900/20 rounded-lg border border-red-500/20">
+                <AlertTriangle className={`${isSmall ? 'w-4 h-4' : 'w-5 h-5'} text-red-400`} />
+                <div className="min-w-0 flex-1">
+                  <p className={`text-white ${isSmall ? 'text-xs' : 'text-sm'} font-medium`}>High Risk</p>
+                  <p className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-xs'}`}>10% of operations</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      case "training-completion":
+        return (
+          <div className="h-full overflow-hidden">
+            <div className="space-y-3 overflow-y-auto" style={{ maxHeight: 'calc(100% - 1rem)' }}>
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-sm'}`}>Fall Protection</span>
+                  <span className={`text-white ${isSmall ? 'text-xs' : 'text-sm'}`}>87%</span>
+                </div>
+                <Progress value={87} className="h-2" />
+              </div>
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-sm'}`}>OSHA 10</span>
+                  <span className={`text-white ${isSmall ? 'text-xs' : 'text-sm'}`}>92%</span>
+                </div>
+                <Progress value={92} className="h-2" />
+              </div>
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-sm'}`}>First Aid</span>
+                  <span className={`text-white ${isSmall ? 'text-xs' : 'text-sm'}`}>76%</span>
+                </div>
+                <Progress value={76} className="h-2" />
+              </div>
+            </div>
+          </div>
+        );
+      case "ai-insights":
+        return (
+          <div className="h-full overflow-hidden">
+            <div className="space-y-2 overflow-y-auto" style={{ maxHeight: 'calc(100% - 1rem)' }}>
+              <div className="flex items-center space-x-2 p-2 bg-blue-900/20 rounded-lg border border-blue-500/20">
+                <Brain className={`${isSmall ? 'w-4 h-4' : 'w-5 h-5'} text-blue-400`} />
+                <div className="min-w-0 flex-1">
+                  <p className={`text-white ${isSmall ? 'text-xs' : 'text-sm'} font-medium`}>AI Prediction</p>
+                  <p className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-xs'}`}>23% risk reduction possible</p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-2 p-2 bg-green-900/20 rounded-lg border border-green-500/20">
+                <CheckCircle className={`${isSmall ? 'w-4 h-4' : 'w-5 h-5'} text-green-400`} />
+                <div className="min-w-0 flex-1">
+                  <p className={`text-white ${isSmall ? 'text-xs' : 'text-sm'} font-medium`}>Compliance Up</p>
+                  <p className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-xs'}`}>8% increase this quarter</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      case "safety-score":
+        return (
+          <div className="h-full overflow-hidden flex flex-col items-center justify-center">
+            <div className={`${isSmall ? 'text-2xl' : 'text-4xl'} font-bold text-green-400 mb-2`}>92%</div>
+            <p className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-sm'} text-center`}>Overall Safety Score</p>
+            <div className="w-full mt-3">
+              <Progress value={92} className="h-2" />
+            </div>
+          </div>
+        );
+      default:
+        return (
+          <div className="h-full flex items-center justify-center">
+            <p className="text-gray-400 text-sm">Widget content not available</p>
+          </div>
+        );
+    }
   };
 
   return (
@@ -1620,7 +1931,52 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
           {activeTab === "trends" && (
             <div className="space-y-6">
-              <SafetyTrendsDashboard />
+              <div className="flex items-center justify-between">
+                <h2 className="text-2xl font-bold text-white">Safety Trends</h2>
+                <div className="flex items-center space-x-2">
+                  <Button 
+                    variant="outline" 
+                    onClick={() => setShowTrendsWidgetManager(true)}
+                    className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                  >
+                    <Settings className="w-4 h-4 mr-2" />
+                    Manage Widgets
+                  </Button>
+                </div>
+              </div>
+
+              <div className="relative">
+                <ResponsiveGridLayout
+                  className="layout"
+                  layouts={trendsLayouts}
+                  onLayoutChange={handleTrendsLayoutChange}
+                  cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
+                  rowHeight={60}
+                  preventCollision={false}
+                  compactType="vertical"
+                  useCSSTransforms={true}
+                  isDraggable={true}
+                  isResizable={true}
+                >
+                  {trendsWidgets.filter(widget => widget.visible).map((widget) => (
+                    <div key={widget.id} className="widget-container">
+                      <Card className="h-full bg-slate-800/50 backdrop-blur-sm border-slate-700">
+                        <CardHeader className="pb-3">
+                          <CardTitle className="text-white text-sm flex items-center">
+                            <div className="text-blue-400 mr-2">
+                              {widget.icon}
+                            </div>
+                            {widget.title}
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent className="h-full overflow-hidden">
+                          {generateTrendsWidgetContent(widget)}
+                        </CardContent>
+                      </Card>
+                    </div>
+                  ))}
+                </ResponsiveGridLayout>
+              </div>
             </div>
           )}
 
@@ -2586,6 +2942,65 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 className="bg-emerald-500 hover:bg-emerald-600"
               >
                 Add Department
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Trends Widget Manager Dialog */}
+      <Dialog open={showTrendsWidgetManager} onOpenChange={setShowTrendsWidgetManager}>
+        <DialogContent className="bg-gray-900 border-gray-800 text-white max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-white">Manage Trends Widgets</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div className="grid grid-cols-1 gap-4">
+              {trendsWidgets.map((widget) => (
+                <div
+                  key={widget.id}
+                  className="flex items-center justify-between p-4 bg-gray-800/50 rounded-lg border border-gray-700"
+                >
+                  <div className="flex items-center space-x-3">
+                    <div className="text-blue-400">
+                      {widget.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-white font-medium">{widget.title}</h3>
+                      <p className="text-gray-400 text-sm">
+                        {widget.id === "safety-trends-chart" && "View compliance and safety trends"}
+                        {widget.id === "compliance-metrics" && "Monitor compliance metrics"}
+                        {widget.id === "department-performance" && "Track department performance"}
+                        {widget.id === "risk-analysis" && "Analyze risk levels"}
+                        {widget.id === "training-completion" && "Track training completion"}
+                        {widget.id === "ai-insights" && "Get AI-powered insights"}
+                        {widget.id === "safety-score" && "View overall safety score"}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Switch
+                      checked={widget.visible}
+                      onCheckedChange={(checked) => {
+                        setTrendsWidgets(prev => prev.map(w => 
+                          w.id === widget.id ? { ...w, visible: checked } : w
+                        ));
+                      }}
+                    />
+                    <span className="text-sm text-gray-400">
+                      {widget.visible ? "Visible" : "Hidden"}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="flex justify-end space-x-3 pt-4">
+              <Button
+                variant="outline"
+                onClick={() => setShowTrendsWidgetManager(false)}
+                className="border-gray-600 text-gray-300 hover:bg-gray-800"
+              >
+                Close
               </Button>
             </div>
           </div>
