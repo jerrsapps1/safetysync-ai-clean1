@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { Link, useLocation } from "wouter";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
@@ -229,6 +229,13 @@ export default function WorkspacePage() {
     customDomain: "",
     showBranding: true
   });
+
+  // Memoize tab switching to prevent freezing
+  const handleTabSwitch = useCallback((tab: string) => {
+    if (tab !== activeTab) {
+      setActiveTab(tab);
+    }
+  }, [activeTab]);
 
   // Widget icon mapping
   const getWidgetIcon = (id: string) => {
@@ -795,13 +802,13 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
   }, [layouts]);
 
   // Widget management functions
-  const toggleWidgetVisibility = (widgetId: string) => {
+  const toggleWidgetVisibility = useCallback((widgetId: string) => {
     setWidgets(prev => prev.map(widget => 
       widget.id === widgetId 
         ? { ...widget, visible: !widget.visible }
         : widget
     ));
-  };
+  }, []);
 
 
 
@@ -870,7 +877,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
     return localStorage.getItem('workspace-custom-defaults') !== null;
   };
 
-  const handleLayoutChange = (layout: any, layouts: any) => {
+  const handleLayoutChange = useCallback((layout: any, layouts: any) => {
     // Only update if the layouts are actually different to prevent infinite loops
     if (layouts && Object.keys(layouts).length > 0) {
       setLayouts(prevLayouts => {
@@ -883,7 +890,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         return prevLayouts;
       });
     }
-  };
+  }, []);
 
   // Generate widget content with responsive styling based on widget dimensions
   const generateWidgetContent = (widget: DashboardWidget, layoutItem?: any) => {
@@ -1178,7 +1185,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <Button
             variant={activeTab === "overview" ? "secondary" : "ghost"}
             className="w-full justify-start text-gray-300 hover:text-white"
-            onClick={() => setActiveTab("overview")}
+            onClick={() => handleTabSwitch("overview")}
           >
             <Home className="w-5 h-5 mr-3" />
             {sidebarOpen && "Overview"}
@@ -1186,7 +1193,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <Button
             variant={activeTab === "employees" ? "secondary" : "ghost"}
             className="w-full justify-start text-gray-300 hover:text-white"
-            onClick={() => setActiveTab("employees")}
+            onClick={() => handleTabSwitch("employees")}
           >
             <Users className="w-5 h-5 mr-3" />
             {sidebarOpen && "Employees"}
@@ -1194,7 +1201,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <Button
             variant={activeTab === "training" ? "secondary" : "ghost"}
             className="w-full justify-start text-gray-300 hover:text-white"
-            onClick={() => setActiveTab("training")}
+            onClick={() => handleTabSwitch("training")}
           >
             <BookOpen className="w-5 h-5 mr-3" />
             {sidebarOpen && "Training"}
@@ -1202,7 +1209,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <Button
             variant={activeTab === "certificates" ? "secondary" : "ghost"}
             className="w-full justify-start text-gray-300 hover:text-white"
-            onClick={() => setActiveTab("certificates")}
+            onClick={() => handleTabSwitch("certificates")}
           >
             <Award className="w-5 h-5 mr-3" />
             {sidebarOpen && "Certificates"}
@@ -1210,7 +1217,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <Button
             variant={activeTab === "reports" ? "secondary" : "ghost"}
             className="w-full justify-start text-gray-300 hover:text-white"
-            onClick={() => setActiveTab("reports")}
+            onClick={() => handleTabSwitch("reports")}
           >
             <FileText className="w-5 h-5 mr-3" />
             {sidebarOpen && "Reports"}
@@ -1218,7 +1225,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <Button
             variant={activeTab === "trends" ? "secondary" : "ghost"}
             className="w-full justify-start text-gray-300 hover:text-white"
-            onClick={() => setActiveTab("trends")}
+            onClick={() => handleTabSwitch("trends")}
           >
             <TrendingUp className="w-5 h-5 mr-3" />
             {sidebarOpen && "Trends"}
@@ -1226,7 +1233,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <Button
             variant={activeTab === "instructors" ? "secondary" : "ghost"}
             className="w-full justify-start text-gray-300 hover:text-white"
-            onClick={() => setActiveTab("instructors")}
+            onClick={() => handleTabSwitch("instructors")}
           >
             <GraduationCap className="w-5 h-5 mr-3" />
             {sidebarOpen && "Instructors"}
@@ -1234,7 +1241,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <Button
             variant={activeTab === "organization" ? "secondary" : "ghost"}
             className="w-full justify-start text-gray-300 hover:text-white"
-            onClick={() => setActiveTab("organization")}
+            onClick={() => handleTabSwitch("organization")}
           >
             <Network className="w-5 h-5 mr-3" />
             {sidebarOpen && "Organization"}
@@ -1242,7 +1249,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <Button
             variant={activeTab === "employee-portal" ? "secondary" : "ghost"}
             className="w-full justify-start text-gray-300 hover:text-white"
-            onClick={() => setActiveTab("employee-portal")}
+            onClick={() => handleTabSwitch("employee-portal")}
           >
             <FileUser className="w-5 h-5 mr-3" />
             {sidebarOpen && "Portal"}
@@ -1250,7 +1257,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <Button
             variant={activeTab === "notifications" ? "secondary" : "ghost"}
             className="w-full justify-start text-gray-300 hover:text-white"
-            onClick={() => setActiveTab("notifications")}
+            onClick={() => handleTabSwitch("notifications")}
           >
             <Inbox className="w-5 h-5 mr-3" />
             {sidebarOpen && "Notifications"}
@@ -1258,7 +1265,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <Button
             variant={activeTab === "workplace-poster" ? "secondary" : "ghost"}
             className="w-full justify-start text-gray-300 hover:text-white"
-            onClick={() => setActiveTab("workplace-poster")}
+            onClick={() => handleTabSwitch("workplace-poster")}
           >
             <FileText className="w-5 h-5 mr-3" />
             {sidebarOpen && "Poster"}
@@ -1266,7 +1273,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <Button
             variant={activeTab === "training-calendar" ? "secondary" : "ghost"}
             className="w-full justify-start text-gray-300 hover:text-white"
-            onClick={() => setActiveTab("training-calendar")}
+            onClick={() => handleTabSwitch("training-calendar")}
           >
             <Calendar className="w-5 h-5 mr-3" />
             {sidebarOpen && "Calendar"}
@@ -1274,7 +1281,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <Button
             variant={activeTab === "subscription-billing" ? "secondary" : "ghost"}
             className="w-full justify-start text-gray-300 hover:text-white"
-            onClick={() => setActiveTab("subscription-billing")}
+            onClick={() => handleTabSwitch("subscription-billing")}
           >
             <CreditCard className="w-5 h-5 mr-3" />
             {sidebarOpen && "Billing"}
@@ -1282,7 +1289,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <Button
             variant={activeTab === "analytics-reports" ? "secondary" : "ghost"}
             className="w-full justify-start text-gray-300 hover:text-white"
-            onClick={() => setActiveTab("analytics-reports")}
+            onClick={() => handleTabSwitch("analytics-reports")}
           >
             <BarChart3 className="w-5 h-5 mr-3" />
             {sidebarOpen && "Analytics"}
@@ -1290,7 +1297,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <Button
             variant={activeTab === "settings" ? "secondary" : "ghost"}
             className="w-full justify-start text-gray-300 hover:text-white"
-            onClick={() => setActiveTab("settings")}
+            onClick={() => handleTabSwitch("settings")}
           >
             <Settings className="w-5 h-5 mr-3" />
             {sidebarOpen && "Settings"}
