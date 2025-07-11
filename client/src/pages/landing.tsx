@@ -48,7 +48,9 @@ import {
   ChevronDown,
   Play,
   MessageCircle,
-  X
+  X,
+  AlertTriangle,
+  FileX
 } from "lucide-react";
 import { SafetySyncIcon } from "@/components/ui/safetysync-icon";
 
@@ -277,13 +279,13 @@ export default function LandingPage() {
           </div>
           
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
-            <span className="block text-white">Stay OSHA-Compliant</span>
-            <span className="block text-emerald-300">with Ease</span>
-            <span className="block text-blue-200 text-4xl md:text-5xl lg:text-6xl">Streamline Your Training Documentation</span>
+            <span className="block text-white">Simplify Your</span>
+            <span className="block text-emerald-300">OSHA Compliance</span>
+            <span className="block text-blue-200 text-3xl md:text-4xl lg:text-5xl">Automate Tracking, Stay Audit-Ready, and Protect Your Business</span>
           </h1>
           
           <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-12 leading-relaxed">
-            Automate tracking, certifications, and compliance reports, so you can focus on what matters – keeping your team safe and compliant.
+            The easiest way to keep track of employee training and certifications—without the stress of paperwork, deadlines, or audits.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -333,19 +335,79 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Problem Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            Is Your OSHA Compliance Tracking a <span className="text-red-600">Nightmare?</span>
+          </h2>
+          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+            Keeping track of training requirements, certifications, and deadlines shouldn't be a burden. But if you're like most compliance officers, you're overwhelmed with endless paperwork, tracking spreadsheets, and manual reminders that never seem to stick.
+          </p>
+          <p className="text-lg text-gray-700 mb-12 max-w-2xl mx-auto">
+            If you're still relying on outdated systems, you're risking costly fines, legal exposure, and wasted hours. It's time for a smarter way to manage your compliance.
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              <div className="flex items-start">
+                <div className="flex-shrink-0 w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                  <Clock className="w-4 h-4 text-red-600" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-2">Spending hours on manual tracking and reports?</h3>
+                </div>
+              </div>
+            </div>
+            
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              <div className="flex items-start">
+                <div className="flex-shrink-0 w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                  <AlertTriangle className="w-4 h-4 text-red-600" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-2">Afraid of missing a deadline and risking fines?</h3>
+                </div>
+              </div>
+            </div>
+            
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              <div className="flex items-start">
+                <div className="flex-shrink-0 w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                  <FileX className="w-4 h-4 text-red-600" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-2">Facing audit stress with incomplete or disorganized records?</h3>
+                </div>
+              </div>
+            </div>
+            
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              <div className="flex items-start">
+                <div className="flex-shrink-0 w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                  <Zap className="w-4 h-4 text-red-600" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-2">Juggling between multiple systems that don't communicate?</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Solution Section */}
       <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center px-3 py-1 rounded-md bg-navy-100 text-navy-700 text-sm font-medium mb-4">
-              <Shield className="w-4 h-4 mr-2" />
-              Platform Features
-            </div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              Everything You Need for <span className="text-navy-900">OSHA Compliance</span>
+              A Simple Solution to Stay <span className="text-emerald-600">OSHA-Compliant</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Comprehensive safety management tools designed for modern organizations to maintain compliance effortlessly.
+            <h3 className="text-xl text-gray-600 mb-8">
+              Automated, Accurate, and Always Ready
+            </h3>
+            <p className="text-lg text-gray-700 max-w-3xl mx-auto mb-12">
+              SafetySync.AI is the all-in-one compliance tracker designed specifically for companies like yours. We handle the tedious documentation work—so you don't have to.
             </p>
           </div>
           
@@ -357,8 +419,8 @@ export default function LandingPage() {
                     <Users className="w-6 h-6 text-navy-700" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Automate Compliance Tracking</h3>
-                    <p className="text-gray-600">Track all OSHA-required training in one place and never worry about expired certifications again.</p>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Automated Tracking & Reminders</h3>
+                    <p className="text-gray-600">Eliminate manual paperwork and get automatic alerts for training expiration dates and certification renewals.</p>
                   </div>
                 </div>
               </CardContent>
@@ -371,8 +433,8 @@ export default function LandingPage() {
                     <FileText className="w-6 h-6 text-emerald-700" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Digital Certificates</h3>
-                    <p className="text-gray-600">Generate professional certification documents and digital wallet cards for employees.</p>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Centralized Database</h3>
+                    <p className="text-gray-600">All your employee training records and certifications in one easy-to-navigate system.</p>
                   </div>
                 </div>
               </CardContent>
@@ -385,8 +447,8 @@ export default function LandingPage() {
                     <BarChart3 className="w-6 h-6 text-blue-700" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Simplify Audits</h3>
-                    <p className="text-gray-600">Quickly generate reports that prove your compliance, so you're always audit-ready.</p>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Audit-Ready Reports</h3>
+                    <p className="text-gray-600">Generate detailed, audit-proof reports in minutes—no more scrambling for documents when the inspectors arrive.</p>
                   </div>
                 </div>
               </CardContent>
@@ -399,8 +461,8 @@ export default function LandingPage() {
                     <Clock className="w-6 h-6 text-purple-700" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Stay Ahead of Deadlines</h3>
-                    <p className="text-gray-600">Receive reminders for upcoming training and expiration dates, helping you stay ahead of regulatory requirements.</p>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Easy Integration</h3>
+                    <p className="text-gray-600">Seamlessly integrates with your existing HR or training systems—no disruption to your workflow.</p>
                   </div>
                 </div>
               </CardContent>
@@ -413,8 +475,8 @@ export default function LandingPage() {
                     <TrendingUp className="w-6 h-6 text-orange-700" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Safety Analytics</h3>
-                    <p className="text-gray-600">Interactive dashboards with real-time safety metrics and trend analysis for informed decision-making.</p>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Complete Peace of Mind</h3>
+                    <p className="text-gray-600">Trust that your compliance is always up-to-date and accurate, with secure data storage that meets industry standards.</p>
                   </div>
                 </div>
               </CardContent>
@@ -433,6 +495,15 @@ export default function LandingPage() {
                 </div>
               </CardContent>
             </Card>
+          </div>
+          
+          <div className="text-center mt-16">
+            <Button 
+              onClick={handleTrialClick}
+              className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-lg text-lg font-semibold"
+            >
+              Try It for Free – No Credit Card Required
+            </Button>
           </div>
         </div>
       </section>
