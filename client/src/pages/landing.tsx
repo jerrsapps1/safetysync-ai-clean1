@@ -298,7 +298,8 @@ export default function LandingPage() {
                 });
                 handleTrialClick();
               }}
-              className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 rounded-lg text-lg font-semibold shadow-lg transition-all duration-300"
+              variant="outline"
+              className="border-white/30 text-white hover:bg-white/10 px-8 py-4 rounded-lg text-lg font-semibold backdrop-blur-sm"
             >
               Get Started Free
             </Button>
