@@ -303,27 +303,6 @@ export default function LandingPage() {
             >
               Get Started Free
             </Button>
-            <Button 
-              onClick={() => {
-                toast({
-                  title: "Demo Coming Soon",
-                  description: "Full demo access will be available once the platform is ready for production use.",
-                  duration: 4000,
-                });
-              }}
-              variant="outline"
-              className="border-white/30 text-white hover:bg-white/10 px-8 py-4 rounded-lg text-lg font-semibold backdrop-blur-sm"
-            >
-              <Settings className="w-5 h-5 mr-2" />
-              Demo Coming Soon
-            </Button>
-            <Button 
-              onClick={() => setShowProductTour(true)}
-              variant="outline"
-              className="border-white/30 text-white hover:bg-white/10 px-8 py-4 rounded-lg text-lg font-semibold backdrop-blur-sm"
-            >
-              See How It Works
-            </Button>
           </div>
           
           <div className="flex flex-col sm:flex-row gap-8 justify-center text-sm text-blue-200 mb-8">
