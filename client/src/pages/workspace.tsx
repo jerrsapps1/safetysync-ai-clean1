@@ -220,7 +220,15 @@ function LoginForm() {
 
 export default function WorkspacePage() {
   const { user, isLoading: authLoading, isAuthenticated, logout } = useAuth();
-  const [activeTab, setActiveTab] = useState("overview");
+  const [location, setLocation] = useLocation();
+  
+  // Extract tab from URL or default to overview
+  const getActiveTabFromUrl = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('tab') || 'overview';
+  };
+  
+  const [activeTab, setActiveTab] = useState(getActiveTabFromUrl());
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const { toast } = useToast();
   const [workspaceSettings, setWorkspaceSettings] = useState<WorkspaceSettings>({
@@ -232,11 +240,27 @@ export default function WorkspacePage() {
     showBranding: true
   });
 
-  // Memoize tab switching to prevent freezing
+  // Memoize tab switching to prevent freezing and persist in URL
   const handleTabSwitch = useCallback((tab: string) => {
     if (tab !== activeTab) {
       setActiveTab(tab);
+      // Update URL to persist tab state
+      const newUrl = `/workspace?tab=${tab}`;
+      window.history.pushState({}, '', newUrl);
     }
+  }, [activeTab]);
+
+  // Handle URL changes and browser navigation
+  useEffect(() => {
+    const handlePopState = () => {
+      const newTab = getActiveTabFromUrl();
+      if (newTab !== activeTab) {
+        setActiveTab(newTab);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
   }, [activeTab]);
 
   // Widget icon mapping
