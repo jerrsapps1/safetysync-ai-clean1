@@ -41,11 +41,8 @@ import {
 
 interface TrendData {
   month: string;
-  incidents: number;
   compliance: number;
   training: number;
-  nearMisses: number;
-  severity: number;
 }
 
 interface SafetyMetric {
@@ -62,36 +59,26 @@ interface SafetyMetric {
 const SafetyTrendsDashboard: React.FC = () => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [currentTimeframe, setCurrentTimeframe] = useState('12months');
-  const [selectedMetric, setSelectedMetric] = useState<string>('incidents');
+  const [selectedMetric, setSelectedMetric] = useState<string>('compliance');
   const [animationSpeed, setAnimationSpeed] = useState(1);
 
   // Real-time safety trend data
   const [trendData, setTrendData] = useState<TrendData[]>([
-    { month: 'Jan', incidents: 12, compliance: 92, training: 78, nearMisses: 8, severity: 2.1 },
-    { month: 'Feb', incidents: 10, compliance: 94, training: 82, nearMisses: 6, severity: 1.8 },
-    { month: 'Mar', incidents: 8, compliance: 96, training: 85, nearMisses: 5, severity: 1.5 },
-    { month: 'Apr', incidents: 15, compliance: 89, training: 88, nearMisses: 12, severity: 2.4 },
-    { month: 'May', incidents: 7, compliance: 97, training: 91, nearMisses: 4, severity: 1.2 },
-    { month: 'Jun', incidents: 9, compliance: 95, training: 93, nearMisses: 7, severity: 1.6 },
-    { month: 'Jul', incidents: 6, compliance: 98, training: 96, nearMisses: 3, severity: 1.0 },
-    { month: 'Aug', incidents: 11, compliance: 93, training: 89, nearMisses: 9, severity: 1.9 },
-    { month: 'Sep', incidents: 5, compliance: 99, training: 98, nearMisses: 2, severity: 0.8 },
-    { month: 'Oct', incidents: 8, compliance: 96, training: 94, nearMisses: 6, severity: 1.4 },
-    { month: 'Nov', incidents: 4, compliance: 99, training: 99, nearMisses: 1, severity: 0.5 },
-    { month: 'Dec', incidents: 3, compliance: 100, training: 100, nearMisses: 1, severity: 0.3 }
+    { month: 'Jan', compliance: 92, training: 78 },
+    { month: 'Feb', compliance: 94, training: 82 },
+    { month: 'Mar', compliance: 96, training: 85 },
+    { month: 'Apr', compliance: 89, training: 88 },
+    { month: 'May', compliance: 97, training: 91 },
+    { month: 'Jun', compliance: 95, training: 93 },
+    { month: 'Jul', compliance: 98, training: 96 },
+    { month: 'Aug', compliance: 93, training: 89 },
+    { month: 'Sep', compliance: 99, training: 98 },
+    { month: 'Oct', compliance: 96, training: 94 },
+    { month: 'Nov', compliance: 99, training: 99 },
+    { month: 'Dec', compliance: 100, training: 100 }
   ]);
 
   const safetyMetrics: SafetyMetric[] = [
-    {
-      id: 'incidents',
-      name: 'Safety Incidents',
-      value: 3,
-      trend: 'down',
-      change: -75,
-      target: 0,
-      color: '#ef4444',
-      icon: <AlertTriangle className="w-5 h-5" />
-    },
     {
       id: 'compliance',
       name: 'Compliance Rate',
@@ -111,16 +98,6 @@ const SafetyTrendsDashboard: React.FC = () => {
       target: 95,
       color: '#3b82f6',
       icon: <Users className="w-5 h-5" />
-    },
-    {
-      id: 'nearMisses',
-      name: 'Near Miss Reports',
-      value: 1,
-      trend: 'down',
-      change: -88,
-      target: 5,
-      color: '#f59e0b',
-      icon: <Target className="w-5 h-5" />
     }
   ];
 
@@ -132,11 +109,8 @@ const SafetyTrendsDashboard: React.FC = () => {
       interval = setInterval(() => {
         setTrendData(prev => prev.map(item => ({
           ...item,
-          incidents: Math.max(0, item.incidents + (Math.random() - 0.7) * 2),
           compliance: Math.min(100, Math.max(85, item.compliance + (Math.random() - 0.3) * 3)),
-          training: Math.min(100, Math.max(70, item.training + (Math.random() - 0.2) * 4)),
-          nearMisses: Math.max(0, item.nearMisses + (Math.random() - 0.8) * 1.5),
-          severity: Math.max(0, item.severity + (Math.random() - 0.6) * 0.5)
+          training: Math.min(100, Math.max(70, item.training + (Math.random() - 0.2) * 4))
         })));
       }, 2000 / animationSpeed);
     }
@@ -146,29 +120,29 @@ const SafetyTrendsDashboard: React.FC = () => {
 
   const resetData = () => {
     setTrendData([
-      { month: 'Jan', incidents: 12, compliance: 92, training: 78, nearMisses: 8, severity: 2.1 },
-      { month: 'Feb', incidents: 10, compliance: 94, training: 82, nearMisses: 6, severity: 1.8 },
-      { month: 'Mar', incidents: 8, compliance: 96, training: 85, nearMisses: 5, severity: 1.5 },
-      { month: 'Apr', incidents: 15, compliance: 89, training: 88, nearMisses: 12, severity: 2.4 },
-      { month: 'May', incidents: 7, compliance: 97, training: 91, nearMisses: 4, severity: 1.2 },
-      { month: 'Jun', incidents: 9, compliance: 95, training: 93, nearMisses: 7, severity: 1.6 },
-      { month: 'Jul', incidents: 6, compliance: 98, training: 96, nearMisses: 3, severity: 1.0 },
-      { month: 'Aug', incidents: 11, compliance: 93, training: 89, nearMisses: 9, severity: 1.9 },
-      { month: 'Sep', incidents: 5, compliance: 99, training: 98, nearMisses: 2, severity: 0.8 },
-      { month: 'Oct', incidents: 8, compliance: 96, training: 94, nearMisses: 6, severity: 1.4 },
-      { month: 'Nov', incidents: 4, compliance: 99, training: 99, nearMisses: 1, severity: 0.5 },
-      { month: 'Dec', incidents: 3, compliance: 100, training: 100, nearMisses: 1, severity: 0.3 }
+      { month: 'Jan', compliance: 92, training: 78 },
+      { month: 'Feb', compliance: 94, training: 82 },
+      { month: 'Mar', compliance: 96, training: 85 },
+      { month: 'Apr', compliance: 89, training: 88 },
+      { month: 'May', compliance: 97, training: 91 },
+      { month: 'Jun', compliance: 95, training: 93 },
+      { month: 'Jul', compliance: 98, training: 96 },
+      { month: 'Aug', compliance: 93, training: 89 },
+      { month: 'Sep', compliance: 99, training: 98 },
+      { month: 'Oct', compliance: 96, training: 94 },
+      { month: 'Nov', compliance: 99, training: 99 },
+      { month: 'Dec', compliance: 100, training: 100 }
     ]);
   };
 
   const COLORS = ['#3b82f6', '#22c55e', '#f59e0b', '#ef4444', '#8b5cf6'];
 
   const departmentData = [
-    { name: 'Construction', incidents: 12, compliance: 96 },
-    { name: 'Manufacturing', incidents: 8, compliance: 98 },
-    { name: 'Maintenance', incidents: 15, compliance: 94 },
-    { name: 'Quality Control', incidents: 3, compliance: 100 },
-    { name: 'Transportation', incidents: 7, compliance: 97 }
+    { name: 'Construction', compliance: 96 },
+    { name: 'Manufacturing', compliance: 98 },
+    { name: 'Maintenance', compliance: 94 },
+    { name: 'Quality Control', compliance: 100 },
+    { name: 'Transportation', compliance: 97 }
   ];
 
   const riskData = [
@@ -268,7 +242,7 @@ const SafetyTrendsDashboard: React.FC = () => {
                   {metric.id === 'compliance' || metric.id === 'training' ? '%' : ''}
                 </div>
                 <Progress 
-                  value={metric.id === 'incidents' ? (1 - metric.value / 15) * 100 : metric.value} 
+                  value={metric.value} 
                   className="h-2" 
                   style={{ backgroundColor: `${metric.color}20` }}
                 />
@@ -304,14 +278,7 @@ const SafetyTrendsDashboard: React.FC = () => {
                         borderRadius: '8px'
                       }} 
                     />
-                    <Line 
-                      type="monotone" 
-                      dataKey="incidents" 
-                      stroke="#ef4444" 
-                      strokeWidth={3}
-                      dot={{ fill: '#ef4444', strokeWidth: 2, r: 4 }}
-                      activeDot={{ r: 6, stroke: '#ef4444' }}
-                    />
+
                     <Line 
                       type="monotone" 
                       dataKey="compliance" 
@@ -405,7 +372,6 @@ const SafetyTrendsDashboard: React.FC = () => {
                         borderRadius: '8px'
                       }} 
                     />
-                    <Bar dataKey="incidents" fill="#ef4444" radius={[4, 4, 0, 0]} />
                     <Bar dataKey="compliance" fill="#22c55e" radius={[4, 4, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
