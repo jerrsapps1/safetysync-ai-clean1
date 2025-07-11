@@ -299,7 +299,7 @@ export default function LandingPage() {
                 handleTrialClick();
               }}
               variant="outline"
-              className="border-white/30 text-white hover:bg-white/10 px-8 py-4 rounded-lg text-lg font-semibold backdrop-blur-sm"
+              className="border-white/30 text-white hover:bg-emerald-500/20 hover:border-emerald-300/50 px-8 py-4 rounded-lg text-lg font-semibold backdrop-blur-sm"
             >
               Get Started Free
             </Button>
