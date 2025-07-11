@@ -277,12 +277,13 @@ export default function LandingPage() {
           </div>
           
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
-            <span className="block text-white">Simplify Your</span>
-            <span className="block text-blue-200">OSHA Compliance</span>
+            <span className="block text-white">Stay OSHA-Compliant</span>
+            <span className="block text-emerald-300">with Ease</span>
+            <span className="block text-blue-200 text-4xl md:text-5xl lg:text-6xl">Streamline Your Training Documentation</span>
           </h1>
           
           <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-12 leading-relaxed">
-            Next-generation automated tracking with AI-powered insights, real-time compliance monitoring, and predictive analytics for proactive safety management.
+            Automate tracking, certifications, and compliance reports, so you can focus on what matters – keeping your team safe and compliant.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -356,8 +357,8 @@ export default function LandingPage() {
                     <Users className="w-6 h-6 text-navy-700" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Employee Management</h3>
-                    <p className="text-gray-600">Centralized database for all employee certifications, training records, and compliance status.</p>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Automate Compliance Tracking</h3>
+                    <p className="text-gray-600">Track all OSHA-required training in one place and never worry about expired certifications again.</p>
                   </div>
                 </div>
               </CardContent>
@@ -384,8 +385,8 @@ export default function LandingPage() {
                     <BarChart3 className="w-6 h-6 text-blue-700" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Automated Reporting</h3>
-                    <p className="text-gray-600">Generate comprehensive compliance reports with one-click export to PDF, CSV, or Excel.</p>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Simplify Audits</h3>
+                    <p className="text-gray-600">Quickly generate reports that prove your compliance, so you're always audit-ready.</p>
                   </div>
                 </div>
               </CardContent>
@@ -398,8 +399,8 @@ export default function LandingPage() {
                     <Clock className="w-6 h-6 text-purple-700" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Smart Reminders</h3>
-                    <p className="text-gray-600">Automated notifications for certification renewals, training deadlines, and compliance requirements.</p>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Stay Ahead of Deadlines</h3>
+                    <p className="text-gray-600">Receive reminders for upcoming training and expiration dates, helping you stay ahead of regulatory requirements.</p>
                   </div>
                 </div>
               </CardContent>
@@ -426,8 +427,8 @@ export default function LandingPage() {
                     <Shield className="w-6 h-6 text-red-700" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Risk Management</h3>
-                    <p className="text-gray-600">Comprehensive risk assessment tools with automated compliance gap analysis and recommendations.</p>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Reduce Risk & Liability</h3>
+                    <p className="text-gray-600">Minimize the risk of penalties by ensuring all employee training is properly documented and up-to-date.</p>
                   </div>
                 </div>
               </CardContent>
