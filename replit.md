@@ -130,13 +130,12 @@ User satisfied with comprehensive platform features including dashboard, admin p
 
 ## Recent Changes
 
-- **July 11, 2025** - Added Comprehensive Enterprise Management Suite:
+- **July 11, 2025** - Added Comprehensive Document Management System:
   - Created Document Management System with upload, search, filtering, categorization, and expiration monitoring
-  - Implemented Incident Reporting System with dashboard analytics, detailed reporting, and investigation tracking
-  - Added professional enterprise-grade safety management tools with OSHA compliance tracking
-  - Enhanced workspace with cost analysis, severity classification, and regulatory compliance features
-  - Both systems accessible via workspace sidebar (Documents and Incidents tabs)
-  - Navigation headers and descriptions properly configured for new enterprise features
+  - Added professional enterprise-grade safety document management tools with OSHA compliance tracking
+  - Enhanced workspace with document organization, regulatory compliance, and expiration monitoring features
+  - Document system accessible via workspace sidebar (Documents tab)
+  - Navigation headers and descriptions properly configured for document management features
   - Deployment suggested to sync latest changes with live version
 - **July 11, 2025** - Fixed Critical Navigation Performance Issue:
   - Resolved navigation sidebar freezing when clicking tab buttons
