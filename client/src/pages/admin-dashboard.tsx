@@ -45,6 +45,7 @@ import {
   X,
   Zap
 } from "lucide-react";
+import { SafetySyncIcon } from "@/components/ui/safetysync-icon";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -120,9 +121,7 @@ function AdminLoginCheck() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
-            <div className="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center">
-              <Shield className="w-8 h-8 text-white" />
-            </div>
+            <SafetySyncIcon size={64} className="rounded-lg" />
           </div>
           <h1 className="text-3xl font-bold text-white mb-2">Admin Dashboard</h1>
           <p className="text-gray-300">Secure access to platform analytics</p>
@@ -606,7 +605,7 @@ export default function AdminDashboard() {
           <div className="flex items-center justify-between">
             {sidebarOpen && (
               <div className="flex items-center space-x-2">
-                <Shield className="w-8 h-8 text-red-400" />
+                <SafetySyncIcon size={32} className="text-red-400" />
                 <h1 className="text-xl font-bold">Admin Dashboard</h1>
               </div>
             )}
@@ -632,7 +631,7 @@ export default function AdminDashboard() {
                   { id: 'users', label: 'Users', icon: <Users className="w-4 h-4" /> },
                   { id: 'financial', label: 'Financial', icon: <DollarSign className="w-4 h-4" /> },
                   { id: 'system', label: 'System', icon: <Server className="w-4 h-4" /> },
-                  { id: 'security', label: 'Security', icon: <Shield className="w-4 h-4" /> },
+                  { id: 'security', label: 'Security', icon: <SafetySyncIcon size={16} /> },
                   { id: 'content', label: 'Content', icon: <FileText className="w-4 h-4" /> },
                 ].map((category) => (
                   <Button

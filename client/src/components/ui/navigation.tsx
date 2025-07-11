@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Shield, User } from "lucide-react";
+import { SafetySyncIcon } from "@/components/ui/safetysync-icon";
 
 interface NavigationProps {
   onTrialClick: () => void;
@@ -27,9 +28,7 @@ export function Navigation({ onTrialClick, onDemoClick, onLoginClick, user, onLo
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0 flex items-center">
-              <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center mr-3">
-                <Shield className="w-5 h-5 text-white" />
-              </div>
+              <SafetySyncIcon size={32} className="mr-3" />
               <span className="text-xl font-bold text-gray-900">SafetySync.AI</span>
             </div>
           </div>

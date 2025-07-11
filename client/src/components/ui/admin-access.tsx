@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Shield, Lock, Eye, EyeOff, Home, Brain } from "lucide-react";
+import { SafetySyncIcon } from "@/components/ui/safetysync-icon";
 
 interface AdminAccessProps {
   onAccessGranted: () => void;
@@ -96,9 +97,7 @@ export function AdminAccess({ onAccessGranted }: AdminAccessProps) {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <div className="flex justify-center mb-4">
-            <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-              <Shield className="w-6 h-6 text-white" />
-            </div>
+            <SafetySyncIcon size={48} className="rounded-lg" />
           </div>
           <CardTitle className="text-2xl">Admin Access Required</CardTitle>
           <CardDescription>

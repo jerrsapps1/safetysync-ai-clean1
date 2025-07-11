@@ -50,6 +50,7 @@ import {
   MessageCircle,
   X
 } from "lucide-react";
+import { SafetySyncIcon } from "@/components/ui/safetysync-icon";
 
 export default function LandingPage() {
   const [isTrialDialogOpen, setIsTrialDialogOpen] = useState(false);

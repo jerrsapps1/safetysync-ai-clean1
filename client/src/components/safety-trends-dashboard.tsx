@@ -38,6 +38,7 @@ import {
   Pause,
   RotateCcw
 } from 'lucide-react';
+import { SafetySyncIcon } from '@/components/ui/safetysync-icon';
 
 interface TrendData {
   month: string;
@@ -87,7 +88,7 @@ const SafetyTrendsDashboard: React.FC = () => {
       change: 8,
       target: 100,
       color: '#22c55e',
-      icon: <Shield className="w-5 h-5" />
+      icon: <SafetySyncIcon size={20} />
     },
     {
       id: 'training',
