@@ -1310,8 +1310,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
 
 
-  // Generate trends widget content
-  const generateTrendsWidgetContent = (widget: DashboardWidget, layoutItem?: any) => {
+  // Generate trends widget content with memoization
+  const generateTrendsWidgetContent = useCallback((widget: DashboardWidget, layoutItem?: any) => {
     const isSmall = layoutItem ? (layoutItem.w <= 3 && layoutItem.h <= 3) : false;
     
     switch (widget.id) {
@@ -1484,7 +1484,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           </div>
         );
     }
-  };
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 flex">
@@ -1933,49 +1933,193 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <h2 className="text-2xl font-bold text-white">Safety Trends</h2>
-                <div className="flex items-center space-x-2">
-                  <Button 
-                    variant="outline" 
-                    onClick={() => setShowTrendsWidgetManager(true)}
-                    className="border-gray-600 text-gray-300 hover:bg-gray-700"
-                  >
-                    <Settings className="w-4 h-4 mr-2" />
-                    Manage Widgets
-                  </Button>
-                </div>
               </div>
 
-              <div className="relative">
-                <ResponsiveGridLayout
-                  className="layout"
-                  layouts={trendsLayouts}
-                  onLayoutChange={handleTrendsLayoutChange}
-                  cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
-                  rowHeight={60}
-                  preventCollision={false}
-                  compactType="vertical"
-                  useCSSTransforms={true}
-                  isDraggable={true}
-                  isResizable={true}
-                >
-                  {trendsWidgets.filter(widget => widget.visible).map((widget) => (
-                    <div key={widget.id} className="widget-container">
-                      <Card className="h-full bg-slate-800/50 backdrop-blur-sm border-slate-700">
-                        <CardHeader className="pb-3">
-                          <CardTitle className="text-white text-sm flex items-center">
-                            <div className="text-blue-400 mr-2">
-                              {widget.icon}
-                            </div>
-                            {widget.title}
-                          </CardTitle>
-                        </CardHeader>
-                        <CardContent className="h-full overflow-hidden">
-                          {generateTrendsWidgetContent(widget)}
-                        </CardContent>
-                      </Card>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* Safety Trends Chart */}
+                <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-white text-sm flex items-center">
+                      <TrendingUp className="w-4 h-4 mr-2 text-blue-400" />
+                      Safety Trends
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="text-gray-400 text-sm">Compliance Rate</span>
+                        <div className="flex items-center space-x-1">
+                          <TrendingUp className="w-3 h-3 text-green-400" />
+                          <span className="text-green-400 text-sm">96%</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-gray-400 text-sm">Training Completion</span>
+                        <div className="flex items-center space-x-1">
+                          <TrendingUp className="w-3 h-3 text-blue-400" />
+                          <span className="text-blue-400 text-sm">89%</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-gray-400 text-sm">Safety Score</span>
+                        <div className="flex items-center space-x-1">
+                          <TrendingUp className="w-3 h-3 text-yellow-400" />
+                          <span className="text-yellow-400 text-sm">92%</span>
+                        </div>
+                      </div>
                     </div>
-                  ))}
-                </ResponsiveGridLayout>
+                  </CardContent>
+                </Card>
+
+                {/* Compliance Metrics */}
+                <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-white text-sm flex items-center">
+                      <BarChart3 className="w-4 h-4 mr-2 text-blue-400" />
+                      Compliance Metrics
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3">
+                      <div>
+                        <div className="flex justify-between mb-1">
+                          <span className="text-gray-400 text-sm">Overall Compliance</span>
+                          <span className="text-green-400 text-sm">96%</span>
+                        </div>
+                        <Progress value={96} className="h-2" />
+                      </div>
+                      <div>
+                        <div className="flex justify-between mb-1">
+                          <span className="text-gray-400 text-sm">Training Progress</span>
+                          <span className="text-blue-400 text-sm">89%</span>
+                        </div>
+                        <Progress value={89} className="h-2" />
+                      </div>
+                      <div>
+                        <div className="flex justify-between mb-1">
+                          <span className="text-gray-400 text-sm">Safety Score</span>
+                          <span className="text-yellow-400 text-sm">92%</span>
+                        </div>
+                        <Progress value={92} className="h-2" />
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Department Performance */}
+                <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-white text-sm flex items-center">
+                      <Users className="w-4 h-4 mr-2 text-blue-400" />
+                      Department Performance
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between p-2 bg-gray-800/50 rounded-lg">
+                        <span className="text-gray-300 text-sm">Construction</span>
+                        <span className="text-green-400 text-sm">96%</span>
+                      </div>
+                      <div className="flex items-center justify-between p-2 bg-gray-800/50 rounded-lg">
+                        <span className="text-gray-300 text-sm">Manufacturing</span>
+                        <span className="text-green-400 text-sm">98%</span>
+                      </div>
+                      <div className="flex items-center justify-between p-2 bg-gray-800/50 rounded-lg">
+                        <span className="text-gray-300 text-sm">Maintenance</span>
+                        <span className="text-yellow-400 text-sm">94%</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Risk Analysis */}
+                <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-white text-sm flex items-center">
+                      <AlertTriangle className="w-4 h-4 mr-2 text-blue-400" />
+                      Risk Analysis
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-2">
+                      <div className="flex items-center space-x-2 p-2 bg-green-900/20 rounded-lg border border-green-500/20">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        <div className="flex-1">
+                          <p className="text-white text-sm font-medium">Low Risk</p>
+                          <p className="text-gray-400 text-xs">65% of operations</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center space-x-2 p-2 bg-yellow-900/20 rounded-lg border border-yellow-500/20">
+                        <AlertTriangle className="w-4 h-4 text-yellow-400" />
+                        <div className="flex-1">
+                          <p className="text-white text-sm font-medium">Medium Risk</p>
+                          <p className="text-gray-400 text-xs">25% of operations</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center space-x-2 p-2 bg-red-900/20 rounded-lg border border-red-500/20">
+                        <AlertTriangle className="w-4 h-4 text-red-400" />
+                        <div className="flex-1">
+                          <p className="text-white text-sm font-medium">High Risk</p>
+                          <p className="text-gray-400 text-xs">10% of operations</p>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Training Completion */}
+                <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-white text-sm flex items-center">
+                      <BookOpen className="w-4 h-4 mr-2 text-blue-400" />
+                      Training Completion
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3">
+                      <div>
+                        <div className="flex justify-between mb-1">
+                          <span className="text-gray-400 text-sm">Fall Protection</span>
+                          <span className="text-white text-sm">87%</span>
+                        </div>
+                        <Progress value={87} className="h-2" />
+                      </div>
+                      <div>
+                        <div className="flex justify-between mb-1">
+                          <span className="text-gray-400 text-sm">OSHA 10</span>
+                          <span className="text-white text-sm">92%</span>
+                        </div>
+                        <Progress value={92} className="h-2" />
+                      </div>
+                      <div>
+                        <div className="flex justify-between mb-1">
+                          <span className="text-gray-400 text-sm">First Aid</span>
+                          <span className="text-white text-sm">76%</span>
+                        </div>
+                        <Progress value={76} className="h-2" />
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Safety Score */}
+                <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-white text-sm flex items-center">
+                      <Shield className="w-4 h-4 mr-2 text-blue-400" />
+                      Safety Score
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-col items-center justify-center h-24">
+                      <div className="text-3xl font-bold text-green-400 mb-2">92%</div>
+                      <p className="text-gray-400 text-sm text-center">Overall Safety Score</p>
+                      <div className="w-full mt-3">
+                        <Progress value={92} className="h-2" />
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
             </div>
           )}
@@ -2948,64 +3092,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         </DialogContent>
       </Dialog>
 
-      {/* Trends Widget Manager Dialog */}
-      <Dialog open={showTrendsWidgetManager} onOpenChange={setShowTrendsWidgetManager}>
-        <DialogContent className="bg-gray-900 border-gray-800 text-white max-w-2xl">
-          <DialogHeader>
-            <DialogTitle className="text-white">Manage Trends Widgets</DialogTitle>
-          </DialogHeader>
-          <div className="space-y-4">
-            <div className="grid grid-cols-1 gap-4">
-              {trendsWidgets.map((widget) => (
-                <div
-                  key={widget.id}
-                  className="flex items-center justify-between p-4 bg-gray-800/50 rounded-lg border border-gray-700"
-                >
-                  <div className="flex items-center space-x-3">
-                    <div className="text-blue-400">
-                      {widget.icon}
-                    </div>
-                    <div>
-                      <h3 className="text-white font-medium">{widget.title}</h3>
-                      <p className="text-gray-400 text-sm">
-                        {widget.id === "safety-trends-chart" && "View compliance and safety trends"}
-                        {widget.id === "compliance-metrics" && "Monitor compliance metrics"}
-                        {widget.id === "department-performance" && "Track department performance"}
-                        {widget.id === "risk-analysis" && "Analyze risk levels"}
-                        {widget.id === "training-completion" && "Track training completion"}
-                        {widget.id === "ai-insights" && "Get AI-powered insights"}
-                        {widget.id === "safety-score" && "View overall safety score"}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Switch
-                      checked={widget.visible}
-                      onCheckedChange={(checked) => {
-                        setTrendsWidgets(prev => prev.map(w => 
-                          w.id === widget.id ? { ...w, visible: checked } : w
-                        ));
-                      }}
-                    />
-                    <span className="text-sm text-gray-400">
-                      {widget.visible ? "Visible" : "Hidden"}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="flex justify-end space-x-3 pt-4">
-              <Button
-                variant="outline"
-                onClick={() => setShowTrendsWidgetManager(false)}
-                className="border-gray-600 text-gray-300 hover:bg-gray-800"
-              >
-                Close
-              </Button>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
+
     </div>
   );
 }
