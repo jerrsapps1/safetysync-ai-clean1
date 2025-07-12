@@ -2628,7 +2628,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           )}
 
           {activeTab === "company-profile" && (
-            <div className="bg-white min-h-screen">
+            <div className="p-8">
               <CompanyProfile />
             </div>
           )}
