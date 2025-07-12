@@ -25,6 +25,8 @@ import EmployeePortal from "@/components/portal/EmployeePortal";
 import NotificationSystem from "@/components/notifications/NotificationSystem";
 import WorkplacePosterManagement from "@/components/workplace/WorkplacePosterManagement";
 import TrainingCalendar from "@/components/calendar/TrainingCalendar";
+import SubscriptionBilling from "@/components/billing/SubscriptionBilling";
+import AnalyticsReports from "@/components/reports/AnalyticsReports";
 
 
 import { AIPatternSkeleton } from "@/components/ui/ai-skeleton";
@@ -2142,163 +2144,14 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           )}
 
           {activeTab === "subscription-billing" && (
-            <div className="space-y-6">
-              <div className="flex items-center justify-between">
-                <h2 className="text-xl font-semibold text-white">Subscription & Billing</h2>
-                <Button className="bg-emerald-500 hover:bg-emerald-600" onClick={() => toast({ title: "Manage Billing", description: "Opening billing management panel..." })}>
-                  <CreditCard className="w-4 h-4 mr-2" />
-                  Manage Billing
-                </Button>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
-                  <CardHeader>
-                    <CardTitle className="text-white">Current Plan</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      <div className="text-center p-4 bg-emerald-900/20 rounded-lg border border-emerald-500/20">
-                        <h3 className="text-2xl font-bold text-white">Professional</h3>
-                        <p className="text-emerald-400 font-semibold">$95.00/month</p>
-                        <p className="text-gray-400 text-sm">Billed annually</p>
-                      </div>
-                      <div className="space-y-2">
-                        <div className="flex justify-between">
-                          <span className="text-gray-400">Plan Started</span>
-                          <span className="text-white">January 1, 2025</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-400">Next Billing</span>
-                          <span className="text-white">August 1, 2025</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-400">Payment Method</span>
-                          <span className="text-white">•••• 4242</span>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
-                  <CardHeader>
-                    <CardTitle className="text-white">Usage This Month</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      <div className="space-y-2">
-                        <div className="flex justify-between">
-                          <span className="text-gray-400">Certificates Generated</span>
-                          <span className="text-white">23 / 50</span>
-                        </div>
-                        <div className="w-full bg-gray-700 rounded-full h-2">
-                          <div className="bg-blue-500 h-2 rounded-full" style={{ width: '46%' }}></div>
-                        </div>
-                      </div>
-                      <div className="space-y-2">
-                        <div className="flex justify-between">
-                          <span className="text-gray-400">Digital Wallet Cards</span>
-                          <span className="text-white">31 / 50</span>
-                        </div>
-                        <div className="w-full bg-gray-700 rounded-full h-2">
-                          <div className="bg-green-500 h-2 rounded-full" style={{ width: '62%' }}></div>
-                        </div>
-                      </div>
-                      <div className="space-y-2">
-                        <div className="flex justify-between">
-                          <span className="text-gray-400">Additional Charges</span>
-                          <span className="text-white">$0.00</span>
-                        </div>
-                        <p className="text-gray-400 text-sm">Usage within plan limits</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
+            <div className="p-8">
+              <SubscriptionBilling />
             </div>
           )}
 
           {activeTab === "analytics-reports" && (
-            <div className="space-y-6">
-              <div className="flex items-center justify-between">
-                <h2 className="text-xl font-semibold text-white">Analytics & Reports</h2>
-                <Button className="bg-emerald-500 hover:bg-emerald-600" onClick={() => toast({ title: "Export Report", description: "Generating report for download..." })}>
-                  <Download className="w-4 h-4 mr-2" />
-                  Export Report
-                </Button>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
-                  <CardContent className="p-4">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-gray-400 text-sm">Total Employees</p>
-                        <p className="text-2xl font-bold text-white">147</p>
-                      </div>
-                      <Users className="w-8 h-8 text-blue-400" />
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
-                  <CardContent className="p-4">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-gray-400 text-sm">Compliance Rate</p>
-                        <p className="text-2xl font-bold text-white">88%</p>
-                      </div>
-                      <CheckCircle className="w-8 h-8 text-green-400" />
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
-                  <CardContent className="p-4">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-gray-400 text-sm">Training Hours</p>
-                        <p className="text-2xl font-bold text-white">1,247</p>
-                      </div>
-                      <Clock className="w-8 h-8 text-purple-400" />
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
-                  <CardContent className="p-4">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-gray-400 text-sm">Certificates Issued</p>
-                        <p className="text-2xl font-bold text-white">89</p>
-                      </div>
-                      <Award className="w-8 h-8 text-yellow-400" />
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
-                <CardHeader>
-                  <CardTitle className="text-white">Report Templates</CardTitle>
-                  <CardDescription className="text-gray-400">
-                    Generate comprehensive reports for compliance tracking
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <Button variant="outline" className="h-auto p-4 flex flex-col items-center space-y-2">
-                      <BarChart3 className="w-8 h-8 text-blue-400" />
-                      <span className="text-white">Monthly Compliance</span>
-                      <span className="text-gray-400 text-sm">Department breakdown</span>
-                    </Button>
-                    <Button variant="outline" className="h-auto p-4 flex flex-col items-center space-y-2">
-                      <TrendingUp className="w-8 h-8 text-green-400" />
-                      <span className="text-white">Training Analytics</span>
-                      <span className="text-gray-400 text-sm">Progress tracking</span>
-                    </Button>
-                    <Button variant="outline" className="h-auto p-4 flex flex-col items-center space-y-2">
-                      <FileText className="w-8 h-8 text-purple-400" />
-                      <span className="text-white">Audit Ready Report</span>
-                      <span className="text-gray-400 text-sm">OSHA compliance</span>
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+            <div className="p-8">
+              <AnalyticsReports />
             </div>
           )}
 
