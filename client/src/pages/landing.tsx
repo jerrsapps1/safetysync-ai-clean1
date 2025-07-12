@@ -290,14 +290,13 @@ export default function LandingPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Button 
               onClick={handleDemoClick}
-              className="bg-white text-blue-700 font-semibold px-6 py-3 rounded-2xl shadow hover:bg-gray-100 transition-all duration-200 hover:scale-105"
+              className="bg-white text-blue-700 font-semibold px-6 py-3 rounded-2xl shadow hover:bg-gray-100 transition-all duration-200 hover:scale-105 hover:shadow-lg transform"
             >
               Book a Demo
             </Button>
             <Button 
               onClick={handleTrialClick}
-              variant="outline"
-              className="border border-white text-white font-semibold px-6 py-3 rounded-2xl hover:bg-white hover:text-blue-700 transition-all duration-200 hover:scale-105"
+              className="bg-emerald-500 text-white font-semibold px-6 py-3 rounded-2xl shadow hover:bg-emerald-600 transition-all duration-200 hover:scale-105 hover:shadow-lg transform"
             >
               Get Started Free
             </Button>
