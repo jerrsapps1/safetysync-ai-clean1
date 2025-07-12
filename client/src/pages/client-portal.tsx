@@ -257,13 +257,13 @@ export default function ClientPortal() {
             </div>
             <div className="flex items-center space-x-4">
               <Link href="/workspace">
-                <Button variant="outline" className="border-white/20 text-white hover:bg-white/10">
+                <Button variant="outline" className="border-white/40 text-white hover:bg-white/10 hover:border-white/60 bg-white/5">
                   <Settings className="w-4 h-4 mr-2" />
                   Workspace
                 </Button>
               </Link>
               <Link href="/dashboard">
-                <Button variant="outline" className="border-white/20 text-white hover:bg-white/10">
+                <Button variant="outline" className="border-white/40 text-white hover:bg-white/10 hover:border-white/60 bg-white/5">
                   <Home className="w-4 h-4 mr-2" />
                   Dashboard
                 </Button>
@@ -271,7 +271,7 @@ export default function ClientPortal() {
               <Button 
                 onClick={handleLogout}
                 variant="outline" 
-                className="border-red-500/50 text-red-400 hover:bg-red-500/10 hover:border-red-500"
+                className="border-red-400/60 text-red-300 hover:bg-red-500/10 hover:border-red-400 bg-red-500/5"
               >
                 <LogOut className="w-4 h-4 mr-2" />
                 Logout
