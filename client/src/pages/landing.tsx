@@ -278,31 +278,26 @@ export default function LandingPage() {
             </span>
           </div>
           
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
-            <span className="block text-white">Simplify Your</span>
-            <span className="block text-emerald-300">OSHA Compliance</span>
-            <span className="block text-blue-200 text-3xl md:text-4xl lg:text-5xl">Automate Tracking, Stay Audit-Ready, and Protect Your Business</span>
+          <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
+            <span className="block text-white">Modern Safety Management,</span>
+            <span className="block text-emerald-300">Made Simple</span>
           </h1>
           
-          <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-12 leading-relaxed">
-            The easiest way to keep track of employee training and certifications—without the stress of paperwork, deadlines, or audits.
+          <p className="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto mb-12 leading-relaxed">
+            Ditch the spreadsheets. SafetySync brings all your safety and compliance workflows into one smart, powerful platform—so you can stay inspection-ready, reduce risk, and focus on what matters most.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Button 
-              id="hero-cta-primary"
-              onClick={() => {
-                trackConversionEvent({
-                  event: 'Custom',
-                  action: 'hero_trial_cta_clicked',
-                  category: 'engagement',
-                  label: 'Hero Section - Start Your Free Trial',
-                  value: 49
-                });
-                handleTrialClick();
-              }}
+              onClick={handleDemoClick}
+              className="bg-white text-blue-700 font-semibold px-6 py-3 rounded-2xl shadow hover:bg-gray-100 transition"
+            >
+              Book a Demo
+            </Button>
+            <Button 
+              onClick={handleTrialClick}
               variant="outline"
-              className="border-white/30 text-white hover:bg-emerald-500/20 hover:border-emerald-300/50 hover:text-emerald-50 px-8 py-4 rounded-lg text-lg font-semibold backdrop-blur-sm"
+              className="border border-white text-white font-semibold px-6 py-3 rounded-2xl hover:bg-white hover:text-blue-700 transition"
             >
               Get Started Free
             </Button>
@@ -335,63 +330,27 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Problem Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-            Is Your OSHA Compliance Tracking a <span className="text-red-600">Nightmare?</span>
-          </h2>
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Keeping track of training requirements, certifications, and deadlines shouldn't be a burden. But if you're like most compliance officers, you're overwhelmed with endless paperwork, tracking spreadsheets, and manual reminders that never seem to stick.
-          </p>
-          <p className="text-lg text-gray-700 mb-12 max-w-2xl mx-auto">
-            If you're still relying on outdated systems, you're risking costly fines, legal exposure, and wasted hours. It's time for a smarter way to manage your compliance.
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-              <div className="flex items-start">
-                <div className="flex-shrink-0 w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-4 mt-1">
-                  <Clock className="w-4 h-4 text-red-600" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Spending hours on manual tracking and reports?</h3>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-              <div className="flex items-start">
-                <div className="flex-shrink-0 w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-4 mt-1">
-                  <AlertTriangle className="w-4 h-4 text-red-600" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Afraid of missing a deadline and risking fines?</h3>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-              <div className="flex items-start">
-                <div className="flex-shrink-0 w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-4 mt-1">
-                  <FileX className="w-4 h-4 text-red-600" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Facing audit stress with incomplete or disorganized records?</h3>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-              <div className="flex items-start">
-                <div className="flex-shrink-0 w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-4 mt-1">
-                  <Zap className="w-4 h-4 text-red-600" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Juggling between multiple systems that don't communicate?</h3>
-                </div>
-              </div>
-            </div>
+      {/* Features Section */}
+      <section className="py-16 px-6 max-w-6xl mx-auto">
+        <h2 className="text-3xl font-bold text-center mb-12">
+          Built for Safety Leaders Who Do It All
+        </h2>
+        <div className="grid md:grid-cols-2 gap-8 text-left">
+          <div className="bg-gray-50 p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+            <h3 className="text-xl font-semibold mb-2">Real-Time Dashboards</h3>
+            <p>Stay ahead of inspections with live visibility into training, audits, and corrective actions.</p>
+          </div>
+          <div className="bg-gray-50 p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+            <h3 className="text-xl font-semibold mb-2">Mobile-First Access</h3>
+            <p>Assign tasks and complete checklists from any device—field to office, online or offline.</p>
+          </div>
+          <div className="bg-gray-50 p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+            <h3 className="text-xl font-semibold mb-2">Training Management</h3>
+            <p>Easily assign, track, and verify required safety trainings across teams, roles, and locations.</p>
+          </div>
+          <div className="bg-gray-50 p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+            <h3 className="text-xl font-semibold mb-2">Compliance Automation</h3>
+            <p>Simplify OSHA recordkeeping, deadline reminders, and documentation—zero guesswork, full confidence.</p>
           </div>
         </div>
       </section>
@@ -505,6 +464,39 @@ export default function LandingPage() {
               Try It for Free – No Credit Card Required
             </Button>
           </div>
+        </div>
+      </section>
+
+      {/* Testimonial Section */}
+      <section className="bg-blue-50 py-16 px-6 text-center">
+        <blockquote className="max-w-3xl mx-auto text-xl italic text-gray-700">
+          "SafetySync gave us back hours every week. No more hunting for reports or worrying about audits. It's everything I needed in one place."
+        </blockquote>
+        <p className="mt-4 font-semibold">— Safety Manager, Industrial Services</p>
+      </section>
+
+      {/* Final CTA Section */}
+      <section className="py-20 px-6 text-center bg-gray-900 text-white">
+        <h2 className="text-3xl font-bold mb-4">
+          Get Peace of Mind—Without the Paper Chase
+        </h2>
+        <p className="text-lg mb-8 max-w-2xl mx-auto">
+          Join safety professionals across construction, manufacturing, and industrial services who trust SafetySync to streamline their compliance.
+        </p>
+        <div className="flex justify-center gap-4">
+          <Button 
+            onClick={handleDemoClick}
+            className="bg-white text-gray-900 font-semibold px-6 py-3 rounded-2xl hover:bg-gray-100 transition"
+          >
+            Book a Demo
+          </Button>
+          <Button 
+            onClick={handleTrialClick}
+            variant="outline"
+            className="border border-white text-white font-semibold px-6 py-3 rounded-2xl hover:bg-white hover:text-gray-900 transition"
+          >
+            Start Free — No Credit Card Required
+          </Button>
         </div>
       </section>
 
