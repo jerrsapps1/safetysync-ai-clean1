@@ -18,6 +18,7 @@ import { AICloneDetector } from "@/components/ui/ai-clone-detector";
 import { CollaborationLayer } from "@/components/ui/collaboration-layer";
 import EmployeeManagement from "@/components/enterprise/EmployeeManagement";
 import DocumentManager from "@/components/enterprise/DocumentManager";
+import CompanyProfile from "@/components/enterprise/CompanyProfile";
 
 
 import { AIPatternSkeleton } from "@/components/ui/ai-skeleton";
@@ -1462,6 +1463,14 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             {sidebarOpen && "Analytics"}
           </Button>
           <Button
+            variant={activeTab === "company-profile" ? "secondary" : "ghost"}
+            className="w-full justify-start text-gray-300 hover:text-white"
+            onClick={() => handleTabSwitch("company-profile")}
+          >
+            <Building className="w-5 h-5 mr-3" />
+            {sidebarOpen && "Company Profile"}
+          </Button>
+          <Button
             variant={activeTab === "settings" ? "secondary" : "ghost"}
             className="w-full justify-start text-gray-300 hover:text-white"
             onClick={() => handleTabSwitch("settings")}
@@ -2615,6 +2624,12 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   </div>
                 </CardContent>
               </Card>
+            </div>
+          )}
+
+          {activeTab === "company-profile" && (
+            <div className="bg-white min-h-screen">
+              <CompanyProfile />
             </div>
           )}
 

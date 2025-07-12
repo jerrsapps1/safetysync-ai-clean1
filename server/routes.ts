@@ -10,7 +10,8 @@ import {
   insertCloneDetectionScanSchema, insertHelpDeskTicketSchema, insertPromoCodeUsageSchema,
   insertEmployeeSchema, insertTrainingProgramSchema, insertTrainingSessionSchema,
   insertEmployeeTrainingSchema, insertCertificateSchema, insertDocumentSchema,
-  insertAuditLogSchema, insertNotificationSchema, insertIntegrationSchema, insertLocationSchema
+  insertAuditLogSchema, insertNotificationSchema, insertIntegrationSchema, insertLocationSchema,
+  insertCompanyProfileSchema
 } from "@shared/schema";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
@@ -1534,6 +1535,49 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error fetching locations:", error);
       res.status(500).json({ error: "Failed to fetch locations" });
+    }
+  });
+
+  // Company Profile API routes
+  app.get("/api/company-profile", async (req, res) => {
+    try {
+      const userId = 1; // Mock user ID for demo purposes
+      const profile = await storage.getCompanyProfile(userId);
+      res.json(profile);
+    } catch (error) {
+      console.error("Error fetching company profile:", error);
+      res.status(500).json({ error: "Failed to fetch company profile" });
+    }
+  });
+
+  app.post("/api/company-profile", async (req, res) => {
+    try {
+      const validation = insertCompanyProfileSchema.safeParse(req.body);
+      if (!validation.success) {
+        return res.status(400).json({ error: "Invalid company profile data", details: validation.error.errors });
+      }
+      
+      const profile = await storage.createCompanyProfile(validation.data);
+      res.json(profile);
+    } catch (error) {
+      console.error("Error creating company profile:", error);
+      res.status(500).json({ error: "Failed to create company profile" });
+    }
+  });
+
+  app.put("/api/company-profile/:userId", async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const validation = insertCompanyProfileSchema.safeParse(req.body);
+      if (!validation.success) {
+        return res.status(400).json({ error: "Invalid company profile data", details: validation.error.errors });
+      }
+      
+      const profile = await storage.updateCompanyProfile(parseInt(userId), validation.data);
+      res.json(profile);
+    } catch (error) {
+      console.error("Error updating company profile:", error);
+      res.status(500).json({ error: "Failed to update company profile" });
     }
   });
 

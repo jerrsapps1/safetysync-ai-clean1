@@ -8,7 +8,8 @@ import {
   type TrainingProgram, type InsertTrainingProgram, type TrainingSession, type InsertTrainingSession,
   type EmployeeTraining, type InsertEmployeeTraining, type Certificate, type InsertCertificate,
   type Document, type InsertDocument, type AuditLog, type InsertAuditLog, type Notification, 
-  type InsertNotification, type Integration, type InsertIntegration, type Location, type InsertLocation
+  type InsertNotification, type Integration, type InsertIntegration, type Location, type InsertLocation,
+  companyProfiles, type CompanyProfile, type InsertCompanyProfile
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, and, gt } from "drizzle-orm";
@@ -145,6 +146,11 @@ export interface IStorage {
   updateLocation(id: number, updates: Partial<Location>): Promise<void>;
   deleteLocation(id: number): Promise<void>;
   getActiveLocations(userId: number): Promise<Location[]>;
+  
+  // Company Profile Management
+  getCompanyProfile(userId: number): Promise<CompanyProfile | undefined>;
+  createCompanyProfile(profile: InsertCompanyProfile): Promise<CompanyProfile>;
+  updateCompanyProfile(userId: number, updates: Partial<CompanyProfile>): Promise<CompanyProfile>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -803,6 +809,29 @@ export class DatabaseStorage implements IStorage {
   async getActiveLocations(userId: number): Promise<Location[]> {
     return await db.select().from(locations)
       .where(and(eq(locations.userId, userId), eq(locations.isActive, true)));
+  }
+
+  // Company Profile Management
+  async getCompanyProfile(userId: number): Promise<CompanyProfile | undefined> {
+    const [profile] = await db.select().from(companyProfiles).where(eq(companyProfiles.userId, userId));
+    return profile || undefined;
+  }
+
+  async createCompanyProfile(profile: InsertCompanyProfile): Promise<CompanyProfile> {
+    const [newProfile] = await db
+      .insert(companyProfiles)
+      .values(profile)
+      .returning();
+    return newProfile;
+  }
+
+  async updateCompanyProfile(userId: number, updates: Partial<CompanyProfile>): Promise<CompanyProfile> {
+    const [updatedProfile] = await db
+      .update(companyProfiles)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(companyProfiles.userId, userId))
+      .returning();
+    return updatedProfile;
   }
 }
 

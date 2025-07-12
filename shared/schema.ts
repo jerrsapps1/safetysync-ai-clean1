@@ -406,3 +406,42 @@ export type InsertIntegration = z.infer<typeof insertIntegrationSchema>;
 export type Integration = typeof integrations.$inferSelect;
 export type InsertLocation = z.infer<typeof insertLocationSchema>;
 export type Location = typeof locations.$inferSelect;
+
+// Company Profile Schema
+export const companyProfiles = pgTable("company_profiles", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull().unique(),
+  companyName: text("company_name").notNull(),
+  industry: text("industry").notNull(),
+  companySize: text("company_size").notNull(),
+  address: text("address").notNull(),
+  city: text("city").notNull(),
+  state: text("state").notNull(),
+  zipCode: text("zip_code").notNull(),
+  country: text("country").notNull().default("United States"),
+  phone: text("phone").notNull(),
+  email: text("email").notNull(),
+  website: text("website"),
+  description: text("description"),
+  safetyOfficer: text("safety_officer").notNull(),
+  safetyOfficerEmail: text("safety_officer_email").notNull(),
+  safetyOfficerPhone: text("safety_officer_phone").notNull(),
+  complianceManager: text("compliance_manager").notNull(),
+  complianceManagerEmail: text("compliance_manager_email").notNull(),
+  primaryColor: text("primary_color").default("#10b981"),
+  secondaryColor: text("secondary_color").default("#1e40af"),
+  showBranding: boolean("show_branding").default(true),
+  customDomain: text("custom_domain"),
+  logoUrl: text("logo_url"),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const insertCompanyProfileSchema = createInsertSchema(companyProfiles).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export type InsertCompanyProfile = z.infer<typeof insertCompanyProfileSchema>;
+export type CompanyProfile = typeof companyProfiles.$inferSelect;
