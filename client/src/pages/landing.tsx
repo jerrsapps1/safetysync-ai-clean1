@@ -485,14 +485,13 @@ export default function LandingPage() {
         <div className="flex justify-center gap-4">
           <Button 
             onClick={handleDemoClick}
-            className="bg-white text-gray-900 font-semibold px-6 py-3 rounded-2xl hover:bg-gray-100 transition"
+            className="bg-white text-gray-900 font-semibold px-6 py-3 rounded-2xl hover:bg-gray-100 transition-all duration-200 hover:scale-105 hover:shadow-lg transform"
           >
             Book a Demo
           </Button>
           <Button 
             onClick={handleTrialClick}
-            variant="outline"
-            className="border border-white text-white font-semibold px-6 py-3 rounded-2xl hover:bg-white hover:text-gray-900 transition"
+            className="bg-emerald-500 text-white font-semibold px-6 py-3 rounded-2xl hover:bg-emerald-600 transition-all duration-200 hover:scale-105 hover:shadow-lg transform"
           >
             Start Free — No Credit Card Required
           </Button>
@@ -511,22 +510,15 @@ export default function LandingPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               onClick={handleTrialClick}
-              className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-lg text-lg font-semibold"
+              className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-200 hover:scale-105 hover:shadow-lg transform"
             >
               Start Your Free Trial
             </Button>
             <Button 
-              onClick={() => {
-                toast({
-                  title: "Demo Coming Soon",
-                  description: "Full demo access will be available once the platform is ready for production use.",
-                  duration: 4000,
-                });
-              }}
-              variant="outline"
-              className="border-white/30 text-white hover:bg-white/10 px-8 py-4 rounded-lg text-lg font-semibold"
+              onClick={handleDemoClick}
+              className="bg-white text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-all duration-200 hover:scale-105 hover:shadow-lg transform"
             >
-              Schedule Demo
+              Book a Demo
             </Button>
           </div>
         </div>
