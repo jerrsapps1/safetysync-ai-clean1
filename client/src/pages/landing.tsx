@@ -242,8 +242,6 @@ export default function LandingPage() {
         onTrialClick={handleTrialClick} 
         onDemoClick={handleDemoClick}
         onLoginClick={handleLoginClick}
-        user={user}
-        onLogout={logout}
       />
 
       {/* Hero Section */}
