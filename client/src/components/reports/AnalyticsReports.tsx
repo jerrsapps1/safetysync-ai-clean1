@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useToast } from "@/hooks/use-toast";
 import { 
   BarChart3, 
   TrendingUp, 
@@ -199,6 +200,41 @@ export default function AnalyticsReports() {
   const [activeTab, setActiveTab] = useState("overview");
   const [selectedPeriod, setSelectedPeriod] = useState("30d");
   const [selectedDepartment, setSelectedDepartment] = useState("all");
+  const { toast } = useToast();
+
+  const handleViewReport = (reportName: string) => {
+    toast({
+      title: "Opening Report",
+      description: `Loading ${reportName} in new window...`
+    });
+    
+    // Simulate opening a report in a new window
+    setTimeout(() => {
+      window.open(`/reports/${reportName.toLowerCase().replace(/\s+/g, '-')}.pdf`, '_blank');
+    }, 1000);
+  };
+
+  const handleDownloadReport = (reportName: string) => {
+    toast({
+      title: "Downloading Report",
+      description: `Generating ${reportName} for download...`
+    });
+    
+    // Simulate downloading a report
+    setTimeout(() => {
+      const link = document.createElement('a');
+      link.href = `/api/reports/download/${reportName.toLowerCase().replace(/\s+/g, '-')}`;
+      link.download = `${reportName.toLowerCase().replace(/\s+/g, '-')}-${new Date().toISOString().split('T')[0]}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      toast({
+        title: "Download Complete",
+        description: `${reportName} has been downloaded successfully.`
+      });
+    }, 2000);
+  };
 
   const getRiskColor = (score: number) => {
     if (score < 15) return 'bg-green-500/20 text-green-400 border-green-500/30';
@@ -264,11 +300,25 @@ export default function AnalyticsReports() {
               <SelectItem value="1y">Last year</SelectItem>
             </SelectContent>
           </Select>
-          <Button className="bg-emerald-500 hover:bg-emerald-600 text-white">
+          <Button 
+            className="bg-emerald-500 hover:bg-emerald-600 text-white"
+            onClick={() => handleDownloadReport("Analytics Dashboard Export")}
+          >
             <Download className="w-4 h-4 mr-2" />
             Export Data
           </Button>
-          <Button className="bg-blue-500 hover:bg-blue-600 text-white">
+          <Button 
+            className="bg-blue-500 hover:bg-blue-600 text-white"
+            onClick={() => {
+              toast({
+                title: "Refreshing Analytics",
+                description: "Updating all data and metrics..."
+              });
+              setTimeout(() => {
+                window.location.reload();
+              }, 1000);
+            }}
+          >
             <RefreshCw className="w-4 h-4 mr-2" />
             Refresh
           </Button>
@@ -553,11 +603,19 @@ export default function AnalyticsReports() {
                     <span className="text-white">{template.lastGenerated}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Button size="sm" className="bg-blue-500 hover:bg-blue-600 text-white">
+                    <Button 
+                      size="sm" 
+                      className="bg-blue-500 hover:bg-blue-600 text-white"
+                      onClick={() => handleViewReport(template.name)}
+                    >
                       <Eye className="w-4 h-4 mr-2" />
                       View Report
                     </Button>
-                    <Button size="sm" className="bg-emerald-500 hover:bg-emerald-600 text-white">
+                    <Button 
+                      size="sm" 
+                      className="bg-emerald-500 hover:bg-emerald-600 text-white"
+                      onClick={() => handleDownloadReport(template.name)}
+                    >
                       <Download className="w-4 h-4 mr-2" />
                       Download
                     </Button>
