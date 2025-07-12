@@ -8,11 +8,9 @@ interface NavigationProps {
   onTrialClick: () => void;
   onDemoClick: () => void;
   onLoginClick: () => void;
-  user?: any;
-  onLogout?: () => void;
 }
 
-export function Navigation({ onTrialClick, onDemoClick, onLoginClick, user, onLogout }: NavigationProps) {
+export function Navigation({ onTrialClick, onDemoClick, onLoginClick }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const scrollToSection = (sectionId: string) => {
@@ -82,46 +80,20 @@ export function Navigation({ onTrialClick, onDemoClick, onLoginClick, user, onLo
           </div>
           
           <div className="flex items-center space-x-4">
-            {user ? (
-              <div className="flex items-center space-x-3">
-                <a 
-                  href="/workspace"
-                  className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors"
-                >
-                  Workspace
-                </a>
-                <div className="flex items-center space-x-2">
-                  <div className="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center">
-                    <User className="w-4 h-4 text-white" />
-                  </div>
-                  <span className="text-sm font-medium text-gray-700">{user.name}</span>
-                </div>
-                <Button 
-                  variant="ghost" 
-                  onClick={onLogout}
-                  className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors"
-                >
-                  Sign Out
-                </Button>
-              </div>
-            ) : (
-              <>
-                <Link href="/client-portal">
-                  <Button 
-                    variant="ghost" 
-                    className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors"
-                  >
-                    Sign in to your account
-                  </Button>
-                </Link>
-                <Button 
-                  onClick={onTrialClick}
-                  className="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-                >
-                  Get Started Free
-                </Button>
-              </>
-            )}
+            <Link href="/client-portal">
+              <Button 
+                variant="ghost" 
+                className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors"
+              >
+                Client Login
+              </Button>
+            </Link>
+            <Button 
+              onClick={onTrialClick}
+              className="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+            >
+              Get Started Free
+            </Button>
           </div>
           
           {/* Mobile menu button */}

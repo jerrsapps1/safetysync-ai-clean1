@@ -396,7 +396,7 @@ export default function ClientPortal() {
               <Link href="/workspace">
                 <Button variant="outline" className="border-emerald-400 text-emerald-200 hover:bg-emerald-500/20 hover:border-emerald-300 bg-emerald-500/10 font-medium">
                   <Settings className="w-4 h-4 mr-2" />
-                  Client Login
+                  Access Workspace
                 </Button>
               </Link>
               <Button 

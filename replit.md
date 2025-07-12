@@ -140,9 +140,12 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Enhanced messaging to prevent demo users from attempting to create accounts
   - Established clear separation: landing page for prospects, client portal for existing clients only
   - **Navigation Update**: Replaced direct workspace access with "Client Login" button to create proper authentication gate
-  - Client portal now shows "Client Login" button instead of direct workspace access to prevent bypass
+  - Client portal now shows "Access Workspace" button instead of direct workspace access to prevent bypass
   - Removed dashboard button from navigation to focus on workspace access flow
   - Login/logout functionality contained within client portal for proper session management
+  - **Landing Page Navigation**: Simplified to always show "Client Login" button regardless of authentication state
+  - Removed conditional navigation based on user authentication to create consistent experience
+  - Client portal serves as the authentication gate for all workspace access
 
 - **July 12, 2025** - Fixed Client Portal Navigation Issues:
   - Enhanced button visibility with better contrast (bg-white/5 background, border-white/40)
