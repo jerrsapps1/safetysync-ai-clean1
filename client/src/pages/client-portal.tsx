@@ -73,8 +73,10 @@ export default function ClientPortal() {
   const [activeTab, setActiveTab] = useState<'specials' | 'updates' | 'upcoming' | 'feedback'>('specials');
   const [newComment, setNewComment] = useState('');
   const [userName, setUserName] = useState('');
+  const [loginEmail, setLoginEmail] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
   const { toast } = useToast();
-  const { logout } = useAuth();
+  const { user, isAuthenticated, isLoading, login, logout } = useAuth();
 
   // Sample data - in production, this would come from your API
   const specials: Special[] = [
@@ -227,8 +229,38 @@ export default function ClientPortal() {
     ));
   };
 
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    try {
+      const result = await login(loginEmail, loginPassword);
+      
+      if (result.success) {
+        toast({
+          title: "Welcome Back!",
+          description: "You have been successfully logged in",
+          variant: "default"
+        });
+        // No need to refresh - useAuth will handle state updates
+      } else {
+        toast({
+          title: "Login Failed",
+          description: result.message || "Invalid email or password",
+          variant: "destructive"
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to log in. Please try again.",
+        variant: "destructive"
+      });
+    }
+  };
+
   const handleLogout = () => {
-    logout();
+    // Clear auth and redirect to landing page
+    fetch('/api/auth/logout', { method: 'POST' });
     toast({
       title: "Logged Out",
       description: "You have been successfully logged out",
@@ -238,6 +270,100 @@ export default function ClientPortal() {
     window.location.href = '/';
   };
 
+  // Show loading state
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 flex items-center justify-center">
+        <div className="text-center">
+          <SafetySyncIcon size={64} className="mx-auto mb-4 animate-pulse" />
+          <p className="text-white text-lg">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show login form if not authenticated
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 relative overflow-hidden">
+        {/* Background Effects */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(120,119,198,0.3),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(59,130,246,0.2),transparent_50%)]" />
+        
+        {/* Tech Grid Pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]" />
+
+        <div className="relative z-10 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
+          <div className="max-w-md w-full space-y-8">
+            <div className="text-center">
+              <SafetySyncIcon size={64} className="mx-auto mb-4" />
+              <h2 className="text-3xl font-bold text-white">Sign in to your account</h2>
+              <p className="mt-2 text-sm text-gray-300">
+                Access your SafetySync.AI client portal
+              </p>
+            </div>
+            
+            <Card className="bg-black/20 backdrop-blur-sm border-white/10">
+              <CardContent className="p-6">
+                <form onSubmit={handleLogin} className="space-y-6">
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
+                      Email address
+                    </label>
+                    <Input
+                      id="email"
+                      type="email"
+                      required
+                      value={loginEmail}
+                      onChange={(e) => setLoginEmail(e.target.value)}
+                      className="bg-white/10 border-white/20 text-white placeholder-gray-400"
+                      placeholder="Enter your email"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="password" className="block text-sm font-medium text-white mb-2">
+                      Password
+                    </label>
+                    <Input
+                      id="password"
+                      type="password"
+                      required
+                      value={loginPassword}
+                      onChange={(e) => setLoginPassword(e.target.value)}
+                      className="bg-white/10 border-white/20 text-white placeholder-gray-400"
+                      placeholder="Enter your password"
+                    />
+                  </div>
+                  
+                  <div>
+                    <Button 
+                      type="submit" 
+                      className="w-full bg-emerald-500 hover:bg-emerald-600 text-white"
+                    >
+                      <LogIn className="w-4 h-4 mr-2" />
+                      Sign in
+                    </Button>
+                  </div>
+                </form>
+                
+                <div className="mt-6 text-center">
+                  <p className="text-sm text-gray-300">
+                    Don't have an account?{' '}
+                    <Link href="/" className="text-emerald-400 hover:text-emerald-300">
+                      Contact sales for access
+                    </Link>
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Show client portal content if authenticated
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 relative overflow-hidden">
       {/* Background Effects */}
