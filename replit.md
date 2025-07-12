@@ -130,6 +130,16 @@ User satisfied with comprehensive platform features including dashboard, admin p
 
 ## Recent Changes
 
+- **July 12, 2025** - Restructured Authentication Flow for Client-Only Access:
+  - Changed landing page navigation: "Sign In" button now reads "Sign in to your account" and redirects to client portal
+  - Updated client portal to show login form only for existing clients with clear messaging
+  - Added prominent warning that client portal is "For existing clients only" 
+  - Integrated with existing JWT-based authentication system using useAuth hook
+  - Added logout endpoint to backend (/api/auth/logout) for proper session handling
+  - Login form now clearly states "Client accounts are created after subscription signup"
+  - Enhanced messaging to prevent demo users from attempting to create accounts
+  - Established clear separation: landing page for prospects, client portal for existing clients only
+
 - **July 12, 2025** - Fixed Client Portal Navigation Issues:
   - Enhanced button visibility with better contrast (bg-white/5 background, border-white/40)
   - Improved button styling to be visible without hover requirement
