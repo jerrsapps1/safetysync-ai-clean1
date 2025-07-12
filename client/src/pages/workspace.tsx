@@ -146,7 +146,8 @@ function LoginForm() {
         title: "Login Successful",
         description: "Welcome to your SafetySync.AI workspace!",
       });
-      window.location.reload();
+      // Redirect to client portal after successful login
+      window.location.href = '/client-portal';
     } else {
       toast({
         title: "Login Failed",
