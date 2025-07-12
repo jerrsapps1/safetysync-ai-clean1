@@ -23,6 +23,8 @@ import TrainingManagement from "@/components/training/TrainingManagement";
 import CertificateGeneration from "@/components/certificates/CertificateGeneration";
 import EmployeePortal from "@/components/portal/EmployeePortal";
 import NotificationSystem from "@/components/notifications/NotificationSystem";
+import WorkplacePosterManagement from "@/components/workplace/WorkplacePosterManagement";
+import TrainingCalendar from "@/components/calendar/TrainingCalendar";
 
 
 import { AIPatternSkeleton } from "@/components/ui/ai-skeleton";
@@ -2128,189 +2130,14 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           )}
 
           {activeTab === "workplace-poster" && (
-            <div className="space-y-6">
-              <div className="flex items-center justify-between">
-                <h2 className="text-xl font-semibold text-white">Workplace Poster Management</h2>
-                <Button className="bg-emerald-500 hover:bg-emerald-600" onClick={handleAddPoster}>
-                  <Plus className="w-4 h-4 mr-2" />
-                  Add Poster
-                </Button>
-              </div>
-              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
-                <CardHeader>
-                  <CardTitle className="text-white">Required OSHA Posters</CardTitle>
-                  <CardDescription className="text-gray-400">
-                    Track and manage mandatory workplace safety posters
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
-                        <div className="flex items-center space-x-3">
-                          <CheckCircle className="w-5 h-5 text-green-400" />
-                          <div>
-                            <p className="text-white font-medium">OSHA Job Safety Poster</p>
-                            <p className="text-gray-400 text-sm">Current - Updated 2024</p>
-                          </div>
-                        </div>
-                        <Button variant="outline" size="sm" onClick={() => handleViewPoster("OSHA Job Safety Poster")}>
-                          <Eye className="w-4 h-4 mr-2" />
-                          View
-                        </Button>
-                      </div>
-                      <div className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
-                        <div className="flex items-center space-x-3">
-                          <CheckCircle className="w-5 h-5 text-green-400" />
-                          <div>
-                            <p className="text-white font-medium">Emergency Contact Info</p>
-                            <p className="text-gray-400 text-sm">Current - Updated 2024</p>
-                          </div>
-                        </div>
-                        <Button variant="outline" size="sm">
-                          <Eye className="w-4 h-4 mr-2" />
-                          View
-                        </Button>
-                      </div>
-                      <div className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
-                        <div className="flex items-center space-x-3">
-                          <AlertTriangle className="w-5 h-5 text-yellow-400" />
-                          <div>
-                            <p className="text-white font-medium">Equal Opportunity Poster</p>
-                            <p className="text-gray-400 text-sm">Needs Update - 2023</p>
-                          </div>
-                        </div>
-                        <Button variant="outline" size="sm" onClick={() => handleUpdatePoster("Equal Opportunity Poster")}>
-                          <Upload className="w-4 h-4 mr-2" />
-                          Update
-                        </Button>
-                      </div>
-                    </div>
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
-                        <div className="flex items-center space-x-3">
-                          <CheckCircle className="w-5 h-5 text-green-400" />
-                          <div>
-                            <p className="text-white font-medium">Workers' Compensation</p>
-                            <p className="text-gray-400 text-sm">Current - Updated 2024</p>
-                          </div>
-                        </div>
-                        <Button variant="outline" size="sm">
-                          <Eye className="w-4 h-4 mr-2" />
-                          View
-                        </Button>
-                      </div>
-                      <div className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
-                        <div className="flex items-center space-x-3">
-                          <CheckCircle className="w-5 h-5 text-green-400" />
-                          <div>
-                            <p className="text-white font-medium">Right to Know Act</p>
-                            <p className="text-gray-400 text-sm">Current - Updated 2024</p>
-                          </div>
-                        </div>
-                        <Button variant="outline" size="sm">
-                          <Eye className="w-4 h-4 mr-2" />
-                          View
-                        </Button>
-                      </div>
-                      <div className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
-                        <div className="flex items-center space-x-3">
-                          <Clock className="w-5 h-5 text-blue-400" />
-                          <div>
-                            <p className="text-white font-medium">Minimum Wage Notice</p>
-                            <p className="text-gray-400 text-sm">Review Due - July 2025</p>
-                          </div>
-                        </div>
-                        <Button variant="outline" size="sm" onClick={() => handleSchedulePoster("Minimum Wage Notice")}>
-                          <Calendar className="w-4 h-4 mr-2" />
-                          Schedule
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+            <div className="p-8">
+              <WorkplacePosterManagement />
             </div>
           )}
 
           {activeTab === "training-calendar" && (
-            <div className="space-y-6">
-              <div className="flex items-center justify-between">
-                <h2 className="text-xl font-semibold text-white">Training Calendar</h2>
-                <Button className="bg-emerald-500 hover:bg-emerald-600" onClick={handleScheduleTraining}>
-                  <Plus className="w-4 h-4 mr-2" />
-                  Schedule Training
-                </Button>
-              </div>
-              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
-                <CardHeader>
-                  <CardTitle className="text-white">Upcoming Training Sessions</CardTitle>
-                  <CardDescription className="text-gray-400">
-                    View and manage scheduled training sessions
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between p-4 bg-gray-800/50 rounded-lg">
-                      <div className="flex items-center space-x-4">
-                        <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
-                          <Calendar className="w-6 h-6 text-white" />
-                        </div>
-                        <div>
-                          <h3 className="text-white font-semibold">Fall Protection Training</h3>
-                          <p className="text-gray-400">July 15, 2025 - 9:00 AM to 12:00 PM</p>
-                          <p className="text-gray-400 text-sm">Instructor: John Smith • Room: Training Center A</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Badge className="bg-blue-100 text-blue-700">12 Enrolled</Badge>
-                        <Button variant="outline" size="sm">
-                          <Users className="w-4 h-4 mr-2" />
-                          Manage
-                        </Button>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between p-4 bg-gray-800/50 rounded-lg">
-                      <div className="flex items-center space-x-4">
-                        <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center">
-                          <Calendar className="w-6 h-6 text-white" />
-                        </div>
-                        <div>
-                          <h3 className="text-white font-semibold">OSHA 30 Hour Course</h3>
-                          <p className="text-gray-400">July 22, 2025 - 8:00 AM to 5:00 PM</p>
-                          <p className="text-gray-400 text-sm">Instructor: Mike Rodriguez • Room: Training Center B</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Badge className="bg-green-100 text-green-700">8 Enrolled</Badge>
-                        <Button variant="outline" size="sm">
-                          <Users className="w-4 h-4 mr-2" />
-                          Manage
-                        </Button>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between p-4 bg-gray-800/50 rounded-lg">
-                      <div className="flex items-center space-x-4">
-                        <div className="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center">
-                          <Calendar className="w-6 h-6 text-white" />
-                        </div>
-                        <div>
-                          <h3 className="text-white font-semibold">First Aid/CPR Certification</h3>
-                          <p className="text-gray-400">July 29, 2025 - 1:00 PM to 4:00 PM</p>
-                          <p className="text-gray-400 text-sm">Instructor: Sarah Johnson • Room: Training Center A</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Badge className="bg-purple-100 text-purple-700">15 Enrolled</Badge>
-                        <Button variant="outline" size="sm">
-                          <Users className="w-4 h-4 mr-2" />
-                          Manage
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+            <div className="p-8">
+              <TrainingCalendar />
             </div>
           )}
 
