@@ -338,7 +338,7 @@ export default function ContactPage() {
                   <div>
                     <p className="font-medium">Support Hours</p>
                     <p className="text-sm text-gray-600">
-                      Mon-Fri: 7AM-7PM EST<br />
+                      Mon-Fri: 7AM-7PM CT<br />
                       Weekend: Limited availability
                     </p>
                   </div>
@@ -419,7 +419,7 @@ export default function ContactPage() {
                 support@safetysync.ai
               </Button>
               <p className="text-sm text-blue-600 self-center">
-                Monday-Friday: 7AM-7PM EST
+                Monday-Friday: 7AM-7PM CT
               </p>
             </div>
           </CardContent>
