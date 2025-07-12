@@ -75,6 +75,8 @@ export default function ClientPortal() {
   const [userName, setUserName] = useState('');
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
+  const [showAuthPopup, setShowAuthPopup] = useState(false);
+  const [isAuthenticating, setIsAuthenticating] = useState(false);
   const { toast } = useToast();
   const { user, isAuthenticated, isLoading, login, logout } = useAuth();
 
@@ -273,6 +275,49 @@ export default function ClientPortal() {
   // Debug logging
   console.log('Client Portal - isLoading:', isLoading, 'isAuthenticated:', isAuthenticated, 'user:', user);
 
+  const handleWorkspaceAccess = () => {
+    if (isAuthenticated) {
+      setShowAuthPopup(true);
+    } else {
+      toast({
+        title: "Authentication Required",
+        description: "Please log in to access your workspace.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handlePopupAuth = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsAuthenticating(true);
+    
+    try {
+      await login(loginEmail, loginPassword);
+      setShowAuthPopup(false);
+      setLoginEmail('');
+      setLoginPassword('');
+      
+      // Redirect to workspace after successful authentication
+      window.location.href = '/workspace';
+      
+      toast({
+        title: "Authentication Successful",
+        description: "Welcome to your workspace!",
+        duration: 3000,
+      });
+    } catch (error) {
+      toast({
+        title: "Authentication Failed",
+        description: "Please check your credentials and try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsAuthenticating(false);
+    }
+  };
+
+
+
   // Show loading state
   if (isLoading) {
     return (
@@ -392,23 +437,7 @@ export default function ClientPortal() {
               <SafetySyncIcon size={32} className="mr-3" />
               <span className="text-xl font-bold text-white">SafetySync.AI Client Portal</span>
             </div>
-            <div className="flex items-center space-x-2 md:space-x-4">
-              <Link href="/workspace">
-                <Button variant="outline" className="border-emerald-400 text-emerald-200 hover:bg-emerald-500/20 hover:border-emerald-300 bg-emerald-500/10 font-medium">
-                  <Settings className="w-4 h-4 mr-2" />
-                  Access Workspace
-                </Button>
-              </Link>
-              <Button 
-                onClick={handleLogout}
-                variant="outline" 
-                className="border-red-400 text-red-200 hover:bg-red-500/20 hover:border-red-300 bg-red-500/10 font-medium px-3 py-2"
-              >
-                <LogOut className="w-4 h-4 mr-1 md:mr-2" />
-                <span className="hidden sm:inline">Logout</span>
-                <span className="sm:hidden">Exit</span>
-              </Button>
-            </div>
+            {/* Header navigation removed - authentication now handled by popup */}
           </div>
         </div>
       </header>
@@ -427,12 +456,13 @@ export default function ClientPortal() {
           
           {/* Quick Access Buttons */}
           <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <Link href="/workspace">
-              <Button className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 text-lg">
-                <Settings className="w-5 h-5 mr-3" />
-                Access Client Workspace
-              </Button>
-            </Link>
+            <Button 
+              onClick={handleWorkspaceAccess}
+              className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 text-lg"
+            >
+              <Settings className="w-5 h-5 mr-3" />
+              Access Client Workspace
+            </Button>
             <Button 
               onClick={handleLogout}
               className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 text-lg"
@@ -658,6 +688,71 @@ export default function ClientPortal() {
           </div>
         </div>
       </footer>
+
+      {/* Authentication Popup */}
+      {showAuthPopup && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="bg-slate-900 border border-white/10 rounded-lg p-6 max-w-md w-full mx-4 shadow-2xl">
+            <div className="text-center mb-6">
+              <SafetySyncIcon size={48} className="mx-auto mb-4" />
+              <h2 className="text-2xl font-bold text-white mb-2">Secure Authentication</h2>
+              <p className="text-gray-300">
+                Please confirm your credentials to access your workspace
+              </p>
+            </div>
+            
+            <form onSubmit={handlePopupAuth} className="space-y-4">
+              <div>
+                <label htmlFor="popup-email" className="block text-sm font-medium text-white mb-2">
+                  Email
+                </label>
+                <Input
+                  id="popup-email"
+                  type="email"
+                  required
+                  value={loginEmail}
+                  onChange={(e) => setLoginEmail(e.target.value)}
+                  className="bg-white/10 border-white/20 text-white placeholder-gray-400"
+                  placeholder="Enter your email"
+                />
+              </div>
+              
+              <div>
+                <label htmlFor="popup-password" className="block text-sm font-medium text-white mb-2">
+                  Password
+                </label>
+                <Input
+                  id="popup-password"
+                  type="password"
+                  required
+                  value={loginPassword}
+                  onChange={(e) => setLoginPassword(e.target.value)}
+                  className="bg-white/10 border-white/20 text-white placeholder-gray-400"
+                  placeholder="Enter your password"
+                />
+              </div>
+              
+              <div className="flex space-x-3 pt-4">
+                <Button 
+                  type="submit" 
+                  disabled={isAuthenticating}
+                  className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white"
+                >
+                  {isAuthenticating ? 'Authenticating...' : 'Access Workspace'}
+                </Button>
+                <Button 
+                  type="button"
+                  onClick={() => setShowAuthPopup(false)}
+                  variant="outline"
+                  className="flex-1 border-white/20 text-white hover:bg-white/10"
+                >
+                  Cancel
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
