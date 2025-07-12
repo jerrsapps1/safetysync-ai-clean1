@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { trackConversionEvent } from "@/lib/analytics";
+import { Link } from "wouter";
 import { 
   Download, 
   FileText, 
@@ -24,7 +25,8 @@ import {
   Building,
   Factory,
   Heart,
-  Wrench
+  Wrench,
+  Home
 } from "lucide-react";
 
 interface LeadMagnet {
@@ -249,6 +251,18 @@ export default function LeadMagnetsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
+      {/* Top Home Button */}
+      <div className="bg-white border-b border-gray-200 px-4 sm:px-6 lg:px-8 py-3">
+        <div className="max-w-7xl mx-auto">
+          <Link href="/">
+            <Button variant="outline" className="flex items-center gap-2">
+              <Home className="w-4 h-4" />
+              Back to Home
+            </Button>
+          </Link>
+        </div>
+      </div>
+
       {/* Header */}
       <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
@@ -505,6 +519,18 @@ export default function LeadMagnetsPage() {
             </Button>
           </div>
         </section>
+
+        {/* Bottom Home Button */}
+        <div className="bg-white border-t border-gray-200 px-4 sm:px-6 lg:px-8 py-6 mt-12">
+          <div className="max-w-7xl mx-auto text-center">
+            <Link href="/">
+              <Button variant="outline" className="flex items-center gap-2 mx-auto">
+                <Home className="w-4 h-4" />
+                Back to Home
+              </Button>
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

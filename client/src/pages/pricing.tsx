@@ -4,23 +4,29 @@ import { Button } from "@/components/ui/button";
 import { PricingCalculator } from "@/components/ui/pricing-calculator";
 import { FAQSection } from "@/components/ui/faq-section";
 import { LiveChatWidget } from "@/components/ui/live-chat-widget";
-import { ArrowLeft, MessageCircle } from "lucide-react";
+import { ArrowLeft, MessageCircle, Home } from "lucide-react";
 import { Link } from "wouter";
 
 export default function PricingPage() {
   const [showChat, setShowChat] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Header */}
-        <div className="text-center mb-16">
+    <div className="min-h-screen bg-gray-50">
+      {/* Top Home Button */}
+      <div className="bg-white border-b border-gray-200 px-4 sm:px-6 lg:px-8 py-3">
+        <div className="max-w-7xl mx-auto">
           <Link href="/">
-            <Button variant="outline" className="mb-8">
-              <ArrowLeft className="w-4 h-4 mr-2" />
+            <Button variant="outline" className="flex items-center gap-2">
+              <Home className="w-4 h-4" />
               Back to Home
             </Button>
           </Link>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Header */}
+        <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Simple, Transparent Pricing
           </h1>
@@ -91,6 +97,18 @@ export default function PricingPage() {
           >
             <MessageCircle className="w-6 h-6" />
           </Button>
+        </div>
+
+        {/* Bottom Home Button */}
+        <div className="bg-white border-t border-gray-200 px-4 sm:px-6 lg:px-8 py-6 mt-12">
+          <div className="max-w-7xl mx-auto text-center">
+            <Link href="/">
+              <Button variant="outline" className="flex items-center gap-2 mx-auto">
+                <Home className="w-4 h-4" />
+                Back to Home
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
