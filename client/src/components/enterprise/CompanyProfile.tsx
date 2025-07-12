@@ -8,13 +8,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Separator } from "@/components/ui/separator";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useToast } from "@/hooks/use-toast";
-import { Building2, MapPin, Phone, Mail, Globe, Users, Shield, Settings, Eye } from 'lucide-react';
+import { Building2, MapPin, Phone, Mail, Globe, Users, Shield, Settings, Palette, Database, Brain, TrendingUp } from 'lucide-react';
+import { SafetySyncIcon } from "@/components/ui/safetysync-icon";
 import { apiRequest } from "@/lib/queryClient";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
@@ -180,24 +180,40 @@ export default function CompanyProfile() {
 
   if (isLoading) {
     return (
-      <div className="p-8 space-y-6">
+      <div className="space-y-6">
+        {/* Floating tech icons */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-10 left-10 animate-float">
+            <Database className="w-8 h-8 text-blue-400/30" />
+          </div>
+          <div className="absolute top-32 right-20 animate-float-delay-1">
+            <Brain className="w-10 h-10 text-purple-400/30" />
+          </div>
+          <div className="absolute bottom-20 left-20 animate-float-delay-2">
+            <TrendingUp className="w-6 h-6 text-green-400/30" />
+          </div>
+        </div>
+
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-bold">Company Profile</h2>
-            <p className="text-gray-600">Manage your company information and settings</p>
+            <h2 className="text-2xl font-bold text-white flex items-center gap-3">
+              <SafetySyncIcon size={32} className="rounded-lg" />
+              Company Profile
+            </h2>
+            <p className="text-gray-400">Manage your company information and settings</p>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {[1, 2, 3, 4].map((i) => (
-            <Card key={i} className="animate-pulse">
+            <Card key={i} className="bg-black/20 backdrop-blur-sm border-gray-800 animate-pulse">
               <CardHeader>
-                <div className="h-6 bg-gray-200 rounded w-3/4"></div>
-                <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+                <div className="h-6 bg-gray-700 rounded w-3/4"></div>
+                <div className="h-4 bg-gray-700 rounded w-1/2"></div>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  <div className="h-4 bg-gray-200 rounded"></div>
-                  <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+                  <div className="h-4 bg-gray-700 rounded"></div>
+                  <div className="h-4 bg-gray-700 rounded w-2/3"></div>
                 </div>
               </CardContent>
             </Card>
@@ -208,23 +224,45 @@ export default function CompanyProfile() {
   }
 
   return (
-    <div className="p-8 space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="space-y-6 relative">
+      {/* Tech grid background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 opacity-10 rounded-lg"></div>
+      
+      {/* Floating tech icons */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-10 left-10 animate-float">
+          <Database className="w-8 h-8 text-blue-400/30" />
+        </div>
+        <div className="absolute top-32 right-20 animate-float-delay-1">
+          <Brain className="w-10 h-10 text-purple-400/30" />
+        </div>
+        <div className="absolute bottom-20 left-20 animate-float-delay-2">
+          <TrendingUp className="w-6 h-6 text-green-400/30" />
+        </div>
+        <div className="absolute bottom-32 right-32 animate-float-delay-3">
+          <Shield className="w-7 h-7 text-emerald-400/30" />
+        </div>
+      </div>
+
+      <div className="flex items-center justify-between relative z-10">
         <div>
-          <h2 className="text-2xl font-bold">Company Profile</h2>
-          <p className="text-gray-600">Manage your company information and settings</p>
+          <h2 className="text-2xl font-bold text-white flex items-center gap-3">
+            <SafetySyncIcon size={32} className="rounded-lg" />
+            Company Profile
+          </h2>
+          <p className="text-gray-400">Manage your company information and settings</p>
         </div>
         <div className="flex items-center space-x-2">
           {profile && (
-            <Badge variant="secondary" className="bg-green-100 text-green-800">
-              Profile Complete
+            <Badge variant="secondary" className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30">
+              🤖 AI-Verified Complete
             </Badge>
           )}
           <Button
             type="submit"
             form="company-profile-form"
             disabled={mutation.isPending}
-            className="bg-blue-600 hover:bg-blue-700"
+            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-200 border-0"
           >
             {mutation.isPending ? "Saving..." : profile ? "Update Profile" : "Create Profile"}
           </Button>
@@ -232,35 +270,47 @@ export default function CompanyProfile() {
       </div>
 
       <Form {...form}>
-        <form id="company-profile-form" onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <form id="company-profile-form" onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 relative z-10">
           <Tabs value={activeTab} onValueChange={setActiveTab}>
-            <TabsList className="grid w-full grid-cols-4">
-              <TabsTrigger value="business" className="flex items-center gap-2">
+            <TabsList className="grid w-full grid-cols-4 bg-black/20 backdrop-blur-sm border-gray-800">
+              <TabsTrigger 
+                value="business" 
+                className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
+              >
                 <Building2 className="h-4 w-4" />
                 Business Info
               </TabsTrigger>
-              <TabsTrigger value="contacts" className="flex items-center gap-2">
+              <TabsTrigger 
+                value="contacts" 
+                className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
+              >
                 <Users className="h-4 w-4" />
                 Key Contacts
               </TabsTrigger>
-              <TabsTrigger value="branding" className="flex items-center gap-2">
-                <Eye className="h-4 w-4" />
+              <TabsTrigger 
+                value="branding" 
+                className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
+              >
+                <Palette className="h-4 w-4" />
                 Branding
               </TabsTrigger>
-              <TabsTrigger value="settings" className="flex items-center gap-2">
+              <TabsTrigger 
+                value="settings" 
+                className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
+              >
                 <Settings className="h-4 w-4" />
                 Settings
               </TabsTrigger>
             </TabsList>
 
             <TabsContent value="business" className="space-y-6">
-              <Card>
+              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Building2 className="h-5 w-5" />
+                  <CardTitle className="flex items-center gap-2 text-white">
+                    <Building2 className="h-5 w-5 text-blue-400" />
                     Company Information
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-gray-400">
                     Basic information about your organization
                   </CardDescription>
                 </CardHeader>
@@ -271,9 +321,9 @@ export default function CompanyProfile() {
                       name="companyName"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Company Name</FormLabel>
+                          <FormLabel className="text-gray-300">Company Name</FormLabel>
                           <FormControl>
-                            <Input placeholder="Enter company name" {...field} />
+                            <Input placeholder="Enter company name" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -284,14 +334,14 @@ export default function CompanyProfile() {
                       name="industry"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Industry</FormLabel>
+                          <FormLabel className="text-gray-300">Industry</FormLabel>
                           <Select onValueChange={field.onChange} value={field.value}>
                             <FormControl>
-                              <SelectTrigger>
+                              <SelectTrigger className="bg-gray-800/50 border-gray-700 text-white">
                                 <SelectValue placeholder="Select industry" />
                               </SelectTrigger>
                             </FormControl>
-                            <SelectContent>
+                            <SelectContent className="bg-gray-800 border-gray-700 text-white">
                               <SelectItem value="construction">Construction</SelectItem>
                               <SelectItem value="manufacturing">Manufacturing</SelectItem>
                               <SelectItem value="healthcare">Healthcare</SelectItem>
@@ -312,14 +362,14 @@ export default function CompanyProfile() {
                       name="companySize"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Company Size</FormLabel>
+                          <FormLabel className="text-gray-300">Company Size</FormLabel>
                           <Select onValueChange={field.onChange} value={field.value}>
                             <FormControl>
-                              <SelectTrigger>
+                              <SelectTrigger className="bg-gray-800/50 border-gray-700 text-white">
                                 <SelectValue placeholder="Select company size" />
                               </SelectTrigger>
                             </FormControl>
-                            <SelectContent>
+                            <SelectContent className="bg-gray-800 border-gray-700 text-white">
                               <SelectItem value="1-10">1-10 employees</SelectItem>
                               <SelectItem value="11-50">11-50 employees</SelectItem>
                               <SelectItem value="51-200">51-200 employees</SelectItem>
@@ -339,9 +389,9 @@ export default function CompanyProfile() {
                       name="website"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Website</FormLabel>
+                          <FormLabel className="text-gray-300">Website</FormLabel>
                           <FormControl>
-                            <Input placeholder="https://www.example.com" {...field} />
+                            <Input placeholder="https://www.example.com" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -353,11 +403,11 @@ export default function CompanyProfile() {
                     name="description"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Company Description</FormLabel>
+                        <FormLabel className="text-gray-300">Company Description</FormLabel>
                         <FormControl>
                           <Textarea 
                             placeholder="Brief description of your company and operations"
-                            className="min-h-[100px]"
+                            className="min-h-[100px] bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
                             {...field} 
                           />
                         </FormControl>
@@ -368,13 +418,13 @@ export default function CompanyProfile() {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <MapPin className="h-5 w-5" />
+                  <CardTitle className="flex items-center gap-2 text-white">
+                    <MapPin className="h-5 w-5 text-green-400" />
                     Business Address
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-gray-400">
                     Primary business location
                   </CardDescription>
                 </CardHeader>
@@ -384,9 +434,9 @@ export default function CompanyProfile() {
                     name="address"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Street Address</FormLabel>
+                        <FormLabel className="text-gray-300">Street Address</FormLabel>
                         <FormControl>
-                          <Input placeholder="123 Main Street" {...field} />
+                          <Input placeholder="123 Main Street" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -398,9 +448,9 @@ export default function CompanyProfile() {
                       name="city"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>City</FormLabel>
+                          <FormLabel className="text-gray-300">City</FormLabel>
                           <FormControl>
-                            <Input placeholder="City" {...field} />
+                            <Input placeholder="City" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -411,9 +461,9 @@ export default function CompanyProfile() {
                       name="state"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>State</FormLabel>
+                          <FormLabel className="text-gray-300">State</FormLabel>
                           <FormControl>
-                            <Input placeholder="State" {...field} />
+                            <Input placeholder="State" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -424,9 +474,9 @@ export default function CompanyProfile() {
                       name="zipCode"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>ZIP Code</FormLabel>
+                          <FormLabel className="text-gray-300">ZIP Code</FormLabel>
                           <FormControl>
-                            <Input placeholder="12345" {...field} />
+                            <Input placeholder="12345" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -438,9 +488,9 @@ export default function CompanyProfile() {
                     name="country"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Country</FormLabel>
+                        <FormLabel className="text-gray-300">Country</FormLabel>
                         <FormControl>
-                          <Input placeholder="United States" {...field} />
+                          <Input placeholder="United States" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -449,13 +499,13 @@ export default function CompanyProfile() {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Phone className="h-5 w-5" />
+                  <CardTitle className="flex items-center gap-2 text-white">
+                    <Phone className="h-5 w-5 text-purple-400" />
                     Contact Information
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-gray-400">
                     Primary contact details
                   </CardDescription>
                 </CardHeader>
@@ -466,9 +516,9 @@ export default function CompanyProfile() {
                       name="phone"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Phone Number</FormLabel>
+                          <FormLabel className="text-gray-300">Phone Number</FormLabel>
                           <FormControl>
-                            <Input placeholder="(555) 123-4567" {...field} />
+                            <Input placeholder="(555) 123-4567" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -479,9 +529,9 @@ export default function CompanyProfile() {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Email Address</FormLabel>
+                          <FormLabel className="text-gray-300">Email Address</FormLabel>
                           <FormControl>
-                            <Input placeholder="contact@company.com" {...field} />
+                            <Input placeholder="contact@company.com" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -493,13 +543,13 @@ export default function CompanyProfile() {
             </TabsContent>
 
             <TabsContent value="contacts" className="space-y-6">
-              <Card>
+              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Shield className="h-5 w-5" />
+                  <CardTitle className="flex items-center gap-2 text-white">
+                    <Shield className="h-5 w-5 text-emerald-400" />
                     Safety Officer
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-gray-400">
                     Primary safety officer information
                   </CardDescription>
                 </CardHeader>
@@ -510,9 +560,9 @@ export default function CompanyProfile() {
                       name="safetyOfficer"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Full Name</FormLabel>
+                          <FormLabel className="text-gray-300">Full Name</FormLabel>
                           <FormControl>
-                            <Input placeholder="John Doe" {...field} />
+                            <Input placeholder="John Doe" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -523,9 +573,9 @@ export default function CompanyProfile() {
                       name="safetyOfficerPhone"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Phone Number</FormLabel>
+                          <FormLabel className="text-gray-300">Phone Number</FormLabel>
                           <FormControl>
-                            <Input placeholder="(555) 123-4567" {...field} />
+                            <Input placeholder="(555) 123-4567" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -537,9 +587,9 @@ export default function CompanyProfile() {
                     name="safetyOfficerEmail"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Email Address</FormLabel>
+                        <FormLabel className="text-gray-300">Email Address</FormLabel>
                         <FormControl>
-                          <Input placeholder="safety@company.com" {...field} />
+                          <Input placeholder="safety@company.com" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -548,13 +598,13 @@ export default function CompanyProfile() {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Users className="h-5 w-5" />
+                  <CardTitle className="flex items-center gap-2 text-white">
+                    <Users className="h-5 w-5 text-blue-400" />
                     Compliance Manager
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-gray-400">
                     Primary compliance manager information
                   </CardDescription>
                 </CardHeader>
@@ -565,9 +615,9 @@ export default function CompanyProfile() {
                       name="complianceManager"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Full Name</FormLabel>
+                          <FormLabel className="text-gray-300">Full Name</FormLabel>
                           <FormControl>
-                            <Input placeholder="Jane Smith" {...field} />
+                            <Input placeholder="Jane Smith" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -578,9 +628,9 @@ export default function CompanyProfile() {
                       name="complianceManagerEmail"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Email Address</FormLabel>
+                          <FormLabel className="text-gray-300">Email Address</FormLabel>
                           <FormControl>
-                            <Input placeholder="compliance@company.com" {...field} />
+                            <Input placeholder="compliance@company.com" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -592,13 +642,13 @@ export default function CompanyProfile() {
             </TabsContent>
 
             <TabsContent value="branding" className="space-y-6">
-              <Card>
+              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Eye className="h-5 w-5" />
+                  <CardTitle className="flex items-center gap-2 text-white">
+                    <Palette className="h-5 w-5 text-pink-400" />
                     Brand Customization
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-gray-400">
                     Customize your company's brand appearance
                   </CardDescription>
                 </CardHeader>
@@ -609,11 +659,11 @@ export default function CompanyProfile() {
                       name="primaryColor"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Primary Color</FormLabel>
+                          <FormLabel className="text-gray-300">Primary Color</FormLabel>
                           <FormControl>
                             <div className="flex items-center space-x-2">
-                              <Input type="color" className="w-20 h-10" {...field} />
-                              <Input placeholder="#10b981" {...field} />
+                              <Input type="color" className="w-20 h-10 bg-gray-800/50 border-gray-700" {...field} />
+                              <Input placeholder="#10b981" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
                             </div>
                           </FormControl>
                           <FormMessage />
@@ -625,11 +675,11 @@ export default function CompanyProfile() {
                       name="secondaryColor"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Secondary Color</FormLabel>
+                          <FormLabel className="text-gray-300">Secondary Color</FormLabel>
                           <FormControl>
                             <div className="flex items-center space-x-2">
-                              <Input type="color" className="w-20 h-10" {...field} />
-                              <Input placeholder="#1e40af" {...field} />
+                              <Input type="color" className="w-20 h-10 bg-gray-800/50 border-gray-700" {...field} />
+                              <Input placeholder="#1e40af" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
                             </div>
                           </FormControl>
                           <FormMessage />
@@ -642,9 +692,9 @@ export default function CompanyProfile() {
                     name="logoUrl"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Logo URL</FormLabel>
+                        <FormLabel className="text-gray-300">Logo URL</FormLabel>
                         <FormControl>
-                          <Input placeholder="https://example.com/logo.png" {...field} />
+                          <Input placeholder="https://example.com/logo.png" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -652,7 +702,7 @@ export default function CompanyProfile() {
                   />
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
-                      <Label className="text-base">Show Company Branding</Label>
+                      <Label className="text-gray-300 text-base">Show Company Branding</Label>
                       <p className="text-sm text-gray-500">
                         Display your company branding on reports and certificates
                       </p>
@@ -677,13 +727,13 @@ export default function CompanyProfile() {
             </TabsContent>
 
             <TabsContent value="settings" className="space-y-6">
-              <Card>
+              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Globe className="h-5 w-5" />
+                  <CardTitle className="flex items-center gap-2 text-white">
+                    <Globe className="h-5 w-5 text-cyan-400" />
                     Domain Settings
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-gray-400">
                     Configure custom domain settings
                   </CardDescription>
                 </CardHeader>
@@ -693,16 +743,16 @@ export default function CompanyProfile() {
                     name="customDomain"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Custom Domain</FormLabel>
+                        <FormLabel className="text-gray-300">Custom Domain</FormLabel>
                         <FormControl>
-                          <Input placeholder="safety.yourcompany.com" {...field} />
+                          <Input placeholder="safety.yourcompany.com" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  <div className="p-4 bg-blue-50 rounded-lg">
-                    <p className="text-sm text-blue-800">
+                  <div className="p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
+                    <p className="text-sm text-blue-300">
                       <strong>Note:</strong> Custom domain configuration requires DNS setup. 
                       Contact support for assistance with domain configuration.
                     </p>
