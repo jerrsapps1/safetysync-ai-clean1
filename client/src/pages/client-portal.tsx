@@ -461,7 +461,7 @@ export default function ClientPortal() {
               className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 text-lg"
             >
               <Settings className="w-5 h-5 mr-3" />
-              Access Client Workspace
+              {user?.name ? `Welcome back, ${user.name.split(' ')[0]}! Enter Your Workspace` : 'Enter Your Workspace'}
             </Button>
             <Button 
               onClick={handleLogout}
