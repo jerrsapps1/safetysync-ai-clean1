@@ -270,6 +270,9 @@ export default function ClientPortal() {
     window.location.href = '/';
   };
 
+  // Debug logging
+  console.log('Client Portal - isLoading:', isLoading, 'isAuthenticated:', isAuthenticated, 'user:', user);
+
   // Show loading state
   if (isLoading) {
     return (
