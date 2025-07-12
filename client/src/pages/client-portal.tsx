@@ -6,10 +6,12 @@ import { Badge } from '@/components/ui/badge';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/hooks/useAuth';
 import { SafetySyncIcon } from '@/components/ui/safetysync-icon';
 import {
   Home,
   LogIn,
+  LogOut,
   Star,
   Gift,
   Rocket,
@@ -72,6 +74,7 @@ export default function ClientPortal() {
   const [newComment, setNewComment] = useState('');
   const [userName, setUserName] = useState('');
   const { toast } = useToast();
+  const { logout } = useAuth();
 
   // Sample data - in production, this would come from your API
   const specials: Special[] = [
@@ -224,6 +227,17 @@ export default function ClientPortal() {
     ));
   };
 
+  const handleLogout = () => {
+    logout();
+    toast({
+      title: "Logged Out",
+      description: "You have been successfully logged out",
+      variant: "default"
+    });
+    // Redirect to landing page
+    window.location.href = '/';
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 relative overflow-hidden">
       {/* Background Effects */}
@@ -254,6 +268,14 @@ export default function ClientPortal() {
                   Dashboard
                 </Button>
               </Link>
+              <Button 
+                onClick={handleLogout}
+                variant="outline" 
+                className="border-red-500/50 text-red-400 hover:bg-red-500/10 hover:border-red-500"
+              >
+                <LogOut className="w-4 h-4 mr-2" />
+                Logout
+              </Button>
             </div>
           </div>
         </div>
