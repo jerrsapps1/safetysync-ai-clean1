@@ -284,7 +284,7 @@ export default function LandingPage() {
           </h1>
           
           <p className="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto mb-12 leading-relaxed">
-            Ditch the spreadsheets. SafetySync brings all your safety and compliance workflows into one smart, powerful platform—so you can stay inspection-ready, reduce risk, and focus on what matters most.
+            Ditch the spreadsheets. SafetySync.AI brings all your safety and compliance workflows into one smart, powerful platform—so you can stay inspection-ready, reduce risk, and focus on what matters most.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -470,7 +470,7 @@ export default function LandingPage() {
       {/* Testimonial Section */}
       <section className="bg-blue-50 py-16 px-6 text-center">
         <blockquote className="max-w-3xl mx-auto text-xl italic text-gray-700">
-          "SafetySync gave us back hours every week. No more hunting for reports or worrying about audits. It's everything I needed in one place."
+          "SafetySync.AI gave us back hours every week. No more hunting for reports or worrying about audits. It's everything I needed in one place."
         </blockquote>
         <p className="mt-4 font-semibold">— Safety Manager, Industrial Services</p>
       </section>
@@ -481,7 +481,7 @@ export default function LandingPage() {
           Get Peace of Mind—Without the Paper Chase
         </h2>
         <p className="text-lg mb-8 max-w-2xl mx-auto">
-          Join safety professionals across construction, manufacturing, and industrial services who trust SafetySync to streamline their compliance.
+          Join safety professionals across construction, manufacturing, and industrial services who trust SafetySync.AI to streamline their compliance.
         </p>
         <div className="flex justify-center gap-4">
           <Button 
