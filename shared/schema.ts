@@ -1,4 +1,4 @@
-import { pgTable, text, serial, integer, boolean, timestamp, jsonb, decimal } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, boolean, timestamp, jsonb, decimal, varchar, date } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -381,6 +381,92 @@ export const insertLocationSchema = createInsertSchema(locations).omit({
   updatedAt: true,
 });
 
+// Client Portal Tables
+export const specials = pgTable("specials", {
+  id: serial("id").primaryKey(),
+  title: varchar("title", { length: 255 }).notNull(),
+  description: text("description").notNull(),
+  discount: varchar("discount", { length: 100 }).notNull(),
+  validUntil: date("valid_until").notNull(),
+  badge: varchar("badge", { length: 50 }).notNull(),
+  category: varchar("category", { length: 50 }).notNull(),
+  isActive: boolean("is_active").default(true),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const featureUpdates = pgTable("feature_updates", {
+  id: serial("id").primaryKey(),
+  title: varchar("title", { length: 255 }).notNull(),
+  description: text("description").notNull(),
+  releaseDate: date("release_date").notNull(),
+  status: varchar("status", { length: 20 }).notNull(), // 'released' or 'coming-soon'
+  category: varchar("category", { length: 50 }).notNull(),
+  isActive: boolean("is_active").default(true),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const upcomingSoftware = pgTable("upcoming_software", {
+  id: serial("id").primaryKey(),
+  title: varchar("title", { length: 255 }).notNull(),
+  description: text("description").notNull(),
+  expectedRelease: varchar("expected_release", { length: 50 }).notNull(),
+  votes: integer("votes").default(0),
+  category: varchar("category", { length: 50 }).notNull(),
+  isActive: boolean("is_active").default(true),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const softwareVotes = pgTable("software_votes", {
+  id: serial("id").primaryKey(),
+  userId: varchar("user_id", { length: 255 }).notNull(),
+  softwareId: integer("software_id").notNull().references(() => upcomingSoftware.id),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const clientComments = pgTable("client_comments", {
+  id: serial("id").primaryKey(),
+  userName: varchar("user_name", { length: 255 }).notNull(),
+  text: text("text").notNull(),
+  likes: integer("likes").default(0),
+  isActive: boolean("is_active").default(true),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const commentLikes = pgTable("comment_likes", {
+  id: serial("id").primaryKey(),
+  userId: varchar("user_id", { length: 255 }).notNull(),
+  commentId: integer("comment_id").notNull().references(() => clientComments.id),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const insertSpecialSchema = createInsertSchema(specials).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertFeatureUpdateSchema = createInsertSchema(featureUpdates).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertUpcomingSoftwareSchema = createInsertSchema(upcomingSoftware).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertClientCommentSchema = createInsertSchema(clientComments).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
 // Type exports
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
@@ -416,6 +502,15 @@ export type InsertIntegration = z.infer<typeof insertIntegrationSchema>;
 export type Integration = typeof integrations.$inferSelect;
 export type InsertLocation = z.infer<typeof insertLocationSchema>;
 export type Location = typeof locations.$inferSelect;
+
+export type InsertSpecial = z.infer<typeof insertSpecialSchema>;
+export type Special = typeof specials.$inferSelect;
+export type InsertFeatureUpdate = z.infer<typeof insertFeatureUpdateSchema>;
+export type FeatureUpdate = typeof featureUpdates.$inferSelect;
+export type InsertUpcomingSoftware = z.infer<typeof insertUpcomingSoftwareSchema>;
+export type UpcomingSoftware = typeof upcomingSoftware.$inferSelect;
+export type InsertClientComment = z.infer<typeof insertClientCommentSchema>;
+export type ClientComment = typeof clientComments.$inferSelect;
 
 // Company Profile Schema
 export const companyProfiles = pgTable("company_profiles", {

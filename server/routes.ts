@@ -1882,6 +1882,113 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Client Portal API Routes
+  app.get("/api/client-portal/specials", async (req, res) => {
+    try {
+      const specials = await storage.getActiveSpecials();
+      res.json(specials);
+    } catch (error) {
+      console.error("Error fetching specials:", error);
+      res.status(500).json({ error: "Failed to fetch specials" });
+    }
+  });
+
+  app.get("/api/client-portal/feature-updates", async (req, res) => {
+    try {
+      const updates = await storage.getActiveFeatureUpdates();
+      res.json(updates);
+    } catch (error) {
+      console.error("Error fetching feature updates:", error);
+      res.status(500).json({ error: "Failed to fetch feature updates" });
+    }
+  });
+
+  app.get("/api/client-portal/upcoming-software", async (req, res) => {
+    try {
+      const software = await storage.getActiveUpcomingSoftware();
+      const userId = req.query.userId as string;
+      
+      if (userId) {
+        const userVoted = await storage.getUserVotedSoftware(userId);
+        const softwareWithVotes = software.map(s => ({
+          ...s,
+          userVoted: userVoted.includes(s.id)
+        }));
+        res.json(softwareWithVotes);
+      } else {
+        res.json(software);
+      }
+    } catch (error) {
+      console.error("Error fetching upcoming software:", error);
+      res.status(500).json({ error: "Failed to fetch upcoming software" });
+    }
+  });
+
+  app.get("/api/client-portal/comments", async (req, res) => {
+    try {
+      const comments = await storage.getActiveClientComments();
+      const userId = req.query.userId as string;
+      
+      if (userId) {
+        const userLiked = await storage.getUserLikedComments(userId);
+        const commentsWithLikes = comments.map(c => ({
+          ...c,
+          userLiked: userLiked.includes(c.id)
+        }));
+        res.json(commentsWithLikes);
+      } else {
+        res.json(comments);
+      }
+    } catch (error) {
+      console.error("Error fetching comments:", error);
+      res.status(500).json({ error: "Failed to fetch comments" });
+    }
+  });
+
+  app.post("/api/client-portal/comments", async (req, res) => {
+    try {
+      const { userName, text } = req.body;
+      
+      const comment = await storage.createClientComment({
+        userName,
+        text,
+        likes: 0,
+        isActive: true
+      });
+      
+      res.json(comment);
+    } catch (error) {
+      console.error("Error creating comment:", error);
+      res.status(500).json({ error: "Failed to create comment" });
+    }
+  });
+
+  app.post("/api/client-portal/vote/:softwareId", async (req, res) => {
+    try {
+      const { softwareId } = req.params;
+      const { userId } = req.body;
+      
+      await storage.voteForSoftware(userId, parseInt(softwareId));
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error voting for software:", error);
+      res.status(500).json({ error: "Failed to vote for software" });
+    }
+  });
+
+  app.post("/api/client-portal/like/:commentId", async (req, res) => {
+    try {
+      const { commentId } = req.params;
+      const { userId } = req.body;
+      
+      await storage.likeComment(userId, parseInt(commentId));
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error liking comment:", error);
+      res.status(500).json({ error: "Failed to like comment" });
+    }
+  });
+
   // Email automation API
   app.use("/api/email", emailAutomationRoutes);
 
