@@ -106,13 +106,14 @@ export function Navigation({ onTrialClick, onDemoClick, onLoginClick, user, onLo
               </div>
             ) : (
               <>
-                <Button 
-                  variant="ghost" 
-                  onClick={onLoginClick}
-                  className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors"
-                >
-                  Sign In
-                </Button>
+                <Link href="/client-portal">
+                  <Button 
+                    variant="ghost" 
+                    className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors"
+                  >
+                    Sign in to your account
+                  </Button>
+                </Link>
                 <Button 
                   onClick={onTrialClick}
                   className="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"

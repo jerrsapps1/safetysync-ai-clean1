@@ -271,6 +271,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Logout endpoint
+  app.post("/api/auth/logout", async (req, res) => {
+    try {
+      // Since we're using JWT tokens, logout is handled client-side
+      // We could implement a token blacklist here if needed
+      res.json({ 
+        success: true, 
+        message: "Logout successful" 
+      });
+    } catch (error) {
+      console.error("Error logging out user:", error);
+      res.status(500).json({ 
+        success: false, 
+        message: "Internal server error" 
+      });
+    }
+  });
+
   // Lead submission endpoint
   app.post("/api/leads", async (req, res) => {
     try {
