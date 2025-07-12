@@ -394,15 +394,9 @@ export default function ClientPortal() {
             </div>
             <div className="flex items-center space-x-2 md:space-x-4">
               <Link href="/workspace">
-                <Button variant="outline" className="border-white/50 text-white hover:bg-white/20 hover:border-white/70 bg-white/10 font-medium">
+                <Button variant="outline" className="border-emerald-400 text-emerald-200 hover:bg-emerald-500/20 hover:border-emerald-300 bg-emerald-500/10 font-medium">
                   <Settings className="w-4 h-4 mr-2" />
-                  Workspace
-                </Button>
-              </Link>
-              <Link href="/dashboard">
-                <Button variant="outline" className="border-white/50 text-white hover:bg-white/20 hover:border-white/70 bg-white/10 font-medium">
-                  <Home className="w-4 h-4 mr-2" />
-                  Dashboard
+                  Client Login
                 </Button>
               </Link>
               <Button 
@@ -434,22 +428,16 @@ export default function ClientPortal() {
           {/* Quick Access Buttons */}
           <div className="flex flex-wrap justify-center gap-4 mb-8">
             <Link href="/workspace">
-              <Button className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3">
-                <Settings className="w-4 h-4 mr-2" />
-                Go to Workspace
-              </Button>
-            </Link>
-            <Link href="/dashboard">
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3">
-                <Home className="w-4 h-4 mr-2" />
-                Go to Dashboard
+              <Button className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 text-lg">
+                <Settings className="w-5 h-5 mr-3" />
+                Access Client Workspace
               </Button>
             </Link>
             <Button 
               onClick={handleLogout}
-              className="bg-red-600 hover:bg-red-700 text-white px-6 py-3"
+              className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 text-lg"
             >
-              <LogOut className="w-4 h-4 mr-2" />
+              <LogOut className="w-5 h-5 mr-3" />
               Logout
             </Button>
           </div>
