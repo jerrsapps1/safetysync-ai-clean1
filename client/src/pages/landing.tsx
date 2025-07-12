@@ -290,14 +290,14 @@ export default function LandingPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Button 
               onClick={handleDemoClick}
-              className="bg-white text-blue-700 font-semibold px-6 py-3 rounded-2xl shadow hover:bg-gray-100 transition"
+              className="bg-white text-blue-700 font-semibold px-6 py-3 rounded-2xl shadow hover:bg-gray-100 transition-all duration-200 hover:scale-105"
             >
               Book a Demo
             </Button>
             <Button 
               onClick={handleTrialClick}
               variant="outline"
-              className="border border-white text-white font-semibold px-6 py-3 rounded-2xl hover:bg-white hover:text-blue-700 transition"
+              className="border border-white text-white font-semibold px-6 py-3 rounded-2xl hover:bg-white hover:text-blue-700 transition-all duration-200 hover:scale-105"
             >
               Get Started Free
             </Button>
@@ -588,6 +588,30 @@ export default function LandingPage() {
         isOpen={isTrialDialogOpen} 
         onClose={() => setIsTrialDialogOpen(false)}
         onSubmit={handleSignupSuccess}
+      />
+      
+      <DemoRequestDialog 
+        isOpen={isDemoDialogOpen} 
+        onClose={() => setIsDemoDialogOpen(false)}
+        onSubmit={handleDemoSubmit}
+      />
+      
+      <TermsAndConditions 
+        isOpen={showTermsDialog}
+        onClose={() => setShowTermsDialog(false)}
+        onAccept={handleTermsAccept}
+        userEmail={pendingSignupData?.userEmail || ''}
+        planName={pendingSignupData?.planName || ''}
+      />
+      
+      <ProductTour 
+        isOpen={showProductTour}
+        onClose={() => setShowProductTour(false)}
+      />
+      
+      <LiveChatWidget 
+        isOpen={showLiveChat}
+        onClose={() => setShowLiveChat(false)}
       />
       
       <Toaster />
