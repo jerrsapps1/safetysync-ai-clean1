@@ -746,7 +746,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Report download endpoint
+  // Report download endpoint - Generate actual PDF
   app.get("/api/reports/download/:reportName", async (req, res) => {
     try {
       const { reportName } = req.params;
@@ -754,39 +754,110 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Generate report data
       const reportData = await generateComplianceReportData(reportName.replace(/-/g, ' '));
       
-      // Create simple PDF-like content
-      const pdfContent = `
-SafetySync.AI - ${reportName.replace(/-/g, ' ').toUpperCase()}
-Generated: ${new Date().toLocaleDateString()}
-Period: ${reportData.periodStart} to ${reportData.periodEnd}
-
-COMPLIANCE SUMMARY:
-- Total Employees: ${reportData.complianceStats.totalEmployees}
-- Compliant Employees: ${reportData.complianceStats.compliantEmployees}
-- Compliance Score: ${reportData.complianceStats.complianceScore}%
-- Pending Training: ${reportData.complianceStats.pendingTraining}
-- Expired Certifications: ${reportData.complianceStats.expiredCertifications}
-
-EMPLOYEE DETAILS:
-${reportData.employees.map(emp => `
-${emp.name} - ${emp.position} (${emp.department})
-Hire Date: ${emp.hireDate}
-`).join('')}
-
-RECOMMENDATIONS:
-${reportData.summary.recommendations.map(rec => `- ${rec}`).join('\n')}
-
-© 2025 SafetySync.AI - All Rights Reserved
-      `;
-
-      res.setHeader('Content-Type', 'text/plain');
-      res.setHeader('Content-Disposition', `attachment; filename="${reportName}-${new Date().toISOString().split('T')[0]}.txt"`);
-      res.send(pdfContent);
+      // Import jsPDF for server-side PDF generation
+      const { jsPDF } = await import('jspdf');
+      const doc = new jsPDF();
+      
+      // PDF Header
+      doc.setFontSize(20);
+      doc.setTextColor(16, 185, 129); // Emerald green
+      doc.text('SafetySync.AI', 20, 30);
+      
+      doc.setFontSize(16);
+      doc.setTextColor(0, 0, 0);
+      doc.text(reportName.replace(/-/g, ' ').toUpperCase(), 20, 45);
+      
+      doc.setFontSize(10);
+      doc.setTextColor(100, 100, 100);
+      doc.text(`Generated: ${new Date().toLocaleDateString()}`, 20, 55);
+      doc.text(`Period: ${reportData.periodStart} to ${reportData.periodEnd}`, 20, 62);
+      
+      // Compliance Summary Section
+      let yPos = 80;
+      doc.setFontSize(14);
+      doc.setTextColor(0, 0, 0);
+      doc.text('COMPLIANCE SUMMARY', 20, yPos);
+      
+      yPos += 10;
+      doc.setFontSize(10);
+      const summaryData = [
+        `Total Employees: ${reportData.complianceStats.totalEmployees}`,
+        `Compliant Employees: ${reportData.complianceStats.compliantEmployees}`,
+        `Compliance Score: ${reportData.complianceStats.complianceScore}%`,
+        `Pending Training: ${reportData.complianceStats.pendingTraining}`,
+        `Expired Certifications: ${reportData.complianceStats.expiredCertifications}`
+      ];
+      
+      summaryData.forEach(line => {
+        doc.text(`• ${line}`, 25, yPos);
+        yPos += 7;
+      });
+      
+      // Employee Details Section
+      yPos += 10;
+      doc.setFontSize(14);
+      doc.setTextColor(0, 0, 0);
+      doc.text('EMPLOYEE DETAILS', 20, yPos);
+      yPos += 10;
+      
+      doc.setFontSize(9);
+      reportData.employees.forEach(emp => {
+        if (yPos > 250) { // Add new page if needed
+          doc.addPage();
+          yPos = 30;
+        }
+        doc.text(`${emp.name} - ${emp.position} (${emp.department})`, 25, yPos);
+        yPos += 5;
+        doc.setTextColor(100, 100, 100);
+        doc.text(`Hire Date: ${emp.hireDate}`, 30, yPos);
+        yPos += 8;
+        doc.setTextColor(0, 0, 0);
+      });
+      
+      // Recommendations Section
+      if (yPos > 220) {
+        doc.addPage();
+        yPos = 30;
+      } else {
+        yPos += 10;
+      }
+      
+      doc.setFontSize(14);
+      doc.text('RECOMMENDATIONS', 20, yPos);
+      yPos += 10;
+      
+      doc.setFontSize(9);
+      reportData.summary.recommendations.forEach(rec => {
+        if (yPos > 250) {
+          doc.addPage();
+          yPos = 30;
+        }
+        const lines = doc.splitTextToSize(`• ${rec}`, 160);
+        doc.text(lines, 25, yPos);
+        yPos += lines.length * 5;
+      });
+      
+      // Footer
+      const pageCount = doc.internal.getNumberOfPages();
+      for (let i = 1; i <= pageCount; i++) {
+        doc.setPage(i);
+        doc.setFontSize(8);
+        doc.setTextColor(100, 100, 100);
+        doc.text('© 2025 SafetySync.AI - All Rights Reserved', 20, 285);
+        doc.text(`Page ${i} of ${pageCount}`, 170, 285);
+      }
+      
+      // Generate PDF buffer
+      const pdfBuffer = Buffer.from(doc.output('arraybuffer'));
+      
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="${reportName}-${new Date().toISOString().split('T')[0]}.pdf"`);
+      res.send(pdfBuffer);
     } catch (error) {
-      console.error("Error generating report download:", error);
+      console.error("Error generating PDF report:", error);
       res.status(500).json({ 
         success: false, 
-        message: "Failed to generate report" 
+        message: "Failed to generate PDF report" 
       });
     }
   });
