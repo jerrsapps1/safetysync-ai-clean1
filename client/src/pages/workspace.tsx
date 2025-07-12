@@ -19,6 +19,10 @@ import { CollaborationLayer } from "@/components/ui/collaboration-layer";
 import EmployeeManagement from "@/components/enterprise/EmployeeManagement";
 import DocumentManager from "@/components/enterprise/DocumentManager";
 import CompanyProfile from "@/components/enterprise/CompanyProfile";
+import TrainingManagement from "@/components/training/TrainingManagement";
+import CertificateGeneration from "@/components/certificates/CertificateGeneration";
+import EmployeePortal from "@/components/portal/EmployeePortal";
+import NotificationSystem from "@/components/notifications/NotificationSystem";
 
 
 import { AIPatternSkeleton } from "@/components/ui/ai-skeleton";
@@ -1704,44 +1708,14 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
 
           {activeTab === "training" && (
-            <div className="space-y-6">
-              <div className="flex items-center justify-between">
-                <h2 className="text-xl font-semibold text-white">Training Management</h2>
-                <Button className="bg-emerald-500 hover:bg-emerald-600">
-                  <Plus className="w-4 h-4 mr-2" />
-                  Schedule Training
-                </Button>
-              </div>
-              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
-                <CardContent className="p-6">
-                  <div className="text-center py-8">
-                    <BookOpen className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                    <h3 className="text-lg font-semibold text-white mb-2">Training Management</h3>
-                    <p className="text-gray-400">Your SafetyTracker app integration will display all training management features here.</p>
-                  </div>
-                </CardContent>
-              </Card>
+            <div className="p-8">
+              <TrainingManagement />
             </div>
           )}
 
           {activeTab === "certificates" && (
-            <div className="space-y-6">
-              <div className="flex items-center justify-between">
-                <h2 className="text-xl font-semibold text-white">Certificate Generation</h2>
-                <Button className="bg-emerald-500 hover:bg-emerald-600" onClick={handleAddCertificate}>
-                  <Plus className="w-4 h-4 mr-2" />
-                  Generate Certificate
-                </Button>
-              </div>
-              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
-                <CardContent className="p-6">
-                  <div className="text-center py-8">
-                    <Award className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                    <h3 className="text-lg font-semibold text-white mb-2">Certificate Generation</h3>
-                    <p className="text-gray-400">Your SafetyTracker app integration will display certificate generation features here.</p>
-                  </div>
-                </CardContent>
-              </Card>
+            <div className="p-8">
+              <CertificateGeneration />
             </div>
           )}
 
@@ -2142,140 +2116,14 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           )}
 
           {activeTab === "employee-portal" && (
-            <div className="space-y-6">
-              <div className="flex items-center justify-between">
-                <h2 className="text-xl font-semibold text-white">Employee Portal</h2>
-                <Button className="bg-emerald-500 hover:bg-emerald-600">
-                  <Eye className="w-4 h-4 mr-2" />
-                  Preview Portal
-                </Button>
-              </div>
-              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
-                <CardHeader>
-                  <CardTitle className="text-white">Self-Service Portal Features</CardTitle>
-                  <CardDescription className="text-gray-400">
-                    Employees can access their training records, certificates, and schedule through the portal
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div className="p-4 bg-gray-800/50 rounded-lg">
-                      <div className="flex items-center space-x-3 mb-3">
-                        <FileUser className="w-8 h-8 text-blue-400" />
-                        <div>
-                          <h3 className="text-white font-semibold">Training Records</h3>
-                          <p className="text-gray-400 text-sm">View completion status</p>
-                        </div>
-                      </div>
-                      <p className="text-gray-300 text-sm">Employees can view their training history, upcoming requirements, and completion certificates.</p>
-                    </div>
-                    <div className="p-4 bg-gray-800/50 rounded-lg">
-                      <div className="flex items-center space-x-3 mb-3">
-                        <Calendar className="w-8 h-8 text-green-400" />
-                        <div>
-                          <h3 className="text-white font-semibold">Training Schedule</h3>
-                          <p className="text-gray-400 text-sm">Book training sessions</p>
-                        </div>
-                      </div>
-                      <p className="text-gray-300 text-sm">Self-service scheduling for upcoming training sessions and recertification requirements.</p>
-                    </div>
-                    <div className="p-4 bg-gray-800/50 rounded-lg">
-                      <div className="flex items-center space-x-3 mb-3">
-                        <Download className="w-8 h-8 text-purple-400" />
-                        <div>
-                          <h3 className="text-white font-semibold">Certificate Downloads</h3>
-                          <p className="text-gray-400 text-sm">Access digital certificates</p>
-                        </div>
-                      </div>
-                      <p className="text-gray-300 text-sm">Download and print certificates and wallet cards for field verification.</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+            <div className="p-8">
+              <EmployeePortal />
             </div>
           )}
 
           {activeTab === "notifications" && (
-            <div className="space-y-6">
-              <div className="flex items-center justify-between">
-                <h2 className="text-xl font-semibold text-white">Notifications & Alerts</h2>
-                <Button className="bg-emerald-500 hover:bg-emerald-600" onClick={() => toast({ title: "Create Alert", description: "Opening alert creation form..." })}>
-                  <Plus className="w-4 h-4 mr-2" />
-                  Create Alert
-                </Button>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
-                  <CardHeader>
-                    <CardTitle className="text-white">Active Alerts</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      <div className="flex items-center space-x-3 p-3 bg-red-900/20 rounded-lg border border-red-500/20">
-                        <AlertTriangle className="w-5 h-5 text-red-400" />
-                        <div className="flex-1">
-                          <p className="text-white font-medium">3 Certifications Expired</p>
-                          <p className="text-gray-400 text-sm">Immediate action required</p>
-                        </div>
-                        <Badge className="bg-red-100 text-red-700">High Priority</Badge>
-                      </div>
-                      <div className="flex items-center space-x-3 p-3 bg-yellow-900/20 rounded-lg border border-yellow-500/20">
-                        <Clock className="w-5 h-5 text-yellow-400" />
-                        <div className="flex-1">
-                          <p className="text-white font-medium">8 Certifications Expiring Soon</p>
-                          <p className="text-gray-400 text-sm">Within 30 days</p>
-                        </div>
-                        <Badge className="bg-yellow-100 text-yellow-700">Medium Priority</Badge>
-                      </div>
-                      <div className="flex items-center space-x-3 p-3 bg-blue-900/20 rounded-lg border border-blue-500/20">
-                        <Bell className="w-5 h-5 text-blue-400" />
-                        <div className="flex-1">
-                          <p className="text-white font-medium">New Training Session Available</p>
-                          <p className="text-gray-400 text-sm">Fall Protection - July 15</p>
-                        </div>
-                        <Badge className="bg-blue-100 text-blue-700">Info</Badge>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
-                  <CardHeader>
-                    <CardTitle className="text-white">Notification Settings</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <p className="text-white font-medium">Email Notifications</p>
-                          <p className="text-gray-400 text-sm">Receive alerts via email</p>
-                        </div>
-                        <Switch defaultChecked />
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <p className="text-white font-medium">SMS Alerts</p>
-                          <p className="text-gray-400 text-sm">Critical alerts via SMS</p>
-                        </div>
-                        <Switch />
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <p className="text-white font-medium">Dashboard Notifications</p>
-                          <p className="text-gray-400 text-sm">Show in-app notifications</p>
-                        </div>
-                        <Switch defaultChecked />
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <p className="text-white font-medium">Weekly Reports</p>
-                          <p className="text-gray-400 text-sm">Weekly compliance summary</p>
-                        </div>
-                        <Switch defaultChecked />
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
+            <div className="p-8">
+              <NotificationSystem />
             </div>
           )}
 
