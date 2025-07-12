@@ -11,7 +11,8 @@ import {
   insertEmployeeSchema, insertTrainingProgramSchema, insertTrainingSessionSchema,
   insertEmployeeTrainingSchema, insertCertificateSchema, insertDocumentSchema,
   insertAuditLogSchema, insertNotificationSchema, insertIntegrationSchema, insertLocationSchema,
-  insertCompanyProfileSchema
+  insertCompanyProfileSchema,
+  insertTicketResponseSchema
 } from "@shared/schema";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
@@ -1804,6 +1805,80 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error updating company profile:", error);
       res.status(500).json({ error: "Failed to update company profile" });
+    }
+  });
+
+  // Helpdesk API Routes
+  app.post("/api/helpdesk/tickets", authenticateToken, async (req, res) => {
+    try {
+      const userId = (req as any).user.id;
+      const ticketData = insertHelpDeskTicketSchema.parse({
+        ...req.body,
+        userId,
+        status: 'open'
+      });
+      const ticket = await storage.createHelpDeskTicket(ticketData);
+      res.json(ticket);
+    } catch (error) {
+      console.error("Error creating helpdesk ticket:", error);
+      res.status(500).json({ error: "Failed to create helpdesk ticket" });
+    }
+  });
+
+  app.get("/api/helpdesk/tickets", authenticateToken, async (req, res) => {
+    try {
+      const userId = (req as any).user.id;
+      const tickets = await storage.getHelpDeskTickets(userId);
+      res.json(tickets);
+    } catch (error) {
+      console.error("Error fetching helpdesk tickets:", error);
+      res.status(500).json({ error: "Failed to fetch helpdesk tickets" });
+    }
+  });
+
+  app.get("/api/helpdesk/tickets/:id", authenticateToken, async (req, res) => {
+    try {
+      const ticketId = parseInt(req.params.id);
+      const userId = (req as any).user.id;
+      const ticket = await storage.getHelpDeskTicketById(ticketId, userId);
+      if (!ticket) {
+        return res.status(404).json({ error: "Ticket not found" });
+      }
+      res.json(ticket);
+    } catch (error) {
+      console.error("Error fetching helpdesk ticket:", error);
+      res.status(500).json({ error: "Failed to fetch helpdesk ticket" });
+    }
+  });
+
+  app.put("/api/helpdesk/tickets/:id", authenticateToken, async (req, res) => {
+    try {
+      const ticketId = parseInt(req.params.id);
+      const userId = (req as any).user.id;
+      const updates = req.body;
+      const ticket = await storage.updateHelpDeskTicket(ticketId, userId, updates);
+      res.json(ticket);
+    } catch (error) {
+      console.error("Error updating helpdesk ticket:", error);
+      res.status(500).json({ error: "Failed to update helpdesk ticket" });
+    }
+  });
+
+  app.post("/api/helpdesk/tickets/:id/responses", authenticateToken, async (req, res) => {
+    try {
+      const ticketId = parseInt(req.params.id);
+      const userId = (req as any).user.id;
+      const responseData = insertTicketResponseSchema.parse({
+        ...req.body,
+        ticketId,
+        userId,
+        isStaff: false
+      });
+      const response = await storage.createTicketResponse(responseData);
+      res.json(response);
+    } catch (error) {
+      console.error("Error creating ticket response:", error);
+      res.status(500).json({ error: "Failed to create ticket response" });
     }
   });
 

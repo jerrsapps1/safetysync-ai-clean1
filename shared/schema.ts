@@ -75,6 +75,16 @@ export const helpDeskTickets = pgTable("help_desk_tickets", {
   resolvedAt: timestamp("resolved_at"),
 });
 
+export const ticketResponses = pgTable("ticket_responses", {
+  id: serial("id").primaryKey(),
+  ticketId: integer("ticket_id").references(() => helpDeskTickets.id).notNull(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  message: text("message").notNull(),
+  isStaff: boolean("is_staff").default(false),
+  author: text("author").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 // Promo code usage tracking - 30-day expiration from purchase
 export const promoCodeUsage = pgTable("promo_code_usage", {
   id: serial("id").primaryKey(),
@@ -443,5 +453,12 @@ export const insertCompanyProfileSchema = createInsertSchema(companyProfiles).om
   updatedAt: true,
 });
 
+export const insertTicketResponseSchema = createInsertSchema(ticketResponses).omit({
+  id: true,
+  createdAt: true,
+});
+
 export type InsertCompanyProfile = z.infer<typeof insertCompanyProfileSchema>;
 export type CompanyProfile = typeof companyProfiles.$inferSelect;
+export type InsertTicketResponse = z.infer<typeof insertTicketResponseSchema>;
+export type TicketResponse = typeof ticketResponses.$inferSelect;

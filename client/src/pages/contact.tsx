@@ -20,7 +20,8 @@ import {
   Building,
   HelpCircle,
   FileText,
-  Zap
+  Zap,
+  Ticket
 } from "lucide-react";
 
 export default function ContactPage() {
@@ -420,6 +421,32 @@ export default function ContactPage() {
               </Button>
               <p className="text-sm text-blue-600 self-center">
                 Monday-Friday: 7AM-7PM CT
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Helpdesk System */}
+        <Card className="bg-emerald-50 border-emerald-200">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-emerald-800">
+              <Ticket className="w-5 h-5" />
+              Full Helpdesk System
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-emerald-700 mb-4">
+              Access our comprehensive helpdesk system for ticket management, conversation tracking, and priority support.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link href="/helpdesk">
+                <Button variant="outline" className="border-emerald-300 text-emerald-700 hover:bg-emerald-50">
+                  <Ticket className="w-4 h-4 mr-2" />
+                  Access Helpdesk
+                </Button>
+              </Link>
+              <p className="text-sm text-emerald-600 self-center">
+                Available 24/7 for ticket submission
               </p>
             </div>
           </CardContent>
