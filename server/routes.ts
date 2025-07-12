@@ -779,8 +779,8 @@ ${reportData.summary.recommendations.map(rec => `- ${rec}`).join('\n')}
 © 2025 SafetySync.AI - All Rights Reserved
       `;
 
-      res.setHeader('Content-Type', 'application/pdf');
-      res.setHeader('Content-Disposition', `attachment; filename="${reportName}-${new Date().toISOString().split('T')[0]}.pdf"`);
+      res.setHeader('Content-Type', 'text/plain');
+      res.setHeader('Content-Disposition', `attachment; filename="${reportName}-${new Date().toISOString().split('T')[0]}.txt"`);
       res.send(pdfContent);
     } catch (error) {
       console.error("Error generating report download:", error);
