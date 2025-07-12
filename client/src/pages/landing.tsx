@@ -88,8 +88,8 @@ export default function LandingPage() {
 
   const handleLoginClick = () => {
     if (isAuthenticated) {
-      // User is already logged in, go to workspace
-      window.location.href = '/workspace';
+      // User is already logged in, go to client portal
+      window.location.href = '/client-portal';
     } else {
       // User needs to log in, go to workspace login form
       window.location.href = '/workspace';
