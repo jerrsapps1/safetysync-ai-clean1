@@ -1,7 +1,7 @@
 import { 
   users, leads, complianceReports, cloneDetectionScans, helpDeskTickets, promoCodeUsage,
   employees, trainingPrograms, trainingSessions, employeeTraining, certificates, documents,
-  auditLogs, notifications, integrations, locations,
+  auditLogs, notifications, integrations, locations, ticketResponses,
   type User, type InsertUser, type Lead, type InsertLead, type ComplianceReport, type InsertComplianceReport, 
   type CloneDetectionScan, type InsertCloneDetectionScan, type HelpDeskTicket, type InsertHelpDeskTicket, 
   type PromoCodeUsage, type InsertPromoCodeUsage, type Employee, type InsertEmployee,
@@ -9,7 +9,7 @@ import {
   type EmployeeTraining, type InsertEmployeeTraining, type Certificate, type InsertCertificate,
   type Document, type InsertDocument, type AuditLog, type InsertAuditLog, type Notification, 
   type InsertNotification, type Integration, type InsertIntegration, type Location, type InsertLocation,
-  companyProfiles, type CompanyProfile, type InsertCompanyProfile
+  companyProfiles, type CompanyProfile, type InsertCompanyProfile, type TicketResponse, type InsertTicketResponse
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, and, gt } from "drizzle-orm";
@@ -43,11 +43,15 @@ export interface IStorage {
   
   // Help desk ticket operations
   createHelpDeskTicket(ticket: InsertHelpDeskTicket): Promise<HelpDeskTicket>;
-  getHelpDeskTickets(): Promise<HelpDeskTicket[]>;
-  getHelpDeskTicketById(id: number): Promise<HelpDeskTicket | undefined>;
-  updateHelpDeskTicket(id: number, updates: Partial<HelpDeskTicket>): Promise<void>;
+  getHelpDeskTickets(userId: number): Promise<HelpDeskTicket[]>;
+  getHelpDeskTicketById(id: number, userId: number): Promise<HelpDeskTicket | undefined>;
+  updateHelpDeskTicket(id: number, userId: number, updates: Partial<HelpDeskTicket>): Promise<HelpDeskTicket>;
   assignHelpDeskTicket(id: number, assignedTo: string): Promise<void>;
   resolveHelpDeskTicket(id: number, resolutionNotes: string): Promise<void>;
+  
+  // Ticket response operations
+  createTicketResponse(response: InsertTicketResponse): Promise<TicketResponse>;
+  getTicketResponses(ticketId: number): Promise<TicketResponse[]>;
   
   // Admin-only user management functions
   updateUserTier(userId: number, tier: string): Promise<void>;
@@ -253,20 +257,42 @@ export class DatabaseStorage implements IStorage {
     return ticket;
   }
 
-  async getHelpDeskTickets(): Promise<HelpDeskTicket[]> {
-    return await db.select().from(helpDeskTickets)
+  async getHelpDeskTickets(userId: number): Promise<HelpDeskTicket[]> {
+    const tickets = await db.select().from(helpDeskTickets)
+      .where(eq(helpDeskTickets.userId, userId))
       .orderBy(helpDeskTickets.createdAt);
+    
+    // Get responses for each ticket
+    const ticketsWithResponses = await Promise.all(
+      tickets.map(async (ticket) => {
+        const responses = await this.getTicketResponses(ticket.id);
+        return { ...ticket, responses };
+      })
+    );
+    
+    return ticketsWithResponses;
   }
 
-  async getHelpDeskTicketById(id: number): Promise<HelpDeskTicket | undefined> {
-    const [ticket] = await db.select().from(helpDeskTickets).where(eq(helpDeskTickets.id, id));
-    return ticket || undefined;
+  async getHelpDeskTicketById(id: number, userId: number): Promise<HelpDeskTicket | undefined> {
+    const [ticket] = await db.select().from(helpDeskTickets)
+      .where(and(eq(helpDeskTickets.id, id), eq(helpDeskTickets.userId, userId)));
+    
+    if (!ticket) return undefined;
+    
+    // Get responses for this ticket
+    const responses = await this.getTicketResponses(ticket.id);
+    return { ...ticket, responses };
   }
 
-  async updateHelpDeskTicket(id: number, updates: Partial<HelpDeskTicket>): Promise<void> {
-    await db.update(helpDeskTickets)
+  async updateHelpDeskTicket(id: number, userId: number, updates: Partial<HelpDeskTicket>): Promise<HelpDeskTicket> {
+    const [ticket] = await db.update(helpDeskTickets)
       .set({ ...updates, updatedAt: new Date() })
-      .where(eq(helpDeskTickets.id, id));
+      .where(and(eq(helpDeskTickets.id, id), eq(helpDeskTickets.userId, userId)))
+      .returning();
+    
+    // Get responses for this ticket
+    const responses = await this.getTicketResponses(ticket.id);
+    return { ...ticket, responses };
   }
 
   async assignHelpDeskTicket(id: number, assignedTo: string): Promise<void> {
@@ -288,6 +314,21 @@ export class DatabaseStorage implements IStorage {
         updatedAt: new Date()
       })
       .where(eq(helpDeskTickets.id, id));
+  }
+
+  // Ticket response operations
+  async createTicketResponse(insertResponse: InsertTicketResponse): Promise<TicketResponse> {
+    const [response] = await db
+      .insert(ticketResponses)
+      .values(insertResponse)
+      .returning();
+    return response;
+  }
+
+  async getTicketResponses(ticketId: number): Promise<TicketResponse[]> {
+    return await db.select().from(ticketResponses)
+      .where(eq(ticketResponses.ticketId, ticketId))
+      .orderBy(ticketResponses.createdAt);
   }
 
   // Admin-only user management functions
