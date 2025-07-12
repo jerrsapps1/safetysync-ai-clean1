@@ -208,9 +208,9 @@ export default function AnalyticsReports() {
       description: `Loading ${reportName} in new window...`
     });
     
-    // Simulate opening a report in a new window
+    // Open the report in a new window using the API endpoint
     setTimeout(() => {
-      window.open(`/reports/${reportName.toLowerCase().replace(/\s+/g, '-')}.pdf`, '_blank');
+      window.open(`/api/reports/view/${reportName.toLowerCase().replace(/\s+/g, '-')}`, '_blank');
     }, 1000);
   };
 

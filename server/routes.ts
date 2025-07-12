@@ -746,6 +746,161 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Report download endpoint
+  app.get("/api/reports/download/:reportName", async (req, res) => {
+    try {
+      const { reportName } = req.params;
+      
+      // Generate report data
+      const reportData = await generateComplianceReportData(reportName.replace(/-/g, ' '));
+      
+      // Create simple PDF-like content
+      const pdfContent = `
+SafetySync.AI - ${reportName.replace(/-/g, ' ').toUpperCase()}
+Generated: ${new Date().toLocaleDateString()}
+Period: ${reportData.periodStart} to ${reportData.periodEnd}
+
+COMPLIANCE SUMMARY:
+- Total Employees: ${reportData.complianceStats.totalEmployees}
+- Compliant Employees: ${reportData.complianceStats.compliantEmployees}
+- Compliance Score: ${reportData.complianceStats.complianceScore}%
+- Pending Training: ${reportData.complianceStats.pendingTraining}
+- Expired Certifications: ${reportData.complianceStats.expiredCertifications}
+
+EMPLOYEE DETAILS:
+${reportData.employees.map(emp => `
+${emp.name} - ${emp.position} (${emp.department})
+Hire Date: ${emp.hireDate}
+`).join('')}
+
+RECOMMENDATIONS:
+${reportData.summary.recommendations.map(rec => `- ${rec}`).join('\n')}
+
+© 2025 SafetySync.AI - All Rights Reserved
+      `;
+
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="${reportName}-${new Date().toISOString().split('T')[0]}.pdf"`);
+      res.send(pdfContent);
+    } catch (error) {
+      console.error("Error generating report download:", error);
+      res.status(500).json({ 
+        success: false, 
+        message: "Failed to generate report" 
+      });
+    }
+  });
+
+  // Report view endpoint
+  app.get("/api/reports/view/:reportName", async (req, res) => {
+    try {
+      const { reportName } = req.params;
+      
+      // Generate report data
+      const reportData = await generateComplianceReportData(reportName.replace(/-/g, ' '));
+      
+      // Create HTML content for viewing
+      const htmlContent = `
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SafetySync.AI - ${reportName.replace(/-/g, ' ').toUpperCase()}</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; background: #f5f5f5; }
+    .container { max-width: 800px; margin: 0 auto; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .header { border-bottom: 2px solid #10b981; padding-bottom: 20px; margin-bottom: 30px; }
+    .title { color: #10b981; font-size: 24px; font-weight: bold; margin-bottom: 10px; }
+    .subtitle { color: #6b7280; font-size: 14px; }
+    .section { margin-bottom: 30px; }
+    .section-title { color: #374151; font-size: 18px; font-weight: bold; margin-bottom: 15px; border-bottom: 1px solid #e5e7eb; padding-bottom: 5px; }
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 20px; }
+    .stat-card { background: #f9fafb; padding: 15px; border-radius: 6px; border-left: 4px solid #10b981; }
+    .stat-value { font-size: 24px; font-weight: bold; color: #10b981; }
+    .stat-label { color: #6b7280; font-size: 12px; text-transform: uppercase; }
+    .employee-list { background: #f9fafb; padding: 20px; border-radius: 6px; }
+    .employee { margin-bottom: 10px; padding: 10px; background: white; border-radius: 4px; }
+    .employee-name { font-weight: bold; color: #374151; }
+    .employee-details { color: #6b7280; font-size: 14px; }
+    .recommendations { background: #ecfdf5; padding: 20px; border-radius: 6px; border-left: 4px solid #10b981; }
+    .recommendations ul { margin: 0; padding-left: 20px; }
+    .recommendations li { margin-bottom: 8px; color: #065f46; }
+    .footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="title">SafetySync.AI - ${reportName.replace(/-/g, ' ').toUpperCase()}</div>
+      <div class="subtitle">Generated: ${new Date().toLocaleDateString()} | Period: ${reportData.periodStart} to ${reportData.periodEnd}</div>
+    </div>
+    
+    <div class="section">
+      <div class="section-title">Compliance Summary</div>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-value">${reportData.complianceStats.totalEmployees}</div>
+          <div class="stat-label">Total Employees</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">${reportData.complianceStats.compliantEmployees}</div>
+          <div class="stat-label">Compliant Employees</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">${reportData.complianceStats.complianceScore}%</div>
+          <div class="stat-label">Compliance Score</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">${reportData.complianceStats.pendingTraining}</div>
+          <div class="stat-label">Pending Training</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section">
+      <div class="section-title">Employee Details</div>
+      <div class="employee-list">
+        ${reportData.employees.map(emp => `
+          <div class="employee">
+            <div class="employee-name">${emp.name}</div>
+            <div class="employee-details">${emp.position} - ${emp.department} | Hire Date: ${emp.hireDate}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+    
+    <div class="section">
+      <div class="section-title">Recommendations</div>
+      <div class="recommendations">
+        <ul>
+          ${reportData.summary.recommendations.map(rec => `<li>${rec}</li>`).join('')}
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer">
+      © 2025 SafetySync.AI - All Rights Reserved
+    </div>
+  </div>
+</body>
+</html>
+      `;
+
+      res.setHeader('Content-Type', 'text/html');
+      res.send(htmlContent);
+    } catch (error) {
+      console.error("Error generating report view:", error);
+      res.status(404).send(`
+        <html>
+          <body style="font-family: Arial, sans-serif; text-align: center; padding: 50px;">
+            <h2 style="color: #ef4444;">Report Not Found</h2>
+            <p>The requested report could not be generated.</p>
+            <button onclick="window.close()" style="background: #10b981; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">Close Window</button>
+          </body>
+        </html>
+      `);
+    }
+  });
+
   // Get compliance reports for a user
   app.get("/api/compliance/reports/:userId", async (req, res) => {
     try {
