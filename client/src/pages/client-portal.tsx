@@ -297,10 +297,15 @@ export default function ClientPortal() {
           <div className="max-w-md w-full space-y-8">
             <div className="text-center">
               <SafetySyncIcon size={64} className="mx-auto mb-4" />
-              <h2 className="text-3xl font-bold text-white">Sign in to your account</h2>
+              <h2 className="text-3xl font-bold text-white">Client Portal Access</h2>
               <p className="mt-2 text-sm text-gray-300">
-                Access your SafetySync.AI client portal
+                Existing clients only - Sign in to access your dashboard and workspace
               </p>
+              <div className="mt-4 p-3 bg-amber-500/20 border border-amber-500/30 rounded-lg">
+                <p className="text-sm text-amber-200">
+                  <strong>For existing clients only.</strong> If you don't have an account, please contact our sales team to get started.
+                </p>
+              </div>
             </div>
             
             <Card className="bg-black/20 backdrop-blur-sm border-white/10">
@@ -349,10 +354,13 @@ export default function ClientPortal() {
                 
                 <div className="mt-6 text-center">
                   <p className="text-sm text-gray-300">
-                    Don't have an account?{' '}
+                    New to SafetySync.AI?{' '}
                     <Link href="/" className="text-emerald-400 hover:text-emerald-300">
-                      Contact sales for access
+                      Learn more about our services
                     </Link>
+                  </p>
+                  <p className="text-xs text-gray-400 mt-2">
+                    Client accounts are created after subscription signup
                   </p>
                 </div>
               </CardContent>
