@@ -224,14 +224,14 @@ export default function AnalyticsReports() {
     setTimeout(() => {
       const link = document.createElement('a');
       link.href = `/api/reports/download/${reportName.toLowerCase().replace(/\s+/g, '-')}`;
-      link.download = `${reportName.toLowerCase().replace(/\s+/g, '-')}-${new Date().toISOString().split('T')[0]}.txt`;
+      link.download = `${reportName.toLowerCase().replace(/\s+/g, '-')}-${new Date().toISOString().split('T')[0]}.pdf`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
       
       toast({
         title: "Download Complete",
-        description: `${reportName} report downloaded as text file.`
+        description: `${reportName} PDF report downloaded successfully.`
       });
     }, 1500);
   };
