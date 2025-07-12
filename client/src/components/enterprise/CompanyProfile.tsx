@@ -251,11 +251,19 @@ export default function CompanyProfile() {
             Company Profile
           </h2>
           <p className="text-gray-400">Manage your company information and settings</p>
+          <p className="text-blue-300 text-sm mt-1">
+            💡 This information will be used for billing, invoices, and official documentation
+          </p>
         </div>
         <div className="flex items-center space-x-2">
           {profile && (
             <Badge variant="secondary" className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30">
               🤖 AI-Verified Complete
+            </Badge>
+          )}
+          {!profile && (
+            <Badge variant="secondary" className="bg-blue-500/20 text-blue-400 border-blue-500/30">
+              Setup Required
             </Badge>
           )}
           <Button
@@ -268,6 +276,24 @@ export default function CompanyProfile() {
           </Button>
         </div>
       </div>
+
+      {/* Information Card */}
+      <Card className="bg-blue-500/10 border-blue-500/30 backdrop-blur-sm relative z-10">
+        <CardContent className="p-4">
+          <div className="flex items-start gap-3">
+            <div className="bg-blue-500/20 p-2 rounded-lg">
+              <Shield className="h-5 w-5 text-blue-400" />
+            </div>
+            <div>
+              <h3 className="text-white font-semibold">Company Profile Usage</h3>
+              <p className="text-gray-300 text-sm mt-1">
+                Your company profile information is used for billing, invoices, certificates, and official documentation. 
+                You can edit this information at any time to keep your account details current.
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
       <Form {...form}>
         <form id="company-profile-form" onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 relative z-10">
@@ -311,7 +337,7 @@ export default function CompanyProfile() {
                     Company Information
                   </CardTitle>
                   <CardDescription className="text-gray-400">
-                    Basic information about your organization
+                    Basic information about your organization (editable anytime)
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
@@ -425,7 +451,7 @@ export default function CompanyProfile() {
                     Business Address
                   </CardTitle>
                   <CardDescription className="text-gray-400">
-                    Primary business location
+                    Primary business location (used for billing address)
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
@@ -506,7 +532,7 @@ export default function CompanyProfile() {
                     Contact Information
                   </CardTitle>
                   <CardDescription className="text-gray-400">
-                    Primary contact details
+                    Primary contact details (used for billing and invoices)
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
