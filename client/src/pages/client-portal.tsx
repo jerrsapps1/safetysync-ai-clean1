@@ -392,15 +392,15 @@ export default function ClientPortal() {
               <SafetySyncIcon size={32} className="mr-3" />
               <span className="text-xl font-bold text-white">SafetySync.AI Client Portal</span>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 md:space-x-4">
               <Link href="/workspace">
-                <Button variant="outline" className="border-white/40 text-white hover:bg-white/10 hover:border-white/60 bg-white/5">
+                <Button variant="outline" className="border-white/50 text-white hover:bg-white/20 hover:border-white/70 bg-white/10 font-medium">
                   <Settings className="w-4 h-4 mr-2" />
                   Workspace
                 </Button>
               </Link>
               <Link href="/dashboard">
-                <Button variant="outline" className="border-white/40 text-white hover:bg-white/10 hover:border-white/60 bg-white/5">
+                <Button variant="outline" className="border-white/50 text-white hover:bg-white/20 hover:border-white/70 bg-white/10 font-medium">
                   <Home className="w-4 h-4 mr-2" />
                   Dashboard
                 </Button>
@@ -408,10 +408,11 @@ export default function ClientPortal() {
               <Button 
                 onClick={handleLogout}
                 variant="outline" 
-                className="border-red-400/60 text-red-300 hover:bg-red-500/10 hover:border-red-400 bg-red-500/5"
+                className="border-red-400 text-red-200 hover:bg-red-500/20 hover:border-red-300 bg-red-500/10 font-medium px-3 py-2"
               >
-                <LogOut className="w-4 h-4 mr-2" />
-                Logout
+                <LogOut className="w-4 h-4 mr-1 md:mr-2" />
+                <span className="hidden sm:inline">Logout</span>
+                <span className="sm:hidden">Exit</span>
               </Button>
             </div>
           </div>
@@ -425,10 +426,33 @@ export default function ClientPortal() {
           <h1 className="text-4xl font-bold text-white mb-4">
             Welcome to Your Client Portal
           </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-6">
             Stay updated on the latest features, exclusive offers, and upcoming software. 
             Your feedback helps us build the safety management tools you need.
           </p>
+          
+          {/* Quick Access Buttons */}
+          <div className="flex flex-wrap justify-center gap-4 mb-8">
+            <Link href="/workspace">
+              <Button className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3">
+                <Settings className="w-4 h-4 mr-2" />
+                Go to Workspace
+              </Button>
+            </Link>
+            <Link href="/dashboard">
+              <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3">
+                <Home className="w-4 h-4 mr-2" />
+                Go to Dashboard
+              </Button>
+            </Link>
+            <Button 
+              onClick={handleLogout}
+              className="bg-red-600 hover:bg-red-700 text-white px-6 py-3"
+            >
+              <LogOut className="w-4 h-4 mr-2" />
+              Logout
+            </Button>
+          </div>
         </div>
 
         {/* Navigation Tabs */}
