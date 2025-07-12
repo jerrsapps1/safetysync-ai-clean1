@@ -1,7 +1,8 @@
 import { 
   users, leads, complianceReports, cloneDetectionScans, helpDeskTickets, promoCodeUsage,
   employees, trainingPrograms, trainingSessions, employeeTraining, certificates, documents,
-  auditLogs, notifications, integrations, locations, ticketResponses,
+  auditLogs, notifications, integrations, locations, ticketResponses, specials, featureUpdates,
+  upcomingSoftware, softwareVotes, clientComments, commentLikes,
   type User, type InsertUser, type Lead, type InsertLead, type ComplianceReport, type InsertComplianceReport, 
   type CloneDetectionScan, type InsertCloneDetectionScan, type HelpDeskTicket, type InsertHelpDeskTicket, 
   type PromoCodeUsage, type InsertPromoCodeUsage, type Employee, type InsertEmployee,
@@ -9,10 +10,12 @@ import {
   type EmployeeTraining, type InsertEmployeeTraining, type Certificate, type InsertCertificate,
   type Document, type InsertDocument, type AuditLog, type InsertAuditLog, type Notification, 
   type InsertNotification, type Integration, type InsertIntegration, type Location, type InsertLocation,
-  companyProfiles, type CompanyProfile, type InsertCompanyProfile, type TicketResponse, type InsertTicketResponse
+  companyProfiles, type CompanyProfile, type InsertCompanyProfile, type TicketResponse, type InsertTicketResponse,
+  type Special, type InsertSpecial, type FeatureUpdate, type InsertFeatureUpdate,
+  type UpcomingSoftware, type InsertUpcomingSoftware, type ClientComment, type InsertClientComment
 } from "@shared/schema";
 import { db } from "./db";
-import { eq, and, gt } from "drizzle-orm";
+import { eq, and, gt, sql } from "drizzle-orm";
 
 // modify the interface with any CRUD methods
 // you might need
@@ -329,6 +332,96 @@ export class DatabaseStorage implements IStorage {
     return await db.select().from(ticketResponses)
       .where(eq(ticketResponses.ticketId, ticketId))
       .orderBy(ticketResponses.createdAt);
+  }
+
+  // Client Portal operations
+  async getActiveSpecials(): Promise<Special[]> {
+    return await db.select().from(specials)
+      .where(eq(specials.isActive, true))
+      .orderBy(specials.createdAt);
+  }
+
+  async getActiveFeatureUpdates(): Promise<FeatureUpdate[]> {
+    return await db.select().from(featureUpdates)
+      .where(eq(featureUpdates.isActive, true))
+      .orderBy(featureUpdates.releaseDate);
+  }
+
+  async getActiveUpcomingSoftware(): Promise<UpcomingSoftware[]> {
+    return await db.select().from(upcomingSoftware)
+      .where(eq(upcomingSoftware.isActive, true))
+      .orderBy(upcomingSoftware.votes);
+  }
+
+  async getActiveClientComments(): Promise<ClientComment[]> {
+    return await db.select().from(clientComments)
+      .where(eq(clientComments.isActive, true))
+      .orderBy(clientComments.createdAt);
+  }
+
+  async createClientComment(insertComment: InsertClientComment): Promise<ClientComment> {
+    const [comment] = await db
+      .insert(clientComments)
+      .values(insertComment)
+      .returning();
+    return comment;
+  }
+
+  async voteForSoftware(userId: string, softwareId: number): Promise<void> {
+    // Check if user already voted
+    const existingVote = await db.select().from(softwareVotes)
+      .where(and(eq(softwareVotes.userId, userId), eq(softwareVotes.softwareId, softwareId)))
+      .limit(1);
+
+    if (existingVote.length === 0) {
+      // Add vote
+      await db.insert(softwareVotes).values({ userId, softwareId });
+      
+      // Update vote count
+      await db.update(upcomingSoftware)
+        .set({ votes: sql`${upcomingSoftware.votes} + 1` })
+        .where(eq(upcomingSoftware.id, softwareId));
+    }
+  }
+
+  async likeComment(userId: string, commentId: number): Promise<void> {
+    // Check if user already liked
+    const existingLike = await db.select().from(commentLikes)
+      .where(and(eq(commentLikes.userId, userId), eq(commentLikes.commentId, commentId)))
+      .limit(1);
+
+    if (existingLike.length === 0) {
+      // Add like
+      await db.insert(commentLikes).values({ userId, commentId });
+      
+      // Update like count
+      await db.update(clientComments)
+        .set({ likes: sql`${clientComments.likes} + 1` })
+        .where(eq(clientComments.id, commentId));
+    } else {
+      // Remove like
+      await db.delete(commentLikes)
+        .where(and(eq(commentLikes.userId, userId), eq(commentLikes.commentId, commentId)));
+      
+      // Update like count
+      await db.update(clientComments)
+        .set({ likes: sql`${clientComments.likes} - 1` })
+        .where(eq(clientComments.id, commentId));
+    }
+  }
+
+  async getUserVotedSoftware(userId: string): Promise<number[]> {
+    const votes = await db.select({ softwareId: softwareVotes.softwareId })
+      .from(softwareVotes)
+      .where(eq(softwareVotes.userId, userId));
+    return votes.map(v => v.softwareId);
+  }
+
+  async getUserLikedComments(userId: string): Promise<number[]> {
+    const likes = await db.select({ commentId: commentLikes.commentId })
+      .from(commentLikes)
+      .where(eq(commentLikes.userId, userId));
+    return likes.map(l => l.commentId);
   }
 
   // Admin-only user management functions

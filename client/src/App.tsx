@@ -32,6 +32,7 @@ import OperationsDashboardPage from "@/pages/operations-dashboard";
 import SafetyTrendsPage from "@/pages/safety-trends";
 import ContactPage from "@/pages/contact";
 import HelpdeskPage from "@/pages/helpdesk";
+import ClientPortalPage from "@/pages/client-portal";
 import { SkeletonDemo } from "@/components/ui/skeleton-demo";
 
 function Router() {
@@ -64,6 +65,7 @@ function Router() {
       <Route path="/safety-trends" component={SafetyTrendsPage} />
       <Route path="/contact" component={ContactPage} />
       <Route path="/helpdesk" component={HelpdeskPage} />
+      <Route path="/client-portal" component={ClientPortalPage} />
       <Route path="/skeleton-demo" component={SkeletonDemo} />
       <Route component={NotFound} />
     </Switch>
