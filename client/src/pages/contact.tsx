@@ -88,7 +88,7 @@ export default function ContactPage() {
       icon: HeadphonesIcon,
       color: "bg-green-500",
       email: "support@safetysync.ai",
-      response: "Within 4 hours"
+      response: "Within 4 hours (business hours)"
     },
     {
       title: "Partnership Inquiries",
@@ -338,8 +338,8 @@ export default function ContactPage() {
                   <div>
                     <p className="font-medium">Support Hours</p>
                     <p className="text-sm text-gray-600">
-                      Mon-Fri: 8AM-6PM EST<br />
-                      Emergency support: 24/7
+                      Mon-Fri: 7AM-7PM EST<br />
+                      Weekend: Limited availability
                     </p>
                   </div>
                 </div>
@@ -401,25 +401,25 @@ export default function ContactPage() {
           </CardContent>
         </Card>
 
-        {/* Emergency Contact */}
-        <Card className="bg-red-50 border-red-200">
+        {/* Support Notice */}
+        <Card className="bg-blue-50 border-blue-200">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-red-800">
-              <Shield className="w-5 h-5" />
-              Emergency Support
+            <CardTitle className="flex items-center gap-2 text-blue-800">
+              <Clock className="w-5 h-5" />
+              Support Hours
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-red-700 mb-4">
-              For critical safety compliance issues or platform emergencies that require immediate attention:
+            <p className="text-blue-700 mb-4">
+              Our support team is available during business hours to help you with any questions or issues.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="outline" className="border-red-300 text-red-700 hover:bg-red-50">
+              <Button variant="outline" className="border-blue-300 text-blue-700 hover:bg-blue-50">
                 <Mail className="w-4 h-4 mr-2" />
-                emergency@safetysync.ai
+                support@safetysync.ai
               </Button>
-              <p className="text-sm text-red-600 self-center">
-                24/7 emergency response team available
+              <p className="text-sm text-blue-600 self-center">
+                Monday-Friday: 7AM-7PM EST
               </p>
             </div>
           </CardContent>
