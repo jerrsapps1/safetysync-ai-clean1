@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Shield, User } from "lucide-react";
 import { SafetySyncIcon } from "@/components/ui/safetysync-icon";
+import { Link } from "wouter";
 
 interface NavigationProps {
   onTrialClick: () => void;
@@ -72,12 +73,11 @@ export function Navigation({ onTrialClick, onDemoClick, onLoginClick, user, onLo
               >
                 Resources
               </a>
-              <button 
-                onClick={() => scrollToSection('contact')}
-                className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors"
-              >
-                Contact
-              </button>
+              <Link href="/contact">
+                <button className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors">
+                  Contact
+                </button>
+              </Link>
             </div>
           </div>
           
@@ -159,12 +159,11 @@ export function Navigation({ onTrialClick, onDemoClick, onLoginClick, user, onLo
               >
                 Pricing
               </a>
-              <button 
-                onClick={() => scrollToSection('contact')}
-                className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 transition-colors"
-              >
-                Contact
-              </button>
+              <Link href="/contact">
+                <button className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 transition-colors">
+                  Contact
+                </button>
+              </Link>
             </div>
           </div>
         )}
