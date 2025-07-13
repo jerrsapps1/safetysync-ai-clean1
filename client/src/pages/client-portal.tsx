@@ -334,133 +334,7 @@ export default function ClientPortal() {
     );
   }
 
-  // Always show sign-in form - don't bypass authentication
-  if (forceShowLogin || !isAuthenticated) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 relative overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(120,119,198,0.3),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(59,130,246,0.2),transparent_50%)]" />
-        
-        {/* Tech Grid Pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]" />
-
-        {/* Header */}
-        <header className="relative z-10 bg-black/20 backdrop-blur-sm border-b border-white/10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-16">
-              <div className="flex items-center">
-                <SafetySyncIcon size={32} className="mr-3" />
-                <span className="text-xl font-bold text-white">SafetySync.AI Client Portal</span>
-              </div>
-              <div className="flex items-center space-x-4">
-                <Button 
-                  onClick={() => window.location.href = '/'}
-                  variant="ghost"
-                  className="text-gray-300 hover:text-white"
-                >
-                  <Home className="w-4 h-4 mr-2" />
-                  Home
-                </Button>
-              </div>
-            </div>
-          </div>
-        </header>
-
-        {/* Centered Sign In Form */}
-        <div className="relative z-10 min-h-[calc(100vh-4rem)] flex items-center justify-center px-4">
-          <div className="w-full max-w-md">
-            <Card className="bg-white/95 backdrop-blur-sm border-0 shadow-2xl">
-              <CardHeader className="text-center pb-8">
-                <div className="mx-auto mb-4">
-                  <SafetySyncIcon size={48} />
-                </div>
-                <CardTitle className="text-2xl font-bold text-gray-900">Sign In</CardTitle>
-                <CardDescription className="text-gray-600 mt-2">
-                  For existing clients only
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="px-8 pb-8">
-                <form onSubmit={handleLogin} className="space-y-6">
-                  <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium text-gray-700">
-                      Email Address
-                    </label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="Enter your email"
-                      value={loginEmail}
-                      onChange={(e) => setLoginEmail(e.target.value)}
-                      required
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="password" className="text-sm font-medium text-gray-700">
-                      Password
-                    </label>
-                    <Input
-                      id="password"
-                      type="password"
-                      placeholder="Enter your password"
-                      value={loginPassword}
-                      onChange={(e) => setLoginPassword(e.target.value)}
-                      required
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
-                  </div>
-                  <div className="flex items-center">
-                    <input
-                      id="remember"
-                      name="remember"
-                      type="checkbox"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
-                    <label htmlFor="remember" className="ml-2 block text-sm text-gray-700">
-                      Remember my browser so I can sign in faster
-                    </label>
-                  </div>
-                  <Button
-                    type="submit"
-                    disabled={isAuthenticating}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 flex items-center justify-center"
-                  >
-                    <LogIn className="w-4 h-4 mr-2" />
-                    {isAuthenticating ? "Signing in..." : "Secure Sign In"}
-                  </Button>
-                </form>
-                <div className="mt-6 text-center space-y-2">
-                  <div className="text-sm text-gray-600">
-                    <a href="#" className="text-blue-600 hover:text-blue-800">
-                      Forgot Username?
-                    </a>
-                    <span className="mx-2">•</span>
-                    <a href="#" className="text-blue-600 hover:text-blue-800">
-                      Forgot Password?
-                    </a>
-                  </div>
-                  <div className="text-sm text-gray-600">
-                    <a href="/" className="text-blue-600 hover:text-blue-800">
-                      Set up Online Account Access
-                    </a>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            <div className="mt-6 text-center">
-              <p className="text-white/80 text-sm">
-                Don't have an account?{" "}
-                <a href="/" className="text-blue-400 hover:text-blue-300 underline">
-                  Sign up for a free trial
-                </a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // Show client portal with sign-in form in top right corner
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 relative overflow-hidden">
@@ -488,15 +362,51 @@ export default function ClientPortal() {
                 <Home className="w-4 h-4 mr-2" />
                 Home
               </Button>
-              {isAuthenticated && (
-                <Button 
-                  onClick={handleLogout}
-                  variant="ghost"
-                  className="text-red-300 hover:text-red-200"
-                >
-                  <LogOut className="w-4 h-4 mr-2" />
-                  Logout
-                </Button>
+              {!isAuthenticated ? (
+                <div className="flex items-center space-x-2">
+                  <Input
+                    type="email"
+                    placeholder="Email"
+                    value={loginEmail}
+                    onChange={(e) => setLoginEmail(e.target.value)}
+                    className="w-40 h-8 text-sm bg-white/10 border-white/20 text-white placeholder-gray-400"
+                  />
+                  <Input
+                    type="password"
+                    placeholder="Password"
+                    value={loginPassword}
+                    onChange={(e) => setLoginPassword(e.target.value)}
+                    className="w-40 h-8 text-sm bg-white/10 border-white/20 text-white placeholder-gray-400"
+                  />
+                  <Button
+                    onClick={handleLogin}
+                    disabled={isAuthenticating}
+                    size="sm"
+                    className="bg-blue-600 hover:bg-blue-700 text-white"
+                  >
+                    {isAuthenticating ? "..." : "Sign In"}
+                  </Button>
+                </div>
+              ) : (
+                <div className="flex items-center space-x-4">
+                  <span className="text-white text-sm">Welcome, {user?.name}</span>
+                  <Button 
+                    onClick={() => window.location.href = '/workspace'}
+                    variant="ghost"
+                    className="text-emerald-300 hover:text-emerald-200"
+                  >
+                    <Settings className="w-4 h-4 mr-2" />
+                    Dashboard
+                  </Button>
+                  <Button 
+                    onClick={handleLogout}
+                    variant="ghost"
+                    className="text-red-300 hover:text-red-200"
+                  >
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Logout
+                  </Button>
+                </div>
               )}
             </div>
           </div>
@@ -505,68 +415,28 @@ export default function ClientPortal() {
 
       {/* Main Content */}
       <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid lg:grid-cols-2 gap-8 items-start">
-          {/* Left Side - Login Form */}
-          <div className="space-y-8">
-            <div className="text-center lg:text-left">
-              <h1 className="text-4xl font-bold text-white mb-4">
-                Client Portal Access
-              </h1>
-              <p className="text-xl text-gray-300 mb-6">
-                Sign in to access your workspace and manage your safety compliance.
-              </p>
-            </div>
+        <div className="space-y-8">
+          {/* Page Header */}
+          <div className="text-center">
+            <h1 className="text-4xl font-bold text-white mb-4">
+              Client Portal
+            </h1>
+            <p className="text-xl text-gray-300 mb-6">
+              {!isAuthenticated 
+                ? "Sign in using the form in the top right corner to access your workspace and manage your safety compliance."
+                : `Welcome back, ${user?.name}! Access your workspace and explore our client features below.`
+              }
+            </p>
+          </div>
 
-            {!isAuthenticated ? (
-              <Card className="bg-black/40 border-white/10 backdrop-blur-sm">
+          {/* Show workspace access after login */}
+          {isAuthenticated && (
+            <div className="max-w-2xl mx-auto">
+              <Card className="bg-emerald-900/40 border-emerald-500/20 backdrop-blur-sm">
                 <CardHeader>
-                  <CardTitle className="text-white">Sign In to Your Account</CardTitle>
-                  <CardDescription className="text-gray-300">
-                    Enter your credentials to access your safety management workspace
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <form onSubmit={handleLogin} className="space-y-4">
-                    <div className="space-y-2">
-                      <label htmlFor="email" className="text-white font-medium">Email</label>
-                      <Input
-                        id="email"
-                        type="email"
-                        placeholder="Enter your email"
-                        value={loginEmail}
-                        onChange={(e) => setLoginEmail(e.target.value)}
-                        required
-                        className="bg-white/10 border-white/20 text-white placeholder-gray-400"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="password" className="text-white font-medium">Password</label>
-                      <Input
-                        id="password"
-                        type="password"
-                        placeholder="Enter your password"
-                        value={loginPassword}
-                        onChange={(e) => setLoginPassword(e.target.value)}
-                        required
-                        className="bg-white/10 border-white/20 text-white placeholder-gray-400"
-                      />
-                    </div>
-                    <Button
-                      type="submit"
-                      disabled={isAuthenticating}
-                      className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3"
-                    >
-                      {isAuthenticating ? "Signing in..." : "Sign In"}
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
-            ) : (
-              <Card className="bg-black/40 border-white/10 backdrop-blur-sm">
-                <CardHeader>
-                  <CardTitle className="text-white">Welcome Back, {user?.name}!</CardTitle>
-                  <CardDescription className="text-gray-300">
-                    You are successfully logged in to your SafetySync.AI account
+                  <CardTitle className="text-emerald-300">Ready to Work</CardTitle>
+                  <CardDescription className="text-emerald-100">
+                    Access your safety management workspace
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -588,21 +458,12 @@ export default function ClientPortal() {
                   </div>
                 </CardContent>
               </Card>
-            )}
-
-            <div className="text-center lg:text-left">
-              <p className="text-gray-300 text-sm">
-                Don't have an account?{" "}
-                <a href="/" className="text-emerald-400 hover:text-emerald-300 underline">
-                  Sign up for a free trial
-                </a>
-              </p>
             </div>
-          </div>
+          )}
 
-          {/* Right Side - Client Portal Content */}
+          {/* Client Portal Content */}
           <div className="space-y-8">
-            <div className="text-center lg:text-left">
+            <div className="text-center">
               <h2 className="text-3xl font-bold text-white mb-4">
                 Client Portal Features
               </h2>
