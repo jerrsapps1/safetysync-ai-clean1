@@ -287,6 +287,11 @@ export const insertUserSchema = createInsertSchema(users).pick({
   name: true,
   company: true,
   phone: true,
+  userTier: true,
+  subscriptionStatus: true,
+}).extend({
+  termsAccepted: z.boolean().optional(),
+  termsAcceptedAt: z.string().optional(),
 });
 
 export const loginUserSchema = createInsertSchema(users).pick({
