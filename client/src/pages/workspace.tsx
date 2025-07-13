@@ -1574,6 +1574,17 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 <Bell className="w-4 h-4 mr-2" />
                 Notifications
               </Button>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  logout();
+                  window.location.href = '/';
+                }}
+                className="text-red-300 border-red-600 hover:bg-red-800/20"
+              >
+                <LogOut className="w-4 h-4 mr-2" />
+                Logout
+              </Button>
               <a href="/" className="text-gray-400 hover:text-white text-sm">
                 ← Back to SafetySync.AI
               </a>
