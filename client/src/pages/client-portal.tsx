@@ -324,8 +324,6 @@ export default function ClientPortal() {
     );
   }
 
-  // Always show client portal content - authentication is handled via popup
-  // This ensures users always see the client portal interface, not a login form
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 relative overflow-hidden">
       {/* Background Effects */}
@@ -343,44 +341,141 @@ export default function ClientPortal() {
               <SafetySyncIcon size={32} className="mr-3" />
               <span className="text-xl font-bold text-white">SafetySync.AI Client Portal</span>
             </div>
-            {/* Header navigation removed - authentication now handled by popup */}
+            <div className="flex items-center space-x-4">
+              <Button 
+                onClick={() => window.location.href = '/'}
+                variant="ghost"
+                className="text-gray-300 hover:text-white"
+              >
+                <Home className="w-4 h-4 mr-2" />
+                Home
+              </Button>
+              {isAuthenticated && (
+                <Button 
+                  onClick={handleLogout}
+                  variant="ghost"
+                  className="text-red-300 hover:text-red-200"
+                >
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Logout
+                </Button>
+              )}
+            </div>
           </div>
         </div>
       </header>
 
       {/* Main Content */}
       <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Welcome Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-white mb-4">
-            Welcome to Your Client Portal
-          </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-6">
-            Stay updated on the latest features, exclusive offers, and upcoming software. 
-            Your feedback helps us build the safety management tools you need.
-          </p>
-          
-          {/* Quick Access Buttons */}
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <Button 
-              onClick={handleWorkspaceAccess}
-              className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 text-lg"
-            >
-              <Settings className="w-5 h-5 mr-3" />
-              Enter Your Workspace
-            </Button>
-            <Button 
-              onClick={handleLogout}
-              className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 text-lg"
-            >
-              <LogOut className="w-5 h-5 mr-3" />
-              Logout
-            </Button>
-          </div>
-        </div>
+        <div className="grid lg:grid-cols-2 gap-8 items-start">
+          {/* Left Side - Login Form */}
+          <div className="space-y-8">
+            <div className="text-center lg:text-left">
+              <h1 className="text-4xl font-bold text-white mb-4">
+                Client Portal Access
+              </h1>
+              <p className="text-xl text-gray-300 mb-6">
+                Sign in to access your workspace and manage your safety compliance.
+              </p>
+            </div>
 
-        {/* Navigation Tabs */}
-        <div className="flex flex-wrap justify-center gap-4 mb-8">
+            {!isAuthenticated ? (
+              <Card className="bg-black/40 border-white/10 backdrop-blur-sm">
+                <CardHeader>
+                  <CardTitle className="text-white">Sign In to Your Account</CardTitle>
+                  <CardDescription className="text-gray-300">
+                    Enter your credentials to access your safety management workspace
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <form onSubmit={handleLogin} className="space-y-4">
+                    <div className="space-y-2">
+                      <label htmlFor="email" className="text-white font-medium">Email</label>
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder="Enter your email"
+                        value={loginEmail}
+                        onChange={(e) => setLoginEmail(e.target.value)}
+                        required
+                        className="bg-white/10 border-white/20 text-white placeholder-gray-400"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label htmlFor="password" className="text-white font-medium">Password</label>
+                      <Input
+                        id="password"
+                        type="password"
+                        placeholder="Enter your password"
+                        value={loginPassword}
+                        onChange={(e) => setLoginPassword(e.target.value)}
+                        required
+                        className="bg-white/10 border-white/20 text-white placeholder-gray-400"
+                      />
+                    </div>
+                    <Button
+                      type="submit"
+                      disabled={isAuthenticating}
+                      className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3"
+                    >
+                      {isAuthenticating ? "Signing in..." : "Sign In"}
+                    </Button>
+                  </form>
+                </CardContent>
+              </Card>
+            ) : (
+              <Card className="bg-black/40 border-white/10 backdrop-blur-sm">
+                <CardHeader>
+                  <CardTitle className="text-white">Welcome Back, {user?.name}!</CardTitle>
+                  <CardDescription className="text-gray-300">
+                    You are successfully logged in to your SafetySync.AI account
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between p-4 bg-emerald-500/20 rounded-lg border border-emerald-500/30">
+                      <div>
+                        <div className="text-white font-medium">Account Status</div>
+                        <div className="text-emerald-300 text-sm">Active • {user?.userTier}</div>
+                      </div>
+                      <div className="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></div>
+                    </div>
+                    <Button
+                      onClick={() => window.location.href = '/workspace'}
+                      className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3"
+                    >
+                      <Settings className="w-5 h-5 mr-2" />
+                      Access Your Workspace
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            <div className="text-center lg:text-left">
+              <p className="text-gray-300 text-sm">
+                Don't have an account?{" "}
+                <a href="/" className="text-emerald-400 hover:text-emerald-300 underline">
+                  Sign up for a free trial
+                </a>
+              </p>
+            </div>
+          </div>
+
+          {/* Right Side - Client Portal Content */}
+          <div className="space-y-8">
+            <div className="text-center lg:text-left">
+              <h2 className="text-3xl font-bold text-white mb-4">
+                Client Portal Features
+              </h2>
+              <p className="text-gray-300 mb-6">
+                Stay updated on the latest features, exclusive offers, and upcoming software. 
+                Your feedback helps us build the safety management tools you need.
+              </p>
+            </div>
+
+            {/* Navigation Tabs */}
+            <div className="flex flex-wrap justify-center lg:justify-start gap-4 mb-8">
           {[
             { key: 'specials', label: 'Current Specials', icon: Gift },
             { key: 'updates', label: 'Feature Updates', icon: Rocket },
@@ -403,8 +498,8 @@ export default function ClientPortal() {
           ))}
         </div>
 
-        {/* Content Sections */}
-        <div className="grid gap-8">
+            {/* Content Sections */}
+            <div className="grid gap-8">
           {/* Current Specials */}
           {activeTab === 'specials' && (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -577,6 +672,8 @@ export default function ClientPortal() {
               </div>
             </div>
           )}
+            </div>
+          </div>
         </div>
       </main>
 
