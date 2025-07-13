@@ -145,6 +145,29 @@ export default function LandingPage() {
             termsAcceptedAt: new Date().toISOString()
           }),
         });
+
+        // If registration was successful, automatically log the user in
+        if (response.ok) {
+          const loginResponse = await fetch('/api/auth/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email: pendingSignupData.data.email,
+              password: pendingSignupData.data.password
+            }),
+          });
+
+          if (loginResponse.ok) {
+            const loginResult = await loginResponse.json();
+            if (loginResult.success) {
+              // Store the authentication token
+              localStorage.setItem('auth_token', loginResult.token);
+              console.log('User automatically logged in after registration');
+            }
+          }
+        }
       } else {
         // Create lead for demo requests
         response = await fetch('/api/leads', {
