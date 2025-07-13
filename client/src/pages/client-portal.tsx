@@ -310,8 +310,6 @@ export default function ClientPortal() {
     }
   };
 
-
-
   // Show loading state
   if (isLoading) {
     return (
@@ -319,6 +317,134 @@ export default function ClientPortal() {
         <div className="text-center">
           <SafetySyncIcon size={64} className="mx-auto mb-4 animate-pulse" />
           <p className="text-white text-lg">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Always show sign-in form - don't bypass authentication
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 relative overflow-hidden">
+        {/* Background Effects */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(120,119,198,0.3),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(59,130,246,0.2),transparent_50%)]" />
+        
+        {/* Tech Grid Pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]" />
+
+        {/* Header */}
+        <header className="relative z-10 bg-black/20 backdrop-blur-sm border-b border-white/10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center h-16">
+              <div className="flex items-center">
+                <SafetySyncIcon size={32} className="mr-3" />
+                <span className="text-xl font-bold text-white">SafetySync.AI Client Portal</span>
+              </div>
+              <div className="flex items-center space-x-4">
+                <Button 
+                  onClick={() => window.location.href = '/'}
+                  variant="ghost"
+                  className="text-gray-300 hover:text-white"
+                >
+                  <Home className="w-4 h-4 mr-2" />
+                  Home
+                </Button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        {/* Centered Sign In Form */}
+        <div className="relative z-10 min-h-[calc(100vh-4rem)] flex items-center justify-center px-4">
+          <div className="w-full max-w-md">
+            <Card className="bg-white/95 backdrop-blur-sm border-0 shadow-2xl">
+              <CardHeader className="text-center pb-8">
+                <div className="mx-auto mb-4">
+                  <SafetySyncIcon size={48} />
+                </div>
+                <CardTitle className="text-2xl font-bold text-gray-900">Sign In</CardTitle>
+                <CardDescription className="text-gray-600 mt-2">
+                  For existing clients only
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="px-8 pb-8">
+                <form onSubmit={handleLogin} className="space-y-6">
+                  <div className="space-y-2">
+                    <label htmlFor="email" className="text-sm font-medium text-gray-700">
+                      Email Address
+                    </label>
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="Enter your email"
+                      value={loginEmail}
+                      onChange={(e) => setLoginEmail(e.target.value)}
+                      required
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="password" className="text-sm font-medium text-gray-700">
+                      Password
+                    </label>
+                    <Input
+                      id="password"
+                      type="password"
+                      placeholder="Enter your password"
+                      value={loginPassword}
+                      onChange={(e) => setLoginPassword(e.target.value)}
+                      required
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                  </div>
+                  <div className="flex items-center">
+                    <input
+                      id="remember"
+                      name="remember"
+                      type="checkbox"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    />
+                    <label htmlFor="remember" className="ml-2 block text-sm text-gray-700">
+                      Remember my browser so I can sign in faster
+                    </label>
+                  </div>
+                  <Button
+                    type="submit"
+                    disabled={isAuthenticating}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 flex items-center justify-center"
+                  >
+                    <LogIn className="w-4 h-4 mr-2" />
+                    {isAuthenticating ? "Signing in..." : "Secure Sign In"}
+                  </Button>
+                </form>
+                <div className="mt-6 text-center space-y-2">
+                  <div className="text-sm text-gray-600">
+                    <a href="#" className="text-blue-600 hover:text-blue-800">
+                      Forgot Username?
+                    </a>
+                    <span className="mx-2">•</span>
+                    <a href="#" className="text-blue-600 hover:text-blue-800">
+                      Forgot Password?
+                    </a>
+                  </div>
+                  <div className="text-sm text-gray-600">
+                    <a href="/" className="text-blue-600 hover:text-blue-800">
+                      Set up Online Account Access
+                    </a>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            <div className="mt-6 text-center">
+              <p className="text-white/80 text-sm">
+                Don't have an account?{" "}
+                <a href="/" className="text-blue-400 hover:text-blue-300 underline">
+                  Sign up for a free trial
+                </a>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     );
