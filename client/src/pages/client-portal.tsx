@@ -484,11 +484,11 @@ export default function ClientPortal() {
             <Button
               key={key}
               onClick={() => setActiveTab(key as any)}
-              variant={activeTab === key ? "default" : "outline"}
+              variant={activeTab === key ? "default" : "secondary"}
               className={`${
                 activeTab === key 
-                  ? 'bg-emerald-600 text-white' 
-                  : 'border-white/20 text-white hover:bg-white/10'
+                  ? 'bg-emerald-600 text-white hover:bg-emerald-700' 
+                  : 'bg-white/10 text-white border-white/20 hover:bg-white/20'
               }`}
             >
               <Icon className="w-4 h-4 mr-2" />
