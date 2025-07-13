@@ -152,6 +152,13 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - Popup requires username/password authentication preserving all normal security features
   - Authentication popup includes proper error handling, loading states, and success redirects
   - Secure authentication flow: Client Portal → "Access Client Workspace" button → Popup authentication → Workspace access
+  - **Fixed Bookmark Routing Issue**: Resolved problem where bookmarks showed login form instead of client portal
+  - Removed authentication conditional that displayed login form for expired tokens
+  - Client portal now always shows proper interface regardless of authentication state
+  - Authentication is handled exclusively through popup, ensuring consistent user experience
+  - **Fixed Workspace URL Routing**: Workspace URLs now properly redirect to landing page instead of showing login form
+  - Changed workspace authentication to redirect unauthorized users to landing page (/) instead of showing login form
+  - Ensures proper authentication flow: unauthorized workspace access → landing page → client portal → popup authentication → workspace
 
 - **July 12, 2025** - Fixed Client Portal Navigation Issues:
   - Enhanced button visibility with better contrast (bg-white/5 background, border-white/40)
