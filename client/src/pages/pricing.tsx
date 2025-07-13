@@ -16,7 +16,7 @@ export default function PricingPage() {
       <div className="bg-white border-b border-gray-200 px-4 sm:px-6 lg:px-8 py-3">
         <div className="max-w-7xl mx-auto">
           <Link href="/">
-            <Button variant="outline" className="flex items-center gap-2">
+            <Button variant="secondary" className="flex items-center gap-2 bg-gray-100 text-gray-700 hover:bg-gray-200">
               <Home className="w-4 h-4" />
               Back to Home
             </Button>
@@ -54,8 +54,8 @@ export default function PricingPage() {
                 </Button>
                 <Button 
                   size="lg" 
-                  variant="outline" 
-                  className="border-blue-300 text-blue-700 hover:bg-blue-50"
+                  variant="secondary" 
+                  className="bg-blue-50 border-blue-300 text-blue-700 hover:bg-blue-100"
                   onClick={() => window.location.href = '/certificate-services'}
                 >
                   See Examples & Pricing
@@ -103,7 +103,7 @@ export default function PricingPage() {
         <div className="bg-white border-t border-gray-200 px-4 sm:px-6 lg:px-8 py-6 mt-12">
           <div className="max-w-7xl mx-auto text-center">
             <Link href="/">
-              <Button variant="outline" className="flex items-center gap-2 mx-auto">
+              <Button variant="secondary" className="flex items-center gap-2 mx-auto bg-gray-100 text-gray-700 hover:bg-gray-200">
                 <Home className="w-4 h-4" />
                 Back to Home
               </Button>

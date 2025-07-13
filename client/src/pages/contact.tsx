@@ -134,7 +134,7 @@ export default function ContactPage() {
       <div className="bg-white border-b border-gray-200 px-4 sm:px-6 lg:px-8 py-3">
         <div className="max-w-7xl mx-auto">
           <Link href="/">
-            <Button variant="outline" className="flex items-center gap-2">
+            <Button variant="secondary" className="flex items-center gap-2 bg-gray-100 text-gray-700 hover:bg-gray-200">
               <Home className="w-4 h-4" />
               Back to Home
             </Button>
@@ -440,7 +440,7 @@ export default function ContactPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/helpdesk">
-                <Button variant="outline" className="border-emerald-300 text-emerald-700 hover:bg-emerald-50">
+                <Button variant="secondary" className="bg-emerald-50 border-emerald-300 text-emerald-700 hover:bg-emerald-100">
                   <Ticket className="w-4 h-4 mr-2" />
                   Access Helpdesk
                 </Button>
@@ -456,7 +456,7 @@ export default function ContactPage() {
         <div className="bg-white border-t border-gray-200 px-4 sm:px-6 lg:px-8 py-6 mt-12">
           <div className="max-w-7xl mx-auto text-center">
             <Link href="/">
-              <Button variant="outline" className="flex items-center gap-2 mx-auto">
+              <Button variant="secondary" className="flex items-center gap-2 mx-auto bg-gray-100 text-gray-700 hover:bg-gray-200">
                 <Home className="w-4 h-4" />
                 Back to Home
               </Button>

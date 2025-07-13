@@ -1570,17 +1570,17 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </p>
             </div>
             <div className="flex items-center space-x-4">
-              <Button variant="outline" className="text-gray-300 border-gray-600 hover:bg-gray-800">
+              <Button variant="secondary" className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-800">
                 <Bell className="w-4 h-4 mr-2" />
                 Notifications
               </Button>
               <Button
-                variant="outline"
+                variant="secondary"
                 onClick={() => {
                   logout();
                   window.location.href = '/';
                 }}
-                className="text-red-300 border-red-600 hover:bg-red-800/20"
+                className="bg-red-800/20 text-red-300 border-red-600 hover:bg-red-800/40"
               >
                 <LogOut className="w-4 h-4 mr-2" />
                 Logout
@@ -1600,35 +1600,35 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center space-x-4">
                   <Button
-                    variant="outline"
+                    variant="secondary"
                     onClick={() => setShowWidgetManager(!showWidgetManager)}
-                    className="text-gray-300 border-gray-600 hover:bg-gray-800"
+                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-800"
                   >
                     <Settings className="w-4 h-4 mr-2" />
                     Manage Widgets
                   </Button>
                   <Button
-                    variant="outline"
+                    variant="secondary"
                     onClick={saveAsDefault}
-                    className="text-gray-300 border-gray-600 hover:bg-gray-800"
+                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-800"
                   >
                     <Save className="w-4 h-4 mr-2" />
                     Save as Default
                   </Button>
                   {hasCustomDefaults() && (
                     <Button
-                      variant="outline"
+                      variant="secondary"
                       onClick={loadCustomDefaults}
-                      className="text-gray-300 border-gray-600 hover:bg-gray-800"
+                      className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-800"
                     >
                       <Upload className="w-4 h-4 mr-2" />
                       Load My Default
                     </Button>
                   )}
                   <Button
-                    variant="outline"
+                    variant="secondary"
                     onClick={resetWidgetLayout}
-                    className="text-gray-300 border-gray-600 hover:bg-gray-800"
+                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-800"
                   >
                     <RotateCcw className="w-4 h-4 mr-2" />
                     Reset to Original
@@ -2091,9 +2091,9 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                                 {Math.round((employees.filter(emp => emp.division === division && emp.status === 'Active').length / Math.max(employees.filter(emp => emp.division === division).length, 1)) * 100)}% Active
                               </Badge>
                               <Button
-                                variant="outline"
+                                variant="secondary"
                                 size="sm"
-                                className="text-red-400 border-red-400 hover:bg-red-400/10"
+                                className="bg-red-400/10 text-red-400 border-red-400 hover:bg-red-400/20"
                                 onClick={() => handleDeleteDivision(division)}
                               >
                                 <Trash2 className="w-4 h-4" />
@@ -2113,13 +2113,13 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                                   </div>
                                 </div>
                                 <div className="flex items-center space-x-2">
-                                  <Badge variant="outline" className="text-gray-300 border-gray-600">
+                                  <Badge variant="secondary" className="bg-gray-800/50 text-gray-300 border-gray-600">
                                     {Math.round((employees.filter(emp => emp.department === department && emp.status === 'Active').length / Math.max(employees.filter(emp => emp.department === department).length, 1)) * 100)}% Active
                                   </Badge>
                                   <Button
-                                    variant="outline"
+                                    variant="secondary"
                                     size="sm"
-                                    className="text-red-400 border-red-400 hover:bg-red-400/10"
+                                    className="bg-red-400/10 text-red-400 border-red-400 hover:bg-red-400/20"
                                     onClick={() => handleDeleteDepartment(division, department)}
                                   >
                                     <Trash2 className="w-3 h-3" />
