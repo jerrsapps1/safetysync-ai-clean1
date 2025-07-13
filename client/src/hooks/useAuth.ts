@@ -69,7 +69,12 @@ export function useAuth() {
     }
   };
 
-  const logout = () => {
+  const logout = async () => {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' });
+    } catch (error) {
+      console.error('Logout API call failed:', error);
+    }
     localStorage.removeItem('auth_token');
     setUser(null);
   };
