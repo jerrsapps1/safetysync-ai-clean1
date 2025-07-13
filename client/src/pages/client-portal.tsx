@@ -745,8 +745,8 @@ export default function ClientPortal() {
                 <Button 
                   type="button"
                   onClick={() => setShowAuthPopup(false)}
-                  variant="outline"
-                  className="flex-1 border-white/20 text-white hover:bg-white/10"
+                  variant="secondary"
+                  className="flex-1 bg-white/10 border-white/20 text-white hover:bg-white/20"
                 >
                   Cancel
                 </Button>

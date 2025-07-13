@@ -140,7 +140,7 @@ export default function TestimonialsPage() {
       <div className="bg-white border-b border-gray-200 px-4 sm:px-6 lg:px-8 py-3">
         <div className="max-w-7xl mx-auto">
           <Link href="/">
-            <Button variant="outline" className="flex items-center gap-2">
+            <Button variant="secondary" className="flex items-center gap-2 bg-gray-100 text-gray-700 hover:bg-gray-200">
               <Home className="w-4 h-4" />
               Back to Home
             </Button>
@@ -307,7 +307,7 @@ export default function TestimonialsPage() {
                 </Button>
               </Link>
               <Link href="/">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                <Button size="lg" variant="secondary" className="bg-white/10 border-white text-white hover:bg-white/20">
                   Schedule Demo
                 </Button>
               </Link>
@@ -318,7 +318,7 @@ export default function TestimonialsPage() {
         <div className="bg-white border-t border-gray-200 px-4 sm:px-6 lg:px-8 py-6 mt-12">
           <div className="max-w-7xl mx-auto text-center">
             <Link href="/">
-              <Button variant="outline" className="flex items-center gap-2 mx-auto">
+              <Button variant="secondary" className="flex items-center gap-2 mx-auto bg-gray-100 text-gray-700 hover:bg-gray-200">
                 <Home className="w-4 h-4" />
                 Back to Home
               </Button>
