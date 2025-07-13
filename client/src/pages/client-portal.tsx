@@ -276,15 +276,9 @@ export default function ClientPortal() {
   console.log('Client Portal - isLoading:', isLoading, 'isAuthenticated:', isAuthenticated, 'user:', user);
 
   const handleWorkspaceAccess = () => {
-    if (isAuthenticated) {
-      setShowAuthPopup(true);
-    } else {
-      toast({
-        title: "Authentication Required",
-        description: "Please log in to access your workspace.",
-        variant: "destructive",
-      });
-    }
+    // Always show the popup for workspace access - regardless of current auth state
+    // This ensures users see the client portal interface, not the login form
+    setShowAuthPopup(true);
   };
 
   const handlePopupAuth = async (e: React.FormEvent) => {
@@ -330,96 +324,8 @@ export default function ClientPortal() {
     );
   }
 
-  // Show login form if not authenticated
-  if (!isAuthenticated) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 relative overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(120,119,198,0.3),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(59,130,246,0.2),transparent_50%)]" />
-        
-        {/* Tech Grid Pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]" />
-
-        <div className="relative z-10 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
-          <div className="max-w-md w-full space-y-8">
-            <div className="text-center">
-              <SafetySyncIcon size={64} className="mx-auto mb-4" />
-              <h2 className="text-3xl font-bold text-white">Client Portal Access</h2>
-              <p className="mt-2 text-sm text-gray-300">
-                Existing clients only - Sign in to access your dashboard and workspace
-              </p>
-              <div className="mt-4 p-3 bg-amber-500/20 border border-amber-500/30 rounded-lg">
-                <p className="text-sm text-amber-200">
-                  <strong>For existing clients only.</strong> If you don't have an account, please contact our sales team to get started.
-                </p>
-              </div>
-            </div>
-            
-            <Card className="bg-black/20 backdrop-blur-sm border-white/10">
-              <CardContent className="p-6">
-                <form onSubmit={handleLogin} className="space-y-6">
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
-                      Email address
-                    </label>
-                    <Input
-                      id="email"
-                      type="email"
-                      required
-                      value={loginEmail}
-                      onChange={(e) => setLoginEmail(e.target.value)}
-                      className="bg-white/10 border-white/20 text-white placeholder-gray-400"
-                      placeholder="Enter your email"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="password" className="block text-sm font-medium text-white mb-2">
-                      Password
-                    </label>
-                    <Input
-                      id="password"
-                      type="password"
-                      required
-                      value={loginPassword}
-                      onChange={(e) => setLoginPassword(e.target.value)}
-                      className="bg-white/10 border-white/20 text-white placeholder-gray-400"
-                      placeholder="Enter your password"
-                    />
-                  </div>
-                  
-                  <div>
-                    <Button 
-                      type="submit" 
-                      className="w-full bg-emerald-500 hover:bg-emerald-600 text-white"
-                    >
-                      <LogIn className="w-4 h-4 mr-2" />
-                      Sign in
-                    </Button>
-                  </div>
-                </form>
-                
-                <div className="mt-6 text-center">
-                  <p className="text-sm text-gray-300">
-                    New to SafetySync.AI?{' '}
-                    <Link href="/" className="text-emerald-400 hover:text-emerald-300">
-                      Learn more about our services
-                    </Link>
-                  </p>
-                  <p className="text-xs text-gray-400 mt-2">
-                    Client accounts are created after subscription signup
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // Show client portal content if authenticated
+  // Always show client portal content - authentication is handled via popup
+  // This ensures users always see the client portal interface, not a login form
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 relative overflow-hidden">
       {/* Background Effects */}
