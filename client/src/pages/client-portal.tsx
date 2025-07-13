@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -77,8 +77,45 @@ export default function ClientPortal() {
   const [loginPassword, setLoginPassword] = useState('');
   const [showAuthPopup, setShowAuthPopup] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(false);
+  const [forceShowLogin, setForceShowLogin] = useState(true);
   const { toast } = useToast();
   const { user, isAuthenticated, isLoading, login, logout } = useAuth();
+
+  // Force authentication check on client portal
+  useEffect(() => {
+    // Clear any existing authentication tokens for client portal
+    localStorage.removeItem('auth_token');
+    setForceShowLogin(true);
+  }, []);
+
+  const handleSuccessfulLogin = async (email: string, password: string) => {
+    setIsAuthenticating(true);
+    try {
+      const result = await login(email, password);
+      if (result.success) {
+        setForceShowLogin(false);
+        toast({
+          title: "Welcome Back!",
+          description: "You have been successfully logged in",
+          variant: "default"
+        });
+      } else {
+        toast({
+          title: "Login Failed",
+          description: result.message || "Invalid email or password",
+          variant: "destructive"
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to log in. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsAuthenticating(false);
+    }
+  };
 
   // Sample data - in production, this would come from your API
   const specials: Special[] = [
@@ -233,43 +270,18 @@ export default function ClientPortal() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    try {
-      const result = await login(loginEmail, loginPassword);
-      
-      if (result.success) {
-        toast({
-          title: "Welcome Back!",
-          description: "You have been successfully logged in",
-          variant: "default"
-        });
-        // No need to refresh - useAuth will handle state updates
-      } else {
-        toast({
-          title: "Login Failed",
-          description: result.message || "Invalid email or password",
-          variant: "destructive"
-        });
-      }
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to log in. Please try again.",
-        variant: "destructive"
-      });
-    }
+    await handleSuccessfulLogin(loginEmail, loginPassword);
   };
 
-  const handleLogout = () => {
-    // Clear auth and redirect to landing page
-    fetch('/api/auth/logout', { method: 'POST' });
+  const handleLogout = async () => {
+    await logout();
     toast({
       title: "Logged Out",
       description: "You have been successfully logged out",
       variant: "default"
     });
-    // Redirect to landing page
-    window.location.href = '/';
+    // Force page reload to clear any remaining state
+    window.location.reload();
   };
 
   // Debug logging
@@ -323,7 +335,7 @@ export default function ClientPortal() {
   }
 
   // Always show sign-in form - don't bypass authentication
-  if (!isAuthenticated) {
+  if (forceShowLogin || !isAuthenticated) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 relative overflow-hidden">
         {/* Background Effects */}
