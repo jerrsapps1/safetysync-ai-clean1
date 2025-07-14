@@ -362,7 +362,7 @@ export default function ClientPortal() {
                 <Home className="w-4 h-4 mr-2" />
                 Home
               </Button>
-              {!isAuthenticated ? (
+              {(!isAuthenticated || forceShowLogin) ? (
                 <div className="flex items-center space-x-2">
                   <Input
                     type="email"
@@ -432,7 +432,7 @@ export default function ClientPortal() {
               Client Portal
             </h1>
             <p className="text-xl text-gray-300 mb-6">
-              {!isAuthenticated 
+              {(!isAuthenticated || forceShowLogin)
                 ? "Sign in using the form in the top right corner to access your workspace and manage your safety compliance."
                 : `Welcome back, ${user?.name}! Access your workspace and explore our client features below.`
               }
@@ -440,7 +440,7 @@ export default function ClientPortal() {
           </div>
 
           {/* Show workspace access after login */}
-          {isAuthenticated && (
+          {isAuthenticated && !forceShowLogin && (
             <div className="max-w-2xl mx-auto">
               <Card className="bg-emerald-900/40 border-emerald-500/20 backdrop-blur-sm">
                 <CardHeader>
