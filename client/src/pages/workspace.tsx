@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { Link, useLocation } from "wouter";
 import { useAuth } from "@/hooks/useAuth";
+import { useAchievementTracking } from "@/hooks/useDynamicAchievements";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -28,7 +29,7 @@ import TrainingCalendar from "@/components/calendar/TrainingCalendar";
 import SubscriptionBilling from "@/components/billing/SubscriptionBilling";
 import AnalyticsReports from "@/components/reports/AnalyticsReports";
 import AchievementBadges from "@/components/achievements/AchievementBadges";
-import AchievementWidget from "@/components/achievements/AchievementWidget";
+import DynamicAchievementWidget from "@/components/achievements/DynamicAchievementWidget";
 
 import { AIPatternSkeleton } from "@/components/ui/ai-skeleton";
 import SafetyTrendsDashboard from "@/components/safety-trends-dashboard";
@@ -237,6 +238,7 @@ function LoginForm() {
 
 export default function WorkspacePage() {
   const { user, isLoading: authLoading, isAuthenticated, logout } = useAuth();
+  const { trackMilestone } = useAchievementTracking();
   const [location, setLocation] = useLocation();
   
   // Extract tab from URL or default to overview
@@ -264,8 +266,11 @@ export default function WorkspacePage() {
       // Update URL to persist tab state
       const newUrl = `/workspace?tab=${tab}`;
       window.history.pushState({}, '', newUrl);
+      
+      // Track tab navigation achievement
+      trackMilestone('tab_navigation', { tabName: tab, timestamp: new Date() });
     }
-  }, [activeTab]);
+  }, [activeTab, trackMilestone]);
 
   // Handle URL changes and browser navigation
   useEffect(() => {
@@ -279,6 +284,17 @@ export default function WorkspacePage() {
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, [activeTab]);
+
+  // Track login event when user is authenticated
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      trackMilestone('login', { 
+        userId: user.id, 
+        timestamp: new Date(),
+        sessionId: `session-${Date.now()}`
+      });
+    }
+  }, [isAuthenticated, user, trackMilestone]);
 
   // Widget icon mapping
   const getWidgetIcon = (id: string) => {
@@ -1015,7 +1031,14 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         ? { ...widget, visible: !widget.visible }
         : widget
     ));
-  }, []);
+    
+    // Track widget interaction achievement
+    trackMilestone('widget_customized', { 
+      widgetId, 
+      action: 'toggle_visibility',
+      timestamp: new Date() 
+    });
+  }, [trackMilestone]);
 
   // Group selection functions
   const toggleWidgetSelection = useCallback((widgetId: string, event?: React.MouseEvent) => {
@@ -1094,12 +1117,19 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
       layoutUpdateRef.current = true;
       setLayouts(allLayouts);
       
+      // Track widget layout customization achievement
+      trackMilestone('widget_customized', { 
+        action: 'layout_change',
+        widgetCount: widgets.length,
+        timestamp: new Date() 
+      });
+      
       // Reset the flag after a short delay
       setTimeout(() => {
         layoutUpdateRef.current = false;
       }, 20);
     }
-  }, [layouts, widgets.length]);
+  }, [layouts, widgets.length, trackMilestone]);
 
   // Trends widget management functions
   const toggleTrendsWidgetVisibility = useCallback((widgetId: string) => {
@@ -1444,7 +1474,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
       case "achievement-progress":
         return (
           <div className="h-full overflow-hidden">
-            <AchievementWidget isSmall={isSmall} />
+            <DynamicAchievementWidget isSmall={isSmall} />
           </div>
         );
       case "osha-training":
