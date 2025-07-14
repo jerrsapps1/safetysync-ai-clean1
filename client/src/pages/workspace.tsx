@@ -2668,7 +2668,11 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             </div>
           )}
 
-
+          {activeTab === "analytics-reports" && (
+            <div className="p-8">
+              <AnalyticsReports />
+            </div>
+          )}
 
           {activeTab === "company-profile" && (
             <div className="p-8">
