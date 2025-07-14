@@ -268,7 +268,7 @@ export default function LandingPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-purple-800 text-white pt-32 pb-32 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center overflow-hidden">
+      <section className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-purple-800 text-white pt-20 md:pt-32 pb-16 md:pb-32 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center overflow-hidden">
         {/* Floating Background Icons */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 left-20 animate-float opacity-20">
@@ -299,12 +299,12 @@ export default function LandingPage() {
             </span>
           </div>
           
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">
             <span className="block text-white">Modern Safety Management,</span>
             <span className="block text-emerald-300">Made Simple</span>
           </h1>
           
-          <p className="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto mb-12 leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-blue-100 max-w-2xl mx-auto mb-8 md:mb-12 leading-relaxed">
             Ditch the spreadsheets. SafetySync.AI brings all your safety and compliance workflows into one smart, powerful platform—so you can stay inspection-ready, reduce risk, and focus on what matters most.
           </p>
           
@@ -351,11 +351,11 @@ export default function LandingPage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 px-6 max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-12">
+      <section className="py-12 md:py-16 px-4 md:px-6 max-w-6xl mx-auto">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12">
           Built for Safety Leaders Who Do It All
         </h2>
-        <div className="grid md:grid-cols-2 gap-8 text-left">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8 text-left">
           <div className="bg-gray-50 p-6 rounded-2xl shadow-sm hover:shadow-md transition">
             <h3 className="text-xl font-semibold mb-2">Real-Time Dashboards</h3>
             <p>Stay ahead of inspections with live visibility into training, audits, and corrective actions.</p>

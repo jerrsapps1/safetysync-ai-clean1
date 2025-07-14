@@ -27,8 +27,8 @@ export function Navigation({ onTrialClick, onDemoClick, onLoginClick }: Navigati
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0 flex items-center">
-              <SafetySyncIcon size={32} className="mr-3" />
-              <span className="text-xl font-bold text-gray-900">SafetySync.AI</span>
+              <SafetySyncIcon size={32} className="mr-2 md:mr-3" />
+              <span className="text-lg md:text-xl font-bold text-gray-900">SafetySync.AI</span>
             </div>
           </div>
           
@@ -79,7 +79,8 @@ export function Navigation({ onTrialClick, onDemoClick, onLoginClick }: Navigati
             </div>
           </div>
           
-          <div className="flex items-center space-x-4">
+          {/* Desktop CTA buttons */}
+          <div className="hidden md:flex items-center space-x-4">
             <Link href="/client-portal">
               <Button 
                 variant="ghost" 
@@ -127,16 +128,52 @@ export function Navigation({ onTrialClick, onDemoClick, onLoginClick }: Navigati
                 Industry Research
               </a>
               <a 
+                href="/case-studies"
+                className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 transition-colors"
+              >
+                Case Studies
+              </a>
+              <a 
                 href="/pricing"
                 className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 transition-colors"
               >
                 Pricing
+              </a>
+              <a 
+                href="/blog"
+                className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 transition-colors"
+              >
+                Blog
+              </a>
+              <a 
+                href="/resources"
+                className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 transition-colors"
+              >
+                Resources
               </a>
               <Link href="/contact">
                 <button className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 transition-colors">
                   Contact
                 </button>
               </Link>
+              
+              {/* Mobile CTA buttons */}
+              <div className="border-t border-gray-200 pt-3 mt-3 space-y-2">
+                <Link href="/client-portal">
+                  <Button 
+                    variant="ghost" 
+                    className="w-full justify-center text-gray-700 hover:text-gray-900 hover:bg-gray-100/50 px-3 py-2 text-sm font-medium transition-colors rounded-md"
+                  >
+                    Client Login
+                  </Button>
+                </Link>
+                <Button 
+                  onClick={onTrialClick}
+                  className="w-full bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                >
+                  Get Started Free
+                </Button>
+              </div>
             </div>
           </div>
         )}
