@@ -361,6 +361,34 @@ export default function WorkspacePage() {
     }
   ];
 
+  // Extended dashboard widgets configuration
+  const extendedWidgetConfig = [
+    {
+      id: "quick-actions",
+      title: "Quick Actions & Reports",
+      defaultProps: { x: 0, y: 0, w: 6, h: 5 },
+      visible: true
+    },
+    {
+      id: "analytics-overview",
+      title: "Analytics Overview",
+      defaultProps: { x: 6, y: 0, w: 6, h: 5 },
+      visible: true
+    },
+    {
+      id: "department-performance",
+      title: "Department Performance",
+      defaultProps: { x: 0, y: 5, w: 6, h: 7 },
+      visible: true
+    },
+    {
+      id: "osha-training",
+      title: "OSHA Training Requirements",
+      defaultProps: { x: 6, y: 5, w: 6, h: 8 },
+      visible: true
+    }
+  ];
+
   // Create widgets with icons
   const createWidgets = (config: any[]) => {
     return config.map(widget => ({
@@ -514,6 +542,24 @@ export default function WorkspacePage() {
   });
 
   // Extended dashboard widgets state
+  const [extendedWidgets, setExtendedWidgets] = useState<DashboardWidget[]>(() => {
+    const saved = localStorage.getItem('extended-widgets');
+    if (saved) {
+      const savedWidgets = JSON.parse(saved);
+      console.log('Loaded saved extended widgets:', savedWidgets);
+      const mergedConfig = extendedWidgetConfig.map(widget => {
+        const savedWidget = savedWidgets.find((w: any) => w.id === widget.id);
+        return savedWidget ? { 
+          ...widget, 
+          visible: savedWidget.visible
+        } : widget;
+      });
+      return createWidgets(mergedConfig);
+    }
+    console.log('Using default extended widgets');
+    return createWidgets(extendedWidgetConfig);
+  });
+
   const [extendedLayouts, setExtendedLayouts] = useState(() => {
     const saved = localStorage.getItem('extended-dashboard-layouts');
     if (saved) {
@@ -527,24 +573,9 @@ export default function WorkspacePage() {
     }
     
     const defaultLayouts = {
-      lg: [
-        { x: 0, y: 0, w: 6, h: 5, i: "quick-actions" },
-        { x: 6, y: 0, w: 6, h: 5, i: "analytics-overview" },
-        { x: 0, y: 5, w: 6, h: 7, i: "department-performance" },
-        { x: 6, y: 5, w: 6, h: 8, i: "osha-training" }
-      ],
-      md: [
-        { x: 0, y: 0, w: 5, h: 5, i: "quick-actions" },
-        { x: 5, y: 0, w: 5, h: 5, i: "analytics-overview" },
-        { x: 0, y: 5, w: 5, h: 7, i: "department-performance" },
-        { x: 5, y: 5, w: 5, h: 8, i: "osha-training" }
-      ],
-      sm: [
-        { x: 0, y: 0, w: 6, h: 5, i: "quick-actions" },
-        { x: 0, y: 5, w: 6, h: 5, i: "analytics-overview" },
-        { x: 0, y: 10, w: 6, h: 7, i: "department-performance" },
-        { x: 0, y: 17, w: 6, h: 8, i: "osha-training" }
-      ]
+      lg: extendedWidgetConfig.map(widget => ({ ...widget.defaultProps, i: widget.id })),
+      md: extendedWidgetConfig.map(widget => ({ ...widget.defaultProps, i: widget.id })),
+      sm: extendedWidgetConfig.map(widget => ({ ...widget.defaultProps, i: widget.id }))
     };
     console.log('Using default extended layouts:', defaultLayouts);
     return defaultLayouts;
@@ -975,6 +1006,14 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
     localStorage.setItem('workspace-widgets', JSON.stringify(widgetSettings));
   }, [widgets]);
 
+  useEffect(() => {
+    const extendedWidgetSettings = extendedWidgets.map(widget => ({
+      id: widget.id,
+      visible: widget.visible
+    }));
+    localStorage.setItem('extended-widgets', JSON.stringify(extendedWidgetSettings));
+  }, [extendedWidgets]);
+
   // Save layouts to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem('workspace-layouts', JSON.stringify(layouts));
@@ -997,6 +1036,14 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
   // Widget management functions
   const toggleWidgetVisibility = useCallback((widgetId: string) => {
     setWidgets(prev => prev.map(widget => 
+      widget.id === widgetId 
+        ? { ...widget, visible: !widget.visible }
+        : widget
+    ));
+  }, []);
+
+  const toggleExtendedWidgetVisibility = useCallback((widgetId: string) => {
+    setExtendedWidgets(prev => prev.map(widget => 
       widget.id === widgetId 
         ? { ...widget, visible: !widget.visible }
         : widget
@@ -1697,27 +1744,60 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {widgets.map((widget) => (
-                        <div
-                          key={widget.id}
-                          className="flex items-center justify-between p-4 bg-gray-800/50 rounded-lg"
-                        >
-                          <div className="flex items-center space-x-3">
-                            <Switch
-                              checked={widget.visible}
-                              onCheckedChange={() => toggleWidgetVisibility(widget.id)}
-                            />
-                            <div className="flex items-center space-x-2">
-                              {widget.icon}
-                              <span className="text-white text-sm">{widget.title}</span>
+                    <div className="space-y-6">
+                      {/* Main Dashboard Widgets */}
+                      <div>
+                        <h3 className="text-white font-medium mb-3">Main Dashboard Widgets</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          {widgets.map((widget) => (
+                            <div
+                              key={widget.id}
+                              className="flex items-center justify-between p-4 bg-gray-800/50 rounded-lg"
+                            >
+                              <div className="flex items-center space-x-3">
+                                <Switch
+                                  checked={widget.visible}
+                                  onCheckedChange={() => toggleWidgetVisibility(widget.id)}
+                                />
+                                <div className="flex items-center space-x-2">
+                                  {widget.icon}
+                                  <span className="text-white text-sm">{widget.title}</span>
+                                </div>
+                              </div>
+                              <div className="text-gray-400 text-xs">
+                                Drag to resize
+                              </div>
                             </div>
-                          </div>
-                          <div className="text-gray-400 text-xs">
-                            Drag to resize
-                          </div>
+                          ))}
                         </div>
-                      ))}
+                      </div>
+
+                      {/* Extended Dashboard Widgets */}
+                      <div>
+                        <h3 className="text-white font-medium mb-3">Extended Dashboard Widgets</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          {extendedWidgets.map((widget) => (
+                            <div
+                              key={widget.id}
+                              className="flex items-center justify-between p-4 bg-gray-800/50 rounded-lg"
+                            >
+                              <div className="flex items-center space-x-3">
+                                <Switch
+                                  checked={widget.visible}
+                                  onCheckedChange={() => toggleExtendedWidgetVisibility(widget.id)}
+                                />
+                                <div className="flex items-center space-x-2">
+                                  {widget.icon}
+                                  <span className="text-white text-sm">{widget.title}</span>
+                                </div>
+                              </div>
+                              <div className="text-gray-400 text-xs">
+                                Drag to resize
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
@@ -1787,186 +1867,202 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   compactType="vertical"
                   preventCollision={false}
                 >
-                  {/* Quick Actions Widget */}
-                  <div key="quick-actions" className="widget-container">
-                    <Card className="bg-black/20 backdrop-blur-sm border-gray-800 h-full group relative">
-                      <div className="drag-handle absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity cursor-move z-10">
-                        <GripVertical className="w-4 h-4 text-gray-400" />
-                      </div>
-                      <CardHeader className="pb-3">
-                        <CardTitle className="text-white text-lg flex items-center">
-                          <Brain className="w-5 h-5 mr-2" />
-                          Quick Actions & Reports
-                        </CardTitle>
-                        <CardDescription className="text-gray-400 text-sm">
-                          Generate reports and manage compliance tasks
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                          <Button className="bg-blue-600 hover:bg-blue-700 text-white h-auto p-3 flex-col space-y-2">
-                            <FileText className="w-5 h-5" />
-                            <span className="text-xs">Generate Report</span>
-                          </Button>
-                          <Button className="bg-emerald-600 hover:bg-emerald-700 text-white h-auto p-3 flex-col space-y-2">
-                            <Calendar className="w-5 h-5" />
-                            <span className="text-xs">Schedule Training</span>
-                          </Button>
-                          <Button className="bg-purple-600 hover:bg-purple-700 text-white h-auto p-3 flex-col space-y-2">
-                            <Award className="w-5 h-5" />
-                            <span className="text-xs">Issue Certificates</span>
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
-
-                  {/* Analytics Overview Widget */}
-                  <div key="analytics-overview" className="widget-container">
-                    <Card className="bg-black/20 backdrop-blur-sm border-gray-800 h-full group relative">
-                      <div className="drag-handle absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity cursor-move z-10">
-                        <GripVertical className="w-4 h-4 text-gray-400" />
-                      </div>
-                      <CardHeader className="pb-3">
-                        <CardTitle className="text-white text-lg flex items-center">
-                          <BarChart3 className="w-5 h-5 mr-2" />
-                          Analytics Overview
-                        </CardTitle>
-                        <CardDescription className="text-gray-400 text-sm">
-                          Key metrics and performance indicators
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="grid grid-cols-2 gap-3">
-                          <div className="text-center p-3 bg-gray-800/30 rounded-lg">
-                            <div className="text-xl font-bold text-white">{stats.totalEmployees}</div>
-                            <div className="text-xs text-gray-400">Total Employees</div>
-                            <div className="text-xs text-emerald-400 mt-1">↗ +3%</div>
-                          </div>
-                          <div className="text-center p-3 bg-gray-800/30 rounded-lg">
-                            <div className="text-xl font-bold text-white">{Math.round((stats.compliantEmployees / stats.totalEmployees) * 100)}%</div>
-                            <div className="text-xs text-gray-400">Compliance Rate</div>
-                            <div className="text-xs text-emerald-400 mt-1">↗ +2%</div>
-                          </div>
-                          <div className="text-center p-3 bg-gray-800/30 rounded-lg">
-                            <div className="text-xl font-bold text-white">234</div>
-                            <div className="text-xs text-gray-400">Active Certificates</div>
-                            <div className="text-xs text-yellow-400 mt-1">12 expiring</div>
-                          </div>
-                          <div className="text-center p-3 bg-gray-800/30 rounded-lg">
-                            <div className="text-xl font-bold text-white">1,247</div>
-                            <div className="text-xs text-gray-400">Training Hours</div>
-                            <div className="text-xs text-emerald-400 mt-1">↗ +15%</div>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
-
-                  {/* Department Performance Widget */}
-                  <div key="department-performance" className="widget-container">
-                    <Card className="bg-black/20 backdrop-blur-sm border-gray-800 h-full group relative">
-                      <div className="drag-handle absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity cursor-move z-10">
-                        <GripVertical className="w-4 h-4 text-gray-400" />
-                      </div>
-                      <CardHeader className="pb-3">
-                        <CardTitle className="text-white text-lg flex items-center">
-                          <Building className="w-5 h-5 mr-2" />
-                          Department Performance
-                        </CardTitle>
-                        <CardDescription className="text-gray-400 text-sm">
-                          Compliance rates by department
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="space-y-3">
-                          {[
-                            { dept: "Construction", rate: 93, compliant: 42, total: 45 },
-                            { dept: "Manufacturing", rate: 84, compliant: 32, total: 38 },
-                            { dept: "Safety", rate: 100, compliant: 12, total: 12 },
-                            { dept: "Maintenance", rate: 88, compliant: 21, total: 24 }
-                          ].map((dept, index) => (
-                            <div key={index} className="flex items-center justify-between p-2 bg-gray-800/30 rounded-lg">
-                              <div className="flex items-center space-x-2">
-                                <div className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center">
-                                  <Building className="w-4 h-4 text-gray-300" />
-                                </div>
-                                <div>
-                                  <p className="text-white font-medium text-sm">{dept.dept}</p>
-                                  <p className="text-gray-400 text-xs">{dept.compliant}/{dept.total} employees</p>
-                                </div>
-                              </div>
-                              <div className="flex items-center space-x-2">
-                                <div className="w-16">
-                                  <div className="flex items-center justify-between mb-1">
-                                    <span className="text-white text-xs">{dept.rate}%</span>
+                  {extendedWidgets
+                    .filter(widget => widget.visible)
+                    .map((widget) => {
+                      const renderExtendedWidget = (widget: DashboardWidget) => {
+                        switch (widget.id) {
+                          case 'quick-actions':
+                            return (
+                              <div key="quick-actions" className="widget-container">
+                                <Card className="bg-black/20 backdrop-blur-sm border-gray-800 h-full group relative">
+                                  <div className="drag-handle absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity cursor-move z-10">
+                                    <GripVertical className="w-4 h-4 text-gray-400" />
                                   </div>
-                                  <Progress value={dept.rate} className="h-1" />
-                                </div>
-                                <Badge className={
-                                  dept.rate >= 95 ? 'bg-green-100 text-green-700' :
-                                  dept.rate >= 80 ? 'bg-yellow-100 text-yellow-700' : 'bg-red-100 text-red-700'
-                                }>
-                                  {dept.rate >= 95 ? 'Excellent' : dept.rate >= 80 ? 'Good' : 'Action Required'}
-                                </Badge>
+                                  <CardHeader className="pb-3">
+                                    <CardTitle className="text-white text-lg flex items-center">
+                                      <Brain className="w-5 h-5 mr-2" />
+                                      Quick Actions & Reports
+                                    </CardTitle>
+                                    <CardDescription className="text-gray-400 text-sm">
+                                      Generate reports and manage compliance tasks
+                                    </CardDescription>
+                                  </CardHeader>
+                                  <CardContent>
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                      <Button className="bg-blue-600 hover:bg-blue-700 text-white h-auto p-3 flex-col space-y-2">
+                                        <FileText className="w-5 h-5" />
+                                        <span className="text-xs">Generate Report</span>
+                                      </Button>
+                                      <Button className="bg-emerald-600 hover:bg-emerald-700 text-white h-auto p-3 flex-col space-y-2">
+                                        <Calendar className="w-5 h-5" />
+                                        <span className="text-xs">Schedule Training</span>
+                                      </Button>
+                                      <Button className="bg-purple-600 hover:bg-purple-700 text-white h-auto p-3 flex-col space-y-2">
+                                        <Award className="w-5 h-5" />
+                                        <span className="text-xs">Issue Certificates</span>
+                                      </Button>
+                                    </div>
+                                  </CardContent>
+                                </Card>
                               </div>
-                            </div>
-                          ))}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
-
-                  {/* OSHA Training Requirements Widget */}
-                  <div key="osha-training" className="widget-container">
-                    <Card className="bg-black/20 backdrop-blur-sm border-gray-800 h-full group relative">
-                      <div className="drag-handle absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity cursor-move z-10">
-                        <GripVertical className="w-4 h-4 text-gray-400" />
-                      </div>
-                      <CardHeader className="pb-3">
-                        <CardTitle className="text-white text-lg flex items-center">
-                          <Shield className="w-5 h-5 mr-2" />
-                          OSHA Training Requirements
-                        </CardTitle>
-                        <CardDescription className="text-gray-400 text-sm">
-                          Mandatory training programs and deadlines
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="grid grid-cols-1 gap-3">
-                          {[
-                            { name: "Fall Protection", required: 42, completed: 38, due: "2025-08-15" },
-                            { name: "HAZWOPER", required: 28, completed: 28, due: "2025-09-01" },
-                            { name: "Hearing Conservation", required: 65, completed: 61, due: "2025-07-30" },
-                            { name: "Respiratory Protection", required: 33, completed: 29, due: "2025-08-10" }
-                          ].map((training, index) => (
-                            <div key={index} className="p-2 bg-gray-800/30 rounded-lg">
-                              <div className="flex items-center justify-between mb-1">
-                                <h4 className="text-white font-medium text-sm">{training.name}</h4>
-                                <Badge className={
-                                  training.completed === training.required ? 'bg-green-100 text-green-700' :
-                                  training.completed / training.required >= 0.8 ? 'bg-yellow-100 text-yellow-700' : 'bg-red-100 text-red-700'
-                                }>
-                                  {training.completed}/{training.required}
-                                </Badge>
+                            );
+                          case 'analytics-overview':
+                            return (
+                              <div key="analytics-overview" className="widget-container">
+                                <Card className="bg-black/20 backdrop-blur-sm border-gray-800 h-full group relative">
+                                  <div className="drag-handle absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity cursor-move z-10">
+                                    <GripVertical className="w-4 h-4 text-gray-400" />
+                                  </div>
+                                  <CardHeader className="pb-3">
+                                    <CardTitle className="text-white text-lg flex items-center">
+                                      <BarChart3 className="w-5 h-5 mr-2" />
+                                      Analytics Overview
+                                    </CardTitle>
+                                    <CardDescription className="text-gray-400 text-sm">
+                                      Key metrics and performance indicators
+                                    </CardDescription>
+                                  </CardHeader>
+                                  <CardContent>
+                                    <div className="grid grid-cols-2 gap-3">
+                                      <div className="text-center p-3 bg-gray-800/30 rounded-lg">
+                                        <div className="text-xl font-bold text-white">{stats.totalEmployees}</div>
+                                        <div className="text-xs text-gray-400">Total Employees</div>
+                                        <div className="text-xs text-emerald-400 mt-1">↗ +3%</div>
+                                      </div>
+                                      <div className="text-center p-3 bg-gray-800/30 rounded-lg">
+                                        <div className="text-xl font-bold text-white">{Math.round((stats.compliantEmployees / stats.totalEmployees) * 100)}%</div>
+                                        <div className="text-xs text-gray-400">Compliance Rate</div>
+                                        <div className="text-xs text-emerald-400 mt-1">↗ +2%</div>
+                                      </div>
+                                      <div className="text-center p-3 bg-gray-800/30 rounded-lg">
+                                        <div className="text-xl font-bold text-white">234</div>
+                                        <div className="text-xs text-gray-400">Active Certificates</div>
+                                        <div className="text-xs text-yellow-400 mt-1">12 expiring</div>
+                                      </div>
+                                      <div className="text-center p-3 bg-gray-800/30 rounded-lg">
+                                        <div className="text-xl font-bold text-white">1,247</div>
+                                        <div className="text-xs text-gray-400">Training Hours</div>
+                                        <div className="text-xs text-emerald-400 mt-1">↗ +15%</div>
+                                      </div>
+                                    </div>
+                                  </CardContent>
+                                </Card>
                               </div>
-                              <div className="space-y-1">
-                                <div className="flex justify-between text-xs">
-                                  <span className="text-gray-400">Progress</span>
-                                  <span className="text-white">{Math.round((training.completed / training.required) * 100)}%</span>
-                                </div>
-                                <Progress value={(training.completed / training.required) * 100} className="h-1" />
-                                <div className="flex justify-between text-xs">
-                                  <span className="text-gray-400">Due: {new Date(training.due).toLocaleDateString()}</span>
-                                  <span className="text-gray-400">{training.required - training.completed} remaining</span>
-                                </div>
+                            );
+                          case 'department-performance':
+                            return (
+                              <div key="department-performance" className="widget-container">
+                                <Card className="bg-black/20 backdrop-blur-sm border-gray-800 h-full group relative">
+                                  <div className="drag-handle absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity cursor-move z-10">
+                                    <GripVertical className="w-4 h-4 text-gray-400" />
+                                  </div>
+                                  <CardHeader className="pb-3">
+                                    <CardTitle className="text-white text-lg flex items-center">
+                                      <Building className="w-5 h-5 mr-2" />
+                                      Department Performance
+                                    </CardTitle>
+                                    <CardDescription className="text-gray-400 text-sm">
+                                      Compliance rates by department
+                                    </CardDescription>
+                                  </CardHeader>
+                                  <CardContent>
+                                    <div className="space-y-3">
+                                      {[
+                                        { dept: "Construction", rate: 93, compliant: 42, total: 45 },
+                                        { dept: "Manufacturing", rate: 84, compliant: 32, total: 38 },
+                                        { dept: "Safety", rate: 100, compliant: 12, total: 12 },
+                                        { dept: "Maintenance", rate: 88, compliant: 21, total: 24 }
+                                      ].map((dept, index) => (
+                                        <div key={index} className="flex items-center justify-between p-2 bg-gray-800/30 rounded-lg">
+                                          <div className="flex items-center space-x-2">
+                                            <div className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center">
+                                              <Building className="w-4 h-4 text-gray-300" />
+                                            </div>
+                                            <div>
+                                              <p className="text-white font-medium text-sm">{dept.dept}</p>
+                                              <p className="text-gray-400 text-xs">{dept.compliant}/{dept.total} employees</p>
+                                            </div>
+                                          </div>
+                                          <div className="flex items-center space-x-2">
+                                            <div className="w-16">
+                                              <div className="flex items-center justify-between mb-1">
+                                                <span className="text-white text-xs">{dept.rate}%</span>
+                                              </div>
+                                              <Progress value={dept.rate} className="h-1" />
+                                            </div>
+                                            <Badge className={
+                                              dept.rate >= 95 ? 'bg-green-100 text-green-700' :
+                                              dept.rate >= 80 ? 'bg-yellow-100 text-yellow-700' : 'bg-red-100 text-red-700'
+                                            }>
+                                              {dept.rate >= 95 ? 'Excellent' : dept.rate >= 80 ? 'Good' : 'Action Required'}
+                                            </Badge>
+                                          </div>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </CardContent>
+                                </Card>
                               </div>
-                            </div>
-                          ))}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
+                            );
+                          case 'osha-training':
+                            return (
+                              <div key="osha-training" className="widget-container">
+                                <Card className="bg-black/20 backdrop-blur-sm border-gray-800 h-full group relative">
+                                  <div className="drag-handle absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity cursor-move z-10">
+                                    <GripVertical className="w-4 h-4 text-gray-400" />
+                                  </div>
+                                  <CardHeader className="pb-3">
+                                    <CardTitle className="text-white text-lg flex items-center">
+                                      <Shield className="w-5 h-5 mr-2" />
+                                      OSHA Training Requirements
+                                    </CardTitle>
+                                    <CardDescription className="text-gray-400 text-sm">
+                                      Mandatory training programs and deadlines
+                                    </CardDescription>
+                                  </CardHeader>
+                                  <CardContent>
+                                    <div className="grid grid-cols-1 gap-3">
+                                      {[
+                                        { name: "Fall Protection", required: 42, completed: 38, due: "2025-08-15" },
+                                        { name: "HAZWOPER", required: 28, completed: 28, due: "2025-09-01" },
+                                        { name: "Hearing Conservation", required: 65, completed: 61, due: "2025-07-30" },
+                                        { name: "Respiratory Protection", required: 33, completed: 29, due: "2025-08-10" }
+                                      ].map((training, index) => (
+                                        <div key={index} className="p-2 bg-gray-800/30 rounded-lg">
+                                          <div className="flex items-center justify-between mb-1">
+                                            <h4 className="text-white font-medium text-sm">{training.name}</h4>
+                                            <Badge className={
+                                              training.completed === training.required ? 'bg-green-100 text-green-700' :
+                                              training.completed / training.required >= 0.8 ? 'bg-yellow-100 text-yellow-700' : 'bg-red-100 text-red-700'
+                                            }>
+                                              {training.completed}/{training.required}
+                                            </Badge>
+                                          </div>
+                                          <div className="space-y-1">
+                                            <div className="flex justify-between text-xs">
+                                              <span className="text-gray-400">Progress</span>
+                                              <span className="text-white">{Math.round((training.completed / training.required) * 100)}%</span>
+                                            </div>
+                                            <Progress value={(training.completed / training.required) * 100} className="h-1" />
+                                            <div className="flex justify-between text-xs">
+                                              <span className="text-gray-400">Due: {new Date(training.due).toLocaleDateString()}</span>
+                                              <span className="text-gray-400">{training.required - training.completed} remaining</span>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </CardContent>
+                                </Card>
+                              </div>
+                            );
+                          default:
+                            return null;
+                        }
+                      };
+                      return renderExtendedWidget(widget);
+                    })}
                 </ResponsiveGridLayout>
               </div>
             </div>
