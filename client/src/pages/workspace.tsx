@@ -1389,6 +1389,81 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             <QuickSearchWidget />
           </div>
         );
+      case "quick-actions":
+        return (
+          <div className="h-full overflow-hidden">
+            <h3 className={`${isSmall ? 'text-sm' : 'text-lg'} font-semibold text-white mb-2`}>Quick Actions</h3>
+            <div className="space-y-2 overflow-y-auto" style={{ maxHeight: 'calc(100% - 2rem)' }}>
+              <button className="w-full flex items-center space-x-2 p-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors">
+                <Plus className={`${isSmall ? 'w-3 h-3' : 'w-4 h-4'}`} />
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} font-medium`}>Add Employee</span>
+              </button>
+              <button className="w-full flex items-center space-x-2 p-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
+                <Calendar className={`${isSmall ? 'w-3 h-3' : 'w-4 h-4'}`} />
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} font-medium`}>Schedule Training</span>
+              </button>
+              {!isSmall && (
+                <button className="w-full flex items-center space-x-2 p-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors">
+                  <FileText className="w-4 h-4" />
+                  <span className="text-sm font-medium">Generate Report</span>
+                </button>
+              )}
+            </div>
+          </div>
+        );
+      case "analytics-overview":
+        return (
+          <div className="h-full overflow-hidden">
+            <h3 className={`${isSmall ? 'text-sm' : 'text-lg'} font-semibold text-white mb-2`}>Analytics Overview</h3>
+            <div className="space-y-2 overflow-y-auto" style={{ maxHeight: 'calc(100% - 2rem)' }}>
+              <div className="flex items-center justify-between p-2 bg-gray-800/50 rounded-lg">
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-gray-400`}>Monthly Progress</span>
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-emerald-400 font-semibold`}>+12%</span>
+              </div>
+              <div className="flex items-center justify-between p-2 bg-gray-800/50 rounded-lg">
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-gray-400`}>Compliance Rate</span>
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-blue-400 font-semibold`}>94.2%</span>
+              </div>
+              {!isSmall && (
+                <div className="flex items-center justify-between p-2 bg-gray-800/50 rounded-lg">
+                  <span className="text-sm text-gray-400">Training Hours</span>
+                  <span className="text-sm text-yellow-400 font-semibold">2,847</span>
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      case "osha-training":
+        return (
+          <div className="h-full overflow-hidden">
+            <h3 className={`${isSmall ? 'text-sm' : 'text-lg'} font-semibold text-white mb-2`}>OSHA Training</h3>
+            <div className="space-y-2 overflow-y-auto" style={{ maxHeight: 'calc(100% - 2rem)' }}>
+              <div className="flex items-center justify-between p-2 bg-orange-900/20 rounded-lg border border-orange-500/20">
+                <div className="flex items-center space-x-2">
+                  <AlertTriangle className={`${isSmall ? 'w-3 h-3' : 'w-4 h-4'} text-orange-400`} />
+                  <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-white`}>Fall Protection</span>
+                </div>
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-orange-400`}>Due Soon</span>
+              </div>
+              <div className="flex items-center justify-between p-2 bg-green-900/20 rounded-lg border border-green-500/20">
+                <div className="flex items-center space-x-2">
+                  <CheckCircle className={`${isSmall ? 'w-3 h-3' : 'w-4 h-4'} text-green-400`} />
+                  <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-white`}>Hazcom</span>
+                </div>
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-green-400`}>Current</span>
+              </div>
+              {!isSmall && (
+                <div className="flex items-center justify-between p-2 bg-blue-900/20 rounded-lg border border-blue-500/20">
+                  <div className="flex items-center space-x-2">
+                    <Clock className="w-4 h-4 text-blue-400" />
+                    <span className="text-sm text-white">Respirator</span>
+                  </div>
+                  <span className="text-sm text-blue-400">Scheduled</span>
+                </div>
+              )}
+            </div>
+          </div>
+        );
       case "training-completion":
         return (
           <div className="h-full overflow-hidden">
