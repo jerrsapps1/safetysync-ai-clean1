@@ -81,12 +81,15 @@ export default function ClientPortal() {
   const { toast } = useToast();
   const { user, isAuthenticated, isLoading, login, logout } = useAuth();
 
-  // Force authentication check on client portal
+  // Initialize authentication state
   useEffect(() => {
-    // Clear any existing authentication tokens for client portal
-    localStorage.removeItem('auth_token');
-    setForceShowLogin(true);
-  }, []);
+    // Only force login if not already authenticated
+    if (!isAuthenticated) {
+      setForceShowLogin(true);
+    } else {
+      setForceShowLogin(false);
+    }
+  }, [isAuthenticated]);
 
   const handleSuccessfulLogin = async (email: string, password: string) => {
     setIsAuthenticating(true);
@@ -285,7 +288,7 @@ export default function ClientPortal() {
   };
 
   // Debug logging
-  console.log('Client Portal - isLoading:', isLoading, 'isAuthenticated:', isAuthenticated, 'user:', user);
+  console.log('Client Portal - isLoading:', isLoading, 'isAuthenticated:', isAuthenticated, 'user:', user, 'forceShowLogin:', forceShowLogin);
 
   const handleWorkspaceAccess = () => {
     // Always show the popup for workspace access - regardless of current auth state
