@@ -44,6 +44,7 @@ import {
   FileText, 
   Calendar,
   TrendingUp,
+  TrendingDown,
   Shield,
   Bell,
   Download,
@@ -1002,10 +1003,15 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
   // Layout change handler with proper comparison
   const handleLayoutChange = useCallback((newLayout: any, allLayouts: any) => {
-    // Deep comparison to prevent infinite loops
-    if (JSON.stringify(allLayouts) !== JSON.stringify(layouts)) {
-      console.log('Layout changed, updating layouts');
-      setLayouts(allLayouts);
+    // Only update if there are actual changes to prevent excessive updates
+    const currentLayoutString = JSON.stringify(layouts);
+    const newLayoutString = JSON.stringify(allLayouts);
+    
+    if (currentLayoutString !== newLayoutString) {
+      // Use timeout to debounce rapid changes
+      setTimeout(() => {
+        setLayouts(allLayouts);
+      }, 100);
     }
   }, [layouts]);
 
@@ -1293,6 +1299,183 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         return (
           <div className="h-full overflow-hidden">
             <QuickSearchWidget />
+          </div>
+        );
+      case "training-completion":
+        return (
+          <div className="h-full overflow-hidden">
+            <h3 className={`${isSmall ? 'text-sm' : 'text-lg'} font-semibold text-white mb-2`}>Training Completion</h3>
+            <div className="space-y-3 overflow-y-auto" style={{ maxHeight: 'calc(100% - 2rem)' }}>
+              <div className="flex items-center justify-between">
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-gray-400 truncate`}>Overall Progress</span>
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-white flex-shrink-0`}>87%</span>
+              </div>
+              <Progress value={87} className="h-2" />
+              <div className="grid grid-cols-2 gap-2">
+                <div className="text-center p-2 bg-gray-800/30 rounded">
+                  <div className={`${isSmall ? 'text-sm' : 'text-lg'} font-bold text-emerald-400`}>42</div>
+                  <div className={`${isSmall ? 'text-xs' : 'text-xs'} text-gray-400`}>Completed</div>
+                </div>
+                <div className="text-center p-2 bg-gray-800/30 rounded">
+                  <div className={`${isSmall ? 'text-sm' : 'text-lg'} font-bold text-yellow-400`}>8</div>
+                  <div className={`${isSmall ? 'text-xs' : 'text-xs'} text-gray-400`}>Pending</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      case "ai-insights":
+        return (
+          <div className="h-full overflow-hidden">
+            <h3 className={`${isSmall ? 'text-sm' : 'text-lg'} font-semibold text-white mb-2`}>AI Insights</h3>
+            <div className="space-y-2 overflow-y-auto" style={{ maxHeight: 'calc(100% - 2rem)' }}>
+              <div className="flex items-start space-x-2 p-2 bg-blue-900/20 rounded-lg border border-blue-500/20">
+                <Brain className={`${isSmall ? 'w-4 h-4' : 'w-5 h-5'} text-blue-400 flex-shrink-0 mt-0.5`} />
+                <div className="min-w-0 flex-1">
+                  <p className={`text-white ${isSmall ? 'text-xs' : 'text-sm'} font-medium`}>Schedule fall protection training for Construction department</p>
+                  <p className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-xs'} mt-1`}>High confidence recommendation</p>
+                </div>
+              </div>
+              {!isSmall && (
+                <div className="flex items-start space-x-2 p-2 bg-green-900/20 rounded-lg border border-green-500/20">
+                  <Brain className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                  <div className="min-w-0 flex-1">
+                    <p className="text-white text-sm font-medium">Compliance rate improved by 12% this quarter</p>
+                    <p className="text-gray-400 text-xs mt-1">Trend analysis</p>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      case "safety-score":
+        return (
+          <div className="flex items-center justify-between h-full">
+            <div className="flex-1 min-w-0">
+              <p className={`text-gray-400 ${labelSize} truncate`}>Safety Score</p>
+              <p className={`${textSize} font-bold text-emerald-400 truncate`}>A+</p>
+              <p className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-sm'} truncate`}>88% Overall</p>
+            </div>
+            <div className="flex flex-col items-center flex-shrink-0 ml-2">
+              <CheckCircle className={`${iconSize} text-emerald-400`} />
+              <TrendingUp className={`${isSmall ? 'w-3 h-3' : 'w-4 h-4'} text-green-400 mt-1`} />
+            </div>
+          </div>
+        );
+      case "safety-trends-chart":
+        return (
+          <div className="h-full overflow-hidden">
+            <h3 className={`${isSmall ? 'text-sm' : 'text-lg'} font-semibold text-white mb-2`}>Safety Trends</h3>
+            <div className="space-y-2 overflow-y-auto" style={{ maxHeight: 'calc(100% - 2rem)' }}>
+              <div className="flex items-center justify-between p-2 bg-gray-800/30 rounded-lg">
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-gray-400`}>Incident Rate</span>
+                <div className="flex items-center space-x-1">
+                  <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-emerald-400`}>↓ 15%</span>
+                  <TrendingDown className={`${isSmall ? 'w-3 h-3' : 'w-4 h-4'} text-emerald-400`} />
+                </div>
+              </div>
+              <div className="flex items-center justify-between p-2 bg-gray-800/30 rounded-lg">
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-gray-400`}>Near Misses</span>
+                <div className="flex items-center space-x-1">
+                  <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-yellow-400`}>↑ 8%</span>
+                  <TrendingUp className={`${isSmall ? 'w-3 h-3' : 'w-4 h-4'} text-yellow-400`} />
+                </div>
+              </div>
+              {!isSmall && (
+                <div className="flex items-center justify-between p-2 bg-gray-800/30 rounded-lg">
+                  <span className="text-sm text-gray-400">Training Hours</span>
+                  <div className="flex items-center space-x-1">
+                    <span className="text-sm text-emerald-400">↑ 22%</span>
+                    <TrendingUp className="w-4 h-4 text-emerald-400" />
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      case "compliance-metrics":
+        return (
+          <div className="h-full overflow-hidden">
+            <h3 className={`${isSmall ? 'text-sm' : 'text-lg'} font-semibold text-white mb-2`}>Compliance Metrics</h3>
+            <div className="space-y-3 overflow-y-auto" style={{ maxHeight: 'calc(100% - 2rem)' }}>
+              <div className="flex items-center justify-between">
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-gray-400`}>OSHA Compliance</span>
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-emerald-400 font-semibold`}>94%</span>
+              </div>
+              <Progress value={94} className="h-2" />
+              <div className="grid grid-cols-2 gap-2">
+                <div className="text-center p-2 bg-gray-800/30 rounded">
+                  <div className={`${isSmall ? 'text-sm' : 'text-lg'} font-bold text-white`}>147</div>
+                  <div className={`${isSmall ? 'text-xs' : 'text-xs'} text-gray-400`}>Total Audits</div>
+                </div>
+                <div className="text-center p-2 bg-gray-800/30 rounded">
+                  <div className={`${isSmall ? 'text-sm' : 'text-lg'} font-bold text-green-400`}>138</div>
+                  <div className={`${isSmall ? 'text-xs' : 'text-xs'} text-gray-400`}>Passed</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      case "department-performance":
+        return (
+          <div className="h-full overflow-hidden">
+            <h3 className={`${isSmall ? 'text-sm' : 'text-lg'} font-semibold text-white mb-2`}>Department Performance</h3>
+            <div className="space-y-2 overflow-y-auto" style={{ maxHeight: 'calc(100% - 2rem)' }}>
+              <div className="flex items-center justify-between p-2 bg-gray-800/30 rounded-lg">
+                <div className="flex items-center space-x-2">
+                  <Building className={`${isSmall ? 'w-4 h-4' : 'w-5 h-5'} text-blue-400`} />
+                  <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-white`}>Construction</span>
+                </div>
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-emerald-400`}>93%</span>
+              </div>
+              <div className="flex items-center justify-between p-2 bg-gray-800/30 rounded-lg">
+                <div className="flex items-center space-x-2">
+                  <Building className={`${isSmall ? 'w-4 h-4' : 'w-5 h-5'} text-purple-400`} />
+                  <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-white`}>Manufacturing</span>
+                </div>
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-yellow-400`}>84%</span>
+              </div>
+              {!isSmall && (
+                <div className="flex items-center justify-between p-2 bg-gray-800/30 rounded-lg">
+                  <div className="flex items-center space-x-2">
+                    <Building className="w-5 h-5 text-green-400" />
+                    <span className="text-sm text-white">Safety</span>
+                  </div>
+                  <span className="text-sm text-emerald-400">100%</span>
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      case "risk-analysis":
+        return (
+          <div className="h-full overflow-hidden">
+            <h3 className={`${isSmall ? 'text-sm' : 'text-lg'} font-semibold text-white mb-2`}>Risk Analysis</h3>
+            <div className="space-y-2 overflow-y-auto" style={{ maxHeight: 'calc(100% - 2rem)' }}>
+              <div className="flex items-center justify-between p-2 bg-red-900/20 rounded-lg border border-red-500/20">
+                <div className="flex items-center space-x-2">
+                  <AlertTriangle className={`${isSmall ? 'w-4 h-4' : 'w-5 h-5'} text-red-400`} />
+                  <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-white`}>High Risk</span>
+                </div>
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-red-400`}>3</span>
+              </div>
+              <div className="flex items-center justify-between p-2 bg-yellow-900/20 rounded-lg border border-yellow-500/20">
+                <div className="flex items-center space-x-2">
+                  <AlertTriangle className={`${isSmall ? 'w-4 h-4' : 'w-5 h-5'} text-yellow-400`} />
+                  <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-white`}>Medium Risk</span>
+                </div>
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-yellow-400`}>12</span>
+              </div>
+              {!isSmall && (
+                <div className="flex items-center justify-between p-2 bg-green-900/20 rounded-lg border border-green-500/20">
+                  <div className="flex items-center space-x-2">
+                    <CheckCircle className="w-5 h-5 text-green-400" />
+                    <span className="text-sm text-white">Low Risk</span>
+                  </div>
+                  <span className="text-sm text-green-400">85</span>
+                </div>
+              )}
+            </div>
           </div>
         );
       default:
