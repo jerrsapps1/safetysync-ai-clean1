@@ -32,6 +32,7 @@ import AchievementBadges from "@/components/achievements/AchievementBadges";
 import DynamicAchievementWidget from "@/components/achievements/DynamicAchievementWidget";
 
 import { AIPatternSkeleton } from "@/components/ui/ai-skeleton";
+import { SmoothLoading } from "@/components/ui/smooth-loading";
 import SafetyTrendsDashboard from "@/components/safety-trends-dashboard";
 import QuickSearchWidget from "@/components/safetytracker/QuickSearchWidget";
 import { SafetySyncIcon } from "@/components/ui/safetysync-icon";
@@ -1729,7 +1730,13 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
   if (authLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 flex items-center justify-center">
-        <AIPatternSkeleton variant="dashboard" />
+        <div className="max-w-md w-full mx-auto">
+          <SmoothLoading 
+            variant="ai-skeleton" 
+            text="Loading workspace..." 
+            className="w-full"
+          />
+        </div>
       </div>
     );
   }

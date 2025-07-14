@@ -23,6 +23,7 @@ import {
   Shield
 } from 'lucide-react';
 import { SafetySyncIcon } from "@/components/ui/safetysync-icon";
+import { SmoothLoading } from "@/components/ui/smooth-loading";
 
 interface TrainingSession {
   id: number;
@@ -152,6 +153,7 @@ export default function TrainingManagement() {
   const [activeTab, setActiveTab] = useState("sessions");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("all");
+  const [isLoading, setIsLoading] = useState(false);
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -213,11 +215,23 @@ export default function TrainingManagement() {
           </p>
         </div>
         <div className="flex items-center space-x-2">
-          <Button className="bg-emerald-500 hover:bg-emerald-600 text-white">
+          <Button 
+            className="bg-emerald-500 hover:bg-emerald-600 text-white"
+            onClick={() => {
+              setIsLoading(true);
+              setTimeout(() => setIsLoading(false), 2000);
+            }}
+          >
             <Plus className="w-4 h-4 mr-2" />
             Schedule Training
           </Button>
-          <Button className="bg-blue-500 hover:bg-blue-600 text-white">
+          <Button 
+            className="bg-blue-500 hover:bg-blue-600 text-white"
+            onClick={() => {
+              setIsLoading(true);
+              setTimeout(() => setIsLoading(false), 1500);
+            }}
+          >
             <Download className="w-4 h-4 mr-2" />
             Export Schedule
           </Button>
@@ -336,9 +350,17 @@ export default function TrainingManagement() {
         </TabsList>
 
         <TabsContent value="sessions" className="space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {filteredSessions.map((session) => (
-              <Card key={session.id} className="bg-black/20 backdrop-blur-sm border-gray-800">
+          {isLoading ? (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <SmoothLoading variant="ai-skeleton" text="Loading training sessions..." />
+              <SmoothLoading variant="ai-skeleton" text="Loading training sessions..." />
+              <SmoothLoading variant="ai-skeleton" text="Loading training sessions..." />
+              <SmoothLoading variant="ai-skeleton" text="Loading training sessions..." />
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 content-fade-in">
+              {filteredSessions.map((session) => (
+                <Card key={session.id} className="bg-black/20 backdrop-blur-sm border-gray-800">
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div>
@@ -395,13 +417,22 @@ export default function TrainingManagement() {
                   </div>
                 </CardContent>
               </Card>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </TabsContent>
 
         <TabsContent value="modules" className="space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {filteredModules.map((module) => (
+          {isLoading ? (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <SmoothLoading variant="ai-skeleton" text="Loading training modules..." />
+              <SmoothLoading variant="ai-skeleton" text="Loading training modules..." />
+              <SmoothLoading variant="ai-skeleton" text="Loading training modules..." />
+              <SmoothLoading variant="ai-skeleton" text="Loading training modules..." />
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 content-fade-in">
+              {filteredModules.map((module) => (
               <Card key={module.id} className="bg-black/20 backdrop-blur-sm border-gray-800">
                 <CardHeader>
                   <div className="flex items-start justify-between">
@@ -466,8 +497,9 @@ export default function TrainingManagement() {
                   </div>
                 </CardContent>
               </Card>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </TabsContent>
 
         <TabsContent value="compliance" className="space-y-6">
