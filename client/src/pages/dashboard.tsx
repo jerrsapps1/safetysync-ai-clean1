@@ -15,6 +15,7 @@ import { AICloneDetector } from "@/components/ui/ai-clone-detector";
 import { CollaborationLayer } from "@/components/ui/collaboration-layer";
 import { AIQuickActions } from "@/components/ui/ai-quick-actions";
 import { AIPatternSkeleton } from "@/components/ui/ai-skeleton";
+import { SmoothLoading, ContentWrapper } from "@/components/ui/smooth-loading";
 import { 
   CheckCircle, 
   AlertTriangle, 
@@ -365,14 +366,14 @@ export default function Dashboard() {
         {/* AI-Enhanced Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {isLoading ? (
-            <>
+            <div className="contents">
               <AIPatternSkeleton variant="stats" />
               <AIPatternSkeleton variant="stats" />
               <AIPatternSkeleton variant="stats" />
               <AIPatternSkeleton variant="stats" />
-            </>
+            </div>
           ) : (
-            <>
+            <div className="contents content-fade-in">
               <Card className="glass-effect border-blue-500/30 bg-blue-500/10 backdrop-blur-sm hover:bg-blue-500/20 transition-all duration-300 group">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
@@ -428,7 +429,7 @@ export default function Dashboard() {
                   </div>
                 </CardContent>
               </Card>
-            </>
+            </div>
           )}
         </div>
 
