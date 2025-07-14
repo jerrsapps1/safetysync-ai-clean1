@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { Link, useLocation } from "wouter";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
@@ -1068,19 +1068,30 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
   // toggleExtendedWidgetVisibility removed as extended widgets are now part of main widgets
 
+  // Use ref to track if layout is being updated to prevent infinite loops
+  const layoutUpdateRef = useRef(false);
+  
   // Layout change handler with proper comparison
   const handleLayoutChange = useCallback((newLayout: any, allLayouts: any) => {
+    // Prevent infinite loops during layout updates
+    if (layoutUpdateRef.current) {
+      return;
+    }
+    
     // Only update if there are actual changes to prevent excessive updates
     const currentLayoutString = JSON.stringify(layouts);
     const newLayoutString = JSON.stringify(allLayouts);
     
-    if (currentLayoutString !== newLayoutString) {
-      // Use timeout to debounce rapid changes
+    if (currentLayoutString !== newLayoutString && widgets.length > 0) {
+      layoutUpdateRef.current = true;
+      setLayouts(allLayouts);
+      
+      // Reset the flag after a short delay
       setTimeout(() => {
-        setLayouts(allLayouts);
-      }, 100);
+        layoutUpdateRef.current = false;
+      }, 50);
     }
-  }, [layouts]);
+  }, [layouts, widgets.length]);
 
   // Trends widget management functions
   const toggleTrendsWidgetVisibility = useCallback((widgetId: string) => {
@@ -1092,11 +1103,13 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
   }, []);
 
   const handleTrendsLayoutChange = useCallback((newLayout: any, allLayouts: any) => {
-    if (JSON.stringify(allLayouts) !== JSON.stringify(trendsLayouts)) {
-      console.log('Trends layout changed, updating layouts');
+    const currentLayoutString = JSON.stringify(trendsLayouts);
+    const newLayoutString = JSON.stringify(allLayouts);
+    
+    if (currentLayoutString !== newLayoutString && trendsWidgets.length > 0) {
       setTrendsLayouts(allLayouts);
     }
-  }, [trendsLayouts]);
+  }, [trendsLayouts, trendsWidgets.length]);
 
   // handleExtendedLayoutChange removed as extended widgets are now part of main widgets
 
@@ -1104,7 +1117,15 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
   const resetWidgetLayout = () => {
     // Reset to default layout and visibility
-    setLayouts({});
+    const defaultLayouts = {
+      lg: defaultWidgetConfig.map(widget => ({ ...widget.defaultProps, i: widget.id })),
+      md: defaultWidgetConfig.map(widget => ({ ...widget.defaultProps, i: widget.id })),
+      sm: defaultWidgetConfig.map(widget => ({ ...widget.defaultProps, i: widget.id })),
+      xs: defaultWidgetConfig.map(widget => ({ ...widget.defaultProps, i: widget.id })),
+      xxs: defaultWidgetConfig.map(widget => ({ ...widget.defaultProps, i: widget.id })),
+    };
+    
+    setLayouts(defaultLayouts);
     setWidgets(createWidgets(defaultWidgetConfig));
     
     // Clear localStorage
@@ -2056,13 +2077,14 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
                   cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
                   rowHeight={60}
-                  isDraggable={true}
-                  isResizable={true}
+                  isDraggable={!isGroupSelectionMode}
+                  isResizable={!isGroupSelectionMode}
                   draggableHandle=".drag-handle"
                   containerPadding={[0, 0]}
                   margin={[16, 16]}
                   compactType={null}
-                  preventCollision={false}
+                  preventCollision={true}
+                  useCSSTransforms={true}
                 >
                   {widgets
                     .filter(widget => widget.visible)
