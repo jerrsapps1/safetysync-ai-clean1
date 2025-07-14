@@ -442,28 +442,7 @@ export default function ClientPortal() {
             </p>
           </div>
 
-          {/* Show workspace access after login */}
-          {isAuthenticated && !forceShowLogin && (
-            <div className="max-w-2xl mx-auto">
-              <Card className="bg-emerald-900/40 border-emerald-500/20 backdrop-blur-sm">
-                <CardHeader>
-                  <CardTitle className="text-emerald-300">Ready to Work</CardTitle>
-                  <CardDescription className="text-emerald-100">
-                    Access your safety management workspace
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Button
-                    onClick={() => window.location.href = '/workspace'}
-                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3"
-                  >
-                    <Settings className="w-5 h-5 mr-2" />
-                    Access Your Workspace
-                  </Button>
-                </CardContent>
-              </Card>
-            </div>
-          )}
+
 
           {/* Client Portal Content */}
           <div className="space-y-8">
