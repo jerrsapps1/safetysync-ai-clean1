@@ -195,7 +195,7 @@ const QuickSearchWidget: React.FC = () => {
             </Button>
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-2 overflow-y-auto max-h-96 pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
             {filteredEmployees.map(employee => (
               <Card key={employee.id} className="p-4 hover:shadow-md transition-shadow">
                 <div className="flex items-center justify-between">
