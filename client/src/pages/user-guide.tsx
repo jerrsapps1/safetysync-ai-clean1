@@ -27,8 +27,8 @@ export default function UserGuidePage() {
               </div>
             </div>
             <div className="flex items-center space-x-2">
-              <Link href="/dashboard">
-                <Button variant="outline" size="sm">Dashboard</Button>
+              <Link href="/workspace">
+                <Button variant="outline" size="sm">Workspace</Button>
               </Link>
               <Link href="/pricing">
                 <Button variant="outline" size="sm">Pricing</Button>
@@ -44,9 +44,9 @@ export default function UserGuidePage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Back to Dashboard Button */}
         <div className="mb-6">
-          <Link href="/dashboard">
+          <Link href="/workspace">
             <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white">
-              ← Back to Dashboard
+              ← Back to Workspace
             </Button>
           </Link>
         </div>

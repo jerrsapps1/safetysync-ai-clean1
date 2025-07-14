@@ -104,7 +104,7 @@ function LoginForm() {
         <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-6 shadow-2xl">
           <div className="text-center mb-6">
             <h1 className="text-2xl font-bold text-white mb-2">SafetySync.AI</h1>
-            <p className="text-white/70">Sign in to your dashboard</p>
+            <p className="text-white/70">Sign in to your workspace</p>
           </div>
           
           <form onSubmit={handleSubmit} className="space-y-4">
