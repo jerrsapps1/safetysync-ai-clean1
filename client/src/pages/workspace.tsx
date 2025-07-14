@@ -1781,10 +1781,18 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   rowHeight={60}
                   isDraggable={true}
                   isResizable={true}
+                  draggableHandle=".drag-handle"
+                  containerPadding={[0, 0]}
+                  margin={[16, 16]}
+                  compactType="vertical"
+                  preventCollision={false}
                 >
                   {/* Quick Actions Widget */}
-                  <div key="quick-actions" className="widget">
-                    <Card className="bg-black/20 backdrop-blur-sm border-gray-800 h-full">
+                  <div key="quick-actions" className="widget-container">
+                    <Card className="bg-black/20 backdrop-blur-sm border-gray-800 h-full group relative">
+                      <div className="drag-handle absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity cursor-move z-10">
+                        <GripVertical className="w-4 h-4 text-gray-400" />
+                      </div>
                       <CardHeader className="pb-3">
                         <CardTitle className="text-white text-lg flex items-center">
                           <Brain className="w-5 h-5 mr-2" />
@@ -1814,8 +1822,11 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   </div>
 
                   {/* Analytics Overview Widget */}
-                  <div key="analytics-overview" className="widget">
-                    <Card className="bg-black/20 backdrop-blur-sm border-gray-800 h-full">
+                  <div key="analytics-overview" className="widget-container">
+                    <Card className="bg-black/20 backdrop-blur-sm border-gray-800 h-full group relative">
+                      <div className="drag-handle absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity cursor-move z-10">
+                        <GripVertical className="w-4 h-4 text-gray-400" />
+                      </div>
                       <CardHeader className="pb-3">
                         <CardTitle className="text-white text-lg flex items-center">
                           <BarChart3 className="w-5 h-5 mr-2" />
@@ -1853,8 +1864,11 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   </div>
 
                   {/* Department Performance Widget */}
-                  <div key="department-performance" className="widget">
-                    <Card className="bg-black/20 backdrop-blur-sm border-gray-800 h-full">
+                  <div key="department-performance" className="widget-container">
+                    <Card className="bg-black/20 backdrop-blur-sm border-gray-800 h-full group relative">
+                      <div className="drag-handle absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity cursor-move z-10">
+                        <GripVertical className="w-4 h-4 text-gray-400" />
+                      </div>
                       <CardHeader className="pb-3">
                         <CardTitle className="text-white text-lg flex items-center">
                           <Building className="w-5 h-5 mr-2" />
@@ -1904,8 +1918,11 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   </div>
 
                   {/* OSHA Training Requirements Widget */}
-                  <div key="osha-training" className="widget">
-                    <Card className="bg-black/20 backdrop-blur-sm border-gray-800 h-full">
+                  <div key="osha-training" className="widget-container">
+                    <Card className="bg-black/20 backdrop-blur-sm border-gray-800 h-full group relative">
+                      <div className="drag-handle absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity cursor-move z-10">
+                        <GripVertical className="w-4 h-4 text-gray-400" />
+                      </div>
                       <CardHeader className="pb-3">
                         <CardTitle className="text-white text-lg flex items-center">
                           <Shield className="w-5 h-5 mr-2" />
