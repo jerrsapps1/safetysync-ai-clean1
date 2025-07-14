@@ -360,7 +360,7 @@ export default function ClientPortal() {
               <Button 
                 onClick={() => window.location.href = '/'}
                 variant="ghost"
-                className="text-gray-300 hover:text-white"
+                className="text-gray-300 hover:text-white hover:bg-gray-700/50"
               >
                 <Home className="w-4 h-4 mr-2" />
                 Home
@@ -406,7 +406,7 @@ export default function ClientPortal() {
                   <Button 
                     onClick={() => window.location.href = '/workspace'}
                     variant="ghost"
-                    className="text-emerald-300 hover:text-emerald-200"
+                    className="text-emerald-300 hover:text-emerald-200 hover:bg-emerald-700/50"
                   >
                     <Settings className="w-4 h-4 mr-2" />
                     Workspace
@@ -414,7 +414,7 @@ export default function ClientPortal() {
                   <Button 
                     onClick={handleLogout}
                     variant="ghost"
-                    className="text-red-300 hover:text-red-200"
+                    className="text-red-300 hover:text-red-200 hover:bg-red-700/50"
                   >
                     <LogOut className="w-4 h-4 mr-2" />
                     Logout

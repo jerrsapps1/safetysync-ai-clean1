@@ -1956,7 +1956,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           )}
           <Button
             variant="ghost"
-            className="w-full justify-start text-gray-300 hover:text-white"
+            className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50"
             onClick={handleLogout}
           >
             <LogOut className="w-5 h-5 mr-3" />
@@ -2020,7 +2020,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </p>
             </div>
             <div className="flex items-center space-x-4">
-              <Button variant="secondary" className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-800">
+              <Button variant="secondary" className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50">
                 <Bell className="w-4 h-4 mr-2" />
                 Notifications
               </Button>
@@ -2030,12 +2030,12 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   logout();
                   window.location.href = '/';
                 }}
-                className="bg-red-800/20 text-red-300 border-red-600 hover:bg-red-800/40"
+                className="bg-red-800/20 text-red-300 border-red-600 hover:bg-red-700/50"
               >
                 <LogOut className="w-4 h-4 mr-2" />
                 Logout
               </Button>
-              <a href="/" className="text-gray-400 hover:text-white text-sm">
+              <a href="/" className="text-gray-400 hover:text-white hover:bg-gray-700/50 px-2 py-1 rounded text-sm">
                 ← Back to SafetySync.AI
               </a>
             </div>
@@ -2052,7 +2052,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <Button
                     variant="secondary"
                     onClick={() => setShowWidgetManager(!showWidgetManager)}
-                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-800"
+                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50"
                   >
                     <Settings className="w-4 h-4 mr-2" />
                     Manage Widgets
@@ -2060,7 +2060,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <Button
                     variant="secondary"
                     onClick={saveAsDefault}
-                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-800"
+                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50"
                   >
                     <Save className="w-4 h-4 mr-2" />
                     Save as Default
@@ -2069,7 +2069,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     <Button
                       variant="secondary"
                       onClick={loadCustomDefaults}
-                      className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-800"
+                      className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50"
                     >
                       <Upload className="w-4 h-4 mr-2" />
                       Load My Default
@@ -2078,7 +2078,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <Button
                     variant="secondary"
                     onClick={resetWidgetLayout}
-                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-800"
+                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50"
                   >
                     <RotateCcw className="w-4 h-4 mr-2" />
                     Reset to Original
@@ -2105,7 +2105,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                           <Button
                             variant={isGroupSelectionMode ? "default" : "outline"}
                             onClick={toggleGroupSelectionMode}
-                            className={`${isGroupSelectionMode ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-800'}`}
+                            className={`${isGroupSelectionMode ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50'}`}
                           >
                             <MousePointer className="w-4 h-4 mr-2" />
                             {isGroupSelectionMode ? 'Exit Selection Mode' : 'Select Multiple'}
@@ -2115,7 +2115,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                               <Button
                                 variant="outline"
                                 onClick={selectAllWidgets}
-                                className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-800"
+                                className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50"
                               >
                                 <CheckSquare className="w-4 h-4 mr-2" />
                                 Select All
@@ -2123,7 +2123,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                               <Button
                                 variant="outline"
                                 onClick={clearSelection}
-                                className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-800"
+                                className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50"
                               >
                                 <Square className="w-4 h-4 mr-2" />
                                 Clear Selection
@@ -2136,28 +2136,28 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                                   <Button
                                     variant="outline"
                                     onClick={() => moveSelectedWidgets(-1, 0)}
-                                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-800 p-2"
+                                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50 p-2"
                                   >
                                     <ArrowLeft className="w-4 h-4" />
                                   </Button>
                                   <Button
                                     variant="outline"
                                     onClick={() => moveSelectedWidgets(1, 0)}
-                                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-800 p-2"
+                                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50 p-2"
                                   >
                                     <ArrowRight className="w-4 h-4" />
                                   </Button>
                                   <Button
                                     variant="outline"
                                     onClick={() => moveSelectedWidgets(0, -1)}
-                                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-800 p-2"
+                                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50 p-2"
                                   >
                                     <ArrowUp className="w-4 h-4" />
                                   </Button>
                                   <Button
                                     variant="outline"
                                     onClick={() => moveSelectedWidgets(0, 1)}
-                                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-800 p-2"
+                                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50 p-2"
                                   >
                                     <ArrowDown className="w-4 h-4" />
                                   </Button>
@@ -2935,7 +2935,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 type="button"
                 variant="outline"
                 onClick={() => setShowAddEmployee(false)}
-                className="border-gray-700 text-gray-300 hover:bg-gray-800"
+                className="border-gray-700 text-gray-300 hover:bg-gray-700/50"
               >
                 Cancel
               </Button>
@@ -2974,7 +2974,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   setShowAddDivision(false);
                   setNewDivisionName("");
                 }}
-                className="border-gray-600 text-gray-300 hover:bg-gray-800"
+                className="border-gray-600 text-gray-300 hover:bg-gray-700/50"
               >
                 Cancel
               </Button>
@@ -3026,7 +3026,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   setNewDepartmentName("");
                   setSelectedDivisionForDepartment("");
                 }}
-                className="border-gray-600 text-gray-300 hover:bg-gray-800"
+                className="border-gray-600 text-gray-300 hover:bg-gray-700/50"
               >
                 Cancel
               </Button>
