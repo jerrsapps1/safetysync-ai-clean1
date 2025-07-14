@@ -1089,7 +1089,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
       // Reset the flag after a short delay
       setTimeout(() => {
         layoutUpdateRef.current = false;
-      }, 50);
+      }, 20);
     }
   }, [layouts, widgets.length]);
 
@@ -2151,17 +2151,18 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   onLayoutChange={handleLayoutChange}
                   breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
                   cols={{ lg: 24, md: 20, sm: 12, xs: 8, xxs: 4 }}
-                  rowHeight={60}
+                  rowHeight={50}
                   isDraggable={!isGroupSelectionMode}
                   isResizable={!isGroupSelectionMode}
                   draggableHandle=".drag-handle"
                   containerPadding={[0, 0]}
-                  margin={[16, 16]}
+                  margin={[12, 12]}
                   compactType={null}
-                  preventCollision={true}
+                  preventCollision={false}
                   useCSSTransforms={true}
                   maxRows={Infinity}
                   autoSize={true}
+                  allowOverlap={true}
                 >
                   {widgets
                     .filter(widget => widget.visible)
