@@ -396,7 +396,7 @@ export default function ClientPortal() {
                     className="text-emerald-300 hover:text-emerald-200"
                   >
                     <Settings className="w-4 h-4 mr-2" />
-                    Dashboard
+                    Workspace
                   </Button>
                   <Button 
                     onClick={handleLogout}

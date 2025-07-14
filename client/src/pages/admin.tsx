@@ -282,8 +282,8 @@ export default function AdminPanel() {
                   Admin Analytics
                 </Button>
               </Link>
-              <Link href="/dashboard">
-                <Button variant="ghost" size="sm">Dashboard</Button>
+              <Link href="/workspace">
+                <Button variant="ghost" size="sm">Workspace</Button>
               </Link>
               <Link href="/industry-research">
                 <Button variant="ghost" size="sm">Industry Research</Button>
