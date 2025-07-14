@@ -2158,11 +2158,10 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   containerPadding={[0, 0]}
                   margin={[12, 12]}
                   compactType={null}
-                  preventCollision={false}
+                  preventCollision={true}
                   useCSSTransforms={true}
                   maxRows={Infinity}
                   autoSize={true}
-                  allowOverlap={true}
                 >
                   {widgets
                     .filter(widget => widget.visible)
