@@ -17,7 +17,7 @@ export function useAuth() {
     // Check if user is logged in on page load
     const checkAuthStatus = async () => {
       try {
-        const token = localStorage.getItem('auth_token');
+        const token = sessionStorage.getItem('auth_token');
         if (token) {
           const response = await fetch('/api/auth/me', {
             headers: {
@@ -29,12 +29,12 @@ export function useAuth() {
             const userData = await response.json();
             setUser(userData.user);
           } else {
-            localStorage.removeItem('auth_token');
+            sessionStorage.removeItem('auth_token');
           }
         }
       } catch (error) {
         console.error('Error checking auth status:', error);
-        localStorage.removeItem('auth_token');
+        sessionStorage.removeItem('auth_token');
       } finally {
         setIsLoading(false);
       }
@@ -56,7 +56,9 @@ export function useAuth() {
       const result = await response.json();
       
       if (result.success) {
-        localStorage.setItem('auth_token', result.token);
+        // Use sessionStorage instead of localStorage for better security
+        // This will clear when browser/tab is closed
+        sessionStorage.setItem('auth_token', result.token);
         setUser(result.user);
         setIsLoading(false); // Ensure loading is false after successful login
         console.log('Login successful, user set:', result.user);
@@ -75,7 +77,7 @@ export function useAuth() {
     } catch (error) {
       console.error('Logout API call failed:', error);
     }
-    localStorage.removeItem('auth_token');
+    sessionStorage.removeItem('auth_token');
     setUser(null);
   };
 
