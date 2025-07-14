@@ -2144,25 +2144,26 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               )}
 
               {/* Repositionable Widget Dashboard */}
-              <div className="dashboard-container" style={{ minHeight: '800px', width: '100%' }}>
+              <div className="dashboard-container" style={{ minHeight: '100vh', width: '100%' }}>
                 <ResponsiveGridLayout
                   className="layout"
                   layouts={layouts}
                   onLayoutChange={handleLayoutChange}
                   breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
-                  cols={{ lg: 24, md: 20, sm: 12, xs: 8, xxs: 4 }}
+                  cols={{ lg: 24, md: 24, sm: 24, xs: 24, xxs: 24 }}
                   rowHeight={50}
                   isDraggable={!isGroupSelectionMode}
                   isResizable={!isGroupSelectionMode}
                   draggableHandle=".drag-handle"
                   containerPadding={[0, 0]}
-                  margin={[12, 12]}
+                  margin={[8, 8]}
                   compactType={null}
                   preventCollision={true}
-                  verticalCompact={false}
                   useCSSTransforms={true}
                   maxRows={Infinity}
                   autoSize={true}
+                  allowOverlap={false}
+                  isBounded={false}
                 >
                   {widgets
                     .filter(widget => widget.visible)
