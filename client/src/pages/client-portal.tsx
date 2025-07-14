@@ -77,19 +77,19 @@ export default function ClientPortal() {
   const [loginPassword, setLoginPassword] = useState('');
   const [showAuthPopup, setShowAuthPopup] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(false);
-  const [forceShowLogin, setForceShowLogin] = useState(true);
+  const [forceShowLogin, setForceShowLogin] = useState(false);
   const { toast } = useToast();
   const { user, isAuthenticated, isLoading, login, logout } = useAuth();
 
   // Initialize authentication state
   useEffect(() => {
-    // Only force login if not already authenticated
-    if (!isAuthenticated) {
+    // Only force login if not already authenticated and not loading
+    if (!isLoading && !isAuthenticated) {
       setForceShowLogin(true);
-    } else {
+    } else if (!isLoading && isAuthenticated) {
       setForceShowLogin(false);
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, isLoading]);
 
   const handleSuccessfulLogin = async (email: string, password: string) => {
     setIsAuthenticating(true);
