@@ -389,6 +389,16 @@ export default function ClientPortal() {
                 </div>
               ) : (
                 <div className="flex items-center space-x-4">
+                  {/* Account Status Alert in Header */}
+                  <div className="flex items-center space-x-3 p-2 bg-emerald-500/20 rounded-lg border border-emerald-500/30">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                      <div className="text-emerald-300 text-sm font-medium">
+                        Active • {user?.userTier}
+                      </div>
+                    </div>
+                  </div>
+                  
                   <span className="text-white text-sm">Welcome, {user?.name}</span>
                   <Button 
                     onClick={() => window.location.href = '/workspace'}
@@ -440,22 +450,13 @@ export default function ClientPortal() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between p-4 bg-emerald-500/20 rounded-lg border border-emerald-500/30">
-                      <div>
-                        <div className="text-white font-medium">Account Status</div>
-                        <div className="text-emerald-300 text-sm">Active • {user?.userTier}</div>
-                      </div>
-                      <div className="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></div>
-                    </div>
-                    <Button
-                      onClick={() => window.location.href = '/workspace'}
-                      className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3"
-                    >
-                      <Settings className="w-5 h-5 mr-2" />
-                      Access Your Workspace
-                    </Button>
-                  </div>
+                  <Button
+                    onClick={() => window.location.href = '/workspace'}
+                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3"
+                  >
+                    <Settings className="w-5 h-5 mr-2" />
+                    Access Your Workspace
+                  </Button>
                 </CardContent>
               </Card>
             </div>
