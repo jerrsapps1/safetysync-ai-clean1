@@ -1934,7 +1934,12 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 {activeTab === "settings" && "Workspace Settings"}
               </h1>
               <p className="text-gray-400">
-                {activeTab === "unified-dashboard" && "Comprehensive overview combining analytics, compliance management, and actionable insights"}
+                {activeTab === "unified-dashboard" && (
+                  <span>
+                    Comprehensive overview combining analytics, compliance management, and actionable insights
+                    <span className="text-gray-500 text-sm ml-4">• Drag widgets to reposition • Drag corners to resize • Click manage to show/hide</span>
+                  </span>
+                )}
                 {activeTab === "employees" && "Manage employee certifications and training"}
                 {activeTab === "training" && "Schedule and track safety training"}
                 {activeTab === "certificates" && "Generate professional certificates and cards"}
@@ -2019,9 +2024,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     Reset to Original
                   </Button>
                 </div>
-                <div className="text-sm text-gray-400">
-                  Drag widgets to reposition • Drag corners to resize • Click manage to show/hide
-                </div>
+
               </div>
 
               {/* Widget Manager Panel */}
