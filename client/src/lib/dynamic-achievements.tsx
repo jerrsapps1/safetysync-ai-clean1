@@ -38,6 +38,7 @@ export class DynamicAchievementService {
   private constructor() {
     this.loadData();
     this.initializeDynamicBadges();
+    this.initializeAchievements();
   }
 
   static getInstance(): DynamicAchievementService {
@@ -64,18 +65,15 @@ export class DynamicAchievementService {
       this.userStats = JSON.parse(savedStats);
     }
 
-    if (savedAchievements) {
-      this.achievements = JSON.parse(savedAchievements).map((achievement: any) => ({
-        ...achievement,
-        unlockedAt: achievement.unlockedAt ? new Date(achievement.unlockedAt) : undefined
-      }));
-    }
+    // Don't load achievements from localStorage as they contain JSX elements
+    // Always regenerate them from dynamicBadges instead
   }
 
   private saveData(): void {
     localStorage.setItem('milestone-events', JSON.stringify(this.milestoneEvents));
     localStorage.setItem('user-stats', JSON.stringify(this.userStats));
-    localStorage.setItem('achievements', JSON.stringify(this.achievements));
+    // Don't save achievements to localStorage since they contain JSX elements
+    // Always regenerate from dynamicBadges instead
   }
 
   private initializeDynamicBadges(): void {
@@ -455,6 +453,32 @@ export class DynamicAchievementService {
     this.userStats = { ...this.userStats, ...newStats };
     this.checkDynamicAchievements();
     this.saveData();
+  }
+
+  // Initialize achievements from dynamic badges
+  private initializeAchievements(): void {
+    this.achievements = [];
+    for (const badge of this.dynamicBadges) {
+      const progress = badge.progressCalculator(this.milestoneEvents, this.userStats);
+      const isUnlocked = badge.condition(this.milestoneEvents, this.userStats);
+      
+      const achievement: Achievement = {
+        id: badge.id,
+        title: badge.title,
+        description: badge.description,
+        icon: badge.icon,
+        category: badge.category,
+        tier: badge.tier,
+        points: badge.points,
+        isUnlocked,
+        unlockedAt: isUnlocked ? new Date() : undefined,
+        progress: progress.current,
+        maxProgress: progress.max,
+        requirements: [badge.description]
+      };
+      
+      this.achievements.push(achievement);
+    }
   }
 
   // Get all achievements including dynamic ones
