@@ -2157,8 +2157,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   draggableHandle=".drag-handle"
                   containerPadding={[0, 0]}
                   margin={[8, 8]}
-                  compactType={null}
-                  preventCollision={true}
+                  compactType="vertical"
+                  preventCollision={false}
                   useCSSTransforms={true}
                   maxRows={Infinity}
                   autoSize={true}
