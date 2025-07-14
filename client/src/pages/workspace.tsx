@@ -27,7 +27,8 @@ import WorkplacePosterManagement from "@/components/workplace/WorkplacePosterMan
 import TrainingCalendar from "@/components/calendar/TrainingCalendar";
 import SubscriptionBilling from "@/components/billing/SubscriptionBilling";
 import AnalyticsReports from "@/components/reports/AnalyticsReports";
-
+import AchievementBadges from "@/components/achievements/AchievementBadges";
+import AchievementWidget from "@/components/achievements/AchievementWidget";
 
 import { AIPatternSkeleton } from "@/components/ui/ai-skeleton";
 import SafetyTrendsDashboard from "@/components/safety-trends-dashboard";
@@ -292,6 +293,7 @@ export default function WorkspacePage() {
       "certification-progress": <Award className="w-5 h-5" />,
       "compliance-trends": <BarChart3 className="w-5 h-5" />,
       "quick-search": <Search className="w-5 h-5" />,
+      "achievement-progress": <Award className="w-5 h-5" />,
       // Trends widget icons
       "safety-trends-chart": <Activity className="w-5 h-5" />,
       "compliance-metrics": <TrendingUp className="w-5 h-5" />,
@@ -380,9 +382,15 @@ export default function WorkspacePage() {
       visible: true
     },
     {
+      id: "achievement-progress",
+      title: "Achievement Progress",
+      defaultProps: { x: 0, y: 20, w: 12, h: 6 },
+      visible: true
+    },
+    {
       id: "department-performance",
       title: "Department Performance",
-      defaultProps: { x: 0, y: 20, w: 12, h: 7 },
+      defaultProps: { x: 12, y: 20, w: 12, h: 7 },
       visible: true
     },
     {
@@ -1433,6 +1441,12 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             </div>
           </div>
         );
+      case "achievement-progress":
+        return (
+          <div className="h-full overflow-hidden">
+            <AchievementWidget isSmall={isSmall} />
+          </div>
+        );
       case "osha-training":
         return (
           <div className="h-full overflow-hidden">
@@ -1864,6 +1878,14 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             {sidebarOpen && "Analytics"}
           </Button>
           <Button
+            variant={activeTab === "achievements" ? "secondary" : "ghost"}
+            className="w-full justify-start text-gray-300 hover:text-white"
+            onClick={() => handleTabSwitch("achievements")}
+          >
+            <Award className="w-5 h-5 mr-3" />
+            {sidebarOpen && "Achievements"}
+          </Button>
+          <Button
             variant={activeTab === "company-profile" ? "secondary" : "ghost"}
             className="w-full justify-start text-gray-300 hover:text-white"
             onClick={() => handleTabSwitch("company-profile")}
@@ -1929,6 +1951,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 {activeTab === "training-calendar" && "Training Calendar"}
                 {activeTab === "subscription-billing" && "Subscription & Billing"}
                 {activeTab === "analytics-reports" && "Analytics & Reports"}
+                {activeTab === "achievements" && "Achievements & Milestones"}
                 {activeTab === "document-manager" && "Document Management"}
 
                 {activeTab === "settings" && "Workspace Settings"}
@@ -1954,6 +1977,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 {activeTab === "training-calendar" && "Schedule and manage training sessions"}
                 {activeTab === "subscription-billing" && "Manage your plan and billing information"}
                 {activeTab === "analytics-reports" && "Generate comprehensive analytics and reports"}
+                {activeTab === "achievements" && "Track your safety milestones and earn achievement badges"}
                 {activeTab === "document-manager" && "Upload, organize, and manage safety documents"}
 
                 {activeTab === "settings" && "Configure your workspace and branding"}
@@ -2671,6 +2695,12 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           {activeTab === "analytics-reports" && (
             <div className="p-8">
               <AnalyticsReports />
+            </div>
+          )}
+
+          {activeTab === "achievements" && (
+            <div className="p-8">
+              <AchievementBadges />
             </div>
           )}
 
