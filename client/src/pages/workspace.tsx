@@ -1735,7 +1735,16 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
   }
 
   if (!isAuthenticated) {
-    return <LoginForm />;
+    // Redirect to client portal for authentication
+    window.location.href = '/client-portal';
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 flex items-center justify-center">
+        <div className="text-center">
+          <SafetySyncIcon size={64} className="mx-auto mb-4 animate-pulse" />
+          <p className="text-white text-lg">Redirecting to client portal...</p>
+        </div>
+      </div>
+    );
   }
 
   const handleLogout = () => {
