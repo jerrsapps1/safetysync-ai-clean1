@@ -82,7 +82,13 @@ import {
   FileUser,
   Inbox,
   Monitor,
-  Trash2
+  Trash2,
+  MousePointer,
+  CheckSquare,
+  Square,
+  ArrowRight,
+  ArrowUp,
+  ArrowDown
 } from "lucide-react";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
@@ -499,6 +505,10 @@ export default function WorkspacePage() {
   });
   
   const [showWidgetManager, setShowWidgetManager] = useState(false);
+  
+  // Group selection state
+  const [selectedWidgets, setSelectedWidgets] = useState<Set<string>>(new Set());
+  const [isGroupSelectionMode, setIsGroupSelectionMode] = useState(false);
 
   // Trends widget management state
   const [trendsWidgets, setTrendsWidgets] = useState<DashboardWidget[]>(() => {
@@ -998,6 +1008,63 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         : widget
     ));
   }, []);
+
+  // Group selection functions
+  const toggleWidgetSelection = useCallback((widgetId: string, event?: React.MouseEvent) => {
+    if (event) {
+      event.stopPropagation();
+    }
+    
+    setSelectedWidgets(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(widgetId)) {
+        newSet.delete(widgetId);
+      } else {
+        newSet.add(widgetId);
+      }
+      return newSet;
+    });
+  }, []);
+
+  const selectAllWidgets = useCallback(() => {
+    const visibleWidgetIds = widgets.filter(w => w.visible).map(w => w.id);
+    setSelectedWidgets(new Set(visibleWidgetIds));
+  }, [widgets]);
+
+  const clearSelection = useCallback(() => {
+    setSelectedWidgets(new Set());
+  }, []);
+
+  const toggleGroupSelectionMode = useCallback(() => {
+    setIsGroupSelectionMode(prev => !prev);
+    if (isGroupSelectionMode) {
+      clearSelection();
+    }
+  }, [isGroupSelectionMode, clearSelection]);
+
+  // Group move function
+  const moveSelectedWidgets = useCallback((deltaX: number, deltaY: number) => {
+    if (selectedWidgets.size === 0) return;
+    
+    setLayouts(prev => {
+      const newLayouts = { ...prev };
+      
+      Object.keys(newLayouts).forEach(breakpoint => {
+        newLayouts[breakpoint] = newLayouts[breakpoint].map((item: any) => {
+          if (selectedWidgets.has(item.i)) {
+            return {
+              ...item,
+              x: Math.max(0, item.x + deltaX),
+              y: Math.max(0, item.y + deltaY)
+            };
+          }
+          return item;
+        });
+      });
+      
+      return newLayouts;
+    });
+  }, [selectedWidgets]);
 
   // toggleExtendedWidgetVisibility removed as extended widgets are now part of main widgets
 
@@ -1872,6 +1939,81 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-6">
+                      {/* Group Selection Controls */}
+                      <div className="bg-gray-800/50 rounded-lg p-4">
+                        <h3 className="text-white font-medium mb-3">Group Widget Selection</h3>
+                        <div className="flex flex-wrap gap-2">
+                          <Button
+                            variant={isGroupSelectionMode ? "default" : "outline"}
+                            onClick={toggleGroupSelectionMode}
+                            className={`${isGroupSelectionMode ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-800'}`}
+                          >
+                            <MousePointer className="w-4 h-4 mr-2" />
+                            {isGroupSelectionMode ? 'Exit Selection Mode' : 'Select Multiple'}
+                          </Button>
+                          {isGroupSelectionMode && (
+                            <>
+                              <Button
+                                variant="outline"
+                                onClick={selectAllWidgets}
+                                className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-800"
+                              >
+                                <CheckSquare className="w-4 h-4 mr-2" />
+                                Select All
+                              </Button>
+                              <Button
+                                variant="outline"
+                                onClick={clearSelection}
+                                className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-800"
+                              >
+                                <Square className="w-4 h-4 mr-2" />
+                                Clear Selection
+                              </Button>
+                              {selectedWidgets.size > 0 && (
+                                <div className="flex items-center space-x-2">
+                                  <span className="text-gray-400 text-sm">
+                                    {selectedWidgets.size} selected
+                                  </span>
+                                  <Button
+                                    variant="outline"
+                                    onClick={() => moveSelectedWidgets(-1, 0)}
+                                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-800 p-2"
+                                  >
+                                    <ArrowLeft className="w-4 h-4" />
+                                  </Button>
+                                  <Button
+                                    variant="outline"
+                                    onClick={() => moveSelectedWidgets(1, 0)}
+                                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-800 p-2"
+                                  >
+                                    <ArrowRight className="w-4 h-4" />
+                                  </Button>
+                                  <Button
+                                    variant="outline"
+                                    onClick={() => moveSelectedWidgets(0, -1)}
+                                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-800 p-2"
+                                  >
+                                    <ArrowUp className="w-4 h-4" />
+                                  </Button>
+                                  <Button
+                                    variant="outline"
+                                    onClick={() => moveSelectedWidgets(0, 1)}
+                                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-800 p-2"
+                                  >
+                                    <ArrowDown className="w-4 h-4" />
+                                  </Button>
+                                </div>
+                              )}
+                            </>
+                          )}
+                        </div>
+                        {isGroupSelectionMode && (
+                          <div className="text-sm text-gray-400 mt-2">
+                            Click widgets to select them, then use arrow buttons or drag to move selected widgets together
+                          </div>
+                        )}
+                      </div>
+
                       {/* Main Dashboard Widgets */}
                       <div>
                         <h3 className="text-white font-medium mb-3">Main Dashboard Widgets</h3>
@@ -1932,9 +2074,27 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                         <div
                           key={widget.id}
                           className="widget-container"
+                          onClick={isGroupSelectionMode ? (e) => toggleWidgetSelection(widget.id, e) : undefined}
                         >
-                          <Card className="bg-black/20 backdrop-blur-sm border-gray-800 h-full group relative">
+                          <Card className={`bg-black/20 backdrop-blur-sm border-gray-800 h-full group relative transition-all duration-200 ${
+                            selectedWidgets.has(widget.id) ? 'ring-2 ring-emerald-500 bg-emerald-500/10' : ''
+                          } ${isGroupSelectionMode ? 'cursor-pointer hover:bg-gray-800/30' : ''}`}>
                             <CardContent className="p-4 h-full">
+                              {/* Selection Indicator */}
+                              {isGroupSelectionMode && (
+                                <div className="absolute top-2 left-2 z-10">
+                                  <div className={`w-5 h-5 rounded border-2 flex items-center justify-center ${
+                                    selectedWidgets.has(widget.id) 
+                                      ? 'bg-emerald-500 border-emerald-500' 
+                                      : 'border-gray-400 bg-gray-800/50'
+                                  }`}>
+                                    {selectedWidgets.has(widget.id) && (
+                                      <CheckSquare className="w-3 h-3 text-white" />
+                                    )}
+                                  </div>
+                                </div>
+                              )}
+                              
                               {/* Drag Handle */}
                               <div className="drag-handle absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity cursor-move">
                                 <GripVertical className="w-4 h-4 text-gray-400" />
