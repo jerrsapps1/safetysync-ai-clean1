@@ -309,86 +309,86 @@ export default function WorkspacePage() {
     {
       id: "total-employees",
       title: "Total Employees",
-      defaultProps: { x: 0, y: 0, w: 3, h: 2 },
+      defaultProps: { x: 0, y: 0, w: 6, h: 2 },
       visible: true
     },
     {
       id: "compliant-employees",
       title: "Compliant Employees",
-      defaultProps: { x: 3, y: 0, w: 3, h: 2 },
+      defaultProps: { x: 6, y: 0, w: 6, h: 2 },
       visible: true
     },
     {
       id: "pending-training",
       title: "Pending Training",
-      defaultProps: { x: 6, y: 0, w: 3, h: 2 },
+      defaultProps: { x: 12, y: 0, w: 6, h: 2 },
       visible: true
     },
     {
       id: "compliance-score",
       title: "Compliance Score",
-      defaultProps: { x: 9, y: 0, w: 3, h: 2 },
+      defaultProps: { x: 18, y: 0, w: 6, h: 2 },
       visible: true
     },
     {
       id: "recent-activity",
       title: "Recent Activity",
-      defaultProps: { x: 0, y: 2, w: 6, h: 4 },
+      defaultProps: { x: 0, y: 2, w: 12, h: 4 },
       visible: true
     },
     {
       id: "training-calendar",
       title: "Training Calendar",
-      defaultProps: { x: 6, y: 2, w: 6, h: 4 },
+      defaultProps: { x: 12, y: 2, w: 12, h: 4 },
       visible: true
     },
     {
       id: "safety-alerts",
       title: "Safety Alerts",
-      defaultProps: { x: 0, y: 6, w: 4, h: 3 },
+      defaultProps: { x: 0, y: 6, w: 8, h: 3 },
       visible: true
     },
     {
       id: "certification-progress",
       title: "Certification Progress",
-      defaultProps: { x: 4, y: 6, w: 4, h: 3 },
+      defaultProps: { x: 8, y: 6, w: 8, h: 3 },
       visible: true
     },
     {
       id: "compliance-trends",
       title: "Compliance Trends",
-      defaultProps: { x: 8, y: 6, w: 4, h: 3 },
+      defaultProps: { x: 16, y: 6, w: 8, h: 3 },
       visible: true
     },
     {
       id: "quick-search",
       title: "Quick Search",
-      defaultProps: { x: 0, y: 9, w: 12, h: 6 },
+      defaultProps: { x: 0, y: 9, w: 24, h: 6 },
       visible: true
     },
     // Extended widgets now in the same grid
     {
       id: "quick-actions",
       title: "Quick Actions & Reports",
-      defaultProps: { x: 0, y: 15, w: 6, h: 5 },
+      defaultProps: { x: 0, y: 15, w: 12, h: 5 },
       visible: true
     },
     {
       id: "analytics-overview",
       title: "Analytics Overview",
-      defaultProps: { x: 6, y: 15, w: 6, h: 5 },
+      defaultProps: { x: 12, y: 15, w: 12, h: 5 },
       visible: true
     },
     {
       id: "department-performance",
       title: "Department Performance",
-      defaultProps: { x: 0, y: 20, w: 6, h: 7 },
+      defaultProps: { x: 0, y: 20, w: 12, h: 7 },
       visible: true
     },
     {
       id: "osha-training",
       title: "OSHA Training Requirements",
-      defaultProps: { x: 6, y: 20, w: 6, h: 8 },
+      defaultProps: { x: 12, y: 20, w: 12, h: 8 },
       visible: true
     }
   ];
@@ -2144,13 +2144,13 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               )}
 
               {/* Repositionable Widget Dashboard */}
-              <div className="dashboard-container" style={{ minHeight: '800px' }}>
+              <div className="dashboard-container" style={{ minHeight: '800px', width: '100%' }}>
                 <ResponsiveGridLayout
                   className="layout"
                   layouts={layouts}
                   onLayoutChange={handleLayoutChange}
                   breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
-                  cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
+                  cols={{ lg: 24, md: 20, sm: 12, xs: 8, xxs: 4 }}
                   rowHeight={60}
                   isDraggable={!isGroupSelectionMode}
                   isResizable={!isGroupSelectionMode}
@@ -2160,6 +2160,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   compactType={null}
                   preventCollision={true}
                   useCSSTransforms={true}
+                  maxRows={Infinity}
+                  autoSize={true}
                 >
                   {widgets
                     .filter(widget => widget.visible)
