@@ -1756,40 +1756,50 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         {/* Navigation */}
         <nav className="flex-1 p-4 space-y-2">
           <Button
-            variant={activeTab === "unified-dashboard" ? "secondary" : "ghost"}
-            className="w-full justify-start text-gray-300 hover:text-white"
+            variant="ghost"
+            className={`w-full justify-start text-gray-300 hover:text-white ${
+              activeTab === "unified-dashboard" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            }`}
             onClick={() => handleTabSwitch("unified-dashboard")}
           >
             <Home className="w-5 h-5 mr-3" />
             {sidebarOpen && "Unified Dashboard"}
           </Button>
           <Button
-            variant={activeTab === "employees" ? "secondary" : "ghost"}
-            className="w-full justify-start text-gray-300 hover:text-white"
+            variant="ghost"
+            className={`w-full justify-start text-gray-300 hover:text-white ${
+              activeTab === "employees" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            }`}
             onClick={() => handleTabSwitch("employees")}
           >
             <Users className="w-5 h-5 mr-3" />
             {sidebarOpen && "Employees"}
           </Button>
           <Button
-            variant={activeTab === "training" ? "secondary" : "ghost"}
-            className="w-full justify-start text-gray-300 hover:text-white"
+            variant="ghost"
+            className={`w-full justify-start text-gray-300 hover:text-white ${
+              activeTab === "training" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            }`}
             onClick={() => handleTabSwitch("training")}
           >
             <BookOpen className="w-5 h-5 mr-3" />
             {sidebarOpen && "Training"}
           </Button>
           <Button
-            variant={activeTab === "certificates" ? "secondary" : "ghost"}
-            className="w-full justify-start text-gray-300 hover:text-white"
+            variant="ghost"
+            className={`w-full justify-start text-gray-300 hover:text-white ${
+              activeTab === "certificates" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            }`}
             onClick={() => handleTabSwitch("certificates")}
           >
             <Award className="w-5 h-5 mr-3" />
             {sidebarOpen && "Certificates"}
           </Button>
           <Button
-            variant={activeTab === "reports" ? "secondary" : "ghost"}
-            className="w-full justify-start text-gray-300 hover:text-white"
+            variant="ghost"
+            className={`w-full justify-start text-gray-300 hover:text-white ${
+              activeTab === "reports" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            }`}
             onClick={() => handleTabSwitch("reports")}
           >
             <FileText className="w-5 h-5 mr-3" />
@@ -1797,8 +1807,10 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           </Button>
 
           <Button
-            variant={activeTab === "document-manager" ? "secondary" : "ghost"}
-            className="w-full justify-start text-gray-300 hover:text-white"
+            variant="ghost"
+            className={`w-full justify-start text-gray-300 hover:text-white ${
+              activeTab === "document-manager" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            }`}
             onClick={() => handleTabSwitch("document-manager")}
           >
             <Database className="w-5 h-5 mr-3" />
@@ -1806,72 +1818,90 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           </Button>
 
           <Button
-            variant={activeTab === "trends" ? "secondary" : "ghost"}
-            className="w-full justify-start text-gray-300 hover:text-white"
+            variant="ghost"
+            className={`w-full justify-start text-gray-300 hover:text-white ${
+              activeTab === "trends" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            }`}
             onClick={() => handleTabSwitch("trends")}
           >
             <TrendingUp className="w-5 h-5 mr-3" />
             {sidebarOpen && "Trends"}
           </Button>
           <Button
-            variant={activeTab === "instructors" ? "secondary" : "ghost"}
-            className="w-full justify-start text-gray-300 hover:text-white"
+            variant="ghost"
+            className={`w-full justify-start text-gray-300 hover:text-white ${
+              activeTab === "instructors" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            }`}
             onClick={() => handleTabSwitch("instructors")}
           >
             <GraduationCap className="w-5 h-5 mr-3" />
             {sidebarOpen && "Instructors"}
           </Button>
           <Button
-            variant={activeTab === "organization" ? "secondary" : "ghost"}
-            className="w-full justify-start text-gray-300 hover:text-white"
+            variant="ghost"
+            className={`w-full justify-start text-gray-300 hover:text-white ${
+              activeTab === "organization" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            }`}
             onClick={() => handleTabSwitch("organization")}
           >
             <Network className="w-5 h-5 mr-3" />
             {sidebarOpen && "Organization"}
           </Button>
           <Button
-            variant={activeTab === "employee-portal" ? "secondary" : "ghost"}
-            className="w-full justify-start text-gray-300 hover:text-white"
+            variant="ghost"
+            className={`w-full justify-start text-gray-300 hover:text-white ${
+              activeTab === "employee-portal" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            }`}
             onClick={() => handleTabSwitch("employee-portal")}
           >
             <FileUser className="w-5 h-5 mr-3" />
             {sidebarOpen && "Portal"}
           </Button>
           <Button
-            variant={activeTab === "notifications" ? "secondary" : "ghost"}
-            className="w-full justify-start text-gray-300 hover:text-white"
+            variant="ghost"
+            className={`w-full justify-start text-gray-300 hover:text-white ${
+              activeTab === "notifications" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            }`}
             onClick={() => handleTabSwitch("notifications")}
           >
             <Inbox className="w-5 h-5 mr-3" />
             {sidebarOpen && "Notifications"}
           </Button>
           <Button
-            variant={activeTab === "workplace-poster" ? "secondary" : "ghost"}
-            className="w-full justify-start text-gray-300 hover:text-white"
+            variant="ghost"
+            className={`w-full justify-start text-gray-300 hover:text-white ${
+              activeTab === "workplace-poster" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            }`}
             onClick={() => handleTabSwitch("workplace-poster")}
           >
             <FileText className="w-5 h-5 mr-3" />
             {sidebarOpen && "Poster"}
           </Button>
           <Button
-            variant={activeTab === "training-calendar" ? "secondary" : "ghost"}
-            className="w-full justify-start text-gray-300 hover:text-white"
+            variant="ghost"
+            className={`w-full justify-start text-gray-300 hover:text-white ${
+              activeTab === "training-calendar" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            }`}
             onClick={() => handleTabSwitch("training-calendar")}
           >
             <Calendar className="w-5 h-5 mr-3" />
             {sidebarOpen && "Calendar"}
           </Button>
           <Button
-            variant={activeTab === "subscription-billing" ? "secondary" : "ghost"}
-            className="w-full justify-start text-gray-300 hover:text-white"
+            variant="ghost"
+            className={`w-full justify-start text-gray-300 hover:text-white ${
+              activeTab === "subscription-billing" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            }`}
             onClick={() => handleTabSwitch("subscription-billing")}
           >
             <CreditCard className="w-5 h-5 mr-3" />
             {sidebarOpen && "Billing"}
           </Button>
           <Button
-            variant={activeTab === "analytics-reports" ? "secondary" : "ghost"}
-            className="w-full justify-start text-gray-300 hover:text-white"
+            variant="ghost"
+            className={`w-full justify-start text-gray-300 hover:text-white ${
+              activeTab === "analytics-reports" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            }`}
             onClick={() => handleTabSwitch("analytics-reports")}
           >
             <BarChart3 className="w-5 h-5 mr-3" />
