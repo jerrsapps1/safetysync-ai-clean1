@@ -1400,6 +1400,14 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             {sidebarOpen && "Reports"}
           </Button>
           <Button
+            variant={activeTab === "compliance-dashboard" ? "secondary" : "ghost"}
+            className="w-full justify-start text-gray-300 hover:text-white"
+            onClick={() => handleTabSwitch("compliance-dashboard")}
+          >
+            <Shield className="w-5 h-5 mr-3" />
+            {sidebarOpen && "Compliance Dashboard"}
+          </Button>
+          <Button
             variant={activeTab === "document-manager" ? "secondary" : "ghost"}
             className="w-full justify-start text-gray-300 hover:text-white"
             onClick={() => handleTabSwitch("document-manager")}
@@ -1747,6 +1755,156 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           {activeTab === "reports" && (
             <div className="space-y-6">
               <ComplianceReportGenerator />
+            </div>
+          )}
+
+          {activeTab === "compliance-dashboard" && (
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <h2 className="text-2xl font-bold text-white">Compliance Dashboard</h2>
+                <div className="flex items-center space-x-2">
+                  <Badge className="bg-green-100 text-green-700">
+                    {Math.round((complianceRecords.filter(r => r.status === 'completed').length / complianceRecords.length) * 100)}% Compliant
+                  </Badge>
+                </div>
+              </div>
+              
+              {/* Compliance Stats Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <Card className="bg-emerald-900/50 border-emerald-700">
+                  <CardContent className="p-6">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-emerald-300 text-sm font-medium">Total Employees</p>
+                        <p className="text-2xl font-bold text-white">{stats.totalEmployees}</p>
+                      </div>
+                      <Users className="w-8 h-8 text-emerald-400" />
+                    </div>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-blue-900/50 border-blue-700">
+                  <CardContent className="p-6">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-blue-300 text-sm font-medium">Compliant</p>
+                        <p className="text-2xl font-bold text-white">{stats.compliantEmployees}</p>
+                      </div>
+                      <CheckCircle className="w-8 h-8 text-blue-400" />
+                    </div>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-yellow-900/50 border-yellow-700">
+                  <CardContent className="p-6">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-yellow-300 text-sm font-medium">Pending Training</p>
+                        <p className="text-2xl font-bold text-white">{stats.pendingTraining}</p>
+                      </div>
+                      <Clock className="w-8 h-8 text-yellow-400" />
+                    </div>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-red-900/50 border-red-700">
+                  <CardContent className="p-6">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-red-300 text-sm font-medium">Expiring Soon</p>
+                        <p className="text-2xl font-bold text-white">{stats.expiringCertifications}</p>
+                      </div>
+                      <AlertTriangle className="w-8 h-8 text-red-400" />
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+              
+              {/* Compliance Score */}
+              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+                <CardHeader>
+                  <CardTitle className="text-white">Overall Compliance Score</CardTitle>
+                  <CardDescription className="text-gray-400">
+                    Current compliance status across all training requirements
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-white font-medium">Compliance Rate</span>
+                      <span className="text-2xl font-bold text-emerald-400">{stats.complianceScore}%</span>
+                    </div>
+                    <Progress value={stats.complianceScore} className="h-3" />
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                      <div className="text-center">
+                        <p className="text-green-400 text-2xl font-bold">
+                          {complianceRecords.filter(r => r.status === 'completed').length}
+                        </p>
+                        <p className="text-gray-400 text-sm">Completed</p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-yellow-400 text-2xl font-bold">
+                          {complianceRecords.filter(r => r.status === 'pending').length}
+                        </p>
+                        <p className="text-gray-400 text-sm">Pending</p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-red-400 text-2xl font-bold">
+                          {complianceRecords.filter(r => r.status === 'expired').length}
+                        </p>
+                        <p className="text-gray-400 text-sm">Expired</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+              
+              {/* Recent Compliance Activities */}
+              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+                <CardHeader>
+                  <CardTitle className="text-white">Recent Compliance Activities</CardTitle>
+                  <CardDescription className="text-gray-400">
+                    Latest training completions and certification updates
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    {complianceRecords.slice(0, 5).map((record, index) => (
+                      <div key={index} className="flex items-center justify-between p-3 bg-gray-800/30 rounded-lg">
+                        <div className="flex items-center space-x-3">
+                          <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                            record.status === 'completed' ? 'bg-green-500/20' :
+                            record.status === 'pending' ? 'bg-yellow-500/20' : 'bg-red-500/20'
+                          }`}>
+                            {record.status === 'completed' ? (
+                              <CheckCircle className="w-5 h-5 text-green-400" />
+                            ) : record.status === 'pending' ? (
+                              <Clock className="w-5 h-5 text-yellow-400" />
+                            ) : (
+                              <AlertTriangle className="w-5 h-5 text-red-400" />
+                            )}
+                          </div>
+                          <div>
+                            <p className="text-white font-medium">{record.employeeName}</p>
+                            <p className="text-gray-400 text-sm">{record.training}</p>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <Badge className={
+                            record.status === 'completed' ? 'bg-green-100 text-green-700' :
+                            record.status === 'pending' ? 'bg-yellow-100 text-yellow-700' : 'bg-red-100 text-red-700'
+                          }>
+                            {record.status}
+                          </Badge>
+                          <p className="text-gray-400 text-sm mt-1">
+                            Due: {new Date(record.dueDate).toLocaleDateString()}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           )}
 
