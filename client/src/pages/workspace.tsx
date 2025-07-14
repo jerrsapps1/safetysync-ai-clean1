@@ -1544,6 +1544,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 {activeTab === "training" && "Training Management"}
                 {activeTab === "certificates" && "Certificate Generation"}
                 {activeTab === "reports" && "Compliance Reports"}
+                {activeTab === "compliance-dashboard" && "Compliance Management"}
                 {activeTab === "trends" && "Safety Trends"}
                 {activeTab === "instructors" && "Instructor Management"}
                 {activeTab === "organization" && "Organization Structure"}
@@ -1563,6 +1564,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 {activeTab === "training" && "Schedule and track safety training"}
                 {activeTab === "certificates" && "Generate professional certificates and cards"}
                 {activeTab === "reports" && "Generate compliance reports for audits"}
+                {activeTab === "compliance-dashboard" && "Manage compliance actions, view department status, and track OSHA training requirements"}
                 {activeTab === "trends" && "Analyze safety trends and performance"}
                 {activeTab === "instructors" && "Manage certified instructors and their credentials"}
                 {activeTab === "organization" && "Configure departments and organizational structure"}
@@ -1761,7 +1763,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           {activeTab === "compliance-dashboard" && (
             <div className="space-y-6">
               <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold text-white">Compliance Dashboard</h2>
+                <h2 className="text-2xl font-bold text-white">Compliance Management</h2>
                 <div className="flex items-center space-x-2">
                   <Badge className="bg-green-100 text-green-700">
                     {Math.round((complianceRecords.filter(r => r.status === 'completed').length / complianceRecords.length) * 100)}% Compliant
@@ -1769,136 +1771,146 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </div>
               </div>
               
-              {/* Compliance Stats Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <Card className="bg-emerald-900/50 border-emerald-700">
+              {/* Compliance Actions */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <Card className="bg-gradient-to-br from-blue-900/50 to-blue-800/50 border-blue-700">
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-emerald-300 text-sm font-medium">Total Employees</p>
-                        <p className="text-2xl font-bold text-white">{stats.totalEmployees}</p>
-                      </div>
-                      <Users className="w-8 h-8 text-emerald-400" />
-                    </div>
-                  </CardContent>
-                </Card>
-                
-                <Card className="bg-blue-900/50 border-blue-700">
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-blue-300 text-sm font-medium">Compliant</p>
-                        <p className="text-2xl font-bold text-white">{stats.compliantEmployees}</p>
-                      </div>
-                      <CheckCircle className="w-8 h-8 text-blue-400" />
-                    </div>
-                  </CardContent>
-                </Card>
-                
-                <Card className="bg-yellow-900/50 border-yellow-700">
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-yellow-300 text-sm font-medium">Pending Training</p>
+                        <p className="text-blue-300 text-sm font-medium">Training Assignments</p>
                         <p className="text-2xl font-bold text-white">{stats.pendingTraining}</p>
+                        <p className="text-blue-300 text-xs mt-1">Require immediate attention</p>
                       </div>
-                      <Clock className="w-8 h-8 text-yellow-400" />
+                      <div className="text-right">
+                        <Calendar className="w-8 h-8 text-blue-400 mb-2" />
+                        <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-xs">
+                          Schedule
+                        </Button>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
                 
-                <Card className="bg-red-900/50 border-red-700">
+                <Card className="bg-gradient-to-br from-red-900/50 to-red-800/50 border-red-700">
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-red-300 text-sm font-medium">Expiring Soon</p>
+                        <p className="text-red-300 text-sm font-medium">Expiring This Month</p>
                         <p className="text-2xl font-bold text-white">{stats.expiringCertifications}</p>
+                        <p className="text-red-300 text-xs mt-1">Certifications need renewal</p>
                       </div>
-                      <AlertTriangle className="w-8 h-8 text-red-400" />
+                      <div className="text-right">
+                        <AlertTriangle className="w-8 h-8 text-red-400 mb-2" />
+                        <Button size="sm" className="bg-red-600 hover:bg-red-700 text-xs">
+                          Renew
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-gradient-to-br from-emerald-900/50 to-emerald-800/50 border-emerald-700">
+                  <CardContent className="p-6">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-emerald-300 text-sm font-medium">Compliance Audit</p>
+                        <p className="text-2xl font-bold text-white">Ready</p>
+                        <p className="text-emerald-300 text-xs mt-1">All records up-to-date</p>
+                      </div>
+                      <div className="text-right">
+                        <FileText className="w-8 h-8 text-emerald-400 mb-2" />
+                        <Button size="sm" className="bg-emerald-600 hover:bg-emerald-700 text-xs">
+                          Generate
+                        </Button>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
               </div>
               
-              {/* Compliance Score */}
+              {/* Compliance by Department */}
               <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
                 <CardHeader>
-                  <CardTitle className="text-white">Overall Compliance Score</CardTitle>
+                  <CardTitle className="text-white">Compliance by Department</CardTitle>
                   <CardDescription className="text-gray-400">
-                    Current compliance status across all training requirements
+                    Department-specific compliance status and training requirements
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-white font-medium">Compliance Rate</span>
-                      <span className="text-2xl font-bold text-emerald-400">{stats.complianceScore}%</span>
-                    </div>
-                    <Progress value={stats.complianceScore} className="h-3" />
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-                      <div className="text-center">
-                        <p className="text-green-400 text-2xl font-bold">
-                          {complianceRecords.filter(r => r.status === 'completed').length}
-                        </p>
-                        <p className="text-gray-400 text-sm">Completed</p>
+                    {[
+                      { dept: "Construction", compliant: 24, total: 28, rate: 86 },
+                      { dept: "Manufacturing", compliant: 18, total: 22, rate: 82 },
+                      { dept: "Safety", compliant: 12, total: 12, rate: 100 },
+                      { dept: "Maintenance", compliant: 15, total: 18, rate: 83 }
+                    ].map((dept, index) => (
+                      <div key={index} className="flex items-center justify-between p-4 bg-gray-800/30 rounded-lg">
+                        <div className="flex items-center space-x-4">
+                          <div className="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center">
+                            <Building className="w-6 h-6 text-gray-300" />
+                          </div>
+                          <div>
+                            <p className="text-white font-medium">{dept.dept}</p>
+                            <p className="text-gray-400 text-sm">{dept.compliant}/{dept.total} employees compliant</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center space-x-4">
+                          <div className="w-32">
+                            <div className="flex items-center justify-between mb-1">
+                              <span className="text-gray-400 text-xs">Compliance</span>
+                              <span className="text-white text-xs">{dept.rate}%</span>
+                            </div>
+                            <Progress value={dept.rate} className="h-2" />
+                          </div>
+                          <Badge className={
+                            dept.rate >= 95 ? 'bg-green-100 text-green-700' :
+                            dept.rate >= 80 ? 'bg-yellow-100 text-yellow-700' : 'bg-red-100 text-red-700'
+                          }>
+                            {dept.rate >= 95 ? 'Excellent' : dept.rate >= 80 ? 'Good' : 'Needs Action'}
+                          </Badge>
+                        </div>
                       </div>
-                      <div className="text-center">
-                        <p className="text-yellow-400 text-2xl font-bold">
-                          {complianceRecords.filter(r => r.status === 'pending').length}
-                        </p>
-                        <p className="text-gray-400 text-sm">Pending</p>
-                      </div>
-                      <div className="text-center">
-                        <p className="text-red-400 text-2xl font-bold">
-                          {complianceRecords.filter(r => r.status === 'expired').length}
-                        </p>
-                        <p className="text-gray-400 text-sm">Expired</p>
-                      </div>
-                    </div>
+                    ))}
                   </div>
                 </CardContent>
               </Card>
               
-              {/* Recent Compliance Activities */}
+              {/* OSHA Training Requirements */}
               <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
                 <CardHeader>
-                  <CardTitle className="text-white">Recent Compliance Activities</CardTitle>
+                  <CardTitle className="text-white">OSHA Training Requirements</CardTitle>
                   <CardDescription className="text-gray-400">
-                    Latest training completions and certification updates
+                    Mandatory training programs and compliance deadlines
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
-                    {complianceRecords.slice(0, 5).map((record, index) => (
-                      <div key={index} className="flex items-center justify-between p-3 bg-gray-800/30 rounded-lg">
-                        <div className="flex items-center space-x-3">
-                          <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                            record.status === 'completed' ? 'bg-green-500/20' :
-                            record.status === 'pending' ? 'bg-yellow-500/20' : 'bg-red-500/20'
-                          }`}>
-                            {record.status === 'completed' ? (
-                              <CheckCircle className="w-5 h-5 text-green-400" />
-                            ) : record.status === 'pending' ? (
-                              <Clock className="w-5 h-5 text-yellow-400" />
-                            ) : (
-                              <AlertTriangle className="w-5 h-5 text-red-400" />
-                            )}
-                          </div>
-                          <div>
-                            <p className="text-white font-medium">{record.employeeName}</p>
-                            <p className="text-gray-400 text-sm">{record.training}</p>
-                          </div>
-                        </div>
-                        <div className="text-right">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {[
+                      { name: "Fall Protection", required: 42, completed: 38, due: "2025-08-15" },
+                      { name: "HAZWOPER", required: 28, completed: 28, due: "2025-09-01" },
+                      { name: "Hearing Conservation", required: 65, completed: 61, due: "2025-07-30" },
+                      { name: "Respiratory Protection", required: 33, completed: 29, due: "2025-08-10" }
+                    ].map((training, index) => (
+                      <div key={index} className="p-4 bg-gray-800/30 rounded-lg">
+                        <div className="flex items-center justify-between mb-2">
+                          <h4 className="text-white font-medium">{training.name}</h4>
                           <Badge className={
-                            record.status === 'completed' ? 'bg-green-100 text-green-700' :
-                            record.status === 'pending' ? 'bg-yellow-100 text-yellow-700' : 'bg-red-100 text-red-700'
+                            training.completed === training.required ? 'bg-green-100 text-green-700' :
+                            training.completed / training.required >= 0.8 ? 'bg-yellow-100 text-yellow-700' : 'bg-red-100 text-red-700'
                           }>
-                            {record.status}
+                            {training.completed}/{training.required}
                           </Badge>
-                          <p className="text-gray-400 text-sm mt-1">
-                            Due: {new Date(record.dueDate).toLocaleDateString()}
-                          </p>
+                        </div>
+                        <div className="space-y-2">
+                          <div className="flex justify-between text-sm">
+                            <span className="text-gray-400">Progress</span>
+                            <span className="text-white">{Math.round((training.completed / training.required) * 100)}%</span>
+                          </div>
+                          <Progress value={(training.completed / training.required) * 100} className="h-2" />
+                          <div className="flex justify-between text-xs">
+                            <span className="text-gray-400">Due: {new Date(training.due).toLocaleDateString()}</span>
+                            <span className="text-gray-400">{training.required - training.completed} remaining</span>
+                          </div>
                         </div>
                       </div>
                     ))}
