@@ -1757,8 +1757,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         <nav className="flex-1 p-4 space-y-2">
           <Button
             variant="ghost"
-            className={`w-full justify-start text-gray-300 hover:text-white ${
-              activeTab === "unified-dashboard" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+              activeTab === "unified-dashboard" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
             }`}
             onClick={() => handleTabSwitch("unified-dashboard")}
           >
@@ -1767,8 +1767,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           </Button>
           <Button
             variant="ghost"
-            className={`w-full justify-start text-gray-300 hover:text-white ${
-              activeTab === "employees" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+              activeTab === "employees" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
             }`}
             onClick={() => handleTabSwitch("employees")}
           >
@@ -1777,8 +1777,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           </Button>
           <Button
             variant="ghost"
-            className={`w-full justify-start text-gray-300 hover:text-white ${
-              activeTab === "training" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+              activeTab === "training" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
             }`}
             onClick={() => handleTabSwitch("training")}
           >
@@ -1787,8 +1787,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           </Button>
           <Button
             variant="ghost"
-            className={`w-full justify-start text-gray-300 hover:text-white ${
-              activeTab === "certificates" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+              activeTab === "certificates" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
             }`}
             onClick={() => handleTabSwitch("certificates")}
           >
@@ -1797,8 +1797,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           </Button>
           <Button
             variant="ghost"
-            className={`w-full justify-start text-gray-300 hover:text-white ${
-              activeTab === "reports" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+              activeTab === "reports" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
             }`}
             onClick={() => handleTabSwitch("reports")}
           >
@@ -1808,8 +1808,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
           <Button
             variant="ghost"
-            className={`w-full justify-start text-gray-300 hover:text-white ${
-              activeTab === "document-manager" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+              activeTab === "document-manager" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
             }`}
             onClick={() => handleTabSwitch("document-manager")}
           >
@@ -1819,8 +1819,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
           <Button
             variant="ghost"
-            className={`w-full justify-start text-gray-300 hover:text-white ${
-              activeTab === "trends" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+              activeTab === "trends" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
             }`}
             onClick={() => handleTabSwitch("trends")}
           >
@@ -1829,8 +1829,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           </Button>
           <Button
             variant="ghost"
-            className={`w-full justify-start text-gray-300 hover:text-white ${
-              activeTab === "instructors" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+              activeTab === "instructors" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
             }`}
             onClick={() => handleTabSwitch("instructors")}
           >
@@ -1839,8 +1839,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           </Button>
           <Button
             variant="ghost"
-            className={`w-full justify-start text-gray-300 hover:text-white ${
-              activeTab === "organization" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+              activeTab === "organization" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
             }`}
             onClick={() => handleTabSwitch("organization")}
           >
@@ -1849,8 +1849,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           </Button>
           <Button
             variant="ghost"
-            className={`w-full justify-start text-gray-300 hover:text-white ${
-              activeTab === "employee-portal" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+              activeTab === "employee-portal" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
             }`}
             onClick={() => handleTabSwitch("employee-portal")}
           >
@@ -1859,8 +1859,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           </Button>
           <Button
             variant="ghost"
-            className={`w-full justify-start text-gray-300 hover:text-white ${
-              activeTab === "notifications" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+              activeTab === "notifications" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
             }`}
             onClick={() => handleTabSwitch("notifications")}
           >
@@ -1869,8 +1869,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           </Button>
           <Button
             variant="ghost"
-            className={`w-full justify-start text-gray-300 hover:text-white ${
-              activeTab === "workplace-poster" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+              activeTab === "workplace-poster" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
             }`}
             onClick={() => handleTabSwitch("workplace-poster")}
           >
@@ -1879,8 +1879,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           </Button>
           <Button
             variant="ghost"
-            className={`w-full justify-start text-gray-300 hover:text-white ${
-              activeTab === "training-calendar" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+              activeTab === "training-calendar" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
             }`}
             onClick={() => handleTabSwitch("training-calendar")}
           >
@@ -1889,8 +1889,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           </Button>
           <Button
             variant="ghost"
-            className={`w-full justify-start text-gray-300 hover:text-white ${
-              activeTab === "subscription-billing" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+              activeTab === "subscription-billing" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
             }`}
             onClick={() => handleTabSwitch("subscription-billing")}
           >
@@ -1899,8 +1899,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           </Button>
           <Button
             variant="ghost"
-            className={`w-full justify-start text-gray-300 hover:text-white ${
-              activeTab === "analytics-reports" ? "text-white border-b-2 border-blue-400 rounded-b-none" : ""
+            className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+              activeTab === "analytics-reports" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
             }`}
             onClick={() => handleTabSwitch("analytics-reports")}
           >
@@ -1908,24 +1908,30 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             {sidebarOpen && "Analytics"}
           </Button>
           <Button
-            variant={activeTab === "achievements" ? "secondary" : "ghost"}
-            className="w-full justify-start text-gray-300 hover:text-white"
+            variant="ghost"
+            className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+              activeTab === "achievements" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+            }`}
             onClick={() => handleTabSwitch("achievements")}
           >
             <Award className="w-5 h-5 mr-3" />
             {sidebarOpen && "Achievements"}
           </Button>
           <Button
-            variant={activeTab === "company-profile" ? "secondary" : "ghost"}
-            className="w-full justify-start text-gray-300 hover:text-white"
+            variant="ghost"
+            className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+              activeTab === "company-profile" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+            }`}
             onClick={() => handleTabSwitch("company-profile")}
           >
             <Building className="w-5 h-5 mr-3" />
             {sidebarOpen && "Company Profile"}
           </Button>
           <Button
-            variant={activeTab === "settings" ? "secondary" : "ghost"}
-            className="w-full justify-start text-gray-300 hover:text-white"
+            variant="ghost"
+            className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+              activeTab === "settings" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+            }`}
             onClick={() => handleTabSwitch("settings")}
           >
             <Settings className="w-5 h-5 mr-3" />
