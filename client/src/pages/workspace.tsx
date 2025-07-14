@@ -1753,9 +1753,9 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 flex">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 flex flex-col md:flex-row">
       {/* Sidebar */}
-      <div className={`${sidebarOpen ? 'w-64' : 'w-16'} transition-all duration-300 bg-black/20 backdrop-blur-sm border-r border-gray-800 flex flex-col`}>
+      <div className={`${sidebarOpen ? 'w-full md:w-64' : 'w-full md:w-16'} ${sidebarOpen ? 'h-auto' : 'h-16'} md:h-auto transition-all duration-300 bg-black/20 backdrop-blur-sm border-r border-gray-800 flex flex-col md:border-r md:border-b-0 border-b`}>
         {/* Header */}
         <div className="p-4 border-b border-gray-800">
           <div className="flex items-center justify-between">
@@ -1763,10 +1763,10 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               <div className="flex items-center space-x-3">
                 <SafetySyncIcon size={40} className="rounded-lg" />
                 <div>
-                  <h2 className="text-white font-semibold">
+                  <h2 className="text-white font-semibold text-sm md:text-base">
                     {workspaceSettings.showBranding ? workspaceSettings.companyName : "SafetySync.AI"}
                   </h2>
-                  <p className="text-gray-400 text-sm">Workspace</p>
+                  <p className="text-gray-400 text-xs md:text-sm">Workspace</p>
                 </div>
               </div>
             ) : (
@@ -1784,7 +1784,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 p-4 space-y-2">
+        <nav className={`${sidebarOpen ? 'block' : 'hidden'} md:block flex-1 p-4 space-y-2`}>
           <Button
             variant="ghost"
             className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
@@ -1970,7 +1970,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         </nav>
 
         {/* User Menu */}
-        <div className="p-4 border-t border-gray-800">
+        <div className={`${sidebarOpen ? 'block' : 'hidden'} md:block p-4 border-t border-gray-800`}>
           {sidebarOpen && (
             <div className="mb-4">
               <div className="flex items-center space-x-3 mb-2">
@@ -1996,12 +1996,12 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col min-h-0">
         {/* Top Bar */}
-        <div className="bg-black/20 backdrop-blur-sm border-b border-gray-800 p-4">
+        <div className="bg-black/20 backdrop-blur-sm border-b border-gray-800 p-2 md:p-4">
           <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-bold text-white">
+            <div className="flex-1 min-w-0">
+              <h1 className="text-lg md:text-2xl font-bold text-white truncate">
                 {activeTab === "unified-dashboard" && "Unified Dashboard"}
                 {activeTab === "employees" && "Employee Management"}
                 {activeTab === "training" && "Training Management"}
@@ -2022,11 +2022,11 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
                 {activeTab === "settings" && "Workspace Settings"}
               </h1>
-              <p className="text-gray-400">
+              <p className="text-gray-400 text-sm md:text-base">
                 {activeTab === "unified-dashboard" && (
                   <span>
                     Comprehensive overview combining analytics, compliance management, and actionable insights
-                    <span className="text-gray-500 text-sm ml-4">• Drag widgets to reposition • Drag corners to resize • Click manage to show/hide</span>
+                    <span className="hidden lg:inline text-gray-500 text-sm ml-4">• Drag widgets to reposition • Drag corners to resize • Click manage to show/hide</span>
                   </span>
                 )}
                 {activeTab === "employees" && "Manage employee certifications and training"}
@@ -2049,10 +2049,10 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 {activeTab === "settings" && "Configure your workspace and branding"}
               </p>
             </div>
-            <div className="flex items-center space-x-4">
-              <Button variant="secondary" className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50">
-                <Bell className="w-4 h-4 mr-2" />
-                Notifications
+            <div className="flex items-center space-x-2 md:space-x-4">
+              <Button variant="secondary" className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50 p-2 md:px-4 md:py-2">
+                <Bell className="w-4 h-4 md:mr-2" />
+                <span className="hidden md:inline">Notifications</span>
               </Button>
               <Button
                 variant="secondary"
@@ -2060,12 +2060,12 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   logout();
                   window.location.href = '/';
                 }}
-                className="bg-red-800/20 text-red-300 border-red-600 hover:bg-red-700/50"
+                className="bg-red-800/20 text-red-300 border-red-600 hover:bg-red-700/50 p-2 md:px-4 md:py-2"
               >
-                <LogOut className="w-4 h-4 mr-2" />
-                Logout
+                <LogOut className="w-4 h-4 md:mr-2" />
+                <span className="hidden md:inline">Logout</span>
               </Button>
-              <a href="/" className="text-gray-400 hover:text-white hover:bg-gray-700/50 px-2 py-1 rounded text-sm">
+              <a href="/" className="hidden md:inline text-gray-400 hover:text-white hover:bg-gray-700/50 px-2 py-1 rounded text-sm">
                 ← Back to SafetySync.AI
               </a>
             </div>
@@ -2073,16 +2073,16 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         </div>
 
         {/* Content Area */}
-        <div className="flex-1 p-6 overflow-y-auto">
+        <div className="flex-1 p-2 md:p-6 overflow-y-auto">
           {activeTab === "unified-dashboard" && (
             <div className="space-y-6">
               {/* Widget Management Controls */}
-              <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center space-x-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 space-y-4 sm:space-y-0">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-4">
                   <Button
                     variant="secondary"
                     onClick={() => setShowWidgetManager(!showWidgetManager)}
-                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50"
+                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50 text-sm"
                   >
                     <Settings className="w-4 h-4 mr-2" />
                     Manage Widgets
@@ -2090,31 +2090,33 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <Button
                     variant="secondary"
                     onClick={saveAsDefault}
-                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50"
+                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50 text-sm"
                   >
                     <Save className="w-4 h-4 mr-2" />
-                    Save as Default
+                    <span className="hidden sm:inline">Save as Default</span>
+                    <span className="sm:hidden">Save</span>
                   </Button>
                   {hasCustomDefaults() && (
                     <Button
                       variant="secondary"
                       onClick={loadCustomDefaults}
-                      className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50"
+                      className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50 text-sm"
                     >
                       <Upload className="w-4 h-4 mr-2" />
-                      Load My Default
+                      <span className="hidden sm:inline">Load My Default</span>
+                      <span className="sm:hidden">Load</span>
                     </Button>
                   )}
                   <Button
                     variant="secondary"
                     onClick={resetWidgetLayout}
-                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50"
+                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50 text-sm"
                   >
                     <RotateCcw className="w-4 h-4 mr-2" />
-                    Reset to Original
+                    <span className="hidden sm:inline">Reset to Original</span>
+                    <span className="sm:hidden">Reset</span>
                   </Button>
                 </div>
-
               </div>
 
               {/* Widget Manager Panel */}
@@ -2243,13 +2245,13 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   layouts={layouts}
                   onLayoutChange={handleLayoutChange}
                   breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
-                  cols={{ lg: 24, md: 24, sm: 24, xs: 24, xxs: 24 }}
+                  cols={{ lg: 24, md: 16, sm: 12, xs: 8, xxs: 4 }}
                   rowHeight={50}
                   isDraggable={!isGroupSelectionMode}
                   isResizable={!isGroupSelectionMode}
                   draggableHandle=".drag-handle"
-                  containerPadding={[0, 0]}
-                  margin={[8, 8]}
+                  containerPadding={[4, 4]}
+                  margin={[4, 4]}
                   compactType="vertical"
                   preventCollision={false}
                   useCSSTransforms={true}
@@ -2311,21 +2313,19 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           )}
 
           {activeTab === "employees" && (
-            <div className="bg-white rounded-lg p-6">
+            <div className="bg-white rounded-lg p-2 md:p-6">
               <EmployeeManagement />
             </div>
           )}
 
-
-
           {activeTab === "training" && (
-            <div className="p-8">
+            <div className="p-2 md:p-8">
               <TrainingManagement />
             </div>
           )}
 
           {activeTab === "certificates" && (
-            <div className="p-8">
+            <div className="p-2 md:p-8">
               <CertificateGeneration />
             </div>
           )}
@@ -2335,8 +2335,6 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               <ComplianceReportGenerator />
             </div>
           )}
-
-
 
           {activeTab === "document-manager" && (
             <div className="space-y-6">
@@ -2349,10 +2347,10 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           {activeTab === "trends" && (
             <div className="space-y-6">
               <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold text-white">Safety Trends</h2>
+                <h2 className="text-xl md:text-2xl font-bold text-white">Safety Trends</h2>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                 {/* Safety Trends Chart */}
                 <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700">
                   <CardHeader className="pb-3">
@@ -2543,7 +2541,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
           {activeTab === "instructors" && (
             <div className="space-y-6">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between space-y-4 sm:space-y-0">
                 <h2 className="text-xl font-semibold text-white">Instructor Management</h2>
                 <Button className="bg-emerald-500 hover:bg-emerald-600" onClick={handleAddInstructor}>
                   <Plus className="w-4 h-4 mr-2" />
@@ -2551,8 +2549,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </Button>
               </div>
               <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
-                <CardContent className="p-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <CardContent className="p-2 md:p-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                     <Card className="bg-gray-800/50 border-gray-700">
                       <CardContent className="p-4">
                         <div className="flex items-center space-x-3 mb-3">
