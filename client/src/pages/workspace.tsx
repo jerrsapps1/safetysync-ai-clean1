@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { Link, useLocation } from "wouter";
 import { useAuth } from "@/hooks/useAuth";
-import { useAchievementTracking } from "@/hooks/useDynamicAchievements";
+import { useDynamicAchievements } from "@/hooks/useDynamicAchievements";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -238,7 +238,7 @@ function LoginForm() {
 
 export default function WorkspacePage() {
   const { user, isLoading: authLoading, isAuthenticated, logout } = useAuth();
-  const { trackMilestone } = useAchievementTracking();
+  const { trackMilestone } = useDynamicAchievements();
   const [location, setLocation] = useLocation();
   
   // Extract tab from URL or default to overview
