@@ -1817,7 +1817,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   draggableHandle=".drag-handle"
                   containerPadding={[0, 0]}
                   margin={[16, 16]}
-                  compactType="vertical"
+                  compactType={null}
                   preventCollision={false}
                 >
                   {widgets
@@ -1864,7 +1864,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   draggableHandle=".drag-handle"
                   containerPadding={[0, 0]}
                   margin={[16, 16]}
-                  compactType="vertical"
+                  compactType={null}
                   preventCollision={false}
                 >
                   {extendedWidgets
