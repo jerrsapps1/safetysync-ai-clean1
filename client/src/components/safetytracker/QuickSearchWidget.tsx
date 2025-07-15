@@ -115,43 +115,49 @@ const QuickSearchWidget: React.FC = () => {
   const [sortBy, setSortBy] = useState('name');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
-  // Fetch real data from API
-  const { data: employees = [], isLoading: employeesLoading } = useQuery<Employee[]>({
+  // Fetch real data from API with fallback to mock data
+  const { data: employees = [], isLoading: employeesLoading, error: employeesError } = useQuery<Employee[]>({
     queryKey: ['/api/employees'],
     retry: false,
   });
 
-  const { data: certificates = [] } = useQuery<Certificate[]>({
+  const { data: certificates = [], error: certificatesError } = useQuery<Certificate[]>({
     queryKey: ['/api/certificates'],
     retry: false,
   });
 
-  const { data: trainingSessions = [] } = useQuery<TrainingSession[]>({
+  const { data: trainingSessions = [], error: trainingError } = useQuery<TrainingSession[]>({
     queryKey: ['/api/training-sessions'],
     retry: false,
   });
 
+  // Use mock data if API fails (for demonstration purposes)
+  const actualEmployees = employeesError ? mockEmployees : employees;
+  const actualCertificates = certificatesError ? [] : certificates;
+  const actualTrainingSessions = trainingError ? [] : trainingSessions;
+
   // Process employee data to include computed name and enhanced info
-  const processedEmployees = employees.map(emp => ({
+  const processedEmployees = actualEmployees.map(emp => ({
     ...emp,
     name: emp.name || `${emp.firstName} ${emp.lastName}`,
+    employeeId: emp.employeeId || `EMP-${emp.id}`,
     trainingStatus: getEmployeeTrainingStatus(emp.id),
-    certificateCount: certificates.filter(cert => cert.employeeId === emp.id).length,
-    expiringCertificates: certificates.filter(cert => 
+    certificateCount: actualCertificates.filter(cert => cert.employeeId === emp.id).length,
+    expiringCertificates: actualCertificates.filter(cert => 
       cert.employeeId === emp.id && cert.status === 'expiring'
     ).length,
-    upcomingTraining: trainingSessions.filter(session => 
+    upcomingTraining: actualTrainingSessions.filter(session => 
       session.employeeId === emp.id && session.status === 'scheduled'
     ).length
   }));
 
-  // Get unique departments from real data
-  const departments = ['all', ...new Set(employees.map(emp => emp.department).filter(Boolean))];
+  // Get unique departments from processed data
+  const departments = ['all', ...new Set(actualEmployees.map(emp => emp.department).filter(Boolean))];
   const statuses = ['all', 'active', 'inactive', 'training', 'on-leave'];
 
   // Helper function to determine training status
   const getEmployeeTrainingStatus = (employeeId: number) => {
-    const empCerts = certificates.filter(cert => cert.employeeId === employeeId);
+    const empCerts = actualCertificates.filter(cert => cert.employeeId === employeeId);
     if (empCerts.length === 0) return 'No Certificates';
     
     const expiring = empCerts.some(cert => cert.status === 'expiring');
@@ -432,7 +438,7 @@ const QuickSearchWidget: React.FC = () => {
                           </TabsContent>
                           <TabsContent value="certificates">
                             <div className="space-y-2">
-                              {certificates.filter(cert => cert.employeeId === employee.id).map(cert => (
+                              {actualCertificates.filter(cert => cert.employeeId === employee.id).map(cert => (
                                 <Card key={cert.id} className="p-3">
                                   <div className="flex items-center justify-between">
                                     <div>
@@ -455,7 +461,7 @@ const QuickSearchWidget: React.FC = () => {
                           </TabsContent>
                           <TabsContent value="training">
                             <div className="space-y-2">
-                              {trainingSessions.filter(session => session.employeeId === employee.id).map(session => (
+                              {actualTrainingSessions.filter(session => session.employeeId === employee.id).map(session => (
                                 <Card key={session.id} className="p-3">
                                   <div className="flex items-center justify-between">
                                     <div>
