@@ -1800,7 +1800,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             onClick={() => handleTabSwitch("unified-dashboard")}
           >
             <Home className="w-5 h-5 mr-3" />
-            {sidebarOpen && "Unified Dashboard"}
+            {sidebarOpen && "Dashboard"}
           </Button>
           <Button
             variant="ghost"
@@ -2009,7 +2009,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <div className="flex items-center justify-between">
             <div className="flex-1 min-w-0">
               <h1 className="text-lg md:text-2xl font-bold text-white truncate">
-                {activeTab === "unified-dashboard" && "Unified Dashboard"}
+                {activeTab === "unified-dashboard" && "Dashboard"}
                 {activeTab === "employees" && "Employee Management"}
                 {activeTab === "training" && "Training Management"}
                 {activeTab === "certificates" && "Certificate Generation"}
