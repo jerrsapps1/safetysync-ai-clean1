@@ -573,246 +573,49 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getEmployees(userId: number): Promise<Employee[]> {
-    // Return comprehensive mock data for testing
-    const mockEmployees: Employee[] = [
-      {
-        id: 1,
-        userId: userId,
-        employeeId: "EMP-001",
-        firstName: "John",
-        lastName: "Smith",
-        email: "john.smith@safetysync.ai",
-        phone: "555-0101",
-        position: "Site Supervisor",
-        department: "Construction",
-        division: "Field Operations",
-        location: "Chicago, IL",
-        hireDate: new Date("2023-01-15"),
-        status: "active",
-        role: "supervisor",
-        profileImage: null,
-        emergencyContact: { name: "Jane Smith", phone: "555-0102", relationship: "Spouse" },
-        createdAt: new Date("2023-01-15"),
-        updatedAt: new Date("2024-01-15")
-      },
-      {
-        id: 2,
-        userId: userId,
-        employeeId: "EMP-002",
-        firstName: "Sarah",
-        lastName: "Johnson",
-        email: "sarah.johnson@safetysync.ai",
-        phone: "555-0201",
-        position: "Safety Coordinator",
-        department: "Safety",
-        division: "Risk Management",
-        location: "Chicago, IL",
-        hireDate: new Date("2022-08-20"),
-        status: "active",
-        role: "manager",
-        profileImage: null,
-        emergencyContact: { name: "Mike Johnson", phone: "555-0202", relationship: "Spouse" },
-        createdAt: new Date("2022-08-20"),
-        updatedAt: new Date("2024-01-15")
-      },
-      {
-        id: 3,
-        userId: userId,
-        employeeId: "EMP-003",
-        firstName: "Mike",
-        lastName: "Rodriguez",
-        email: "mike.rodriguez@safetysync.ai",
-        phone: "555-0301",
-        position: "Equipment Operator",
-        department: "Operations",
-        division: "Equipment Services",
-        location: "Chicago, IL",
-        hireDate: new Date("2023-03-10"),
-        status: "active",
-        role: "employee",
-        profileImage: null,
-        emergencyContact: { name: "Maria Rodriguez", phone: "555-0302", relationship: "Spouse" },
-        createdAt: new Date("2023-03-10"),
-        updatedAt: new Date("2024-01-15")
-      },
-      {
-        id: 4,
-        userId: userId,
-        employeeId: "EMP-004",
-        firstName: "Lisa",
-        lastName: "Chen",
-        email: "lisa.chen@safetysync.ai",
-        phone: "555-0401",
-        position: "Project Manager",
-        department: "Management",
-        division: "Project Operations",
-        location: "Chicago, IL",
-        hireDate: new Date("2021-11-05"),
-        status: "active",
-        role: "manager",
-        profileImage: null,
-        emergencyContact: { name: "David Chen", phone: "555-0402", relationship: "Spouse" },
-        createdAt: new Date("2021-11-05"),
-        updatedAt: new Date("2024-01-15")
-      },
-      {
-        id: 5,
-        userId: userId,
-        employeeId: "EMP-005",
-        firstName: "David",
-        lastName: "Wilson",
-        email: "david.wilson@safetysync.ai",
-        phone: "555-0501",
-        position: "Quality Inspector",
-        department: "Quality Assurance",
-        division: "Quality Control",
-        location: "Milwaukee, WI",
-        hireDate: new Date("2023-02-28"),
-        status: "active",
-        role: "employee",
-        profileImage: null,
-        emergencyContact: { name: "Emma Wilson", phone: "555-0502", relationship: "Spouse" },
-        createdAt: new Date("2023-02-28"),
-        updatedAt: new Date("2024-01-15")
-      },
-      {
-        id: 6,
-        userId: userId,
-        employeeId: "EMP-006",
-        firstName: "Emma",
-        lastName: "Thompson",
-        email: "emma.thompson@safetysync.ai",
-        phone: "555-0601",
-        position: "Environmental Specialist",
-        department: "Environmental",
-        division: "Environmental Health",
-        location: "Milwaukee, WI",
-        hireDate: new Date("2022-12-12"),
-        status: "active",
-        role: "employee",
-        profileImage: null,
-        emergencyContact: { name: "James Thompson", phone: "555-0602", relationship: "Spouse" },
-        createdAt: new Date("2022-12-12"),
-        updatedAt: new Date("2024-01-15")
-      },
-      {
-        id: 7,
-        userId: userId,
-        employeeId: "EMP-007",
-        firstName: "James",
-        lastName: "Brown",
-        email: "james.brown@safetysync.ai",
-        phone: "555-0701",
-        position: "Crane Operator",
-        department: "Operations",
-        division: "Heavy Equipment",
-        location: "Detroit, MI",
-        hireDate: new Date("2023-04-18"),
-        status: "active",
-        role: "employee",
-        profileImage: null,
-        emergencyContact: { name: "Linda Brown", phone: "555-0702", relationship: "Spouse" },
-        createdAt: new Date("2023-04-18"),
-        updatedAt: new Date("2024-01-15")
-      },
-      {
-        id: 8,
-        userId: userId,
-        employeeId: "EMP-008",
-        firstName: "Maria",
-        lastName: "Garcia",
-        email: "maria.garcia@safetysync.ai",
-        phone: "555-0801",
-        position: "Training Coordinator",
-        department: "Human Resources",
-        division: "Learning & Development",
-        location: "Detroit, MI",
-        hireDate: new Date("2022-09-30"),
-        status: "active",
-        role: "employee",
-        profileImage: null,
-        emergencyContact: { name: "Carlos Garcia", phone: "555-0802", relationship: "Spouse" },
-        createdAt: new Date("2022-09-30"),
-        updatedAt: new Date("2024-01-15")
-      },
-      {
-        id: 9,
-        userId: userId,
-        employeeId: "EMP-009",
-        firstName: "Robert",
-        lastName: "Taylor",
-        email: "robert.taylor@safetysync.ai",
-        phone: "555-0901",
-        position: "Forklift Operator",
-        department: "Warehouse",
-        division: "Material Handling",
-        location: "Cleveland, OH",
-        hireDate: new Date("2023-05-22"),
-        status: "active",
-        role: "employee",
-        profileImage: null,
-        emergencyContact: { name: "Nancy Taylor", phone: "555-0902", relationship: "Spouse" },
-        createdAt: new Date("2023-05-22"),
-        updatedAt: new Date("2024-01-15")
-      },
-      {
-        id: 10,
-        userId: userId,
-        employeeId: "EMP-010",
-        firstName: "Jennifer",
-        lastName: "Davis",
-        email: "jennifer.davis@safetysync.ai",
-        phone: "555-1001",
-        position: "Safety Inspector",
-        department: "Safety",
-        division: "Safety Compliance",
-        location: "Cleveland, OH",
-        hireDate: new Date("2022-07-14"),
-        status: "inactive",
-        role: "employee",
-        profileImage: null,
-        emergencyContact: { name: "Mark Davis", phone: "555-1002", relationship: "Spouse" },
-        createdAt: new Date("2022-07-14"),
-        updatedAt: new Date("2024-01-15")
-      }
-    ];
-    
-    // Add more employees to reach 200 total
-    for (let i = 11; i <= 200; i++) {
-      const departments = ["Construction", "Safety", "Operations", "Management", "Quality Assurance", "Environmental", "Human Resources", "Warehouse", "Engineering", "Finance", "Legal", "IT", "Maintenance", "Transportation", "Security"];
-      const positions = ["Site Supervisor", "Safety Coordinator", "Equipment Operator", "Project Manager", "Quality Inspector", "Environmental Specialist", "Training Coordinator", "Crane Operator", "Forklift Operator", "Safety Inspector", "Engineer", "Technician", "Analyst", "Specialist", "Coordinator"];
-      const locations = ["Chicago, IL", "Milwaukee, WI", "Detroit, MI", "Cleveland, OH", "Indianapolis, IN", "Grand Rapids, MI", "Toledo, OH", "Rockford, IL", "Peoria, IL", "Fort Wayne, IN"];
-      const divisions = ["Field Operations", "Risk Management", "Equipment Services", "Project Operations", "Quality Control", "Environmental Health", "Learning & Development", "Heavy Equipment", "Material Handling", "Safety Compliance"];
+    // Return comprehensive 200 employee dataset for testing
+    const mockEmployees: Employee[] = Array.from({ length: 200 }, (_, i) => {
+      const firstNames = ['John', 'Jane', 'Michael', 'Sarah', 'David', 'Lisa', 'Robert', 'Jennifer', 'William', 'Amy', 'James', 'Maria', 'Christopher', 'Michelle', 'Daniel', 'Patricia', 'Matthew', 'Linda', 'Anthony', 'Elizabeth', 'Mark', 'Barbara', 'Donald', 'Susan', 'Steven', 'Jessica', 'Paul', 'Nancy', 'Andrew', 'Dorothy', 'Joshua', 'Lisa', 'Kenneth', 'Karen', 'Kevin', 'Helen', 'Brian', 'Sandra', 'George', 'Donna', 'Edward', 'Carol', 'Ronald', 'Ruth', 'Timothy', 'Sharon', 'Jason', 'Michelle', 'Jeffrey', 'Laura', 'Ryan', 'Sarah', 'Jacob', 'Kimberly', 'Gary', 'Deborah', 'Nicholas', 'Dorothy', 'Eric', 'Lisa', 'Jonathan', 'Nancy', 'Stephen', 'Karen', 'Larry', 'Betty', 'Justin', 'Helen', 'Scott', 'Sandra', 'Brandon', 'Donna', 'Benjamin', 'Carol', 'Samuel', 'Ruth', 'Frank', 'Sharon', 'Raymond', 'Michelle', 'Alexander', 'Laura', 'Patrick', 'Sarah', 'Jack', 'Kimberly', 'Dennis', 'Deborah', 'Jerry', 'Dorothy', 'Tyler', 'Lisa', 'Aaron', 'Nancy', 'Jose', 'Karen', 'Henry', 'Betty', 'Adam', 'Helen', 'Douglas', 'Sandra', 'Nathan', 'Donna', 'Peter', 'Carol', 'Zachary', 'Ruth', 'Kyle', 'Sharon', 'Walter', 'Michelle', 'Harold', 'Laura', 'Carl', 'Sarah', 'Arthur', 'Kimberly', 'Gerald', 'Deborah', 'Wayne', 'Dorothy', 'Louis', 'Lisa', 'Ralph', 'Nancy', 'Roy', 'Karen', 'Eugene', 'Betty', 'Louis', 'Helen', 'Philip', 'Sandra', 'Bobby', 'Donna'];
       
-      const dept = departments[Math.floor(Math.random() * departments.length)];
-      const pos = positions[Math.floor(Math.random() * positions.length)];
-      const loc = locations[Math.floor(Math.random() * locations.length)];
-      const div = divisions[Math.floor(Math.random() * divisions.length)];
+      const lastNames = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis', 'Rodriguez', 'Martinez', 'Hernandez', 'Lopez', 'Gonzalez', 'Wilson', 'Anderson', 'Thomas', 'Taylor', 'Moore', 'Jackson', 'Martin', 'Lee', 'Perez', 'Thompson', 'White', 'Harris', 'Sanchez', 'Clark', 'Ramirez', 'Lewis', 'Robinson', 'Walker', 'Young', 'Allen', 'King', 'Wright', 'Scott', 'Torres', 'Nguyen', 'Hill', 'Flores', 'Green', 'Adams', 'Nelson', 'Baker', 'Hall', 'Rivera', 'Campbell', 'Mitchell', 'Carter', 'Roberts', 'Gomez', 'Phillips', 'Evans', 'Turner', 'Diaz', 'Parker', 'Cruz', 'Edwards', 'Collins', 'Reyes', 'Stewart', 'Morris', 'Morales', 'Murphy', 'Cook', 'Rogers', 'Gutierrez', 'Ortiz', 'Morgan', 'Cooper', 'Peterson', 'Bailey', 'Reed', 'Kelly', 'Howard', 'Ramos', 'Kim', 'Cox', 'Ward', 'Richardson', 'Watson', 'Brooks', 'Chavez', 'Wood', 'James', 'Bennett', 'Gray', 'Mendoza', 'Ruiz', 'Hughes', 'Price', 'Alvarez', 'Castillo', 'Sanders', 'Patel', 'Myers', 'Long', 'Ross', 'Foster', 'Jimenez'];
       
-      const firstName = `Employee${i}`;
-      const lastName = `LastName${i}`;
+      const departments = ['Construction', 'Safety', 'Operations', 'Management', 'Quality', 'Environmental', 'HR', 'Engineering', 'Warehouse', 'Manufacturing', 'Maintenance', 'Security', 'Administration', 'Transportation', 'Procurement', 'IT', 'Finance', 'Customer Service', 'Sales', 'Marketing', 'Legal', 'Research', 'Documentation', 'Risk Management', 'Insurance'];
       
-      mockEmployees.push({
-        id: i,
+      const positions = ['Safety Manager', 'Site Supervisor', 'Construction Worker', 'Equipment Operator', 'Quality Inspector', 'Environmental Specialist', 'HR Coordinator', 'Project Engineer', 'Warehouse Associate', 'Machine Operator', 'Maintenance Technician', 'Security Guard', 'Administrative Assistant', 'Truck Driver', 'Procurement Specialist', 'IT Support', 'Financial Analyst', 'Customer Service Rep', 'Sales Representative', 'Marketing Coordinator', 'Legal Assistant', 'Research Analyst', 'Documentation Specialist', 'Risk Analyst', 'Insurance Coordinator'];
+      
+      const locations = ['Main Office', 'Construction Site A', 'Construction Site B', 'Warehouse 1', 'Warehouse 2', 'Manufacturing Plant', 'Field Office', 'Remote Location', 'Corporate HQ', 'Training Center'];
+      
+      const statuses: ('active' | 'inactive' | 'terminated')[] = ['active', 'inactive', 'terminated'];
+      const roles = ['employee', 'supervisor', 'manager', 'admin'];
+      
+      const firstName = firstNames[i % firstNames.length];
+      const lastName = lastNames[i % lastNames.length];
+      
+      return {
+        id: i + 1,
         userId: userId,
-        employeeId: `EMP-${i.toString().padStart(3, '0')}`,
-        firstName: firstName,
-        lastName: lastName,
-        email: `employee${i}@safetysync.ai`,
-        phone: `555-${(1000 + i).toString()}`,
-        position: pos,
-        department: dept,
-        division: div,
-        location: loc,
-        hireDate: new Date(Date.now() - Math.random() * 3 * 365 * 24 * 60 * 60 * 1000),
-        status: Math.random() > 0.1 ? "active" : "inactive",
-        role: Math.random() > 0.8 ? "supervisor" : "employee",
+        employeeId: `EMP-${(i + 1).toString().padStart(4, '0')}`,
+        firstName,
+        lastName,
+        email: `${firstName.toLowerCase()}.${lastName.toLowerCase()}@safetysync.ai`,
+        phone: `555-${Math.floor(Math.random() * 900) + 100}-${Math.floor(Math.random() * 9000) + 1000}`,
+        position: positions[i % positions.length],
+        department: departments[i % departments.length],
+        division: `${departments[i % departments.length]} Division`,
+        location: locations[i % locations.length],
+        hireDate: new Date(`202${Math.floor(Math.random() * 5)}-${String(Math.floor(Math.random() * 12) + 1).padStart(2, '0')}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`),
+        status: statuses[i % statuses.length],
+        role: roles[i % roles.length],
         profileImage: null,
-        emergencyContact: { name: `Emergency${i}`, phone: `555-${(2000 + i).toString()}`, relationship: "Emergency Contact" },
-        createdAt: new Date(Date.now() - Math.random() * 3 * 365 * 24 * 60 * 60 * 1000),
-        updatedAt: new Date()
-      });
-    }
+        emergencyContact: { 
+          name: `${firstNames[(i + 1) % firstNames.length]} ${lastNames[(i + 1) % lastNames.length]}`, 
+          phone: `555-${Math.floor(Math.random() * 900) + 100}-${Math.floor(Math.random() * 9000) + 1000}`, 
+          relationship: ['Spouse', 'Parent', 'Sibling', 'Child', 'Friend'][i % 5] 
+        },
+        createdAt: new Date(`202${Math.floor(Math.random() * 5)}-${String(Math.floor(Math.random() * 12) + 1).padStart(2, '0')}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`),
+        updatedAt: new Date('2024-01-15')
+      };
+    });
     
     return mockEmployees;
   }
