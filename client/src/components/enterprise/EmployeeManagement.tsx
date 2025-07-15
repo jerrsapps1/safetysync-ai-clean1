@@ -74,7 +74,7 @@ interface Certificate {
 
 interface TrainingSession {
   id: number;
-  title: string;
+  sessionName: string;
   description: string;
   startDate: Date;
   endDate: Date;
@@ -90,7 +90,6 @@ export default function EmployeeManagement() {
   const [showAddDialog, setShowAddDialog] = useState(false);
   const [showEditDialog, setShowEditDialog] = useState(false);
   const [showBulkActions, setShowBulkActions] = useState(false);
-  const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
   const [selectedEmployees, setSelectedEmployees] = useState<number[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterDepartment, setFilterDepartment] = useState('all');
@@ -98,7 +97,6 @@ export default function EmployeeManagement() {
   const [filterLocation, setFilterLocation] = useState('all');
   const [sortBy, setSortBy] = useState('name');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
   const [newEmployee, setNewEmployee] = useState({
     employeeId: '',
     firstName: '',
@@ -223,650 +221,528 @@ export default function EmployeeManagement() {
   });
 
   // Enhanced filtering and sorting
-  const filteredEmployees = useMemo(() => {
-    let filtered = employees.filter(emp => {
-      const matchesSearch = `${emp.firstName} ${emp.lastName} ${emp.email} ${emp.employeeId} ${emp.position}`
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase());
-      const matchesDepartment = filterDepartment === 'all' || emp.department === filterDepartment;
-      const matchesStatus = filterStatus === 'all' || emp.status === filterStatus;
-      const matchesLocation = filterLocation === 'all' || emp.location === filterLocation;
+  const filteredAndSortedEmployees = useMemo(() => {
+    let filtered = employees.filter(employee => {
+      const matchesSearch = searchTerm === '' || 
+        employee.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        employee.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        employee.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        employee.employeeId.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        employee.position?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        employee.department?.toLowerCase().includes(searchTerm.toLowerCase());
+      
+      const matchesDepartment = filterDepartment === 'all' || employee.department === filterDepartment;
+      const matchesStatus = filterStatus === 'all' || employee.status === filterStatus;
+      const matchesLocation = filterLocation === 'all' || employee.location === filterLocation;
       
       return matchesSearch && matchesDepartment && matchesStatus && matchesLocation;
     });
-
-    // Sort results
+    
+    // Sort employees
     filtered.sort((a, b) => {
-      let aValue = '';
-      let bValue = '';
+      let aVal: any, bVal: any;
       
       switch (sortBy) {
         case 'name':
-          aValue = `${a.firstName} ${a.lastName}`;
-          bValue = `${b.firstName} ${b.lastName}`;
+          aVal = `${a.firstName} ${a.lastName}`;
+          bVal = `${b.firstName} ${b.lastName}`;
           break;
         case 'department':
-          aValue = a.department || '';
-          bValue = b.department || '';
+          aVal = a.department || '';
+          bVal = b.department || '';
           break;
         case 'position':
-          aValue = a.position || '';
-          bValue = b.position || '';
+          aVal = a.position || '';
+          bVal = b.position || '';
           break;
         case 'hireDate':
-          aValue = a.hireDate.toISOString();
-          bValue = b.hireDate.toISOString();
+          aVal = new Date(a.hireDate);
+          bVal = new Date(b.hireDate);
+          break;
+        case 'location':
+          aVal = a.location || '';
+          bVal = b.location || '';
           break;
         default:
-          aValue = a.firstName;
-          bValue = b.firstName;
+          aVal = a.firstName;
+          bVal = b.firstName;
       }
       
-      aValue = aValue.toLowerCase();
-      bValue = bValue.toLowerCase();
-      
-      if (aValue < bValue) return sortOrder === 'asc' ? -1 : 1;
-      if (aValue > bValue) return sortOrder === 'asc' ? 1 : -1;
-      return 0;
+      if (sortOrder === 'asc') {
+        return aVal < bVal ? -1 : aVal > bVal ? 1 : 0;
+      } else {
+        return aVal > bVal ? -1 : aVal < bVal ? 1 : 0;
+      }
     });
-
+    
     return filtered;
   }, [employees, searchTerm, filterDepartment, filterStatus, filterLocation, sortBy, sortOrder]);
 
-  // Get unique departments and locations
-  const departments = [...new Set(employees.map(emp => emp.department).filter(Boolean))];
-  const locations = [...new Set(employees.map(emp => emp.location).filter(Boolean))];
-
-  // Enhanced employee statistics
-  const activeEmployees = employees.filter(emp => emp.status === 'active').length;
-  const inactiveEmployees = employees.filter(emp => emp.status === 'inactive').length;
-  const totalCertificates = certificates.length;
-  const expiringCertificates = certificates.filter(cert => {
-    const daysDiff = Math.ceil((new Date(cert.expirationDate).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24));
-    return daysDiff <= 30 && daysDiff > 0;
-  }).length;
-  const expiredCertificates = certificates.filter(cert => cert.status === 'expired').length;
-  const upcomingTrainingCount = trainingSessions.filter(session => session.status === 'scheduled').length;
-  const completedTrainingCount = trainingSessions.filter(session => session.status === 'completed').length;
-
-  // Department analytics
-  const departmentStats = departments.map(dept => ({
-    department: dept,
-    employeeCount: employees.filter(emp => emp.department === dept).length,
-    activeCount: employees.filter(emp => emp.department === dept && emp.status === 'active').length,
-    certificateCount: certificates.filter(cert => 
-      employees.find(emp => emp.id === cert.employeeId)?.department === dept
-    ).length,
-    complianceRate: employees.filter(emp => emp.department === dept).length > 0 ? 
-      Math.round((employees.filter(emp => emp.department === dept && emp.status === 'active').length / 
-      employees.filter(emp => emp.department === dept).length) * 100) : 0
-  }));
+  // Analytics calculations
+  const analytics = useMemo(() => {
+    const totalEmployees = employees.length;
+    const activeEmployees = employees.filter(emp => emp.status === 'active').length;
+    const inactiveEmployees = employees.filter(emp => emp.status === 'inactive').length;
+    const terminatedEmployees = employees.filter(emp => emp.status === 'terminated').length;
+    
+    const departments = [...new Set(employees.map(emp => emp.department).filter(Boolean))];
+    const locations = [...new Set(employees.map(emp => emp.location).filter(Boolean))];
+    
+    const departmentStats = departments.map(dept => ({
+      name: dept,
+      count: employees.filter(emp => emp.department === dept).length,
+      activeCount: employees.filter(emp => emp.department === dept && emp.status === 'active').length
+    }));
+    
+    const locationStats = locations.map(loc => ({
+      name: loc,
+      count: employees.filter(emp => emp.location === loc).length,
+      activeCount: employees.filter(emp => emp.location === loc && emp.status === 'active').length
+    }));
+    
+    // Certificate analytics
+    const activeCertificates = certificates.filter(cert => cert.status === 'active').length;
+    const expiringCertificates = certificates.filter(cert => cert.status === 'expiring').length;
+    const expiredCertificates = certificates.filter(cert => cert.status === 'expired').length;
+    
+    // Training analytics
+    const upcomingTrainingCount = upcomingTraining.length;
+    const completedTrainingCount = trainingSessions.filter(session => session.status === 'completed').length;
+    
+    return {
+      totalEmployees,
+      activeEmployees,
+      inactiveEmployees,
+      terminatedEmployees,
+      activeRate: totalEmployees > 0 ? Math.round((activeEmployees / totalEmployees) * 100) : 0,
+      departments,
+      locations,
+      departmentStats,
+      locationStats,
+      activeCertificates,
+      expiringCertificates,
+      expiredCertificates,
+      upcomingTrainingCount,
+      completedTrainingCount,
+      certificationComplianceRate: totalEmployees > 0 ? Math.round((activeCertificates / totalEmployees) * 100) : 0
+    };
+  }, [employees, certificates, trainingSessions, upcomingTraining]);
 
   // Bulk actions
-  const handleBulkStatusChange = (newStatus: 'active' | 'inactive') => {
-    selectedEmployees.forEach(empId => {
-      updateEmployeeMutation.mutate({ id: empId, updates: { status: newStatus } });
+  const handleBulkStatusChange = (status: 'active' | 'inactive') => {
+    selectedEmployees.forEach(employeeId => {
+      updateEmployeeMutation.mutate({
+        id: employeeId,
+        updates: { status }
+      });
     });
     setSelectedEmployees([]);
+    setShowBulkActions(false);
   };
 
   const handleSelectAll = () => {
-    if (selectedEmployees.length === filteredEmployees.length) {
+    if (selectedEmployees.length === filteredAndSortedEmployees.length) {
       setSelectedEmployees([]);
     } else {
-      setSelectedEmployees(filteredEmployees.map(emp => emp.id));
+      setSelectedEmployees(filteredAndSortedEmployees.map(emp => emp.id));
     }
   };
 
-  const handleSelectEmployee = (empId: number) => {
+  const handleEmployeeSelect = (employeeId: number) => {
     setSelectedEmployees(prev => 
-      prev.includes(empId) 
-        ? prev.filter(id => id !== empId)
-        : [...prev, empId]
+      prev.includes(employeeId) 
+        ? prev.filter(id => id !== employeeId)
+        : [...prev, employeeId]
     );
   };
 
+  // Export functionality
+  const handleExportEmployees = () => {
+    const csvData = filteredAndSortedEmployees.map(emp => ({
+      'Employee ID': emp.employeeId,
+      'First Name': emp.firstName,
+      'Last Name': emp.lastName,
+      'Email': emp.email,
+      'Phone': emp.phone || '',
+      'Position': emp.position || '',
+      'Department': emp.department || '',
+      'Division': emp.division || '',
+      'Location': emp.location || '',
+      'Status': emp.status,
+      'Hire Date': new Date(emp.hireDate).toLocaleDateString(),
+      'Created Date': new Date(emp.createdAt).toLocaleDateString()
+    }));
+    
+    const csvContent = [
+      Object.keys(csvData[0]).join(','),
+      ...csvData.map(row => Object.values(row).map(val => `"${val}"`).join(','))
+    ].join('\n');
+    
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `employees_${new Date().toISOString().split('T')[0]}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+    
+    toast({
+      title: 'Export Complete',
+      description: `${filteredAndSortedEmployees.length} employees exported successfully.`
+    });
+  };
+
+  // Employee form handlers
   const handleAddEmployee = () => {
     createEmployeeMutation.mutate(newEmployee);
   };
 
   const handleUpdateEmployee = (updates: any) => {
     if (selectedEmployee) {
-      updateEmployeeMutation.mutate({ id: selectedEmployee.id, updates });
+      updateEmployeeMutation.mutate({
+        id: selectedEmployee.id,
+        updates
+      });
     }
   };
 
   const handleDeleteEmployee = (id: number) => {
-    if (confirm('Are you sure you want to delete this employee?')) {
-      deleteEmployeeMutation.mutate(id);
-    }
+    deleteEmployeeMutation.mutate(id);
   };
 
-  const getStatusBadge = (status: string) => {
-    const statusConfig = {
-      active: { variant: 'default' as const, icon: CheckCircle, color: 'text-green-600' },
-      inactive: { variant: 'secondary' as const, icon: AlertCircle, color: 'text-yellow-600' },
-      terminated: { variant: 'destructive' as const, icon: XCircle, color: 'text-red-600' },
-    };
-    
-    const config = statusConfig[status as keyof typeof statusConfig] || statusConfig.active;
-    const Icon = config.icon;
-    
-    return (
-      <Badge variant={config.variant} className="flex items-center gap-1">
-        <Icon size={12} className={config.color} />
-        {status.charAt(0).toUpperCase() + status.slice(1)}
-      </Badge>
+  // Get certificates for specific employee
+  const getEmployeeCertificates = (employeeId: number) => {
+    return certificates.filter(cert => cert.employeeId === employeeId);
+  };
+
+  // Get training sessions for specific employee
+  const getEmployeeTraining = (employeeId: number) => {
+    return trainingSessions.filter(session => 
+      session.currentParticipants > 0 // Mock check - in real app would check enrollment
     );
   };
 
   if (employeesLoading) {
     return (
-      <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+      <div className="space-y-6">
+        <div className="animate-pulse">
+          <div className="h-8 bg-gray-200 rounded w-1/4 mb-4"></div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="h-24 bg-gray-200 rounded"></div>
+            ))}
+          </div>
+          <div className="h-64 bg-gray-200 rounded"></div>
+        </div>
       </div>
     );
   }
 
   return (
     <div className="space-y-6">
-      {/* Enhanced Header with Statistics */}
-      <div className="flex justify-between items-center">
+      {/* Header */}
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold">Advanced Employee Management</h1>
-          <p className="text-gray-600">Comprehensive workforce management and compliance tracking</p>
+          <h1 className="text-2xl font-bold text-gray-900">Employee Management</h1>
+          <p className="text-gray-600 mt-1">Manage your workforce with comprehensive employee tracking and analytics</p>
         </div>
-        <div className="flex gap-2">
-          {selectedEmployees.length > 0 && (
-            <Button variant="outline" size="sm" onClick={() => setShowBulkActions(true)}>
-              <Settings size={16} className="mr-2" />
-              Bulk Actions ({selectedEmployees.length})
-            </Button>
-          )}
-          <Button variant="outline" size="sm">
-            <Upload size={16} className="mr-2" />
-            Import
+        <div className="flex flex-wrap gap-2">
+          <Button 
+            onClick={() => setShowAddDialog(true)}
+            className="bg-emerald-600 hover:bg-emerald-700"
+          >
+            <Plus className="w-4 h-4 mr-2" />
+            Add Employee
           </Button>
-          <Button variant="outline" size="sm">
-            <Download size={16} className="mr-2" />
+          <Button 
+            variant="outline"
+            onClick={handleExportEmployees}
+          >
+            <Download className="w-4 h-4 mr-2" />
             Export
           </Button>
           <Button 
-            variant="outline" 
-            size="sm"
-            onClick={() => setViewMode(viewMode === 'list' ? 'grid' : 'list')}
+            variant="outline"
+            onClick={() => setShowBulkActions(!showBulkActions)}
           >
-            {viewMode === 'list' ? <BarChart3 size={16} className="mr-2" /> : <Users size={16} className="mr-2" />}
-            {viewMode === 'list' ? 'Grid View' : 'List View'}
+            <CheckSquare className="w-4 h-4 mr-2" />
+            Bulk Actions
           </Button>
-          <Dialog open={showAddDialog} onOpenChange={setShowAddDialog}>
-            <DialogTrigger asChild>
-              <Button size="sm">
-                <Plus size={16} className="mr-2" />
-                Add Employee
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="max-w-2xl">
-              <DialogHeader>
-                <DialogTitle>Add New Employee</DialogTitle>
-              </DialogHeader>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="employeeId">Employee ID</Label>
-                  <Input
-                    id="employeeId"
-                    value={newEmployee.employeeId}
-                    onChange={(e) => setNewEmployee({...newEmployee, employeeId: e.target.value})}
-                    placeholder="EMP-001"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="firstName">First Name</Label>
-                  <Input
-                    id="firstName"
-                    value={newEmployee.firstName}
-                    onChange={(e) => setNewEmployee({...newEmployee, firstName: e.target.value})}
-                    placeholder="John"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="lastName">Last Name</Label>
-                  <Input
-                    id="lastName"
-                    value={newEmployee.lastName}
-                    onChange={(e) => setNewEmployee({...newEmployee, lastName: e.target.value})}
-                    placeholder="Doe"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={newEmployee.email}
-                    onChange={(e) => setNewEmployee({...newEmployee, email: e.target.value})}
-                    placeholder="john.doe@company.com"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="phone">Phone</Label>
-                  <Input
-                    id="phone"
-                    value={newEmployee.phone}
-                    onChange={(e) => setNewEmployee({...newEmployee, phone: e.target.value})}
-                    placeholder="(555) 123-4567"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="position">Position</Label>
-                  <Input
-                    id="position"
-                    value={newEmployee.position}
-                    onChange={(e) => setNewEmployee({...newEmployee, position: e.target.value})}
-                    placeholder="Safety Coordinator"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="department">Department</Label>
-                  <Input
-                    id="department"
-                    value={newEmployee.department}
-                    onChange={(e) => setNewEmployee({...newEmployee, department: e.target.value})}
-                    placeholder="Safety"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="location">Location</Label>
-                  <Input
-                    id="location"
-                    value={newEmployee.location}
-                    onChange={(e) => setNewEmployee({...newEmployee, location: e.target.value})}
-                    placeholder="Main Office"
-                  />
-                </div>
-              </div>
-              <div className="flex justify-end gap-2 mt-6">
-                <Button variant="outline" onClick={() => setShowAddDialog(false)}>
-                  Cancel
-                </Button>
-                <Button onClick={handleAddEmployee} disabled={createEmployeeMutation.isPending}>
-                  {createEmployeeMutation.isPending ? 'Adding...' : 'Add Employee'}
-                </Button>
-              </div>
-            </DialogContent>
-          </Dialog>
         </div>
       </div>
 
-      {/* Enhanced Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+      {/* Analytics Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Card>
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-gray-600">Total Employees</p>
+                <p className="text-2xl font-bold text-gray-900">{analytics.totalEmployees}</p>
+              </div>
+              <Users className="w-8 h-8 text-blue-500" />
+            </div>
+          </CardContent>
+        </Card>
+        
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Active Employees</p>
-                <p className="text-2xl font-bold text-green-600">{activeEmployees}</p>
-                <p className="text-xs text-gray-500">
-                  {employees.length > 0 ? Math.round((activeEmployees / employees.length) * 100) : 0}% of total
-                </p>
+                <p className="text-2xl font-bold text-emerald-600">{analytics.activeEmployees}</p>
+                <p className="text-xs text-gray-500">{analytics.activeRate}% active rate</p>
               </div>
-              <Users className="h-8 w-8 text-green-600" />
+              <CheckCircle className="w-8 h-8 text-emerald-500" />
             </div>
           </CardContent>
         </Card>
+        
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Inactive</p>
-                <p className="text-2xl font-bold text-gray-600">{inactiveEmployees}</p>
-                <p className="text-xs text-gray-500">
-                  {employees.length > 0 ? Math.round((inactiveEmployees / employees.length) * 100) : 0}% of total
-                </p>
+                <p className="text-sm text-gray-600">Departments</p>
+                <p className="text-2xl font-bold text-purple-600">{analytics.departments.length}</p>
               </div>
-              <Activity className="h-8 w-8 text-gray-600" />
+              <Building className="w-8 h-8 text-purple-500" />
             </div>
           </CardContent>
         </Card>
+        
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Total Certificates</p>
-                <p className="text-2xl font-bold text-blue-600">{totalCertificates}</p>
-                <p className="text-xs text-gray-500">
-                  {employees.length > 0 ? Math.round(totalCertificates / employees.length * 10) / 10 : 0} per employee
-                </p>
+                <p className="text-sm text-gray-600">Certification Rate</p>
+                <p className="text-2xl font-bold text-orange-600">{analytics.certificationComplianceRate}%</p>
               </div>
-              <Award className="h-8 w-8 text-blue-600" />
-            </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Expiring Soon</p>
-                <p className="text-2xl font-bold text-yellow-600">{expiringCertificates}</p>
-                <p className="text-xs text-gray-500">Next 30 days</p>
-              </div>
-              <AlertCircle className="h-8 w-8 text-yellow-600" />
-            </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Expired</p>
-                <p className="text-2xl font-bold text-red-600">{expiredCertificates}</p>
-                <p className="text-xs text-gray-500">Need renewal</p>
-              </div>
-              <XCircle className="h-8 w-8 text-red-600" />
-            </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Training Sessions</p>
-                <p className="text-2xl font-bold text-purple-600">{upcomingTrainingCount}</p>
-                <p className="text-xs text-gray-500">{completedTrainingCount} completed</p>
-              </div>
-              <Calendar className="h-8 w-8 text-purple-600" />
+              <Award className="w-8 h-8 text-orange-500" />
             </div>
           </CardContent>
         </Card>
       </div>
 
-      {/* Enhanced Search and Filter Controls */}
-      <Card>
-        <CardContent className="p-6">
-          <div className="flex flex-col space-y-4">
-            {/* Main Search Bar */}
-            <div className="flex flex-col md:flex-row gap-4 items-center">
-              <div className="flex-1">
-                <div className="relative">
-                  <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                  <Input
-                    placeholder="Search by name, ID, position, email, or department..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10"
-                  />
-                </div>
+      {/* Bulk Actions Panel */}
+      {showBulkActions && (
+        <Card className="border-blue-200 bg-blue-50">
+          <CardContent className="p-4">
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div className="flex items-center gap-4">
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={handleSelectAll}
+                >
+                  {selectedEmployees.length === filteredAndSortedEmployees.length ? (
+                    <>
+                      <Square className="w-4 h-4 mr-2" />
+                      Deselect All
+                    </>
+                  ) : (
+                    <>
+                      <CheckSquare className="w-4 h-4 mr-2" />
+                      Select All
+                    </>
+                  )}
+                </Button>
+                <span className="text-sm text-gray-600">
+                  {selectedEmployees.length} selected
+                </span>
               </div>
               <div className="flex gap-2">
-                <Select value={sortBy} onValueChange={setSortBy}>
-                  <SelectTrigger className="w-32">
-                    <SelectValue placeholder="Sort by" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="name">Name</SelectItem>
-                    <SelectItem value="department">Department</SelectItem>
-                    <SelectItem value="position">Position</SelectItem>
-                    <SelectItem value="hireDate">Hire Date</SelectItem>
-                  </SelectContent>
-                </Select>
-                <Button
+                <Button 
+                  size="sm" 
                   variant="outline"
-                  size="sm"
-                  onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
+                  onClick={() => handleBulkStatusChange('active')}
+                  disabled={selectedEmployees.length === 0}
                 >
-                  {sortOrder === 'asc' ? <TrendingUp size={16} /> : <TrendingDown size={16} />}
+                  <CheckCircle className="w-4 h-4 mr-2" />
+                  Activate
                 </Button>
-                <Button
+                <Button 
+                  size="sm" 
                   variant="outline"
-                  size="sm"
-                  onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
+                  onClick={() => handleBulkStatusChange('inactive')}
+                  disabled={selectedEmployees.length === 0}
                 >
-                  <Filter size={16} className="mr-2" />
-                  Filters
+                  <XCircle className="w-4 h-4 mr-2" />
+                  Deactivate
                 </Button>
               </div>
             </div>
+          </CardContent>
+        </Card>
+      )}
 
-            {/* Advanced Filters */}
-            {showAdvancedFilters && (
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-4 bg-gray-50 rounded-lg">
-                <Select value={filterDepartment} onValueChange={setFilterDepartment}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Department" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Departments</SelectItem>
-                    {departments.map(dept => (
-                      <SelectItem key={dept} value={dept}>{dept}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                <Select value={filterStatus} onValueChange={setFilterStatus}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Status" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Status</SelectItem>
-                    <SelectItem value="active">Active</SelectItem>
-                    <SelectItem value="inactive">Inactive</SelectItem>
-                    <SelectItem value="terminated">Terminated</SelectItem>
-                  </SelectContent>
-                </Select>
-                <Select value={filterLocation} onValueChange={setFilterLocation}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Location" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Locations</SelectItem>
-                    {locations.map(loc => (
-                      <SelectItem key={loc} value={loc}>{loc}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    setSearchTerm('');
-                    setFilterDepartment('all');
-                    setFilterStatus('all');
-                    setFilterLocation('all');
-                  }}
-                >
-                  <RefreshCw size={16} className="mr-2" />
-                  Clear All
-                </Button>
+      {/* Filters and Search */}
+      <Card>
+        <CardContent className="p-4">
+          <div className="flex flex-col lg:flex-row gap-4">
+            <div className="flex-1">
+              <div className="relative">
+                <Search className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
+                <Input
+                  placeholder="Search employees by name, email, ID, position..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10"
+                />
               </div>
-            )}
-
-            {/* Results Summary and Bulk Actions */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2">
-                  <Users className="w-4 h-4 text-gray-500" />
-                  <span className="text-sm text-gray-600">
-                    {filteredEmployees.length} of {employees.length} employees
-                  </span>
-                </div>
-                {filteredEmployees.length > 0 && (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={handleSelectAll}
-                  >
-                    {selectedEmployees.length === filteredEmployees.length ? (
-                      <>
-                        <Square size={16} className="mr-2" />
-                        Deselect All
-                      </>
-                    ) : (
-                      <>
-                        <CheckSquare size={16} className="mr-2" />
-                        Select All
-                      </>
-                    )}
-                  </Button>
-                )}
-              </div>
-              {selectedEmployees.length > 0 && (
-                <div className="flex items-center gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => handleBulkStatusChange('active')}
-                  >
-                    <CheckCircle size={16} className="mr-2" />
-                    Activate ({selectedEmployees.length})
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => handleBulkStatusChange('inactive')}
-                  >
-                    <Archive size={16} className="mr-2" />
-                    Deactivate ({selectedEmployees.length})
-                  </Button>
-                </div>
-              )}
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <Select value={filterDepartment} onValueChange={setFilterDepartment}>
+                <SelectTrigger className="w-40">
+                  <SelectValue placeholder="Department" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Departments</SelectItem>
+                  {analytics.departments.map(dept => (
+                    <SelectItem key={dept} value={dept}>{dept}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              
+              <Select value={filterStatus} onValueChange={setFilterStatus}>
+                <SelectTrigger className="w-32">
+                  <SelectValue placeholder="Status" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Status</SelectItem>
+                  <SelectItem value="active">Active</SelectItem>
+                  <SelectItem value="inactive">Inactive</SelectItem>
+                  <SelectItem value="terminated">Terminated</SelectItem>
+                </SelectContent>
+              </Select>
+              
+              <Select value={filterLocation} onValueChange={setFilterLocation}>
+                <SelectTrigger className="w-40">
+                  <SelectValue placeholder="Location" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Locations</SelectItem>
+                  {analytics.locations.map(loc => (
+                    <SelectItem key={loc} value={loc}>{loc}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              
+              <Select value={sortBy} onValueChange={setSortBy}>
+                <SelectTrigger className="w-32">
+                  <SelectValue placeholder="Sort by" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="name">Name</SelectItem>
+                  <SelectItem value="department">Department</SelectItem>
+                  <SelectItem value="position">Position</SelectItem>
+                  <SelectItem value="hireDate">Hire Date</SelectItem>
+                  <SelectItem value="location">Location</SelectItem>
+                </SelectContent>
+              </Select>
+              
+              <Button 
+                variant="outline"
+                size="sm"
+                onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
+              >
+                {sortOrder === 'asc' ? 
+                  <TrendingUp className="w-4 h-4" /> : 
+                  <TrendingDown className="w-4 h-4" />
+                }
+              </Button>
             </div>
           </div>
         </CardContent>
       </Card>
 
-      {/* Department Analytics */}
+      {/* Employee List */}
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <PieChart className="w-5 h-5" />
-            Department Analytics
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {departmentStats.map((dept) => (
-              <Card key={dept.department} className="bg-gray-50">
-                <CardContent className="p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-semibold text-sm">{dept.department}</h3>
-                    <Badge variant="outline">{dept.employeeCount} employees</Badge>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="flex justify-between text-xs">
-                      <span>Active: {dept.activeCount}</span>
-                      <span>Certificates: {dept.certificateCount}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Progress value={dept.complianceRate} className="flex-1" />
-                      <span className="text-xs text-gray-600">{dept.complianceRate}%</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Enhanced Employee Table */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Users className="w-5 h-5" />
-            Employee Directory
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
+        <CardContent className="p-0">
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead>
-                <tr className="border-b">
-                  <th className="text-left p-4">
-                    <input
-                      type="checkbox"
-                      checked={selectedEmployees.length === filteredEmployees.length && filteredEmployees.length > 0}
-                      onChange={handleSelectAll}
-                      className="rounded"
-                    />
-                  </th>
-                  <th className="text-left p-4">Employee</th>
-                  <th className="text-left p-4">Contact</th>
-                  <th className="text-left p-4">Position</th>
-                  <th className="text-left p-4">Department</th>
-                  <th className="text-left p-4">Status</th>
-                  <th className="text-left p-4">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredEmployees.map((employee) => (
-                  <tr key={employee.id} className="border-b hover:bg-gray-50">
-                    <td className="p-4">
+              <thead className="bg-gray-50 border-b">
+                <tr>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-900">
+                    <div className="flex items-center gap-2">
                       <input
                         type="checkbox"
-                        checked={selectedEmployees.includes(employee.id)}
-                        onChange={() => handleSelectEmployee(employee.id)}
+                        checked={selectedEmployees.length === filteredAndSortedEmployees.length && filteredAndSortedEmployees.length > 0}
+                        onChange={handleSelectAll}
                         className="rounded"
                       />
-                    </td>
-                    <td className="p-4">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                          <User size={20} className="text-blue-600" />
-                        </div>
+                      Employee
+                    </div>
+                  </th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-900">Position</th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-900">Department</th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-900">Location</th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-900">Status</th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-900">Hire Date</th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-900">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                {filteredAndSortedEmployees.map((employee) => (
+                  <tr key={employee.id} className="hover:bg-gray-50">
+                    <td className="px-4 py-3">
+                      <div className="flex items-center gap-3">
+                        <input
+                          type="checkbox"
+                          checked={selectedEmployees.includes(employee.id)}
+                          onChange={() => handleEmployeeSelect(employee.id)}
+                          className="rounded"
+                        />
                         <div>
-                          <div className="font-medium">{employee.firstName} {employee.lastName}</div>
-                          <div className="text-sm text-gray-500">{employee.employeeId}</div>
+                          <div className="font-medium text-gray-900">
+                            {employee.firstName} {employee.lastName}
+                          </div>
+                          <div className="text-sm text-gray-500">{employee.email}</div>
+                          <div className="text-xs text-gray-400">ID: {employee.employeeId}</div>
                         </div>
                       </div>
                     </td>
-                    <td className="p-4">
-                      <div className="text-sm">{employee.email}</div>
-                      <div className="text-sm text-gray-500">{employee.phone}</div>
+                    <td className="px-4 py-3 text-sm text-gray-900">{employee.position}</td>
+                    <td className="px-4 py-3 text-sm text-gray-900">{employee.department}</td>
+                    <td className="px-4 py-3 text-sm text-gray-900">{employee.location}</td>
+                    <td className="px-4 py-3">
+                      <Badge 
+                        variant={employee.status === 'active' ? 'default' : 
+                                employee.status === 'inactive' ? 'secondary' : 'destructive'}
+                      >
+                        {employee.status}
+                      </Badge>
                     </td>
-                    <td className="p-4">
-                      <div className="text-sm">{employee.position}</div>
-                      <div className="text-sm text-gray-500">{employee.division}</div>
+                    <td className="px-4 py-3 text-sm text-gray-900">
+                      {new Date(employee.hireDate).toLocaleDateString()}
                     </td>
-                    <td className="p-4">
-                      <div className="flex items-center space-x-1">
-                        <Building size={14} className="text-gray-400" />
-                        <span className="text-sm">{employee.department}</span>
-                      </div>
-                      <div className="flex items-center space-x-1">
-                        <MapPin size={14} className="text-gray-400" />
-                        <span className="text-sm text-gray-500">{employee.location}</span>
-                      </div>
-                    </td>
-                    <td className="p-4">
-                      {getStatusBadge(employee.status)}
-                    </td>
-                    <td className="p-4">
-                      <div className="flex space-x-2">
-                        <Button
-                          variant="ghost"
+                    <td className="px-4 py-3">
+                      <div className="flex gap-2">
+                        <Button 
+                          variant="outline" 
                           size="sm"
                           onClick={() => {
                             setSelectedEmployee(employee);
                             setShowEditDialog(true);
                           }}
                         >
-                          <Eye size={14} />
+                          <Eye className="w-4 h-4" />
                         </Button>
-                        <Button
-                          variant="ghost"
+                        <Button 
+                          variant="outline" 
                           size="sm"
                           onClick={() => {
                             setSelectedEmployee(employee);
                             setShowEditDialog(true);
                           }}
                         >
-                          <Edit size={14} />
+                          <Edit className="w-4 h-4" />
                         </Button>
-                        <Button
-                          variant="ghost"
+                        <Button 
+                          variant="outline" 
                           size="sm"
                           onClick={() => handleDeleteEmployee(employee.id)}
-                          className="text-red-600 hover:text-red-700"
                         >
-                          <Trash2 size={14} />
+                          <Trash2 className="w-4 h-4" />
                         </Button>
                       </div>
                     </td>
@@ -875,117 +751,271 @@ export default function EmployeeManagement() {
               </tbody>
             </table>
           </div>
+          
+          {filteredAndSortedEmployees.length === 0 && (
+            <div className="text-center py-8">
+              <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+              <p className="text-gray-600">No employees found matching your criteria</p>
+            </div>
+          )}
         </CardContent>
       </Card>
 
+      {/* Department Analytics */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <BarChart3 className="w-5 h-5" />
+            Department Analytics
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            {analytics.departmentStats.map((dept) => (
+              <div key={dept.name} className="flex items-center justify-between">
+                <div className="flex-1">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-sm font-medium text-gray-900">{dept.name}</span>
+                    <span className="text-sm text-gray-500">{dept.activeCount}/{dept.count}</span>
+                  </div>
+                  <Progress 
+                    value={dept.count > 0 ? (dept.activeCount / dept.count) * 100 : 0}
+                    className="h-2"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Add Employee Dialog */}
+      <Dialog open={showAddDialog} onOpenChange={setShowAddDialog}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Add New Employee</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="employeeId">Employee ID</Label>
+                <Input
+                  id="employeeId"
+                  value={newEmployee.employeeId}
+                  onChange={(e) => setNewEmployee({...newEmployee, employeeId: e.target.value})}
+                  placeholder="EMP-001"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="firstName">First Name</Label>
+                <Input
+                  id="firstName"
+                  value={newEmployee.firstName}
+                  onChange={(e) => setNewEmployee({...newEmployee, firstName: e.target.value})}
+                  placeholder="John"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="lastName">Last Name</Label>
+                <Input
+                  id="lastName"
+                  value={newEmployee.lastName}
+                  onChange={(e) => setNewEmployee({...newEmployee, lastName: e.target.value})}
+                  placeholder="Doe"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={newEmployee.email}
+                  onChange={(e) => setNewEmployee({...newEmployee, email: e.target.value})}
+                  placeholder="john.doe@company.com"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="phone">Phone</Label>
+                <Input
+                  id="phone"
+                  value={newEmployee.phone}
+                  onChange={(e) => setNewEmployee({...newEmployee, phone: e.target.value})}
+                  placeholder="555-0123"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="position">Position</Label>
+                <Input
+                  id="position"
+                  value={newEmployee.position}
+                  onChange={(e) => setNewEmployee({...newEmployee, position: e.target.value})}
+                  placeholder="Safety Coordinator"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="department">Department</Label>
+                <Select value={newEmployee.department} onValueChange={(value) => setNewEmployee({...newEmployee, department: value})}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select department" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {analytics.departments.map(dept => (
+                      <SelectItem key={dept} value={dept}>{dept}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="location">Location</Label>
+                <Select value={newEmployee.location} onValueChange={(value) => setNewEmployee({...newEmployee, location: value})}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select location" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {analytics.locations.map(loc => (
+                      <SelectItem key={loc} value={loc}>{loc}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+            <div className="flex justify-end gap-2">
+              <Button variant="outline" onClick={() => setShowAddDialog(false)}>
+                Cancel
+              </Button>
+              <Button onClick={handleAddEmployee} disabled={createEmployeeMutation.isPending}>
+                {createEmployeeMutation.isPending ? 'Adding...' : 'Add Employee'}
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
       {/* Edit Employee Dialog */}
-      {selectedEmployee && (
-        <Dialog open={showEditDialog} onOpenChange={setShowEditDialog}>
-          <DialogContent className="max-w-4xl">
-            <DialogHeader>
-              <DialogTitle>Edit Employee - {selectedEmployee.firstName} {selectedEmployee.lastName}</DialogTitle>
-            </DialogHeader>
+      <Dialog open={showEditDialog} onOpenChange={setShowEditDialog}>
+        <DialogContent className="max-w-4xl">
+          <DialogHeader>
+            <DialogTitle>
+              Employee Details: {selectedEmployee?.firstName} {selectedEmployee?.lastName}
+            </DialogTitle>
+          </DialogHeader>
+          
+          {selectedEmployee && (
             <Tabs defaultValue="details" className="w-full">
               <TabsList className="grid w-full grid-cols-3">
                 <TabsTrigger value="details">Details</TabsTrigger>
                 <TabsTrigger value="certificates">Certificates</TabsTrigger>
                 <TabsTrigger value="training">Training</TabsTrigger>
               </TabsList>
+              
               <TabsContent value="details" className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="editEmployeeId">Employee ID</Label>
-                    <Input
-                      id="editEmployeeId"
-                      defaultValue={selectedEmployee.employeeId}
-                      onChange={(e) => setSelectedEmployee({...selectedEmployee, employeeId: e.target.value})}
-                    />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label>Employee ID</Label>
+                    <Input value={selectedEmployee.employeeId} readOnly />
                   </div>
-                  <div>
-                    <Label htmlFor="editFirstName">First Name</Label>
-                    <Input
-                      id="editFirstName"
-                      defaultValue={selectedEmployee.firstName}
-                      onChange={(e) => setSelectedEmployee({...selectedEmployee, firstName: e.target.value})}
-                    />
+                  <div className="space-y-2">
+                    <Label>Email</Label>
+                    <Input value={selectedEmployee.email} readOnly />
                   </div>
-                  <div>
-                    <Label htmlFor="editLastName">Last Name</Label>
-                    <Input
-                      id="editLastName"
-                      defaultValue={selectedEmployee.lastName}
-                      onChange={(e) => setSelectedEmployee({...selectedEmployee, lastName: e.target.value})}
-                    />
+                  <div className="space-y-2">
+                    <Label>Phone</Label>
+                    <Input value={selectedEmployee.phone || ''} readOnly />
                   </div>
-                  <div>
-                    <Label htmlFor="editEmail">Email</Label>
-                    <Input
-                      id="editEmail"
-                      type="email"
-                      defaultValue={selectedEmployee.email}
-                      onChange={(e) => setSelectedEmployee({...selectedEmployee, email: e.target.value})}
-                    />
+                  <div className="space-y-2">
+                    <Label>Position</Label>
+                    <Input value={selectedEmployee.position || ''} readOnly />
                   </div>
-                  <div>
-                    <Label htmlFor="editPhone">Phone</Label>
-                    <Input
-                      id="editPhone"
-                      defaultValue={selectedEmployee.phone}
-                      onChange={(e) => setSelectedEmployee({...selectedEmployee, phone: e.target.value})}
-                    />
+                  <div className="space-y-2">
+                    <Label>Department</Label>
+                    <Input value={selectedEmployee.department || ''} readOnly />
                   </div>
-                  <div>
-                    <Label htmlFor="editPosition">Position</Label>
-                    <Input
-                      id="editPosition"
-                      defaultValue={selectedEmployee.position}
-                      onChange={(e) => setSelectedEmployee({...selectedEmployee, position: e.target.value})}
-                    />
+                  <div className="space-y-2">
+                    <Label>Location</Label>
+                    <Input value={selectedEmployee.location || ''} readOnly />
                   </div>
-                  <div>
-                    <Label htmlFor="editDepartment">Department</Label>
-                    <Input
-                      id="editDepartment"
-                      defaultValue={selectedEmployee.department}
-                      onChange={(e) => setSelectedEmployee({...selectedEmployee, department: e.target.value})}
-                    />
+                  <div className="space-y-2">
+                    <Label>Hire Date</Label>
+                    <Input value={new Date(selectedEmployee.hireDate).toLocaleDateString()} readOnly />
                   </div>
-                  <div>
-                    <Label htmlFor="editLocation">Location</Label>
-                    <Input
-                      id="editLocation"
-                      defaultValue={selectedEmployee.location}
-                      onChange={(e) => setSelectedEmployee({...selectedEmployee, location: e.target.value})}
-                    />
+                  <div className="space-y-2">
+                    <Label>Status</Label>
+                    <Badge variant={selectedEmployee.status === 'active' ? 'default' : 'secondary'}>
+                      {selectedEmployee.status}
+                    </Badge>
                   </div>
                 </div>
               </TabsContent>
+              
               <TabsContent value="certificates" className="space-y-4">
-                <div className="text-center py-8">
-                  <Award className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-gray-900">No Certificates Yet</h3>
-                  <p className="text-gray-500">Certificates will appear here once assigned to this employee.</p>
+                <div className="space-y-2">
+                  {getEmployeeCertificates(selectedEmployee.id).map((cert) => (
+                    <Card key={cert.id}>
+                      <CardContent className="p-4">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <h4 className="font-medium">{cert.certificateName}</h4>
+                            <p className="text-sm text-gray-600">
+                              Certificate #{cert.certificateNumber}
+                            </p>
+                            <p className="text-sm text-gray-600">
+                              Expires: {new Date(cert.expirationDate).toLocaleDateString()}
+                            </p>
+                          </div>
+                          <Badge variant={cert.status === 'active' ? 'default' : 
+                                          cert.status === 'expiring' ? 'destructive' : 'secondary'}>
+                            {cert.status}
+                          </Badge>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                  
+                  {getEmployeeCertificates(selectedEmployee.id).length === 0 && (
+                    <div className="text-center py-8">
+                      <Award className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                      <p className="text-gray-600">No certificates found for this employee</p>
+                    </div>
+                  )}
                 </div>
               </TabsContent>
+              
               <TabsContent value="training" className="space-y-4">
-                <div className="text-center py-8">
-                  <Calendar className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-gray-900">No Training Records</h3>
-                  <p className="text-gray-500">Training history will appear here once employee completes training.</p>
+                <div className="space-y-2">
+                  {getEmployeeTraining(selectedEmployee.id).map((training) => (
+                    <Card key={training.id}>
+                      <CardContent className="p-4">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <h4 className="font-medium">{training.sessionName}</h4>
+                            <p className="text-sm text-gray-600">{training.description}</p>
+                            <p className="text-sm text-gray-600">
+                              {new Date(training.startDate).toLocaleDateString()} - {new Date(training.endDate).toLocaleDateString()}
+                            </p>
+                            <p className="text-sm text-gray-600">
+                              Location: {training.location}
+                            </p>
+                          </div>
+                          <Badge variant={training.status === 'completed' ? 'default' : 'secondary'}>
+                            {training.status}
+                          </Badge>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                  
+                  {getEmployeeTraining(selectedEmployee.id).length === 0 && (
+                    <div className="text-center py-8">
+                      <Calendar className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                      <p className="text-gray-600">No training sessions found for this employee</p>
+                    </div>
+                  )}
                 </div>
               </TabsContent>
             </Tabs>
-            <div className="flex justify-end gap-2 mt-6">
-              <Button variant="outline" onClick={() => setShowEditDialog(false)}>
-                Cancel
-              </Button>
-              <Button onClick={() => handleUpdateEmployee(selectedEmployee)} disabled={updateEmployeeMutation.isPending}>
-                {updateEmployeeMutation.isPending ? 'Updating...' : 'Update Employee'}
-              </Button>
-            </div>
-          </DialogContent>
-        </Dialog>
-      )}
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
