@@ -310,21 +310,27 @@ const QuickSearchWidget: React.FC = () => {
 
   // Enhanced filtering and sorting
   const filteredEmployees = React.useMemo(() => {
-    let filtered = processedEmployees;
-
-    if (searchTerm) {
-      filtered = filtered.filter(employee => 
-        employee.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        employee.position?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        employee.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        employee.employeeId.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+    // Only show results when user starts typing
+    if (!searchTerm || searchTerm.trim() === '') {
+      return [];
     }
 
+    let filtered = processedEmployees;
+
+    // Filter by search term
+    filtered = filtered.filter(employee => 
+      employee.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      employee.position?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      employee.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      employee.employeeId.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    // Apply department filter
     if (selectedDepartment !== 'all') {
       filtered = filtered.filter(employee => employee.department === selectedDepartment);
     }
 
+    // Apply status filter
     if (selectedStatus !== 'all') {
       filtered = filtered.filter(employee => employee.status === selectedStatus);
     }
