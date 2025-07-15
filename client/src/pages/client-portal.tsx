@@ -271,9 +271,38 @@ export default function ClientPortal() {
     ));
   };
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    await handleSuccessfulLogin(loginEmail, loginPassword);
+  const handleLogin = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    setIsAuthenticating(true);
+    
+    try {
+      const result = await login(loginEmail, loginPassword);
+      if (result.success) {
+        setForceShowLogin(false);
+        setLoginEmail('');
+        setLoginPassword('');
+        
+        toast({
+          title: "Welcome Back!",
+          description: "You have been successfully signed in",
+          duration: 3000,
+        });
+      } else {
+        toast({
+          title: "Sign In Failed",
+          description: result.message || "Please check your credentials and try again.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Sign In Failed",
+        description: "Please check your credentials and try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsAuthenticating(false);
+    }
   };
 
   const handleLogout = async () => {
@@ -301,19 +330,27 @@ export default function ClientPortal() {
     setIsAuthenticating(true);
     
     try {
-      await login(loginEmail, loginPassword);
-      setShowAuthPopup(false);
-      setLoginEmail('');
-      setLoginPassword('');
-      
-      // Redirect to workspace after successful authentication
-      window.location.href = '/workspace';
-      
-      toast({
-        title: "Authentication Successful",
-        description: "Welcome to your workspace!",
-        duration: 3000,
-      });
+      const result = await login(loginEmail, loginPassword);
+      if (result.success) {
+        setShowAuthPopup(false);
+        setLoginEmail('');
+        setLoginPassword('');
+        
+        // Redirect to workspace after successful authentication
+        window.location.href = '/workspace';
+        
+        toast({
+          title: "Authentication Successful",
+          description: "Welcome to your workspace!",
+          duration: 3000,
+        });
+      } else {
+        toast({
+          title: "Authentication Failed",
+          description: result.message || "Please check your credentials and try again.",
+          variant: "destructive",
+        });
+      }
     } catch (error) {
       toast({
         title: "Authentication Failed",
@@ -366,7 +403,7 @@ export default function ClientPortal() {
                 Home
               </Button>
               {(!isAuthenticated || forceShowLogin) ? (
-                <form onSubmit={(e) => { e.preventDefault(); handleLogin(); }} className="flex items-center space-x-2">
+                <form onSubmit={handleLogin} className="flex items-center space-x-2">
                   <Input
                     type="email"
                     placeholder="Email"
