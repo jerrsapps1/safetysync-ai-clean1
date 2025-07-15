@@ -46,42 +46,7 @@ interface TrainingSession {
   employeeId: number;
 }
 
-// Enhanced mock data with 200 employees
-const mockEmployees: Employee[] = Array.from({ length: 200 }, (_, i) => {
-  const firstNames = ['John', 'Jane', 'Michael', 'Sarah', 'David', 'Lisa', 'Robert', 'Jennifer', 'William', 'Amy', 'James', 'Maria', 'Christopher', 'Michelle', 'Daniel', 'Patricia', 'Matthew', 'Linda', 'Anthony', 'Elizabeth', 'Mark', 'Barbara', 'Donald', 'Susan', 'Steven', 'Jessica', 'Paul', 'Nancy', 'Andrew', 'Dorothy', 'Joshua', 'Lisa', 'Kenneth', 'Karen', 'Kevin', 'Helen', 'Brian', 'Sandra', 'George', 'Donna', 'Edward', 'Carol', 'Ronald', 'Ruth', 'Timothy', 'Sharon', 'Jason', 'Michelle', 'Jeffrey', 'Laura', 'Ryan', 'Sarah', 'Jacob', 'Kimberly', 'Gary', 'Deborah', 'Nicholas', 'Dorothy', 'Eric', 'Lisa', 'Jonathan', 'Nancy', 'Stephen', 'Karen', 'Larry', 'Betty', 'Justin', 'Helen', 'Scott', 'Sandra', 'Brandon', 'Donna', 'Benjamin', 'Carol', 'Samuel', 'Ruth', 'Frank', 'Sharon', 'Raymond', 'Michelle', 'Alexander', 'Laura', 'Patrick', 'Sarah', 'Jack', 'Kimberly', 'Dennis', 'Deborah', 'Jerry', 'Dorothy', 'Tyler', 'Lisa', 'Aaron', 'Nancy', 'Jose', 'Karen', 'Henry', 'Betty', 'Adam', 'Helen', 'Douglas', 'Sandra', 'Nathan', 'Donna', 'Peter', 'Carol', 'Zachary', 'Ruth', 'Kyle', 'Sharon', 'Walter', 'Michelle', 'Harold', 'Laura', 'Carl', 'Sarah', 'Arthur', 'Kimberly', 'Gerald', 'Deborah', 'Wayne', 'Dorothy', 'Louis', 'Lisa', 'Ralph', 'Nancy', 'Roy', 'Karen', 'Eugene', 'Betty', 'Louis', 'Helen', 'Philip', 'Sandra', 'Bobby', 'Donna'];
-  
-  const lastNames = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis', 'Rodriguez', 'Martinez', 'Hernandez', 'Lopez', 'Gonzalez', 'Wilson', 'Anderson', 'Thomas', 'Taylor', 'Moore', 'Jackson', 'Martin', 'Lee', 'Perez', 'Thompson', 'White', 'Harris', 'Sanchez', 'Clark', 'Ramirez', 'Lewis', 'Robinson', 'Walker', 'Young', 'Allen', 'King', 'Wright', 'Scott', 'Torres', 'Nguyen', 'Hill', 'Flores', 'Green', 'Adams', 'Nelson', 'Baker', 'Hall', 'Rivera', 'Campbell', 'Mitchell', 'Carter', 'Roberts', 'Gomez', 'Phillips', 'Evans', 'Turner', 'Diaz', 'Parker', 'Cruz', 'Edwards', 'Collins', 'Reyes', 'Stewart', 'Morris', 'Morales', 'Murphy', 'Cook', 'Rogers', 'Gutierrez', 'Ortiz', 'Morgan', 'Cooper', 'Peterson', 'Bailey', 'Reed', 'Kelly', 'Howard', 'Ramos', 'Kim', 'Cox', 'Ward', 'Richardson', 'Watson', 'Brooks', 'Chavez', 'Wood', 'James', 'Bennett', 'Gray', 'Mendoza', 'Ruiz', 'Hughes', 'Price', 'Alvarez', 'Castillo', 'Sanders', 'Patel', 'Myers', 'Long', 'Ross', 'Foster', 'Jimenez'];
-  
-  const departments = ['Construction', 'Safety', 'Operations', 'Management', 'Quality', 'Environmental', 'HR', 'Engineering', 'Warehouse', 'Manufacturing', 'Maintenance', 'Security', 'Administration', 'Transportation', 'Procurement', 'IT', 'Finance', 'Customer Service', 'Sales', 'Marketing', 'Legal', 'Research', 'Documentation', 'Risk Management', 'Insurance'];
-  
-  const positions = ['Safety Manager', 'Site Supervisor', 'Construction Worker', 'Equipment Operator', 'Quality Inspector', 'Environmental Specialist', 'HR Coordinator', 'Project Engineer', 'Warehouse Associate', 'Machine Operator', 'Maintenance Technician', 'Security Guard', 'Administrative Assistant', 'Truck Driver', 'Procurement Specialist', 'IT Support', 'Financial Analyst', 'Customer Service Rep', 'Sales Representative', 'Marketing Coordinator', 'Legal Assistant', 'Research Analyst', 'Documentation Specialist', 'Risk Analyst', 'Insurance Coordinator'];
-  
-  const locations = ['Main Office', 'Construction Site A', 'Construction Site B', 'Warehouse 1', 'Warehouse 2', 'Manufacturing Plant', 'Field Office', 'Remote Location', 'Corporate HQ', 'Training Center'];
-  
-  const statuses: ('active' | 'inactive' | 'training' | 'on-leave')[] = ['active', 'inactive', 'training', 'on-leave'];
-  
-  const firstName = firstNames[i % firstNames.length];
-  const lastName = lastNames[i % lastNames.length];
-  
-  return {
-    id: i + 1,
-    employeeId: `EMP-${(i + 1).toString().padStart(4, '0')}`,
-    firstName,
-    lastName,
-    name: `${firstName} ${lastName}`,
-    department: departments[i % departments.length],
-    position: positions[i % positions.length],
-    status: statuses[i % statuses.length],
-    email: `${firstName.toLowerCase()}.${lastName.toLowerCase()}@company.com`,
-    phone: `555-${Math.floor(Math.random() * 900) + 100}-${Math.floor(Math.random() * 9000) + 1000}`,
-    hireDate: `202${Math.floor(Math.random() * 5)}-${String(Math.floor(Math.random() * 12) + 1).padStart(2, '0')}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`,
-    location: locations[i % locations.length],
-    trainingStatus: ['Current', 'Expiring Soon', 'Needs Renewal', 'No Certificates'][i % 4],
-    certificateCount: Math.floor(Math.random() * 8) + 1,
-    expiringCertificates: Math.floor(Math.random() * 3),
-    upcomingTraining: Math.floor(Math.random() * 4)
-  };
-});
+
 
 const QuickSearchWidget = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -109,10 +74,10 @@ const QuickSearchWidget = () => {
     retry: false,
   });
 
-  // Use mock data if API fails (for demonstration purposes)
-  const actualEmployees = employeesError || employees.length === 0 ? mockEmployees : employees;
-  const actualCertificates = certificatesError ? [] : certificates;
-  const actualTrainingSessions = trainingError ? [] : trainingSessions;
+  // Use actual API data consistently with Employee Management
+  const actualEmployees = employees;
+  const actualCertificates = certificates;
+  const actualTrainingSessions = trainingSessions;
 
   // Helper function to determine training status
   const getEmployeeTrainingStatus = (employeeId: number) => {
