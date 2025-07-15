@@ -136,6 +136,19 @@ const QuickSearchWidget: React.FC = () => {
   const actualCertificates = certificatesError ? [] : certificates;
   const actualTrainingSessions = trainingError ? [] : trainingSessions;
 
+  // Helper function to determine training status
+  const getEmployeeTrainingStatus = (employeeId: number) => {
+    const empCerts = actualCertificates.filter(cert => cert.employeeId === employeeId);
+    if (empCerts.length === 0) return 'No Certificates';
+    
+    const expiring = empCerts.some(cert => cert.status === 'expiring');
+    const expired = empCerts.some(cert => cert.status === 'expired');
+    
+    if (expired) return 'Needs Renewal';
+    if (expiring) return 'Expiring Soon';
+    return 'Current';
+  };
+
   // Process employee data to include computed name and enhanced info
   const processedEmployees = actualEmployees.map(emp => ({
     ...emp,
@@ -154,19 +167,6 @@ const QuickSearchWidget: React.FC = () => {
   // Get unique departments from processed data
   const departments = ['all', ...new Set(actualEmployees.map(emp => emp.department).filter(Boolean))];
   const statuses = ['all', 'active', 'inactive', 'training', 'on-leave'];
-
-  // Helper function to determine training status
-  const getEmployeeTrainingStatus = (employeeId: number) => {
-    const empCerts = actualCertificates.filter(cert => cert.employeeId === employeeId);
-    if (empCerts.length === 0) return 'No Certificates';
-    
-    const expiring = empCerts.some(cert => cert.status === 'expiring');
-    const expired = empCerts.some(cert => cert.status === 'expired');
-    
-    if (expired) return 'Needs Renewal';
-    if (expiring) return 'Expiring Soon';
-    return 'Current';
-  };
 
   // Enhanced filtering and sorting
   const filteredEmployees = React.useMemo(() => {
