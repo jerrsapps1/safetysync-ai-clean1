@@ -156,12 +156,37 @@ export default function Dashboard() {
   console.log('Dashboard render - isAuthenticated:', isAuthenticated, 'user:', user, 'authLoading:', authLoading);
   const [isLoading, setIsLoading] = useState(false);
   const [stats, setStats] = useState<DashboardStats>({
-    totalEmployees: 45,
-    compliantEmployees: 42,
-    pendingTraining: 8,
-    expiringCertifications: 3,
-    complianceScore: 93
+    totalEmployees: 0,
+    compliantEmployees: 0,
+    pendingTraining: 0,
+    expiringCertifications: 0,
+    complianceScore: 0
   });
+
+  // Fetch dashboard statistics on component mount
+  useEffect(() => {
+    const fetchDashboardStats = async () => {
+      if (!isAuthenticated) return;
+      
+      try {
+        const token = localStorage.getItem('authToken');
+        const response = await fetch('/api/dashboard/stats', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        
+        if (response.ok) {
+          const dashboardStats = await response.json();
+          setStats(dashboardStats);
+        }
+      } catch (error) {
+        console.error('Error fetching dashboard stats:', error);
+      }
+    };
+
+    fetchDashboardStats();
+  }, [isAuthenticated]);
 
   const [records, setRecords] = useState<ComplianceRecord[]>([
     {

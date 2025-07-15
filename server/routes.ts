@@ -19,17 +19,17 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 // Generate compliance report data based on type
-async function generateComplianceReportData(reportType: string, periodStart?: string, periodEnd?: string) {
-  const mockEmployeeData = [
-    { id: 1, name: "John Smith", position: "Site Supervisor", department: "Construction", hireDate: "2023-01-15" },
-    { id: 2, name: "Sarah Johnson", position: "Safety Coordinator", department: "Safety", hireDate: "2022-08-20" },
-    { id: 3, name: "Mike Rodriguez", position: "Equipment Operator", department: "Operations", hireDate: "2023-03-10" },
-    { id: 4, name: "Lisa Chen", position: "Project Manager", department: "Management", hireDate: "2021-11-05" },
-    { id: 5, name: "David Wilson", position: "Quality Inspector", department: "Quality", hireDate: "2023-02-28" },
-    { id: 6, name: "Emma Thompson", position: "Environmental Specialist", department: "Environmental", hireDate: "2022-12-12" },
-    { id: 7, name: "James Brown", position: "Crane Operator", department: "Operations", hireDate: "2023-04-18" },
-    { id: 8, name: "Maria Garcia", position: "Training Coordinator", department: "HR", hireDate: "2022-09-30" },
-  ];
+async function generateComplianceReportData(reportType: string, periodStart?: string, periodEnd?: string, userId?: number) {
+  // Get real employee data from storage
+  const realEmployeeData = userId ? await storage.getEmployees(userId) : [];
+  
+  const mockEmployeeData = realEmployeeData.map(emp => ({
+    id: emp.id,
+    name: `${emp.firstName} ${emp.lastName}`,
+    position: emp.position,
+    department: emp.department,
+    hireDate: emp.hireDate.toISOString().split('T')[0]
+  }));
 
   const mockTrainingData = [
     { name: "OSHA 30-Hour Construction", required: true, frequency: "Annual" },
@@ -1408,6 +1408,35 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error('Email test error:', error);
       res.status(500).json({ error: 'Email test failed' });
+    }
+  });
+
+  // Dashboard Statistics API
+  app.get("/api/dashboard/stats", authenticateToken, async (req, res) => {
+    try {
+      const userId = (req as any).user.id;
+      const employees = await storage.getEmployees(userId);
+      
+      // Calculate statistics based on real employee data
+      const totalEmployees = employees.length;
+      const activeEmployees = employees.filter(emp => emp.status === 'active').length;
+      const complianceScore = Math.round((activeEmployees / totalEmployees) * 100) || 0;
+      
+      // Mock training data for now - can be enhanced with real training data later
+      const pendingTraining = Math.floor(totalEmployees * 0.15);
+      const expiringCertifications = Math.floor(totalEmployees * 0.08);
+      const compliantEmployees = totalEmployees - pendingTraining - expiringCertifications;
+      
+      res.json({
+        totalEmployees,
+        compliantEmployees,
+        pendingTraining,
+        expiringCertifications,
+        complianceScore
+      });
+    } catch (error) {
+      console.error("Error fetching dashboard stats:", error);
+      res.status(500).json({ error: "Failed to fetch dashboard stats" });
     }
   });
 
