@@ -1892,7 +1892,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             onClick={() => handleTabSwitch("employee-portal")}
           >
             <FileUser className="w-5 h-5 mr-3" />
-            {sidebarOpen && "Portal"}
+            {sidebarOpen && "Employee Portal"}
           </Button>
           <Button
             variant="ghost"
@@ -1912,7 +1912,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             onClick={() => handleTabSwitch("workplace-poster")}
           >
             <FileText className="w-5 h-5 mr-3" />
-            {sidebarOpen && "Poster"}
+            {sidebarOpen && "Workplace Poster"}
           </Button>
           <Button
             variant="ghost"
@@ -1922,7 +1922,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             onClick={() => handleTabSwitch("training-calendar")}
           >
             <Calendar className="w-5 h-5 mr-3" />
-            {sidebarOpen && "Calendar"}
+            {sidebarOpen && "Training Calendar"}
           </Button>
           <Button
             variant="ghost"
@@ -1932,7 +1932,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             onClick={() => handleTabSwitch("subscription-billing")}
           >
             <CreditCard className="w-5 h-5 mr-3" />
-            {sidebarOpen && "Billing"}
+            {sidebarOpen && "Subscription & Billing"}
           </Button>
           <Button
             variant="ghost"
@@ -1942,7 +1942,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             onClick={() => handleTabSwitch("analytics-reports")}
           >
             <BarChart3 className="w-5 h-5 mr-3" />
-            {sidebarOpen && "Analytics"}
+            {sidebarOpen && "Analytics & Reports"}
           </Button>
           <Button
             variant="ghost"
@@ -2026,7 +2026,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 {activeTab === "analytics-reports" && "Analytics & Reports"}
                 {activeTab === "achievements" && "Achievements & Milestones"}
                 {activeTab === "document-manager" && "Document Management"}
-
+                {activeTab === "company-profile" && "Company Profile"}
                 {activeTab === "settings" && "Workspace Settings"}
               </h1>
               <p className="text-gray-400 text-sm md:text-base">
@@ -2052,7 +2052,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 {activeTab === "analytics-reports" && "Generate comprehensive analytics and reports"}
                 {activeTab === "achievements" && "Track your safety milestones and earn achievement badges"}
                 {activeTab === "document-manager" && "Upload, organize, and manage safety documents"}
-
+                {activeTab === "company-profile" && "Manage your company profile and business information"}
                 {activeTab === "settings" && "Configure your workspace and branding"}
               </p>
             </div>
