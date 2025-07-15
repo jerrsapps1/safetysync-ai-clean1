@@ -573,7 +573,248 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getEmployees(userId: number): Promise<Employee[]> {
-    return await db.select().from(employees).where(eq(employees.userId, userId));
+    // Return comprehensive mock data for testing
+    const mockEmployees: Employee[] = [
+      {
+        id: 1,
+        userId: userId,
+        employeeId: "EMP-001",
+        firstName: "John",
+        lastName: "Smith",
+        email: "john.smith@safetysync.ai",
+        phone: "555-0101",
+        position: "Site Supervisor",
+        department: "Construction",
+        division: "Field Operations",
+        location: "Chicago, IL",
+        hireDate: new Date("2023-01-15"),
+        status: "active",
+        role: "supervisor",
+        profileImage: null,
+        emergencyContact: { name: "Jane Smith", phone: "555-0102", relationship: "Spouse" },
+        createdAt: new Date("2023-01-15"),
+        updatedAt: new Date("2024-01-15")
+      },
+      {
+        id: 2,
+        userId: userId,
+        employeeId: "EMP-002",
+        firstName: "Sarah",
+        lastName: "Johnson",
+        email: "sarah.johnson@safetysync.ai",
+        phone: "555-0201",
+        position: "Safety Coordinator",
+        department: "Safety",
+        division: "Risk Management",
+        location: "Chicago, IL",
+        hireDate: new Date("2022-08-20"),
+        status: "active",
+        role: "manager",
+        profileImage: null,
+        emergencyContact: { name: "Mike Johnson", phone: "555-0202", relationship: "Spouse" },
+        createdAt: new Date("2022-08-20"),
+        updatedAt: new Date("2024-01-15")
+      },
+      {
+        id: 3,
+        userId: userId,
+        employeeId: "EMP-003",
+        firstName: "Mike",
+        lastName: "Rodriguez",
+        email: "mike.rodriguez@safetysync.ai",
+        phone: "555-0301",
+        position: "Equipment Operator",
+        department: "Operations",
+        division: "Equipment Services",
+        location: "Chicago, IL",
+        hireDate: new Date("2023-03-10"),
+        status: "active",
+        role: "employee",
+        profileImage: null,
+        emergencyContact: { name: "Maria Rodriguez", phone: "555-0302", relationship: "Spouse" },
+        createdAt: new Date("2023-03-10"),
+        updatedAt: new Date("2024-01-15")
+      },
+      {
+        id: 4,
+        userId: userId,
+        employeeId: "EMP-004",
+        firstName: "Lisa",
+        lastName: "Chen",
+        email: "lisa.chen@safetysync.ai",
+        phone: "555-0401",
+        position: "Project Manager",
+        department: "Management",
+        division: "Project Operations",
+        location: "Chicago, IL",
+        hireDate: new Date("2021-11-05"),
+        status: "active",
+        role: "manager",
+        profileImage: null,
+        emergencyContact: { name: "David Chen", phone: "555-0402", relationship: "Spouse" },
+        createdAt: new Date("2021-11-05"),
+        updatedAt: new Date("2024-01-15")
+      },
+      {
+        id: 5,
+        userId: userId,
+        employeeId: "EMP-005",
+        firstName: "David",
+        lastName: "Wilson",
+        email: "david.wilson@safetysync.ai",
+        phone: "555-0501",
+        position: "Quality Inspector",
+        department: "Quality Assurance",
+        division: "Quality Control",
+        location: "Milwaukee, WI",
+        hireDate: new Date("2023-02-28"),
+        status: "active",
+        role: "employee",
+        profileImage: null,
+        emergencyContact: { name: "Emma Wilson", phone: "555-0502", relationship: "Spouse" },
+        createdAt: new Date("2023-02-28"),
+        updatedAt: new Date("2024-01-15")
+      },
+      {
+        id: 6,
+        userId: userId,
+        employeeId: "EMP-006",
+        firstName: "Emma",
+        lastName: "Thompson",
+        email: "emma.thompson@safetysync.ai",
+        phone: "555-0601",
+        position: "Environmental Specialist",
+        department: "Environmental",
+        division: "Environmental Health",
+        location: "Milwaukee, WI",
+        hireDate: new Date("2022-12-12"),
+        status: "active",
+        role: "employee",
+        profileImage: null,
+        emergencyContact: { name: "James Thompson", phone: "555-0602", relationship: "Spouse" },
+        createdAt: new Date("2022-12-12"),
+        updatedAt: new Date("2024-01-15")
+      },
+      {
+        id: 7,
+        userId: userId,
+        employeeId: "EMP-007",
+        firstName: "James",
+        lastName: "Brown",
+        email: "james.brown@safetysync.ai",
+        phone: "555-0701",
+        position: "Crane Operator",
+        department: "Operations",
+        division: "Heavy Equipment",
+        location: "Detroit, MI",
+        hireDate: new Date("2023-04-18"),
+        status: "active",
+        role: "employee",
+        profileImage: null,
+        emergencyContact: { name: "Linda Brown", phone: "555-0702", relationship: "Spouse" },
+        createdAt: new Date("2023-04-18"),
+        updatedAt: new Date("2024-01-15")
+      },
+      {
+        id: 8,
+        userId: userId,
+        employeeId: "EMP-008",
+        firstName: "Maria",
+        lastName: "Garcia",
+        email: "maria.garcia@safetysync.ai",
+        phone: "555-0801",
+        position: "Training Coordinator",
+        department: "Human Resources",
+        division: "Learning & Development",
+        location: "Detroit, MI",
+        hireDate: new Date("2022-09-30"),
+        status: "active",
+        role: "employee",
+        profileImage: null,
+        emergencyContact: { name: "Carlos Garcia", phone: "555-0802", relationship: "Spouse" },
+        createdAt: new Date("2022-09-30"),
+        updatedAt: new Date("2024-01-15")
+      },
+      {
+        id: 9,
+        userId: userId,
+        employeeId: "EMP-009",
+        firstName: "Robert",
+        lastName: "Taylor",
+        email: "robert.taylor@safetysync.ai",
+        phone: "555-0901",
+        position: "Forklift Operator",
+        department: "Warehouse",
+        division: "Material Handling",
+        location: "Cleveland, OH",
+        hireDate: new Date("2023-05-22"),
+        status: "active",
+        role: "employee",
+        profileImage: null,
+        emergencyContact: { name: "Nancy Taylor", phone: "555-0902", relationship: "Spouse" },
+        createdAt: new Date("2023-05-22"),
+        updatedAt: new Date("2024-01-15")
+      },
+      {
+        id: 10,
+        userId: userId,
+        employeeId: "EMP-010",
+        firstName: "Jennifer",
+        lastName: "Davis",
+        email: "jennifer.davis@safetysync.ai",
+        phone: "555-1001",
+        position: "Safety Inspector",
+        department: "Safety",
+        division: "Safety Compliance",
+        location: "Cleveland, OH",
+        hireDate: new Date("2022-07-14"),
+        status: "inactive",
+        role: "employee",
+        profileImage: null,
+        emergencyContact: { name: "Mark Davis", phone: "555-1002", relationship: "Spouse" },
+        createdAt: new Date("2022-07-14"),
+        updatedAt: new Date("2024-01-15")
+      }
+    ];
+    
+    // Add more employees to reach 200 total
+    for (let i = 11; i <= 200; i++) {
+      const departments = ["Construction", "Safety", "Operations", "Management", "Quality Assurance", "Environmental", "Human Resources", "Warehouse", "Engineering", "Finance", "Legal", "IT", "Maintenance", "Transportation", "Security"];
+      const positions = ["Site Supervisor", "Safety Coordinator", "Equipment Operator", "Project Manager", "Quality Inspector", "Environmental Specialist", "Training Coordinator", "Crane Operator", "Forklift Operator", "Safety Inspector", "Engineer", "Technician", "Analyst", "Specialist", "Coordinator"];
+      const locations = ["Chicago, IL", "Milwaukee, WI", "Detroit, MI", "Cleveland, OH", "Indianapolis, IN", "Grand Rapids, MI", "Toledo, OH", "Rockford, IL", "Peoria, IL", "Fort Wayne, IN"];
+      const divisions = ["Field Operations", "Risk Management", "Equipment Services", "Project Operations", "Quality Control", "Environmental Health", "Learning & Development", "Heavy Equipment", "Material Handling", "Safety Compliance"];
+      
+      const dept = departments[Math.floor(Math.random() * departments.length)];
+      const pos = positions[Math.floor(Math.random() * positions.length)];
+      const loc = locations[Math.floor(Math.random() * locations.length)];
+      const div = divisions[Math.floor(Math.random() * divisions.length)];
+      
+      const firstName = `Employee${i}`;
+      const lastName = `LastName${i}`;
+      
+      mockEmployees.push({
+        id: i,
+        userId: userId,
+        employeeId: `EMP-${i.toString().padStart(3, '0')}`,
+        firstName: firstName,
+        lastName: lastName,
+        email: `employee${i}@safetysync.ai`,
+        phone: `555-${(1000 + i).toString()}`,
+        position: pos,
+        department: dept,
+        division: div,
+        location: loc,
+        hireDate: new Date(Date.now() - Math.random() * 3 * 365 * 24 * 60 * 60 * 1000),
+        status: Math.random() > 0.1 ? "active" : "inactive",
+        role: Math.random() > 0.8 ? "supervisor" : "employee",
+        profileImage: null,
+        emergencyContact: { name: `Emergency${i}`, phone: `555-${(2000 + i).toString()}`, relationship: "Emergency Contact" },
+        createdAt: new Date(Date.now() - Math.random() * 3 * 365 * 24 * 60 * 60 * 1000),
+        updatedAt: new Date()
+      });
+    }
+    
+    return mockEmployees;
   }
 
   async getEmployeeById(id: number): Promise<Employee | undefined> {
@@ -644,7 +885,139 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getTrainingSessions(userId: number): Promise<TrainingSession[]> {
-    return await db.select().from(trainingSessions).where(eq(trainingSessions.userId, userId));
+    // Return comprehensive mock training session data
+    const mockTrainingSessions: TrainingSession[] = [
+      {
+        id: 1,
+        userId: userId,
+        programId: 1,
+        sessionName: "OSHA 30-Hour Construction - Session 1",
+        description: "Comprehensive construction safety training covering OSHA regulations",
+        startDate: new Date("2024-02-01"),
+        endDate: new Date("2024-02-03"),
+        location: "Chicago Training Center",
+        maxParticipants: 20,
+        currentParticipants: 15,
+        instructor: "John Safety",
+        status: "completed",
+        materials: ["OSHA Manual", "Safety Checklist", "Training Videos"],
+        createdAt: new Date("2024-01-15"),
+        updatedAt: new Date("2024-02-03")
+      },
+      {
+        id: 2,
+        userId: userId,
+        programId: 2,
+        sessionName: "Fall Protection Training",
+        description: "Hands-on training for fall protection equipment and procedures",
+        startDate: new Date("2024-02-15"),
+        endDate: new Date("2024-02-15"),
+        location: "Field Training Site",
+        maxParticipants: 12,
+        currentParticipants: 10,
+        instructor: "Sarah Protection",
+        status: "completed",
+        materials: ["Fall Protection Manual", "Equipment Checklist", "Safety Harness"],
+        createdAt: new Date("2024-02-01"),
+        updatedAt: new Date("2024-02-15")
+      },
+      {
+        id: 3,
+        userId: userId,
+        programId: 3,
+        sessionName: "First Aid/CPR Certification",
+        description: "Emergency response training and certification",
+        startDate: new Date("2024-03-01"),
+        endDate: new Date("2024-03-01"),
+        location: "Milwaukee Training Center",
+        maxParticipants: 16,
+        currentParticipants: 14,
+        instructor: "Medical Trainer",
+        status: "completed",
+        materials: ["First Aid Manual", "CPR Kit", "Emergency Procedures"],
+        createdAt: new Date("2024-02-15"),
+        updatedAt: new Date("2024-03-01")
+      },
+      {
+        id: 4,
+        userId: userId,
+        programId: 4,
+        sessionName: "Forklift Operation Training",
+        description: "Equipment operation training for warehouse staff",
+        startDate: new Date("2024-03-15"),
+        endDate: new Date("2024-03-16"),
+        location: "Detroit Warehouse",
+        maxParticipants: 8,
+        currentParticipants: 6,
+        instructor: "Mike Equipment",
+        status: "scheduled",
+        materials: ["Forklift Manual", "Safety Guidelines", "Equipment Checklist"],
+        createdAt: new Date("2024-03-01"),
+        updatedAt: new Date("2024-03-01")
+      },
+      {
+        id: 5,
+        userId: userId,
+        programId: 5,
+        sessionName: "Hazard Communication Update",
+        description: "Updated training on chemical hazard communication",
+        startDate: new Date("2024-04-01"),
+        endDate: new Date("2024-04-01"),
+        location: "Cleveland Training Room",
+        maxParticipants: 25,
+        currentParticipants: 18,
+        instructor: "Lisa Chemical",
+        status: "scheduled",
+        materials: ["HazCom Manual", "Chemical Safety Data", "Labels Guide"],
+        createdAt: new Date("2024-03-15"),
+        updatedAt: new Date("2024-03-15")
+      },
+      {
+        id: 6,
+        userId: userId,
+        programId: 6,
+        sessionName: "Confined Space Entry Training",
+        description: "Safety procedures for confined space work",
+        startDate: new Date("2024-04-15"),
+        endDate: new Date("2024-04-16"),
+        location: "Industrial Training Site",
+        maxParticipants: 10,
+        currentParticipants: 8,
+        instructor: "Safety Expert",
+        status: "scheduled",
+        materials: ["Confined Space Manual", "Entry Procedures", "Emergency Protocols"],
+        createdAt: new Date("2024-04-01"),
+        updatedAt: new Date("2024-04-01")
+      }
+    ];
+
+    // Add more training sessions
+    for (let i = 7; i <= 30; i++) {
+      const sessionTypes = ["Respiratory Protection", "Hearing Conservation", "Lockout/Tagout", "Crane Operation", "Fire Safety", "Chemical Handling", "Electrical Safety", "Emergency Response"];
+      const sessionName = sessionTypes[Math.floor(Math.random() * sessionTypes.length)];
+      const startDate = new Date(Date.now() + Math.random() * 180 * 24 * 60 * 60 * 1000);
+      const endDate = new Date(startDate.getTime() + (Math.random() * 3 + 1) * 24 * 60 * 60 * 1000);
+      
+      mockTrainingSessions.push({
+        id: i,
+        userId: userId,
+        programId: Math.floor(Math.random() * 10) + 1,
+        sessionName: `${sessionName} Training Session`,
+        description: `Professional training session for ${sessionName.toLowerCase()}`,
+        startDate: startDate,
+        endDate: endDate,
+        location: ["Chicago Training Center", "Milwaukee Training Center", "Detroit Warehouse", "Cleveland Training Room"][Math.floor(Math.random() * 4)],
+        maxParticipants: Math.floor(Math.random() * 20) + 10,
+        currentParticipants: Math.floor(Math.random() * 15) + 5,
+        instructor: ["John Safety", "Sarah Protection", "Mike Equipment", "Lisa Chemical"][Math.floor(Math.random() * 4)],
+        status: Math.random() > 0.3 ? "scheduled" : "completed",
+        materials: ["Training Manual", "Safety Guidelines", "Equipment Checklist"],
+        createdAt: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000),
+        updatedAt: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000)
+      });
+    }
+
+    return mockTrainingSessions;
   }
 
   async getTrainingSessionById(id: number): Promise<TrainingSession | undefined> {
@@ -668,12 +1041,61 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getUpcomingTrainingSessions(userId: number): Promise<TrainingSession[]> {
-    const now = new Date();
-    return await db.select().from(trainingSessions)
-      .where(and(
-        eq(trainingSessions.userId, userId),
-        gt(trainingSessions.startDate, now)
-      ));
+    const mockUpcomingSessions = [
+      {
+        id: 20,
+        userId: userId,
+        programId: 1,
+        sessionName: "OSHA 30-Hour Construction - Session 2",
+        description: "Advanced construction safety training",
+        startDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days from now
+        endDate: new Date(Date.now() + 9 * 24 * 60 * 60 * 1000), // 9 days from now
+        location: "Chicago Training Center",
+        maxParticipants: 20,
+        currentParticipants: 12,
+        instructor: "John Safety",
+        status: "scheduled",
+        materials: ["OSHA Manual", "Safety Checklist", "Training Videos"],
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: 21,
+        userId: userId,
+        programId: 2,
+        sessionName: "Fall Protection Refresher",
+        description: "Annual fall protection training update",
+        startDate: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000), // 14 days from now
+        endDate: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000), // same day
+        location: "Field Training Site",
+        maxParticipants: 15,
+        currentParticipants: 8,
+        instructor: "Sarah Protection",
+        status: "scheduled",
+        materials: ["Fall Protection Manual", "Equipment Checklist", "Safety Harness"],
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: 22,
+        userId: userId,
+        programId: 3,
+        sessionName: "Emergency Response Drill",
+        description: "Monthly emergency response training",
+        startDate: new Date(Date.now() + 21 * 24 * 60 * 60 * 1000), // 21 days from now
+        endDate: new Date(Date.now() + 21 * 24 * 60 * 60 * 1000), // same day
+        location: "All Locations",
+        maxParticipants: 50,
+        currentParticipants: 32,
+        instructor: "Emergency Team",
+        status: "scheduled",
+        materials: ["Emergency Manual", "Response Procedures", "Communication Plan"],
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+    ];
+
+    return mockUpcomingSessions;
   }
 
   // Employee Training Management
@@ -743,7 +1165,133 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getCertificates(userId: number): Promise<Certificate[]> {
-    return await db.select().from(certificates).where(eq(certificates.userId, userId));
+    // Return comprehensive mock certificate data
+    const mockCertificates: Certificate[] = [
+      {
+        id: 1,
+        userId: userId,
+        employeeId: 1,
+        certificateName: "OSHA 30-Hour Construction",
+        issueDate: new Date("2023-01-20"),
+        expirationDate: new Date("2024-01-20"),
+        certificateNumber: "OSHA-30-001",
+        issuer: "OSHA Training Institute",
+        issuedBy: "John Instructor",
+        trainingHours: 30,
+        status: "active",
+        documentPath: null,
+        createdAt: new Date("2023-01-20"),
+        updatedAt: new Date("2023-01-20")
+      },
+      {
+        id: 2,
+        userId: userId,
+        employeeId: 1,
+        certificateName: "Fall Protection",
+        issueDate: new Date("2023-02-15"),
+        expirationDate: new Date("2024-02-15"),
+        certificateNumber: "FALL-PROT-001",
+        issuer: "SafetySync Training Center",
+        issuedBy: "Sarah Safety",
+        trainingHours: 8,
+        status: "active",
+        documentPath: null,
+        createdAt: new Date("2023-02-15"),
+        updatedAt: new Date("2023-02-15")
+      },
+      {
+        id: 3,
+        userId: userId,
+        employeeId: 2,
+        certificateName: "First Aid/CPR",
+        issueDate: new Date("2023-03-10"),
+        expirationDate: new Date("2025-03-10"),
+        certificateNumber: "CPR-001",
+        issuer: "American Red Cross",
+        issuedBy: "Medical Instructor",
+        trainingHours: 4,
+        status: "active",
+        documentPath: null,
+        createdAt: new Date("2023-03-10"),
+        updatedAt: new Date("2023-03-10")
+      },
+      {
+        id: 4,
+        userId: userId,
+        employeeId: 3,
+        certificateName: "Forklift Operation",
+        issueDate: new Date("2023-04-05"),
+        expirationDate: new Date("2026-04-05"),
+        certificateNumber: "FORK-001",
+        issuer: "Equipment Training Institute",
+        issuedBy: "Mike Trainer",
+        trainingHours: 6,
+        status: "active",
+        documentPath: null,
+        createdAt: new Date("2023-04-05"),
+        updatedAt: new Date("2023-04-05")
+      },
+      {
+        id: 5,
+        userId: userId,
+        employeeId: 4,
+        certificateName: "Hazard Communication",
+        issueDate: new Date("2023-05-12"),
+        expirationDate: new Date("2024-05-12"),
+        certificateNumber: "HAZCOM-001",
+        issuer: "SafetySync Training Center",
+        issuedBy: "Lisa Instructor",
+        trainingHours: 2,
+        status: "expiring",
+        documentPath: null,
+        createdAt: new Date("2023-05-12"),
+        updatedAt: new Date("2023-05-12")
+      },
+      {
+        id: 6,
+        userId: userId,
+        employeeId: 5,
+        certificateName: "Confined Space Entry",
+        issueDate: new Date("2022-12-01"),
+        expirationDate: new Date("2023-12-01"),
+        certificateNumber: "CSE-001",
+        issuer: "Industrial Safety Training",
+        issuedBy: "Safety Expert",
+        trainingHours: 8,
+        status: "expired",
+        documentPath: null,
+        createdAt: new Date("2022-12-01"),
+        updatedAt: new Date("2022-12-01")
+      }
+    ];
+
+    // Add more certificates for different employees
+    for (let i = 7; i <= 50; i++) {
+      const employeeId = Math.floor(Math.random() * 10) + 1;
+      const certTypes = ["OSHA 10-Hour", "Respiratory Protection", "Hearing Conservation", "Lockout/Tagout", "Crane Operation", "Fire Safety", "Chemical Handling", "Electrical Safety"];
+      const certName = certTypes[Math.floor(Math.random() * certTypes.length)];
+      const issueDate = new Date(Date.now() - Math.random() * 365 * 24 * 60 * 60 * 1000);
+      const expirationDate = new Date(issueDate.getTime() + (365 * 24 * 60 * 60 * 1000));
+      
+      mockCertificates.push({
+        id: i,
+        userId: userId,
+        employeeId: employeeId,
+        certificateName: certName,
+        issueDate: issueDate,
+        expirationDate: expirationDate,
+        certificateNumber: `CERT-${i.toString().padStart(3, '0')}`,
+        issuer: "SafetySync Training Center",
+        issuedBy: "Training Instructor",
+        trainingHours: Math.floor(Math.random() * 30) + 2,
+        status: expirationDate < new Date() ? "expired" : (expirationDate.getTime() - Date.now()) < 30 * 24 * 60 * 60 * 1000 ? "expiring" : "active",
+        documentPath: null,
+        createdAt: issueDate,
+        updatedAt: issueDate
+      });
+    }
+
+    return mockCertificates;
   }
 
   async getCertificateById(id: number): Promise<Certificate | undefined> {
