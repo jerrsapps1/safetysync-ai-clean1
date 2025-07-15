@@ -366,7 +366,7 @@ export default function ClientPortal() {
                 Home
               </Button>
               {(!isAuthenticated || forceShowLogin) ? (
-                <div className="flex items-center space-x-2">
+                <form onSubmit={(e) => { e.preventDefault(); handleLogin(); }} className="flex items-center space-x-2">
                   <Input
                     type="email"
                     placeholder="Email"
@@ -382,14 +382,14 @@ export default function ClientPortal() {
                     className="w-40 h-8 text-sm bg-white/10 border-white/20 text-white placeholder-gray-400"
                   />
                   <Button
-                    onClick={handleLogin}
+                    type="submit"
                     disabled={isAuthenticating}
                     size="sm"
                     className="bg-blue-600 hover:bg-blue-700 text-white"
                   >
                     {isAuthenticating ? "..." : "Sign In"}
                   </Button>
-                </div>
+                </form>
               ) : (
                 <div className="flex items-center space-x-4">
                   {/* Account Status Alert in Header */}
