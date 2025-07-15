@@ -228,7 +228,7 @@ const QuickSearchWidget: React.FC = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Search className="w-5 h-5" />
-              Quick Search
+              Employee Quick Search
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -247,7 +247,7 @@ const QuickSearchWidget: React.FC = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Search className="w-5 h-5" />
-            Enhanced Quick Search
+            Employee Quick Search
           </CardTitle>
         </CardHeader>
         <CardContent>
