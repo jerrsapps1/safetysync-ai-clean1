@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Search, Filter, Users, MapPin, Clock, Phone, Mail, Eye, Award, Calendar, Building, AlertCircle } from 'lucide-react';
+import { Search, Filter, Users, MapPin, Clock, Phone, Mail, Eye, Award, Calendar, Building, AlertCircle, Grid, List, Table, BarChart3 } from 'lucide-react';
 
 interface Employee {
   id: number;
@@ -23,6 +23,9 @@ interface Employee {
   hireDate: string;
   location: string;
   trainingStatus: string;
+  certificateCount?: number;
+  expiringCertificates?: number;
+  upcomingTraining?: number;
 }
 
 interface Certificate {
@@ -43,210 +46,44 @@ interface TrainingSession {
   employeeId: number;
 }
 
-const mockEmployees: Employee[] = [
-  { id: 1, name: 'John Smith', firstName: 'John', lastName: 'Smith', department: 'Construction', position: 'Site Supervisor', status: 'active', email: 'john.smith@company.com', phone: '(555) 123-4567', hireDate: '2023-01-15', location: 'Site A', trainingStatus: 'Current' },
-  { id: 2, name: 'Sarah Johnson', firstName: 'Sarah', lastName: 'Johnson', department: 'Safety', position: 'Safety Coordinator', status: 'active', email: 'sarah.johnson@company.com', phone: '(555) 234-5678', hireDate: '2022-08-20', location: 'Office', trainingStatus: 'Needs Renewal' },
-  { id: 3, name: 'Mike Rodriguez', firstName: 'Mike', lastName: 'Rodriguez', department: 'Operations', position: 'Equipment Operator', status: 'training', email: 'mike.rodriguez@company.com', phone: '(555) 345-6789', hireDate: '2023-03-10', location: 'Site B', trainingStatus: 'In Progress' },
-  { id: 4, name: 'Lisa Chen', firstName: 'Lisa', lastName: 'Chen', department: 'Management', position: 'Project Manager', status: 'active', email: 'lisa.chen@company.com', phone: '(555) 456-7890', hireDate: '2021-11-05', location: 'Office', trainingStatus: 'Current' },
-  { id: 5, name: 'David Wilson', firstName: 'David', lastName: 'Wilson', department: 'Quality', position: 'Quality Inspector', status: 'on-leave', email: 'david.wilson@company.com', phone: '(555) 567-8901', hireDate: '2023-02-28', location: 'Site A', trainingStatus: 'Pending' },
-  { id: 6, name: 'Emma Thompson', firstName: 'Emma', lastName: 'Thompson', department: 'Environmental', position: 'Environmental Specialist', status: 'active', email: 'emma.thompson@company.com', phone: '(555) 678-9012', hireDate: '2022-12-12', location: 'Lab', trainingStatus: 'Current' },
-  { id: 7, name: 'James Brown', firstName: 'James', lastName: 'Brown', department: 'Operations', position: 'Crane Operator', status: 'active', email: 'james.brown@company.com', phone: '(555) 789-0123', hireDate: '2023-04-18', location: 'Site B', trainingStatus: 'Current' },
-  { id: 8, name: 'Maria Garcia', firstName: 'Maria', lastName: 'Garcia', department: 'HR', position: 'Training Coordinator', status: 'active', email: 'maria.garcia@company.com', phone: '(555) 890-1234', hireDate: '2022-09-30', location: 'Office', trainingStatus: 'Current' },
-  { id: 9, name: 'Robert Kim', firstName: 'Robert', lastName: 'Kim', department: 'Engineering', position: 'Electrical Engineer', status: 'active', email: 'robert.kim@company.com', phone: '(555) 901-2345', hireDate: '2023-05-20', location: 'Site C', trainingStatus: 'Current' },
-  { id: 10, name: 'Jennifer Rodriguez', firstName: 'Jennifer', lastName: 'Rodriguez', department: 'Warehouse', position: 'Material Handler', status: 'active', email: 'jennifer.rodriguez@company.com', phone: '(555) 012-3456', hireDate: '2023-06-15', location: 'Warehouse A', trainingStatus: 'Current' },
-  { id: 11, name: 'Michael Davis', firstName: 'Michael', lastName: 'Davis', department: 'Operations', position: 'Forklift Operator', status: 'active', email: 'michael.davis@company.com', phone: '(555) 123-4568', hireDate: '2022-11-08', location: 'Warehouse B', trainingStatus: 'Current' },
-  { id: 12, name: 'Ashley Miller', firstName: 'Ashley', lastName: 'Miller', department: 'Safety', position: 'Safety Inspector', status: 'active', email: 'ashley.miller@company.com', phone: '(555) 234-5679', hireDate: '2023-07-22', location: 'Site A', trainingStatus: 'Current' },
-  { id: 13, name: 'Christopher Wilson', firstName: 'Christopher', lastName: 'Wilson', department: 'Manufacturing', position: 'Welder', status: 'active', email: 'christopher.wilson@company.com', phone: '(555) 345-6780', hireDate: '2022-10-14', location: 'Plant A', trainingStatus: 'Current' },
-  { id: 14, name: 'Amanda Moore', firstName: 'Amanda', lastName: 'Moore', department: 'Quality', position: 'Quality Control', status: 'active', email: 'amanda.moore@company.com', phone: '(555) 456-7891', hireDate: '2023-08-30', location: 'Plant B', trainingStatus: 'Current' },
-  { id: 15, name: 'Daniel Taylor', firstName: 'Daniel', lastName: 'Taylor', department: 'Maintenance', position: 'Maintenance Tech', status: 'active', email: 'daniel.taylor@company.com', phone: '(555) 567-8902', hireDate: '2022-12-05', location: 'Site A', trainingStatus: 'Current' },
-  { id: 16, name: 'Stephanie Anderson', firstName: 'Stephanie', lastName: 'Anderson', department: 'HR', position: 'HR Specialist', status: 'active', email: 'stephanie.anderson@company.com', phone: '(555) 678-9013', hireDate: '2023-01-10', location: 'Office', trainingStatus: 'Current' },
-  { id: 17, name: 'Kevin Thomas', firstName: 'Kevin', lastName: 'Thomas', department: 'Security', position: 'Security Guard', status: 'active', email: 'kevin.thomas@company.com', phone: '(555) 789-0124', hireDate: '2022-09-18', location: 'Gate 1', trainingStatus: 'Current' },
-  { id: 18, name: 'Michelle Jackson', firstName: 'Michelle', lastName: 'Jackson', department: 'Administration', position: 'Administrative Assistant', status: 'active', email: 'michelle.jackson@company.com', phone: '(555) 890-1235', hireDate: '2023-02-14', location: 'Office', trainingStatus: 'Current' },
-  { id: 19, name: 'Ryan White', firstName: 'Ryan', lastName: 'White', department: 'Transportation', position: 'Truck Driver', status: 'active', email: 'ryan.white@company.com', phone: '(555) 901-2346', hireDate: '2022-08-25', location: 'Depot A', trainingStatus: 'Current' },
-  { id: 20, name: 'Nicole Harris', firstName: 'Nicole', lastName: 'Harris', department: 'Warehouse', position: 'Inventory Clerk', status: 'active', email: 'nicole.harris@company.com', phone: '(555) 012-3457', hireDate: '2023-03-18', location: 'Warehouse C', trainingStatus: 'Current' },
-  { id: 21, name: 'Brandon Martin', firstName: 'Brandon', lastName: 'Martin', department: 'Manufacturing', position: 'Machinist', status: 'active', email: 'brandon.martin@company.com', phone: '(555) 123-4569', hireDate: '2022-11-22', location: 'Plant A', trainingStatus: 'Current' },
-  { id: 22, name: 'Samantha Thompson', firstName: 'Samantha', lastName: 'Thompson', department: 'Quality', position: 'Lab Technician', status: 'active', email: 'samantha.thompson@company.com', phone: '(555) 234-5680', hireDate: '2023-04-05', location: 'Lab 1', trainingStatus: 'Current' },
-  { id: 23, name: 'Jonathan Garcia', firstName: 'Jonathan', lastName: 'Garcia', department: 'Maintenance', position: 'Electrician', status: 'active', email: 'jonathan.garcia@company.com', phone: '(555) 345-6781', hireDate: '2022-10-08', location: 'Site B', trainingStatus: 'Current' },
-  { id: 24, name: 'Rachel Martinez', firstName: 'Rachel', lastName: 'Martinez', department: 'Warehouse', position: 'Shipping Clerk', status: 'active', email: 'rachel.martinez@company.com', phone: '(555) 456-7892', hireDate: '2023-05-12', location: 'Warehouse D', trainingStatus: 'Current' },
-  { id: 25, name: 'Tyler Robinson', firstName: 'Tyler', lastName: 'Robinson', department: 'Manufacturing', position: 'Production Supervisor', status: 'active', email: 'tyler.robinson@company.com', phone: '(555) 567-8903', hireDate: '2022-12-30', location: 'Plant B', trainingStatus: 'Current' },
-  { id: 26, name: 'Jessica Clark', firstName: 'Jessica', lastName: 'Clark', department: 'Procurement', position: 'Purchasing Agent', status: 'active', email: 'jessica.clark@company.com', phone: '(555) 678-9014', hireDate: '2023-06-08', location: 'Office', trainingStatus: 'Current' },
-  { id: 27, name: 'Andrew Rodriguez', firstName: 'Andrew', lastName: 'Rodriguez', department: 'IT', position: 'IT Support', status: 'active', email: 'andrew.rodriguez@company.com', phone: '(555) 789-0125', hireDate: '2022-09-14', location: 'IT Center', trainingStatus: 'Current' },
-  { id: 28, name: 'Megan Lewis', firstName: 'Megan', lastName: 'Lewis', department: 'Finance', position: 'Accountant', status: 'active', email: 'megan.lewis@company.com', phone: '(555) 890-1236', hireDate: '2023-07-03', location: 'Office', trainingStatus: 'Current' },
-  { id: 29, name: 'Jacob Lee', firstName: 'Jacob', lastName: 'Lee', department: 'Operations', position: 'Heavy Equipment Operator', status: 'active', email: 'jacob.lee@company.com', phone: '(555) 901-2347', hireDate: '2022-11-16', location: 'Site C', trainingStatus: 'Current' },
-  { id: 30, name: 'Kimberly Walker', firstName: 'Kimberly', lastName: 'Walker', department: 'Customer Service', position: 'Customer Service Rep', status: 'active', email: 'kimberly.walker@company.com', phone: '(555) 012-3458', hireDate: '2023-08-20', location: 'Call Center', trainingStatus: 'Current' },
-  { id: 31, name: 'Steven Hall', firstName: 'Steven', lastName: 'Hall', department: 'Maintenance', position: 'Plumber', status: 'active', email: 'steven.hall@company.com', phone: '(555) 123-4570', hireDate: '2022-10-25', location: 'Site A', trainingStatus: 'Current' },
-  { id: 32, name: 'Lauren Allen', firstName: 'Lauren', lastName: 'Allen', department: 'Engineering', position: 'Design Engineer', status: 'active', email: 'lauren.allen@company.com', phone: '(555) 234-5681', hireDate: '2023-09-15', location: 'Design Center', trainingStatus: 'Current' },
-  { id: 33, name: 'Matthew Young', firstName: 'Matthew', lastName: 'Young', department: 'Construction', position: 'Carpenter', status: 'active', email: 'matthew.young@company.com', phone: '(555) 345-6782', hireDate: '2022-08-12', location: 'Site B', trainingStatus: 'Current' },
-  { id: 34, name: 'Brittany Hernandez', firstName: 'Brittany', lastName: 'Hernandez', department: 'Administration', position: 'Receptionist', status: 'active', email: 'brittany.hernandez@company.com', phone: '(555) 456-7893', hireDate: '2023-10-05', location: 'Office', trainingStatus: 'Current' },
-  { id: 35, name: 'Gregory King', firstName: 'Gregory', lastName: 'King', department: 'Operations', position: 'Night Shift Supervisor', status: 'active', email: 'gregory.king@company.com', phone: '(555) 567-8904', hireDate: '2022-09-28', location: 'Plant A', trainingStatus: 'Current' },
-  { id: 36, name: 'Crystal Wright', firstName: 'Crystal', lastName: 'Wright', department: 'Finance', position: 'Payroll Clerk', status: 'active', email: 'crystal.wright@company.com', phone: '(555) 678-9015', hireDate: '2023-11-12', location: 'Office', trainingStatus: 'Current' },
-  { id: 37, name: 'Eric Lopez', firstName: 'Eric', lastName: 'Lopez', department: 'Manufacturing', position: 'Painter', status: 'active', email: 'eric.lopez@company.com', phone: '(555) 789-0126', hireDate: '2022-12-18', location: 'Paint Shop', trainingStatus: 'Current' },
-  { id: 38, name: 'Vanessa Hill', firstName: 'Vanessa', lastName: 'Hill', department: 'HR', position: 'Training Specialist', status: 'active', email: 'vanessa.hill@company.com', phone: '(555) 890-1237', hireDate: '2023-01-25', location: 'Training Center', trainingStatus: 'Current' },
-  { id: 39, name: 'Patrick Scott', firstName: 'Patrick', lastName: 'Scott', department: 'Operations', position: 'Loader Operator', status: 'active', email: 'patrick.scott@company.com', phone: '(555) 901-2348', hireDate: '2022-11-03', location: 'Quarry A', trainingStatus: 'Current' },
-  { id: 40, name: 'Tiffany Green', firstName: 'Tiffany', lastName: 'Green', department: 'Administration', position: 'Office Manager', status: 'active', email: 'tiffany.green@company.com', phone: '(555) 012-3459', hireDate: '2023-02-08', location: 'Branch Office', trainingStatus: 'Current' },
-  { id: 41, name: 'Carlos Adams', firstName: 'Carlos', lastName: 'Adams', department: 'Construction', position: 'Roofer', status: 'active', email: 'carlos.adams@company.com', phone: '(555) 123-4571', hireDate: '2022-10-15', location: 'Site C', trainingStatus: 'Current' },
-  { id: 42, name: 'Diana Baker', firstName: 'Diana', lastName: 'Baker', department: 'Engineering', position: 'Chemical Engineer', status: 'active', email: 'diana.baker@company.com', phone: '(555) 234-5682', hireDate: '2023-03-22', location: 'Lab 2', trainingStatus: 'Current' },
-  { id: 43, name: 'Nathan Gonzalez', firstName: 'Nathan', lastName: 'Gonzalez', department: 'Maintenance', position: 'Groundskeeper', status: 'active', email: 'nathan.gonzalez@company.com', phone: '(555) 345-6783', hireDate: '2022-08-05', location: 'Grounds', trainingStatus: 'Current' },
-  { id: 44, name: 'Courtney Nelson', firstName: 'Courtney', lastName: 'Nelson', department: 'Sales', position: 'Sales Representative', status: 'active', email: 'courtney.nelson@company.com', phone: '(555) 456-7894', hireDate: '2023-04-18', location: 'Sales Office', trainingStatus: 'Current' },
-  { id: 45, name: 'Marcus Carter', firstName: 'Marcus', lastName: 'Carter', department: 'Construction', position: 'Concrete Finisher', status: 'active', email: 'marcus.carter@company.com', phone: '(555) 567-8905', hireDate: '2022-09-12', location: 'Site A', trainingStatus: 'Current' },
-  { id: 46, name: 'Heather Mitchell', firstName: 'Heather', lastName: 'Mitchell', department: 'HR', position: 'Benefits Coordinator', status: 'active', email: 'heather.mitchell@company.com', phone: '(555) 678-9016', hireDate: '2023-05-30', location: 'Office', trainingStatus: 'Current' },
-  { id: 47, name: 'Justin Perez', firstName: 'Justin', lastName: 'Perez', department: 'Construction', position: 'Demolition Specialist', status: 'active', email: 'justin.perez@company.com', phone: '(555) 789-0127', hireDate: '2022-12-08', location: 'Demo Site', trainingStatus: 'Current' },
-  { id: 48, name: 'Alicia Roberts', firstName: 'Alicia', lastName: 'Roberts', department: 'Engineering', position: 'Process Engineer', status: 'active', email: 'alicia.roberts@company.com', phone: '(555) 890-1238', hireDate: '2023-06-25', location: 'Process Center', trainingStatus: 'Current' },
-  { id: 49, name: 'Shane Turner', firstName: 'Shane', lastName: 'Turner', department: 'Operations', position: 'Crane Technician', status: 'active', email: 'shane.turner@company.com', phone: '(555) 901-2349', hireDate: '2022-11-20', location: 'Crane Yard', trainingStatus: 'Current' },
-  { id: 50, name: 'Tabitha Phillips', firstName: 'Tabitha', lastName: 'Phillips', department: 'Procurement', position: 'Contract Specialist', status: 'active', email: 'tabitha.phillips@company.com', phone: '(555) 012-3460', hireDate: '2023-07-15', location: 'Contracts Office', trainingStatus: 'Current' },
-  { id: 51, name: 'Austin Campbell', firstName: 'Austin', lastName: 'Campbell', department: 'Manufacturing', position: 'Pipe Fitter', status: 'active', email: 'austin.campbell@company.com', phone: '(555) 123-4572', hireDate: '2022-08-28', location: 'Plant B', trainingStatus: 'Current' },
-  { id: 52, name: 'Melanie Parker', firstName: 'Melanie', lastName: 'Parker', department: 'Marketing', position: 'Marketing Coordinator', status: 'active', email: 'melanie.parker@company.com', phone: '(555) 234-5683', hireDate: '2023-09-10', location: 'Marketing Office', trainingStatus: 'Current' },
-  { id: 53, name: 'Zachary Evans', firstName: 'Zachary', lastName: 'Evans', department: 'Manufacturing', position: 'Welder Helper', status: 'active', email: 'zachary.evans@company.com', phone: '(555) 345-6784', hireDate: '2022-10-05', location: 'Weld Shop', trainingStatus: 'Current' },
-  { id: 54, name: 'Denise Edwards', firstName: 'Denise', lastName: 'Edwards', department: 'Safety', position: 'Compliance Officer', status: 'active', email: 'denise.edwards@company.com', phone: '(555) 456-7895', hireDate: '2023-11-28', location: 'Safety Office', trainingStatus: 'Current' },
-  { id: 55, name: 'Trevor Collins', firstName: 'Trevor', lastName: 'Collins', department: 'Construction', position: 'Scaffolder', status: 'active', email: 'trevor.collins@company.com', phone: '(555) 567-8906', hireDate: '2022-09-22', location: 'Site B', trainingStatus: 'Current' },
-  { id: 56, name: 'Kristina Stewart', firstName: 'Kristina', lastName: 'Stewart', department: 'IT', position: 'Database Administrator', status: 'active', email: 'kristina.stewart@company.com', phone: '(555) 678-9017', hireDate: '2023-12-12', location: 'Data Center', trainingStatus: 'Current' },
-  { id: 57, name: 'Corey Sanchez', firstName: 'Corey', lastName: 'Sanchez', department: 'Construction', position: 'Insulation Worker', status: 'active', email: 'corey.sanchez@company.com', phone: '(555) 789-0128', hireDate: '2022-11-15', location: 'Site C', trainingStatus: 'Current' },
-  { id: 58, name: 'Monique Morris', firstName: 'Monique', lastName: 'Morris', department: 'Legal', position: 'Legal Assistant', status: 'active', email: 'monique.morris@company.com', phone: '(555) 890-1239', hireDate: '2023-01-05', location: 'Legal Office', trainingStatus: 'Current' },
-  { id: 59, name: 'Jared Rogers', firstName: 'Jared', lastName: 'Rogers', department: 'Maintenance', position: 'Millwright', status: 'active', email: 'jared.rogers@company.com', phone: '(555) 901-2350', hireDate: '2022-12-20', location: 'Mill Shop', trainingStatus: 'Current' },
-  { id: 60, name: 'Priscilla Reed', firstName: 'Priscilla', lastName: 'Reed', department: 'Marketing', position: 'Graphic Designer', status: 'active', email: 'priscilla.reed@company.com', phone: '(555) 012-3461', hireDate: '2023-02-18', location: 'Creative Studio', trainingStatus: 'Current' },
-  { id: 61, name: 'Dustin Cook', firstName: 'Dustin', lastName: 'Cook', department: 'Construction', position: 'Brick Mason', status: 'active', email: 'dustin.cook@company.com', phone: '(555) 123-4573', hireDate: '2022-08-18', location: 'Site A', trainingStatus: 'Current' },
-  { id: 62, name: 'Felicia Bailey', firstName: 'Felicia', lastName: 'Bailey', department: 'Research', position: 'Research Analyst', status: 'active', email: 'felicia.bailey@company.com', phone: '(555) 234-5684', hireDate: '2023-03-08', location: 'Research Lab', trainingStatus: 'Current' },
-  { id: 63, name: 'Garrett Rivera', firstName: 'Garrett', lastName: 'Rivera', department: 'Manufacturing', position: 'Boilermaker', status: 'active', email: 'garrett.rivera@company.com', phone: '(555) 345-6785', hireDate: '2022-10-30', location: 'Boiler Shop', trainingStatus: 'Current' },
-  { id: 64, name: 'Jasmine Cooper', firstName: 'Jasmine', lastName: 'Cooper', department: 'Marketing', position: 'Event Coordinator', status: 'active', email: 'jasmine.cooper@company.com', phone: '(555) 456-7896', hireDate: '2023-04-12', location: 'Event Center', trainingStatus: 'Current' },
-  { id: 65, name: 'Brendan Richardson', firstName: 'Brendan', lastName: 'Richardson', department: 'Construction', position: 'Glazier', status: 'active', email: 'brendan.richardson@company.com', phone: '(555) 567-8907', hireDate: '2022-09-05', location: 'Glass Shop', trainingStatus: 'Current' },
-  { id: 66, name: 'Sonya Cox', firstName: 'Sonya', lastName: 'Cox', department: 'Documentation', position: 'Technical Writer', status: 'active', email: 'sonya.cox@company.com', phone: '(555) 678-9018', hireDate: '2023-05-22', location: 'Tech Office', trainingStatus: 'Current' },
-  { id: 67, name: 'Caleb Ward', firstName: 'Caleb', lastName: 'Ward', department: 'Construction', position: 'Tile Setter', status: 'active', email: 'caleb.ward@company.com', phone: '(555) 789-0129', hireDate: '2022-11-08', location: 'Site B', trainingStatus: 'Current' },
-  { id: 68, name: 'Veronica Torres', firstName: 'Veronica', lastName: 'Torres', department: 'Finance', position: 'Budget Analyst', status: 'active', email: 'veronica.torres@company.com', phone: '(555) 890-1240', hireDate: '2023-06-15', location: 'Finance Office', trainingStatus: 'Current' },
-  { id: 69, name: 'Derrick Peterson', firstName: 'Derrick', lastName: 'Peterson', department: 'Construction', position: 'Drywall Installer', status: 'active', email: 'derrick.peterson@company.com', phone: '(555) 901-2351', hireDate: '2022-12-02', location: 'Site C', trainingStatus: 'Current' },
-  { id: 70, name: 'Latasha Gray', firstName: 'Latasha', lastName: 'Gray', department: 'Management', position: 'Project Coordinator', status: 'active', email: 'latasha.gray@company.com', phone: '(555) 012-3462', hireDate: '2023-07-28', location: 'Project Office', trainingStatus: 'Current' },
-  { id: 71, name: 'Blake Ramirez', firstName: 'Blake', lastName: 'Ramirez', department: 'Construction', position: 'Flooring Installer', status: 'active', email: 'blake.ramirez@company.com', phone: '(555) 123-4574', hireDate: '2022-08-15', location: 'Floor Shop', trainingStatus: 'Current' },
-  { id: 72, name: 'Tanya James', firstName: 'Tanya', lastName: 'James', department: 'IT', position: 'Network Administrator', status: 'active', email: 'tanya.james@company.com', phone: '(555) 234-5685', hireDate: '2023-09-20', location: 'Network Center', trainingStatus: 'Current' },
-  { id: 73, name: 'Cameron Watson', firstName: 'Cameron', lastName: 'Watson', department: 'Maintenance', position: 'HVAC Technician', status: 'active', email: 'cameron.watson@company.com', phone: '(555) 345-6786', hireDate: '2022-10-12', location: 'HVAC Shop', trainingStatus: 'Current' },
-  { id: 74, name: 'Candice Brooks', firstName: 'Candice', lastName: 'Brooks', department: 'Marketing', position: 'Social Media Manager', status: 'active', email: 'candice.brooks@company.com', phone: '(555) 456-7897', hireDate: '2023-11-05', location: 'Digital Office', trainingStatus: 'Current' },
-  { id: 75, name: 'Spencer Kelly', firstName: 'Spencer', lastName: 'Kelly', department: 'Construction', position: 'Ironworker', status: 'active', email: 'spencer.kelly@company.com', phone: '(555) 567-8908', hireDate: '2022-09-18', location: 'Steel Shop', trainingStatus: 'Current' },
-  { id: 76, name: 'Renee Sanders', firstName: 'Renee', lastName: 'Sanders', department: 'Transportation', position: 'Logistics Coordinator', status: 'active', email: 'renee.sanders@company.com', phone: '(555) 678-9019', hireDate: '2023-12-08', location: 'Logistics Center', trainingStatus: 'Current' },
-  { id: 77, name: 'Mitchell Price', firstName: 'Mitchell', lastName: 'Price', department: 'Manufacturing', position: 'Sheet Metal Worker', status: 'active', email: 'mitchell.price@company.com', phone: '(555) 789-0130', hireDate: '2022-11-25', location: 'Metal Shop', trainingStatus: 'Current' },
-  { id: 78, name: 'Charlene Bennett', firstName: 'Charlene', lastName: 'Bennett', department: 'Quality', position: 'Quality Assurance', status: 'active', email: 'charlene.bennett@company.com', phone: '(555) 890-1241', hireDate: '2023-01-18', location: 'QA Lab', trainingStatus: 'Current' },
-  { id: 79, name: 'Collin Wood', firstName: 'Collin', lastName: 'Wood', department: 'Maintenance', position: 'Landscaper', status: 'active', email: 'collin.wood@company.com', phone: '(555) 901-2352', hireDate: '2022-08-08', location: 'Grounds', trainingStatus: 'Current' },
-  { id: 80, name: 'Yvonne Barnes', firstName: 'Yvonne', lastName: 'Barnes', department: 'Risk Management', position: 'Risk Manager', status: 'active', email: 'yvonne.barnes@company.com', phone: '(555) 012-3463', hireDate: '2023-02-25', location: 'Risk Office', trainingStatus: 'Current' },
-  { id: 81, name: 'Damon Ross', firstName: 'Damon', lastName: 'Ross', department: 'Construction', position: 'Plasterer', status: 'active', email: 'damon.ross@company.com', phone: '(555) 123-4575', hireDate: '2022-10-18', location: 'Site A', trainingStatus: 'Current' },
-  { id: 82, name: 'Belinda Henderson', firstName: 'Belinda', lastName: 'Henderson', department: 'Procurement', position: 'Procurement Manager', status: 'active', email: 'belinda.henderson@company.com', phone: '(555) 234-5686', hireDate: '2023-03-15', location: 'Procurement Office', trainingStatus: 'Current' },
-  { id: 83, name: 'Quinton Coleman', firstName: 'Quinton', lastName: 'Coleman', department: 'Construction', position: 'Rebar Worker', status: 'active', email: 'quinton.coleman@company.com', phone: '(555) 345-6787', hireDate: '2022-09-08', location: 'Site B', trainingStatus: 'Current' },
-  { id: 84, name: 'Sabrina Jenkins', firstName: 'Sabrina', lastName: 'Jenkins', department: 'HR', position: 'Training Manager', status: 'active', email: 'sabrina.jenkins@company.com', phone: '(555) 456-7898', hireDate: '2023-04-28', location: 'Training Center', trainingStatus: 'Current' },
-  { id: 85, name: 'Terrance Perry', firstName: 'Terrance', lastName: 'Perry', department: 'Construction', position: 'Asphalt Worker', status: 'active', email: 'terrance.perry@company.com', phone: '(555) 567-8909', hireDate: '2022-11-12', location: 'Paving Crew', trainingStatus: 'Current' },
-  { id: 86, name: 'Angelica Powell', firstName: 'Angelica', lastName: 'Powell', department: 'Insurance', position: 'Claims Adjuster', status: 'active', email: 'angelica.powell@company.com', phone: '(555) 678-9020', hireDate: '2023-05-15', location: 'Claims Office', trainingStatus: 'Current' },
-  { id: 87, name: 'Rodney Long', firstName: 'Rodney', lastName: 'Long', department: 'Operations', position: 'Excavator Operator', status: 'active', email: 'rodney.long@company.com', phone: '(555) 789-0131', hireDate: '2022-08-22', location: 'Excavation Site', trainingStatus: 'Current' },
-  { id: 88, name: 'Cecilia Patterson', firstName: 'Cecilia', lastName: 'Patterson', department: 'Finance', position: 'Audit Manager', status: 'active', email: 'cecilia.patterson@company.com', phone: '(555) 890-1242', hireDate: '2023-06-30', location: 'Audit Office', trainingStatus: 'Current' },
-  { id: 89, name: 'Dexter Hughes', firstName: 'Dexter', lastName: 'Hughes', department: 'Operations', position: 'Bulldozer Operator', status: 'active', email: 'dexter.hughes@company.com', phone: '(555) 901-2353', hireDate: '2022-10-05', location: 'Earth Moving', trainingStatus: 'Current' },
-  { id: 90, name: 'Rochelle Flores', firstName: 'Rochelle', lastName: 'Flores', department: 'HR', position: 'Benefits Administrator', status: 'active', email: 'rochelle.flores@company.com', phone: '(555) 012-3464', hireDate: '2023-07-20', location: 'Benefits Office', trainingStatus: 'Current' },
-  { id: 91, name: 'Clifford Washington', firstName: 'Clifford', lastName: 'Washington', department: 'Operations', position: 'Backhoe Operator', status: 'active', email: 'clifford.washington@company.com', phone: '(555) 123-4576', hireDate: '2022-09-15', location: 'Equipment Yard', trainingStatus: 'Current' },
-  { id: 92, name: 'Gwendolyn Butler', firstName: 'Gwendolyn', lastName: 'Butler', department: 'HR', position: 'Compensation Analyst', status: 'active', email: 'gwendolyn.butler@company.com', phone: '(555) 234-5687', hireDate: '2023-08-10', location: 'Compensation Office', trainingStatus: 'Current' },
-  { id: 93, name: 'Franklin Simmons', firstName: 'Franklin', lastName: 'Simmons', department: 'Operations', position: 'Grader Operator', status: 'active', email: 'franklin.simmons@company.com', phone: '(555) 345-6788', hireDate: '2022-11-28', location: 'Road Crew', trainingStatus: 'Current' },
-  { id: 94, name: 'Kendra Foster', firstName: 'Kendra', lastName: 'Foster', department: 'HR', position: 'Employee Relations', status: 'active', email: 'kendra.foster@company.com', phone: '(555) 456-7899', hireDate: '2023-09-05', location: 'HR Office', trainingStatus: 'Current' },
-  { id: 95, name: 'Ruben Gonzales', firstName: 'Ruben', lastName: 'Gonzales', department: 'Operations', position: 'Dozer Operator', status: 'active', email: 'ruben.gonzales@company.com', phone: '(555) 567-8910', hireDate: '2022-12-15', location: 'Clearing Crew', trainingStatus: 'Current' },
-  { id: 96, name: 'Olivia Bryant', firstName: 'Olivia', lastName: 'Bryant', department: 'HR', position: 'Talent Acquisition', status: 'active', email: 'olivia.bryant@company.com', phone: '(555) 678-9021', hireDate: '2023-10-18', location: 'Recruitment Office', trainingStatus: 'Current' },
-  { id: 97, name: 'Elijah Alexander', firstName: 'Elijah', lastName: 'Alexander', department: 'Operations', position: 'Compactor Operator', status: 'active', email: 'elijah.alexander@company.com', phone: '(555) 789-0132', hireDate: '2022-08-30', location: 'Compaction Crew', trainingStatus: 'Current' },
-  { id: 98, name: 'Cheryl Russell', firstName: 'Cheryl', lastName: 'Russell', department: 'HR', position: 'Diversity Coordinator', status: 'active', email: 'cheryl.russell@company.com', phone: '(555) 890-1243', hireDate: '2023-11-22', location: 'Diversity Office', trainingStatus: 'Current' },
-  { id: 99, name: 'Jonah Griffin', firstName: 'Jonah', lastName: 'Griffin', department: 'Operations', position: 'Scraper Operator', status: 'active', email: 'jonah.griffin@company.com', phone: '(555) 901-2354', hireDate: '2022-10-08', location: 'Scraper Crew', trainingStatus: 'Current' },
-  { id: 100, name: 'Alexis Diaz', firstName: 'Alexis', lastName: 'Diaz', department: 'HR', position: 'Wellness Coordinator', status: 'active', email: 'alexis.diaz@company.com', phone: '(555) 012-3465', hireDate: '2023-12-05', location: 'Wellness Center', trainingStatus: 'Current' },
-  { id: 101, name: 'Victor Hayes', firstName: 'Victor', lastName: 'Hayes', department: 'Operations', position: 'Paver Operator', status: 'active', email: 'victor.hayes@company.com', phone: '(555) 123-4577', hireDate: '2022-09-20', location: 'Paving Crew', trainingStatus: 'Current' },
-  { id: 102, name: 'Natalie Myers', firstName: 'Natalie', lastName: 'Myers', department: 'HR', position: 'Organizational Development', status: 'active', email: 'natalie.myers@company.com', phone: '(555) 234-5688', hireDate: '2023-01-12', location: 'OD Office', trainingStatus: 'Current' },
-  { id: 103, name: 'Marshall Ford', firstName: 'Marshall', lastName: 'Ford', department: 'Operations', position: 'Roller Operator', status: 'active', email: 'marshall.ford@company.com', phone: '(555) 345-6789', hireDate: '2022-11-05', location: 'Roller Crew', trainingStatus: 'Current' },
-  { id: 104, name: 'Bianca Hamilton', firstName: 'Bianca', lastName: 'Hamilton', department: 'HR', position: 'HRIS Specialist', status: 'active', email: 'bianca.hamilton@company.com', phone: '(555) 456-7800', hireDate: '2023-02-28', location: 'HRIS Office', trainingStatus: 'Current' },
-  { id: 105, name: 'Darius Graham', firstName: 'Darius', lastName: 'Graham', department: 'Operations', position: 'Trencher Operator', status: 'active', email: 'darius.graham@company.com', phone: '(555) 567-8911', hireDate: '2022-12-18', location: 'Trenching Crew', trainingStatus: 'Current' },
-  { id: 106, name: 'Leah Sullivan', firstName: 'Leah', lastName: 'Sullivan', department: 'HR', position: 'Performance Manager', status: 'active', email: 'leah.sullivan@company.com', phone: '(555) 678-9022', hireDate: '2023-03-18', location: 'Performance Office', trainingStatus: 'Current' },
-  { id: 107, name: 'Tristan Wallace', firstName: 'Tristan', lastName: 'Wallace', department: 'Operations', position: 'Milling Machine Operator', status: 'active', email: 'tristan.wallace@company.com', phone: '(555) 789-0133', hireDate: '2022-08-25', location: 'Milling Crew', trainingStatus: 'Current' },
-  { id: 108, name: 'Jasmin West', firstName: 'Jasmin', lastName: 'West', department: 'HR', position: 'Change Management', status: 'active', email: 'jasmin.west@company.com', phone: '(555) 890-1244', hireDate: '2023-04-15', location: 'Change Office', trainingStatus: 'Current' },
-  { id: 109, name: 'Kendrick Porter', firstName: 'Kendrick', lastName: 'Porter', department: 'Operations', position: 'Spreader Operator', status: 'active', email: 'kendrick.porter@company.com', phone: '(555) 901-2355', hireDate: '2022-10-20', location: 'Spreader Crew', trainingStatus: 'Current' },
-  { id: 110, name: 'Amber Hunter', firstName: 'Amber', lastName: 'Hunter', department: 'HR', position: 'Succession Planning', status: 'active', email: 'amber.hunter@company.com', phone: '(555) 012-3466', hireDate: '2023-05-08', location: 'Succession Office', trainingStatus: 'Current' },
-  { id: 111, name: 'Jermaine Palmer', firstName: 'Jermaine', lastName: 'Palmer', department: 'Operations', position: 'Skid Steer Operator', status: 'active', email: 'jermaine.palmer@company.com', phone: '(555) 123-4578', hireDate: '2022-09-12', location: 'Skid Crew', trainingStatus: 'Current' },
-  { id: 112, name: 'Kristen Jordan', firstName: 'Kristen', lastName: 'Jordan', department: 'HR', position: 'Leadership Development', status: 'active', email: 'kristen.jordan@company.com', phone: '(555) 234-5689', hireDate: '2023-06-22', location: 'Leadership Center', trainingStatus: 'Current' },
-  { id: 113, name: 'Damien Harrison', firstName: 'Damien', lastName: 'Harrison', department: 'Operations', position: 'Telehandler Operator', status: 'active', email: 'damien.harrison@company.com', phone: '(555) 345-6790', hireDate: '2022-11-30', location: 'Telehandler Crew', trainingStatus: 'Current' },
-  { id: 114, name: 'Crystal Knight', firstName: 'Crystal', lastName: 'Knight', department: 'HR', position: 'Employee Engagement', status: 'active', email: 'crystal.knight@company.com', phone: '(555) 456-7801', hireDate: '2023-07-10', location: 'Engagement Office', trainingStatus: 'Current' },
-  { id: 115, name: 'Antwan Webb', firstName: 'Antwan', lastName: 'Webb', department: 'Operations', position: 'Reach Truck Operator', status: 'active', email: 'antwan.webb@company.com', phone: '(555) 567-8912', hireDate: '2022-08-15', location: 'Reach Crew', trainingStatus: 'Current' },
-  { id: 116, name: 'Adrienne Mason', firstName: 'Adrienne', lastName: 'Mason', department: 'HR', position: 'Culture Specialist', status: 'active', email: 'adrienne.mason@company.com', phone: '(555) 678-9023', hireDate: '2023-08-28', location: 'Culture Office', trainingStatus: 'Current' },
-  { id: 117, name: 'Jamal Stone', firstName: 'Jamal', lastName: 'Stone', department: 'Operations', position: 'Order Picker', status: 'active', email: 'jamal.stone@company.com', phone: '(555) 789-0134', hireDate: '2022-10-02', location: 'Pick Crew', trainingStatus: 'Current' },
-  { id: 118, name: 'Carmen Lane', firstName: 'Carmen', lastName: 'Lane', department: 'HR', position: 'Exit Interview Coordinator', status: 'active', email: 'carmen.lane@company.com', phone: '(555) 890-1245', hireDate: '2023-09-15', location: 'Exit Office', trainingStatus: 'Current' },
-  { id: 119, name: 'Malik Rice', firstName: 'Malik', lastName: 'Rice', department: 'Operations', position: 'Pallet Jack Operator', status: 'active', email: 'malik.rice@company.com', phone: '(555) 901-2356', hireDate: '2022-12-08', location: 'Pallet Crew', trainingStatus: 'Current' },
-  { id: 120, name: 'Melody Morales', firstName: 'Melody', lastName: 'Morales', department: 'HR', position: 'Onboarding Specialist', status: 'active', email: 'melody.morales@company.com', phone: '(555) 012-3467', hireDate: '2023-10-25', location: 'Onboarding Office', trainingStatus: 'Current' },
-  { id: 121, name: 'Rashad Murphy', firstName: 'Rashad', lastName: 'Murphy', department: 'Operations', position: 'Conveyor Operator', status: 'active', email: 'rashad.murphy@company.com', phone: '(555) 123-4579', hireDate: '2022-09-18', location: 'Conveyor Crew', trainingStatus: 'Current' },
-  { id: 122, name: 'Bethany Cook', firstName: 'Bethany', lastName: 'Cook', department: 'HR', position: 'Employee Survey Coordinator', status: 'active', email: 'bethany.cook@company.com', phone: '(555) 234-5690', hireDate: '2023-11-12', location: 'Survey Office', trainingStatus: 'Current' },
-  { id: 123, name: 'Clarence Rogers', firstName: 'Clarence', lastName: 'Rogers', department: 'Operations', position: 'Packaging Operator', status: 'active', email: 'clarence.rogers@company.com', phone: '(555) 345-6791', hireDate: '2022-08-05', location: 'Packaging Crew', trainingStatus: 'Current' },
-  { id: 124, name: 'Tamara Bailey', firstName: 'Tamara', lastName: 'Bailey', department: 'HR', position: 'Recognition Program Manager', status: 'active', email: 'tamara.bailey@company.com', phone: '(555) 456-7802', hireDate: '2023-12-20', location: 'Recognition Office', trainingStatus: 'Current' },
-  { id: 125, name: 'Donnell Rivera', firstName: 'Donnell', lastName: 'Rivera', department: 'Operations', position: 'Shrink Wrap Operator', status: 'active', email: 'donnell.rivera@company.com', phone: '(555) 567-8913', hireDate: '2022-10-15', location: 'Wrap Crew', trainingStatus: 'Current' },
-  { id: 126, name: 'Alison Cooper', firstName: 'Alison', lastName: 'Cooper', department: 'HR', position: 'Internal Communications', status: 'active', email: 'alison.cooper@company.com', phone: '(555) 678-9024', hireDate: '2023-01-08', location: 'Communications Office', trainingStatus: 'Current' },
-  { id: 127, name: 'Tyrone Richardson', firstName: 'Tyrone', lastName: 'Richardson', department: 'Operations', position: 'Labeling Operator', status: 'active', email: 'tyrone.richardson@company.com', phone: '(555) 789-0135', hireDate: '2022-11-22', location: 'Label Crew', trainingStatus: 'Current' },
-  { id: 128, name: 'Sherry Cox', firstName: 'Sherry', lastName: 'Cox', department: 'HR', position: 'Employee Handbook Coordinator', status: 'active', email: 'sherry.cox@company.com', phone: '(555) 890-1246', hireDate: '2023-02-18', location: 'Handbook Office', trainingStatus: 'Current' },
-  { id: 129, name: 'Demetrius Ward', firstName: 'Demetrius', lastName: 'Ward', department: 'Operations', position: 'Quality Control Inspector', status: 'active', email: 'demetrius.ward@company.com', phone: '(555) 901-2357', hireDate: '2022-12-30', location: 'QC Crew', trainingStatus: 'Current' },
-  { id: 130, name: 'Rhonda Torres', firstName: 'Rhonda', lastName: 'Torres', department: 'HR', position: 'Policy Development Specialist', status: 'active', email: 'rhonda.torres@company.com', phone: '(555) 012-3468', hireDate: '2023-03-25', location: 'Policy Office', trainingStatus: 'Current' },
-  { id: 131, name: 'Lamont Peterson', firstName: 'Lamont', lastName: 'Peterson', department: 'Operations', position: 'Line Leader', status: 'active', email: 'lamont.peterson@company.com', phone: '(555) 123-4580', hireDate: '2022-09-08', location: 'Line Crew', trainingStatus: 'Current' },
-  { id: 132, name: 'Tara Gray', firstName: 'Tara', lastName: 'Gray', department: 'HR', position: 'Procedure Writer', status: 'active', email: 'tara.gray@company.com', phone: '(555) 234-5691', hireDate: '2023-04-20', location: 'Procedure Office', trainingStatus: 'Current' },
-  { id: 133, name: 'Roderick Ramirez', firstName: 'Roderick', lastName: 'Ramirez', department: 'Operations', position: 'Production Planner', status: 'active', email: 'roderick.ramirez@company.com', phone: '(555) 345-6792', hireDate: '2022-10-25', location: 'Planning Crew', trainingStatus: 'Current' },
-  { id: 134, name: 'Stacy James', firstName: 'Stacy', lastName: 'James', department: 'HR', position: 'Grievance Coordinator', status: 'active', email: 'stacy.james@company.com', phone: '(555) 456-7803', hireDate: '2023-05-15', location: 'Grievance Office', trainingStatus: 'Current' },
-  { id: 135, name: 'Terrell Watson', firstName: 'Terrell', lastName: 'Watson', department: 'Operations', position: 'Inventory Control', status: 'active', email: 'terrell.watson@company.com', phone: '(555) 567-8914', hireDate: '2022-08-12', location: 'Inventory Crew', trainingStatus: 'Current' },
-  { id: 136, name: 'Lydia Brooks', firstName: 'Lydia', lastName: 'Brooks', department: 'HR', position: 'Union Relations Specialist', status: 'active', email: 'lydia.brooks@company.com', phone: '(555) 678-9025', hireDate: '2023-06-08', location: 'Union Office', trainingStatus: 'Current' },
-  { id: 137, name: 'Devonte Kelly', firstName: 'Devonte', lastName: 'Kelly', department: 'Operations', position: 'Shipping Coordinator', status: 'active', email: 'devonte.kelly@company.com', phone: '(555) 789-0136', hireDate: '2022-11-15', location: 'Shipping Crew', trainingStatus: 'Current' },
-  { id: 138, name: 'Patrice Sanders', firstName: 'Patrice', lastName: 'Sanders', department: 'HR', position: 'Discipline Coordinator', status: 'active', email: 'patrice.sanders@company.com', phone: '(555) 890-1247', hireDate: '2023-07-28', location: 'Discipline Office', trainingStatus: 'Current' },
-  { id: 139, name: 'Marquis Price', firstName: 'Marquis', lastName: 'Price', department: 'Operations', position: 'Receiving Clerk', status: 'active', email: 'marquis.price@company.com', phone: '(555) 901-2358', hireDate: '2022-12-20', location: 'Receiving Crew', trainingStatus: 'Current' },
-  { id: 140, name: 'Suzanne Bennett', firstName: 'Suzanne', lastName: 'Bennett', department: 'HR', position: 'Attendance Coordinator', status: 'active', email: 'suzanne.bennett@company.com', phone: '(555) 012-3469', hireDate: '2023-08-15', location: 'Attendance Office', trainingStatus: 'Current' },
-  { id: 141, name: 'Jamarion Wood', firstName: 'Jamarion', lastName: 'Wood', department: 'Operations', position: 'Stock Clerk', status: 'active', email: 'jamarion.wood@company.com', phone: '(555) 123-4581', hireDate: '2022-09-25', location: 'Stock Crew', trainingStatus: 'Current' },
-  { id: 142, name: 'Marlene Barnes', firstName: 'Marlene', lastName: 'Barnes', department: 'HR', position: 'Leave Administrator', status: 'active', email: 'marlene.barnes@company.com', phone: '(555) 234-5692', hireDate: '2023-09-10', location: 'Leave Office', trainingStatus: 'Current' },
-  { id: 143, name: 'Javon Ross', firstName: 'Javon', lastName: 'Ross', department: 'Operations', position: 'Cycle Counter', status: 'active', email: 'javon.ross@company.com', phone: '(555) 345-6793', hireDate: '2022-10-18', location: 'Cycle Crew', trainingStatus: 'Current' },
-  { id: 144, name: 'Roberta Henderson', firstName: 'Roberta', lastName: 'Henderson', department: 'HR', position: 'Workers Compensation Specialist', status: 'active', email: 'roberta.henderson@company.com', phone: '(555) 456-7804', hireDate: '2023-10-30', location: 'Workers Comp Office', trainingStatus: 'Current' },
-  { id: 145, name: 'DeShawn Coleman', firstName: 'DeShawn', lastName: 'Coleman', department: 'Operations', position: 'Warehouse Associate', status: 'active', email: 'deshawn.coleman@company.com', phone: '(555) 567-8915', hireDate: '2022-08-28', location: 'Warehouse Crew', trainingStatus: 'Current' },
-  { id: 146, name: 'Wanda Jenkins', firstName: 'Wanda', lastName: 'Jenkins', department: 'HR', position: 'Background Check Coordinator', status: 'active', email: 'wanda.jenkins@company.com', phone: '(555) 678-9026', hireDate: '2023-11-18', location: 'Background Office', trainingStatus: 'Current' },
-  { id: 147, name: 'Keon Perry', firstName: 'Keon', lastName: 'Perry', department: 'Operations', position: 'Material Handler', status: 'active', email: 'keon.perry@company.com', phone: '(555) 789-0137', hireDate: '2022-11-05', location: 'Material Crew', trainingStatus: 'Current' },
-  { id: 148, name: 'Glenda Powell', firstName: 'Glenda', lastName: 'Powell', department: 'HR', position: 'Reference Check Specialist', status: 'active', email: 'glenda.powell@company.com', phone: '(555) 890-1248', hireDate: '2023-12-08', location: 'Reference Office', trainingStatus: 'Current' },
-  { id: 149, name: 'Cordell Long', firstName: 'Cordell', lastName: 'Long', department: 'Operations', position: 'Dock Worker', status: 'active', email: 'cordell.long@company.com', phone: '(555) 901-2359', hireDate: '2022-09-15', location: 'Dock Crew', trainingStatus: 'Current' },
-  { id: 150, name: 'Maxine Patterson', firstName: 'Maxine', lastName: 'Patterson', department: 'HR', position: 'Drug Testing Coordinator', status: 'active', email: 'maxine.patterson@company.com', phone: '(555) 012-3470', hireDate: '2023-01-22', location: 'Testing Office', trainingStatus: 'Current' },
-  { id: 151, name: 'Darnell Hughes', firstName: 'Darnell', lastName: 'Hughes', department: 'Operations', position: 'Loading Dock Supervisor', status: 'active', email: 'darnell.hughes@company.com', phone: '(555) 123-4582', hireDate: '2022-10-30', location: 'Loading Crew', trainingStatus: 'Current' },
-  { id: 152, name: 'Brenda Flores', firstName: 'Brenda', lastName: 'Flores', department: 'HR', position: 'Employment Verification Specialist', status: 'active', email: 'brenda.flores@company.com', phone: '(555) 234-5693', hireDate: '2023-02-15', location: 'Verification Office', trainingStatus: 'Current' },
-  { id: 153, name: 'Trevon Washington', firstName: 'Trevon', lastName: 'Washington', department: 'Operations', position: 'Freight Handler', status: 'active', email: 'trevon.washington@company.com', phone: '(555) 345-6794', hireDate: '2022-12-05', location: 'Freight Crew', trainingStatus: 'Current' },
-  { id: 154, name: 'Carla Butler', firstName: 'Carla', lastName: 'Butler', department: 'HR', position: 'I-9 Compliance Specialist', status: 'active', email: 'carla.butler@company.com', phone: '(555) 456-7805', hireDate: '2023-03-10', location: 'I-9 Office', trainingStatus: 'Current' },
-  { id: 155, name: 'Darian Simmons', firstName: 'Darian', lastName: 'Simmons', department: 'Operations', position: 'Cargo Handler', status: 'active', email: 'darian.simmons@company.com', phone: '(555) 567-8916', hireDate: '2022-08-18', location: 'Cargo Crew', trainingStatus: 'Current' },
-  { id: 156, name: 'Doris Foster', firstName: 'Doris', lastName: 'Foster', department: 'HR', position: 'Equal Opportunity Coordinator', status: 'active', email: 'doris.foster@company.com', phone: '(555) 678-9027', hireDate: '2023-04-25', location: 'EO Office', trainingStatus: 'Current' },
-  { id: 157, name: 'Keyon Gonzales', firstName: 'Keyon', lastName: 'Gonzales', department: 'Operations', position: 'Package Handler', status: 'active', email: 'keyon.gonzales@company.com', phone: '(555) 789-0138', hireDate: '2022-11-12', location: 'Package Crew', trainingStatus: 'Current' },
-  { id: 158, name: 'Evelyn Bryant', firstName: 'Evelyn', lastName: 'Bryant', department: 'HR', position: 'Affirmative Action Specialist', status: 'active', email: 'evelyn.bryant@company.com', phone: '(555) 890-1249', hireDate: '2023-05-18', location: 'AA Office', trainingStatus: 'Current' },
-  { id: 159, name: 'Tremaine Alexander', firstName: 'Tremaine', lastName: 'Alexander', department: 'Operations', position: 'Sorter', status: 'active', email: 'tremaine.alexander@company.com', phone: '(555) 901-2360', hireDate: '2022-09-22', location: 'Sort Crew', trainingStatus: 'Current' },
-  { id: 160, name: 'Lorraine Russell', firstName: 'Lorraine', lastName: 'Russell', department: 'HR', position: 'Harassment Prevention Coordinator', status: 'active', email: 'lorraine.russell@company.com', phone: '(555) 012-3471', hireDate: '2023-06-12', location: 'Prevention Office', trainingStatus: 'Current' },
-  { id: 161, name: 'Antoinette Griffin', firstName: 'Antoinette', lastName: 'Griffin', department: 'Operations', position: 'Scanner Operator', status: 'active', email: 'antoinette.griffin@company.com', phone: '(555) 123-4583', hireDate: '2022-10-08', location: 'Scanner Crew', trainingStatus: 'Current' },
-  { id: 162, name: 'Paulette Diaz', firstName: 'Paulette', lastName: 'Diaz', department: 'HR', position: 'Workplace Violence Prevention', status: 'active', email: 'paulette.diaz@company.com', phone: '(555) 234-5694', hireDate: '2023-07-05', location: 'Violence Prevention Office', trainingStatus: 'Current' },
-  { id: 163, name: 'Lamar Hayes', firstName: 'Lamar', lastName: 'Hayes', department: 'Operations', position: 'Picker', status: 'active', email: 'lamar.hayes@company.com', phone: '(555) 345-6795', hireDate: '2022-12-15', location: 'Picker Crew', trainingStatus: 'Current' },
-  { id: 164, name: 'Lynette Myers', firstName: 'Lynette', lastName: 'Myers', department: 'HR', position: 'Ethics Coordinator', status: 'active', email: 'lynette.myers@company.com', phone: '(555) 456-7806', hireDate: '2023-08-20', location: 'Ethics Office', trainingStatus: 'Current' },
-  { id: 165, name: 'Jaquan Ford', firstName: 'Jaquan', lastName: 'Ford', department: 'Operations', position: 'Packer', status: 'active', email: 'jaquan.ford@company.com', phone: '(555) 567-8917', hireDate: '2022-08-30', location: 'Packer Crew', trainingStatus: 'Current' },
-  { id: 166, name: 'Gladys Hamilton', firstName: 'Gladys', lastName: 'Hamilton', department: 'HR', position: 'Whistleblower Protection Coordinator', status: 'active', email: 'gladys.hamilton@company.com', phone: '(555) 678-9028', hireDate: '2023-09-28', location: 'Whistleblower Office', trainingStatus: 'Current' },
-  { id: 167, name: 'Desmond Graham', firstName: 'Desmond', lastName: 'Graham', department: 'Operations', position: 'Loader', status: 'active', email: 'desmond.graham@company.com', phone: '(555) 789-0139', hireDate: '2022-11-18', location: 'Loader Crew', trainingStatus: 'Current' },
-  { id: 168, name: 'Bernice Sullivan', firstName: 'Bernice', lastName: 'Sullivan', department: 'HR', position: 'Conflict Resolution Specialist', status: 'active', email: 'bernice.sullivan@company.com', phone: '(555) 890-1250', hireDate: '2023-10-15', location: 'Conflict Office', trainingStatus: 'Current' },
-  { id: 169, name: 'Jeremiah Wallace', firstName: 'Jeremiah', lastName: 'Wallace', department: 'Operations', position: 'Unloader', status: 'active', email: 'jeremiah.wallace@company.com', phone: '(555) 901-2361', hireDate: '2022-09-05', location: 'Unloader Crew', trainingStatus: 'Current' },
-  { id: 170, name: 'Iris West', firstName: 'Iris', lastName: 'West', department: 'HR', position: 'Mediation Specialist', status: 'active', email: 'iris.west@company.com', phone: '(555) 012-3472', hireDate: '2023-11-08', location: 'Mediation Office', trainingStatus: 'Current' },
-  { id: 171, name: 'Rashawn Porter', firstName: 'Rashawn', lastName: 'Porter', department: 'Operations', position: 'Stacker', status: 'active', email: 'rashawn.porter@company.com', phone: '(555) 123-4584', hireDate: '2022-10-22', location: 'Stacker Crew', trainingStatus: 'Current' },
-  { id: 172, name: 'Delores Hunter', firstName: 'Delores', lastName: 'Hunter', department: 'HR', position: 'Arbitration Coordinator', status: 'active', email: 'delores.hunter@company.com', phone: '(555) 234-5695', hireDate: '2023-12-18', location: 'Arbitration Office', trainingStatus: 'Current' },
-  { id: 173, name: 'Davon Palmer', firstName: 'Davon', lastName: 'Palmer', department: 'Operations', position: 'Wrapper', status: 'active', email: 'davon.palmer@company.com', phone: '(555) 345-6796', hireDate: '2022-08-15', location: 'Wrapper Crew', trainingStatus: 'Current' },
-  { id: 174, name: 'Geraldine Jordan', firstName: 'Geraldine', lastName: 'Jordan', department: 'HR', position: 'Labor Relations Specialist', status: 'active', email: 'geraldine.jordan@company.com', phone: '(555) 456-7807', hireDate: '2023-01-30', location: 'Labor Relations Office', trainingStatus: 'Current' },
-  { id: 175, name: 'Tyshawn Harrison', firstName: 'Tyshawn', lastName: 'Harrison', department: 'Operations', position: 'Bundler', status: 'active', email: 'tyshawn.harrison@company.com', phone: '(555) 567-8918', hireDate: '2022-12-25', location: 'Bundler Crew', trainingStatus: 'Current' },
-  { id: 176, name: 'Constance Knight', firstName: 'Constance', lastName: 'Knight', department: 'HR', position: 'Collective Bargaining Specialist', status: 'active', email: 'constance.knight@company.com', phone: '(555) 678-9029', hireDate: '2023-02-12', location: 'Bargaining Office', trainingStatus: 'Current' },
-  { id: 177, name: 'Isiah Webb', firstName: 'Isiah', lastName: 'Webb', department: 'Operations', position: 'Tagger', status: 'active', email: 'isiah.webb@company.com', phone: '(555) 789-0140', hireDate: '2022-11-08', location: 'Tagger Crew', trainingStatus: 'Current' },
-  { id: 178, name: 'Angie Mason', firstName: 'Angie', lastName: 'Mason', department: 'HR', position: 'Contract Negotiation Specialist', status: 'active', email: 'angie.mason@company.com', phone: '(555) 890-1251', hireDate: '2023-03-28', location: 'Negotiation Office', trainingStatus: 'Current' },
-  { id: 179, name: 'Malik Stone', firstName: 'Malik', lastName: 'Stone', department: 'Operations', position: 'Labeler', status: 'active', email: 'malik.stone@company.com', phone: '(555) 901-2362', hireDate: '2022-09-18', location: 'Labeler Crew', trainingStatus: 'Current' },
-  { id: 180, name: 'Josephine Lane', firstName: 'Josephine', lastName: 'Lane', department: 'HR', position: 'Workplace Safety Coordinator', status: 'active', email: 'josephine.lane@company.com', phone: '(555) 012-3473', hireDate: '2023-04-15', location: 'Workplace Safety Office', trainingStatus: 'Current' },
-  { id: 181, name: 'Darryl Rice', firstName: 'Darryl', lastName: 'Rice', department: 'Operations', position: 'Sealer', status: 'active', email: 'darryl.rice@company.com', phone: '(555) 123-4585', hireDate: '2022-10-28', location: 'Sealer Crew', trainingStatus: 'Current' },
-  { id: 182, name: 'Dolores Morales', firstName: 'Dolores', lastName: 'Morales', department: 'HR', position: 'Ergonomics Specialist', status: 'active', email: 'dolores.morales@company.com', phone: '(555) 234-5696', hireDate: '2023-05-22', location: 'Ergonomics Office', trainingStatus: 'Current' },
-  { id: 183, name: 'Omari Murphy', firstName: 'Omari', lastName: 'Murphy', department: 'Operations', position: 'Cutter', status: 'active', email: 'omari.murphy@company.com', phone: '(555) 345-6797', hireDate: '2022-12-10', location: 'Cutter Crew', trainingStatus: 'Current' },
-  { id: 184, name: 'Stella Cook', firstName: 'Stella', lastName: 'Cook', department: 'HR', position: 'Occupational Health Specialist', status: 'active', email: 'stella.cook@company.com', phone: '(555) 456-7808', hireDate: '2023-06-18', location: 'Occupational Health Office', trainingStatus: 'Current' },
-  { id: 185, name: 'Jamarcus Rogers', firstName: 'Jamarcus', lastName: 'Rogers', department: 'Operations', position: 'Trimmer', status: 'active', email: 'jamarcus.rogers@company.com', phone: '(555) 567-8919', hireDate: '2022-08-25', location: 'Trimmer Crew', trainingStatus: 'Current' },
-  { id: 186, name: 'Velma Bailey', firstName: 'Velma', lastName: 'Bailey', department: 'HR', position: 'Industrial Hygiene Specialist', status: 'active', email: 'velma.bailey@company.com', phone: '(555) 678-9030', hireDate: '2023-07-30', location: 'Industrial Hygiene Office', trainingStatus: 'Current' },
-  { id: 187, name: 'Kyree Rivera', firstName: 'Kyree', lastName: 'Rivera', department: 'Operations', position: 'Sizer', status: 'active', email: 'kyree.rivera@company.com', phone: '(555) 789-0141', hireDate: '2022-11-15', location: 'Sizer Crew', trainingStatus: 'Current' },
-  { id: 188, name: 'Maggie Cooper', firstName: 'Maggie', lastName: 'Cooper', department: 'HR', position: 'Safety Program Coordinator', status: 'active', email: 'maggie.cooper@company.com', phone: '(555) 890-1252', hireDate: '2023-08-12', location: 'Safety Program Office', trainingStatus: 'Current' },
-  { id: 189, name: 'Dwayne Richardson', firstName: 'Dwayne', lastName: 'Richardson', department: 'Operations', position: 'Grader', status: 'active', email: 'dwayne.richardson@company.com', phone: '(555) 901-2363', hireDate: '2022-09-28', location: 'Grader Crew', trainingStatus: 'Current' },
-  { id: 190, name: 'Bessie Cox', firstName: 'Bessie', lastName: 'Cox', department: 'HR', position: 'Emergency Response Coordinator', status: 'active', email: 'bessie.cox@company.com', phone: '(555) 012-3474', hireDate: '2023-09-25', location: 'Emergency Response Office', trainingStatus: 'Current' },
-  { id: 191, name: 'Demetrice Ward', firstName: 'Demetrice', lastName: 'Ward', department: 'Operations', position: 'Sorter', status: 'active', email: 'demetrice.ward@company.com', phone: '(555) 123-4586', hireDate: '2022-10-15', location: 'Sorter Crew', trainingStatus: 'Current' },
-  { id: 192, name: 'Minnie Torres', firstName: 'Minnie', lastName: 'Torres', department: 'HR', position: 'Crisis Management Specialist', status: 'active', email: 'minnie.torres@company.com', phone: '(555) 234-5697', hireDate: '2023-10-18', location: 'Crisis Management Office', trainingStatus: 'Current' },
-  { id: 193, name: 'Tavon Peterson', firstName: 'Tavon', lastName: 'Peterson', department: 'Operations', position: 'Inspector', status: 'active', email: 'tavon.peterson@company.com', phone: '(555) 345-6798', hireDate: '2022-12-30', location: 'Inspector Crew', trainingStatus: 'Current' },
-  { id: 194, name: 'Alma Gray', firstName: 'Alma', lastName: 'Gray', department: 'HR', position: 'Business Continuity Specialist', status: 'active', email: 'alma.gray@company.com', phone: '(555) 456-7809', hireDate: '2023-11-22', location: 'Business Continuity Office', trainingStatus: 'Current' },
-  { id: 195, name: 'Quadre Ramirez', firstName: 'Quadre', lastName: 'Ramirez', department: 'Operations', position: 'Tester', status: 'active', email: 'quadre.ramirez@company.com', phone: '(555) 567-8920', hireDate: '2022-08-12', location: 'Tester Crew', trainingStatus: 'Current' },
-  { id: 196, name: 'Johnnie James', firstName: 'Johnnie', lastName: 'James', department: 'HR', position: 'Disaster Recovery Specialist', status: 'active', email: 'johnnie.james@company.com', phone: '(555) 678-9031', hireDate: '2023-12-15', location: 'Disaster Recovery Office', trainingStatus: 'Current' },
-  { id: 197, name: 'Jalen Watson', firstName: 'Jalen', lastName: 'Watson', department: 'Operations', position: 'Sampler', status: 'active', email: 'jalen.watson@company.com', phone: '(555) 789-0142', hireDate: '2022-09-20', location: 'Sampler Crew', trainingStatus: 'Current' },
-  { id: 198, name: 'Essie Brooks', firstName: 'Essie', lastName: 'Brooks', department: 'HR', position: 'Risk Assessment Specialist', status: 'active', email: 'essie.brooks@company.com', phone: '(555) 890-1253', hireDate: '2023-01-05', location: 'Risk Assessment Office', trainingStatus: 'Current' },
-  { id: 199, name: 'Devante Kelly', firstName: 'Devante', lastName: 'Kelly', department: 'Operations', position: 'Analyst', status: 'active', email: 'devante.kelly@company.com', phone: '(555) 901-2364', hireDate: '2022-11-30', location: 'Analyst Crew', trainingStatus: 'Current' },
-  { id: 200, name: 'Ruby Sanders', firstName: 'Ruby', lastName: 'Sanders', department: 'HR', position: 'Security Management Specialist', status: 'active', email: 'ruby.sanders@company.com', phone: '(555) 012-3475', hireDate: '2023-02-22', location: 'Security Management Office', trainingStatus: 'Current' },
-];
+// Enhanced mock data with 200 employees
+const mockEmployees: Employee[] = Array.from({ length: 200 }, (_, i) => {
+  const firstNames = ['John', 'Jane', 'Michael', 'Sarah', 'David', 'Lisa', 'Robert', 'Jennifer', 'William', 'Amy', 'James', 'Maria', 'Christopher', 'Michelle', 'Daniel', 'Patricia', 'Matthew', 'Linda', 'Anthony', 'Elizabeth', 'Mark', 'Barbara', 'Donald', 'Susan', 'Steven', 'Jessica', 'Paul', 'Nancy', 'Andrew', 'Dorothy', 'Joshua', 'Lisa', 'Kenneth', 'Karen', 'Kevin', 'Helen', 'Brian', 'Sandra', 'George', 'Donna', 'Edward', 'Carol', 'Ronald', 'Ruth', 'Timothy', 'Sharon', 'Jason', 'Michelle', 'Jeffrey', 'Laura', 'Ryan', 'Sarah', 'Jacob', 'Kimberly', 'Gary', 'Deborah', 'Nicholas', 'Dorothy', 'Eric', 'Lisa', 'Jonathan', 'Nancy', 'Stephen', 'Karen', 'Larry', 'Betty', 'Justin', 'Helen', 'Scott', 'Sandra', 'Brandon', 'Donna', 'Benjamin', 'Carol', 'Samuel', 'Ruth', 'Frank', 'Sharon', 'Raymond', 'Michelle', 'Alexander', 'Laura', 'Patrick', 'Sarah', 'Jack', 'Kimberly', 'Dennis', 'Deborah', 'Jerry', 'Dorothy', 'Tyler', 'Lisa', 'Aaron', 'Nancy', 'Jose', 'Karen', 'Henry', 'Betty', 'Adam', 'Helen', 'Douglas', 'Sandra', 'Nathan', 'Donna', 'Peter', 'Carol', 'Zachary', 'Ruth', 'Kyle', 'Sharon', 'Walter', 'Michelle', 'Harold', 'Laura', 'Carl', 'Sarah', 'Arthur', 'Kimberly', 'Gerald', 'Deborah', 'Wayne', 'Dorothy', 'Louis', 'Lisa', 'Ralph', 'Nancy', 'Roy', 'Karen', 'Eugene', 'Betty', 'Louis', 'Helen', 'Philip', 'Sandra', 'Bobby', 'Donna'];
+  
+  const lastNames = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis', 'Rodriguez', 'Martinez', 'Hernandez', 'Lopez', 'Gonzalez', 'Wilson', 'Anderson', 'Thomas', 'Taylor', 'Moore', 'Jackson', 'Martin', 'Lee', 'Perez', 'Thompson', 'White', 'Harris', 'Sanchez', 'Clark', 'Ramirez', 'Lewis', 'Robinson', 'Walker', 'Young', 'Allen', 'King', 'Wright', 'Scott', 'Torres', 'Nguyen', 'Hill', 'Flores', 'Green', 'Adams', 'Nelson', 'Baker', 'Hall', 'Rivera', 'Campbell', 'Mitchell', 'Carter', 'Roberts', 'Gomez', 'Phillips', 'Evans', 'Turner', 'Diaz', 'Parker', 'Cruz', 'Edwards', 'Collins', 'Reyes', 'Stewart', 'Morris', 'Morales', 'Murphy', 'Cook', 'Rogers', 'Gutierrez', 'Ortiz', 'Morgan', 'Cooper', 'Peterson', 'Bailey', 'Reed', 'Kelly', 'Howard', 'Ramos', 'Kim', 'Cox', 'Ward', 'Richardson', 'Watson', 'Brooks', 'Chavez', 'Wood', 'James', 'Bennett', 'Gray', 'Mendoza', 'Ruiz', 'Hughes', 'Price', 'Alvarez', 'Castillo', 'Sanders', 'Patel', 'Myers', 'Long', 'Ross', 'Foster', 'Jimenez'];
+  
+  const departments = ['Construction', 'Safety', 'Operations', 'Management', 'Quality', 'Environmental', 'HR', 'Engineering', 'Warehouse', 'Manufacturing', 'Maintenance', 'Security', 'Administration', 'Transportation', 'Procurement', 'IT', 'Finance', 'Customer Service', 'Sales', 'Marketing', 'Legal', 'Research', 'Documentation', 'Risk Management', 'Insurance'];
+  
+  const positions = ['Safety Manager', 'Site Supervisor', 'Construction Worker', 'Equipment Operator', 'Quality Inspector', 'Environmental Specialist', 'HR Coordinator', 'Project Engineer', 'Warehouse Associate', 'Machine Operator', 'Maintenance Technician', 'Security Guard', 'Administrative Assistant', 'Truck Driver', 'Procurement Specialist', 'IT Support', 'Financial Analyst', 'Customer Service Rep', 'Sales Representative', 'Marketing Coordinator', 'Legal Assistant', 'Research Analyst', 'Documentation Specialist', 'Risk Analyst', 'Insurance Coordinator'];
+  
+  const locations = ['Main Office', 'Construction Site A', 'Construction Site B', 'Warehouse 1', 'Warehouse 2', 'Manufacturing Plant', 'Field Office', 'Remote Location', 'Corporate HQ', 'Training Center'];
+  
+  const statuses: ('active' | 'inactive' | 'training' | 'on-leave')[] = ['active', 'inactive', 'training', 'on-leave'];
+  
+  const firstName = firstNames[i % firstNames.length];
+  const lastName = lastNames[i % lastNames.length];
+  
+  return {
+    id: i + 1,
+    employeeId: `EMP-${(i + 1).toString().padStart(4, '0')}`,
+    firstName,
+    lastName,
+    name: `${firstName} ${lastName}`,
+    department: departments[i % departments.length],
+    position: positions[i % positions.length],
+    status: statuses[i % statuses.length],
+    email: `${firstName.toLowerCase()}.${lastName.toLowerCase()}@company.com`,
+    phone: `555-${Math.floor(Math.random() * 900) + 100}-${Math.floor(Math.random() * 9000) + 1000}`,
+    hireDate: `202${Math.floor(Math.random() * 5)}-${String(Math.floor(Math.random() * 12) + 1).padStart(2, '0')}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`,
+    location: locations[i % locations.length],
+    trainingStatus: ['Current', 'Expiring Soon', 'Needs Renewal', 'No Certificates'][i % 4],
+    certificateCount: Math.floor(Math.random() * 8) + 1,
+    expiringCertificates: Math.floor(Math.random() * 3),
+    upcomingTraining: Math.floor(Math.random() * 4)
+  };
+});
 
-const QuickSearchWidget: React.FC = () => {
+const QuickSearchWidget = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDepartment, setSelectedDepartment] = useState('all');
   const [selectedStatus, setSelectedStatus] = useState('all');
@@ -254,6 +91,7 @@ const QuickSearchWidget: React.FC = () => {
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
   const [sortBy, setSortBy] = useState('name');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+  const [viewMode, setViewMode] = useState<'card' | 'list' | 'table' | 'analytics'>('card');
 
   // Fetch real data from API with fallback to mock data
   const { data: employees = [], isLoading: employeesLoading, error: employeesError } = useQuery<Employee[]>({
@@ -307,11 +145,6 @@ const QuickSearchWidget: React.FC = () => {
   // Get unique departments from processed data
   const departments = ['all', ...new Set(actualEmployees.map(emp => emp.department).filter(Boolean))];
   const statuses = ['all', 'active', 'inactive', 'training', 'on-leave'];
-  
-  // Debug logging to check departments
-  console.log('Available departments:', departments);
-  console.log('Available statuses:', statuses);
-  console.log('Total employees:', actualEmployees.length);
 
   // Enhanced filtering and sorting
   const filteredEmployees = React.useMemo(() => {
@@ -350,14 +183,17 @@ const QuickSearchWidget: React.FC = () => {
         bValue = bValue.toLowerCase();
       }
       
-      if (aValue < bValue) return sortOrder === 'asc' ? -1 : 1;
-      if (aValue > bValue) return sortOrder === 'asc' ? 1 : -1;
-      return 0;
+      if (sortOrder === 'asc') {
+        return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
+      } else {
+        return aValue > bValue ? -1 : aValue < bValue ? 1 : 0;
+      }
     });
 
     return filtered;
   }, [processedEmployees, searchTerm, selectedDepartment, selectedStatus, sortBy, sortOrder]);
 
+  // Helper functions for status colors
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'active': return 'bg-green-100 text-green-700';
@@ -371,10 +207,256 @@ const QuickSearchWidget: React.FC = () => {
   const getTrainingStatusColor = (status: string) => {
     switch (status) {
       case 'Current': return 'bg-green-100 text-green-700';
+      case 'Expiring Soon': return 'bg-yellow-100 text-yellow-700';
       case 'Needs Renewal': return 'bg-red-100 text-red-700';
-      case 'In Progress': return 'bg-blue-100 text-blue-700';
-      case 'Pending': return 'bg-yellow-100 text-yellow-700';
+      case 'No Certificates': return 'bg-gray-100 text-gray-700';
       default: return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  // Individual render functions for each view mode
+  const renderCardView = () => (
+    <div className="space-y-2 pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+      {filteredEmployees.map(employee => (
+        <Card key={employee.id} className="p-4 hover:shadow-md transition-shadow">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                <span className="text-blue-600 font-semibold">
+                  {employee.name.split(' ').map(n => n[0]).join('')}
+                </span>
+              </div>
+              <div>
+                <h4 className="font-semibold">{employee.name}</h4>
+                <p className="text-sm text-gray-600">{employee.position} • {employee.department}</p>
+                <p className="text-xs text-gray-500">ID: {employee.employeeId}</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <Badge className={getStatusColor(employee.status)}>
+                {employee.status.charAt(0).toUpperCase() + employee.status.slice(1)}
+              </Badge>
+              <Badge className={getTrainingStatusColor(employee.trainingStatus)}>
+                {employee.trainingStatus}
+              </Badge>
+              <Button variant="ghost" size="sm">
+                <Eye className="w-4 h-4" />
+              </Button>
+            </div>
+          </div>
+          <div className="mt-2 flex items-center gap-4 text-sm text-gray-500">
+            <div className="flex items-center gap-1">
+              <Mail className="w-3 h-3" />
+              {employee.email}
+            </div>
+            <div className="flex items-center gap-1">
+              <Phone className="w-3 h-3" />
+              {employee.phone}
+            </div>
+            <div className="flex items-center gap-1">
+              <MapPin className="w-3 h-3" />
+              {employee.location}
+            </div>
+            <div className="flex items-center gap-1">
+              <Clock className="w-3 h-3" />
+              Hired {employee.hireDate}
+            </div>
+          </div>
+        </Card>
+      ))}
+    </div>
+  );
+
+  const renderListView = () => (
+    <div className="space-y-1 pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+      {filteredEmployees.map(employee => (
+        <div key={employee.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+              <span className="text-blue-600 font-semibold text-sm">
+                {employee.name.split(' ').map(n => n[0]).join('')}
+              </span>
+            </div>
+            <div>
+              <h4 className="font-medium">{employee.name}</h4>
+              <p className="text-sm text-gray-600">{employee.position} • {employee.department}</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <Badge className={getStatusColor(employee.status)}>
+              {employee.status.charAt(0).toUpperCase() + employee.status.slice(1)}
+            </Badge>
+            <Button variant="ghost" size="sm">
+              <Eye className="w-4 h-4" />
+            </Button>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+
+  const renderTableView = () => (
+    <div className="overflow-x-auto">
+      <table className="w-full text-sm">
+        <thead className="bg-gray-50">
+          <tr>
+            <th className="p-2 text-left">Employee</th>
+            <th className="p-2 text-left">Position</th>
+            <th className="p-2 text-left">Department</th>
+            <th className="p-2 text-left">Status</th>
+            <th className="p-2 text-left">Training</th>
+            <th className="p-2 text-left">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredEmployees.map(employee => (
+            <tr key={employee.id} className="border-b hover:bg-gray-50">
+              <td className="p-2">
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
+                    <span className="text-blue-600 font-semibold text-xs">
+                      {employee.name.split(' ').map(n => n[0]).join('')}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="font-medium">{employee.name}</p>
+                    <p className="text-xs text-gray-500">{employee.employeeId}</p>
+                  </div>
+                </div>
+              </td>
+              <td className="p-2">{employee.position}</td>
+              <td className="p-2">{employee.department}</td>
+              <td className="p-2">
+                <Badge className={getStatusColor(employee.status)}>
+                  {employee.status.charAt(0).toUpperCase() + employee.status.slice(1)}
+                </Badge>
+              </td>
+              <td className="p-2">
+                <Badge className={getTrainingStatusColor(employee.trainingStatus)}>
+                  {employee.trainingStatus}
+                </Badge>
+              </td>
+              <td className="p-2">
+                <Button variant="ghost" size="sm">
+                  <Eye className="w-4 h-4" />
+                </Button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+
+  const renderAnalyticsView = () => {
+    const departmentCounts = filteredEmployees.reduce((acc, emp) => {
+      acc[emp.department] = (acc[emp.department] || 0) + 1;
+      return acc;
+    }, {} as Record<string, number>);
+
+    const statusCounts = filteredEmployees.reduce((acc, emp) => {
+      acc[emp.status] = (acc[emp.status] || 0) + 1;
+      return acc;
+    }, {} as Record<string, number>);
+
+    const trainingStatusCounts = filteredEmployees.reduce((acc, emp) => {
+      acc[emp.trainingStatus] = (acc[emp.trainingStatus] || 0) + 1;
+      return acc;
+    }, {} as Record<string, number>);
+
+    return (
+      <div className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <Card className="p-4">
+            <h4 className="font-semibold mb-2">Department Distribution</h4>
+            <div className="space-y-2">
+              {Object.entries(departmentCounts).map(([dept, count]) => (
+                <div key={dept} className="flex justify-between items-center">
+                  <span className="text-sm">{dept}</span>
+                  <Badge variant="outline">{count}</Badge>
+                </div>
+              ))}
+            </div>
+          </Card>
+          
+          <Card className="p-4">
+            <h4 className="font-semibold mb-2">Status Distribution</h4>
+            <div className="space-y-2">
+              {Object.entries(statusCounts).map(([status, count]) => (
+                <div key={status} className="flex justify-between items-center">
+                  <span className="text-sm">{status.charAt(0).toUpperCase() + status.slice(1)}</span>
+                  <Badge className={getStatusColor(status)}>{count}</Badge>
+                </div>
+              ))}
+            </div>
+          </Card>
+          
+          <Card className="p-4">
+            <h4 className="font-semibold mb-2">Training Status</h4>
+            <div className="space-y-2">
+              {Object.entries(trainingStatusCounts).map(([status, count]) => (
+                <div key={status} className="flex justify-between items-center">
+                  <span className="text-sm">{status}</span>
+                  <Badge className={getTrainingStatusColor(status)}>{count}</Badge>
+                </div>
+              ))}
+            </div>
+          </Card>
+        </div>
+        
+        <div className="mt-4">
+          <h4 className="font-semibold mb-2">Search Results Summary</h4>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="text-center p-3 bg-blue-50 rounded-lg">
+              <div className="text-2xl font-bold text-blue-600">{filteredEmployees.length}</div>
+              <div className="text-sm text-gray-600">Total Results</div>
+            </div>
+            <div className="text-center p-3 bg-green-50 rounded-lg">
+              <div className="text-2xl font-bold text-green-600">
+                {filteredEmployees.filter(emp => emp.status === 'active').length}
+              </div>
+              <div className="text-sm text-gray-600">Active</div>
+            </div>
+            <div className="text-center p-3 bg-yellow-50 rounded-lg">
+              <div className="text-2xl font-bold text-yellow-600">
+                {filteredEmployees.filter(emp => emp.trainingStatus === 'Expiring Soon').length}
+              </div>
+              <div className="text-sm text-gray-600">Expiring Soon</div>
+            </div>
+            <div className="text-center p-3 bg-red-50 rounded-lg">
+              <div className="text-2xl font-bold text-red-600">
+                {filteredEmployees.filter(emp => emp.trainingStatus === 'Needs Renewal').length}
+              </div>
+              <div className="text-sm text-gray-600">Needs Renewal</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // Adaptive Results Rendering Function
+  const renderResults = () => {
+    if (filteredEmployees.length === 0) {
+      return (
+        <div className="text-center py-8 text-gray-500">
+          <Users className="w-12 h-12 mx-auto mb-2 text-gray-400" />
+          <p>No employees found matching your search criteria</p>
+        </div>
+      );
+    }
+
+    switch (viewMode) {
+      case 'card':
+        return renderCardView();
+      case 'list':
+        return renderListView();
+      case 'table':
+        return renderTableView();
+      case 'analytics':
+        return renderAnalyticsView();
+      default:
+        return renderCardView();
     }
   };
 
@@ -474,190 +556,56 @@ const QuickSearchWidget: React.FC = () => {
                 </Button>
               </div>
             </div>
-            <Button 
-              variant="outline" 
-              size="sm"
-              onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
-            >
-              <Filter className="w-4 h-4 mr-2" />
-              Advanced Filters
-            </Button>
+            <div className="flex items-center gap-2">
+              {/* View Mode Controls */}
+              <div className="flex items-center border rounded-lg">
+                <Button
+                  variant={viewMode === 'card' ? 'default' : 'ghost'}
+                  size="sm"
+                  onClick={() => setViewMode('card')}
+                  className="rounded-r-none"
+                >
+                  <Grid className="w-4 h-4" />
+                </Button>
+                <Button
+                  variant={viewMode === 'list' ? 'default' : 'ghost'}
+                  size="sm"
+                  onClick={() => setViewMode('list')}
+                  className="rounded-none"
+                >
+                  <List className="w-4 h-4" />
+                </Button>
+                <Button
+                  variant={viewMode === 'table' ? 'default' : 'ghost'}
+                  size="sm"
+                  onClick={() => setViewMode('table')}
+                  className="rounded-none"
+                >
+                  <Table className="w-4 h-4" />
+                </Button>
+                <Button
+                  variant={viewMode === 'analytics' ? 'default' : 'ghost'}
+                  size="sm"
+                  onClick={() => setViewMode('analytics')}
+                  className="rounded-l-none"
+                >
+                  <BarChart3 className="w-4 h-4" />
+                </Button>
+              </div>
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
+              >
+                <Filter className="w-4 h-4 mr-2" />
+                Advanced Filters
+              </Button>
+            </div>
           </div>
 
-          {/* Results */}
-          <div className="space-y-2 overflow-y-auto max-h-96 pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
-            {filteredEmployees.map(employee => (
-              <Card key={employee.id} className="p-4 hover:shadow-md transition-shadow">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                      <span className="text-blue-600 font-semibold">
-                        {employee.name.split(' ').map(n => n[0]).join('')}
-                      </span>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold">{employee.name}</h4>
-                      <p className="text-sm text-gray-600">{employee.position} • {employee.department}</p>
-                      <p className="text-xs text-gray-500">ID: {employee.employeeId}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Badge className={getStatusColor(employee.status)}>
-                      {employee.status.charAt(0).toUpperCase() + employee.status.slice(1)}
-                    </Badge>
-                    <Badge className={getTrainingStatusColor(employee.trainingStatus)}>
-                      {employee.trainingStatus}
-                    </Badge>
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <Button variant="ghost" size="sm" onClick={() => setSelectedEmployee(employee)}>
-                          <Eye className="w-4 h-4" />
-                        </Button>
-                      </DialogTrigger>
-                      <DialogContent className="max-w-2xl">
-                        <DialogHeader>
-                          <DialogTitle>Employee Details - {employee.name}</DialogTitle>
-                        </DialogHeader>
-                        <Tabs defaultValue="overview" className="w-full">
-                          <TabsList className="grid w-full grid-cols-3">
-                            <TabsTrigger value="overview">Overview</TabsTrigger>
-                            <TabsTrigger value="certificates">Certificates</TabsTrigger>
-                            <TabsTrigger value="training">Training</TabsTrigger>
-                          </TabsList>
-                          <TabsContent value="overview" className="space-y-4">
-                            <div className="grid grid-cols-2 gap-4">
-                              <div>
-                                <label className="text-sm font-medium text-gray-500">Employee ID</label>
-                                <p className="text-sm">{employee.employeeId}</p>
-                              </div>
-                              <div>
-                                <label className="text-sm font-medium text-gray-500">Status</label>
-                                <div className="mt-1">
-                                  <Badge className={getStatusColor(employee.status)}>
-                                    {employee.status.charAt(0).toUpperCase() + employee.status.slice(1)}
-                                  </Badge>
-                                </div>
-                              </div>
-                              <div>
-                                <label className="text-sm font-medium text-gray-500">Department</label>
-                                <p className="text-sm">{employee.department}</p>
-                              </div>
-                              <div>
-                                <label className="text-sm font-medium text-gray-500">Position</label>
-                                <p className="text-sm">{employee.position}</p>
-                              </div>
-                              <div>
-                                <label className="text-sm font-medium text-gray-500">Email</label>
-                                <p className="text-sm">{employee.email}</p>
-                              </div>
-                              <div>
-                                <label className="text-sm font-medium text-gray-500">Phone</label>
-                                <p className="text-sm">{employee.phone}</p>
-                              </div>
-                              <div>
-                                <label className="text-sm font-medium text-gray-500">Location</label>
-                                <p className="text-sm">{employee.location}</p>
-                              </div>
-                              <div>
-                                <label className="text-sm font-medium text-gray-500">Hire Date</label>
-                                <p className="text-sm">{employee.hireDate}</p>
-                              </div>
-                            </div>
-                            <div className="grid grid-cols-3 gap-4 pt-4 border-t">
-                              <div className="text-center">
-                                <div className="flex items-center justify-center gap-2 mb-2">
-                                  <Award className="w-4 h-4 text-green-600" />
-                                  <span className="text-sm font-medium">Certificates</span>
-                                </div>
-                                <p className="text-2xl font-bold">{employee.certificateCount || 0}</p>
-                              </div>
-                              <div className="text-center">
-                                <div className="flex items-center justify-center gap-2 mb-2">
-                                  <AlertCircle className="w-4 h-4 text-yellow-600" />
-                                  <span className="text-sm font-medium">Expiring</span>
-                                </div>
-                                <p className="text-2xl font-bold">{employee.expiringCertificates || 0}</p>
-                              </div>
-                              <div className="text-center">
-                                <div className="flex items-center justify-center gap-2 mb-2">
-                                  <Calendar className="w-4 h-4 text-blue-600" />
-                                  <span className="text-sm font-medium">Training</span>
-                                </div>
-                                <p className="text-2xl font-bold">{employee.upcomingTraining || 0}</p>
-                              </div>
-                            </div>
-                          </TabsContent>
-                          <TabsContent value="certificates">
-                            <div className="space-y-2">
-                              {actualCertificates.filter(cert => cert.employeeId === employee.id).map(cert => (
-                                <Card key={cert.id} className="p-3">
-                                  <div className="flex items-center justify-between">
-                                    <div>
-                                      <h4 className="font-medium">{cert.certificateName}</h4>
-                                      <p className="text-sm text-gray-600">Expires: {cert.expirationDate}</p>
-                                    </div>
-                                    <Badge 
-                                      className={
-                                        cert.status === 'active' ? 'bg-green-100 text-green-700' :
-                                        cert.status === 'expiring' ? 'bg-yellow-100 text-yellow-700' :
-                                        'bg-red-100 text-red-700'
-                                      }
-                                    >
-                                      {cert.status.charAt(0).toUpperCase() + cert.status.slice(1)}
-                                    </Badge>
-                                  </div>
-                                </Card>
-                              ))}
-                            </div>
-                          </TabsContent>
-                          <TabsContent value="training">
-                            <div className="space-y-2">
-                              {actualTrainingSessions.filter(session => session.employeeId === employee.id).map(session => (
-                                <Card key={session.id} className="p-3">
-                                  <div className="flex items-center justify-between">
-                                    <div>
-                                      <h4 className="font-medium">{session.title}</h4>
-                                      <p className="text-sm text-gray-600">{session.startDate} - {session.endDate}</p>
-                                    </div>
-                                    <Badge 
-                                      className={
-                                        session.status === 'completed' ? 'bg-green-100 text-green-700' :
-                                        session.status === 'in-progress' ? 'bg-blue-100 text-blue-700' :
-                                        'bg-gray-100 text-gray-700'
-                                      }
-                                    >
-                                      {session.status.charAt(0).toUpperCase() + session.status.slice(1)}
-                                    </Badge>
-                                  </div>
-                                </Card>
-                              ))}
-                            </div>
-                          </TabsContent>
-                        </Tabs>
-                      </DialogContent>
-                    </Dialog>
-                  </div>
-                </div>
-                <div className="mt-2 flex items-center gap-4 text-sm text-gray-500">
-                  <div className="flex items-center gap-1">
-                    <Mail className="w-3 h-3" />
-                    {employee.email}
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Phone className="w-3 h-3" />
-                    {employee.phone}
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <MapPin className="w-3 h-3" />
-                    {employee.location}
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Clock className="w-3 h-3" />
-                    Hired {employee.hireDate}
-                  </div>
-                </div>
-              </Card>
-            ))}
+          {/* Adaptive Results Visualization */}
+          <div className="overflow-y-auto max-h-96">
+            {renderResults()}
           </div>
         </CardContent>
       </Card>
