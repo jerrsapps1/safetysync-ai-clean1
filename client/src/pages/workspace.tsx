@@ -1810,7 +1810,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             onClick={() => handleTabSwitch("employees")}
           >
             <Users className="w-5 h-5 mr-3" />
-            {sidebarOpen && "Employees"}
+            {sidebarOpen && "Employee Management"}
           </Button>
           <Button
             variant="ghost"
@@ -1820,7 +1820,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             onClick={() => handleTabSwitch("training")}
           >
             <BookOpen className="w-5 h-5 mr-3" />
-            {sidebarOpen && "Training"}
+            {sidebarOpen && "Training Management"}
           </Button>
           <Button
             variant="ghost"
@@ -1830,7 +1830,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             onClick={() => handleTabSwitch("certificates")}
           >
             <Award className="w-5 h-5 mr-3" />
-            {sidebarOpen && "Certificates"}
+            {sidebarOpen && "Certificate Generation"}
           </Button>
           <Button
             variant="ghost"
@@ -1840,7 +1840,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             onClick={() => handleTabSwitch("reports")}
           >
             <FileText className="w-5 h-5 mr-3" />
-            {sidebarOpen && "Reports"}
+            {sidebarOpen && "Compliance Reports"}
           </Button>
 
           <Button
@@ -1851,7 +1851,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             onClick={() => handleTabSwitch("document-manager")}
           >
             <Database className="w-5 h-5 mr-3" />
-            {sidebarOpen && "Documents"}
+            {sidebarOpen && "Document Management"}
           </Button>
 
           <Button
@@ -1862,7 +1862,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             onClick={() => handleTabSwitch("trends")}
           >
             <TrendingUp className="w-5 h-5 mr-3" />
-            {sidebarOpen && "Trends"}
+            {sidebarOpen && "Safety Trends"}
           </Button>
           <Button
             variant="ghost"
@@ -1872,7 +1872,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             onClick={() => handleTabSwitch("instructors")}
           >
             <GraduationCap className="w-5 h-5 mr-3" />
-            {sidebarOpen && "Instructors"}
+            {sidebarOpen && "Instructor Management"}
           </Button>
           <Button
             variant="ghost"
@@ -1882,7 +1882,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             onClick={() => handleTabSwitch("organization")}
           >
             <Network className="w-5 h-5 mr-3" />
-            {sidebarOpen && "Organization"}
+            {sidebarOpen && "Organization Structure"}
           </Button>
           <Button
             variant="ghost"
@@ -1902,7 +1902,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             onClick={() => handleTabSwitch("notifications")}
           >
             <Inbox className="w-5 h-5 mr-3" />
-            {sidebarOpen && "Notifications"}
+            {sidebarOpen && "Notifications & Alerts"}
           </Button>
           <Button
             variant="ghost"
@@ -1912,7 +1912,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             onClick={() => handleTabSwitch("workplace-poster")}
           >
             <FileText className="w-5 h-5 mr-3" />
-            {sidebarOpen && "Workplace Poster"}
+            {sidebarOpen && "Workplace Poster Management"}
           </Button>
           <Button
             variant="ghost"
@@ -1952,7 +1952,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             onClick={() => handleTabSwitch("achievements")}
           >
             <Award className="w-5 h-5 mr-3" />
-            {sidebarOpen && "Achievements"}
+            {sidebarOpen && "Achievements & Milestones"}
           </Button>
           <Button
             variant="ghost"
@@ -1972,7 +1972,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             onClick={() => handleTabSwitch("settings")}
           >
             <Settings className="w-5 h-5 mr-3" />
-            {sidebarOpen && "Settings"}
+            {sidebarOpen && "Workspace Settings"}
           </Button>
         </nav>
 
