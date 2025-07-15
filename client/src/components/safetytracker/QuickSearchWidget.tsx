@@ -604,7 +604,7 @@ const QuickSearchWidget = () => {
           </div>
 
           {/* Adaptive Results Visualization */}
-          <div className="overflow-y-auto max-h-96">
+          <div className="overflow-y-auto max-h-96 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
             {renderResults()}
           </div>
         </CardContent>
