@@ -272,7 +272,7 @@ const QuickSearchWidget: React.FC = () => {
   });
 
   // Use mock data if API fails (for demonstration purposes)
-  const actualEmployees = employeesError ? mockEmployees : employees;
+  const actualEmployees = employeesError || employees.length === 0 ? mockEmployees : employees;
   const actualCertificates = certificatesError ? [] : certificates;
   const actualTrainingSessions = trainingError ? [] : trainingSessions;
 
@@ -307,6 +307,11 @@ const QuickSearchWidget: React.FC = () => {
   // Get unique departments from processed data
   const departments = ['all', ...new Set(actualEmployees.map(emp => emp.department).filter(Boolean))];
   const statuses = ['all', 'active', 'inactive', 'training', 'on-leave'];
+  
+  // Debug logging to check departments
+  console.log('Available departments:', departments);
+  console.log('Available statuses:', statuses);
+  console.log('Total employees:', actualEmployees.length);
 
   // Enhanced filtering and sorting
   const filteredEmployees = React.useMemo(() => {
