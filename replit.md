@@ -130,6 +130,13 @@ User satisfied with comprehensive platform features including dashboard, admin p
 
 ## Recent Changes
 
+- **July 15, 2025** - Enhanced Security: Removed Compromised Test Credentials:
+  - **SECURITY FIX**: Removed compromised test account (test@example.com) identified in data breaches
+  - **NEW SECURE TEST ACCOUNT**: Created test@safetysync.ai with secure password for platform testing
+  - Enhanced security by proactively removing vulnerable authentication credentials
+  - New test account uses SafetySync.AI domain for better brand alignment
+  - All authentication functionality verified with secure credentials
+
 - **July 14, 2025** - Completed Comprehensive Mobile Responsiveness Fixes:
   - **Landing Page Mobile Navigation**: Fixed navigation buttons being cut off on mobile by moving CTA buttons to hamburger menu
   - **Navigation Layout**: Added proper mobile menu with all navigation links (Features, Industry Research, Case Studies, Pricing, Blog, Resources, Contact)
