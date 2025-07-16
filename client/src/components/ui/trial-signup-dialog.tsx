@@ -104,7 +104,7 @@ export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDial
         <DialogHeader>
           <DialogTitle>Start Your Free Trial</DialogTitle>
           <DialogDescription>
-            Get full access to SafetySync for 14 days. No credit card required.
+            Get full access to SafetySync.ai for 14 days. No credit card required.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">

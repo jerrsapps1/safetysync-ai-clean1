@@ -43,8 +43,8 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
   const faqData: FAQItem[] = [
     {
       id: "1",
-      question: "How does SafetySync help with OSHA compliance?",
-      answer: "SafetySync automates your entire OSHA compliance process by tracking employee training, managing certifications, sending expiration alerts, and generating audit-ready reports. Our platform ensures you stay compliant with all relevant OSHA standards while reducing administrative burden by up to 75%.",
+      question: "How does SafetySync.ai help with OSHA compliance?",
+      answer: "SafetySync.ai automates your entire OSHA compliance process by tracking employee training, managing certifications, sending expiration alerts, and generating audit-ready reports. Our platform ensures you stay compliant with all relevant OSHA standards while reducing administrative burden by up to 75%.",
       category: "general",
       popular: true,
       tags: ["osha", "compliance", "automation", "training"]
@@ -59,7 +59,7 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
     },
     {
       id: "3",
-      question: "How quickly can I get started with SafetySync?",
+      question: "How quickly can I get started with SafetySync.ai?",
       answer: "Most customers are up and running within 24-48 hours. Our onboarding process includes data migration assistance, team training, and setup of your compliance tracking system. Enterprise customers receive dedicated implementation support with a timeline tailored to their needs.",
       category: "getting-started",
       tags: ["onboarding", "setup", "timeline"]
@@ -67,14 +67,14 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
     {
       id: "4",
       question: "Is my data secure and compliant with privacy regulations?",
-      answer: "Yes, SafetySync employs bank-level security with 256-bit encryption, SOC 2 Type II compliance, and GDPR compliance. All data is stored in secure, redundant data centers with regular security audits. We never share your data with third parties without explicit consent.",
+      answer: "Yes, SafetySync.ai employs bank-level security with 256-bit encryption, SOC 2 Type II compliance, and GDPR compliance. All data is stored in secure, redundant data centers with regular security audits. We never share your data with third parties without explicit consent.",
       category: "security",
       popular: true,
       tags: ["security", "privacy", "encryption", "compliance"]
     },
     {
       id: "5",
-      question: "Can SafetySync integrate with our existing HR systems?",
+      question: "Can SafetySync.ai integrate with our existing HR systems?",
       answer: "SafetySync offers robust API integrations with popular HR systems including BambooHR, Workday, ADP, and custom HRIS solutions. We also provide CSV import/export functionality and can work with your IT team to establish seamless data synchronization.",
       category: "integrations",
       tags: ["integrations", "api", "hr systems", "data sync"]
