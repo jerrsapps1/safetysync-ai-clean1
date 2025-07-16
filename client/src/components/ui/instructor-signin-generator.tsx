@@ -944,24 +944,24 @@ export function InstructorSignInGenerator() {
                             Documents ({getCurrentInstructorDocuments().length})
                           </div>
                           {selectedDocuments.length > 0 && (
-                            <div className="flex gap-2">
+                            <div className="flex gap-1 flex-wrap">
                               <Button
                                 variant="outline"
                                 size="sm"
                                 onClick={downloadSelectedDocuments}
-                                className="text-xs"
+                                className="text-xs whitespace-nowrap"
                               >
                                 <Download className="w-3 h-3 mr-1" />
-                                Download Selected ({selectedDocuments.length})
+                                Download ({selectedDocuments.length})
                               </Button>
                               <Button
                                 variant="outline"
                                 size="sm"
                                 onClick={deleteSelectedDocuments}
-                                className="text-xs text-red-600 hover:text-red-700"
+                                className="text-xs text-red-600 hover:text-red-700 whitespace-nowrap"
                               >
                                 <Trash2 className="w-3 h-3 mr-1" />
-                                Delete Selected ({selectedDocuments.length})
+                                Delete ({selectedDocuments.length})
                               </Button>
                             </div>
                           )}
