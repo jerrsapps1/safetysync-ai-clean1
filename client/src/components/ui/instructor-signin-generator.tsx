@@ -26,7 +26,10 @@ import {
   Trash2,
   Building,
   Search,
-  Settings
+  Settings,
+  RefreshCw,
+  AlertCircle,
+  FileCheck
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import * as XLSX from 'xlsx';
@@ -85,6 +88,38 @@ interface SignInSheet {
   employees: Employee[];
   createdAt: string;
   status: 'draft' | 'generated' | 'completed' | 'uploaded';
+  signedDocuments?: SignedDocument[];
+  signatureWorkflow?: SignatureWorkflow;
+}
+
+interface SignedDocument {
+  id: string;
+  fileName: string;
+  fileType: string;
+  uploadDate: string;
+  fileSize: number;
+  signatureCount: number;
+  uploadedBy: string;
+  verified: boolean;
+}
+
+interface SignatureWorkflow {
+  id: string;
+  sheetId: string;
+  status: 'pending' | 'in_progress' | 'completed';
+  generatedDate: string;
+  completedDate?: string;
+  totalSignatures: number;
+  receivedSignatures: number;
+  notifications: WorkflowNotification[];
+}
+
+interface WorkflowNotification {
+  id: string;
+  type: 'reminder' | 'completion' | 'upload';
+  message: string;
+  timestamp: string;
+  acknowledged: boolean;
 }
 
 const TRAINING_TYPES = [
@@ -128,6 +163,9 @@ export function InstructorSignInGenerator() {
   const [instructorDocuments, setInstructorDocuments] = useState<InstructorDocument[]>([]);
   const [showDocumentViewer, setShowDocumentViewer] = useState(false);
   const [selectedDocuments, setSelectedDocuments] = useState<string[]>([]);
+  const [signatureWorkflowMode, setSignatureWorkflowMode] = useState(false);
+  const [uploadedFiles, setUploadedFiles] = useState<SignedDocument[]>([]);
+  const [selectedSheet, setSelectedSheet] = useState<SignInSheet | null>(null);
   const { toast } = useToast();
 
   // Sample client instructors - in real implementation, this would come from the database
@@ -588,6 +626,9 @@ export function InstructorSignInGenerator() {
     // Generate and download the printable form
     generatePrintableForm(sheet);
     
+    // Initialize signature workflow
+    initializeSignatureWorkflow(sheet);
+    
     toast({
       title: "Sign-In Sheet Generated",
       description: `Generated for ${sheet.employees.length} employees. Ready to print and use in class.`,
@@ -595,6 +636,495 @@ export function InstructorSignInGenerator() {
     });
   };
 
+  // Initialize signature workflow
+  const initializeSignatureWorkflow = (sheet: SignInSheet) => {
+    const workflow: SignatureWorkflow = {
+      id: Date.now().toString() + Math.random().toString(36).substr(2, 9),
+      sheetId: sheet.id,
+      status: 'pending',
+      generatedDate: new Date().toISOString(),
+      totalSignatures: sheet.employees.length,
+      receivedSignatures: 0,
+      notifications: [
+        {
+          id: Date.now().toString(),
+          type: 'completion',
+          message: 'Sign-in sheet generated and ready for signatures',
+          timestamp: new Date().toISOString(),
+          acknowledged: false
+        }
+      ]
+    };
+
+    // Update sheet with workflow
+    setSavedSheets(prev => 
+      prev.map(s => 
+        s.id === sheet.id 
+          ? { ...s, signatureWorkflow: workflow }
+          : s
+      )
+    );
+  };
+
+  // Handle signed document upload
+  const handleSignedDocumentUpload = (event: React.ChangeEvent<HTMLInputElement>, sheetId: string) => {
+    const files = event.target.files;
+    if (!files || files.length === 0) return;
+
+    const sheet = savedSheets.find(s => s.id === sheetId);
+    if (!sheet) return;
+
+    Array.from(files).forEach(file => {
+      const signedDoc: SignedDocument = {
+        id: Date.now().toString() + Math.random().toString(36).substr(2, 9),
+        fileName: file.name,
+        fileType: file.type,
+        uploadDate: new Date().toISOString(),
+        fileSize: file.size,
+        signatureCount: sheet.employees.length, // Assume all signed for now
+        uploadedBy: 'Current User',
+        verified: false
+      };
+
+      // Update sheet with signed document
+      setSavedSheets(prev => 
+        prev.map(s => 
+          s.id === sheetId 
+            ? { 
+                ...s, 
+                signedDocuments: [...(s.signedDocuments || []), signedDoc],
+                status: 'uploaded',
+                signatureWorkflow: s.signatureWorkflow ? {
+                  ...s.signatureWorkflow,
+                  status: 'completed',
+                  completedDate: new Date().toISOString(),
+                  receivedSignatures: sheet.employees.length,
+                  notifications: [
+                    ...(s.signatureWorkflow.notifications || []),
+                    {
+                      id: Date.now().toString(),
+                      type: 'upload',
+                      message: `Signed document uploaded: ${file.name}`,
+                      timestamp: new Date().toISOString(),
+                      acknowledged: false
+                    }
+                  ]
+                } : undefined
+              }
+            : s
+        )
+      );
+    });
+
+    toast({
+      title: "Signed Document Uploaded",
+      description: `${files.length} signed document(s) uploaded successfully`,
+      duration: 3000
+    });
+
+    // Reset input
+    event.target.value = '';
+  };
+
+  // Verify signed document
+  const verifySignedDocument = (sheetId: string, documentId: string) => {
+    setSavedSheets(prev => 
+      prev.map(sheet => 
+        sheet.id === sheetId 
+          ? {
+              ...sheet,
+              signedDocuments: sheet.signedDocuments?.map(doc => 
+                doc.id === documentId ? { ...doc, verified: true } : doc
+              )
+            }
+          : sheet
+      )
+    );
+
+    toast({
+      title: "Document Verified",
+      description: "Signed document has been verified successfully",
+      duration: 3000
+    });
+  };
+
+  // Delete signed document
+  const deleteSignedDocument = (sheetId: string, documentId: string) => {
+    setSavedSheets(prev => 
+      prev.map(sheet => 
+        sheet.id === sheetId 
+          ? {
+              ...sheet,
+              signedDocuments: sheet.signedDocuments?.filter(doc => doc.id !== documentId)
+            }
+          : sheet
+      )
+    );
+
+    toast({
+      title: "Document Deleted",
+      description: "Signed document has been removed",
+      duration: 3000
+    });
+  };
+
+  // Download signed document
+  const downloadSignedDocument = (doc: SignedDocument) => {
+    toast({
+      title: "Download Started",
+      description: `Downloading ${doc.fileName}`,
+      duration: 3000
+    });
+    // In a real implementation, this would download the actual file
+  };
+
+  // Get workflow status color
+  const getWorkflowStatusColor = (status: string) => {
+    switch (status) {
+      case 'pending': return 'text-yellow-600';
+      case 'in_progress': return 'text-blue-600';
+      case 'completed': return 'text-green-600';
+      default: return 'text-gray-600';
+    }
+  };
+
+  // Get workflow status icon
+  const getWorkflowStatusIcon = (status: string) => {
+    switch (status) {
+      case 'pending': return <Clock className="w-4 h-4" />;
+      case 'in_progress': return <RefreshCw className="w-4 h-4" />;
+      case 'completed': return <CheckCircle className="w-4 h-4" />;
+      default: return <AlertCircle className="w-4 h-4" />;
+    }
+  };
+
+
+
+  // Enhanced form generation with PDF/Word export and signature workflow
+  const generateProfessionalForm = (sheet: SignInSheet, format: 'pdf' | 'word' = 'pdf') => {
+    const selectedTraining = TRAINING_TYPES.find(t => t.value === sheet.trainingType);
+    
+    if (format === 'pdf') {
+      generatePDFForm(sheet, selectedTraining);
+    } else if (format === 'word') {
+      generateWordForm(sheet, selectedTraining);
+    }
+  };
+
+  // Generate professional PDF form
+  const generatePDFForm = (sheet: SignInSheet, selectedTraining: any) => {
+    const doc = new jsPDF({
+      orientation: 'portrait',
+      unit: 'mm',
+      format: 'a4'
+    });
+
+    const pageWidth = doc.internal.pageSize.width;
+    const pageHeight = doc.internal.pageSize.height;
+    const margin = 20;
+    let yPosition = margin;
+
+    // Header with SafetySync.ai branding
+    doc.setFontSize(20);
+    doc.setFont('helvetica', 'bold');
+    doc.text('OSHA TRAINING ATTENDANCE RECORD', pageWidth / 2, yPosition, { align: 'center' });
+    yPosition += 10;
+
+    doc.setFontSize(16);
+    doc.text(sheet.classTitle, pageWidth / 2, yPosition, { align: 'center' });
+    yPosition += 15;
+
+    // Professional line separator
+    doc.setLineWidth(0.5);
+    doc.line(margin, yPosition, pageWidth - margin, yPosition);
+    yPosition += 15;
+
+    // Company and location info
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'normal');
+    doc.text(`Instructor Company: ${sheet.instructorCompany}`, pageWidth / 2, yPosition, { align: 'center' });
+    yPosition += 6;
+    doc.text(`Training Location: ${sheet.location}`, pageWidth / 2, yPosition, { align: 'center' });
+    yPosition += 15;
+
+    // Training details in two columns
+    const leftColumn = margin;
+    const rightColumn = pageWidth / 2 + 10;
+    
+    doc.setFont('helvetica', 'bold');
+    doc.text('Training Information:', leftColumn, yPosition);
+    doc.text('Session Details:', rightColumn, yPosition);
+    yPosition += 8;
+
+    doc.setFont('helvetica', 'normal');
+    doc.text(`Instructor: ${sheet.instructorName}`, leftColumn, yPosition);
+    doc.text(`End Time: ${sheet.endTime}`, rightColumn, yPosition);
+    yPosition += 6;
+
+    doc.text(`Credentials: ${sheet.instructorCredentials}`, leftColumn, yPosition);
+    doc.text(`OSHA Standard: ${sheet.oshaStandard}`, rightColumn, yPosition);
+    yPosition += 6;
+
+    doc.text(`Training Date: ${sheet.date}`, leftColumn, yPosition);
+    doc.text(`Record Retention: ${selectedTraining?.retention || '3 years'}`, rightColumn, yPosition);
+    yPosition += 6;
+
+    doc.text(`Start Time: ${sheet.startTime}`, leftColumn, yPosition);
+    doc.text(`Total Participants: ${sheet.employees.length}`, rightColumn, yPosition);
+    yPosition += 15;
+
+    // Attendance table header
+    const tableStartY = yPosition;
+    const colWidths = [15, 50, 30, 30, 30, 35];
+    const colPositions = [margin];
+    for (let i = 0; i < colWidths.length - 1; i++) {
+      colPositions.push(colPositions[i] + colWidths[i]);
+    }
+
+    // Table header
+    doc.setFillColor(240, 240, 240);
+    doc.rect(margin, yPosition, pageWidth - 2 * margin, 8, 'F');
+    
+    doc.setFont('helvetica', 'bold');
+    doc.text('#', colPositions[0] + 2, yPosition + 5);
+    doc.text('Employee Name', colPositions[1] + 2, yPosition + 5);
+    doc.text('Employee ID', colPositions[2] + 2, yPosition + 5);
+    doc.text('Company', colPositions[3] + 2, yPosition + 5);
+    doc.text('Time In', colPositions[4] + 2, yPosition + 5);
+    doc.text('Signature', colPositions[5] + 2, yPosition + 5);
+    
+    yPosition += 8;
+
+    // Table borders
+    doc.setLineWidth(0.3);
+    // Header row border
+    doc.rect(margin, tableStartY, pageWidth - 2 * margin, 8);
+    
+    // Vertical lines
+    colPositions.forEach((pos, index) => {
+      if (index < colPositions.length - 1) {
+        doc.line(pos + colWidths[index], tableStartY, pos + colWidths[index], yPosition + (sheet.employees.length * 12));
+      }
+    });
+
+    // Employee rows
+    doc.setFont('helvetica', 'normal');
+    sheet.employees.forEach((employee, index) => {
+      const rowY = yPosition + (index * 12);
+      
+      // Alternating row colors
+      if (index % 2 === 0) {
+        doc.setFillColor(250, 250, 250);
+        doc.rect(margin, rowY, pageWidth - 2 * margin, 12, 'F');
+      }
+      
+      doc.text(`${index + 1}`, colPositions[0] + 2, rowY + 8);
+      doc.text(employee.name, colPositions[1] + 2, rowY + 8);
+      doc.text(employee.employeeId, colPositions[2] + 2, rowY + 8);
+      doc.text(employee.company, colPositions[3] + 2, rowY + 8);
+      
+      // Time in field (empty for manual entry)
+      doc.text('_____________', colPositions[4] + 2, rowY + 8);
+      
+      // Signature line
+      doc.text('_____________________', colPositions[5] + 2, rowY + 8);
+      
+      // Row border
+      doc.rect(margin, rowY, pageWidth - 2 * margin, 12);
+    });
+
+    // Footer with compliance information
+    const footerY = yPosition + (sheet.employees.length * 12) + 20;
+    
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'bold');
+    doc.text('OSHA Compliance Requirements:', margin, footerY);
+    
+    doc.setFont('helvetica', 'normal');
+    const complianceText = [
+      '• This training record must be maintained for the duration specified by OSHA standards',
+      '• All attendees must sign to acknowledge receipt of training',
+      '• Training content must meet current OSHA requirements',
+      '• Records must be available for OSHA inspection upon request',
+      '• Generated by SafetySync.ai - Professional OSHA Compliance Management'
+    ];
+    
+    complianceText.forEach((text, index) => {
+      doc.text(text, margin, footerY + 6 + (index * 4));
+    });
+
+    // Save the PDF
+    const fileName = `${sheet.classTitle.replace(/[^a-zA-Z0-9]/g, '_')}_${sheet.date}_SignIn.pdf`;
+    doc.save(fileName);
+  };
+
+  // Generate professional Word document
+  const generateWordForm = async (sheet: SignInSheet, selectedTraining: any) => {
+    const doc = new Document({
+      sections: [{
+        properties: {
+          page: {
+            margin: {
+              top: 720,
+              right: 720,
+              bottom: 720,
+              left: 720
+            }
+          }
+        },
+        children: [
+          // Header
+          new Paragraph({
+            text: "OSHA TRAINING ATTENDANCE RECORD",
+            heading: "Title",
+            alignment: "center",
+            spacing: { after: 200 }
+          }),
+          
+          new Paragraph({
+            text: sheet.classTitle,
+            heading: "Heading1",
+            alignment: "center",
+            spacing: { after: 400 }
+          }),
+          
+          // Company info
+          new Paragraph({
+            text: `Instructor Company: ${sheet.instructorCompany}`,
+            alignment: "center",
+            spacing: { after: 100 }
+          }),
+          
+          new Paragraph({
+            text: `Training Location: ${sheet.location}`,
+            alignment: "center",
+            spacing: { after: 400 }
+          }),
+          
+          // Training details table
+          new Table({
+            width: { size: 100, type: "pct" },
+            rows: [
+              new TableRow({
+                children: [
+                  new TableCell({
+                    children: [new Paragraph({ text: "Training Information", heading: "Heading2" })],
+                    width: { size: 50, type: "pct" }
+                  }),
+                  new TableCell({
+                    children: [new Paragraph({ text: "Session Details", heading: "Heading2" })],
+                    width: { size: 50, type: "pct" }
+                  })
+                ]
+              }),
+              new TableRow({
+                children: [
+                  new TableCell({
+                    children: [
+                      new Paragraph({ text: `Instructor: ${sheet.instructorName}` }),
+                      new Paragraph({ text: `Credentials: ${sheet.instructorCredentials}` }),
+                      new Paragraph({ text: `Training Date: ${sheet.date}` }),
+                      new Paragraph({ text: `Start Time: ${sheet.startTime}` })
+                    ]
+                  }),
+                  new TableCell({
+                    children: [
+                      new Paragraph({ text: `End Time: ${sheet.endTime}` }),
+                      new Paragraph({ text: `OSHA Standard: ${sheet.oshaStandard}` }),
+                      new Paragraph({ text: `Record Retention: ${selectedTraining?.retention || '3 years'}` }),
+                      new Paragraph({ text: `Total Participants: ${sheet.employees.length}` })
+                    ]
+                  })
+                ]
+              })
+            ]
+          }),
+          
+          // Spacing
+          new Paragraph({ text: "", spacing: { after: 400 } }),
+          
+          // Attendance table
+          new Table({
+            width: { size: 100, type: "pct" },
+            rows: [
+              // Header row
+              new TableRow({
+                children: [
+                  new TableCell({ children: [new Paragraph({ text: "#", alignment: "center" })], width: { size: 8, type: "pct" } }),
+                  new TableCell({ children: [new Paragraph({ text: "Employee Name", alignment: "center" })], width: { size: 25, type: "pct" } }),
+                  new TableCell({ children: [new Paragraph({ text: "Employee ID", alignment: "center" })], width: { size: 15, type: "pct" } }),
+                  new TableCell({ children: [new Paragraph({ text: "Company", alignment: "center" })], width: { size: 20, type: "pct" } }),
+                  new TableCell({ children: [new Paragraph({ text: "Time In", alignment: "center" })], width: { size: 12, type: "pct" } }),
+                  new TableCell({ children: [new Paragraph({ text: "Signature", alignment: "center" })], width: { size: 20, type: "pct" } })
+                ]
+              }),
+              // Employee rows
+              ...sheet.employees.map((employee, index) => 
+                new TableRow({
+                  children: [
+                    new TableCell({ children: [new Paragraph({ text: `${index + 1}`, alignment: "center" })] }),
+                    new TableCell({ children: [new Paragraph({ text: employee.name })] }),
+                    new TableCell({ children: [new Paragraph({ text: employee.employeeId })] }),
+                    new TableCell({ children: [new Paragraph({ text: employee.company })] }),
+                    new TableCell({ children: [new Paragraph({ text: "____________" })] }),
+                    new TableCell({ children: [new Paragraph({ text: "________________________" })] })
+                  ]
+                })
+              )
+            ]
+          }),
+          
+          // Footer
+          new Paragraph({ text: "", spacing: { after: 400 } }),
+          
+          new Paragraph({
+            text: "OSHA Compliance Requirements:",
+            heading: "Heading3",
+            spacing: { after: 200 }
+          }),
+          
+          new Paragraph({
+            text: "• This training record must be maintained for the duration specified by OSHA standards",
+            spacing: { after: 100 }
+          }),
+          
+          new Paragraph({
+            text: "• All attendees must sign to acknowledge receipt of training",
+            spacing: { after: 100 }
+          }),
+          
+          new Paragraph({
+            text: "• Training content must meet current OSHA requirements",
+            spacing: { after: 100 }
+          }),
+          
+          new Paragraph({
+            text: "• Records must be available for OSHA inspection upon request",
+            spacing: { after: 100 }
+          }),
+          
+          new Paragraph({
+            text: "• Generated by SafetySync.ai - Professional OSHA Compliance Management",
+            spacing: { after: 100 }
+          })
+        ]
+      }]
+    });
+
+    // Generate and save the Word document
+    const buffer = await Packer.toBuffer(doc);
+    const fileName = `${sheet.classTitle.replace(/[^a-zA-Z0-9]/g, '_')}_${sheet.date}_SignIn.docx`;
+    
+    const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = fileName;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+
+  // Maintain backward compatibility with existing print functionality
   const generatePrintableForm = (sheet: SignInSheet) => {
     const selectedTraining = TRAINING_TYPES.find(t => t.value === sheet.trainingType);
     
@@ -1437,6 +1967,12 @@ export function InstructorSignInGenerator() {
                         <span className="text-xs text-gray-500">
                           Created: {new Date(sheet.createdAt).toLocaleDateString()}
                         </span>
+                        {sheet.signatureWorkflow && (
+                          <div className={`flex items-center gap-1 text-xs ${getWorkflowStatusColor(sheet.signatureWorkflow.status)}`}>
+                            {getWorkflowStatusIcon(sheet.signatureWorkflow.status)}
+                            <span className="capitalize">{sheet.signatureWorkflow.status.replace('_', ' ')}</span>
+                          </div>
+                        )}
                       </div>
                     </div>
                     <div className="flex gap-2">
@@ -1451,6 +1987,118 @@ export function InstructorSignInGenerator() {
                       </Button>
                     </div>
                   </div>
+                  
+                  {/* Signature Workflow Management */}
+                  {sheet.signatureWorkflow && (
+                    <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+                      <div className="flex items-center justify-between mb-3">
+                        <h4 className="font-medium text-sm">Signature Workflow</h4>
+                        <div className="text-xs text-gray-500">
+                          {sheet.signatureWorkflow.receivedSignatures} / {sheet.signatureWorkflow.totalSignatures} signatures
+                        </div>
+                      </div>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {/* Upload Section */}
+                        <div className="space-y-2">
+                          <Label htmlFor={`upload-${sheet.id}`} className="text-sm font-medium">
+                            Upload Signed Document
+                          </Label>
+                          <div className="flex items-center gap-2">
+                            <Input
+                              id={`upload-${sheet.id}`}
+                              type="file"
+                              accept=".pdf,.doc,.docx,.png,.jpg,.jpeg"
+                              onChange={(e) => handleSignedDocumentUpload(e, sheet.id)}
+                              className="text-sm"
+                            />
+                            <Button size="sm" variant="outline" onClick={() => document.getElementById(`upload-${sheet.id}`)?.click()}>
+                              <Upload className="w-4 h-4" />
+                            </Button>
+                          </div>
+                        </div>
+                        
+                        {/* Progress Bar */}
+                        <div className="space-y-2">
+                          <Label className="text-sm font-medium">Completion Progress</Label>
+                          <div className="w-full bg-gray-200 rounded-full h-2">
+                            <div 
+                              className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                              style={{ 
+                                width: `${(sheet.signatureWorkflow.receivedSignatures / sheet.signatureWorkflow.totalSignatures) * 100}%` 
+                              }}
+                            />
+                          </div>
+                          <div className="text-xs text-gray-500">
+                            {Math.round((sheet.signatureWorkflow.receivedSignatures / sheet.signatureWorkflow.totalSignatures) * 100)}% complete
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Signed Documents List */}
+                      {sheet.signedDocuments && sheet.signedDocuments.length > 0 && (
+                        <div className="mt-4">
+                          <Label className="text-sm font-medium mb-2 block">Signed Documents</Label>
+                          <div className="space-y-2">
+                            {sheet.signedDocuments.map(doc => (
+                              <div key={doc.id} className="flex items-center justify-between p-2 bg-white rounded border">
+                                <div className="flex items-center gap-3">
+                                  <FileCheck className="w-4 h-4 text-green-600" />
+                                  <div>
+                                    <div className="text-sm font-medium">{doc.fileName}</div>
+                                    <div className="text-xs text-gray-500">
+                                      {new Date(doc.uploadDate).toLocaleDateString()} • {Math.round(doc.fileSize / 1024)}KB
+                                    </div>
+                                  </div>
+                                  {doc.verified && (
+                                    <Badge variant="default" className="text-xs">
+                                      <CheckCircle className="w-3 h-3 mr-1" />
+                                      Verified
+                                    </Badge>
+                                  )}
+                                </div>
+                                <div className="flex gap-1">
+                                  <Button size="sm" variant="ghost" onClick={() => downloadSignedDocument(doc)}>
+                                    <Eye className="w-4 h-4" />
+                                  </Button>
+                                  {!doc.verified && (
+                                    <Button size="sm" variant="ghost" onClick={() => verifySignedDocument(sheet.id, doc.id)}>
+                                      <CheckCircle className="w-4 h-4" />
+                                    </Button>
+                                  )}
+                                  <Button size="sm" variant="ghost" onClick={() => deleteSignedDocument(sheet.id, doc.id)}>
+                                    <Trash2 className="w-4 h-4" />
+                                  </Button>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                      
+                      {/* Notifications */}
+                      {sheet.signatureWorkflow.notifications && sheet.signatureWorkflow.notifications.length > 0 && (
+                        <div className="mt-4">
+                          <Label className="text-sm font-medium mb-2 block">Recent Activity</Label>
+                          <div className="space-y-1 max-h-20 overflow-y-auto">
+                            {sheet.signatureWorkflow.notifications.slice(-3).map(notification => (
+                              <div key={notification.id} className="text-xs p-2 bg-blue-50 rounded">
+                                <div className="flex items-center gap-2">
+                                  {notification.type === 'upload' && <Upload className="w-3 h-3" />}
+                                  {notification.type === 'completion' && <CheckCircle className="w-3 h-3" />}
+                                  {notification.type === 'reminder' && <Clock className="w-3 h-3" />}
+                                  <span>{notification.message}</span>
+                                </div>
+                                <div className="text-gray-500 mt-1">
+                                  {new Date(notification.timestamp).toLocaleString()}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               ))}
               
