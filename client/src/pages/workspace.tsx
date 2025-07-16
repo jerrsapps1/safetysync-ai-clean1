@@ -3435,18 +3435,16 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
       <AchievementNotificationManager />
       
       {/* AI Quick Actions - Floating Widget */}
-      <div className="fixed bottom-4 right-4 z-50">
-        <AIQuickActions 
-          currentPage={activeTab}
-          onActionExecute={(actionId) => {
-            console.log('AI Quick Action executed:', actionId);
-            toast({
-              title: "AI Action Executed",
-              description: `Successfully executed: ${actionId}`,
-            });
-          }}
-        />
-      </div>
+      <AIQuickActions 
+        currentPage={activeTab}
+        onActionExecute={(actionId) => {
+          console.log('AI Quick Action executed:', actionId);
+          toast({
+            title: "AI Action Executed",
+            description: `Successfully executed: ${actionId}`,
+          });
+        }}
+      />
 
     </div>
   );

@@ -379,7 +379,12 @@ export function AIQuickActions({ onActionExecute, currentPage = 'dashboard' }: A
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => setIsExpanded(!isExpanded)}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('AI Assistant button clicked, current state:', isExpanded);
+                setIsExpanded(!isExpanded);
+              }}
               className={`flex-shrink-0 rounded-full ${!isExpanded ? 'bg-blue-500 hover:bg-blue-600 text-white w-12 h-12' : ''}`}
               title={isExpanded ? 'Minimize AI Assistant' : 'Open AI Assistant'}
             >
