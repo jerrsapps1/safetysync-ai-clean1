@@ -24,7 +24,7 @@ import TrainingManagement from "@/components/training/TrainingManagement";
 import CertificateGeneration from "@/components/certificates/CertificateGeneration";
 import EmployeePortal from "@/components/portal/EmployeePortal";
 import NotificationSystem from "@/components/notifications/NotificationSystem";
-import WorkplacePosterManagement from "@/components/workplace/WorkplacePosterManagement";
+
 import TrainingCalendar from "@/components/calendar/TrainingCalendar";
 import SubscriptionBilling from "@/components/billing/SubscriptionBilling";
 import AnalyticsReports from "@/components/reports/AnalyticsReports";
@@ -1904,16 +1904,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             <Inbox className="w-5 h-5 mr-3" />
             {sidebarOpen && "Notifications & Alerts"}
           </Button>
-          <Button
-            variant="ghost"
-            className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
-              activeTab === "workplace-poster" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
-            }`}
-            onClick={() => handleTabSwitch("workplace-poster")}
-          >
-            <FileText className="w-5 h-5 mr-3" />
-            {sidebarOpen && "Workplace Poster Management"}
-          </Button>
+
           <Button
             variant="ghost"
             className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
@@ -2020,7 +2011,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 {activeTab === "organization" && "Organization Structure"}
                 {activeTab === "employee-portal" && "Employee Portal"}
                 {activeTab === "notifications" && "Notifications & Alerts"}
-                {activeTab === "workplace-poster" && "Workplace Poster Management"}
+
                 {activeTab === "training-calendar" && "Training Calendar"}
                 {activeTab === "subscription-billing" && "Subscription & Billing"}
                 {activeTab === "analytics-reports" && "Analytics & Reports"}
@@ -2046,7 +2037,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 {activeTab === "organization" && "Configure departments and organizational structure"}
                 {activeTab === "employee-portal" && "Self-service portal for employee access"}
                 {activeTab === "notifications" && "Manage alerts and notification preferences"}
-                {activeTab === "workplace-poster" && "Track and manage mandatory workplace safety posters"}
+
                 {activeTab === "training-calendar" && "Schedule and manage training sessions"}
                 {activeTab === "subscription-billing" && "Manage your plan and billing information"}
                 {activeTab === "analytics-reports" && "Generate comprehensive analytics and reports"}
@@ -2745,11 +2736,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             </div>
           )}
 
-          {activeTab === "workplace-poster" && (
-            <div className="p-8">
-              <WorkplacePosterManagement />
-            </div>
-          )}
+
 
           {activeTab === "training-calendar" && (
             <div className="p-8">
