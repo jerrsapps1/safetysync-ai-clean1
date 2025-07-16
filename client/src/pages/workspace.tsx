@@ -2308,7 +2308,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           )}
 
           {activeTab === "employees" && (
-            <div className="bg-white rounded-lg p-2 md:p-6">
+            <div className="rounded-lg p-2 md:p-6">
               <EmployeeManagement />
             </div>
           )}
