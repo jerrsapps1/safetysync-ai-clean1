@@ -111,6 +111,69 @@ export default function EmployeeManagement() {
     hireDate: new Date()
   });
 
+  // Excel download function
+  const downloadExcel = () => {
+    const csvContent = generateCSV(employees);
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    if (link.download !== undefined) {
+      const url = URL.createObjectURL(blob);
+      link.setAttribute('href', url);
+      link.setAttribute('download', `SafetySync_All_Employees_${new Date().toISOString().split('T')[0]}.csv`);
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      toast({
+        title: 'Download Started',
+        description: 'Employee data is being downloaded as Excel file.',
+      });
+    }
+  };
+
+  // Generate CSV content
+  const generateCSV = (employeeData: Employee[]) => {
+    const headers = [
+      'Employee ID',
+      'First Name',
+      'Last Name',
+      'Email',
+      'Phone',
+      'Position',
+      'Department',
+      'Division',
+      'Location',
+      'Status',
+      'Hire Date',
+      'Created Date',
+      'Updated Date'
+    ];
+    
+    const csvRows = [headers.join(',')];
+    
+    employeeData.forEach(employee => {
+      const row = [
+        employee.employeeId,
+        employee.firstName,
+        employee.lastName,
+        employee.email,
+        employee.phone || '',
+        employee.position || '',
+        employee.department || '',
+        employee.division || '',
+        employee.location || '',
+        employee.status,
+        new Date(employee.hireDate).toLocaleDateString(),
+        new Date(employee.createdAt).toLocaleDateString(),
+        new Date(employee.updatedAt).toLocaleDateString()
+      ];
+      csvRows.push(row.join(','));
+    });
+    
+    return csvRows.join('\n');
+  };
+
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -220,10 +283,15 @@ export default function EmployeeManagement() {
     },
   });
 
-  // Enhanced filtering and sorting
+  // Enhanced filtering and sorting - only show employees when searched for
   const filteredAndSortedEmployees = useMemo(() => {
+    // Return empty array if no search term is provided
+    if (searchTerm.trim() === '') {
+      return [];
+    }
+    
     let filtered = employees.filter(employee => {
-      const matchesSearch = searchTerm === '' || 
+      const matchesSearch = 
         employee.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
         employee.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
         employee.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -456,10 +524,19 @@ export default function EmployeeManagement() {
           </Button>
           <Button 
             variant="outline"
-            onClick={handleExportEmployees}
+            onClick={downloadExcel}
+            className="bg-blue-50 hover:bg-blue-100 border-blue-300"
           >
             <Download className="w-4 h-4 mr-2" />
-            Export
+            Download All Employees
+          </Button>
+          <Button 
+            variant="outline"
+            onClick={handleExportEmployees}
+            disabled={filteredAndSortedEmployees.length === 0}
+          >
+            <Download className="w-4 h-4 mr-2" />
+            Export Search Results
           </Button>
           <Button 
             variant="outline"
@@ -752,12 +829,26 @@ export default function EmployeeManagement() {
             </table>
           </div>
           
-          {filteredAndSortedEmployees.length === 0 && (
+          {searchTerm.trim() === '' ? (
+            <div className="text-center py-12">
+              <Search className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+              <h3 className="text-lg font-medium text-gray-900 mb-2">Search for Employees</h3>
+              <p className="text-gray-600 mb-4">
+                Use the search bar above to find specific employees by name, ID, position, or department.
+              </p>
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 max-w-md mx-auto">
+                <p className="text-sm text-blue-800">
+                  <strong>💡 Tip:</strong> To view all {analytics.totalEmployees} employees, use the "Download All Employees" button above to get a complete Excel file.
+                </p>
+              </div>
+            </div>
+          ) : filteredAndSortedEmployees.length === 0 ? (
             <div className="text-center py-8">
               <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-600">No employees found matching your criteria</p>
+              <p className="text-gray-600">No employees found matching your search criteria</p>
+              <p className="text-sm text-gray-500 mt-2">Try adjusting your search term or filters</p>
             </div>
-          )}
+          ) : null}
         </CardContent>
       </Card>
 
