@@ -33,6 +33,7 @@ import AnalyticsReports from "@/components/reports/AnalyticsReports";
 import AchievementBadges from "@/components/achievements/AchievementBadges";
 import DynamicAchievementWidget from "@/components/achievements/DynamicAchievementWidget";
 import { AchievementNotificationManager } from "@/components/achievements/DynamicAchievementNotification";
+import { InstructorSignInGenerator } from "@/components/ui/instructor-signin-generator";
 
 import { AIPatternSkeleton } from "@/components/ui/ai-skeleton";
 import { SmoothLoading } from "@/components/ui/smooth-loading";
@@ -2313,6 +2314,17 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 <Button
                   variant="ghost"
                   className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
+                    activeTab === "instructor-signin" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                  }`}
+                  onClick={() => handleTabSwitch("instructor-signin")}
+                  title="Instructor Sign-In Sheets"
+                >
+                  <FileText className="w-4 h-4 mr-3 flex-shrink-0" />
+                  {sidebarOpen && <span className="truncate">Instructor Sign-In Sheets</span>}
+                </Button>
+                <Button
+                  variant="ghost"
+                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
                     activeTab === "training" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("training")}
@@ -3105,6 +3117,12 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           )}
 
 
+
+          {activeTab === "instructor-signin" && (
+            <div className="p-8">
+              <InstructorSignInGenerator />
+            </div>
+          )}
 
           {activeTab === "training-calendar" && (
             <div className="p-8">
