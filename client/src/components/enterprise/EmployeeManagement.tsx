@@ -939,10 +939,10 @@ export default function EmployeeManagement() {
       </Card>
 
       {/* Department Analytics */}
-      <Card>
+      <Card className="bg-black/20 backdrop-blur-sm border-gray-800 relative z-10">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <BarChart3 className="w-5 h-5" />
+          <CardTitle className="flex items-center gap-2 text-white">
+            <BarChart3 className="w-5 h-5 text-blue-400" />
             Department Analytics
           </CardTitle>
         </CardHeader>
@@ -952,12 +952,12 @@ export default function EmployeeManagement() {
               <div key={dept.name} className="flex items-center justify-between">
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-sm font-medium text-gray-900">{dept.name}</span>
-                    <span className="text-sm text-gray-500">{dept.activeCount}/{dept.count}</span>
+                    <span className="text-sm font-medium text-gray-300">{dept.name}</span>
+                    <span className="text-sm text-gray-400">{dept.activeCount}/{dept.count}</span>
                   </div>
                   <Progress 
                     value={dept.count > 0 ? (dept.activeCount / dept.count) * 100 : 0}
-                    className="h-2"
+                    className="h-2 bg-gray-700"
                   />
                 </div>
               </div>
@@ -968,99 +968,113 @@ export default function EmployeeManagement() {
 
       {/* Add Employee Dialog */}
       <Dialog open={showAddDialog} onOpenChange={setShowAddDialog}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-2xl bg-gray-900/95 border-gray-800 text-white">
           <DialogHeader>
-            <DialogTitle>Add New Employee</DialogTitle>
+            <DialogTitle className="text-white">Add New Employee</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="employeeId">Employee ID</Label>
+                <Label htmlFor="employeeId" className="text-gray-300">Employee ID</Label>
                 <Input
                   id="employeeId"
                   value={newEmployee.employeeId}
                   onChange={(e) => setNewEmployee({...newEmployee, employeeId: e.target.value})}
                   placeholder="EMP-001"
+                  className="bg-gray-800 border-gray-700 text-white placeholder-gray-400"
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="firstName">First Name</Label>
+                <Label htmlFor="firstName" className="text-gray-300">First Name</Label>
                 <Input
                   id="firstName"
                   value={newEmployee.firstName}
                   onChange={(e) => setNewEmployee({...newEmployee, firstName: e.target.value})}
                   placeholder="John"
+                  className="bg-gray-800 border-gray-700 text-white placeholder-gray-400"
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="lastName">Last Name</Label>
+                <Label htmlFor="lastName" className="text-gray-300">Last Name</Label>
                 <Input
                   id="lastName"
                   value={newEmployee.lastName}
                   onChange={(e) => setNewEmployee({...newEmployee, lastName: e.target.value})}
                   placeholder="Doe"
+                  className="bg-gray-800 border-gray-700 text-white placeholder-gray-400"
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email" className="text-gray-300">Email</Label>
                 <Input
                   id="email"
                   type="email"
                   value={newEmployee.email}
                   onChange={(e) => setNewEmployee({...newEmployee, email: e.target.value})}
                   placeholder="john.doe@company.com"
+                  className="bg-gray-800 border-gray-700 text-white placeholder-gray-400"
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="phone">Phone</Label>
+                <Label htmlFor="phone" className="text-gray-300">Phone</Label>
                 <Input
                   id="phone"
                   value={newEmployee.phone}
                   onChange={(e) => setNewEmployee({...newEmployee, phone: e.target.value})}
                   placeholder="555-0123"
+                  className="bg-gray-800 border-gray-700 text-white placeholder-gray-400"
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="position">Position</Label>
+                <Label htmlFor="position" className="text-gray-300">Position</Label>
                 <Input
                   id="position"
                   value={newEmployee.position}
                   onChange={(e) => setNewEmployee({...newEmployee, position: e.target.value})}
                   placeholder="Safety Coordinator"
+                  className="bg-gray-800 border-gray-700 text-white placeholder-gray-400"
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="department">Department</Label>
+                <Label htmlFor="department" className="text-gray-300">Department</Label>
                 <Select value={newEmployee.department} onValueChange={(value) => setNewEmployee({...newEmployee, department: value})}>
-                  <SelectTrigger>
+                  <SelectTrigger className="bg-gray-800 border-gray-700 text-white">
                     <SelectValue placeholder="Select department" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-gray-800 border-gray-700">
                     {analytics.departments.map(dept => (
-                      <SelectItem key={dept} value={dept}>{dept}</SelectItem>
+                      <SelectItem key={dept} value={dept} className="text-white hover:bg-gray-700">{dept}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="location">Location</Label>
+                <Label htmlFor="location" className="text-gray-300">Location</Label>
                 <Select value={newEmployee.location} onValueChange={(value) => setNewEmployee({...newEmployee, location: value})}>
-                  <SelectTrigger>
+                  <SelectTrigger className="bg-gray-800 border-gray-700 text-white">
                     <SelectValue placeholder="Select location" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-gray-800 border-gray-700">
                     {analytics.locations.map(loc => (
-                      <SelectItem key={loc} value={loc}>{loc}</SelectItem>
+                      <SelectItem key={loc} value={loc} className="text-white hover:bg-gray-700">{loc}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
               </div>
             </div>
             <div className="flex justify-end gap-2">
-              <Button variant="outline" onClick={() => setShowAddDialog(false)}>
+              <Button 
+                variant="outline" 
+                onClick={() => setShowAddDialog(false)}
+                className="bg-gray-800 hover:bg-gray-700 border-gray-700 text-white"
+              >
                 Cancel
               </Button>
-              <Button onClick={handleAddEmployee} disabled={createEmployeeMutation.isPending}>
+              <Button 
+                onClick={handleAddEmployee} 
+                disabled={createEmployeeMutation.isPending}
+                className="bg-emerald-600 hover:bg-emerald-700 text-white"
+              >
                 {createEmployeeMutation.isPending ? 'Adding...' : 'Add Employee'}
               </Button>
             </div>
@@ -1070,54 +1084,54 @@ export default function EmployeeManagement() {
 
       {/* Edit Employee Dialog */}
       <Dialog open={showEditDialog} onOpenChange={setShowEditDialog}>
-        <DialogContent className="max-w-4xl">
+        <DialogContent className="max-w-4xl bg-gray-900/95 border-gray-800 text-white">
           <DialogHeader>
-            <DialogTitle>
+            <DialogTitle className="text-white">
               Employee Details: {selectedEmployee?.firstName} {selectedEmployee?.lastName}
             </DialogTitle>
           </DialogHeader>
           
           {selectedEmployee && (
             <Tabs defaultValue="details" className="w-full">
-              <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="details">Details</TabsTrigger>
-                <TabsTrigger value="certificates">Certificates</TabsTrigger>
-                <TabsTrigger value="training">Training</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-3 bg-gray-800 border-gray-700">
+                <TabsTrigger value="details" className="text-gray-300 data-[state=active]:bg-gray-700 data-[state=active]:text-white">Details</TabsTrigger>
+                <TabsTrigger value="certificates" className="text-gray-300 data-[state=active]:bg-gray-700 data-[state=active]:text-white">Certificates</TabsTrigger>
+                <TabsTrigger value="training" className="text-gray-300 data-[state=active]:bg-gray-700 data-[state=active]:text-white">Training</TabsTrigger>
               </TabsList>
               
               <TabsContent value="details" className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label>Employee ID</Label>
-                    <Input value={selectedEmployee.employeeId} readOnly />
+                    <Label className="text-gray-300">Employee ID</Label>
+                    <Input value={selectedEmployee.employeeId} readOnly className="bg-gray-800 border-gray-700 text-white" />
                   </div>
                   <div className="space-y-2">
-                    <Label>Email</Label>
-                    <Input value={selectedEmployee.email} readOnly />
+                    <Label className="text-gray-300">Email</Label>
+                    <Input value={selectedEmployee.email} readOnly className="bg-gray-800 border-gray-700 text-white" />
                   </div>
                   <div className="space-y-2">
-                    <Label>Phone</Label>
-                    <Input value={selectedEmployee.phone || ''} readOnly />
+                    <Label className="text-gray-300">Phone</Label>
+                    <Input value={selectedEmployee.phone || ''} readOnly className="bg-gray-800 border-gray-700 text-white" />
                   </div>
                   <div className="space-y-2">
-                    <Label>Position</Label>
-                    <Input value={selectedEmployee.position || ''} readOnly />
+                    <Label className="text-gray-300">Position</Label>
+                    <Input value={selectedEmployee.position || ''} readOnly className="bg-gray-800 border-gray-700 text-white" />
                   </div>
                   <div className="space-y-2">
-                    <Label>Department</Label>
-                    <Input value={selectedEmployee.department || ''} readOnly />
+                    <Label className="text-gray-300">Department</Label>
+                    <Input value={selectedEmployee.department || ''} readOnly className="bg-gray-800 border-gray-700 text-white" />
                   </div>
                   <div className="space-y-2">
-                    <Label>Location</Label>
-                    <Input value={selectedEmployee.location || ''} readOnly />
+                    <Label className="text-gray-300">Location</Label>
+                    <Input value={selectedEmployee.location || ''} readOnly className="bg-gray-800 border-gray-700 text-white" />
                   </div>
                   <div className="space-y-2">
-                    <Label>Hire Date</Label>
-                    <Input value={new Date(selectedEmployee.hireDate).toLocaleDateString()} readOnly />
+                    <Label className="text-gray-300">Hire Date</Label>
+                    <Input value={new Date(selectedEmployee.hireDate).toLocaleDateString()} readOnly className="bg-gray-800 border-gray-700 text-white" />
                   </div>
                   <div className="space-y-2">
-                    <Label>Status</Label>
-                    <Badge variant={selectedEmployee.status === 'active' ? 'default' : 'secondary'}>
+                    <Label className="text-gray-300">Status</Label>
+                    <Badge variant={selectedEmployee.status === 'active' ? 'default' : 'secondary'} className="bg-emerald-600 text-white">
                       {selectedEmployee.status}
                     </Badge>
                   </div>
@@ -1127,20 +1141,21 @@ export default function EmployeeManagement() {
               <TabsContent value="certificates" className="space-y-4">
                 <div className="space-y-2">
                   {getEmployeeCertificates(selectedEmployee.id).map((cert) => (
-                    <Card key={cert.id}>
+                    <Card key={cert.id} className="bg-gray-800 border-gray-700">
                       <CardContent className="p-4">
                         <div className="flex items-center justify-between">
                           <div>
-                            <h4 className="font-medium">{cert.certificateName}</h4>
-                            <p className="text-sm text-gray-600">
+                            <h4 className="font-medium text-white">{cert.certificateName}</h4>
+                            <p className="text-sm text-gray-300">
                               Certificate #{cert.certificateNumber}
                             </p>
-                            <p className="text-sm text-gray-600">
+                            <p className="text-sm text-gray-300">
                               Expires: {new Date(cert.expirationDate).toLocaleDateString()}
                             </p>
                           </div>
                           <Badge variant={cert.status === 'active' ? 'default' : 
-                                          cert.status === 'expiring' ? 'destructive' : 'secondary'}>
+                                          cert.status === 'expiring' ? 'destructive' : 'secondary'}
+                                className="bg-emerald-600 text-white">
                             {cert.status}
                           </Badge>
                         </div>
@@ -1151,7 +1166,7 @@ export default function EmployeeManagement() {
                   {getEmployeeCertificates(selectedEmployee.id).length === 0 && (
                     <div className="text-center py-8">
                       <Award className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                      <p className="text-gray-600">No certificates found for this employee</p>
+                      <p className="text-gray-400">No certificates found for this employee</p>
                     </div>
                   )}
                 </div>
@@ -1160,20 +1175,21 @@ export default function EmployeeManagement() {
               <TabsContent value="training" className="space-y-4">
                 <div className="space-y-2">
                   {getEmployeeTraining(selectedEmployee.id).map((training) => (
-                    <Card key={training.id}>
+                    <Card key={training.id} className="bg-gray-800 border-gray-700">
                       <CardContent className="p-4">
                         <div className="flex items-center justify-between">
                           <div>
-                            <h4 className="font-medium">{training.sessionName}</h4>
-                            <p className="text-sm text-gray-600">{training.description}</p>
-                            <p className="text-sm text-gray-600">
+                            <h4 className="font-medium text-white">{training.sessionName}</h4>
+                            <p className="text-sm text-gray-300">{training.description}</p>
+                            <p className="text-sm text-gray-300">
                               {new Date(training.startDate).toLocaleDateString()} - {new Date(training.endDate).toLocaleDateString()}
                             </p>
-                            <p className="text-sm text-gray-600">
+                            <p className="text-sm text-gray-300">
                               Location: {training.location}
                             </p>
                           </div>
-                          <Badge variant={training.status === 'completed' ? 'default' : 'secondary'}>
+                          <Badge variant={training.status === 'completed' ? 'default' : 'secondary'}
+                                className="bg-emerald-600 text-white">
                             {training.status}
                           </Badge>
                         </div>
@@ -1184,7 +1200,7 @@ export default function EmployeeManagement() {
                   {getEmployeeTraining(selectedEmployee.id).length === 0 && (
                     <div className="text-center py-8">
                       <Calendar className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                      <p className="text-gray-600">No training sessions found for this employee</p>
+                      <p className="text-gray-400">No training sessions found for this employee</p>
                     </div>
                   )}
                 </div>
