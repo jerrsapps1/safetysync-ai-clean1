@@ -283,15 +283,11 @@ export default function EmployeeManagement() {
     },
   });
 
-  // Enhanced filtering and sorting - only show employees when searched for
+  // Enhanced filtering and sorting - show all employees, filter by search and dropdowns
   const filteredAndSortedEmployees = useMemo(() => {
-    // Return empty array if no search term is provided
-    if (searchTerm.trim() === '') {
-      return [];
-    }
-    
     let filtered = employees.filter(employee => {
-      const matchesSearch = 
+      // Search term filtering (only apply if search term exists)
+      const matchesSearch = searchTerm.trim() === '' || 
         employee.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
         employee.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
         employee.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -299,6 +295,7 @@ export default function EmployeeManagement() {
         employee.position?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         employee.department?.toLowerCase().includes(searchTerm.toLowerCase());
       
+      // Filter dropdown filtering
       const matchesDepartment = filterDepartment === 'all' || employee.department === filterDepartment;
       const matchesStatus = filterStatus === 'all' || employee.status === filterStatus;
       const matchesLocation = filterLocation === 'all' || employee.location === filterLocation;
