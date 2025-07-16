@@ -307,6 +307,22 @@ export function InstructorSignInGenerator() {
     });
   };
 
+  // Download single document
+  const downloadSingleDocument = (document: InstructorDocument) => {
+    // In a real implementation, this would trigger actual file download
+    // For now, we'll simulate the download process
+    const link = document.createElement('a');
+    link.href = '#'; // In real implementation, this would be the file URL
+    link.download = document.fileName;
+    link.click();
+
+    toast({
+      title: "Download Started",
+      description: `Downloading ${document.fileName}`,
+      duration: 3000
+    });
+  };
+
   // Get current instructor documents
   const getCurrentInstructorDocuments = () => {
     const currentInstructorId = selectedInstructor || 'visiting';
@@ -913,6 +929,15 @@ export function InstructorSignInGenerator() {
                                 <Badge variant="outline" className="text-xs">
                                   {doc.documentType}
                                 </Badge>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  onClick={() => downloadSingleDocument(doc)}
+                                  className="p-1 h-8 w-8"
+                                  title="Download document"
+                                >
+                                  <Download className="w-3 h-3" />
+                                </Button>
                               </div>
                             ))}
                           </div>
