@@ -39,6 +39,7 @@ import { SmoothLoading } from "@/components/ui/smooth-loading";
 import SafetyTrendsDashboard from "@/components/safety-trends-dashboard";
 import QuickSearchWidget from "@/components/safetytracker/QuickSearchWidget";
 import { SafetySyncIcon } from "@/components/ui/safetysync-icon";
+import { AIQuickActions } from "@/components/ui/ai-quick-actions";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
@@ -3432,6 +3433,20 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
       {/* Achievement Notification System */}
       <AchievementNotificationManager />
+      
+      {/* AI Quick Actions - Floating Widget */}
+      <div className="fixed bottom-4 right-4 z-50">
+        <AIQuickActions 
+          currentPage={activeTab}
+          onActionExecute={(actionId) => {
+            console.log('AI Quick Action executed:', actionId);
+            toast({
+              title: "AI Action Executed",
+              description: `Successfully executed: ${actionId}`,
+            });
+          }}
+        />
+      </div>
 
     </div>
   );

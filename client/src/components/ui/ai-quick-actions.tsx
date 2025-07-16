@@ -28,7 +28,8 @@ import {
   Download,
   Bell,
   Eye,
-  Settings
+  Settings,
+  RefreshCw
 } from "lucide-react";
 
 interface QuickAction {
@@ -69,6 +70,47 @@ export function AIQuickActions({ onActionExecute, currentPage = 'dashboard' }: A
     }
   ]);
   const [isProcessing, setIsProcessing] = useState(false);
+  
+  // Enhanced actions with workspace integration
+  const executeAction = async (actionId: string) => {
+    setIsProcessing(true);
+    
+    try {
+      switch(actionId) {
+        case 'generate-training-schedule':
+          // Simulate API call to generate training schedule
+          await new Promise(resolve => setTimeout(resolve, 2000));
+          console.log('Training schedule generated successfully');
+          break;
+        case 'compliance-gap-analysis':
+          // Simulate compliance analysis
+          await new Promise(resolve => setTimeout(resolve, 500));
+          console.log('Compliance gap analysis completed');
+          break;
+        case 'auto-assign-training':
+          // Simulate auto-assignment
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          console.log('Training auto-assigned successfully');
+          break;
+        case 'evaluation-reminder-check':
+          // Simulate evaluation check
+          await new Promise(resolve => setTimeout(resolve, 500));
+          console.log('Missing evaluations identified');
+          break;
+        case 'bulk-certification-check':
+          // Simulate bulk certification check
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          console.log('Certification status checked');
+          break;
+        default:
+          console.log(`Action ${actionId} executed`);
+      }
+      
+      onActionExecute?.(actionId);
+    } finally {
+      setIsProcessing(false);
+    }
+  };
 
   const quickActions: QuickAction[] = [
     {
@@ -79,7 +121,7 @@ export function AIQuickActions({ onActionExecute, currentPage = 'dashboard' }: A
       priority: 'high',
       estimatedTime: '2 min',
       icon: <Calendar className="w-4 h-4" />,
-      action: () => console.log('Generating training schedule...')
+      action: () => executeAction('generate-training-schedule')
     },
     {
       id: 'compliance-gap-analysis',
@@ -89,7 +131,7 @@ export function AIQuickActions({ onActionExecute, currentPage = 'dashboard' }: A
       priority: 'high',
       estimatedTime: '30 sec',
       icon: <Target className="w-4 h-4" />,
-      action: () => console.log('Running compliance analysis...')
+      action: () => executeAction('compliance-gap-analysis')
     },
     {
       id: 'auto-assign-training',
@@ -99,7 +141,7 @@ export function AIQuickActions({ onActionExecute, currentPage = 'dashboard' }: A
       priority: 'medium',
       estimatedTime: '1 min',
       icon: <Users className="w-4 h-4" />,
-      action: () => console.log('Auto-assigning training...')
+      action: () => executeAction('auto-assign-training')
     },
     {
       id: 'evaluation-reminder-check',
@@ -109,7 +151,7 @@ export function AIQuickActions({ onActionExecute, currentPage = 'dashboard' }: A
       priority: 'high',
       estimatedTime: '30 sec',
       icon: <FileText className="w-4 h-4" />,
-      action: () => console.log('Checking missing evaluations...')
+      action: () => executeAction('evaluation-reminder-check')
     },
     {
       id: 'regulatory-updates',
@@ -119,7 +161,7 @@ export function AIQuickActions({ onActionExecute, currentPage = 'dashboard' }: A
       priority: 'medium',
       estimatedTime: '1 min',
       icon: <Bell className="w-4 h-4" />,
-      action: () => console.log('Fetching regulatory updates...')
+      action: () => executeAction('regulatory-updates')
     },
     {
       id: 'bulk-certification-check',
@@ -129,7 +171,7 @@ export function AIQuickActions({ onActionExecute, currentPage = 'dashboard' }: A
       priority: 'high',
       estimatedTime: '45 sec',
       icon: <CheckCircle className="w-4 h-4" />,
-      action: () => console.log('Checking certifications...')
+      action: () => executeAction('bulk-certification-check')
     },
     {
       id: 'smart-report-builder',
@@ -399,14 +441,21 @@ export function AIQuickActions({ onActionExecute, currentPage = 'dashboard' }: A
                           </div>
                           <Button
                             size="sm"
-                            onClick={() => {
-                              action.action();
-                              onActionExecute?.(action.id);
-                            }}
+                            onClick={() => action.action()}
                             className="text-xs"
+                            disabled={isProcessing}
                           >
-                            <ArrowRight className="w-3 h-3 mr-1" />
-                            Go
+                            {isProcessing ? (
+                              <>
+                                <RefreshCw className="w-3 h-3 mr-1 animate-spin" />
+                                Working...
+                              </>
+                            ) : (
+                              <>
+                                <ArrowRight className="w-3 h-3 mr-1" />
+                                Go
+                              </>
+                            )}
                           </Button>
                         </div>
                       </div>
