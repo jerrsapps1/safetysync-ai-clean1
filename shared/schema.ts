@@ -138,6 +138,24 @@ export const instructors = pgTable("instructors", {
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
+// External Students Management
+export const externalStudents = pgTable("external_students", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  firstName: text("first_name").notNull(),
+  lastName: text("last_name").notNull(),
+  email: text("email"),
+  phone: text("phone"),
+  company: text("company").notNull(),
+  position: text("position"),
+  department: text("department"),
+  studentId: text("student_id"), // External student ID or badge number
+  notes: text("notes"),
+  isActive: boolean("is_active").default(true),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
 // Training Programs and Courses
 export const trainingPrograms = pgTable("training_programs", {
   id: serial("id").primaryKey(),
@@ -358,6 +376,12 @@ export const insertInstructorSchema = createInsertSchema(instructors).omit({
   updatedAt: true,
 });
 
+export const insertExternalStudentSchema = createInsertSchema(externalStudents).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
 export const insertTrainingProgramSchema = createInsertSchema(trainingPrograms).omit({
   id: true,
   createdAt: true,
@@ -514,6 +538,8 @@ export type InsertEmployee = z.infer<typeof insertEmployeeSchema>;
 export type Employee = typeof employees.$inferSelect;
 export type InsertInstructor = z.infer<typeof insertInstructorSchema>;
 export type Instructor = typeof instructors.$inferSelect;
+export type InsertExternalStudent = z.infer<typeof insertExternalStudentSchema>;
+export type ExternalStudent = typeof externalStudents.$inferSelect;
 export type InsertTrainingProgram = z.infer<typeof insertTrainingProgramSchema>;
 export type TrainingProgram = typeof trainingPrograms.$inferSelect;
 export type InsertTrainingSession = z.infer<typeof insertTrainingSessionSchema>;
