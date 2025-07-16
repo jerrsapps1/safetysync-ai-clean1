@@ -583,12 +583,12 @@ export function InstructorSignInGenerator() {
               <CardContent className="space-y-4">
                 <div>
                   <Label>Instructor Type *</Label>
-                  <div className="flex flex-row items-center gap-2 mt-2 w-full">
+                  <div className="flex flex-col gap-2 mt-2 w-full">
                     <Button
                       type="button"
                       variant={instructorType === 'existing' ? 'default' : 'outline'}
                       onClick={() => handleInstructorTypeChange('existing')}
-                      className="flex-1 min-w-0 h-10 flex items-center justify-center"
+                      className="w-full h-10 flex items-center justify-center"
                     >
                       <Users className="w-4 h-4 mr-2" />
                       Select Instructor
@@ -597,7 +597,7 @@ export function InstructorSignInGenerator() {
                       type="button"
                       variant={instructorType === 'visiting' ? 'default' : 'outline'}
                       onClick={() => handleInstructorTypeChange('visiting')}
-                      className="flex-1 min-w-0 h-10 flex items-center justify-center"
+                      className="w-full h-10 flex items-center justify-center"
                     >
                       <UserPlus className="w-4 h-4 mr-2" />
                       Visiting Instructor
