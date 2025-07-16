@@ -8,7 +8,7 @@ import { billingAnalytics } from "./billing-analytics";
 import { 
   insertLeadSchema, insertUserSchema, loginUserSchema, insertComplianceReportSchema, 
   insertCloneDetectionScanSchema, insertHelpDeskTicketSchema, insertPromoCodeUsageSchema,
-  insertEmployeeSchema, insertInstructorSchema, insertTrainingProgramSchema, insertTrainingSessionSchema,
+  insertEmployeeSchema, insertInstructorSchema, insertExternalStudentSchema, insertTrainingProgramSchema, insertTrainingSessionSchema,
   insertEmployeeTrainingSchema, insertCertificateSchema, insertDocumentSchema,
   insertAuditLogSchema, insertNotificationSchema, insertIntegrationSchema, insertLocationSchema,
   insertCompanyProfileSchema,
@@ -1578,6 +1578,82 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error deleting instructor:", error);
       res.status(500).json({ error: "Failed to delete instructor" });
+    }
+  });
+
+  // External Students Management API
+  app.post("/api/external-students", authenticateToken, async (req, res) => {
+    try {
+      const studentData = insertExternalStudentSchema.parse(req.body);
+      studentData.userId = (req as any).user.id;
+      const student = await storage.createExternalStudent(studentData);
+      res.json(student);
+    } catch (error) {
+      console.error("Error creating external student:", error);
+      res.status(500).json({ error: "Failed to create external student" });
+    }
+  });
+
+  app.get("/api/external-students", authenticateToken, async (req, res) => {
+    try {
+      const userId = (req as any).user.id;
+      const students = await storage.getExternalStudents(userId);
+      res.json(students);
+    } catch (error) {
+      console.error("Error fetching external students:", error);
+      res.status(500).json({ error: "Failed to fetch external students" });
+    }
+  });
+
+  app.get("/api/external-students/search", authenticateToken, async (req, res) => {
+    try {
+      const userId = (req as any).user.id;
+      const query = req.query.q as string;
+      if (!query) {
+        return res.json([]);
+      }
+      const students = await storage.searchExternalStudents(userId, query);
+      res.json(students);
+    } catch (error) {
+      console.error("Error searching external students:", error);
+      res.status(500).json({ error: "Failed to search external students" });
+    }
+  });
+
+  app.get("/api/external-students/:id", authenticateToken, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const student = await storage.getExternalStudentById(id);
+      if (!student) {
+        return res.status(404).json({ error: "External student not found" });
+      }
+      res.json(student);
+    } catch (error) {
+      console.error("Error fetching external student:", error);
+      res.status(500).json({ error: "Failed to fetch external student" });
+    }
+  });
+
+  app.put("/api/external-students/:id", authenticateToken, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const updates = req.body;
+      await storage.updateExternalStudent(id, updates);
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error updating external student:", error);
+      res.status(500).json({ error: "Failed to update external student" });
+    }
+  });
+
+  app.delete("/api/external-students/:id", authenticateToken, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      await storage.deleteExternalStudent(id);
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error deleting external student:", error);
+      res.status(500).json({ error: "Failed to delete external student" });
     }
   });
 

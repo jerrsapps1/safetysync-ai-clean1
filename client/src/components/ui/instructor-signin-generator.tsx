@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   FileText, 
   Download, 
@@ -22,12 +23,17 @@ import {
   CheckCircle,
   UserPlus,
   Eye,
-  Trash2
+  Trash2,
+  Building,
+  Search,
+  Settings
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import * as XLSX from 'xlsx';
 import { Document, Packer, Paragraph, TextRun } from 'docx';
 import jsPDF from 'jspdf';
+import { StudentAutocomplete } from "./student-autocomplete";
+import { ExternalStudentManager } from "./external-student-manager";
 
 // Sample instructors for dropdown selection
 const SAMPLE_INSTRUCTORS = [
@@ -45,6 +51,11 @@ interface Employee {
   employeeId: string;
   company: string;
   signature?: string;
+  type?: 'internal' | 'external';
+  email?: string;
+  phone?: string;
+  position?: string;
+  department?: string;
 }
 
 interface InstructorDocument {
@@ -108,6 +119,7 @@ export function InstructorSignInGenerator() {
   const [newEmployee, setNewEmployee] = useState({ name: '', employeeId: '', company: '' });
   const [savedSheets, setSavedSheets] = useState<SignInSheet[]>([]);
   const [activeTab, setActiveTab] = useState<'create' | 'saved'>('create');
+  const [selectedStudents, setSelectedStudents] = useState<any[]>([]);
   const [isCustomTraining, setIsCustomTraining] = useState(false);
   const [customClassName, setCustomClassName] = useState('');
   const [customStandard, setCustomStandard] = useState('');
@@ -156,6 +168,45 @@ export function InstructorSignInGenerator() {
   };
 
   const removeEmployee = (employeeId: string) => {
+    setFormData(prev => ({
+      ...prev,
+      employees: prev.employees?.filter(emp => emp.id !== employeeId) || []
+    }));
+  };
+
+  const handleStudentSelect = (student: any) => {
+    // Convert selected student to Employee format
+    const employee: Employee = {
+      id: `${student.type}-${student.id}`,
+      name: `${student.firstName} ${student.lastName}`,
+      employeeId: student.type === 'internal' ? student.employeeId : student.email,
+      company: student.type === 'internal' ? 'Internal Employee' : student.company,
+      type: student.type,
+      email: student.email,
+      phone: student.phone,
+      position: student.position,
+      department: student.department
+    };
+    
+    setSelectedStudents(prev => [...prev, student]);
+    setFormData(prev => ({
+      ...prev,
+      employees: [...(prev.employees || []), employee]
+    }));
+    
+    toast({
+      title: "Student Added",
+      description: `${employee.name} has been added to the training session.`,
+    });
+  };
+
+  const removeStudent = (studentId: string, studentType: 'internal' | 'external') => {
+    const employeeId = `${studentType}-${studentId}`;
+    
+    setSelectedStudents(prev => 
+      prev.filter(student => `${student.type}-${student.id}` !== employeeId)
+    );
+    
     setFormData(prev => ({
       ...prev,
       employees: prev.employees?.filter(emp => emp.id !== employeeId) || []
@@ -1233,49 +1284,86 @@ export function InstructorSignInGenerator() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Users className="w-5 h-5" />
-                  Attendees ({formData.employees?.length || 0})
+                  Training Attendees ({formData.employees?.length || 0})
                 </CardTitle>
                 <CardDescription>
-                  Add employees who will attend this training session
+                  Add employees and external students who will attend this training session
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="grid grid-cols-1 gap-3">
-                  <div>
-                    <Label htmlFor="employeeName">Employee Name</Label>
-                    <Input
-                      id="employeeName"
-                      value={newEmployee.name}
-                      onChange={(e) => setNewEmployee(prev => ({ ...prev, name: e.target.value }))}
-                      placeholder="Full name"
-                    />
-                  </div>
+                <Tabs defaultValue="search" className="w-full">
+                  <TabsList className="grid w-full grid-cols-3">
+                    <TabsTrigger value="search" className="flex items-center gap-2">
+                      <Search className="w-4 h-4" />
+                      Quick Search
+                    </TabsTrigger>
+                    <TabsTrigger value="manual" className="flex items-center gap-2">
+                      <UserPlus className="w-4 h-4" />
+                      Manual Entry
+                    </TabsTrigger>
+                    <TabsTrigger value="manage" className="flex items-center gap-2">
+                      <Settings className="w-4 h-4" />
+                      Manage Students
+                    </TabsTrigger>
+                  </TabsList>
                   
-                  <div>
-                    <Label htmlFor="employeeId">Employee ID</Label>
-                    <Input
-                      id="employeeId"
-                      value={newEmployee.employeeId}
-                      onChange={(e) => setNewEmployee(prev => ({ ...prev, employeeId: e.target.value }))}
-                      placeholder="Employee ID or badge number"
-                    />
-                  </div>
+                  <TabsContent value="search" className="space-y-4">
+                    <div className="space-y-3">
+                      <Label>Search Internal Employees & External Students</Label>
+                      <StudentAutocomplete
+                        onStudentSelect={handleStudentSelect}
+                        placeholder="Type name to search employees and students..."
+                        className="w-full"
+                      />
+                      <div className="text-sm text-gray-500">
+                        Search across internal employees and external students. Results will show matches from both sources.
+                      </div>
+                    </div>
+                  </TabsContent>
                   
-                  <div>
-                    <Label htmlFor="employeeCompany">Company (optional)</Label>
-                    <Input
-                      id="employeeCompany"
-                      value={newEmployee.company}
-                      onChange={(e) => setNewEmployee(prev => ({ ...prev, company: e.target.value }))}
-                      placeholder="Company name (if different from instructor)"
-                    />
-                  </div>
+                  <TabsContent value="manual" className="space-y-4">
+                    <div className="grid grid-cols-1 gap-3">
+                      <div>
+                        <Label htmlFor="employeeName">Employee Name</Label>
+                        <Input
+                          id="employeeName"
+                          value={newEmployee.name}
+                          onChange={(e) => setNewEmployee(prev => ({ ...prev, name: e.target.value }))}
+                          placeholder="Full name"
+                        />
+                      </div>
+                      
+                      <div>
+                        <Label htmlFor="employeeId">Employee ID</Label>
+                        <Input
+                          id="employeeId"
+                          value={newEmployee.employeeId}
+                          onChange={(e) => setNewEmployee(prev => ({ ...prev, employeeId: e.target.value }))}
+                          placeholder="Employee ID or badge number"
+                        />
+                      </div>
+                      
+                      <div>
+                        <Label htmlFor="employeeCompany">Company (optional)</Label>
+                        <Input
+                          id="employeeCompany"
+                          value={newEmployee.company}
+                          onChange={(e) => setNewEmployee(prev => ({ ...prev, company: e.target.value }))}
+                          placeholder="Company name (if different from instructor)"
+                        />
+                      </div>
+                      
+                      <Button onClick={addEmployee} className="w-full">
+                        <Plus className="w-4 h-4 mr-2" />
+                        Add Employee
+                      </Button>
+                    </div>
+                  </TabsContent>
                   
-                  <Button onClick={addEmployee} className="w-full">
-                    <Plus className="w-4 h-4 mr-2" />
-                    Add Employee
-                  </Button>
-                </div>
+                  <TabsContent value="manage" className="space-y-4">
+                    <ExternalStudentManager />
+                  </TabsContent>
+                </Tabs>
                 
                 <Separator />
                 
@@ -1286,12 +1374,17 @@ export function InstructorSignInGenerator() {
                         <div className="font-medium">{employee.name}</div>
                         <div className="text-sm text-gray-500">
                           ID: {employee.employeeId} • {employee.company}
+                          {employee.type && (
+                            <Badge variant={employee.type === 'internal' ? 'default' : 'secondary'} className="ml-2">
+                              {employee.type === 'internal' ? 'Employee' : 'External Student'}
+                            </Badge>
+                          )}
                         </div>
                       </div>
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => removeEmployee(employee.id)}
+                        onClick={() => employee.type ? removeStudent(employee.id.split('-')[1], employee.type) : removeEmployee(employee.id)}
                       >
                         <X className="w-4 h-4" />
                       </Button>
@@ -1300,7 +1393,7 @@ export function InstructorSignInGenerator() {
                   
                   {(!formData.employees || formData.employees.length === 0) && (
                     <div className="text-center py-8 text-gray-500">
-                      No employees added yet. Add employees to generate sign-in sheet.
+                      No attendees added yet. Use the search tab to find employees and students, or manually add them.
                     </div>
                   )}
                 </div>

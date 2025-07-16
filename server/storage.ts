@@ -1,12 +1,13 @@
 import { 
   users, leads, complianceReports, cloneDetectionScans, helpDeskTickets, promoCodeUsage,
-  employees, instructors, trainingPrograms, trainingSessions, employeeTraining, certificates, documents,
+  employees, instructors, externalStudents, trainingPrograms, trainingSessions, employeeTraining, certificates, documents,
   auditLogs, notifications, integrations, locations, ticketResponses, specials, featureUpdates,
   upcomingSoftware, softwareVotes, clientComments, commentLikes,
   type User, type InsertUser, type Lead, type InsertLead, type ComplianceReport, type InsertComplianceReport, 
   type CloneDetectionScan, type InsertCloneDetectionScan, type HelpDeskTicket, type InsertHelpDeskTicket, 
   type PromoCodeUsage, type InsertPromoCodeUsage, type Employee, type InsertEmployee,
-  type Instructor, type InsertInstructor, type TrainingProgram, type InsertTrainingProgram, 
+  type Instructor, type InsertInstructor, type ExternalStudent, type InsertExternalStudent,
+  type TrainingProgram, type InsertTrainingProgram, 
   type TrainingSession, type InsertTrainingSession, type EmployeeTraining, type InsertEmployeeTraining, 
   type Certificate, type InsertCertificate, type Document, type InsertDocument, type AuditLog, 
   type InsertAuditLog, type Notification, type InsertNotification, type Integration, 
@@ -89,6 +90,14 @@ export interface IStorage {
   updateInstructor(id: number, updates: Partial<Instructor>): Promise<void>;
   deleteInstructor(id: number): Promise<void>;
   getInstructorsByType(userId: number, type: "internal" | "visiting"): Promise<Instructor[]>;
+  
+  // External Students Management
+  createExternalStudent(student: InsertExternalStudent): Promise<ExternalStudent>;
+  getExternalStudents(userId: number): Promise<ExternalStudent[]>;
+  getExternalStudentById(id: number): Promise<ExternalStudent | undefined>;
+  updateExternalStudent(id: number, updates: Partial<ExternalStudent>): Promise<void>;
+  deleteExternalStudent(id: number): Promise<void>;
+  searchExternalStudents(userId: number, query: string): Promise<ExternalStudent[]>;
   
   // Training Program Management
   createTrainingProgram(program: InsertTrainingProgram): Promise<TrainingProgram>;
@@ -685,6 +694,42 @@ export class DatabaseStorage implements IStorage {
   async getInstructorsByType(userId: number, type: "internal" | "visiting"): Promise<Instructor[]> {
     return await db.select().from(instructors)
       .where(and(eq(instructors.userId, userId), eq(instructors.type, type)));
+  }
+
+  // External Students Management
+  async createExternalStudent(insertStudent: InsertExternalStudent): Promise<ExternalStudent> {
+    const [student] = await db
+      .insert(externalStudents)
+      .values(insertStudent)
+      .returning();
+    return student;
+  }
+
+  async getExternalStudents(userId: number): Promise<ExternalStudent[]> {
+    return await db.select().from(externalStudents).where(eq(externalStudents.userId, userId));
+  }
+
+  async getExternalStudentById(id: number): Promise<ExternalStudent | undefined> {
+    const [student] = await db.select().from(externalStudents).where(eq(externalStudents.id, id));
+    return student || undefined;
+  }
+
+  async updateExternalStudent(id: number, updates: Partial<ExternalStudent>): Promise<void> {
+    await db.update(externalStudents)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(externalStudents.id, id));
+  }
+
+  async deleteExternalStudent(id: number): Promise<void> {
+    await db.delete(externalStudents).where(eq(externalStudents.id, id));
+  }
+
+  async searchExternalStudents(userId: number, query: string): Promise<ExternalStudent[]> {
+    return await db.select().from(externalStudents)
+      .where(and(
+        eq(externalStudents.userId, userId),
+        sql`(${externalStudents.firstName} ILIKE ${`%${query}%`} OR ${externalStudents.lastName} ILIKE ${`%${query}%`} OR ${externalStudents.company} ILIKE ${`%${query}%`})`
+      ));
   }
 
   // Training Program Management
