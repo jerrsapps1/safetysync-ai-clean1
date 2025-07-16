@@ -447,9 +447,30 @@ export function InstructorSignInGenerator() {
                   
                   {isCustomTraining && (
                     <div className="space-y-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
-                      <div className="flex items-center gap-2">
-                        <Plus className="w-4 h-4 text-blue-600" />
-                        <span className="font-medium text-blue-800">Custom Training Setup</span>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <Plus className="w-4 h-4 text-blue-600" />
+                          <span className="font-medium text-blue-800">Custom Training Setup</span>
+                        </div>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => {
+                            setIsCustomTraining(false);
+                            setCustomClassName('');
+                            setCustomStandard('');
+                            setFormData(prev => ({
+                              ...prev,
+                              trainingType: '',
+                              classTitle: '',
+                              oshaStandard: ''
+                            }));
+                          }}
+                          className="text-xs"
+                        >
+                          <X className="w-3 h-3 mr-1" />
+                          Clear Selection
+                        </Button>
                       </div>
                       
                       <div>
