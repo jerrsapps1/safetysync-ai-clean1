@@ -130,6 +130,15 @@ User satisfied with comprehensive platform features including dashboard, admin p
 
 ## Recent Changes
 
+- **July 16, 2025** - Added Employee ID Verified Checkbox Feature:
+  - **NEW FEATURE**: Added "Employee ID Verified" checkbox to Add Employee dialog positioned below Employee ID field
+  - **EDIT DIALOG**: Added Employee ID Verified status display to Edit Employee dialog with disabled checkbox for viewing
+  - **FORM INTEGRATION**: Checkbox properly integrated with newEmployee state management and form reset functionality
+  - **DARK THEME**: Checkbox uses consistent dark theme styling with emerald-green checked state matching platform aesthetic
+  - **DATA PERSISTENCE**: employeeIdVerified field added to employee state management for tracking ID verification status
+  - **USER EXPERIENCE**: Checkbox allows supervisors to mark when employee IDs have been verified during onboarding process
+  - Employee ID verification tracking now available throughout Employee Management system
+
 - **July 16, 2025** - Completed Employee Management Dark Theme Implementation:
   - **MODAL DIALOGS**: Applied comprehensive dark theme styling to Add Employee and Edit Employee dialogs
   - **FORM ELEMENTS**: Updated all input fields, labels, and select dropdowns with dark backgrounds (gray-800) and proper text contrast
