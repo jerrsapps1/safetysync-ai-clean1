@@ -659,104 +659,97 @@ export default function EmployeeManagement() {
         </Card>
       )}
 
-      {/* Filters and Search */}
-      <Card className="bg-yellow-50 border-yellow-200">
-        <CardHeader>
-          <CardTitle className="text-red-600">🔍 SEARCH BAR TEST - CAN YOU SEE THIS?</CardTitle>
-        </CardHeader>
-        <CardContent className="p-4">
-          <div className="bg-red-100 p-4 mb-4">
-            <p className="text-red-800 font-bold">TEST: If you can see this red box, the search card is rendering!</p>
+      {/* Search and Filters */}
+      <div className="bg-white border rounded-lg p-6 shadow-sm">
+        <h3 className="text-lg font-semibold mb-4">Search and Filter Employees</h3>
+        
+        {/* Search Input */}
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Search Employees
+          </label>
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Search by name, email, ID, position, or department..."
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          {searchTerm && (
+            <p className="text-sm text-gray-600 mt-2">
+              Searching for: "{searchTerm}" - Found {filteredAndSortedEmployees.length} results
+            </p>
+          )}
+        </div>
+
+        {/* Filters */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Department</label>
+            <select 
+              value={filterDepartment} 
+              onChange={(e) => setFilterDepartment(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="all">All Departments</option>
+              {analytics.departments.map(dept => (
+                <option key={dept} value={dept}>{dept}</option>
+              ))}
+            </select>
           </div>
-          <div className="flex flex-col lg:flex-row gap-4">
-            <div className="flex-1 bg-blue-100 p-4">
-              <p className="text-blue-800 mb-2">Search input should be below this text:</p>
-              <div className="bg-white p-2 border-2 border-blue-500">
-                <input
-                  type="text"
-                  placeholder="Search employees by name, email, ID, position..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  style={{
-                    width: '100%',
-                    padding: '8px 12px',
-                    border: '1px solid #ccc',
-                    borderRadius: '4px',
-                    fontSize: '14px',
-                    outline: 'none'
-                  }}
-                />
-              </div>
-              {searchTerm && (
-                <p className="text-sm text-gray-600 mt-2">
-                  Searching for: "{searchTerm}" - Found {filteredAndSortedEmployees.length} results
-                </p>
-              )}
-            </div>
-            <div className="flex flex-wrap gap-2">
-              <Select value={filterDepartment} onValueChange={setFilterDepartment}>
-                <SelectTrigger className="w-40">
-                  <SelectValue placeholder="Department" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Departments</SelectItem>
-                  {analytics.departments.map(dept => (
-                    <SelectItem key={dept} value={dept}>{dept}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              
-              <Select value={filterStatus} onValueChange={setFilterStatus}>
-                <SelectTrigger className="w-32">
-                  <SelectValue placeholder="Status" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Status</SelectItem>
-                  <SelectItem value="active">Active</SelectItem>
-                  <SelectItem value="inactive">Inactive</SelectItem>
-                  <SelectItem value="terminated">Terminated</SelectItem>
-                </SelectContent>
-              </Select>
-              
-              <Select value={filterLocation} onValueChange={setFilterLocation}>
-                <SelectTrigger className="w-40">
-                  <SelectValue placeholder="Location" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Locations</SelectItem>
-                  {analytics.locations.map(loc => (
-                    <SelectItem key={loc} value={loc}>{loc}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              
-              <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger className="w-32">
-                  <SelectValue placeholder="Sort by" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="name">Name</SelectItem>
-                  <SelectItem value="department">Department</SelectItem>
-                  <SelectItem value="position">Position</SelectItem>
-                  <SelectItem value="hireDate">Hire Date</SelectItem>
-                  <SelectItem value="location">Location</SelectItem>
-                </SelectContent>
-              </Select>
-              
-              <Button 
-                variant="outline"
-                size="sm"
-                onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+            <select 
+              value={filterStatus} 
+              onChange={(e) => setFilterStatus(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="all">All Status</option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+              <option value="terminated">Terminated</option>
+            </select>
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
+            <select 
+              value={filterLocation} 
+              onChange={(e) => setFilterLocation(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="all">All Locations</option>
+              {analytics.locations.map(loc => (
+                <option key={loc} value={loc}>{loc}</option>
+              ))}
+            </select>
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Sort By</label>
+            <div className="flex gap-2">
+              <select 
+                value={sortBy} 
+                onChange={(e) => setSortBy(e.target.value)}
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
-                {sortOrder === 'asc' ? 
-                  <TrendingUp className="w-4 h-4" /> : 
-                  <TrendingDown className="w-4 h-4" />
-                }
-              </Button>
+                <option value="name">Name</option>
+                <option value="department">Department</option>
+                <option value="position">Position</option>
+                <option value="hireDate">Hire Date</option>
+                <option value="location">Location</option>
+              </select>
+              <button 
+                onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
+                className="px-3 py-2 border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                {sortOrder === 'asc' ? '↑' : '↓'}
+              </button>
             </div>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
 
       {/* Employee List */}
       <Card>
