@@ -895,15 +895,24 @@ export function InstructorSignInGenerator() {
                 <div>
                   <Label>Instructor Type *</Label>
                   <div className="flex flex-col gap-2 mt-2 w-full">
-                    <Button
-                      type="button"
-                      variant={instructorType === 'existing' ? 'default' : 'outline'}
-                      onClick={() => handleInstructorTypeChange('existing')}
-                      className="w-full h-10 flex items-center justify-center"
-                    >
-                      <Users className="w-4 h-4 mr-2" />
-                      Client Instructor
-                    </Button>
+                    <Select value={selectedInstructor} onValueChange={handleInstructorSelection}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Choose from client instructors" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {SAMPLE_INSTRUCTORS.map(instructor => (
+                          <SelectItem key={instructor.id} value={instructor.id}>
+                            {instructor.name} - {instructor.credentials}
+                          </SelectItem>
+                        ))}
+                        <SelectItem value="clear">
+                          <div className="flex items-center text-gray-500">
+                            <X className="w-4 h-4 mr-2" />
+                            Clear Selection
+                          </div>
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
                     <Button
                       type="button"
                       variant={instructorType === 'visiting' ? 'default' : 'outline'}
@@ -916,21 +925,12 @@ export function InstructorSignInGenerator() {
                   </div>
                 </div>
 
-                {instructorType === 'existing' && (
-                  <div>
-                    <Label htmlFor="instructorSelect">Choose Instructor *</Label>
-                    <Select value={selectedInstructor} onValueChange={handleInstructorSelection}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Choose from client instructors" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {clientInstructors.map(instructor => (
-                          <SelectItem key={instructor.id} value={instructor.id}>
-                            {instructor.name} - {instructor.credentials}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                {instructorType === 'existing' && selectedInstructor && selectedInstructor !== 'clear' && (
+                  <div className="p-3 bg-gray-50 rounded-lg border">
+                    <div className="text-sm font-medium text-gray-700">Selected Instructor:</div>
+                    <div className="text-sm text-gray-600 mt-1">
+                      {SAMPLE_INSTRUCTORS.find(i => i.id === selectedInstructor)?.name} - {SAMPLE_INSTRUCTORS.find(i => i.id === selectedInstructor)?.credentials}
+                    </div>
                   </div>
                 )}
 
