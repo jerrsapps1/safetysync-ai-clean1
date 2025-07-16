@@ -902,7 +902,7 @@ export function InstructorSignInGenerator() {
                       className="w-full h-10 flex items-center justify-center"
                     >
                       <Users className="w-4 h-4 mr-2" />
-                      Select Instructor
+                      Client Instructor
                     </Button>
                     <Button
                       type="button"
@@ -918,10 +918,10 @@ export function InstructorSignInGenerator() {
 
                 {instructorType === 'existing' && (
                   <div>
-                    <Label htmlFor="instructorSelect">Select Instructor *</Label>
+                    <Label htmlFor="instructorSelect">Choose Instructor *</Label>
                     <Select value={selectedInstructor} onValueChange={handleInstructorSelection}>
                       <SelectTrigger>
-                        <SelectValue placeholder="Select Instructor" />
+                        <SelectValue placeholder="Choose from client instructors" />
                       </SelectTrigger>
                       <SelectContent>
                         {clientInstructors.map(instructor => (
