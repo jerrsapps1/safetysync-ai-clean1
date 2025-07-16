@@ -582,7 +582,7 @@ export default function EmployeeManagement() {
             className="bg-blue-500/20 hover:bg-blue-500/30 border-blue-500/30 text-blue-300 hover:text-blue-200"
           >
             <Download className="w-4 h-4 mr-2" />
-            Download All Employees ({employees.length})
+            Download All Employees ({analytics.totalEmployees})
           </Button>
           {filteredAndSortedEmployees.length > 0 && (
             <Button 
