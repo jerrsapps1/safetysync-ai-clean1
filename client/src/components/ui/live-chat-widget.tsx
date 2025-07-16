@@ -121,6 +121,40 @@ export function LiveChatWidget({ isOpen, onToggle, onClose }: LiveChatWidgetProp
 
   const handleQuickReply = (reply: string) => {
     setNewMessage(reply);
+    // Automatically send the quick reply message
+    setTimeout(() => {
+      const userMessage: Message = {
+        id: Date.now().toString(),
+        text: reply,
+        sender: 'user',
+        timestamp: new Date(),
+        status: 'sending'
+      };
+
+      setMessages(prev => [...prev, userMessage]);
+      setNewMessage('');
+      setIsTyping(true);
+
+      // Simulate agent response
+      setTimeout(() => {
+        setIsTyping(false);
+        const agentResponse = generateAgentResponse(reply);
+        const agentMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          text: agentResponse,
+          sender: 'agent',
+          timestamp: new Date()
+        };
+        setMessages(prev => [...prev, agentMessage]);
+      }, 1500);
+
+      // Update message status
+      setTimeout(() => {
+        setMessages(prev => prev.map(msg => 
+          msg.id === userMessage.id ? { ...msg, status: 'delivered' } : msg
+        ));
+      }, 500);
+    }, 100);
   };
 
   if (!isOpen) {
