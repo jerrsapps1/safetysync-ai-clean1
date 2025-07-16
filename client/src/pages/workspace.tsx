@@ -18,6 +18,7 @@ import { ComplianceReportGenerator } from "@/components/ui/compliance-report-gen
 import { AICloneDetector } from "@/components/ui/ai-clone-detector";
 import { CollaborationLayer } from "@/components/ui/collaboration-layer";
 import EmployeeManagement from "@/components/enterprise/EmployeeManagement";
+import { EmployeeInsightsDashboard } from "@/components/enterprise/EmployeeInsightsDashboard";
 import DocumentManager from "@/components/enterprise/DocumentManager";
 import CompanyProfile from "@/components/enterprise/CompanyProfile";
 import TrainingManagement from "@/components/training/TrainingManagement";
@@ -1875,6 +1876,16 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <Button
             variant="ghost"
             className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+              activeTab === "employee-insights" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+            }`}
+            onClick={() => handleTabSwitch("employee-insights")}
+          >
+            <Brain className="w-5 h-5 mr-3" />
+            {sidebarOpen && "Employee Insights"}
+          </Button>
+          <Button
+            variant="ghost"
+            className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
               activeTab === "employee-portal" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
             }`}
             onClick={() => handleTabSwitch("employee-portal")}
@@ -1999,6 +2010,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               <h1 className="text-lg md:text-2xl font-bold text-white truncate">
                 {activeTab === "unified-dashboard" && "Dashboard"}
                 {activeTab === "employees" && "Employee Management"}
+                {activeTab === "employee-insights" && "Employee Insights"}
                 {activeTab === "training" && "Training Management"}
                 {activeTab === "certificates" && "Certificate Generation"}
                 {activeTab === "reports" && "Compliance Reports"}
@@ -2025,6 +2037,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   </span>
                 )}
                 {activeTab === "employees" && "Manage employee certifications and training"}
+                {activeTab === "employee-insights" && "AI-powered analytics and insights for employee data"}
                 {activeTab === "training" && "Schedule and track safety training"}
                 {activeTab === "certificates" && "Generate professional certificates and cards"}
                 {activeTab === "reports" && "Generate compliance reports for audits"}
@@ -2310,6 +2323,12 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           {activeTab === "employees" && (
             <div className="rounded-lg p-2 md:p-6">
               <EmployeeManagement />
+            </div>
+          )}
+
+          {activeTab === "employee-insights" && (
+            <div className="rounded-lg">
+              <EmployeeInsightsDashboard />
             </div>
           )}
 
