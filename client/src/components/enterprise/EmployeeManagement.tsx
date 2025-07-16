@@ -112,17 +112,15 @@ export default function EmployeeManagement() {
   });
 
   // Excel download function - downloads filtered results
-  const downloadExcel = () => {
-    const dataToExport = filteredAndSortedEmployees.length > 0 ? filteredAndSortedEmployees : employees;
+  const downloadFilteredExcel = () => {
+    const dataToExport = filteredAndSortedEmployees;
     const csvContent = generateCSV(dataToExport);
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
     if (link.download !== undefined) {
       const url = URL.createObjectURL(blob);
       link.setAttribute('href', url);
-      const filename = filteredAndSortedEmployees.length > 0 
-        ? `SafetySync_Filtered_Employees_${new Date().toISOString().split('T')[0]}.csv`
-        : `SafetySync_All_Employees_${new Date().toISOString().split('T')[0]}.csv`;
+      const filename = `SafetySync_Filtered_Employees_${new Date().toISOString().split('T')[0]}.csv`;
       link.setAttribute('download', filename);
       link.style.visibility = 'hidden';
       document.body.appendChild(link);
@@ -131,7 +129,29 @@ export default function EmployeeManagement() {
       
       toast({
         title: 'Download Started',
-        description: `${dataToExport.length} employee records are being downloaded as Excel file.`,
+        description: `${dataToExport.length} filtered employee records are being downloaded as Excel file.`,
+      });
+    }
+  };
+
+  // Excel download function - downloads all employees
+  const downloadAllExcel = () => {
+    const csvContent = generateCSV(employees);
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    if (link.download !== undefined) {
+      const url = URL.createObjectURL(blob);
+      link.setAttribute('href', url);
+      const filename = `SafetySync_All_Employees_${new Date().toISOString().split('T')[0]}.csv`;
+      link.setAttribute('download', filename);
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      toast({
+        title: 'Download Started',
+        description: `All ${employees.length} employee records are being downloaded as Excel file.`,
       });
     }
   };
@@ -533,20 +553,22 @@ export default function EmployeeManagement() {
           </Button>
           <Button 
             variant="outline"
-            onClick={downloadExcel}
+            onClick={downloadAllExcel}
             className="bg-blue-50 hover:bg-blue-100 border-blue-300"
           >
             <Download className="w-4 h-4 mr-2" />
-            Download All Employees
+            Download All Employees ({employees.length})
           </Button>
-          <Button 
-            variant="outline"
-            onClick={handleExportEmployees}
-            disabled={filteredAndSortedEmployees.length === 0}
-          >
-            <Download className="w-4 h-4 mr-2" />
-            Export Search Results
-          </Button>
+          {filteredAndSortedEmployees.length > 0 && (
+            <Button 
+              variant="outline"
+              onClick={downloadFilteredExcel}
+              className="bg-green-50 hover:bg-green-100 border-green-300"
+            >
+              <Download className="w-4 h-4 mr-2" />
+              Download Filtered Results ({filteredAndSortedEmployees.length})
+            </Button>
+          )}
           <Button 
             variant="outline"
             onClick={() => setShowBulkActions(!showBulkActions)}
@@ -560,7 +582,7 @@ export default function EmployeeManagement() {
       {/* Tip Section */}
       <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
         <p className="text-sm text-blue-800">
-          <strong>💡 Search to View Employees:</strong> Use the search bar below to find specific employees by name, ID, position, or department. To view all {analytics.totalEmployees} employees, use the "Download All Employees" button above.
+          <strong>💡 Instructions:</strong> Use the search bar and filters below to find specific employees. The "Download All Employees" button exports all {analytics.totalEmployees} employees, while the "Download Filtered Results" button (when visible) exports only your current search/filter results.
         </p>
       </div>
 
@@ -688,6 +710,16 @@ export default function EmployeeManagement() {
             <p className="text-sm text-gray-600 mt-2">
               Searching for: "{searchTerm}" - Found {filteredAndSortedEmployees.length} results
             </p>
+          )}
+          {!searchTerm && filteredAndSortedEmployees.length === 0 && (
+            <div className="bg-blue-50 border border-blue-200 rounded-md p-3 mt-2">
+              <p className="text-sm text-blue-700">
+                <strong>Instructions:</strong> To view employees, either:
+                <br />• Enter a search term in the box above, OR
+                <br />• Select a Department, Status, or Location from the filters below
+                <br />• Use multiple filters together to narrow your results
+              </p>
+            </div>
           )}
         </div>
 
