@@ -121,6 +121,23 @@ export const employees = pgTable("employees", {
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
+// Instructors Management
+export const instructors = pgTable("instructors", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  name: text("name").notNull(),
+  credentials: text("credentials"),
+  company: text("company"),
+  email: text("email"),
+  phone: text("phone"),
+  specializations: text("specializations").array(),
+  type: text("type", { enum: ["internal", "visiting"] }).default("internal"),
+  isActive: boolean("is_active").default(true),
+  notes: text("notes"),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
 // Training Programs and Courses
 export const trainingPrograms = pgTable("training_programs", {
   id: serial("id").primaryKey(),
