@@ -660,14 +660,18 @@ export default function EmployeeManagement() {
       )}
 
       {/* Filters and Search */}
-      <Card>
+      <Card className="bg-yellow-50 border-yellow-200">
         <CardHeader>
-          <CardTitle>Search and Filter Employees</CardTitle>
+          <CardTitle className="text-red-600">🔍 SEARCH BAR TEST - CAN YOU SEE THIS?</CardTitle>
         </CardHeader>
         <CardContent className="p-4">
+          <div className="bg-red-100 p-4 mb-4">
+            <p className="text-red-800 font-bold">TEST: If you can see this red box, the search card is rendering!</p>
+          </div>
           <div className="flex flex-col lg:flex-row gap-4">
-            <div className="flex-1">
-              <div className="relative">
+            <div className="flex-1 bg-blue-100 p-4">
+              <p className="text-blue-800 mb-2">Search input should be below this text:</p>
+              <div className="relative bg-white p-2 border-2 border-blue-500">
                 <Search className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
                 <input
                   type="text"
