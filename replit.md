@@ -130,6 +130,19 @@ User satisfied with comprehensive platform features including dashboard, admin p
 
 ## Recent Changes
 
+- **July 16, 2025** - Added Intelligent Employee Data Insights Dashboard:
+  - **NEW DASHBOARD**: Created comprehensive Employee Insights Dashboard with AI-powered analytics and data visualization
+  - **KEY METRICS**: Real-time tracking of total employees, ID verification rates, active certificates, and AI-calculated compliance scores
+  - **DEPARTMENT ANALYTICS**: Detailed department and location distribution with performance metrics and verification tracking
+  - **HIRING TRENDS**: 12-month hiring trend analysis with area charts and growth pattern visualization
+  - **AI INSIGHTS**: Smart recommendations for ID verification gaps, expiring certificates, training completion rates, and top-performing departments
+  - **INTERACTIVE TABS**: Four comprehensive tabs (Overview, Departments, Trends, AI Insights) with responsive charts and filtering
+  - **ADVANCED FILTERING**: Department-specific analytics with time range selection and data export capabilities
+  - **VISUAL CHARTS**: Multi-chart dashboard using Recharts with pie charts, bar charts, line charts, and area charts
+  - **DARK THEME**: Consistent glass morphism design with gradient backgrounds matching Employee Portal aesthetic
+  - **NAVIGATION**: Added "Employee Insights" tab between Employee Management and Employee Portal in workspace sidebar
+  - Intelligent dashboard provides comprehensive employee analytics with AI-powered insights for data-driven decision making
+
 - **July 16, 2025** - Implemented Dynamic Employee Badge Generation for Verified IDs:
   - **NEW COMPONENT**: Created EmployeeBadge component with three variants (default, compact, detailed) for visual verification status
   - **MAIN TABLE INTEGRATION**: Added compact badges next to employee names in main table showing green shield for verified, red shield for unverified
