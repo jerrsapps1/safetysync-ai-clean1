@@ -610,7 +610,7 @@ export function InstructorSignInGenerator() {
                     <Label htmlFor="instructorSelect">Select Instructor *</Label>
                     <Select value={selectedInstructor} onValueChange={handleInstructorSelection}>
                       <SelectTrigger>
-                        <SelectValue placeholder="Choose from your instructors" />
+                        <SelectValue placeholder="Select Instructor" />
                       </SelectTrigger>
                       <SelectContent>
                         {clientInstructors.map(instructor => (
@@ -664,8 +664,27 @@ export function InstructorSignInGenerator() {
 
                 {instructorType === 'existing' && selectedInstructor && (
                   <div className="space-y-4 p-4 bg-gray-50 rounded-lg border">
-                    <div className="text-sm text-gray-600">
-                      <strong>Selected Instructor:</strong>
+                    <div className="flex items-center justify-between">
+                      <div className="text-sm text-gray-600">
+                        <strong>Selected Instructor:</strong>
+                      </div>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {
+                          setSelectedInstructor('');
+                          setFormData(prev => ({
+                            ...prev,
+                            instructorName: '',
+                            instructorCredentials: '',
+                            instructorCompany: ''
+                          }));
+                        }}
+                        className="text-xs"
+                      >
+                        <X className="w-3 h-3 mr-1" />
+                        Clear Selection
+                      </Button>
                     </div>
                     <div className="grid grid-cols-1 gap-2 text-sm">
                       <div><strong>Name:</strong> {formData.instructorName}</div>
