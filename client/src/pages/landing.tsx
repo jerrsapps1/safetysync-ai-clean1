@@ -623,6 +623,7 @@ export default function LandingPage() {
       
       <LiveChatWidget 
         isOpen={showLiveChat}
+        onToggle={() => setShowLiveChat(!showLiveChat)}
         onClose={() => setShowLiveChat(false)}
       />
       
