@@ -11,6 +11,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Progress } from '@/components/ui/progress';
 import { useToast } from '@/hooks/use-toast';
+import { SafetySyncIcon } from '@/components/ui/safetysync-icon';
 import { 
   User, 
   Plus, 
@@ -42,7 +43,9 @@ import {
   RefreshCw,
   Settings,
   CheckSquare,
-  Square
+  Square,
+  Brain,
+  Shield
 } from 'lucide-react';
 
 interface Employee {
@@ -536,12 +539,34 @@ export default function EmployeeManagement() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 relative">
+      {/* Tech grid background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 opacity-10 rounded-lg"></div>
+      
+      {/* Floating tech icons */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-10 left-10 animate-float">
+          <Users className="w-8 h-8 text-blue-400/30" />
+        </div>
+        <div className="absolute top-32 right-20 animate-float-delay-1">
+          <Brain className="w-10 h-10 text-purple-400/30" />
+        </div>
+        <div className="absolute bottom-20 left-20 animate-float-delay-2">
+          <TrendingUp className="w-6 h-6 text-green-400/30" />
+        </div>
+        <div className="absolute bottom-32 right-32 animate-float-delay-3">
+          <Shield className="w-7 h-7 text-emerald-400/30" />
+        </div>
+      </div>
+
       {/* Header */}
-      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 relative z-10">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Employee Management</h1>
-          <p className="text-gray-600 mt-1">Manage your workforce with comprehensive employee tracking and analytics</p>
+          <h1 className="text-2xl font-bold text-white flex items-center gap-3">
+            <SafetySyncIcon size={32} className="rounded-lg" />
+            Employee Management
+          </h1>
+          <p className="text-gray-400 mt-1">Manage your workforce with comprehensive employee tracking and analytics</p>
         </div>
         <div className="flex flex-wrap gap-2">
           <Button 
@@ -554,7 +579,7 @@ export default function EmployeeManagement() {
           <Button 
             variant="outline"
             onClick={downloadAllExcel}
-            className="bg-blue-50 hover:bg-blue-100 border-blue-300"
+            className="bg-blue-500/20 hover:bg-blue-500/30 border-blue-500/30 text-blue-300 hover:text-blue-200"
           >
             <Download className="w-4 h-4 mr-2" />
             Download All Employees ({employees.length})
@@ -563,7 +588,7 @@ export default function EmployeeManagement() {
             <Button 
               variant="outline"
               onClick={downloadFilteredExcel}
-              className="bg-green-50 hover:bg-green-100 border-green-300"
+              className="bg-green-500/20 hover:bg-green-500/30 border-green-500/30 text-green-300 hover:text-green-200"
             >
               <Download className="w-4 h-4 mr-2" />
               Download Filtered Results ({filteredAndSortedEmployees.length})
@@ -572,6 +597,7 @@ export default function EmployeeManagement() {
           <Button 
             variant="outline"
             onClick={() => setShowBulkActions(!showBulkActions)}
+            className="bg-gray-500/20 hover:bg-gray-500/30 border-gray-500/30 text-gray-300 hover:text-gray-200"
           >
             <CheckSquare className="w-4 h-4 mr-2" />
             Bulk Actions
@@ -580,59 +606,59 @@ export default function EmployeeManagement() {
       </div>
 
       {/* Tip Section */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-        <p className="text-sm text-blue-800">
+      <div className="bg-blue-500/20 border border-blue-500/30 rounded-lg p-4 backdrop-blur-sm relative z-10">
+        <p className="text-sm text-blue-300">
           <strong>💡 Instructions:</strong> Use the search bar and filters below to find specific employees. The "Download All Employees" button exports all {analytics.totalEmployees} employees, while the "Download Filtered Results" button (when visible) exports only your current search/filter results.
         </p>
       </div>
 
       {/* Analytics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 relative z-10">
+        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Total Employees</p>
-                <p className="text-2xl font-bold text-gray-900">{analytics.totalEmployees}</p>
+                <p className="text-sm text-gray-400">Total Employees</p>
+                <p className="text-2xl font-bold text-white">{analytics.totalEmployees}</p>
               </div>
-              <Users className="w-8 h-8 text-blue-500" />
+              <Users className="w-8 h-8 text-blue-400" />
             </div>
           </CardContent>
         </Card>
         
-        <Card>
+        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Active Employees</p>
-                <p className="text-2xl font-bold text-emerald-600">{analytics.activeEmployees}</p>
+                <p className="text-sm text-gray-400">Active Employees</p>
+                <p className="text-2xl font-bold text-emerald-400">{analytics.activeEmployees}</p>
                 <p className="text-xs text-gray-500">{analytics.activeRate}% active rate</p>
               </div>
-              <CheckCircle className="w-8 h-8 text-emerald-500" />
+              <CheckCircle className="w-8 h-8 text-emerald-400" />
             </div>
           </CardContent>
         </Card>
         
-        <Card>
+        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Departments</p>
-                <p className="text-2xl font-bold text-purple-600">{analytics.departments.length}</p>
+                <p className="text-sm text-gray-400">Departments</p>
+                <p className="text-2xl font-bold text-purple-400">{analytics.departments.length}</p>
               </div>
-              <Building className="w-8 h-8 text-purple-500" />
+              <Building className="w-8 h-8 text-purple-400" />
             </div>
           </CardContent>
         </Card>
         
-        <Card>
+        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Certification Rate</p>
-                <p className="text-2xl font-bold text-orange-600">{analytics.certificationComplianceRate}%</p>
+                <p className="text-sm text-gray-400">Certification Rate</p>
+                <p className="text-2xl font-bold text-orange-400">{analytics.certificationComplianceRate}%</p>
               </div>
-              <Award className="w-8 h-8 text-orange-500" />
+              <Award className="w-8 h-8 text-orange-400" />
             </div>
           </CardContent>
         </Card>
@@ -640,7 +666,7 @@ export default function EmployeeManagement() {
 
       {/* Bulk Actions Panel */}
       {showBulkActions && (
-        <Card className="border-blue-200 bg-blue-50">
+        <Card className="border-blue-500/30 bg-blue-500/20 backdrop-blur-sm relative z-10">
           <CardContent className="p-4">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div className="flex items-center gap-4">
@@ -648,6 +674,7 @@ export default function EmployeeManagement() {
                   variant="outline" 
                   size="sm"
                   onClick={handleSelectAll}
+                  className="bg-gray-500/20 hover:bg-gray-500/30 border-gray-500/30 text-gray-300 hover:text-gray-200"
                 >
                   {selectedEmployees.length === filteredAndSortedEmployees.length ? (
                     <>
@@ -661,7 +688,7 @@ export default function EmployeeManagement() {
                     </>
                   )}
                 </Button>
-                <span className="text-sm text-gray-600">
+                <span className="text-sm text-gray-300">
                   {selectedEmployees.length} selected
                 </span>
               </div>
@@ -671,6 +698,7 @@ export default function EmployeeManagement() {
                   variant="outline"
                   onClick={() => handleBulkStatusChange('active')}
                   disabled={selectedEmployees.length === 0}
+                  className="bg-green-500/20 hover:bg-green-500/30 border-green-500/30 text-green-300 hover:text-green-200"
                 >
                   <CheckCircle className="w-4 h-4 mr-2" />
                   Activate
@@ -680,6 +708,7 @@ export default function EmployeeManagement() {
                   variant="outline"
                   onClick={() => handleBulkStatusChange('inactive')}
                   disabled={selectedEmployees.length === 0}
+                  className="bg-red-500/20 hover:bg-red-500/30 border-red-500/30 text-red-300 hover:text-red-200"
                 >
                   <XCircle className="w-4 h-4 mr-2" />
                   Deactivate
@@ -691,12 +720,12 @@ export default function EmployeeManagement() {
       )}
 
       {/* Search and Filters */}
-      <div className="bg-white border rounded-lg p-6 shadow-sm">
-        <h3 className="text-lg font-semibold mb-4">Search and Filter Employees</h3>
+      <div className="bg-black/20 backdrop-blur-sm border-gray-800 rounded-lg p-6 shadow-sm relative z-10">
+        <h3 className="text-lg font-semibold mb-4 text-white">Search and Filter Employees</h3>
         
         {/* Search Input */}
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-400 mb-2">
             Search Employees
           </label>
           <input
@@ -704,16 +733,16 @@ export default function EmployeeManagement() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Search by name, email, ID, position, or department..."
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-600 bg-black/30 text-white placeholder-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
           {searchTerm && (
-            <p className="text-sm text-gray-600 mt-2">
+            <p className="text-sm text-gray-400 mt-2">
               Searching for: "{searchTerm}" - Found {filteredAndSortedEmployees.length} results
             </p>
           )}
           {!searchTerm && filteredAndSortedEmployees.length === 0 && (
-            <div className="bg-blue-50 border border-blue-200 rounded-md p-3 mt-2">
-              <p className="text-sm text-blue-700">
+            <div className="bg-blue-500/20 border border-blue-500/30 rounded-md p-3 mt-2 backdrop-blur-sm">
+              <p className="text-sm text-blue-300">
                 <strong>Instructions:</strong> To view employees, either:
                 <br />• Enter a search term in the box above, OR
                 <br />• Select a Department, Status, or Location from the filters below
@@ -726,11 +755,11 @@ export default function EmployeeManagement() {
         {/* Filters */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Department</label>
+            <label className="block text-sm font-medium text-gray-400 mb-1">Department</label>
             <select 
               value={filterDepartment} 
               onChange={(e) => setFilterDepartment(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-600 bg-black/30 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
               <option value="">Select Department</option>
               {analytics.departments.map(dept => (
@@ -740,11 +769,11 @@ export default function EmployeeManagement() {
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+            <label className="block text-sm font-medium text-gray-400 mb-1">Status</label>
             <select 
               value={filterStatus} 
               onChange={(e) => setFilterStatus(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-600 bg-black/30 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
               <option value="">Select Status</option>
               <option value="active">Active</option>
@@ -754,11 +783,11 @@ export default function EmployeeManagement() {
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
+            <label className="block text-sm font-medium text-gray-400 mb-1">Location</label>
             <select 
               value={filterLocation} 
               onChange={(e) => setFilterLocation(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-600 bg-black/30 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
               <option value="">Select Location</option>
               {analytics.locations.map(loc => (
@@ -768,12 +797,12 @@ export default function EmployeeManagement() {
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Sort By</label>
+            <label className="block text-sm font-medium text-gray-400 mb-1">Sort By</label>
             <div className="flex gap-2">
               <select 
                 value={sortBy} 
                 onChange={(e) => setSortBy(e.target.value)}
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="flex-1 px-3 py-2 border border-gray-600 bg-black/30 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
                 <option value="name">Name</option>
                 <option value="department">Department</option>
@@ -783,7 +812,7 @@ export default function EmployeeManagement() {
               </select>
               <button 
                 onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
-                className="px-3 py-2 border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="px-3 py-2 border border-gray-600 bg-black/30 text-white rounded-md hover:bg-gray-600/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
                 {sortOrder === 'asc' ? '↑' : '↓'}
               </button>
@@ -793,13 +822,13 @@ export default function EmployeeManagement() {
       </div>
 
       {/* Employee List */}
-      <Card>
+      <Card className="bg-black/20 backdrop-blur-sm border-gray-800 relative z-10">
         <CardContent className="p-0">
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-50 border-b">
+              <thead className="bg-gray-800/50 border-b border-gray-700">
                 <tr>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-900">
+                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-300">
                     <div className="flex items-center gap-2">
                       <input
                         type="checkbox"
@@ -810,17 +839,17 @@ export default function EmployeeManagement() {
                       Employee
                     </div>
                   </th>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-900">Position</th>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-900">Department</th>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-900">Location</th>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-900">Status</th>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-900">Hire Date</th>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-900">Actions</th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-300">Position</th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-300">Department</th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-300">Location</th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-300">Status</th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-300">Hire Date</th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-300">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
+              <tbody className="divide-y divide-gray-700">
                 {filteredAndSortedEmployees.map((employee) => (
-                  <tr key={employee.id} className="hover:bg-gray-50">
+                  <tr key={employee.id} className="hover:bg-gray-800/30">
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-3">
                         <input
@@ -830,17 +859,17 @@ export default function EmployeeManagement() {
                           className="rounded"
                         />
                         <div>
-                          <div className="font-medium text-gray-900">
+                          <div className="font-medium text-white">
                             {employee.firstName} {employee.lastName}
                           </div>
-                          <div className="text-sm text-gray-500">{employee.email}</div>
-                          <div className="text-xs text-gray-400">ID: {employee.employeeId}</div>
+                          <div className="text-sm text-gray-400">{employee.email}</div>
+                          <div className="text-xs text-gray-500">ID: {employee.employeeId}</div>
                         </div>
                       </div>
                     </td>
-                    <td className="px-4 py-3 text-sm text-gray-900">{employee.position}</td>
-                    <td className="px-4 py-3 text-sm text-gray-900">{employee.department}</td>
-                    <td className="px-4 py-3 text-sm text-gray-900">{employee.location}</td>
+                    <td className="px-4 py-3 text-sm text-gray-300">{employee.position}</td>
+                    <td className="px-4 py-3 text-sm text-gray-300">{employee.department}</td>
+                    <td className="px-4 py-3 text-sm text-gray-300">{employee.location}</td>
                     <td className="px-4 py-3">
                       <Badge 
                         variant={employee.status === 'active' ? 'default' : 
@@ -849,7 +878,7 @@ export default function EmployeeManagement() {
                         {employee.status}
                       </Badge>
                     </td>
-                    <td className="px-4 py-3 text-sm text-gray-900">
+                    <td className="px-4 py-3 text-sm text-gray-300">
                       {new Date(employee.hireDate).toLocaleDateString()}
                     </td>
                     <td className="px-4 py-3">
@@ -861,6 +890,7 @@ export default function EmployeeManagement() {
                             setSelectedEmployee(employee);
                             setShowEditDialog(true);
                           }}
+                          className="bg-gray-500/20 hover:bg-gray-500/30 border-gray-500/30 text-gray-300 hover:text-gray-200"
                         >
                           <Eye className="w-4 h-4" />
                         </Button>
@@ -871,6 +901,7 @@ export default function EmployeeManagement() {
                             setSelectedEmployee(employee);
                             setShowEditDialog(true);
                           }}
+                          className="bg-blue-500/20 hover:bg-blue-500/30 border-blue-500/30 text-blue-300 hover:text-blue-200"
                         >
                           <Edit className="w-4 h-4" />
                         </Button>
