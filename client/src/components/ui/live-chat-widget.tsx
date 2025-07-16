@@ -174,7 +174,7 @@ export function LiveChatWidget({ isOpen, onToggle, onClose }: LiveChatWidgetProp
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
-      <Card className={`w-80 h-96 shadow-xl transition-all duration-300 ${isMinimized ? 'h-14' : 'h-96'}`}>
+      <Card className={`w-80 shadow-xl transition-all duration-300 ${isMinimized ? 'h-14' : 'h-[420px]'}`}>
         {/* Header */}
         <CardHeader className="p-4 bg-blue-600 text-white rounded-t-lg">
           <div className="flex items-center justify-between">
@@ -265,15 +265,15 @@ export function LiveChatWidget({ isOpen, onToggle, onClose }: LiveChatWidgetProp
 
               {/* Quick Replies */}
               {messages.length === 1 && (
-                <div className="px-4 pb-2">
+                <div className="px-4 py-3 bg-gray-50 border-t border-gray-200">
                   <div className="text-xs text-gray-500 mb-2">Quick questions:</div>
-                  <div className="flex flex-wrap gap-1">
+                  <div className="flex flex-col gap-2">
                     {quickReplies.slice(0, 3).map((reply) => (
                       <Button
                         key={reply}
                         variant="outline"
                         size="sm"
-                        className="text-xs h-6 px-2"
+                        className="text-xs h-8 px-3 justify-start bg-white hover:bg-blue-50 text-left"
                         onClick={() => handleQuickReply(reply)}
                       >
                         {reply}
@@ -284,14 +284,14 @@ export function LiveChatWidget({ isOpen, onToggle, onClose }: LiveChatWidgetProp
               )}
 
               {/* Input */}
-              <div className="p-4 border-t">
+              <div className="p-4 border-t bg-white">
                 <div className="flex gap-2">
                   <Input
                     value={newMessage}
                     onChange={(e) => setNewMessage(e.target.value)}
                     placeholder="Type your message..."
                     onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
-                    className="flex-1"
+                    className="flex-1 bg-white"
                   />
                   <Button onClick={sendMessage} size="sm" disabled={!newMessage.trim()}>
                     <Send className="w-4 h-4" />
