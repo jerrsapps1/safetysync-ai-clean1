@@ -415,7 +415,7 @@ export function InstructorSignInGenerator() {
                     <Label htmlFor="trainingType">Training Type *</Label>
                     <Select value={formData.trainingType} onValueChange={handleTrainingTypeChange}>
                       <SelectTrigger>
-                        <SelectValue placeholder="Select training type" />
+                        <SelectValue placeholder="Select Class" />
                       </SelectTrigger>
                       <SelectContent>
                         {TRAINING_TYPES.map(type => (
