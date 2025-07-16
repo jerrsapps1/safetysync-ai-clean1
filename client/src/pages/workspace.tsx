@@ -1386,42 +1386,43 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         };
 
         return (
-          <div className="h-full flex items-center justify-between bg-gradient-to-r from-blue-900/20 to-purple-900/20 rounded-lg p-4">
-            <div className="flex-1">
-              <div className="flex items-center space-x-3 mb-2">
-                <Home className="w-6 h-6 text-blue-400" />
-                <h3 className="text-xl font-bold text-white">
-                  {getGreeting()}, {user?.name || 'Safety Manager'}!
-                </h3>
-              </div>
-              <p className="text-gray-300 text-sm mb-3">
-                {getMotivationalMessage()}
-              </p>
-              <div className="flex items-center space-x-4 text-sm">
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-                  <span className="text-gray-400">System Status: Online</span>
+          <div className="h-full bg-gradient-to-r from-blue-900/20 to-purple-900/20 rounded-lg p-4 overflow-hidden">
+            <div className="flex items-center justify-between h-full">
+              <div className="flex-1 min-w-0 pr-4">
+                <div className="flex items-center space-x-3 mb-2">
+                  <Home className="w-5 h-5 text-blue-400 flex-shrink-0" />
+                  <h3 className="text-lg font-bold text-white truncate">
+                    {getGreeting()}, {user?.name?.split(' ')[0] || 'Safety Manager'}!
+                  </h3>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <Calendar className="w-4 h-4 text-blue-400" />
-                  <span className="text-gray-400">
-                    {new Date().toLocaleDateString('en-US', { 
-                      weekday: 'long', 
-                      year: 'numeric', 
-                      month: 'long', 
-                      day: 'numeric' 
-                    })}
-                  </span>
+                <p className="text-gray-300 text-sm mb-3 line-clamp-2">
+                  {getMotivationalMessage()}
+                </p>
+                <div className="flex items-center space-x-4 text-xs">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse flex-shrink-0" />
+                    <span className="text-gray-400">System Online</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Calendar className="w-3 h-3 text-blue-400 flex-shrink-0" />
+                    <span className="text-gray-400 hidden sm:inline">
+                      {new Date().toLocaleDateString('en-US', { 
+                        weekday: 'short', 
+                        month: 'short', 
+                        day: 'numeric' 
+                      })}
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="flex items-center space-x-4">
-              <div className="text-right">
-                <p className="text-2xl font-bold text-white">{stats.complianceScore}%</p>
-                <p className="text-gray-400 text-sm">Compliance Score</p>
-              </div>
-              <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-full flex items-center justify-center">
-                <Shield className="w-8 h-8 text-white" />
+              <div className="flex items-center space-x-3 flex-shrink-0">
+                <div className="text-right">
+                  <p className="text-xl font-bold text-white">{stats.complianceScore}%</p>
+                  <p className="text-gray-400 text-xs">Compliance</p>
+                </div>
+                <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-full flex items-center justify-center">
+                  <Shield className="w-6 h-6 text-white" />
+                </div>
               </div>
             </div>
           </div>
