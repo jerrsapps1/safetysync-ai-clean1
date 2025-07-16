@@ -130,7 +130,7 @@ User satisfied with comprehensive platform features including dashboard, admin p
 
 ## Recent Changes
 
-- **July 16, 2025** - Successfully Implemented Custom Training Class Functionality:
+- **July 16, 2025** - Successfully Implemented Custom Training Class Functionality and Enhanced Instructor Selection:
   - **CUSTOM TRAINING OPTION**: Added "Custom Training Class" to training type dropdown for maximum instructor flexibility
   - **DYNAMIC UI**: Custom training selection reveals blue-highlighted section with dedicated fields for custom class setup
   - **CUSTOM CLASS NAME**: Instructors can now create any specialized training class name they need
@@ -140,7 +140,13 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - **VISUAL INDICATORS**: Custom section uses blue background with plus icon to clearly indicate custom setup mode
   - **FORM INTEGRATION**: Custom fields automatically update main form data and persist through form generation
   - **RESET FUNCTIONALITY**: Clear Selection button resets dropdown, clears custom fields, and hides custom section
-  - Instructor Sign-In Generator now supports unlimited training class customization while maintaining structured approach for standard OSHA classes
+  - **INSTRUCTOR SELECTION ENHANCEMENT**: Added instructor type selection with vertical button layout for better text alignment
+  - **DUAL INSTRUCTOR SUPPORT**: System supports both client instructors (dropdown selection) and visiting instructors (manual entry)
+  - **INSTRUCTOR DROPDOWN**: Populated with sample instructors (John Smith, Sarah Johnson, Mike Rodriguez, Lisa Chen) with credentials
+  - **CONSISTENT UX**: Added "Select Instructor" default placeholder and Clear Selection button for instructor section
+  - **SMART FORM BEHAVIOR**: Auto-fills instructor fields when selected from dropdown, manual entry for visiting instructors
+  - **VISUAL FEEDBACK**: Green highlighting for visiting instructor section, gray summary box for selected instructor details
+  - Instructor Sign-In Generator now supports unlimited training class customization and flexible instructor management
 
 - **July 16, 2025** - Enhanced Product Tour with Comprehensive Platform Depth and Voiceover Preparation:
   - **DETAILED CONTENT**: Expanded product tour from basic overview to comprehensive 5-step journey showcasing platform's unique AI capabilities
