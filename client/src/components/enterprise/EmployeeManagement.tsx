@@ -386,6 +386,7 @@ export default function EmployeeManagement() {
     const terminatedEmployees = employees.filter(emp => emp.status === 'terminated').length;
     
     const departments = [...new Set(employees.map(emp => emp.department).filter(Boolean))];
+    const divisions = [...new Set(employees.map(emp => emp.division).filter(Boolean))];
     const locations = [...new Set(employees.map(emp => emp.location).filter(Boolean))];
     
     const departmentStats = departments.map(dept => ({
@@ -416,6 +417,7 @@ export default function EmployeeManagement() {
       terminatedEmployees,
       activeRate: totalEmployees > 0 ? Math.round((activeEmployees / totalEmployees) * 100) : 0,
       departments,
+      divisions,
       locations,
       departmentStats,
       locationStats,
@@ -1049,6 +1051,19 @@ export default function EmployeeManagement() {
                 </Select>
               </div>
               <div className="space-y-2">
+                <Label htmlFor="division" className="text-gray-300">Division</Label>
+                <Select value={newEmployee.division} onValueChange={(value) => setNewEmployee({...newEmployee, division: value})}>
+                  <SelectTrigger className="bg-gray-800 border-gray-700 text-white">
+                    <SelectValue placeholder="Select division" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-gray-800 border-gray-700">
+                    {analytics.divisions.map(div => (
+                      <SelectItem key={div} value={div} className="text-white hover:bg-gray-700">{div}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-2">
                 <Label htmlFor="location" className="text-gray-300">Location</Label>
                 <Select value={newEmployee.location} onValueChange={(value) => setNewEmployee({...newEmployee, location: value})}>
                   <SelectTrigger className="bg-gray-800 border-gray-700 text-white">
@@ -1120,6 +1135,10 @@ export default function EmployeeManagement() {
                   <div className="space-y-2">
                     <Label className="text-gray-300">Department</Label>
                     <Input value={selectedEmployee.department || ''} readOnly className="bg-gray-800 border-gray-700 text-white" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-gray-300">Division</Label>
+                    <Input value={selectedEmployee.division || ''} readOnly className="bg-gray-800 border-gray-700 text-white" />
                   </div>
                   <div className="space-y-2">
                     <Label className="text-gray-300">Location</Label>
