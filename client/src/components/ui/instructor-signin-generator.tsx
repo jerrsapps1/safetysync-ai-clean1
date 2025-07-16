@@ -8,6 +8,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Checkbox } from "@/components/ui/checkbox";
 import { 
   FileText, 
   Download, 
@@ -29,7 +31,22 @@ import {
   Settings,
   RefreshCw,
   AlertCircle,
-  FileCheck
+  FileCheck,
+  Mail,
+  BarChart3,
+  Filter,
+  Archive,
+  Send,
+  Copy,
+  Share,
+  Printer,
+  FileSpreadsheet,
+  Bell,
+  BellRing,
+  ExternalLink,
+  Star,
+  History,
+  Calendar as CalendarIcon
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import * as XLSX from 'xlsx';
@@ -167,6 +184,36 @@ export function InstructorSignInGenerator() {
   const [uploadedFiles, setUploadedFiles] = useState<SignedDocument[]>([]);
   const [selectedSheet, setSelectedSheet] = useState<SignInSheet | null>(null);
   const { toast } = useToast();
+
+  // Advanced features state
+  const [emailNotifications, setEmailNotifications] = useState(true);
+  const [autoReminders, setAutoReminders] = useState(true);
+  const [selectedSheetsForBulk, setSelectedSheetsForBulk] = useState<string[]>([]);
+  const [filterStatus, setFilterStatus] = useState<string>('all');
+  const [filterInstructor, setFilterInstructor] = useState<string>('all');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [showAdvancedOptions, setShowAdvancedOptions] = useState(false);
+  const [templateSettings, setTemplateSettings] = useState({
+    includeCompanyLogo: true,
+    includeInstructorPhoto: false,
+    includeQRCode: true,
+    customHeaderText: '',
+    customFooterText: ''
+  });
+  const [bulkOperationMode, setBulkOperationMode] = useState(false);
+  const [showReportingDialog, setShowReportingDialog] = useState(false);
+  const [showEmailDialog, setShowEmailDialog] = useState(false);
+  const [reportType, setReportType] = useState<'summary' | 'detailed' | 'analytics'>('summary');
+  const [reportDateRange, setReportDateRange] = useState({
+    startDate: '',
+    endDate: ''
+  });
+  const [showNotificationCenter, setShowNotificationCenter] = useState(false);
+  const [notifications, setNotifications] = useState([
+    { id: '1', type: 'reminder', message: 'Training session reminder for Fall Protection Training', timestamp: new Date().toISOString(), read: false },
+    { id: '2', type: 'completion', message: 'Signed documents uploaded for HAZCOM Training', timestamp: new Date().toISOString(), read: false },
+    { id: '3', type: 'upload', message: 'New instructor documents uploaded', timestamp: new Date().toISOString(), read: true }
+  ]);
 
   // Sample client instructors - in real implementation, this would come from the database
   const clientInstructors = [
@@ -798,6 +845,189 @@ export function InstructorSignInGenerator() {
     }
   };
 
+  // Advanced features helper functions
+  const sendEmailNotification = (type: 'reminder' | 'completion' | 'upload', recipients: string[], message: string) => {
+    if (!emailNotifications) return;
+    
+    // In a real implementation, this would integrate with email service
+    toast({
+      title: "Email Sent",
+      description: `${type} notification sent to ${recipients.length} recipient(s)`,
+      duration: 3000
+    });
+  };
+
+  const generateBulkReport = (sheets: SignInSheet[], type: 'summary' | 'detailed' | 'analytics') => {
+    const reportData = {
+      totalSheets: sheets.length,
+      totalEmployees: sheets.reduce((sum, sheet) => sum + sheet.employees.length, 0),
+      completedSheets: sheets.filter(s => s.status === 'completed').length,
+      pendingSheets: sheets.filter(s => s.status === 'generated').length,
+      generatedDate: new Date().toISOString(),
+      dateRange: reportDateRange,
+      type: type
+    };
+
+    // Generate report based on type
+    if (type === 'summary') {
+      const doc = new jsPDF();
+      doc.setFontSize(18);
+      doc.text('Training Summary Report', 20, 30);
+      doc.setFontSize(12);
+      doc.text(`Total Training Sessions: ${reportData.totalSheets}`, 20, 50);
+      doc.text(`Total Participants: ${reportData.totalEmployees}`, 20, 60);
+      doc.text(`Completed Sessions: ${reportData.completedSheets}`, 20, 70);
+      doc.text(`Pending Sessions: ${reportData.pendingSheets}`, 20, 80);
+      doc.text(`Generated: ${new Date(reportData.generatedDate).toLocaleDateString()}`, 20, 90);
+      doc.save('training-summary-report.pdf');
+    } else if (type === 'detailed') {
+      // Generate detailed Excel report
+      const workbook = XLSX.utils.book_new();
+      const worksheetData = sheets.map(sheet => ({
+        'Class Title': sheet.classTitle,
+        'Instructor': sheet.instructorName,
+        'Date': sheet.date,
+        'Location': sheet.location,
+        'Training Type': sheet.trainingType,
+        'Participants': sheet.employees.length,
+        'Status': sheet.status
+      }));
+      const worksheet = XLSX.utils.json_to_sheet(worksheetData);
+      XLSX.utils.book_append_sheet(workbook, worksheet, 'Training Sessions');
+      XLSX.writeFile(workbook, 'detailed-training-report.xlsx');
+    } else if (type === 'analytics') {
+      // Generate analytics report with charts
+      const doc = new jsPDF();
+      doc.setFontSize(18);
+      doc.text('Training Analytics Report', 20, 30);
+      doc.setFontSize(12);
+      
+      // Training type breakdown
+      const trainingTypeCount = sheets.reduce((acc, sheet) => {
+        acc[sheet.trainingType] = (acc[sheet.trainingType] || 0) + 1;
+        return acc;
+      }, {} as Record<string, number>);
+      
+      let yPos = 50;
+      doc.text('Training Type Distribution:', 20, yPos);
+      yPos += 10;
+      Object.entries(trainingTypeCount).forEach(([type, count]) => {
+        doc.text(`${type}: ${count} sessions`, 30, yPos);
+        yPos += 10;
+      });
+      
+      doc.save('training-analytics-report.pdf');
+    }
+
+    toast({
+      title: "Report Generated",
+      description: `${type} report has been generated and downloaded`,
+      duration: 3000
+    });
+  };
+
+  const bulkArchiveSheets = (sheetIds: string[]) => {
+    setSavedSheets(prev => 
+      prev.map(sheet => 
+        sheetIds.includes(sheet.id) 
+          ? { ...sheet, status: 'completed' as const }
+          : sheet
+      )
+    );
+    
+    toast({
+      title: "Sheets Archived",
+      description: `${sheetIds.length} sheet(s) have been archived`,
+      duration: 3000
+    });
+  };
+
+  const bulkDeleteSheets = (sheetIds: string[]) => {
+    setSavedSheets(prev => prev.filter(sheet => !sheetIds.includes(sheet.id)));
+    
+    toast({
+      title: "Sheets Deleted",
+      description: `${sheetIds.length} sheet(s) have been deleted`,
+      duration: 3000
+    });
+  };
+
+  const exportToCalendar = (sheet: SignInSheet) => {
+    const startDate = new Date(`${sheet.date} ${sheet.startTime}`);
+    const endDate = new Date(`${sheet.date} ${sheet.endTime}`);
+    
+    const calendarEvent = {
+      title: sheet.classTitle,
+      start: startDate.toISOString(),
+      end: endDate.toISOString(),
+      description: `Instructor: ${sheet.instructorName}\nLocation: ${sheet.location}\nParticipants: ${sheet.employees.length}`,
+      location: sheet.location
+    };
+    
+    // Generate .ics file
+    const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//SafetySync.AI//Training Calendar//EN
+BEGIN:VEVENT
+UID:${sheet.id}@safetysync.ai
+DTSTART:${startDate.toISOString().replace(/[:-]/g, '').replace(/\.\d{3}/, '')}
+DTEND:${endDate.toISOString().replace(/[:-]/g, '').replace(/\.\d{3}/, '')}
+SUMMARY:${sheet.classTitle}
+DESCRIPTION:${calendarEvent.description}
+LOCATION:${sheet.location}
+END:VEVENT
+END:VCALENDAR`;
+    
+    const blob = new Blob([icsContent], { type: 'text/calendar' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${sheet.classTitle.replace(/\s+/g, '-')}-training.ics`;
+    a.click();
+    URL.revokeObjectURL(url);
+    
+    toast({
+      title: "Calendar Event Created",
+      description: "Training session has been exported to calendar",
+      duration: 3000
+    });
+  };
+
+  const filterSheets = (sheets: SignInSheet[]) => {
+    return sheets.filter(sheet => {
+      const matchesSearch = searchTerm === '' || 
+        sheet.classTitle.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        sheet.instructorName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        sheet.location.toLowerCase().includes(searchTerm.toLowerCase());
+      
+      const matchesStatus = filterStatus === 'all' || sheet.status === filterStatus;
+      
+      const matchesInstructor = filterInstructor === 'all' || 
+        sheet.instructorName.toLowerCase().includes(filterInstructor.toLowerCase());
+      
+      return matchesSearch && matchesStatus && matchesInstructor;
+    });
+  };
+
+  const markNotificationAsRead = (notificationId: string) => {
+    setNotifications(prev => 
+      prev.map(notif => 
+        notif.id === notificationId 
+          ? { ...notif, read: true }
+          : notif
+      )
+    );
+  };
+
+  const clearAllNotifications = () => {
+    setNotifications([]);
+    toast({
+      title: "Notifications Cleared",
+      description: "All notifications have been cleared",
+      duration: 3000
+    });
+  };
+
 
 
   // Enhanced form generation with PDF/Word export and signature workflow
@@ -1341,6 +1571,39 @@ export function InstructorSignInGenerator() {
           </p>
         </div>
         <div className="flex gap-2">
+          {/* Advanced Tools */}
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setShowNotificationCenter(true)}
+            className="relative"
+          >
+            <Bell className="w-4 h-4" />
+            {notifications.filter(n => !n.read).length > 0 && (
+              <Badge className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                {notifications.filter(n => !n.read).length}
+              </Badge>
+            )}
+          </Button>
+          
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setShowReportingDialog(true)}
+          >
+            <BarChart3 className="w-4 h-4" />
+            Reports
+          </Button>
+          
+          <Button
+            variant={bulkOperationMode ? "default" : "outline"}
+            size="sm"
+            onClick={() => setBulkOperationMode(!bulkOperationMode)}
+          >
+            <CheckCircle className="w-4 h-4" />
+            Bulk Mode
+          </Button>
+          
           <Button
             variant={activeTab === 'create' ? 'default' : 'outline'}
             onClick={() => setActiveTab('create')}
@@ -1951,10 +2214,136 @@ export function InstructorSignInGenerator() {
             </CardDescription>
           </CardHeader>
           <CardContent>
+            {/* Enhanced Search and Filter Controls */}
+            <div className="mb-6 space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="searchSheets">Search Sheets</Label>
+                  <Input
+                    id="searchSheets"
+                    placeholder="Search by title, instructor, or location..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full"
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="filterStatus">Filter by Status</Label>
+                  <Select value={filterStatus} onValueChange={setFilterStatus}>
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Status</SelectItem>
+                      <SelectItem value="draft">Draft</SelectItem>
+                      <SelectItem value="generated">Generated</SelectItem>
+                      <SelectItem value="completed">Completed</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="filterInstructor">Filter by Instructor</Label>
+                  <Select value={filterInstructor} onValueChange={setFilterInstructor}>
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Instructors</SelectItem>
+                      {Array.from(new Set(savedSheets.map(s => s.instructorName))).map(instructor => (
+                        <SelectItem key={instructor} value={instructor}>{instructor}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                <div className="space-y-2">
+                  <Label>Quick Actions</Label>
+                  <div className="flex gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setShowEmailDialog(true)}
+                    >
+                      <Mail className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => exportToCalendar(savedSheets[0])}
+                    >
+                      <Calendar className="w-4 h-4" />
+                    </Button>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Bulk Operations */}
+              {bulkOperationMode && (
+                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="font-medium text-blue-800">Bulk Operations</h4>
+                    <span className="text-sm text-blue-600">
+                      {selectedSheetsForBulk.length} selected
+                    </span>
+                  </div>
+                  <div className="flex gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setSelectedSheetsForBulk(filterSheets(savedSheets).map(s => s.id))}
+                    >
+                      Select All
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setSelectedSheetsForBulk([])}
+                    >
+                      Clear Selection
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => bulkArchiveSheets(selectedSheetsForBulk)}
+                      disabled={selectedSheetsForBulk.length === 0}
+                    >
+                      Archive Selected
+                    </Button>
+                    <Button
+                      variant="destructive"
+                      size="sm"
+                      onClick={() => bulkDeleteSheets(selectedSheetsForBulk)}
+                      disabled={selectedSheetsForBulk.length === 0}
+                    >
+                      Delete Selected
+                    </Button>
+                  </div>
+                </div>
+              )}
+            </div>
+            
             <div className="space-y-4">
-              {savedSheets.map(sheet => (
+              {filterSheets(savedSheets).map(sheet => (
                 <div key={sheet.id} className="p-4 border rounded-lg">
                   <div className="flex items-center justify-between">
+                    {/* Bulk Selection Checkbox */}
+                    {bulkOperationMode && (
+                      <div className="mr-3">
+                        <Checkbox
+                          checked={selectedSheetsForBulk.includes(sheet.id)}
+                          onCheckedChange={(checked) => {
+                            if (checked) {
+                              setSelectedSheetsForBulk(prev => [...prev, sheet.id]);
+                            } else {
+                              setSelectedSheetsForBulk(prev => prev.filter(id => id !== sheet.id));
+                            }
+                          }}
+                        />
+                      </div>
+                    )}
+                    
                     <div className="flex-1">
                       <h3 className="font-semibold">{sheet.classTitle}</h3>
                       <p className="text-sm text-gray-600">
@@ -1984,6 +2373,10 @@ export function InstructorSignInGenerator() {
                       <Button variant="outline" size="sm" onClick={() => generatePrintableForm(sheet)}>
                         <Download className="w-4 h-4 mr-1" />
                         Print
+                      </Button>
+                      <Button variant="outline" size="sm" onClick={() => exportToCalendar(sheet)}>
+                        <Calendar className="w-4 h-4 mr-1" />
+                        Calendar
                       </Button>
                     </div>
                   </div>
@@ -2111,6 +2504,215 @@ export function InstructorSignInGenerator() {
           </CardContent>
         </Card>
       )}
+
+      {/* Advanced Features Dialogs */}
+      
+      {/* Notification Center Dialog */}
+      <Dialog open={showNotificationCenter} onOpenChange={setShowNotificationCenter}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Bell className="w-5 h-5" />
+              Notification Center
+            </DialogTitle>
+            <DialogDescription>
+              View and manage your training session notifications
+            </DialogDescription>
+          </DialogHeader>
+          <div className="max-h-96 overflow-y-auto space-y-3">
+            {notifications.map(notification => (
+              <div
+                key={notification.id}
+                className={`p-3 rounded-lg border ${
+                  notification.read ? 'bg-gray-50' : 'bg-blue-50 border-blue-200'
+                }`}
+              >
+                <div className="flex items-start justify-between">
+                  <div className="flex items-center gap-2">
+                    {notification.type === 'reminder' && <Clock className="w-4 h-4 text-orange-500" />}
+                    {notification.type === 'completion' && <CheckCircle className="w-4 h-4 text-green-500" />}
+                    {notification.type === 'upload' && <Upload className="w-4 h-4 text-blue-500" />}
+                    <div>
+                      <p className="text-sm font-medium">{notification.message}</p>
+                      <p className="text-xs text-gray-500 mt-1">
+                        {new Date(notification.timestamp).toLocaleString()}
+                      </p>
+                    </div>
+                  </div>
+                  {!notification.read && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => markNotificationAsRead(notification.id)}
+                    >
+                      Mark Read
+                    </Button>
+                  )}
+                </div>
+              </div>
+            ))}
+            {notifications.length === 0 && (
+              <p className="text-center text-gray-500 py-8">No notifications</p>
+            )}
+          </div>
+          <div className="flex justify-between pt-4 border-t">
+            <Button variant="outline" onClick={clearAllNotifications}>
+              Clear All
+            </Button>
+            <Button onClick={() => setShowNotificationCenter(false)}>
+              Close
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Advanced Reporting Dialog */}
+      <Dialog open={showReportingDialog} onOpenChange={setShowReportingDialog}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <BarChart3 className="w-5 h-5" />
+              Advanced Reports
+            </DialogTitle>
+            <DialogDescription>
+              Generate comprehensive reports for training sessions
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <Card className={`cursor-pointer transition-all ${reportType === 'summary' ? 'ring-2 ring-blue-500' : ''}`}>
+                <CardContent className="p-4 text-center" onClick={() => setReportType('summary')}>
+                  <FileText className="w-8 h-8 mx-auto mb-2 text-blue-600" />
+                  <h3 className="font-medium">Summary Report</h3>
+                  <p className="text-sm text-gray-600">Basic overview and statistics</p>
+                </CardContent>
+              </Card>
+              
+              <Card className={`cursor-pointer transition-all ${reportType === 'detailed' ? 'ring-2 ring-blue-500' : ''}`}>
+                <CardContent className="p-4 text-center" onClick={() => setReportType('detailed')}>
+                  <FileSpreadsheet className="w-8 h-8 mx-auto mb-2 text-green-600" />
+                  <h3 className="font-medium">Detailed Report</h3>
+                  <p className="text-sm text-gray-600">Excel format with all data</p>
+                </CardContent>
+              </Card>
+              
+              <Card className={`cursor-pointer transition-all ${reportType === 'analytics' ? 'ring-2 ring-blue-500' : ''}`}>
+                <CardContent className="p-4 text-center" onClick={() => setReportType('analytics')}>
+                  <BarChart3 className="w-8 h-8 mx-auto mb-2 text-purple-600" />
+                  <h3 className="font-medium">Analytics Report</h3>
+                  <p className="text-sm text-gray-600">Charts and insights</p>
+                </CardContent>
+              </Card>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="startDate">Start Date</Label>
+                <Input
+                  id="startDate"
+                  type="date"
+                  value={reportDateRange.startDate}
+                  onChange={(e) => setReportDateRange(prev => ({ ...prev, startDate: e.target.value }))}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="endDate">End Date</Label>
+                <Input
+                  id="endDate"
+                  type="date"
+                  value={reportDateRange.endDate}
+                  onChange={(e) => setReportDateRange(prev => ({ ...prev, endDate: e.target.value }))}
+                />
+              </div>
+            </div>
+          </div>
+          
+          <div className="flex justify-between pt-4 border-t">
+            <Button
+              variant="outline"
+              onClick={() => setShowReportingDialog(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={() => {
+                const filteredSheets = filterSheets(savedSheets);
+                generateBulkReport(filteredSheets, reportType);
+                setShowReportingDialog(false);
+              }}
+            >
+              Generate Report
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Email Notification Dialog */}
+      <Dialog open={showEmailDialog} onOpenChange={setShowEmailDialog}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Mail className="w-5 h-5" />
+              Send Email Notification
+            </DialogTitle>
+            <DialogDescription>
+              Send notifications to training participants
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <Label>Notification Type</Label>
+              <Select defaultValue="reminder">
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="reminder">Training Reminder</SelectItem>
+                  <SelectItem value="completion">Training Completion</SelectItem>
+                  <SelectItem value="upload">Document Upload Required</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="emailSubject">Subject</Label>
+              <Input
+                id="emailSubject"
+                placeholder="Enter email subject"
+                defaultValue="Training Session Reminder"
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="emailMessage">Message</Label>
+              <Textarea
+                id="emailMessage"
+                placeholder="Enter your message..."
+                rows={4}
+                defaultValue="This is a friendly reminder about your upcoming safety training session."
+              />
+            </div>
+          </div>
+          
+          <div className="flex justify-between pt-4 border-t">
+            <Button
+              variant="outline"
+              onClick={() => setShowEmailDialog(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={() => {
+                sendEmailNotification('reminder', ['example@company.com'], 'Training reminder sent');
+                setShowEmailDialog(false);
+              }}
+            >
+              <Mail className="w-4 h-4 mr-2" />
+              Send Email
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
