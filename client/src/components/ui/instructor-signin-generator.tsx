@@ -32,6 +32,17 @@ interface Employee {
   signature?: string;
 }
 
+interface InstructorDocument {
+  id: string;
+  instructorId: string;
+  fileName: string;
+  fileType: string;
+  uploadDate: string;
+  documentType: 'certificate' | 'resume' | 'credential' | 'other';
+  fileSize: number;
+  selected?: boolean;
+}
+
 interface SignInSheet {
   id: string;
   classTitle: string;
@@ -87,6 +98,9 @@ export function InstructorSignInGenerator() {
   const [customStandard, setCustomStandard] = useState('');
   const [instructorType, setInstructorType] = useState<'existing' | 'visiting'>('existing');
   const [selectedInstructor, setSelectedInstructor] = useState('');
+  const [instructorDocuments, setInstructorDocuments] = useState<InstructorDocument[]>([]);
+  const [showDocumentViewer, setShowDocumentViewer] = useState(false);
+  const [selectedDocuments, setSelectedDocuments] = useState<string[]>([]);
   const { toast } = useToast();
 
   // Sample client instructors - in real implementation, this would come from the database
@@ -216,6 +230,95 @@ export function InstructorSignInGenerator() {
     }
     
     return durations[trainingType] || 'Duration varies - consult OSHA standards';
+  };
+
+  // Handle document upload
+  const handleDocumentUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (!files || files.length === 0) return;
+
+    const currentInstructorId = selectedInstructor || 'visiting';
+    
+    Array.from(files).forEach(file => {
+      const newDocument: InstructorDocument = {
+        id: Date.now().toString() + Math.random().toString(36).substr(2, 9),
+        instructorId: currentInstructorId,
+        fileName: file.name,
+        fileType: file.type,
+        uploadDate: new Date().toISOString(),
+        documentType: file.name.toLowerCase().includes('resume') ? 'resume' : 
+                      file.name.toLowerCase().includes('cert') ? 'certificate' : 
+                      file.name.toLowerCase().includes('credential') ? 'credential' : 'other',
+        fileSize: file.size,
+        selected: false
+      };
+
+      setInstructorDocuments(prev => [...prev, newDocument]);
+    });
+
+    toast({
+      title: "Documents Uploaded",
+      description: `${files.length} document(s) uploaded successfully`,
+      duration: 3000
+    });
+
+    // Reset the input
+    event.target.value = '';
+  };
+
+  // Toggle document selection
+  const toggleDocumentSelection = (documentId: string) => {
+    setSelectedDocuments(prev => 
+      prev.includes(documentId) 
+        ? prev.filter(id => id !== documentId)
+        : [...prev, documentId]
+    );
+  };
+
+  // Download selected documents
+  const downloadSelectedDocuments = () => {
+    if (selectedDocuments.length === 0) {
+      toast({
+        title: "No Selection",
+        description: "Please select documents to download",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    const documentsToDownload = instructorDocuments.filter(doc => 
+      selectedDocuments.includes(doc.id)
+    );
+
+    // In a real implementation, this would trigger actual file downloads
+    // For now, we'll simulate the download process
+    documentsToDownload.forEach(doc => {
+      const link = document.createElement('a');
+      link.href = '#'; // In real implementation, this would be the file URL
+      link.download = doc.fileName;
+      link.click();
+    });
+
+    toast({
+      title: "Download Started",
+      description: `Downloading ${selectedDocuments.length} document(s)`,
+      duration: 3000
+    });
+  };
+
+  // Get current instructor documents
+  const getCurrentInstructorDocuments = () => {
+    const currentInstructorId = selectedInstructor || 'visiting';
+    return instructorDocuments.filter(doc => doc.instructorId === currentInstructorId);
+  };
+
+  // Format file size
+  const formatFileSize = (bytes: number): string => {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   };
 
   const generateSignInSheet = () => {
@@ -728,6 +831,95 @@ export function InstructorSignInGenerator() {
                     </div>
                   </div>
                 )}
+
+                {/* Document Upload and Management Section */}
+                {(instructorType === 'existing' && selectedInstructor) || instructorType === 'visiting' ? (
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <div className="text-sm font-medium">Instructor Documents</div>
+                      <div className="flex gap-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => document.getElementById('document-upload')?.click()}
+                          className="text-xs"
+                        >
+                          <Upload className="w-3 h-3 mr-1" />
+                          Upload
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => setShowDocumentViewer(!showDocumentViewer)}
+                          className="text-xs"
+                        >
+                          <Eye className="w-3 h-3 mr-1" />
+                          View ({getCurrentInstructorDocuments().length})
+                        </Button>
+                      </div>
+                    </div>
+
+                    {/* Hidden file input */}
+                    <input
+                      id="document-upload"
+                      type="file"
+                      multiple
+                      accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+                      onChange={handleDocumentUpload}
+                      className="hidden"
+                    />
+
+                    {/* Document viewer */}
+                    {showDocumentViewer && (
+                      <div className="space-y-3 p-4 bg-gray-50 rounded-lg border">
+                        <div className="flex items-center justify-between">
+                          <div className="text-sm font-medium">
+                            Documents ({getCurrentInstructorDocuments().length})
+                          </div>
+                          {selectedDocuments.length > 0 && (
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={downloadSelectedDocuments}
+                              className="text-xs"
+                            >
+                              <Download className="w-3 h-3 mr-1" />
+                              Download Selected ({selectedDocuments.length})
+                            </Button>
+                          )}
+                        </div>
+
+                        {getCurrentInstructorDocuments().length === 0 ? (
+                          <div className="text-sm text-gray-500 text-center py-4">
+                            No documents uploaded yet. Click "Upload" to add certificates, resumes, or credentials.
+                          </div>
+                        ) : (
+                          <div className="space-y-2 max-h-48 overflow-y-auto">
+                            {getCurrentInstructorDocuments().map(doc => (
+                              <div key={doc.id} className="flex items-center space-x-3 p-2 bg-white rounded border">
+                                <input
+                                  type="checkbox"
+                                  checked={selectedDocuments.includes(doc.id)}
+                                  onChange={() => toggleDocumentSelection(doc.id)}
+                                  className="w-4 h-4 text-blue-600 rounded"
+                                />
+                                <div className="flex-1 min-w-0">
+                                  <div className="text-sm font-medium truncate">{doc.fileName}</div>
+                                  <div className="text-xs text-gray-500">
+                                    {doc.documentType} • {formatFileSize(doc.fileSize)} • {new Date(doc.uploadDate).toLocaleDateString()}
+                                  </div>
+                                </div>
+                                <Badge variant="outline" className="text-xs">
+                                  {doc.documentType}
+                                </Badge>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                ) : null}
               </CardContent>
             </Card>
 
