@@ -25,6 +25,9 @@ import {
   Trash2
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import * as XLSX from 'xlsx';
+import { Document, Packer, Paragraph, TextRun } from 'docx';
+import jsPDF from 'jspdf';
 
 interface Employee {
   id: string;
@@ -277,8 +280,8 @@ export function InstructorSignInGenerator() {
     );
   };
 
-  // Download selected documents
-  const downloadSelectedDocuments = () => {
+  // Download selected documents with format selection
+  const downloadSelectedDocuments = (format: 'pdf' | 'word' | 'excel' = 'pdf') => {
     if (selectedDocuments.length === 0) {
       toast({
         title: "No Selection",
@@ -292,48 +295,34 @@ export function InstructorSignInGenerator() {
       selectedDocuments.includes(doc.id)
     );
 
-    // In a real implementation, this would create and download actual files
-    // For now, we'll create a ZIP file with document information
-    const zipContent = documentsToDownload.map(doc => 
-      `Document: ${doc.fileName}\nType: ${doc.documentType}\nSize: ${formatFileSize(doc.fileSize)}\nUploaded: ${new Date(doc.uploadDate).toLocaleDateString()}\n\n`
-    ).join('');
-
-    const blob = new Blob([zipContent], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const link = window.document.createElement('a');
-    link.href = url;
-    link.download = `instructor-documents-${new Date().toISOString().split('T')[0]}.txt`;
-    window.document.body.appendChild(link);
-    link.click();
-    window.document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+    if (format === 'pdf') {
+      downloadAsPDF(documentsToDownload, 'instructor-documents');
+    } else if (format === 'word') {
+      downloadAsWord(documentsToDownload, 'instructor-documents');
+    } else if (format === 'excel') {
+      downloadAsExcel(documentsToDownload, 'instructor-documents');
+    }
 
     toast({
       title: "Download Started",
-      description: `Downloading ${selectedDocuments.length} document(s)`,
+      description: `Downloading ${selectedDocuments.length} document(s) as ${format.toUpperCase()}`,
       duration: 3000
     });
   };
 
   // Download single document
-  const downloadSingleDocument = (doc: InstructorDocument) => {
-    // In a real implementation, this would download the actual file
-    // For now, we'll create a text file with document information
-    const content = `Document: ${doc.fileName}\nType: ${doc.documentType}\nSize: ${formatFileSize(doc.fileSize)}\nUploaded: ${new Date(doc.uploadDate).toLocaleDateString()}\n\nNote: This is a placeholder for the actual document file.`;
-    
-    const blob = new Blob([content], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const link = window.document.createElement('a');
-    link.href = url;
-    link.download = `${doc.fileName.replace(/\.[^/.]+$/, '')}-info.txt`;
-    window.document.body.appendChild(link);
-    link.click();
-    window.document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+  const downloadSingleDocument = (doc: InstructorDocument, format: 'pdf' | 'word' | 'excel' = 'pdf') => {
+    if (format === 'pdf') {
+      downloadAsPDF([doc], doc.fileName.replace(/\.[^/.]+$/, ''));
+    } else if (format === 'word') {
+      downloadAsWord([doc], doc.fileName.replace(/\.[^/.]+$/, ''));
+    } else if (format === 'excel') {
+      downloadAsExcel([doc], doc.fileName.replace(/\.[^/.]+$/, ''));
+    }
 
     toast({
       title: "Download Started",
-      description: `Downloading ${doc.fileName}`,
+      description: `Downloading ${doc.fileName} as ${format.toUpperCase()}`,
       duration: 3000
     });
   };
@@ -386,6 +375,123 @@ export function InstructorSignInGenerator() {
     const sizes = ['Bytes', 'KB', 'MB', 'GB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  };
+
+  // Download as PDF
+  const downloadAsPDF = (documents: InstructorDocument[], filename: string) => {
+    const doc = new jsPDF();
+    const pageHeight = doc.internal.pageSize.height;
+    let yPosition = 20;
+
+    // Title
+    doc.setFontSize(16);
+    doc.text('Instructor Documents', 20, yPosition);
+    yPosition += 20;
+
+    // Document list
+    doc.setFontSize(12);
+    documents.forEach((docItem, index) => {
+      if (yPosition > pageHeight - 30) {
+        doc.addPage();
+        yPosition = 20;
+      }
+
+      doc.text(`${index + 1}. ${docItem.fileName}`, 20, yPosition);
+      yPosition += 10;
+      doc.text(`   Type: ${docItem.documentType}`, 20, yPosition);
+      yPosition += 10;
+      doc.text(`   Size: ${formatFileSize(docItem.fileSize)}`, 20, yPosition);
+      yPosition += 10;
+      doc.text(`   Uploaded: ${new Date(docItem.uploadDate).toLocaleDateString()}`, 20, yPosition);
+      yPosition += 15;
+    });
+
+    doc.save(`${filename}-${new Date().toISOString().split('T')[0]}.pdf`);
+  };
+
+  // Download as Word
+  const downloadAsWord = async (documents: InstructorDocument[], filename: string) => {
+    const doc = new Document({
+      sections: [{
+        properties: {},
+        children: [
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: "Instructor Documents",
+                bold: true,
+                size: 32
+              })
+            ]
+          }),
+          new Paragraph({ text: "" }), // Empty paragraph for spacing
+          ...documents.flatMap((docItem, index) => [
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: `${index + 1}. ${docItem.fileName}`,
+                  bold: true,
+                  size: 24
+                })
+              ]
+            }),
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: `Type: ${docItem.documentType}`,
+                  size: 20
+                })
+              ]
+            }),
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: `Size: ${formatFileSize(docItem.fileSize)}`,
+                  size: 20
+                })
+              ]
+            }),
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: `Uploaded: ${new Date(docItem.uploadDate).toLocaleDateString()}`,
+                  size: 20
+                })
+              ]
+            }),
+            new Paragraph({ text: "" }) // Empty paragraph for spacing
+          ])
+        ]
+      }]
+    });
+
+    const blob = await Packer.toBlob(doc);
+    const url = URL.createObjectURL(blob);
+    const link = window.document.createElement('a');
+    link.href = url;
+    link.download = `${filename}-${new Date().toISOString().split('T')[0]}.docx`;
+    window.document.body.appendChild(link);
+    link.click();
+    window.document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
+  // Download as Excel
+  const downloadAsExcel = (documents: InstructorDocument[], filename: string) => {
+    const worksheetData = [
+      ['Document Name', 'Type', 'File Size', 'Upload Date'],
+      ...documents.map(doc => [
+        doc.fileName,
+        doc.documentType,
+        formatFileSize(doc.fileSize),
+        new Date(doc.uploadDate).toLocaleDateString()
+      ])
+    ];
+
+    const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Instructor Documents');
+    XLSX.writeFile(workbook, `${filename}-${new Date().toISOString().split('T')[0]}.xlsx`);
   };
 
   const generateSignInSheet = () => {
@@ -945,15 +1051,17 @@ export function InstructorSignInGenerator() {
                           </div>
                           {selectedDocuments.length > 0 && (
                             <div className="flex gap-1 flex-wrap">
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={downloadSelectedDocuments}
-                                className="text-xs whitespace-nowrap"
-                              >
-                                <Download className="w-3 h-3 mr-1" />
-                                Download ({selectedDocuments.length})
-                              </Button>
+                              <Select defaultValue="pdf" onValueChange={(value) => downloadSelectedDocuments(value as 'pdf' | 'word' | 'excel')}>
+                                <SelectTrigger className="w-auto text-xs">
+                                  <Download className="w-3 h-3 mr-1" />
+                                  <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="pdf">Download as PDF ({selectedDocuments.length})</SelectItem>
+                                  <SelectItem value="word">Download as Word ({selectedDocuments.length})</SelectItem>
+                                  <SelectItem value="excel">Download as Excel ({selectedDocuments.length})</SelectItem>
+                                </SelectContent>
+                              </Select>
                               <Button
                                 variant="outline"
                                 size="sm"
@@ -991,15 +1099,16 @@ export function InstructorSignInGenerator() {
                                   {doc.documentType}
                                 </Badge>
                                 <div className="flex gap-1">
-                                  <Button
-                                    variant="ghost"
-                                    size="sm"
-                                    onClick={() => downloadSingleDocument(doc)}
-                                    className="p-1 h-8 w-8"
-                                    title="Download document"
-                                  >
-                                    <Download className="w-3 h-3" />
-                                  </Button>
+                                  <Select defaultValue="pdf" onValueChange={(value) => downloadSingleDocument(doc, value as 'pdf' | 'word' | 'excel')}>
+                                    <SelectTrigger className="w-auto p-1 h-8">
+                                      <Download className="w-3 h-3" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      <SelectItem value="pdf">Download as PDF</SelectItem>
+                                      <SelectItem value="word">Download as Word</SelectItem>
+                                      <SelectItem value="excel">Download as Excel</SelectItem>
+                                    </SelectContent>
+                                  </Select>
                                   <Button
                                     variant="ghost"
                                     size="sm"
