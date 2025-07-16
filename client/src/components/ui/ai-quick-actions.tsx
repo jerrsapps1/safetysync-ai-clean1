@@ -364,11 +364,11 @@ export function AIQuickActions({ onActionExecute, currentPage = 'dashboard' }: A
   );
 
   return (
-    <div className={`fixed right-4 top-20 z-50 transition-all duration-300 ${
-      isExpanded ? 'w-96' : 'w-14'
+    <div className={`fixed right-4 bottom-4 z-[9999] transition-all duration-300 ${
+      isExpanded ? 'w-96' : 'w-16'
     }`}>
-      <Card className="shadow-lg border-2 border-blue-200">
-        <CardHeader className="pb-2">
+      <Card className="shadow-xl border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-purple-50 backdrop-blur-sm">
+        <CardHeader className={`pb-2 ${!isExpanded ? 'p-2' : ''}`}>
           <div className="flex items-center justify-between">
             <CardTitle className={`flex items-center gap-2 transition-opacity ${
               isExpanded ? 'opacity-100' : 'opacity-0'
@@ -380,9 +380,10 @@ export function AIQuickActions({ onActionExecute, currentPage = 'dashboard' }: A
               variant="ghost"
               size="sm"
               onClick={() => setIsExpanded(!isExpanded)}
-              className="flex-shrink-0"
+              className={`flex-shrink-0 rounded-full ${!isExpanded ? 'bg-blue-500 hover:bg-blue-600 text-white w-12 h-12' : ''}`}
+              title={isExpanded ? 'Minimize AI Assistant' : 'Open AI Assistant'}
             >
-              {isExpanded ? <Eye className="w-4 h-4" /> : <Zap className="w-4 h-4 text-blue-600" />}
+              {isExpanded ? <Eye className="w-4 h-4" /> : <Zap className="w-6 h-6 animate-pulse" />}
             </Button>
           </div>
         </CardHeader>
