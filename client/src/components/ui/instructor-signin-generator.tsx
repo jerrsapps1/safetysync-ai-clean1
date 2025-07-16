@@ -19,7 +19,8 @@ import {
   MapPin,
   Shield,
   Upload,
-  CheckCircle
+  CheckCircle,
+  UserPlus
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -82,7 +83,17 @@ export function InstructorSignInGenerator() {
   const [isCustomTraining, setIsCustomTraining] = useState(false);
   const [customClassName, setCustomClassName] = useState('');
   const [customStandard, setCustomStandard] = useState('');
+  const [instructorType, setInstructorType] = useState<'existing' | 'visiting'>('existing');
+  const [selectedInstructor, setSelectedInstructor] = useState('');
   const { toast } = useToast();
+
+  // Sample client instructors - in real implementation, this would come from the database
+  const clientInstructors = [
+    { id: '1', name: 'John Smith', credentials: 'CSP, CHST', company: 'SafetySync.ai' },
+    { id: '2', name: 'Sarah Johnson', credentials: 'CIH, CSP', company: 'SafetySync.ai' },
+    { id: '3', name: 'Mike Rodriguez', credentials: 'CHST, OHST', company: 'SafetySync.ai' },
+    { id: '4', name: 'Lisa Chen', credentials: 'ASP, CSHM', company: 'SafetySync.ai' },
+  ];
 
   const addEmployee = () => {
     if (!newEmployee.name || !newEmployee.employeeId) {
@@ -140,6 +151,35 @@ export function InstructorSignInGenerator() {
         trainingType: value,
         oshaStandard: selectedType?.standard || '',
         classTitle: selectedType?.label || ''
+      }));
+    }
+  };
+
+  const handleInstructorSelection = (instructorId: string) => {
+    const instructor = clientInstructors.find(i => i.id === instructorId);
+    if (instructor) {
+      setSelectedInstructor(instructorId);
+      setFormData(prev => ({
+        ...prev,
+        instructorName: instructor.name,
+        instructorCredentials: instructor.credentials,
+        instructorCompany: instructor.company
+      }));
+    }
+  };
+
+  const handleInstructorTypeChange = (type: 'existing' | 'visiting') => {
+    setInstructorType(type);
+    setSelectedInstructor('');
+    if (type === 'existing') {
+      // Keep existing form data for visiting instructor
+    } else {
+      // Clear for visiting instructor manual entry
+      setFormData(prev => ({
+        ...prev,
+        instructorName: '',
+        instructorCredentials: '',
+        instructorCompany: ''
       }));
     }
   };
@@ -542,34 +582,98 @@ export function InstructorSignInGenerator() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <Label htmlFor="instructorName">Instructor Name *</Label>
-                  <Input
-                    id="instructorName"
-                    value={formData.instructorName}
-                    onChange={(e) => setFormData(prev => ({ ...prev, instructorName: e.target.value }))}
-                    placeholder="Full name of certified instructor"
-                  />
+                  <Label>Instructor Type *</Label>
+                  <div className="flex gap-2 mt-2">
+                    <Button
+                      type="button"
+                      variant={instructorType === 'existing' ? 'default' : 'outline'}
+                      onClick={() => handleInstructorTypeChange('existing')}
+                      className="flex-1"
+                    >
+                      <Users className="w-4 h-4 mr-2" />
+                      Select Instructor
+                    </Button>
+                    <Button
+                      type="button"
+                      variant={instructorType === 'visiting' ? 'default' : 'outline'}
+                      onClick={() => handleInstructorTypeChange('visiting')}
+                      className="flex-1"
+                    >
+                      <UserPlus className="w-4 h-4 mr-2" />
+                      Visiting Instructor
+                    </Button>
+                  </div>
                 </div>
-                
-                <div>
-                  <Label htmlFor="instructorCredentials">Instructor Credentials</Label>
-                  <Input
-                    id="instructorCredentials"
-                    value={formData.instructorCredentials}
-                    onChange={(e) => setFormData(prev => ({ ...prev, instructorCredentials: e.target.value }))}
-                    placeholder="e.g., OSHA Authorized, CSP, CIH"
-                  />
-                </div>
-                
-                <div>
-                  <Label htmlFor="instructorCompany">Instructor Company</Label>
-                  <Input
-                    id="instructorCompany"
-                    value={formData.instructorCompany}
-                    onChange={(e) => setFormData(prev => ({ ...prev, instructorCompany: e.target.value }))}
-                    placeholder="Training company or organization"
-                  />
-                </div>
+
+                {instructorType === 'existing' && (
+                  <div>
+                    <Label htmlFor="instructorSelect">Select Instructor *</Label>
+                    <Select value={selectedInstructor} onValueChange={handleInstructorSelection}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Choose from your instructors" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {clientInstructors.map(instructor => (
+                          <SelectItem key={instructor.id} value={instructor.id}>
+                            {instructor.name} - {instructor.credentials}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                )}
+
+                {instructorType === 'visiting' && (
+                  <div className="space-y-4 p-4 bg-green-50 rounded-lg border border-green-200">
+                    <div className="flex items-center gap-2">
+                      <UserPlus className="w-4 h-4 text-green-600" />
+                      <span className="font-medium text-green-800">Visiting Instructor Information</span>
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="instructorName">Instructor Name *</Label>
+                      <Input
+                        id="instructorName"
+                        value={formData.instructorName}
+                        onChange={(e) => setFormData(prev => ({ ...prev, instructorName: e.target.value }))}
+                        placeholder="Full name of visiting instructor"
+                      />
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="instructorCredentials">Instructor Credentials</Label>
+                      <Input
+                        id="instructorCredentials"
+                        value={formData.instructorCredentials}
+                        onChange={(e) => setFormData(prev => ({ ...prev, instructorCredentials: e.target.value }))}
+                        placeholder="e.g., OSHA Authorized, CSP, CIH"
+                      />
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="instructorCompany">Instructor Company</Label>
+                      <Input
+                        id="instructorCompany"
+                        value={formData.instructorCompany}
+                        onChange={(e) => setFormData(prev => ({ ...prev, instructorCompany: e.target.value }))}
+                        placeholder="Visiting instructor's company name"
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {instructorType === 'existing' && selectedInstructor && (
+                  <div className="space-y-4 p-4 bg-gray-50 rounded-lg border">
+                    <div className="text-sm text-gray-600">
+                      <strong>Selected Instructor:</strong>
+                    </div>
+                    <div className="grid grid-cols-1 gap-2 text-sm">
+                      <div><strong>Name:</strong> {formData.instructorName}</div>
+                      <div><strong>Credentials:</strong> {formData.instructorCredentials}</div>
+                      <div><strong>Company:</strong> {formData.instructorCompany}</div>
+                    </div>
+                  </div>
+                )}
               </CardContent>
             </Card>
 
