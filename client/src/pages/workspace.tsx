@@ -2007,6 +2007,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 activeTab === "unified-dashboard" ? "text-white bg-gray-700/30" : ""
               }`}
               onClick={() => handleTabSwitch("unified-dashboard")}
+              title="Dashboard"
             >
               <Home className="w-5 h-5 mr-3 flex-shrink-0" />
               {sidebarOpen && <span className="truncate">Dashboard</span>}
@@ -2024,6 +2025,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 variant="ghost"
                 className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3"
                 onClick={() => toggleSection('compliance-reporting')}
+                title="Compliance & Reporting"
               >
                 <FileText className="w-5 h-5 mr-3 flex-shrink-0" />
                 {sidebarOpen && <span className="truncate">Compliance & Reporting</span>}
@@ -2054,6 +2056,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                         activeTab === "analytics-reports" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("analytics-reports")}
+                      title="Analytics & Reports"
                     >
                       <BarChart3 className="w-4 h-4 mr-3 flex-shrink-0" />
                       {sidebarOpen && <span className="truncate">Analytics & Reports</span>}
@@ -2066,6 +2069,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                         activeTab === "reports" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("reports")}
+                      title="Compliance Reports"
                     >
                       <FileText className="w-4 h-4 mr-3 flex-shrink-0" />
                       {sidebarOpen && <span className="truncate">Compliance Reports</span>}
@@ -2078,6 +2082,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                         activeTab === "document-manager" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("document-manager")}
+                      title="Document Management"
                     >
                       <Database className="w-4 h-4 mr-3 flex-shrink-0" />
                       {sidebarOpen && <span className="truncate">Document Management</span>}
@@ -2090,6 +2095,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                         activeTab === "trends" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("trends")}
+                      title="Safety Trends"
                     >
                       <TrendingUp className="w-4 h-4 mr-3 flex-shrink-0" />
                       {sidebarOpen && <span className="truncate">Safety Trends</span>}
@@ -2105,6 +2111,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               variant="ghost"
               className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3"
               onClick={() => toggleSection('employee-management')}
+              title="Employee Management"
             >
               <Users className="w-5 h-5 mr-3 flex-shrink-0" />
               {sidebarOpen && <span className="truncate">Employee Management</span>}
@@ -2122,6 +2129,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     activeTab === "employees" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("employees")}
+                  title="Employee Management"
                 >
                   <Users className="w-4 h-4 mr-3 flex-shrink-0" />
                   {sidebarOpen && <span className="truncate">Employee Management</span>}
@@ -2132,6 +2140,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     activeTab === "employee-insights" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("employee-insights")}
+                  title="Employee Insights"
                 >
                   <Brain className="w-4 h-4 mr-3 flex-shrink-0" />
                   {sidebarOpen && <span className="truncate">Employee Insights</span>}
@@ -2142,6 +2151,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     activeTab === "employee-portal" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("employee-portal")}
+                  title="Employee Portal"
                 >
                   <FileUser className="w-4 h-4 mr-3 flex-shrink-0" />
                   {sidebarOpen && <span className="truncate">Employee Portal</span>}
@@ -2156,6 +2166,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               variant="ghost"
               className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3"
               onClick={() => toggleSection('organization')}
+              title="Organization"
             >
               <Building className="w-5 h-5 mr-3 flex-shrink-0" />
               {sidebarOpen && <span className="truncate">Organization</span>}
@@ -2173,6 +2184,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     activeTab === "company-profile" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("company-profile")}
+                  title="Company Profile"
                 >
                   <Building className="w-4 h-4 mr-3 flex-shrink-0" />
                   {sidebarOpen && <span className="truncate">Company Profile</span>}
@@ -2183,6 +2195,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     activeTab === "instructors" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("instructors")}
+                  title="Instructor Management"
                 >
                   <GraduationCap className="w-4 h-4 mr-3 flex-shrink-0" />
                   {sidebarOpen && <span className="truncate">Instructor Management</span>}
@@ -2196,6 +2209,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               variant="ghost"
               className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3"
               onClick={() => toggleSection('system-tools')}
+              title="System & Tools"
             >
               <Settings className="w-5 h-5 mr-3 flex-shrink-0" />
               {sidebarOpen && <span className="truncate">System & Tools</span>}
@@ -2213,6 +2227,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     activeTab === "achievements" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("achievements")}
+                  title="Achievements & Milestones"
                 >
                   <Award className="w-4 h-4 mr-3 flex-shrink-0" />
                   {sidebarOpen && <span className="truncate">Achievements & Milestones</span>}
@@ -2223,6 +2238,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     activeTab === "notifications" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("notifications")}
+                  title="Notifications & Alerts"
                 >
                   <Bell className="w-4 h-4 mr-3 flex-shrink-0" />
                   {sidebarOpen && <span className="truncate">Notifications & Alerts</span>}
@@ -2233,6 +2249,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     activeTab === "settings" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("settings")}
+                  title="Workspace Settings"
                 >
                   <Settings className="w-4 h-4 mr-3 flex-shrink-0" />
                   {sidebarOpen && <span className="truncate">Workspace Settings</span>}
@@ -2243,6 +2260,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     activeTab === "subscription-billing" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("subscription-billing")}
+                  title="Subscription & Billing"
                 >
                   <CreditCard className="w-4 h-4 mr-3 flex-shrink-0" />
                   {sidebarOpen && <span className="truncate">Subscription & Billing</span>}
@@ -2257,6 +2275,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               variant="ghost"
               className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3"
               onClick={() => toggleSection('training-certification')}
+              title="Training & Certification"
             >
               <BookOpen className="w-5 h-5 mr-3 flex-shrink-0" />
               {sidebarOpen && <span className="truncate">Training & Certification</span>}
@@ -2274,6 +2293,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     activeTab === "certificates" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("certificates")}
+                  title="Certificate Generation"
                 >
                   <Award className="w-4 h-4 mr-3 flex-shrink-0" />
                   {sidebarOpen && <span className="truncate">Certificate Generation</span>}
@@ -2284,6 +2304,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     activeTab === "training-calendar" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("training-calendar")}
+                  title="Training Calendar"
                 >
                   <Calendar className="w-4 h-4 mr-3 flex-shrink-0" />
                   {sidebarOpen && <span className="truncate">Training Calendar</span>}
@@ -2294,6 +2315,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     activeTab === "training" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("training")}
+                  title="Training Management"
                 >
                   <BookOpen className="w-4 h-4 mr-3 flex-shrink-0" />
                   {sidebarOpen && <span className="truncate">Training Management</span>}
