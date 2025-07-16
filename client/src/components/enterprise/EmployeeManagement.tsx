@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -111,7 +112,8 @@ export default function EmployeeManagement() {
     division: '',
     location: '',
     status: 'active' as const,
-    hireDate: new Date()
+    hireDate: new Date(),
+    employeeIdVerified: false
   });
 
   // Excel download function - downloads filtered results
@@ -248,7 +250,8 @@ export default function EmployeeManagement() {
         division: '',
         location: '',
         status: 'active',
-        hireDate: new Date()
+        hireDate: new Date(),
+        employeeIdVerified: false
       });
       toast({
         title: 'Employee Added',
@@ -985,6 +988,17 @@ export default function EmployeeManagement() {
                   placeholder="EMP-001"
                   className="bg-gray-800 border-gray-700 text-white placeholder-gray-400"
                 />
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    id="employeeIdVerified"
+                    checked={newEmployee.employeeIdVerified}
+                    onCheckedChange={(checked) => setNewEmployee({...newEmployee, employeeIdVerified: !!checked})}
+                    className="border-gray-600 data-[state=checked]:bg-emerald-600 data-[state=checked]:border-emerald-600"
+                  />
+                  <Label htmlFor="employeeIdVerified" className="text-gray-300 text-sm">
+                    Employee ID Verified
+                  </Label>
+                </div>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="firstName" className="text-gray-300">First Name</Label>
@@ -1119,6 +1133,14 @@ export default function EmployeeManagement() {
                   <div className="space-y-2">
                     <Label className="text-gray-300">Employee ID</Label>
                     <Input value={selectedEmployee.employeeId} readOnly className="bg-gray-800 border-gray-700 text-white" />
+                    <div className="flex items-center space-x-2">
+                      <Checkbox
+                        checked={selectedEmployee.employeeIdVerified || false}
+                        disabled
+                        className="border-gray-600 data-[state=checked]:bg-emerald-600 data-[state=checked]:border-emerald-600"
+                      />
+                      <Label className="text-gray-300 text-sm">Employee ID Verified</Label>
+                    </div>
                   </div>
                   <div className="space-y-2">
                     <Label className="text-gray-300">Email</Label>
