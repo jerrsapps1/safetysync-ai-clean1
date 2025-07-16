@@ -92,9 +92,9 @@ export default function EmployeeManagement() {
   const [showBulkActions, setShowBulkActions] = useState(false);
   const [selectedEmployees, setSelectedEmployees] = useState<number[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [filterDepartment, setFilterDepartment] = useState('all');
-  const [filterStatus, setFilterStatus] = useState('all');
-  const [filterLocation, setFilterLocation] = useState('all');
+  const [filterDepartment, setFilterDepartment] = useState('');
+  const [filterStatus, setFilterStatus] = useState('');
+  const [filterLocation, setFilterLocation] = useState('');
   const [sortBy, setSortBy] = useState('name');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [newEmployee, setNewEmployee] = useState({
@@ -111,15 +111,19 @@ export default function EmployeeManagement() {
     hireDate: new Date()
   });
 
-  // Excel download function
+  // Excel download function - downloads filtered results
   const downloadExcel = () => {
-    const csvContent = generateCSV(employees);
+    const dataToExport = filteredAndSortedEmployees.length > 0 ? filteredAndSortedEmployees : employees;
+    const csvContent = generateCSV(dataToExport);
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
     if (link.download !== undefined) {
       const url = URL.createObjectURL(blob);
       link.setAttribute('href', url);
-      link.setAttribute('download', `SafetySync_All_Employees_${new Date().toISOString().split('T')[0]}.csv`);
+      const filename = filteredAndSortedEmployees.length > 0 
+        ? `SafetySync_Filtered_Employees_${new Date().toISOString().split('T')[0]}.csv`
+        : `SafetySync_All_Employees_${new Date().toISOString().split('T')[0]}.csv`;
+      link.setAttribute('download', filename);
       link.style.visibility = 'hidden';
       document.body.appendChild(link);
       link.click();
@@ -127,7 +131,7 @@ export default function EmployeeManagement() {
       
       toast({
         title: 'Download Started',
-        description: 'Employee data is being downloaded as Excel file.',
+        description: `${dataToExport.length} employee records are being downloaded as Excel file.`,
       });
     }
   };
@@ -283,8 +287,16 @@ export default function EmployeeManagement() {
     },
   });
 
-  // Enhanced filtering and sorting - show all employees, filter by search and dropdowns
+  // Enhanced filtering and sorting - only show employees when filters are applied
   const filteredAndSortedEmployees = useMemo(() => {
+    // Only show employees if there's a search term OR a filter selection
+    const hasSearchTerm = searchTerm.trim() !== '';
+    const hasFilterSelection = filterDepartment !== '' || filterStatus !== '' || filterLocation !== '';
+    
+    if (!hasSearchTerm && !hasFilterSelection) {
+      return [];
+    }
+    
     let filtered = employees.filter(employee => {
       // Search term filtering (only apply if search term exists)
       const matchesSearch = searchTerm.trim() === '' || 
@@ -296,9 +308,9 @@ export default function EmployeeManagement() {
         employee.department?.toLowerCase().includes(searchTerm.toLowerCase());
       
       // Filter dropdown filtering
-      const matchesDepartment = filterDepartment === 'all' || employee.department === filterDepartment;
-      const matchesStatus = filterStatus === 'all' || employee.status === filterStatus;
-      const matchesLocation = filterLocation === 'all' || employee.location === filterLocation;
+      const matchesDepartment = filterDepartment === '' || employee.department === filterDepartment;
+      const matchesStatus = filterStatus === '' || employee.status === filterStatus;
+      const matchesLocation = filterLocation === '' || employee.location === filterLocation;
       
       return matchesSearch && matchesDepartment && matchesStatus && matchesLocation;
     });
@@ -688,7 +700,7 @@ export default function EmployeeManagement() {
               onChange={(e) => setFilterDepartment(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              <option value="all">All Departments</option>
+              <option value="">Select Department</option>
               {analytics.departments.map(dept => (
                 <option key={dept} value={dept}>{dept}</option>
               ))}
@@ -702,7 +714,7 @@ export default function EmployeeManagement() {
               onChange={(e) => setFilterStatus(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              <option value="all">All Status</option>
+              <option value="">Select Status</option>
               <option value="active">Active</option>
               <option value="inactive">Inactive</option>
               <option value="terminated">Terminated</option>
@@ -716,7 +728,7 @@ export default function EmployeeManagement() {
               onChange={(e) => setFilterLocation(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              <option value="all">All Locations</option>
+              <option value="">Select Location</option>
               {analytics.locations.map(loc => (
                 <option key={loc} value={loc}>{loc}</option>
               ))}
