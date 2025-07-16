@@ -671,14 +671,20 @@ export default function EmployeeManagement() {
           <div className="flex flex-col lg:flex-row gap-4">
             <div className="flex-1 bg-blue-100 p-4">
               <p className="text-blue-800 mb-2">Search input should be below this text:</p>
-              <div className="relative bg-white p-2 border-2 border-blue-500">
-                <Search className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
+              <div className="bg-white p-2 border-2 border-blue-500">
                 <input
                   type="text"
                   placeholder="Search employees by name, email, ID, position..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  style={{
+                    width: '100%',
+                    padding: '8px 12px',
+                    border: '1px solid #ccc',
+                    borderRadius: '4px',
+                    fontSize: '14px',
+                    outline: 'none'
+                  }}
                 />
               </div>
               {searchTerm && (
