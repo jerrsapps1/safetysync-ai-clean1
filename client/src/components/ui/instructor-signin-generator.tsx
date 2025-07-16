@@ -44,6 +44,7 @@ interface SignInSheet {
   location: string;
   trainingType: string;
   oshaStandard: string;
+  customReference: string;
   employees: Employee[];
   createdAt: string;
   status: 'draft' | 'generated' | 'completed' | 'uploaded';
@@ -75,6 +76,7 @@ export function InstructorSignInGenerator() {
     location: '',
     trainingType: '',
     oshaStandard: '',
+    customReference: '',
     employees: []
   });
   const [newEmployee, setNewEmployee] = useState({ name: '', employeeId: '', company: '' });
@@ -184,6 +186,38 @@ export function InstructorSignInGenerator() {
     }
   };
 
+  // Get OSHA/ANSI recommended duration based on training type
+  const getRecommendedDuration = (trainingType: string): string => {
+    const durations: { [key: string]: string } = {
+      'fall-protection': '8 hours (OSHA 29 CFR 1926.503)',
+      'hazwoper': '40 hours initial, 8 hours annual (OSHA 29 CFR 1910.120)',
+      'confined-space': '8 hours (OSHA 29 CFR 1910.146)',
+      'lockout-tagout': '4 hours (OSHA 29 CFR 1910.147)',
+      'respiratory-protection': '4 hours (OSHA 29 CFR 1910.134)',
+      'hearing-conservation': '2 hours (OSHA 29 CFR 1910.95)',
+      'bloodborne-pathogens': '1 hour (OSHA 29 CFR 1910.1030)',
+      'hazard-communication': '4 hours (OSHA 29 CFR 1910.1200)',
+      'personal-protective-equipment': '4 hours (OSHA 29 CFR 1910.132)',
+      'electrical-safety': '8 hours (OSHA 29 CFR 1910.331)',
+      'machine-guarding': '4 hours (OSHA 29 CFR 1910.212)',
+      'crane-rigging': '40 hours (OSHA 29 CFR 1926.1427)',
+      'scaffolding': '8 hours (OSHA 29 CFR 1926.451)',
+      'ladder-safety': '2 hours (OSHA 29 CFR 1926.1053)',
+      'first-aid-cpr': '8 hours (ANSI/ACLS standards)',
+      'forklift-operator': '4 hours (OSHA 29 CFR 1910.178)',
+      'trenching-excavation': '8 hours (OSHA 29 CFR 1926.651)',
+      'silica-awareness': '4 hours (OSHA 29 CFR 1926.1153)',
+      'asbestos-awareness': '16 hours (OSHA 29 CFR 1926.1101)',
+      'lead-safety': '8 hours (OSHA 29 CFR 1926.62)'
+    };
+    
+    if (formData.trainingType === 'custom') {
+      return 'Custom duration - refer to applicable standards';
+    }
+    
+    return durations[trainingType] || 'Duration varies - consult OSHA standards';
+  };
+
   const generateSignInSheet = () => {
     if (!formData.classTitle || !formData.instructorName || !formData.date || !formData.employees?.length) {
       toast({
@@ -206,6 +240,7 @@ export function InstructorSignInGenerator() {
       location: formData.location || '',
       trainingType: formData.trainingType || '',
       oshaStandard: formData.oshaStandard || '',
+      customReference: formData.customReference || '',
       employees: formData.employees || [],
       createdAt: new Date().toISOString(),
       status: 'generated'
@@ -748,6 +783,36 @@ export function InstructorSignInGenerator() {
                       value={formData.endTime}
                       onChange={(e) => setFormData(prev => ({ ...prev, endTime: e.target.value }))}
                     />
+                  </div>
+                </div>
+
+                {/* OSHA/ANSI Recommended Duration Display */}
+                {formData.trainingType && (
+                  <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Clock className="w-4 h-4 text-blue-600" />
+                      <span className="font-medium text-blue-800">OSHA/ANSI Recommended Duration</span>
+                    </div>
+                    <div className="text-sm text-blue-700">
+                      <strong>{getRecommendedDuration(formData.trainingType)}</strong>
+                    </div>
+                    <div className="text-xs text-blue-600 mt-1">
+                      This is the minimum duration recommended by OSHA/ANSI standards for this training type.
+                    </div>
+                  </div>
+                )}
+
+                {/* Custom Reference Field */}
+                <div>
+                  <Label htmlFor="customReference">Custom Reference (Optional)</Label>
+                  <Input
+                    id="customReference"
+                    value={formData.customReference}
+                    onChange={(e) => setFormData(prev => ({ ...prev, customReference: e.target.value }))}
+                    placeholder="Enter your own reference (e.g., Company SOP, Internal Training ID, etc.)"
+                  />
+                  <div className="text-xs text-gray-500 mt-1">
+                    Add your own reference number, SOP citation, or internal training identifier
                   </div>
                 </div>
               </CardContent>
