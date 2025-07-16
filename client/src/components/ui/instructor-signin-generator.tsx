@@ -21,7 +21,8 @@ import {
   Upload,
   CheckCircle,
   UserPlus,
-  Eye
+  Eye,
+  Trash2
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -291,14 +292,21 @@ export function InstructorSignInGenerator() {
       selectedDocuments.includes(doc.id)
     );
 
-    // In a real implementation, this would trigger actual file downloads
-    // For now, we'll simulate the download process
-    documentsToDownload.forEach(doc => {
-      const link = document.createElement('a');
-      link.href = '#'; // In real implementation, this would be the file URL
-      link.download = doc.fileName;
-      link.click();
-    });
+    // In a real implementation, this would create and download actual files
+    // For now, we'll create a ZIP file with document information
+    const zipContent = documentsToDownload.map(doc => 
+      `Document: ${doc.fileName}\nType: ${doc.documentType}\nSize: ${formatFileSize(doc.fileSize)}\nUploaded: ${new Date(doc.uploadDate).toLocaleDateString()}\n\n`
+    ).join('');
+
+    const blob = new Blob([zipContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const link = window.document.createElement('a');
+    link.href = url;
+    link.download = `instructor-documents-${new Date().toISOString().split('T')[0]}.txt`;
+    window.document.body.appendChild(link);
+    link.click();
+    window.document.body.removeChild(link);
+    URL.revokeObjectURL(url);
 
     toast({
       title: "Download Started",
@@ -308,17 +316,59 @@ export function InstructorSignInGenerator() {
   };
 
   // Download single document
-  const downloadSingleDocument = (document: InstructorDocument) => {
-    // In a real implementation, this would trigger actual file download
-    // For now, we'll simulate the download process
-    const link = document.createElement('a');
-    link.href = '#'; // In real implementation, this would be the file URL
-    link.download = document.fileName;
+  const downloadSingleDocument = (doc: InstructorDocument) => {
+    // In a real implementation, this would download the actual file
+    // For now, we'll create a text file with document information
+    const content = `Document: ${doc.fileName}\nType: ${doc.documentType}\nSize: ${formatFileSize(doc.fileSize)}\nUploaded: ${new Date(doc.uploadDate).toLocaleDateString()}\n\nNote: This is a placeholder for the actual document file.`;
+    
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const link = window.document.createElement('a');
+    link.href = url;
+    link.download = `${doc.fileName.replace(/\.[^/.]+$/, '')}-info.txt`;
+    window.document.body.appendChild(link);
     link.click();
+    window.document.body.removeChild(link);
+    URL.revokeObjectURL(url);
 
     toast({
       title: "Download Started",
-      description: `Downloading ${document.fileName}`,
+      description: `Downloading ${doc.fileName}`,
+      duration: 3000
+    });
+  };
+
+  // Delete single document
+  const deleteDocument = (documentId: string) => {
+    setInstructorDocuments(prev => prev.filter(doc => doc.id !== documentId));
+    setSelectedDocuments(prev => prev.filter(id => id !== documentId));
+    
+    toast({
+      title: "Document Deleted",
+      description: "Document has been removed successfully",
+      duration: 3000
+    });
+  };
+
+  // Delete selected documents
+  const deleteSelectedDocuments = () => {
+    if (selectedDocuments.length === 0) {
+      toast({
+        title: "No Selection",
+        description: "Please select documents to delete",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setInstructorDocuments(prev => 
+      prev.filter(doc => !selectedDocuments.includes(doc.id))
+    );
+    setSelectedDocuments([]);
+
+    toast({
+      title: "Documents Deleted",
+      description: `${selectedDocuments.length} document(s) removed successfully`,
       duration: 3000
     });
   };
@@ -894,15 +944,26 @@ export function InstructorSignInGenerator() {
                             Documents ({getCurrentInstructorDocuments().length})
                           </div>
                           {selectedDocuments.length > 0 && (
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              onClick={downloadSelectedDocuments}
-                              className="text-xs"
-                            >
-                              <Download className="w-3 h-3 mr-1" />
-                              Download Selected ({selectedDocuments.length})
-                            </Button>
+                            <div className="flex gap-2">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={downloadSelectedDocuments}
+                                className="text-xs"
+                              >
+                                <Download className="w-3 h-3 mr-1" />
+                                Download Selected ({selectedDocuments.length})
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={deleteSelectedDocuments}
+                                className="text-xs text-red-600 hover:text-red-700"
+                              >
+                                <Trash2 className="w-3 h-3 mr-1" />
+                                Delete Selected ({selectedDocuments.length})
+                              </Button>
+                            </div>
                           )}
                         </div>
 
@@ -929,15 +990,26 @@ export function InstructorSignInGenerator() {
                                 <Badge variant="outline" className="text-xs">
                                   {doc.documentType}
                                 </Badge>
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                  onClick={() => downloadSingleDocument(doc)}
-                                  className="p-1 h-8 w-8"
-                                  title="Download document"
-                                >
-                                  <Download className="w-3 h-3" />
-                                </Button>
+                                <div className="flex gap-1">
+                                  <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={() => downloadSingleDocument(doc)}
+                                    className="p-1 h-8 w-8"
+                                    title="Download document"
+                                  >
+                                    <Download className="w-3 h-3" />
+                                  </Button>
+                                  <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={() => deleteDocument(doc.id)}
+                                    className="p-1 h-8 w-8 text-red-600 hover:text-red-700"
+                                    title="Delete document"
+                                  >
+                                    <Trash2 className="w-3 h-3" />
+                                  </Button>
+                                </div>
                               </div>
                             ))}
                           </div>
