@@ -1,541 +1,462 @@
-import { Achievement, UserStats, MilestoneEvent, DynamicBadge } from '@/types/achievements';
+import { Achievement, UserStats, MilestoneEvent } from '@/types/achievements';
 import { 
-  BookOpen, 
+  Star, 
+  Trophy, 
+  Activity, 
+  Award, 
+  Settings, 
+  TrendingUp, 
+  Users, 
   Shield, 
   Target, 
-  Award, 
-  Star, 
-  TrendingUp, 
-  Crown, 
-  Users, 
-  Calendar, 
-  Settings,
-  FileText,
-  Trophy,
   Zap,
-  Clock,
-  Activity,
-  Heart,
+  Crown,
   Brain,
-  Sparkles
+  BookOpen,
+  Calendar,
+  FileText,
+  CheckCircle
 } from 'lucide-react';
 
 export class DynamicAchievementService {
-  private static instance: DynamicAchievementService;
-  private milestoneEvents: MilestoneEvent[] = [];
+  private achievements: Achievement[] = [];
   private userStats: UserStats = {
     totalPoints: 0,
     unlockedBadges: 0,
     completedTrainings: 0,
     complianceStreak: 0,
-    safetyScore: 0,
+    safetyScore: 75,
     teamLeadership: 0,
     engagementLevel: 0
   };
-  private achievements: Achievement[] = [];
-  private dynamicBadges: DynamicBadge[] = [];
-
-  private constructor() {
-    this.loadData();
-    this.initializeDynamicBadges();
+  private milestones: MilestoneEvent[] = [];
+  
+  constructor() {
     this.initializeAchievements();
+    this.loadPersistedData();
   }
 
-  static getInstance(): DynamicAchievementService {
-    if (!DynamicAchievementService.instance) {
-      DynamicAchievementService.instance = new DynamicAchievementService();
-    }
-    return DynamicAchievementService.instance;
-  }
-
-  private loadData(): void {
-    // Load from localStorage
-    const savedEvents = localStorage.getItem('milestone-events');
-    const savedStats = localStorage.getItem('user-stats');
-    const savedAchievements = localStorage.getItem('achievements');
-
-    if (savedEvents) {
-      this.milestoneEvents = JSON.parse(savedEvents).map((event: any) => ({
-        ...event,
-        timestamp: new Date(event.timestamp)
-      }));
-    }
-
-    if (savedStats) {
-      this.userStats = JSON.parse(savedStats);
-    }
-
-    // Don't load achievements from localStorage as they contain JSX elements
-    // Always regenerate them from dynamicBadges instead
-  }
-
-  private saveData(): void {
-    localStorage.setItem('milestone-events', JSON.stringify(this.milestoneEvents));
-    localStorage.setItem('user-stats', JSON.stringify(this.userStats));
-    // Don't save achievements to localStorage since they contain JSX elements
-    // Always regenerate from dynamicBadges instead
-  }
-
-  private initializeDynamicBadges(): void {
-    this.dynamicBadges = [
-      // Platform Engagement Badges
+  private initializeAchievements(): void {
+    this.achievements = [
+      // Login & Engagement Achievements
+      {
+        id: 'first-login',
+        title: 'Welcome Aboard',
+        description: 'Complete your first login to SafetySync.AI',
+        icon: <Star className="w-4 h-4" />,
+        tier: 'bronze',
+        category: 'engagement',
+        points: 50,
+        maxProgress: 1,
+        progress: 0,
+        isUnlocked: false,
+        requirements: ['Complete first login'],
+        unlockedAt: null
+      },
       {
         id: 'early-adopter',
         title: 'Early Adopter',
-        description: 'One of the first to use SafetySync.AI',
-        icon: <Star className="w-6 h-6" />,
-        condition: (events) => events.filter(e => e.eventType === 'login').length >= 1,
-        progressCalculator: (events) => ({
-          current: events.filter(e => e.eventType === 'login').length,
-          max: 1
-        }),
-        tier: 'bronze',
-        points: 100,
-        category: 'platform',
-        isRealTime: true
-      },
-      {
-        id: 'daily-user',
-        title: 'Daily User',
-        description: 'Login for 7 consecutive days',
-        icon: <Calendar className="w-6 h-6" />,
-        condition: (events) => {
-          const loginEvents = events.filter(e => e.eventType === 'login')
-            .sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime());
-          
-          if (loginEvents.length < 7) return false;
-          
-          let consecutiveDays = 1;
-          for (let i = 1; i < loginEvents.length; i++) {
-            const prevDay = new Date(loginEvents[i-1].timestamp);
-            const currDay = new Date(loginEvents[i].timestamp);
-            
-            prevDay.setHours(0, 0, 0, 0);
-            currDay.setHours(0, 0, 0, 0);
-            
-            if (currDay.getTime() - prevDay.getTime() === 86400000) {
-              consecutiveDays++;
-            } else {
-              consecutiveDays = 1;
-            }
-            
-            if (consecutiveDays >= 7) return true;
-          }
-          return false;
-        },
-        progressCalculator: (events) => {
-          const loginEvents = events.filter(e => e.eventType === 'login')
-            .sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime());
-          
-          let maxStreak = 0;
-          let currentStreak = 1;
-          
-          for (let i = 1; i < loginEvents.length; i++) {
-            const prevDay = new Date(loginEvents[i-1].timestamp);
-            const currDay = new Date(loginEvents[i].timestamp);
-            
-            prevDay.setHours(0, 0, 0, 0);
-            currDay.setHours(0, 0, 0, 0);
-            
-            if (currDay.getTime() - prevDay.getTime() === 86400000) {
-              currentStreak++;
-            } else {
-              maxStreak = Math.max(maxStreak, currentStreak);
-              currentStreak = 1;
-            }
-          }
-          
-          return {
-            current: Math.max(maxStreak, currentStreak),
-            max: 7
-          };
-        },
+        description: 'Login for 3 consecutive days',
+        icon: <Trophy className="w-4 h-4" />,
         tier: 'silver',
-        points: 300,
         category: 'engagement',
-        isRealTime: true
-      },
-      {
-        id: 'customizer',
-        title: 'Dashboard Customizer',
-        description: 'Customize your dashboard layout',
-        icon: <Settings className="w-6 h-6" />,
-        condition: (events) => events.filter(e => e.eventType === 'widget_customized').length >= 1,
-        progressCalculator: (events) => ({
-          current: events.filter(e => e.eventType === 'widget_customized').length,
-          max: 1
-        }),
-        tier: 'bronze',
         points: 150,
-        category: 'platform',
-        isRealTime: true
+        maxProgress: 3,
+        progress: 0,
+        isUnlocked: false,
+        requirements: ['Login for 3 consecutive days'],
+        unlockedAt: null
       },
       {
         id: 'power-user',
         title: 'Power User',
-        description: 'Use 5 different platform features',
-        icon: <Zap className="w-6 h-6" />,
-        condition: (events) => {
-          const uniqueFeatures = new Set(events.map(e => e.eventType));
-          return uniqueFeatures.size >= 5;
-        },
-        progressCalculator: (events) => {
-          const uniqueFeatures = new Set(events.map(e => e.eventType));
-          return {
-            current: uniqueFeatures.size,
-            max: 5
-          };
-        },
+        description: 'Navigate to 5 different dashboard tabs',
+        icon: <Activity className="w-4 h-4" />,
         tier: 'gold',
-        points: 500,
-        category: 'platform',
-        isRealTime: true
-      },
-      
-      // Training & Compliance Badges
-      {
-        id: 'training-starter',
-        title: 'Training Starter',
-        description: 'Complete your first training session',
-        icon: <BookOpen className="w-6 h-6" />,
-        condition: (events) => events.filter(e => e.eventType === 'training_completed').length >= 1,
-        progressCalculator: (events) => ({
-          current: events.filter(e => e.eventType === 'training_completed').length,
-          max: 1
-        }),
-        tier: 'bronze',
+        category: 'exploration',
         points: 200,
-        category: 'training',
-        isRealTime: true
+        maxProgress: 5,
+        progress: 0,
+        isUnlocked: false,
+        requirements: ['Visit 5 different dashboard sections'],
+        unlockedAt: null
       },
       {
-        id: 'training-enthusiast',
-        title: 'Training Enthusiast',
-        description: 'Complete 5 training sessions',
-        icon: <Brain className="w-6 h-6" />,
-        condition: (events) => events.filter(e => e.eventType === 'training_completed').length >= 5,
-        progressCalculator: (events) => ({
-          current: events.filter(e => e.eventType === 'training_completed').length,
-          max: 5
-        }),
+        id: 'dashboard-customizer',
+        title: 'Dashboard Customizer',
+        description: 'Customize 3 different dashboard widgets',
+        icon: <Settings className="w-4 h-4" />,
         tier: 'silver',
-        points: 400,
-        category: 'training',
-        isRealTime: true
-      },
-      {
-        id: 'compliance-guardian',
-        title: 'Compliance Guardian',
-        description: 'Maintain 100% compliance for 30 days',
-        icon: <Shield className="w-6 h-6" />,
-        condition: (events, userStats) => userStats.complianceStreak >= 30,
-        progressCalculator: (events, userStats) => ({
-          current: userStats.complianceStreak,
-          max: 30
-        }),
-        tier: 'gold',
-        points: 600,
-        category: 'compliance',
-        isRealTime: true
-      },
-      {
-        id: 'safety-champion',
-        title: 'Safety Champion',
-        description: 'Achieve 95% safety score',
-        icon: <Award className="w-6 h-6" />,
-        condition: (events, userStats) => userStats.safetyScore >= 95,
-        progressCalculator: (events, userStats) => ({
-          current: userStats.safetyScore,
-          max: 95
-        }),
-        tier: 'platinum',
-        points: 800,
-        category: 'safety',
-        isRealTime: true
-      },
-      
-      // Certificate & Report Badges
-      {
-        id: 'certificate-generator',
-        title: 'Certificate Generator',
-        description: 'Generate your first certificate',
-        icon: <Award className="w-6 h-6" />,
-        condition: (events) => events.filter(e => e.eventType === 'certificate_generated').length >= 1,
-        progressCalculator: (events) => ({
-          current: events.filter(e => e.eventType === 'certificate_generated').length,
-          max: 1
-        }),
-        tier: 'bronze',
-        points: 150,
-        category: 'platform',
-        isRealTime: true
-      },
-      {
-        id: 'report-master',
-        title: 'Report Master',
-        description: 'Generate 10 different reports',
-        icon: <FileText className="w-6 h-6" />,
-        condition: (events) => events.filter(e => e.eventType === 'report_generated').length >= 10,
-        progressCalculator: (events) => ({
-          current: events.filter(e => e.eventType === 'report_generated').length,
-          max: 10
-        }),
-        tier: 'silver',
-        points: 350,
-        category: 'platform',
-        isRealTime: true
-      },
-      
-      // Leadership & Engagement Badges
-      {
-        id: 'team-collaborator',
-        title: 'Team Collaborator',
-        description: 'Interact with team members 5 times',
-        icon: <Users className="w-6 h-6" />,
-        condition: (events) => events.filter(e => e.eventType === 'team_interaction').length >= 5,
-        progressCalculator: (events) => ({
-          current: events.filter(e => e.eventType === 'team_interaction').length,
-          max: 5
-        }),
-        tier: 'silver',
-        points: 300,
-        category: 'engagement',
-        isRealTime: true
-      },
-      {
-        id: 'leader',
-        title: 'Safety Leader',
-        description: 'Take 3 leadership actions',
-        icon: <Crown className="w-6 h-6" />,
-        condition: (events) => events.filter(e => e.eventType === 'leadership_action').length >= 3,
-        progressCalculator: (events) => ({
-          current: events.filter(e => e.eventType === 'leadership_action').length,
-          max: 3
-        }),
-        tier: 'gold',
-        points: 500,
-        category: 'leadership',
-        isRealTime: true
-      },
-      
-      // Special Milestone Badges
-      {
-        id: 'milestone-100',
-        title: '100 Point Milestone',
-        description: 'Reach 100 total points',
-        icon: <Trophy className="w-6 h-6" />,
-        condition: (events, userStats) => userStats.totalPoints >= 100,
-        progressCalculator: (events, userStats) => ({
-          current: userStats.totalPoints,
-          max: 100
-        }),
-        tier: 'bronze',
-        points: 50,
-        category: 'platform',
-        isRealTime: true
-      },
-      {
-        id: 'milestone-500',
-        title: '500 Point Milestone',
-        description: 'Reach 500 total points',
-        icon: <Sparkles className="w-6 h-6" />,
-        condition: (events, userStats) => userStats.totalPoints >= 500,
-        progressCalculator: (events, userStats) => ({
-          current: userStats.totalPoints,
-          max: 500
-        }),
-        tier: 'silver',
+        category: 'customization',
         points: 100,
-        category: 'platform',
-        isRealTime: true
+        maxProgress: 3,
+        progress: 0,
+        isUnlocked: false,
+        requirements: ['Customize 3 dashboard widgets'],
+        unlockedAt: null
       },
       {
-        id: 'milestone-1000',
-        title: '1000 Point Milestone',
-        description: 'Reach 1000 total points',
-        icon: <Crown className="w-6 h-6" />,
-        condition: (events, userStats) => userStats.totalPoints >= 1000,
-        progressCalculator: (events, userStats) => ({
-          current: userStats.totalPoints,
-          max: 1000
-        }),
+        id: 'layout-designer',
+        title: 'Layout Designer',
+        description: 'Rearrange dashboard layout 5 times',
+        icon: <Target className="w-4 h-4" />,
         tier: 'gold',
+        category: 'customization',
+        points: 175,
+        maxProgress: 5,
+        progress: 0,
+        isUnlocked: false,
+        requirements: ['Rearrange dashboard layout 5 times'],
+        unlockedAt: null
+      },
+      {
+        id: 'compliance-champion',
+        title: 'Compliance Champion',
+        description: 'Maintain 95% compliance score for 30 days',
+        icon: <Shield className="w-4 h-4" />,
+        tier: 'platinum',
+        category: 'compliance',
+        points: 500,
+        maxProgress: 30,
+        progress: 0,
+        isUnlocked: false,
+        requirements: ['Maintain 95% compliance score for 30 days'],
+        unlockedAt: null
+      },
+      {
+        id: 'training-master',
+        title: 'Training Master',
+        description: 'Complete 10 safety training modules',
+        icon: <BookOpen className="w-4 h-4" />,
+        tier: 'gold',
+        category: 'training',
+        points: 300,
+        maxProgress: 10,
+        progress: 0,
+        isUnlocked: false,
+        requirements: ['Complete 10 safety training modules'],
+        unlockedAt: null
+      },
+      {
+        id: 'report-generator',
+        title: 'Report Generator',
+        description: 'Generate 5 compliance reports',
+        icon: <FileText className="w-4 h-4" />,
+        tier: 'silver',
+        category: 'reporting',
+        points: 150,
+        maxProgress: 5,
+        progress: 0,
+        isUnlocked: false,
+        requirements: ['Generate 5 compliance reports'],
+        unlockedAt: null
+      },
+      {
+        id: 'team-leader',
+        title: 'Team Leader',
+        description: 'Help 5 team members with safety tasks',
+        icon: <Users className="w-4 h-4" />,
+        tier: 'gold',
+        category: 'collaboration',
+        points: 250,
+        maxProgress: 5,
+        progress: 0,
+        isUnlocked: false,
+        requirements: ['Help 5 team members with safety tasks'],
+        unlockedAt: null
+      },
+      {
+        id: 'consistency-keeper',
+        title: 'Consistency Keeper',
+        description: 'Use platform for 7 consecutive days',
+        icon: <Calendar className="w-4 h-4" />,
+        tier: 'silver',
+        category: 'engagement',
         points: 200,
-        category: 'platform',
-        isRealTime: true
+        maxProgress: 7,
+        progress: 0,
+        isUnlocked: false,
+        requirements: ['Use platform for 7 consecutive days'],
+        unlockedAt: null
+      },
+      {
+        id: 'ai-explorer',
+        title: 'AI Explorer',
+        description: 'Use AI features 10 times',
+        icon: <Brain className="w-4 h-4" />,
+        tier: 'gold',
+        category: 'ai',
+        points: 225,
+        maxProgress: 10,
+        progress: 0,
+        isUnlocked: false,
+        requirements: ['Use AI features 10 times'],
+        unlockedAt: null
+      },
+      {
+        id: 'perfectionist',
+        title: 'Perfectionist',
+        description: 'Achieve 100% compliance score',
+        icon: <Crown className="w-4 h-4" />,
+        tier: 'platinum',
+        category: 'compliance',
+        points: 750,
+        maxProgress: 1,
+        progress: 0,
+        isUnlocked: false,
+        requirements: ['Achieve 100% compliance score'],
+        unlockedAt: null
       }
     ];
   }
 
-  // Track user actions and trigger achievement checks
-  trackMilestone(eventType: MilestoneEvent['eventType'], data: any, userId: string = 'current-user'): Achievement[] {
-    const event: MilestoneEvent = {
-      id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-      userId,
-      eventType,
-      data,
-      timestamp: new Date()
-    };
+  private loadPersistedData(): void {
+    try {
+      const savedAchievements = localStorage.getItem('dynamic-achievements');
+      const savedStats = localStorage.getItem('achievement-stats');
+      const savedMilestones = localStorage.getItem('achievement-milestones');
 
-    this.milestoneEvents.push(event);
-    
-    // Check for newly unlocked achievements
-    const newlyUnlocked = this.checkDynamicAchievements();
-    
-    this.saveData();
-    
-    return newlyUnlocked;
-  }
-
-  private checkDynamicAchievements(): Achievement[] {
-    const newlyUnlocked: Achievement[] = [];
-
-    for (const badge of this.dynamicBadges) {
-      const existingAchievement = this.achievements.find(a => a.id === badge.id);
-      
-      if (!existingAchievement) {
-        // Create new achievement from dynamic badge
-        const progress = badge.progressCalculator(this.milestoneEvents, this.userStats);
-        const isUnlocked = badge.condition(this.milestoneEvents, this.userStats);
-        
-        const achievement: Achievement = {
-          id: badge.id,
-          title: badge.title,
-          description: badge.description,
-          icon: badge.icon,
-          category: badge.category,
-          tier: badge.tier,
-          points: badge.points,
-          isUnlocked,
-          unlockedAt: isUnlocked ? new Date() : undefined,
-          progress: progress.current,
-          maxProgress: progress.max,
-          requirements: [badge.description]
-        };
-        
-        this.achievements.push(achievement);
-        
-        if (isUnlocked) {
-          this.userStats.totalPoints += badge.points;
-          this.userStats.unlockedBadges += 1;
-          this.showAchievementNotification(achievement);
-          newlyUnlocked.push(achievement);
-        }
-      } else if (!existingAchievement.isUnlocked) {
-        // Update existing achievement progress
-        const progress = badge.progressCalculator(this.milestoneEvents, this.userStats);
-        existingAchievement.progress = progress.current;
-        
-        if (badge.condition(this.milestoneEvents, this.userStats)) {
-          existingAchievement.isUnlocked = true;
-          existingAchievement.unlockedAt = new Date();
-          this.userStats.totalPoints += badge.points;
-          this.userStats.unlockedBadges += 1;
-          this.showAchievementNotification(existingAchievement);
-          newlyUnlocked.push(existingAchievement);
-        }
+      if (savedAchievements) {
+        const parsedAchievements = JSON.parse(savedAchievements);
+        // Merge saved progress with default achievements
+        this.achievements = this.achievements.map(achievement => {
+          const saved = parsedAchievements.find((a: Achievement) => a.id === achievement.id);
+          if (saved) {
+            return {
+              ...achievement,
+              progress: saved.progress,
+              isUnlocked: saved.isUnlocked,
+              unlockedAt: saved.unlockedAt ? new Date(saved.unlockedAt) : null
+            };
+          }
+          return achievement;
+        });
       }
-    }
 
-    return newlyUnlocked;
+      if (savedStats) {
+        this.userStats = { ...this.userStats, ...JSON.parse(savedStats) };
+      }
+
+      if (savedMilestones) {
+        this.milestones = JSON.parse(savedMilestones).map((m: any) => ({
+          ...m,
+          timestamp: new Date(m.timestamp)
+        }));
+      }
+    } catch (error) {
+      console.error('Failed to load persisted achievement data:', error);
+    }
   }
 
-  private showAchievementNotification(achievement: Achievement): void {
-    // Create custom event for achievement notification
+  private saveData(): void {
+    try {
+      localStorage.setItem('dynamic-achievements', JSON.stringify(this.achievements));
+      localStorage.setItem('achievement-stats', JSON.stringify(this.userStats));
+      localStorage.setItem('achievement-milestones', JSON.stringify(this.milestones));
+    } catch (error) {
+      console.error('Failed to save achievement data:', error);
+    }
+  }
+
+  private dispatchAchievementEvent(achievement: Achievement): void {
     const event = new CustomEvent('achievement-unlocked', {
       detail: achievement
     });
     window.dispatchEvent(event);
   }
 
-  // Update user stats
-  updateUserStats(newStats: Partial<UserStats>): void {
+  public trackMilestone(eventType: MilestoneEvent['eventType'], data: any, userId: string = 'current-user'): Achievement[] {
+    const milestone: MilestoneEvent = {
+      id: Date.now().toString(),
+      eventType,
+      data,
+      userId,
+      timestamp: new Date()
+    };
+
+    this.milestones.push(milestone);
+    
+    // Check for achievements
+    const newAchievements = this.checkAchievements(eventType, data);
+    
+    // Save data
+    this.saveData();
+    
+    return newAchievements;
+  }
+
+  private checkAchievements(eventType: MilestoneEvent['eventType'], data: any): Achievement[] {
+    const newlyUnlocked: Achievement[] = [];
+
+    this.achievements.forEach(achievement => {
+      if (achievement.isUnlocked) return;
+
+      let shouldProgress = false;
+      let progressIncrement = 0;
+
+      switch (achievement.id) {
+        case 'first-login':
+          if (eventType === 'login') {
+            shouldProgress = true;
+            progressIncrement = 1;
+          }
+          break;
+
+        case 'early-adopter':
+          if (eventType === 'login') {
+            const loginDays = this.milestones.filter(m => m.eventType === 'login').length;
+            achievement.progress = Math.min(loginDays, achievement.maxProgress);
+          }
+          break;
+
+        case 'power-user':
+          if (eventType === 'tab_navigation') {
+            const uniqueTabs = new Set(
+              this.milestones
+                .filter(m => m.eventType === 'tab_navigation')
+                .map(m => m.data.tabName)
+            );
+            achievement.progress = Math.min(uniqueTabs.size, achievement.maxProgress);
+          }
+          break;
+
+        case 'dashboard-customizer':
+          if (eventType === 'widget_customized') {
+            const customizations = this.milestones.filter(m => m.eventType === 'widget_customized').length;
+            achievement.progress = Math.min(customizations, achievement.maxProgress);
+          }
+          break;
+
+        case 'layout-designer':
+          if (eventType === 'widget_customized' && data.action === 'layout_change') {
+            const layoutChanges = this.milestones.filter(m => 
+              m.eventType === 'widget_customized' && m.data.action === 'layout_change'
+            ).length;
+            achievement.progress = Math.min(layoutChanges, achievement.maxProgress);
+          }
+          break;
+
+        case 'compliance-champion':
+          if (this.userStats.safetyScore >= 95) {
+            shouldProgress = true;
+            progressIncrement = 1;
+          }
+          break;
+
+        case 'training-master':
+          if (eventType === 'training_completed') {
+            shouldProgress = true;
+            progressIncrement = 1;
+          }
+          break;
+
+        case 'report-generator':
+          if (eventType === 'report_generated') {
+            shouldProgress = true;
+            progressIncrement = 1;
+          }
+          break;
+
+        case 'team-leader':
+          if (eventType === 'team_interaction') {
+            shouldProgress = true;
+            progressIncrement = 1;
+          }
+          break;
+
+        case 'consistency-keeper':
+          if (eventType === 'login') {
+            const loginDays = this.milestones.filter(m => m.eventType === 'login').length;
+            achievement.progress = Math.min(loginDays, achievement.maxProgress);
+          }
+          break;
+
+        case 'ai-explorer':
+          if (eventType === 'ai_interaction') {
+            shouldProgress = true;
+            progressIncrement = 1;
+          }
+          break;
+
+        case 'perfectionist':
+          if (this.userStats.safetyScore >= 100) {
+            shouldProgress = true;
+            progressIncrement = 1;
+          }
+          break;
+      }
+
+      if (shouldProgress) {
+        achievement.progress = Math.min(achievement.progress + progressIncrement, achievement.maxProgress);
+      }
+
+      // Check if achievement is now unlocked
+      if (achievement.progress >= achievement.maxProgress && !achievement.isUnlocked) {
+        achievement.isUnlocked = true;
+        achievement.unlockedAt = new Date();
+        
+        // Update user stats
+        this.userStats.totalPoints += achievement.points;
+        this.userStats.unlockedBadges += 1;
+        
+        newlyUnlocked.push(achievement);
+        
+        // Dispatch achievement event
+        this.dispatchAchievementEvent(achievement);
+      }
+    });
+
+    return newlyUnlocked;
+  }
+
+  public updateUserStats(newStats: Partial<UserStats>): void {
     this.userStats = { ...this.userStats, ...newStats };
-    this.checkDynamicAchievements();
     this.saveData();
   }
 
-  // Initialize achievements from dynamic badges
-  private initializeAchievements(): void {
-    this.achievements = [];
-    for (const badge of this.dynamicBadges) {
-      const progress = badge.progressCalculator(this.milestoneEvents, this.userStats);
-      const isUnlocked = badge.condition(this.milestoneEvents, this.userStats);
-      
-      const achievement: Achievement = {
-        id: badge.id,
-        title: badge.title,
-        description: badge.description,
-        icon: badge.icon,
-        category: badge.category,
-        tier: badge.tier,
-        points: badge.points,
-        isUnlocked,
-        unlockedAt: isUnlocked ? new Date() : undefined,
-        progress: progress.current,
-        maxProgress: progress.max,
-        requirements: [badge.description]
-      };
-      
-      this.achievements.push(achievement);
-    }
+  public getAllAchievements(): Achievement[] {
+    return this.achievements;
   }
 
-  // Get all achievements including dynamic ones
-  getAllAchievements(): Achievement[] {
-    // Refresh progress for all achievements
-    this.checkDynamicAchievements();
-    return [...this.achievements];
+  public getUserStats(): UserStats {
+    return this.userStats;
   }
 
-  // Get user stats
-  getUserStats(): UserStats {
-    return { ...this.userStats };
+  public getAchievementsByCategory(category: string): Achievement[] {
+    return this.achievements.filter(a => a.category === category);
   }
 
-  // Get recent events
-  getRecentEvents(limit: number = 10): MilestoneEvent[] {
-    return this.milestoneEvents
-      .sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime())
-      .slice(0, limit);
+  public getUnlockedAchievements(): Achievement[] {
+    return this.achievements.filter(a => a.isUnlocked);
   }
 
-  // Get achievements by category
-  getAchievementsByCategory(category: string): Achievement[] {
-    return this.getAllAchievements().filter(a => a.category === category);
-  }
-
-  // Get next achievements to unlock
-  getNextAchievements(): Achievement[] {
-    return this.getAllAchievements()
+  public getNextAchievements(limit: number = 3): Achievement[] {
+    return this.achievements
       .filter(a => !a.isUnlocked && a.progress > 0)
       .sort((a, b) => (b.progress / b.maxProgress) - (a.progress / a.maxProgress))
-      .slice(0, 3);
-  }
-
-  // Get recent unlocks
-  getRecentUnlocks(limit: number = 5): Achievement[] {
-    return this.getAllAchievements()
-      .filter(a => a.isUnlocked && a.unlockedAt)
-      .sort((a, b) => b.unlockedAt!.getTime() - a.unlockedAt!.getTime())
       .slice(0, limit);
   }
 
-  // Reset all data (for testing)
-  resetData(): void {
-    this.milestoneEvents = [];
-    this.achievements = [];
+  public resetProgress(): void {
+    this.achievements.forEach(achievement => {
+      achievement.progress = 0;
+      achievement.isUnlocked = false;
+      achievement.unlockedAt = null;
+    });
+    
     this.userStats = {
       totalPoints: 0,
       unlockedBadges: 0,
       completedTrainings: 0,
       complianceStreak: 0,
-      safetyScore: 0,
+      safetyScore: 75,
       teamLeadership: 0,
       engagementLevel: 0
     };
+    
+    this.milestones = [];
     this.saveData();
   }
 }
 
-export const dynamicAchievementService = DynamicAchievementService.getInstance();
+export const dynamicAchievementService = new DynamicAchievementService();
