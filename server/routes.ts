@@ -147,6 +147,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Create a demo user for testing
+  app.post("/api/create-demo-user", async (req, res) => {
+    try {
+      const hashedPassword = await bcrypt.hash("demo123", 10);
+      const user = await storage.createUser({
+        email: "demo@safetysync.ai",
+        password: hashedPassword,
+        name: "Demo User",
+        company: "SafetySync Demo",
+        phone: "555-0124"
+      });
+      
+      const { password, ...userWithoutPassword } = user;
+      res.json({ success: true, user: userWithoutPassword });
+    } catch (error) {
+      console.error("Error creating demo user:", error);
+      res.status(500).json({ success: false, message: error.message });
+    }
+  });
+
   // User registration endpoint
   app.post("/api/auth/register", async (req, res) => {
     try {
