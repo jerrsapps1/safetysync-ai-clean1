@@ -661,6 +661,9 @@ export default function EmployeeManagement() {
 
       {/* Filters and Search */}
       <Card>
+        <CardHeader>
+          <CardTitle>Search and Filter Employees</CardTitle>
+        </CardHeader>
         <CardContent className="p-4">
           <div className="flex flex-col lg:flex-row gap-4">
             <div className="flex-1">
@@ -673,6 +676,11 @@ export default function EmployeeManagement() {
                   className="pl-10"
                 />
               </div>
+              {searchTerm && (
+                <p className="text-sm text-gray-600 mt-2">
+                  Searching for: "{searchTerm}" - Found {filteredAndSortedEmployees.length} results
+                </p>
+              )}
             </div>
             <div className="flex flex-wrap gap-2">
               <Select value={filterDepartment} onValueChange={setFilterDepartment}>
