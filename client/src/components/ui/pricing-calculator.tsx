@@ -714,7 +714,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
             Return on Investment
           </CardTitle>
           <CardDescription>
-            See how SafetySync pays for itself through efficiency gains and risk reduction
+            See how SafetySync.ai pays for itself through efficiency gains and risk reduction
           </CardDescription>
         </CardHeader>
         <CardContent>

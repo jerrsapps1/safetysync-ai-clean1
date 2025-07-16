@@ -44,15 +44,15 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
   const tourSteps: TourStep[] = [
     {
       id: "welcome",
-      title: "Welcome to SafetySync",
+      title: "Welcome to SafetySync.ai",
       description: "Your comprehensive OSHA compliance management platform",
       content: (
         <div className="space-y-4">
           <div className="text-center">
             <Shield className="w-16 h-16 mx-auto mb-4 text-blue-600" />
-            <h2 className="text-2xl font-bold mb-2">Welcome to SafetySync</h2>
+            <h2 className="text-2xl font-bold mb-2">Welcome to SafetySync.ai</h2>
             <p className="text-gray-600">
-              Let's take a quick tour to show you how SafetySync simplifies OSHA compliance
+              Let's take a quick tour to show you how SafetySync.ai simplifies OSHA compliance
               and keeps your workplace safe.
             </p>
           </div>

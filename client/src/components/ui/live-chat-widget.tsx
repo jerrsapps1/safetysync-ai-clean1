@@ -34,7 +34,7 @@ export function LiveChatWidget({ isOpen, onToggle, onClose }: LiveChatWidgetProp
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: 'Hi! Welcome to SafetySync support. How can I help you today?',
+      text: 'Hi! Welcome to SafetySync.ai support. How can I help you today?',
       sender: 'agent',
       timestamp: new Date()
     }
@@ -109,11 +109,11 @@ export function LiveChatWidget({ isOpen, onToggle, onClose }: LiveChatWidgetProp
     }
     
     if (lowerText.includes('integration')) {
-      return "SafetySync integrates with most popular HR systems including BambooHR, Workday, and ADP. We also offer REST API access. What system are you looking to integrate with?";
+      return "SafetySync.ai integrates with most popular HR systems including BambooHR, Workday, and ADP. We also offer REST API access. What system are you looking to integrate with?";
     }
     
     if (lowerText.includes('osha') || lowerText.includes('compliance')) {
-      return "SafetySync helps with all aspects of OSHA compliance including training tracking, certification management, and audit-ready reports. What specific compliance challenge are you facing?";
+      return "SafetySync.ai helps with all aspects of OSHA compliance including training tracking, certification management, and audit-ready reports. What specific compliance challenge are you facing?";
     }
     
     return "Thanks for your question! Let me connect you with one of our specialists who can provide detailed information. In the meantime, you can also check our FAQ section or schedule a demo.";
@@ -189,7 +189,7 @@ export function LiveChatWidget({ isOpen, onToggle, onClose }: LiveChatWidgetProp
                 }`} />
               </div>
               <div>
-                <CardTitle className="text-sm">SafetySync Support</CardTitle>
+                <CardTitle className="text-sm">SafetySync.ai Support</CardTitle>
                 <CardDescription className="text-xs text-blue-100">
                   {agentStatus === 'online' ? 'Online now' : 
                    agentStatus === 'away' ? 'Away' : 'Busy'}
