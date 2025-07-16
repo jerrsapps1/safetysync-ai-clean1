@@ -46,7 +46,9 @@ import {
   ExternalLink,
   Star,
   History,
-  Calendar as CalendarIcon
+  Calendar as CalendarIcon,
+  GraduationCap,
+  Info
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import * as XLSX from 'xlsx';
@@ -219,13 +221,13 @@ export function InstructorSignInGenerator() {
   const [showQuickActionMenu, setShowQuickActionMenu] = useState(false);
   const [uploadProgress, setUploadProgress] = useState<{[key: string]: number}>({});
   const [showHelpBubbles, setShowHelpBubbles] = useState(false);
+  const [helpBubbleTarget, setHelpBubbleTarget] = useState<string | null>(null);
   const [onboardingStep, setOnboardingStep] = useState(0);
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [previewDocument, setPreviewDocument] = useState<string | null>(null);
   const [gamificationScore, setGamificationScore] = useState(0);
   const [achievements, setAchievements] = useState<string[]>([]);
   const [showDocumentPreview, setShowDocumentPreview] = useState(false);
-  const [helpBubbleTarget, setHelpBubbleTarget] = useState<string | null>(null);
 
   // Sample client instructors - in real implementation, this would come from the database
   const clientInstructors = [
