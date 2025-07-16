@@ -215,6 +215,18 @@ export function InstructorSignInGenerator() {
     { id: '3', type: 'upload', message: 'New instructor documents uploaded', timestamp: new Date().toISOString(), read: true }
   ]);
 
+  // Advanced UI Features State
+  const [showQuickActionMenu, setShowQuickActionMenu] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState<{[key: string]: number}>({});
+  const [showHelpBubbles, setShowHelpBubbles] = useState(false);
+  const [onboardingStep, setOnboardingStep] = useState(0);
+  const [showOnboarding, setShowOnboarding] = useState(false);
+  const [previewDocument, setPreviewDocument] = useState<string | null>(null);
+  const [gamificationScore, setGamificationScore] = useState(0);
+  const [achievements, setAchievements] = useState<string[]>([]);
+  const [showDocumentPreview, setShowDocumentPreview] = useState(false);
+  const [helpBubbleTarget, setHelpBubbleTarget] = useState<string | null>(null);
+
   // Sample client instructors - in real implementation, this would come from the database
   const clientInstructors = [
     { id: '1', name: 'John Smith', credentials: 'CSP, CHST', company: 'SafetySync.ai' },
@@ -1028,6 +1040,153 @@ END:VCALENDAR`;
     });
   };
 
+  // Advanced UI Features Helper Functions
+  const simulateUploadProgress = (fileId: string) => {
+    let progress = 0;
+    const interval = setInterval(() => {
+      progress += Math.random() * 20;
+      if (progress >= 100) {
+        progress = 100;
+        clearInterval(interval);
+        setUploadProgress(prev => {
+          const newProgress = { ...prev };
+          delete newProgress[fileId];
+          return newProgress;
+        });
+        
+        // Award achievement for file upload
+        if (!achievements.includes('File Uploader')) {
+          setAchievements(prev => [...prev, 'File Uploader']);
+          setGamificationScore(prev => prev + 10);
+          toast({
+            title: "Achievement Unlocked!",
+            description: "File Uploader - You've successfully uploaded your first document",
+            duration: 4000
+          });
+        }
+      } else {
+        setUploadProgress(prev => ({ ...prev, [fileId]: progress }));
+      }
+    }, 200);
+  };
+
+  const showHelpBubble = (target: string, message: string) => {
+    setHelpBubbleTarget(target);
+    setShowHelpBubbles(true);
+    setTimeout(() => {
+      setShowHelpBubbles(false);
+      setHelpBubbleTarget(null);
+    }, 3000);
+  };
+
+  const startOnboarding = () => {
+    setShowOnboarding(true);
+    setOnboardingStep(0);
+  };
+
+  const nextOnboardingStep = () => {
+    if (onboardingStep < 4) {
+      setOnboardingStep(prev => prev + 1);
+    } else {
+      setShowOnboarding(false);
+      setOnboardingStep(0);
+      setGamificationScore(prev => prev + 50);
+      setAchievements(prev => [...prev, 'Onboarding Complete']);
+      toast({
+        title: "Onboarding Complete!",
+        description: "You're now ready to create professional sign-in sheets",
+        duration: 4000
+      });
+    }
+  };
+
+  const previewDocumentInTooltip = (documentName: string) => {
+    setPreviewDocument(documentName);
+    setShowDocumentPreview(true);
+  };
+
+  const getOnboardingStepContent = () => {
+    switch (onboardingStep) {
+      case 0:
+        return {
+          title: "Welcome to SafetySync.AI",
+          description: "Let's create your first professional sign-in sheet",
+          target: "training-info"
+        };
+      case 1:
+        return {
+          title: "Select Training Type",
+          description: "Choose from OSHA-approved training courses",
+          target: "training-type"
+        };
+      case 2:
+        return {
+          title: "Add Instructor Details",
+          description: "Select or add instructor information",
+          target: "instructor-section"
+        };
+      case 3:
+        return {
+          title: "Add Attendees",
+          description: "Use our smart search to find employees and students",
+          target: "attendee-section"
+        };
+      case 4:
+        return {
+          title: "Generate Documents",
+          description: "Create professional PDF and Word documents",
+          target: "generate-section"
+        };
+      default:
+        return null;
+    }
+  };
+
+  const quickActions = [
+    {
+      icon: <Plus className="w-4 h-4" />,
+      label: "New Sheet",
+      action: () => {
+        setActiveTab('create');
+        setShowQuickActionMenu(false);
+      }
+    },
+    {
+      icon: <Search className="w-4 h-4" />,
+      label: "Search Students",
+      action: () => {
+        showHelpBubble('student-search', 'Use our smart search to find employees and external students');
+        setShowQuickActionMenu(false);
+      }
+    },
+    {
+      icon: <BarChart3 className="w-4 h-4" />,
+      label: "Generate Report",
+      action: () => {
+        setShowReportingDialog(true);
+        setShowQuickActionMenu(false);
+      }
+    },
+    {
+      icon: <Calendar className="w-4 h-4" />,
+      label: "Export Calendar",
+      action: () => {
+        if (savedSheets.length > 0) {
+          exportToCalendar(savedSheets[0]);
+        }
+        setShowQuickActionMenu(false);
+      }
+    },
+    {
+      icon: <Settings className="w-4 h-4" />,
+      label: "Settings",
+      action: () => {
+        setShowAdvancedOptions(true);
+        setShowQuickActionMenu(false);
+      }
+    }
+  ];
+
 
 
   // Enhanced form generation with PDF/Word export and signature workflow
@@ -1571,6 +1730,15 @@ END:VCALENDAR`;
           </p>
         </div>
         <div className="flex gap-2">
+          {/* Gamification Score Display */}
+          <div className="flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-blue-50 to-purple-50 rounded-full border">
+            <Star className="w-4 h-4 text-yellow-500" />
+            <span className="text-sm font-medium">{gamificationScore} pts</span>
+            <Badge variant="secondary" className="text-xs">
+              {achievements.length} achievements
+            </Badge>
+          </div>
+          
           {/* Advanced Tools */}
           <Button
             variant="outline"
@@ -1580,7 +1748,7 @@ END:VCALENDAR`;
           >
             <Bell className="w-4 h-4" />
             {notifications.filter(n => !n.read).length > 0 && (
-              <Badge className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+              <Badge className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center animate-pulse">
                 {notifications.filter(n => !n.read).length}
               </Badge>
             )}
@@ -1593,6 +1761,16 @@ END:VCALENDAR`;
           >
             <BarChart3 className="w-4 h-4" />
             Reports
+          </Button>
+          
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={startOnboarding}
+            className="text-green-600 hover:text-green-700"
+          >
+            <GraduationCap className="w-4 h-4" />
+            Tutorial
           </Button>
           
           <Button
@@ -2397,15 +2575,44 @@ END:VCALENDAR`;
                           <Label htmlFor={`upload-${sheet.id}`} className="text-sm font-medium">
                             Upload Signed Document
                           </Label>
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-2 relative">
                             <Input
                               id={`upload-${sheet.id}`}
                               type="file"
                               accept=".pdf,.doc,.docx,.png,.jpg,.jpeg"
-                              onChange={(e) => handleSignedDocumentUpload(e, sheet.id)}
+                              onChange={(e) => {
+                                handleSignedDocumentUpload(e, sheet.id);
+                                if (e.target.files?.[0]) {
+                                  simulateUploadProgress(`upload-${sheet.id}`);
+                                }
+                              }}
                               className="text-sm"
                             />
-                            <Button size="sm" variant="outline" onClick={() => document.getElementById(`upload-${sheet.id}`)?.click()}>
+                            
+                            {/* Animated Progress Indicator */}
+                            {uploadProgress[`upload-${sheet.id}`] && (
+                              <div className="absolute inset-0 bg-blue-50/90 rounded-md flex items-center justify-center backdrop-blur-sm">
+                                <div className="flex items-center gap-2">
+                                  <div className="w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                                  <span className="text-sm font-medium text-blue-600">
+                                    {Math.round(uploadProgress[`upload-${sheet.id}`])}%
+                                  </span>
+                                  <div className="w-20 bg-gray-200 rounded-full h-1">
+                                    <div 
+                                      className="bg-blue-600 h-1 rounded-full transition-all duration-300"
+                                      style={{ width: `${uploadProgress[`upload-${sheet.id}`]}%` }}
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                            
+                            <Button 
+                              size="sm" 
+                              variant="outline" 
+                              onClick={() => document.getElementById(`upload-${sheet.id}`)?.click()}
+                              disabled={uploadProgress[`upload-${sheet.id}`] > 0}
+                            >
                               <Upload className="w-4 h-4" />
                             </Button>
                           </div>
@@ -2713,6 +2920,142 @@ END:VCALENDAR`;
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Quick Action Floating Menu */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <div className="relative">
+          {/* Quick Action Menu Items */}
+          {showQuickActionMenu && (
+            <div className="absolute bottom-16 right-0 bg-white rounded-lg shadow-lg border p-2 min-w-[160px] animate-in slide-in-from-bottom duration-300">
+              <div className="space-y-1">
+                {quickActions.map((action, index) => (
+                  <Button
+                    key={index}
+                    variant="ghost"
+                    size="sm"
+                    className="w-full justify-start gap-2 hover:bg-gray-100 transition-colors"
+                    onClick={action.action}
+                  >
+                    {action.icon}
+                    {action.label}
+                  </Button>
+                ))}
+              </div>
+            </div>
+          )}
+          
+          {/* Main Quick Action Button */}
+          <Button
+            className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+            onClick={() => setShowQuickActionMenu(!showQuickActionMenu)}
+          >
+            <Plus className={`w-6 h-6 text-white transition-transform duration-300 ${showQuickActionMenu ? 'rotate-45' : ''}`} />
+          </Button>
+        </div>
+      </div>
+
+      {/* Gamified Onboarding Overlay */}
+      {showOnboarding && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center">
+          <div className="bg-white rounded-xl p-8 max-w-md mx-4 shadow-2xl">
+            <div className="text-center space-y-4">
+              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto">
+                <GraduationCap className="w-8 h-8 text-white" />
+              </div>
+              
+              <div className="space-y-2">
+                <h3 className="text-xl font-bold text-gray-900">
+                  {getOnboardingStepContent()?.title}
+                </h3>
+                <p className="text-gray-600">
+                  {getOnboardingStepContent()?.description}
+                </p>
+              </div>
+              
+              {/* Progress Bar */}
+              <div className="w-full bg-gray-200 rounded-full h-2">
+                <div 
+                  className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all duration-500"
+                  style={{ width: `${((onboardingStep + 1) / 5) * 100}%` }}
+                />
+              </div>
+              
+              <div className="flex justify-between items-center pt-4">
+                <span className="text-sm text-gray-500">
+                  Step {onboardingStep + 1} of 5
+                </span>
+                <div className="space-x-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setShowOnboarding(false)}
+                  >
+                    Skip
+                  </Button>
+                  <Button
+                    size="sm"
+                    onClick={nextOnboardingStep}
+                    className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
+                  >
+                    {onboardingStep === 4 ? 'Complete' : 'Next'}
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Contextual Help Bubbles */}
+      {showHelpBubbles && helpBubbleTarget && (
+        <div className="fixed inset-0 pointer-events-none z-40">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg animate-bounce">
+            <div className="flex items-center gap-2">
+              <Info className="w-4 h-4" />
+              <span className="text-sm">Use our smart search to find employees and external students</span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Interactive Document Preview Tooltip */}
+      {showDocumentPreview && previewDocument && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-xl max-w-2xl w-full max-h-[80vh] overflow-hidden shadow-2xl">
+            <div className="p-6 border-b flex items-center justify-between">
+              <h3 className="text-lg font-semibold">Document Preview</h3>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setShowDocumentPreview(false)}
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+            
+            <div className="p-6 space-y-4">
+              <div className="bg-gray-50 rounded-lg p-4">
+                <h4 className="font-medium mb-2">{previewDocument}</h4>
+                <div className="text-sm text-gray-600 space-y-2">
+                  <p>📄 Professional OSHA-compliant training sign-in sheet</p>
+                  <p>✅ Includes instructor credentials and course details</p>
+                  <p>👥 Attendee roster with signature fields</p>
+                  <p>🔒 Secure document generation with SafetySync.AI branding</p>
+                </div>
+              </div>
+              
+              <div className="bg-blue-50 rounded-lg p-4">
+                <h5 className="font-medium text-blue-800 mb-2">Available Formats:</h5>
+                <div className="flex gap-2">
+                  <Badge variant="outline" className="text-blue-600">PDF</Badge>
+                  <Badge variant="outline" className="text-blue-600">Word Document</Badge>
+                  <Badge variant="outline" className="text-blue-600">Excel Spreadsheet</Badge>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
