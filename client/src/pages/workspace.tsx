@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { Link, useLocation } from "wouter";
 import { useAuth } from "@/hooks/useAuth";
+import { motion, AnimatePresence } from "framer-motion";
 import { useDynamicAchievements } from "@/hooks/useDynamicAchievements";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -239,6 +240,109 @@ function LoginForm() {
     </div>
   );
 }
+
+// Animation variants for sidebar transitions
+const sidebarVariants = {
+  open: {
+    width: "16rem",
+    transition: {
+      duration: 0.3,
+      ease: "easeInOut"
+    }
+  },
+  closed: {
+    width: "4rem",
+    transition: {
+      duration: 0.3,
+      ease: "easeInOut"
+    }
+  }
+};
+
+const navButtonVariants = {
+  idle: {
+    scale: 1,
+    backgroundColor: "rgba(55, 65, 81, 0)",
+    transition: {
+      duration: 0.2,
+      ease: "easeInOut"
+    }
+  },
+  hover: {
+    scale: 1.02,
+    backgroundColor: "rgba(55, 65, 81, 0.5)",
+    transition: {
+      duration: 0.15,
+      ease: "easeInOut"
+    }
+  },
+  active: {
+    scale: 1,
+    backgroundColor: "rgba(55, 65, 81, 0.3)",
+    borderBottom: "2px solid #60A5FA",
+    transition: {
+      duration: 0.2,
+      ease: "easeInOut"
+    }
+  }
+};
+
+const chevronVariants = {
+  closed: {
+    rotate: 0,
+    transition: {
+      duration: 0.2,
+      ease: "easeInOut"
+    }
+  },
+  open: {
+    rotate: 90,
+    transition: {
+      duration: 0.2,
+      ease: "easeInOut"
+    }
+  }
+};
+
+const expandedSectionVariants = {
+  closed: {
+    opacity: 0,
+    height: 0,
+    transition: {
+      duration: 0.2,
+      ease: "easeInOut"
+    }
+  },
+  open: {
+    opacity: 1,
+    height: "auto",
+    transition: {
+      duration: 0.3,
+      ease: "easeInOut",
+      delayChildren: 0.1,
+      staggerChildren: 0.05
+    }
+  }
+};
+
+const subItemVariants = {
+  closed: {
+    opacity: 0,
+    x: -10,
+    transition: {
+      duration: 0.15,
+      ease: "easeInOut"
+    }
+  },
+  open: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.2,
+      ease: "easeInOut"
+    }
+  }
+};
 
 export default function WorkspacePage() {
   const { user, isLoading: authLoading, isAuthenticated, logout } = useAuth();
@@ -1783,7 +1887,12 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 flex flex-col md:flex-row">
       {/* Sidebar */}
-      <div className={`${sidebarOpen ? 'w-full md:w-64' : 'w-full md:w-16'} ${sidebarOpen ? 'h-auto' : 'h-16'} md:h-auto transition-all duration-300 bg-black/20 backdrop-blur-sm border-r border-gray-800 flex flex-col md:border-r md:border-b-0 border-b`}>
+      <motion.div 
+        className={`${sidebarOpen ? 'w-full md:w-64' : 'w-full md:w-16'} ${sidebarOpen ? 'h-auto' : 'h-16'} md:h-auto bg-black/20 backdrop-blur-sm border-r border-gray-800 flex flex-col md:border-r md:border-b-0 border-b`}
+        variants={sidebarVariants}
+        animate={sidebarOpen ? "open" : "closed"}
+        initial={sidebarOpen ? "open" : "closed"}
+      >
         {/* Header */}
         <div className="p-4 border-b border-gray-800">
           <div className="flex items-center justify-between">
@@ -1814,76 +1923,109 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         {/* Navigation */}
         <nav className={`${sidebarOpen ? 'block' : 'hidden'} md:block flex-1 p-4 space-y-2`}>
           {/* Dashboard - Standalone */}
-          <Button
-            variant="ghost"
-            className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
-              activeTab === "unified-dashboard" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
-            }`}
-            onClick={() => handleTabSwitch("unified-dashboard")}
+          <motion.div
+            variants={navButtonVariants}
+            initial="idle"
+            whileHover="hover"
+            animate={activeTab === "unified-dashboard" ? "active" : "idle"}
           >
-            <Home className="w-5 h-5 mr-3" />
-            {sidebarOpen && "Dashboard"}
-          </Button>
+            <Button
+              variant="ghost"
+              className={`w-full justify-start text-gray-300 hover:text-white ${
+                activeTab === "unified-dashboard" ? "text-white" : ""
+              }`}
+              onClick={() => handleTabSwitch("unified-dashboard")}
+            >
+              <Home className="w-5 h-5 mr-3" />
+              {sidebarOpen && "Dashboard"}
+            </Button>
+          </motion.div>
 
           {/* Compliance & Reporting Section */}
           <div className="space-y-1">
-            <Button
-              variant="ghost"
-              className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50"
-              onClick={() => toggleSection('compliance-reporting')}
+            <motion.div
+              variants={navButtonVariants}
+              initial="idle"
+              whileHover="hover"
             >
-              <FileText className="w-5 h-5 mr-3" />
-              {sidebarOpen && "Compliance & Reporting"}
-              {sidebarOpen && (
-                expandedSections['compliance-reporting'] ? 
-                  <ChevronDown className="w-4 h-4 ml-auto" /> : 
-                  <ChevronRight className="w-4 h-4 ml-auto" />
+              <Button
+                variant="ghost"
+                className="w-full justify-start text-gray-300 hover:text-white"
+                onClick={() => toggleSection('compliance-reporting')}
+              >
+                <FileText className="w-5 h-5 mr-3" />
+                {sidebarOpen && "Compliance & Reporting"}
+                {sidebarOpen && (
+                  <motion.div
+                    variants={chevronVariants}
+                    animate={expandedSections['compliance-reporting'] ? "open" : "closed"}
+                    className="ml-auto"
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </motion.div>
+                )}
+              </Button>
+            </motion.div>
+            <AnimatePresence>
+              {expandedSections['compliance-reporting'] && (
+                <motion.div 
+                  className="ml-6 space-y-1"
+                  variants={expandedSectionVariants}
+                  initial="closed"
+                  animate="open"
+                  exit="closed"
+                >
+                  <motion.div variants={subItemVariants}>
+                    <Button
+                      variant="ghost"
+                      className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+                        activeTab === "analytics-reports" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                      }`}
+                      onClick={() => handleTabSwitch("analytics-reports")}
+                    >
+                      <BarChart3 className="w-4 h-4 mr-2" />
+                      {sidebarOpen && "Analytics & Reports"}
+                    </Button>
+                  </motion.div>
+                  <motion.div variants={subItemVariants}>
+                    <Button
+                      variant="ghost"
+                      className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+                        activeTab === "reports" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                      }`}
+                      onClick={() => handleTabSwitch("reports")}
+                    >
+                      <FileText className="w-4 h-4 mr-2" />
+                      {sidebarOpen && "Compliance Reports"}
+                    </Button>
+                  </motion.div>
+                  <motion.div variants={subItemVariants}>
+                    <Button
+                      variant="ghost"
+                      className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+                        activeTab === "document-manager" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                      }`}
+                      onClick={() => handleTabSwitch("document-manager")}
+                    >
+                      <Database className="w-4 h-4 mr-2" />
+                      {sidebarOpen && "Document Management"}
+                    </Button>
+                  </motion.div>
+                  <motion.div variants={subItemVariants}>
+                    <Button
+                      variant="ghost"
+                      className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+                        activeTab === "trends" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                      }`}
+                      onClick={() => handleTabSwitch("trends")}
+                    >
+                      <TrendingUp className="w-4 h-4 mr-2" />
+                      {sidebarOpen && "Safety Trends"}
+                    </Button>
+                  </motion.div>
+                </motion.div>
               )}
-            </Button>
-            {expandedSections['compliance-reporting'] && (
-              <div className="ml-6 space-y-1">
-                <Button
-                  variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
-                    activeTab === "analytics-reports" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
-                  }`}
-                  onClick={() => handleTabSwitch("analytics-reports")}
-                >
-                  <BarChart3 className="w-4 h-4 mr-2" />
-                  {sidebarOpen && "Analytics & Reports"}
-                </Button>
-                <Button
-                  variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
-                    activeTab === "reports" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
-                  }`}
-                  onClick={() => handleTabSwitch("reports")}
-                >
-                  <FileText className="w-4 h-4 mr-2" />
-                  {sidebarOpen && "Compliance Reports"}
-                </Button>
-                <Button
-                  variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
-                    activeTab === "document-manager" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
-                  }`}
-                  onClick={() => handleTabSwitch("document-manager")}
-                >
-                  <Database className="w-4 h-4 mr-2" />
-                  {sidebarOpen && "Document Management"}
-                </Button>
-                <Button
-                  variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
-                    activeTab === "trends" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
-                  }`}
-                  onClick={() => handleTabSwitch("trends")}
-                >
-                  <TrendingUp className="w-4 h-4 mr-2" />
-                  {sidebarOpen && "Safety Trends"}
-                </Button>
-              </div>
-            )}
+            </AnimatePresence>
           </div>
           {/* Employee Management Section */}
           <div className="space-y-1">
@@ -2114,7 +2256,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             {sidebarOpen && "Sign Out"}
           </Button>
         </div>
-      </div>
+      </motion.div>
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-h-0">
