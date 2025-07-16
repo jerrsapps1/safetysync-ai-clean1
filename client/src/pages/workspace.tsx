@@ -32,6 +32,7 @@ import SubscriptionBilling from "@/components/billing/SubscriptionBilling";
 import AnalyticsReports from "@/components/reports/AnalyticsReports";
 import AchievementBadges from "@/components/achievements/AchievementBadges";
 import DynamicAchievementWidget from "@/components/achievements/DynamicAchievementWidget";
+import { AchievementNotificationManager } from "@/components/achievements/DynamicAchievementNotification";
 
 import { AIPatternSkeleton } from "@/components/ui/ai-skeleton";
 import { SmoothLoading } from "@/components/ui/smooth-loading";
@@ -364,6 +365,13 @@ export default function WorkspacePage() {
   
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const { toast } = useToast();
+  
+  // Track initial login milestone for achievements
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      trackMilestone('login', { timestamp: new Date() });
+    }
+  }, [isAuthenticated, user, trackMilestone]);
   const [workspaceSettings, setWorkspaceSettings] = useState<WorkspaceSettings>({
     companyName: "SafetySync.AI",
     companyLogo: "",
@@ -3400,6 +3408,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         </DialogContent>
       </Dialog>
 
+      {/* Achievement Notification System */}
+      <AchievementNotificationManager />
 
     </div>
   );
