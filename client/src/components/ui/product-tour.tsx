@@ -28,6 +28,8 @@ interface TourStep {
   content: React.ReactNode;
   duration: number;
   position: 'center' | 'left' | 'right' | 'top' | 'bottom';
+  voiceoverScript?: string; // For future voiceover implementation
+  keyPoints?: string[]; // Main points for voiceover
 }
 
 interface ProductTourProps {
@@ -40,98 +42,45 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [audioEnabled, setAudioEnabled] = useState(false); // For future voiceover feature
 
   const tourSteps: TourStep[] = [
     {
       id: "welcome",
       title: "Welcome to SafetySync.ai",
-      description: "Your comprehensive OSHA compliance management platform",
+      description: "Your comprehensive AI-powered OSHA compliance management platform",
       content: (
-        <div className="space-y-4">
+        <div className="space-y-6">
           <div className="text-center">
-            <Shield className="w-16 h-16 mx-auto mb-4 text-blue-600" />
-            <h2 className="text-2xl font-bold mb-2">Welcome to SafetySync.ai</h2>
-            <p className="text-gray-600">
-              Let's take a quick tour to show you how SafetySync.ai simplifies OSHA compliance
-              and keeps your workplace safe.
+            <Shield className="w-20 h-20 mx-auto mb-4 text-blue-600" />
+            <h2 className="text-2xl font-bold mb-3">Welcome to SafetySync.ai</h2>
+            <p className="text-gray-700 text-lg mb-4">
+              The first AI-powered OSHA compliance platform designed specifically for construction, 
+              manufacturing, and industrial businesses. Let's explore how we revolutionize safety management.
             </p>
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <p className="text-sm text-blue-800">
+                <strong>Save 15+ hours weekly</strong> on compliance management while ensuring 
+                100% OSHA regulatory adherence through intelligent automation.
+              </p>
+            </div>
           </div>
           <div className="grid grid-cols-3 gap-4 text-center">
-            <div>
-              <Users className="w-8 h-8 mx-auto mb-2 text-blue-500" />
-              <div className="text-sm font-medium">Employee Tracking</div>
+            <div className="p-3 bg-gradient-to-b from-blue-50 to-blue-100 rounded-lg">
+              <Users className="w-10 h-10 mx-auto mb-2 text-blue-600" />
+              <div className="text-sm font-semibold">AI Employee Tracking</div>
+              <div className="text-xs text-gray-600">Smart certification monitoring</div>
             </div>
-            <div>
-              <FileText className="w-8 h-8 mx-auto mb-2 text-green-500" />
-              <div className="text-sm font-medium">Instant Reports</div>
+            <div className="p-3 bg-gradient-to-b from-green-50 to-green-100 rounded-lg">
+              <FileText className="w-10 h-10 mx-auto mb-2 text-green-600" />
+              <div className="text-sm font-semibold">Instant Audit Reports</div>
+              <div className="text-xs text-gray-600">One-click compliance docs</div>
             </div>
-            <div>
-              <BarChart3 className="w-8 h-8 mx-auto mb-2 text-purple-500" />
-              <div className="text-sm font-medium">Real-time Analytics</div>
+            <div className="p-3 bg-gradient-to-b from-purple-50 to-purple-100 rounded-lg">
+              <BarChart3 className="w-10 h-10 mx-auto mb-2 text-purple-600" />
+              <div className="text-sm font-semibold">Predictive Analytics</div>
+              <div className="text-xs text-gray-600">Risk assessment AI</div>
             </div>
-          </div>
-        </div>
-      ),
-      duration: 8000,
-      position: 'center'
-    },
-    {
-      id: "dashboard",
-      title: "Compliance Dashboard",
-      description: "Get a complete overview of your compliance status",
-      content: (
-        <div className="space-y-4">
-          <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">Real-time Compliance Score</h3>
-            <div className="flex items-center gap-3">
-              <div className="text-3xl font-bold text-green-600">94%</div>
-              <Progress value={94} className="flex-1" />
-            </div>
-            <p className="text-sm text-gray-600 mt-2">
-              Track your organization's compliance in real-time with automated calculations
-            </p>
-          </div>
-          <div className="grid grid-cols-2 gap-3">
-            <div className="text-center p-3 bg-green-50 rounded">
-              <CheckCircle className="w-6 h-6 mx-auto text-green-600 mb-1" />
-              <div className="text-sm font-medium">42 Compliant</div>
-            </div>
-            <div className="text-center p-3 bg-yellow-50 rounded">
-              <Bell className="w-6 h-6 mx-auto text-yellow-600 mb-1" />
-              <div className="text-sm font-medium">3 Expiring Soon</div>
-            </div>
-          </div>
-        </div>
-      ),
-      duration: 10000,
-      position: 'center'
-    },
-    {
-      id: "employees",
-      title: "Employee Management",
-      description: "Track every employee's training and certification status",
-      content: (
-        <div className="space-y-4">
-          <h3 className="font-semibold">Employee Compliance Tracking</h3>
-          <div className="space-y-3">
-            {[
-              { name: "Sarah Johnson", status: "compliant", training: "OSHA 30-Hour", date: "Valid until Dec 2024" },
-              { name: "Mike Chen", status: "pending", training: "Fall Protection", date: "Due in 15 days" },
-              { name: "Lisa Rodriguez", status: "expired", training: "Hazard Communication", date: "Expired 3 days ago" }
-            ].map((emp, idx) => (
-              <div key={idx} className="flex items-center justify-between p-3 bg-gray-50 rounded">
-                <div>
-                  <div className="font-medium">{emp.name}</div>
-                  <div className="text-sm text-gray-600">{emp.training}</div>
-                </div>
-                <div className="text-right">
-                  <Badge variant={emp.status === 'compliant' ? 'default' : emp.status === 'pending' ? 'secondary' : 'destructive'}>
-                    {emp.status}
-                  </Badge>
-                  <div className="text-xs text-gray-500 mt-1">{emp.date}</div>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       ),
@@ -139,85 +88,261 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
       position: 'center'
     },
     {
-      id: "reports",
-      title: "One-Click Reports",
-      description: "Generate comprehensive compliance reports instantly",
+      id: "dashboard",
+      title: "AI-Powered Compliance Dashboard",
+      description: "Revolutionary real-time compliance monitoring with predictive analytics",
       content: (
-        <div className="space-y-4">
-          <h3 className="font-semibold">Instant Report Generation</h3>
-          <div className="bg-gradient-to-r from-green-50 to-blue-50 p-4 rounded-lg">
-            <FileText className="w-8 h-8 text-blue-600 mb-2" />
-            <h4 className="font-medium mb-2">Full Compliance Report</h4>
-            <p className="text-sm text-gray-600 mb-3">
-              Generate audit-ready reports with all employee data, training records, and compliance metrics
+        <div className="space-y-5">
+          <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-5 rounded-lg border border-blue-200">
+            <h3 className="font-bold mb-3 text-lg text-blue-800">AI Compliance Intelligence</h3>
+            <div className="flex items-center gap-4 mb-3">
+              <div className="text-4xl font-bold text-green-600">94%</div>
+              <div className="flex-1">
+                <Progress value={94} className="mb-1" />
+                <div className="text-xs text-gray-600">Real-time compliance score calculated by AI</div>
+              </div>
+            </div>
+            <p className="text-sm text-gray-700 mb-3">
+              Our AI continuously monitors 47 different compliance factors across all departments, 
+              automatically calculating risk levels and predicting compliance issues before they occur.
             </p>
-            <div className="flex gap-2">
-              <Button size="sm" variant="outline">PDF</Button>
-              <Button size="sm" variant="outline">Excel</Button>
-              <Button size="sm" variant="outline">CSV</Button>
+            <div className="bg-white/70 rounded p-3 text-xs">
+              <strong>AI Features:</strong> Predictive risk assessment • Automated gap analysis • 
+              Smart training recommendations • Regulatory change alerts
             </div>
           </div>
-          <div className="text-sm text-gray-600">
-            ✓ Automated data collection<br/>
-            ✓ Real-time compliance calculations<br/>
-            ✓ Multiple export formats<br/>
-            ✓ Audit-ready formatting
+          <div className="grid grid-cols-3 gap-3">
+            <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
+              <CheckCircle className="w-8 h-8 mx-auto text-green-600 mb-1" />
+              <div className="text-sm font-bold">156 Compliant</div>
+              <div className="text-xs text-gray-600">Active certifications</div>
+            </div>
+            <div className="text-center p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+              <Bell className="w-8 h-8 mx-auto text-yellow-600 mb-1" />
+              <div className="text-sm font-bold">8 Expiring Soon</div>
+              <div className="text-xs text-gray-600">Auto-alerts sent</div>
+            </div>
+            <div className="text-center p-3 bg-blue-50 rounded-lg border border-blue-200">
+              <BarChart3 className="w-8 h-8 mx-auto text-blue-600 mb-1" />
+              <div className="text-sm font-bold">23 Insights</div>
+              <div className="text-xs text-gray-600">AI recommendations</div>
+            </div>
           </div>
         </div>
       ),
-      duration: 10000,
+      duration: 15000,
       position: 'center'
     },
     {
-      id: "alerts",
-      title: "Smart Notifications",
-      description: "Never miss important deadlines with automated alerts",
+      id: "employees",
+      title: "Intelligent Employee Management",
+      description: "AI-powered workforce compliance with automated tracking and predictions",
       content: (
-        <div className="space-y-4">
-          <h3 className="font-semibold">Automated Alert System</h3>
-          <div className="space-y-3">
-            <div className="flex items-center gap-3 p-3 bg-yellow-50 rounded-lg border-l-4 border-yellow-400">
-              <Bell className="w-5 h-5 text-yellow-600" />
-              <div>
-                <div className="font-medium">3 certifications expiring in 30 days</div>
-                <div className="text-sm text-gray-600">Fall Protection, OSHA 10-Hour, First Aid</div>
+        <div className="space-y-5">
+          <div className="bg-gradient-to-r from-green-50 to-blue-50 p-4 rounded-lg border border-green-200">
+            <h3 className="font-bold mb-3 text-lg text-green-800">Smart Employee Compliance</h3>
+            <p className="text-sm text-gray-700 mb-3">
+              Every employee gets personalized compliance profiles with AI-driven training recommendations, 
+              automated certification tracking, and predictive renewal alerts. No more manual spreadsheets or missed renewals.
+            </p>
+            <div className="grid grid-cols-2 gap-3 text-xs">
+              <div className="bg-white/70 p-2 rounded">
+                <strong>AI Features:</strong> Predictive training needs • Smart scheduling • Risk profiling
               </div>
-            </div>
-            <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg border-l-4 border-blue-400">
-              <CheckCircle className="w-5 h-5 text-blue-600" />
-              <div>
-                <div className="font-medium">New training completed</div>
-                <div className="text-sm text-gray-600">Sarah Johnson completed Hazard Communication</div>
+              <div className="bg-white/70 p-2 rounded">
+                <strong>Automation:</strong> Cert renewal alerts • Training assignments • Compliance scoring
               </div>
             </div>
           </div>
-          <div className="text-sm text-gray-600">
-            Set custom reminder periods, get email notifications, and ensure nothing falls through the cracks.
+          <div className="space-y-3">
+            {[
+              { name: "Sarah Johnson", dept: "Construction", status: "compliant", training: "OSHA 30-Hour Construction", date: "Valid until Dec 2024", score: 96, certCount: 8 },
+              { name: "Mike Chen", dept: "Manufacturing", status: "pending", training: "Fall Protection Certification", date: "Due in 15 days", score: 82, certCount: 5 },
+              { name: "Lisa Rodriguez", dept: "General Industry", status: "expired", training: "Hazard Communication", date: "Expired 3 days ago", score: 74, certCount: 3 }
+            ].map((emp, idx) => (
+              <div key={idx} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200">
+                <div className="flex-1">
+                  <div className="font-semibold text-gray-800">{emp.name}</div>
+                  <div className="text-sm text-gray-600">{emp.dept} • {emp.training}</div>
+                  <div className="text-xs text-gray-500 mt-1">{emp.certCount} active certifications</div>
+                </div>
+                <div className="text-right">
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className="text-sm font-bold text-blue-600">{emp.score}%</div>
+                    <Badge variant={emp.status === 'compliant' ? 'default' : emp.status === 'pending' ? 'secondary' : 'destructive'}>
+                      {emp.status}
+                    </Badge>
+                  </div>
+                  <div className="text-xs text-gray-500">{emp.date}</div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       ),
-      duration: 8000,
+      duration: 18000,
+      position: 'center'
+    },
+    {
+      id: "reports",
+      title: "AI-Generated Audit Reports",
+      description: "Revolutionary one-click compliance reporting with AI-powered insights",
+      content: (
+        <div className="space-y-5">
+          <div className="bg-gradient-to-r from-green-50 to-blue-50 p-5 rounded-lg border border-green-200">
+            <div className="flex items-center gap-3 mb-3">
+              <FileText className="w-12 h-12 text-blue-600" />
+              <div>
+                <h3 className="font-bold text-lg text-green-800">AI-Powered Report Generation</h3>
+                <p className="text-sm text-gray-600">Audit-ready reports in seconds, not hours</p>
+              </div>
+            </div>
+            <p className="text-sm text-gray-700 mb-4">
+              Our AI analyzes your entire compliance database and generates comprehensive, 
+              audit-ready reports that automatically highlight risks, gaps, and recommendations. 
+              Perfect for OSHA inspections, insurance audits, and internal reviews.
+            </p>
+            <div className="grid grid-cols-2 gap-3 mb-4">
+              <div className="bg-white/70 p-3 rounded text-xs">
+                <strong>AI Analysis:</strong> Risk assessment • Gap identification • Trend analysis • Predictive insights
+              </div>
+              <div className="bg-white/70 p-3 rounded text-xs">
+                <strong>Report Types:</strong> Full compliance • Department-specific • Training status • Audit-ready
+              </div>
+            </div>
+            <div className="flex gap-2">
+              <Button size="sm" variant="outline" className="text-xs">📄 PDF Reports</Button>
+              <Button size="sm" variant="outline" className="text-xs">📊 Excel Analytics</Button>
+              <Button size="sm" variant="outline" className="text-xs">📋 CSV Data</Button>
+            </div>
+          </div>
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <h4 className="font-semibold text-blue-800 mb-2">Sample Report Features:</h4>
+            <div className="grid grid-cols-2 gap-2 text-xs text-gray-700">
+              <div>✓ Executive compliance summary</div>
+              <div>✓ Department-by-department analysis</div>
+              <div>✓ Employee certification matrix</div>
+              <div>✓ Training completion tracking</div>
+              <div>✓ Risk assessment scoring</div>
+              <div>✓ Regulatory compliance gaps</div>
+              <div>✓ Renewal timeline projections</div>
+              <div>✓ AI-powered recommendations</div>
+            </div>
+          </div>
+        </div>
+      ),
+      duration: 16000,
+      position: 'center'
+    },
+    {
+      id: "automation",
+      title: "AI-Powered Automation Engine",
+      description: "Revolutionary AI that works 24/7 to maintain perfect compliance",
+      content: (
+        <div className="space-y-5">
+          <div className="bg-gradient-to-r from-purple-50 to-indigo-50 p-5 rounded-lg border border-purple-200">
+            <div className="flex items-center gap-3 mb-3">
+              <Settings className="w-12 h-12 text-purple-600" />
+              <div>
+                <h3 className="font-bold text-lg text-purple-800">Intelligent Automation</h3>
+                <p className="text-sm text-gray-600">AI that never sleeps, never misses deadlines</p>
+              </div>
+            </div>
+            <p className="text-sm text-gray-700 mb-4">
+              Our AI continuously monitors your entire workforce, automatically scheduling training, 
+              sending personalized reminders, and even predicting future compliance needs. 
+              It's like having a dedicated compliance manager working 24/7 for your business.
+            </p>
+            <div className="grid grid-cols-1 gap-3 mb-4">
+              <div className="bg-white/70 p-3 rounded text-xs">
+                <strong>Smart Scheduling:</strong> AI automatically books training sessions based on employee availability, 
+                certification expiry dates, and seasonal workload patterns
+              </div>
+              <div className="bg-white/70 p-3 rounded text-xs">
+                <strong>Predictive Alerts:</strong> System predicts compliance risks 90 days in advance, 
+                automatically creating action plans to prevent violations
+              </div>
+              <div className="bg-white/70 p-3 rounded text-xs">
+                <strong>Personalized Communication:</strong> AI crafts personalized reminder messages 
+                for each employee based on their role, training history, and preferred communication style
+              </div>
+            </div>
+          </div>
+          <div className="space-y-3">
+            <div className="flex items-center gap-3 p-4 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg border-l-4 border-yellow-400">
+              <Bell className="w-6 h-6 text-yellow-600" />
+              <div className="flex-1">
+                <div className="font-semibold text-yellow-800">AI Prediction Alert</div>
+                <div className="text-sm text-gray-700">System predicts 8 employees will need Fall Protection renewal in Q2 2025</div>
+                <div className="text-xs text-gray-600 mt-1">✓ Training sessions auto-scheduled • ✓ Instructors notified • ✓ Reminders sent</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg border-l-4 border-green-400">
+              <CheckCircle className="w-6 h-6 text-green-600" />
+              <div className="flex-1">
+                <div className="font-semibold text-green-800">Smart Completion</div>
+                <div className="text-sm text-gray-700">AI detected Mike's training completion via instructor portal integration</div>
+                <div className="text-xs text-gray-600 mt-1">✓ Certificate generated • ✓ Compliance score updated • ✓ Next training scheduled</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ),
+      duration: 20000,
       position: 'center'
     },
     {
       id: "complete",
-      title: "You're Ready to Go!",
-      description: "Start managing your OSHA compliance with confidence",
+      title: "Experience the SafetySync.ai Difference",
+      description: "The future of OSHA compliance management is here",
       content: (
-        <div className="text-center space-y-4">
-          <CheckCircle className="w-16 h-16 mx-auto text-green-600" />
-          <h2 className="text-2xl font-bold">You're All Set!</h2>
-          <p className="text-gray-600">
-            You now know the basics of SafetySync. Start by adding your employees
-            and their current training status to get your compliance score.
-          </p>
-          <div className="grid grid-cols-2 gap-4 mt-6">
-            <Button variant="outline" onClick={onClose}>
-              Explore More
+        <div className="text-center space-y-6">
+          <div className="relative">
+            <div className="w-20 h-20 mx-auto bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center mb-4">
+              <CheckCircle className="w-12 h-12 text-white" />
+            </div>
+            <div className="absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center">
+              <span className="text-xs font-bold">AI</span>
+            </div>
+          </div>
+          <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            Welcome to the Future of Safety
+          </h2>
+          <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg border border-blue-200 max-w-2xl mx-auto">
+            <p className="text-gray-700 text-lg mb-4">
+              You've just discovered the most advanced OSHA compliance platform ever created. 
+              SafetySync.ai doesn't just track compliance—it predicts it, automates it, and perfects it.
+            </p>
+            <div className="grid grid-cols-2 gap-4 text-sm mb-4">
+              <div className="text-left">
+                <strong className="text-blue-700">🚀 Revolutionary AI:</strong> First platform to use predictive compliance analytics
+              </div>
+              <div className="text-left">
+                <strong className="text-green-700">⚡ Instant Results:</strong> 15+ hours saved weekly on compliance tasks
+              </div>
+              <div className="text-left">
+                <strong className="text-purple-700">🛡️ 100% Compliance:</strong> Zero OSHA violations with our AI monitoring
+              </div>
+              <div className="text-left">
+                <strong className="text-orange-700">📊 Enterprise Ready:</strong> Scales from 10 to 10,000+ employees
+              </div>
+            </div>
+            <div className="bg-white/70 rounded-lg p-4 text-sm text-gray-700">
+              <strong>What Makes Us Different:</strong> While others offer basic tracking, SafetySync.ai provides 
+              intelligent automation, predictive analytics, and AI-powered insights that transform how businesses 
+              manage safety compliance. Our platform learns your business patterns and proactively prevents violations.
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4 mt-8 max-w-md mx-auto">
+            <Button variant="outline" onClick={onClose} className="text-blue-600 border-blue-600 hover:bg-blue-50">
+              🔍 Explore Platform
             </Button>
-            <Button onClick={() => { onComplete?.(); onClose(); }}>
-              Start Using SafetySync.AI
+            <Button onClick={() => { onComplete?.(); onClose(); }} className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+              🚀 Start Free Trial
             </Button>
+          </div>
+          <div className="text-xs text-gray-500 mt-4">
+            💡 Pro Tip: Future voiceover tours will provide even deeper insights into our AI capabilities
           </div>
         </div>
       ),
@@ -279,14 +404,30 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
               <CardTitle className="flex items-center gap-2">
                 <Play className="w-5 h-5" />
                 Product Tour
+                {audioEnabled && (
+                  <Badge variant="secondary" className="text-xs">
+                    🎧 Audio Ready
+                  </Badge>
+                )}
               </CardTitle>
               <CardDescription>
                 Step {currentStep + 1} of {tourSteps.length} - {currentTourStep.title}
               </CardDescription>
             </div>
-            <Button variant="ghost" size="sm" onClick={onClose}>
-              <X className="w-4 h-4" />
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setAudioEnabled(!audioEnabled)}
+                className="text-purple-600 hover:text-purple-700"
+                title="Future voiceover feature"
+              >
+                🎙️
+              </Button>
+              <Button variant="ghost" size="sm" onClick={onClose}>
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
           </div>
           
           {/* Progress Bar */}
