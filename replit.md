@@ -130,6 +130,18 @@ User satisfied with comprehensive platform features including dashboard, admin p
 
 ## Recent Changes
 
+- **July 16, 2025** - Successfully Implemented Custom Training Class Functionality:
+  - **CUSTOM TRAINING OPTION**: Added "Custom Training Class" to training type dropdown for maximum instructor flexibility
+  - **DYNAMIC UI**: Custom training selection reveals blue-highlighted section with dedicated fields for custom class setup
+  - **CUSTOM CLASS NAME**: Instructors can now create any specialized training class name they need
+  - **OSHA/ANSI REFERENCE**: Added custom regulatory reference field supporting OSHA, ANSI, or any compliance standards
+  - **CLEAR SELECTION**: Added "Clear Selection" button with X icon to reset back to "Select Class" state
+  - **SMART FIELD MANAGEMENT**: Standard fields disabled for preset training types, enabled for custom training
+  - **VISUAL INDICATORS**: Custom section uses blue background with plus icon to clearly indicate custom setup mode
+  - **FORM INTEGRATION**: Custom fields automatically update main form data and persist through form generation
+  - **RESET FUNCTIONALITY**: Clear Selection button resets dropdown, clears custom fields, and hides custom section
+  - Instructor Sign-In Generator now supports unlimited training class customization while maintaining structured approach for standard OSHA classes
+
 - **July 16, 2025** - Enhanced Product Tour with Comprehensive Platform Depth and Voiceover Preparation:
   - **DETAILED CONTENT**: Expanded product tour from basic overview to comprehensive 5-step journey showcasing platform's unique AI capabilities
   - **WELCOME STEP**: Enhanced with detailed AI-powered OSHA compliance introduction, value proposition (15+ hours saved weekly), and industry-specific messaging
