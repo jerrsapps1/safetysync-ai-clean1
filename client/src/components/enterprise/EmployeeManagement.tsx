@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { EmployeeBadge } from '@/components/ui/employee-badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Progress } from '@/components/ui/progress';
@@ -46,7 +47,8 @@ import {
   CheckSquare,
   Square,
   Brain,
-  Shield
+  Shield,
+  ShieldCheck
 } from 'lucide-react';
 
 interface Employee {
@@ -99,6 +101,7 @@ export default function EmployeeManagement() {
   const [filterDepartment, setFilterDepartment] = useState('');
   const [filterStatus, setFilterStatus] = useState('');
   const [filterLocation, setFilterLocation] = useState('');
+  const [filterVerification, setFilterVerification] = useState('');
   const [sortBy, setSortBy] = useState('name');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [newEmployee, setNewEmployee] = useState({
@@ -317,7 +320,7 @@ export default function EmployeeManagement() {
   const filteredAndSortedEmployees = useMemo(() => {
     // Only show employees if there's a search term OR a filter selection
     const hasSearchTerm = searchTerm.trim() !== '';
-    const hasFilterSelection = filterDepartment !== '' || filterStatus !== '' || filterLocation !== '';
+    const hasFilterSelection = filterDepartment !== '' || filterStatus !== '' || filterLocation !== '' || filterVerification !== '';
     
     if (!hasSearchTerm && !hasFilterSelection) {
       return [];
@@ -337,8 +340,11 @@ export default function EmployeeManagement() {
       const matchesDepartment = filterDepartment === '' || employee.department === filterDepartment;
       const matchesStatus = filterStatus === '' || employee.status === filterStatus;
       const matchesLocation = filterLocation === '' || employee.location === filterLocation;
+      const matchesVerification = filterVerification === '' || 
+        (filterVerification === 'verified' && employee.employeeIdVerified) ||
+        (filterVerification === 'unverified' && !employee.employeeIdVerified);
       
-      return matchesSearch && matchesDepartment && matchesStatus && matchesLocation;
+      return matchesSearch && matchesDepartment && matchesStatus && matchesLocation && matchesVerification;
     });
     
     // Sort employees
@@ -387,6 +393,7 @@ export default function EmployeeManagement() {
     const activeEmployees = employees.filter(emp => emp.status === 'active').length;
     const inactiveEmployees = employees.filter(emp => emp.status === 'inactive').length;
     const terminatedEmployees = employees.filter(emp => emp.status === 'terminated').length;
+    const verifiedEmployees = employees.filter(emp => emp.employeeIdVerified).length;
     
     const departments = [...new Set(employees.map(emp => emp.department).filter(Boolean))];
     const divisions = [...new Set(employees.map(emp => emp.division).filter(Boolean))];
@@ -418,6 +425,7 @@ export default function EmployeeManagement() {
       activeEmployees,
       inactiveEmployees,
       terminatedEmployees,
+      verifiedEmployees,
       activeRate: totalEmployees > 0 ? Math.round((activeEmployees / totalEmployees) * 100) : 0,
       departments,
       divisions,
@@ -667,6 +675,19 @@ export default function EmployeeManagement() {
             </div>
           </CardContent>
         </Card>
+        
+        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-gray-400">ID Verification</p>
+                <p className="text-2xl font-bold text-cyan-400">{analytics.verifiedEmployees}</p>
+                <p className="text-xs text-gray-500">of {analytics.totalEmployees} verified</p>
+              </div>
+              <ShieldCheck className="w-8 h-8 text-cyan-400" />
+            </div>
+          </CardContent>
+        </Card>
       </div>
 
       {/* Bulk Actions Panel */}
@@ -750,7 +771,7 @@ export default function EmployeeManagement() {
               <p className="text-sm text-blue-300">
                 <strong>Instructions:</strong> To view employees, either:
                 <br />• Enter a search term in the box above, OR
-                <br />• Select a Department, Status, or Location from the filters below
+                <br />• Select a Department, Status, Location, or ID Verification from the filters below
                 <br />• Use multiple filters together to narrow your results
               </p>
             </div>
@@ -758,7 +779,7 @@ export default function EmployeeManagement() {
         </div>
 
         {/* Filters */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-400 mb-1">Department</label>
             <select 
@@ -798,6 +819,19 @@ export default function EmployeeManagement() {
               {analytics.locations.map(loc => (
                 <option key={loc} value={loc}>{loc}</option>
               ))}
+            </select>
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-400 mb-1">ID Verification</label>
+            <select 
+              value={filterVerification} 
+              onChange={(e) => setFilterVerification(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-600 bg-black/30 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+              <option value="">All Employees</option>
+              <option value="verified">✓ Verified IDs</option>
+              <option value="unverified">⚠ Unverified IDs</option>
             </select>
           </div>
           
@@ -864,11 +898,17 @@ export default function EmployeeManagement() {
                           className="rounded"
                         />
                         <div>
-                          <div className="font-medium text-white">
+                          <div className="font-medium text-white flex items-center gap-2">
                             {employee.firstName} {employee.lastName}
+                            <EmployeeBadge isVerified={employee.employeeIdVerified || false} variant="compact" />
                           </div>
                           <div className="text-sm text-gray-400">{employee.email}</div>
-                          <div className="text-xs text-gray-500">ID: {employee.employeeId}</div>
+                          <div className="text-xs text-gray-500 flex items-center gap-1">
+                            ID: {employee.employeeId}
+                            {employee.employeeIdVerified && (
+                              <span className="text-emerald-500 text-xs">✓ Verified</span>
+                            )}
+                          </div>
                         </div>
                       </div>
                     </td>
@@ -1133,13 +1173,16 @@ export default function EmployeeManagement() {
                   <div className="space-y-2">
                     <Label className="text-gray-300">Employee ID</Label>
                     <Input value={selectedEmployee.employeeId} readOnly className="bg-gray-800 border-gray-700 text-white" />
-                    <div className="flex items-center space-x-2">
-                      <Checkbox
-                        checked={selectedEmployee.employeeIdVerified || false}
-                        disabled
-                        className="border-gray-600 data-[state=checked]:bg-emerald-600 data-[state=checked]:border-emerald-600"
-                      />
-                      <Label className="text-gray-300 text-sm">Employee ID Verified</Label>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-2">
+                        <Checkbox
+                          checked={selectedEmployee.employeeIdVerified || false}
+                          disabled
+                          className="border-gray-600 data-[state=checked]:bg-emerald-600 data-[state=checked]:border-emerald-600"
+                        />
+                        <Label className="text-gray-300 text-sm">Employee ID Verified</Label>
+                      </div>
+                      <EmployeeBadge isVerified={selectedEmployee.employeeIdVerified || false} variant="detailed" />
                     </div>
                   </div>
                   <div className="space-y-2">
