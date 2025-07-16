@@ -20,7 +20,8 @@ import {
   Shield,
   Upload,
   CheckCircle,
-  UserPlus
+  UserPlus,
+  Eye
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
