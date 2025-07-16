@@ -394,6 +394,12 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
 
   const currentTourStep = tourSteps[currentStep];
   const isLastStep = currentStep === tourSteps.length - 1;
+  
+  // Calculate progress: show 100% when on final step, otherwise calculate normally
+  const calculateProgress = () => {
+    if (isLastStep) return 100;
+    return ((currentStep + (progress / 100)) / (tourSteps.length - 1)) * 100;
+  };
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
@@ -434,9 +440,9 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
           <div className="space-y-2">
             <div className="flex justify-between text-sm text-gray-500">
               <span>Progress</span>
-              <span>{Math.round(((currentStep + (progress / 100)) / tourSteps.length) * 100)}%</span>
+              <span>{Math.round(calculateProgress())}%</span>
             </div>
-            <Progress value={((currentStep + (progress / 100)) / tourSteps.length) * 100} />
+            <Progress value={calculateProgress()} />
           </div>
         </CardHeader>
 
