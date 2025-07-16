@@ -58,7 +58,8 @@ const TRAINING_TYPES = [
   { value: 'scaffolding', label: 'Scaffolding Safety', standard: '29 CFR 1926.451', retention: '3 years' },
   { value: 'electrical', label: 'Electrical Safety', standard: '29 CFR 1910.331', retention: '3 years' },
   { value: 'first-aid', label: 'First Aid/CPR', standard: 'OSHA/ANSI Standard', retention: '3 years' },
-  { value: 'fire-safety', label: 'Fire Safety & Prevention', standard: '29 CFR 1910.157', retention: '3 years' }
+  { value: 'fire-safety', label: 'Fire Safety & Prevention', standard: '29 CFR 1910.157', retention: '3 years' },
+  { value: 'custom', label: 'Custom Training Class', standard: 'Custom Standard', retention: '3 years' }
 ];
 
 export function InstructorSignInGenerator() {
@@ -78,6 +79,9 @@ export function InstructorSignInGenerator() {
   const [newEmployee, setNewEmployee] = useState({ name: '', employeeId: '', company: '' });
   const [savedSheets, setSavedSheets] = useState<SignInSheet[]>([]);
   const [activeTab, setActiveTab] = useState<'create' | 'saved'>('create');
+  const [isCustomTraining, setIsCustomTraining] = useState(false);
+  const [customClassName, setCustomClassName] = useState('');
+  const [customStandard, setCustomStandard] = useState('');
   const { toast } = useToast();
 
   const addEmployee = () => {
@@ -118,12 +122,26 @@ export function InstructorSignInGenerator() {
 
   const handleTrainingTypeChange = (value: string) => {
     const selectedType = TRAINING_TYPES.find(type => type.value === value);
-    setFormData(prev => ({
-      ...prev,
-      trainingType: value,
-      oshaStandard: selectedType?.standard || '',
-      classTitle: selectedType?.label || ''
-    }));
+    
+    if (value === 'custom') {
+      setIsCustomTraining(true);
+      setFormData(prev => ({
+        ...prev,
+        trainingType: value,
+        oshaStandard: '',
+        classTitle: ''
+      }));
+    } else {
+      setIsCustomTraining(false);
+      setCustomClassName('');
+      setCustomStandard('');
+      setFormData(prev => ({
+        ...prev,
+        trainingType: value,
+        oshaStandard: selectedType?.standard || '',
+        classTitle: selectedType?.label || ''
+      }));
+    }
   };
 
   const generateSignInSheet = () => {
@@ -427,26 +445,66 @@ export function InstructorSignInGenerator() {
                     </Select>
                   </div>
                   
-                  <div>
-                    <Label htmlFor="classTitle">Class Title *</Label>
-                    <Input
-                      id="classTitle"
-                      value={formData.classTitle}
-                      onChange={(e) => setFormData(prev => ({ ...prev, classTitle: e.target.value }))}
-                      placeholder="Enter class title"
-                    />
-                  </div>
+                  {isCustomTraining && (
+                    <div className="space-y-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                      <div className="flex items-center gap-2">
+                        <Plus className="w-4 h-4 text-blue-600" />
+                        <span className="font-medium text-blue-800">Custom Training Setup</span>
+                      </div>
+                      
+                      <div>
+                        <Label htmlFor="customClassName">Custom Class Name *</Label>
+                        <Input
+                          id="customClassName"
+                          value={customClassName}
+                          onChange={(e) => {
+                            setCustomClassName(e.target.value);
+                            setFormData(prev => ({ ...prev, classTitle: e.target.value }));
+                          }}
+                          placeholder="Enter your custom class name"
+                        />
+                      </div>
+                      
+                      <div>
+                        <Label htmlFor="customStandard">OSHA/ANSI Reference</Label>
+                        <Input
+                          id="customStandard"
+                          value={customStandard}
+                          onChange={(e) => {
+                            setCustomStandard(e.target.value);
+                            setFormData(prev => ({ ...prev, oshaStandard: e.target.value }));
+                          }}
+                          placeholder="e.g., 29 CFR 1926.95, ANSI Z359.1, or custom standard"
+                        />
+                      </div>
+                    </div>
+                  )}
                   
-                  <div>
-                    <Label htmlFor="oshaStandard">OSHA Standard</Label>
-                    <Input
-                      id="oshaStandard"
-                      value={formData.oshaStandard}
-                      onChange={(e) => setFormData(prev => ({ ...prev, oshaStandard: e.target.value }))}
-                      placeholder="Auto-filled based on training type"
-                      disabled
-                    />
-                  </div>
+                  {!isCustomTraining && (
+                    <>
+                      <div>
+                        <Label htmlFor="classTitle">Class Title *</Label>
+                        <Input
+                          id="classTitle"
+                          value={formData.classTitle}
+                          onChange={(e) => setFormData(prev => ({ ...prev, classTitle: e.target.value }))}
+                          placeholder="Enter class title"
+                          disabled={!isCustomTraining}
+                        />
+                      </div>
+                      
+                      <div>
+                        <Label htmlFor="oshaStandard">OSHA/ANSI Standard</Label>
+                        <Input
+                          id="oshaStandard"
+                          value={formData.oshaStandard}
+                          onChange={(e) => setFormData(prev => ({ ...prev, oshaStandard: e.target.value }))}
+                          placeholder="Auto-filled based on training type"
+                          disabled={!isCustomTraining}
+                        />
+                      </div>
+                    </>
+                  )}
                 </div>
               </CardContent>
             </Card>
