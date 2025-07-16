@@ -8,7 +8,7 @@ import { billingAnalytics } from "./billing-analytics";
 import { 
   insertLeadSchema, insertUserSchema, loginUserSchema, insertComplianceReportSchema, 
   insertCloneDetectionScanSchema, insertHelpDeskTicketSchema, insertPromoCodeUsageSchema,
-  insertEmployeeSchema, insertTrainingProgramSchema, insertTrainingSessionSchema,
+  insertEmployeeSchema, insertInstructorSchema, insertTrainingProgramSchema, insertTrainingSessionSchema,
   insertEmployeeTrainingSchema, insertCertificateSchema, insertDocumentSchema,
   insertAuditLogSchema, insertNotificationSchema, insertIntegrationSchema, insertLocationSchema,
   insertCompanyProfileSchema,
@@ -1517,6 +1517,67 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error deleting employee:", error);
       res.status(500).json({ error: "Failed to delete employee" });
+    }
+  });
+
+  // Instructor Management API
+  app.post("/api/instructors", authenticateToken, async (req, res) => {
+    try {
+      const instructorData = insertInstructorSchema.parse(req.body);
+      instructorData.userId = (req as any).user.id;
+      const instructor = await storage.createInstructor(instructorData);
+      res.json(instructor);
+    } catch (error) {
+      console.error("Error creating instructor:", error);
+      res.status(500).json({ error: "Failed to create instructor" });
+    }
+  });
+
+  app.get("/api/instructors", authenticateToken, async (req, res) => {
+    try {
+      const userId = (req as any).user.id;
+      const instructors = await storage.getInstructors(userId);
+      res.json(instructors);
+    } catch (error) {
+      console.error("Error fetching instructors:", error);
+      res.status(500).json({ error: "Failed to fetch instructors" });
+    }
+  });
+
+  app.get("/api/instructors/:id", authenticateToken, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const instructor = await storage.getInstructorById(id);
+      if (!instructor) {
+        return res.status(404).json({ error: "Instructor not found" });
+      }
+      res.json(instructor);
+    } catch (error) {
+      console.error("Error fetching instructor:", error);
+      res.status(500).json({ error: "Failed to fetch instructor" });
+    }
+  });
+
+  app.put("/api/instructors/:id", authenticateToken, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const updates = req.body;
+      await storage.updateInstructor(id, updates);
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error updating instructor:", error);
+      res.status(500).json({ error: "Failed to update instructor" });
+    }
+  });
+
+  app.delete("/api/instructors/:id", authenticateToken, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      await storage.deleteInstructor(id);
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error deleting instructor:", error);
+      res.status(500).json({ error: "Failed to delete instructor" });
     }
   });
 
