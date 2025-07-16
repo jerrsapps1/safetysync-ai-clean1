@@ -262,7 +262,6 @@ const sidebarVariants = {
 const navButtonVariants = {
   idle: {
     scale: 1,
-    backgroundColor: "rgba(55, 65, 81, 0)",
     transition: {
       duration: 0.2,
       ease: "easeInOut"
@@ -270,7 +269,6 @@ const navButtonVariants = {
   },
   hover: {
     scale: 1.02,
-    backgroundColor: "rgba(55, 65, 81, 0.5)",
     transition: {
       duration: 0.15,
       ease: "easeInOut"
@@ -278,8 +276,6 @@ const navButtonVariants = {
   },
   active: {
     scale: 1,
-    backgroundColor: "rgba(55, 65, 81, 0.3)",
-    borderBottom: "2px solid #60A5FA",
     transition: {
       duration: 0.2,
       ease: "easeInOut"
@@ -425,6 +421,7 @@ export default function WorkspacePage() {
   // Widget icon mapping
   const getWidgetIcon = (id: string) => {
     const iconMap: Record<string, React.ReactNode> = {
+      "welcome-widget": <Home className="w-5 h-5" />,
       "total-employees": <Users className="w-5 h-5" />,
       "compliant-employees": <CheckCircle className="w-5 h-5" />,
       "pending-training": <Clock className="w-5 h-5" />,
@@ -451,94 +448,100 @@ export default function WorkspacePage() {
   // Default widget configuration (without React components)
   const defaultWidgetConfig = [
     {
+      id: "welcome-widget",
+      title: "Welcome",
+      defaultProps: { x: 0, y: 0, w: 24, h: 3 },
+      visible: true
+    },
+    {
       id: "total-employees",
       title: "Total Employees",
-      defaultProps: { x: 0, y: 0, w: 6, h: 2 },
+      defaultProps: { x: 0, y: 3, w: 6, h: 2 },
       visible: true
     },
     {
       id: "compliant-employees",
       title: "Compliant Employees",
-      defaultProps: { x: 6, y: 0, w: 6, h: 2 },
+      defaultProps: { x: 6, y: 3, w: 6, h: 2 },
       visible: true
     },
     {
       id: "pending-training",
       title: "Pending Training",
-      defaultProps: { x: 12, y: 0, w: 6, h: 2 },
+      defaultProps: { x: 12, y: 3, w: 6, h: 2 },
       visible: true
     },
     {
       id: "compliance-score",
       title: "Compliance Score",
-      defaultProps: { x: 18, y: 0, w: 6, h: 2 },
+      defaultProps: { x: 18, y: 3, w: 6, h: 2 },
       visible: true
     },
     {
       id: "recent-activity",
       title: "Recent Activity",
-      defaultProps: { x: 0, y: 2, w: 12, h: 4 },
+      defaultProps: { x: 0, y: 5, w: 12, h: 4 },
       visible: true
     },
     {
       id: "training-calendar",
       title: "Training Calendar",
-      defaultProps: { x: 12, y: 2, w: 12, h: 4 },
+      defaultProps: { x: 12, y: 5, w: 12, h: 4 },
       visible: true
     },
     {
       id: "safety-alerts",
       title: "Safety Alerts",
-      defaultProps: { x: 0, y: 6, w: 8, h: 3 },
+      defaultProps: { x: 0, y: 9, w: 8, h: 3 },
       visible: true
     },
     {
       id: "certification-progress",
       title: "Certification Progress",
-      defaultProps: { x: 8, y: 6, w: 8, h: 3 },
+      defaultProps: { x: 8, y: 9, w: 8, h: 3 },
       visible: true
     },
     {
       id: "compliance-trends",
       title: "Compliance Trends",
-      defaultProps: { x: 16, y: 6, w: 8, h: 3 },
+      defaultProps: { x: 16, y: 9, w: 8, h: 3 },
       visible: true
     },
     {
       id: "quick-search",
       title: "Quick Search",
-      defaultProps: { x: 0, y: 9, w: 24, h: 6 },
+      defaultProps: { x: 0, y: 12, w: 24, h: 6 },
       visible: true
     },
     // Extended widgets now in the same grid
     {
       id: "quick-actions",
       title: "Quick Actions & Reports",
-      defaultProps: { x: 0, y: 15, w: 12, h: 5 },
+      defaultProps: { x: 0, y: 18, w: 12, h: 5 },
       visible: true
     },
     {
       id: "analytics-overview",
       title: "Analytics Overview",
-      defaultProps: { x: 12, y: 15, w: 12, h: 5 },
+      defaultProps: { x: 12, y: 18, w: 12, h: 5 },
       visible: true
     },
     {
       id: "achievement-progress",
       title: "Achievement Progress",
-      defaultProps: { x: 0, y: 20, w: 12, h: 6 },
+      defaultProps: { x: 0, y: 23, w: 12, h: 6 },
       visible: true
     },
     {
       id: "department-performance",
       title: "Department Performance",
-      defaultProps: { x: 12, y: 20, w: 12, h: 7 },
+      defaultProps: { x: 12, y: 23, w: 12, h: 7 },
       visible: true
     },
     {
       id: "osha-training",
       title: "OSHA Training Requirements",
-      defaultProps: { x: 12, y: 20, w: 12, h: 8 },
+      defaultProps: { x: 12, y: 23, w: 12, h: 8 },
       visible: true
     }
   ];
@@ -1363,6 +1366,66 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
     const labelSize = isSmall ? 'text-xs' : 'text-sm';
     
     switch (widget.id) {
+      case "welcome-widget":
+        const currentTime = new Date().getHours();
+        const getGreeting = () => {
+          if (currentTime < 12) return "Good morning";
+          if (currentTime < 17) return "Good afternoon";
+          return "Good evening";
+        };
+        
+        const getMotivationalMessage = () => {
+          const messages = [
+            "Stay focused on keeping your team safe and compliant.",
+            "Every training session makes your workplace safer.",
+            "Your dedication to safety compliance protects everyone.",
+            "Building a culture of safety starts with you.",
+            "Excellence in safety is a journey, not a destination."
+          ];
+          return messages[Math.floor(Math.random() * messages.length)];
+        };
+
+        return (
+          <div className="h-full flex items-center justify-between bg-gradient-to-r from-blue-900/20 to-purple-900/20 rounded-lg p-4">
+            <div className="flex-1">
+              <div className="flex items-center space-x-3 mb-2">
+                <Home className="w-6 h-6 text-blue-400" />
+                <h3 className="text-xl font-bold text-white">
+                  {getGreeting()}, {user?.name || 'Safety Manager'}!
+                </h3>
+              </div>
+              <p className="text-gray-300 text-sm mb-3">
+                {getMotivationalMessage()}
+              </p>
+              <div className="flex items-center space-x-4 text-sm">
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+                  <span className="text-gray-400">System Status: Online</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Calendar className="w-4 h-4 text-blue-400" />
+                  <span className="text-gray-400">
+                    {new Date().toLocaleDateString('en-US', { 
+                      weekday: 'long', 
+                      year: 'numeric', 
+                      month: 'long', 
+                      day: 'numeric' 
+                    })}
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center space-x-4">
+              <div className="text-right">
+                <p className="text-2xl font-bold text-white">{stats.complianceScore}%</p>
+                <p className="text-gray-400 text-sm">Compliance Score</p>
+              </div>
+              <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-full flex items-center justify-center">
+                <Shield className="w-8 h-8 text-white" />
+              </div>
+            </div>
+          </div>
+        );
       case "total-employees":
         return (
           <div className="flex items-center justify-between h-full">
@@ -1931,8 +1994,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           >
             <Button
               variant="ghost"
-              className={`w-full justify-start text-gray-300 hover:text-white ${
-                activeTab === "unified-dashboard" ? "text-white" : ""
+              className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+                activeTab === "unified-dashboard" ? "text-white bg-gray-700/30" : ""
               }`}
               onClick={() => handleTabSwitch("unified-dashboard")}
             >
@@ -1950,7 +2013,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             >
               <Button
                 variant="ghost"
-                className="w-full justify-start text-gray-300 hover:text-white"
+                className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50"
                 onClick={() => toggleSection('compliance-reporting')}
               >
                 <FileText className="w-5 h-5 mr-3" />
