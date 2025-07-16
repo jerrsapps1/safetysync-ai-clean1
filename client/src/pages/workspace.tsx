@@ -2003,13 +2003,13 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           >
             <Button
               variant="ghost"
-              className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+              className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
                 activeTab === "unified-dashboard" ? "text-white bg-gray-700/30" : ""
               }`}
               onClick={() => handleTabSwitch("unified-dashboard")}
             >
-              <Home className="w-5 h-5 mr-3" />
-              {sidebarOpen && "Dashboard"}
+              <Home className="w-5 h-5 mr-3 flex-shrink-0" />
+              {sidebarOpen && <span className="truncate">Dashboard</span>}
             </Button>
           </motion.div>
 
@@ -2022,16 +2022,16 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             >
               <Button
                 variant="ghost"
-                className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50"
+                className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3"
                 onClick={() => toggleSection('compliance-reporting')}
               >
-                <FileText className="w-5 h-5 mr-3" />
-                {sidebarOpen && "Compliance & Reporting"}
+                <FileText className="w-5 h-5 mr-3 flex-shrink-0" />
+                {sidebarOpen && <span className="truncate">Compliance & Reporting</span>}
                 {sidebarOpen && (
                   <motion.div
                     variants={chevronVariants}
                     animate={expandedSections['compliance-reporting'] ? "open" : "closed"}
-                    className="ml-auto"
+                    className="ml-auto flex-shrink-0"
                   >
                     <ChevronRight className="w-4 h-4" />
                   </motion.div>
@@ -2050,49 +2050,49 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <motion.div variants={subItemVariants}>
                     <Button
                       variant="ghost"
-                      className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+                      className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
                         activeTab === "analytics-reports" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("analytics-reports")}
                     >
-                      <BarChart3 className="w-4 h-4 mr-2" />
-                      {sidebarOpen && "Analytics & Reports"}
+                      <BarChart3 className="w-4 h-4 mr-3 flex-shrink-0" />
+                      {sidebarOpen && <span className="truncate">Analytics & Reports</span>}
                     </Button>
                   </motion.div>
                   <motion.div variants={subItemVariants}>
                     <Button
                       variant="ghost"
-                      className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+                      className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
                         activeTab === "reports" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("reports")}
                     >
-                      <FileText className="w-4 h-4 mr-2" />
-                      {sidebarOpen && "Compliance Reports"}
+                      <FileText className="w-4 h-4 mr-3 flex-shrink-0" />
+                      {sidebarOpen && <span className="truncate">Compliance Reports</span>}
                     </Button>
                   </motion.div>
                   <motion.div variants={subItemVariants}>
                     <Button
                       variant="ghost"
-                      className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+                      className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
                         activeTab === "document-manager" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("document-manager")}
                     >
-                      <Database className="w-4 h-4 mr-2" />
-                      {sidebarOpen && "Document Management"}
+                      <Database className="w-4 h-4 mr-3 flex-shrink-0" />
+                      {sidebarOpen && <span className="truncate">Document Management</span>}
                     </Button>
                   </motion.div>
                   <motion.div variants={subItemVariants}>
                     <Button
                       variant="ghost"
-                      className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+                      className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
                         activeTab === "trends" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("trends")}
                     >
-                      <TrendingUp className="w-4 h-4 mr-2" />
-                      {sidebarOpen && "Safety Trends"}
+                      <TrendingUp className="w-4 h-4 mr-3 flex-shrink-0" />
+                      {sidebarOpen && <span className="truncate">Safety Trends</span>}
                     </Button>
                   </motion.div>
                 </motion.div>
@@ -2103,48 +2103,48 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <div className="space-y-1">
             <Button
               variant="ghost"
-              className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50"
+              className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3"
               onClick={() => toggleSection('employee-management')}
             >
-              <Users className="w-5 h-5 mr-3" />
-              {sidebarOpen && "Employee Management"}
+              <Users className="w-5 h-5 mr-3 flex-shrink-0" />
+              {sidebarOpen && <span className="truncate">Employee Management</span>}
               {sidebarOpen && (
                 expandedSections['employee-management'] ? 
-                  <ChevronDown className="w-4 h-4 ml-auto" /> : 
-                  <ChevronRight className="w-4 h-4 ml-auto" />
+                  <ChevronDown className="w-4 h-4 ml-auto flex-shrink-0" /> : 
+                  <ChevronRight className="w-4 h-4 ml-auto flex-shrink-0" />
               )}
             </Button>
             {expandedSections['employee-management'] && (
               <div className="ml-6 space-y-1">
                 <Button
                   variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
                     activeTab === "employees" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("employees")}
                 >
-                  <Users className="w-4 h-4 mr-2" />
-                  {sidebarOpen && "Employee Management"}
+                  <Users className="w-4 h-4 mr-3 flex-shrink-0" />
+                  {sidebarOpen && <span className="truncate">Employee Management</span>}
                 </Button>
                 <Button
                   variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
                     activeTab === "employee-insights" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("employee-insights")}
                 >
-                  <Brain className="w-4 h-4 mr-2" />
-                  {sidebarOpen && "Employee Insights"}
+                  <Brain className="w-4 h-4 mr-3 flex-shrink-0" />
+                  {sidebarOpen && <span className="truncate">Employee Insights</span>}
                 </Button>
                 <Button
                   variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
                     activeTab === "employee-portal" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("employee-portal")}
                 >
-                  <FileUser className="w-4 h-4 mr-2" />
-                  {sidebarOpen && "Employee Portal"}
+                  <FileUser className="w-4 h-4 mr-3 flex-shrink-0" />
+                  {sidebarOpen && <span className="truncate">Employee Portal</span>}
                 </Button>
               </div>
             )}
@@ -2154,38 +2154,38 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <div className="space-y-1">
             <Button
               variant="ghost"
-              className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50"
+              className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3"
               onClick={() => toggleSection('organization')}
             >
-              <Building className="w-5 h-5 mr-3" />
-              {sidebarOpen && "Organization"}
+              <Building className="w-5 h-5 mr-3 flex-shrink-0" />
+              {sidebarOpen && <span className="truncate">Organization</span>}
               {sidebarOpen && (
                 expandedSections['organization'] ? 
-                  <ChevronDown className="w-4 h-4 ml-auto" /> : 
-                  <ChevronRight className="w-4 h-4 ml-auto" />
+                  <ChevronDown className="w-4 h-4 ml-auto flex-shrink-0" /> : 
+                  <ChevronRight className="w-4 h-4 ml-auto flex-shrink-0" />
               )}
             </Button>
             {expandedSections['organization'] && (
               <div className="ml-6 space-y-1">
                 <Button
                   variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
                     activeTab === "company-profile" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("company-profile")}
                 >
-                  <Building className="w-4 h-4 mr-2" />
-                  {sidebarOpen && "Company Profile"}
+                  <Building className="w-4 h-4 mr-3 flex-shrink-0" />
+                  {sidebarOpen && <span className="truncate">Company Profile</span>}
                 </Button>
                 <Button
                   variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
                     activeTab === "instructors" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("instructors")}
                 >
-                  <GraduationCap className="w-4 h-4 mr-2" />
-                  {sidebarOpen && "Instructor Management"}
+                  <GraduationCap className="w-4 h-4 mr-3 flex-shrink-0" />
+                  {sidebarOpen && <span className="truncate">Instructor Management</span>}
                 </Button>
               </div>
             )}
@@ -2194,58 +2194,58 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <div className="space-y-1">
             <Button
               variant="ghost"
-              className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50"
+              className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3"
               onClick={() => toggleSection('system-tools')}
             >
-              <Settings className="w-5 h-5 mr-3" />
-              {sidebarOpen && "System & Tools"}
+              <Settings className="w-5 h-5 mr-3 flex-shrink-0" />
+              {sidebarOpen && <span className="truncate">System & Tools</span>}
               {sidebarOpen && (
                 expandedSections['system-tools'] ? 
-                  <ChevronDown className="w-4 h-4 ml-auto" /> : 
-                  <ChevronRight className="w-4 h-4 ml-auto" />
+                  <ChevronDown className="w-4 h-4 ml-auto flex-shrink-0" /> : 
+                  <ChevronRight className="w-4 h-4 ml-auto flex-shrink-0" />
               )}
             </Button>
             {expandedSections['system-tools'] && (
               <div className="ml-6 space-y-1">
                 <Button
                   variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
                     activeTab === "achievements" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("achievements")}
                 >
-                  <Award className="w-4 h-4 mr-2" />
-                  {sidebarOpen && "Achievements & Milestones"}
+                  <Award className="w-4 h-4 mr-3 flex-shrink-0" />
+                  {sidebarOpen && <span className="truncate">Achievements & Milestones</span>}
                 </Button>
                 <Button
                   variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
                     activeTab === "notifications" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("notifications")}
                 >
-                  <Bell className="w-4 h-4 mr-2" />
-                  {sidebarOpen && "Notifications & Alerts"}
+                  <Bell className="w-4 h-4 mr-3 flex-shrink-0" />
+                  {sidebarOpen && <span className="truncate">Notifications & Alerts</span>}
                 </Button>
                 <Button
                   variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
                     activeTab === "settings" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("settings")}
                 >
-                  <Settings className="w-4 h-4 mr-2" />
-                  {sidebarOpen && "Workspace Settings"}
+                  <Settings className="w-4 h-4 mr-3 flex-shrink-0" />
+                  {sidebarOpen && <span className="truncate">Workspace Settings</span>}
                 </Button>
                 <Button
                   variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
                     activeTab === "subscription-billing" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("subscription-billing")}
                 >
-                  <CreditCard className="w-4 h-4 mr-2" />
-                  {sidebarOpen && "Subscription & Billing"}
+                  <CreditCard className="w-4 h-4 mr-3 flex-shrink-0" />
+                  {sidebarOpen && <span className="truncate">Subscription & Billing</span>}
                 </Button>
               </div>
             )}
@@ -2255,48 +2255,48 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <div className="space-y-1">
             <Button
               variant="ghost"
-              className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50"
+              className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3"
               onClick={() => toggleSection('training-certification')}
             >
-              <BookOpen className="w-5 h-5 mr-3" />
-              {sidebarOpen && "Training & Certification"}
+              <BookOpen className="w-5 h-5 mr-3 flex-shrink-0" />
+              {sidebarOpen && <span className="truncate">Training & Certification</span>}
               {sidebarOpen && (
                 expandedSections['training-certification'] ? 
-                  <ChevronDown className="w-4 h-4 ml-auto" /> : 
-                  <ChevronRight className="w-4 h-4 ml-auto" />
+                  <ChevronDown className="w-4 h-4 ml-auto flex-shrink-0" /> : 
+                  <ChevronRight className="w-4 h-4 ml-auto flex-shrink-0" />
               )}
             </Button>
             {expandedSections['training-certification'] && (
               <div className="ml-6 space-y-1">
                 <Button
                   variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
                     activeTab === "certificates" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("certificates")}
                 >
-                  <Award className="w-4 h-4 mr-2" />
-                  {sidebarOpen && "Certificate Generation"}
+                  <Award className="w-4 h-4 mr-3 flex-shrink-0" />
+                  {sidebarOpen && <span className="truncate">Certificate Generation</span>}
                 </Button>
                 <Button
                   variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
                     activeTab === "training-calendar" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("training-calendar")}
                 >
-                  <Calendar className="w-4 h-4 mr-2" />
-                  {sidebarOpen && "Training Calendar"}
+                  <Calendar className="w-4 h-4 mr-3 flex-shrink-0" />
+                  {sidebarOpen && <span className="truncate">Training Calendar</span>}
                 </Button>
                 <Button
                   variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 ${
+                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
                     activeTab === "training" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("training")}
                 >
-                  <BookOpen className="w-4 h-4 mr-2" />
-                  {sidebarOpen && "Training Management"}
+                  <BookOpen className="w-4 h-4 mr-3 flex-shrink-0" />
+                  {sidebarOpen && <span className="truncate">Training Management</span>}
                 </Button>
               </div>
             )}
