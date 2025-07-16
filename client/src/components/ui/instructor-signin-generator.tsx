@@ -29,6 +29,16 @@ import * as XLSX from 'xlsx';
 import { Document, Packer, Paragraph, TextRun } from 'docx';
 import jsPDF from 'jspdf';
 
+// Sample instructors for dropdown selection
+const SAMPLE_INSTRUCTORS = [
+  { id: 'john-smith', name: 'John Smith', credentials: 'OSHA Authorized, CSP' },
+  { id: 'sarah-johnson', name: 'Sarah Johnson', credentials: 'CIH, CHST' },
+  { id: 'mike-rodriguez', name: 'Mike Rodriguez', credentials: 'OSHA 500, CSHO' },
+  { id: 'lisa-chen', name: 'Lisa Chen', credentials: 'CSP, CIH, SHEP' },
+  { id: 'david-williams', name: 'David Williams', credentials: 'OSHA Authorized, CHST' },
+  { id: 'jennifer-brown', name: 'Jennifer Brown', credentials: 'CIH, OHST' }
+];
+
 interface Employee {
   id: string;
   name: string;
