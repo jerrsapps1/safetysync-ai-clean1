@@ -29,7 +29,8 @@ import {
   Bell,
   Eye,
   Settings,
-  RefreshCw
+  RefreshCw,
+  X
 } from "lucide-react";
 
 interface QuickAction {
@@ -70,6 +71,11 @@ export function AIQuickActions({ onActionExecute, currentPage = 'dashboard' }: A
     }
   ]);
   const [isProcessing, setIsProcessing] = useState(false);
+  
+  // Add debug logging
+  useEffect(() => {
+    console.log('AI Quick Actions component mounted, isExpanded:', isExpanded);
+  }, [isExpanded]);
   
   // Enhanced actions with workspace integration
   const executeAction = async (actionId: string) => {
@@ -364,36 +370,46 @@ export function AIQuickActions({ onActionExecute, currentPage = 'dashboard' }: A
   );
 
   return (
-    <div className={`fixed right-4 bottom-4 z-[9999] transition-all duration-300 ${
-      isExpanded ? 'w-96' : 'w-16'
-    }`}>
-      <Card className="shadow-xl border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-purple-50 backdrop-blur-sm">
-        <CardHeader className={`pb-2 ${!isExpanded ? 'p-2' : ''}`}>
-          <div className="flex items-center justify-between">
-            <CardTitle className={`flex items-center gap-2 transition-opacity ${
-              isExpanded ? 'opacity-100' : 'opacity-0'
-            }`}>
-              <Brain className="w-5 h-5 text-blue-600" />
-              <span className="text-sm">AI Assistant</span>
-            </CardTitle>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                console.log('AI Assistant button clicked, current state:', isExpanded);
-                setIsExpanded(!isExpanded);
-              }}
-              className={`flex-shrink-0 rounded-full ${!isExpanded ? 'bg-blue-500 hover:bg-blue-600 text-white w-12 h-12' : ''}`}
-              title={isExpanded ? 'Minimize AI Assistant' : 'Open AI Assistant'}
-            >
-              {isExpanded ? <Eye className="w-4 h-4" /> : <Zap className="w-6 h-6 animate-pulse" />}
-            </Button>
-          </div>
-        </CardHeader>
-
-        {isExpanded && (
+    <div className="fixed right-4 bottom-4 z-[9999]">
+      {!isExpanded ? (
+        // Collapsed state - floating action button
+        <Button
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('AI Assistant button clicked - expanding');
+            setIsExpanded(true);
+          }}
+          className="w-16 h-16 rounded-full bg-blue-500 hover:bg-blue-600 text-white shadow-xl border-2 border-blue-200"
+          title="Open AI Assistant"
+        >
+          <Zap className="w-8 h-8 animate-pulse" />
+        </Button>
+      ) : (
+        // Expanded state - full widget
+        <Card className="w-96 shadow-xl border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-purple-50 backdrop-blur-sm">
+          <CardHeader className="pb-2">
+            <div className="flex items-center justify-between">
+              <CardTitle className="flex items-center gap-2">
+                <Brain className="w-5 h-5 text-blue-600" />
+                <span className="text-sm">AI Assistant</span>
+              </CardTitle>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  console.log('AI Assistant button clicked - collapsing');
+                  setIsExpanded(false);
+                }}
+                title="Minimize AI Assistant"
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+          </CardHeader>
+          
           <CardContent className="space-y-4">
             {/* Tab Navigation */}
             <div className="flex space-x-1 bg-gray-100 rounded-lg p-1">
@@ -556,8 +572,8 @@ export function AIQuickActions({ onActionExecute, currentPage = 'dashboard' }: A
               </div>
             )}
           </CardContent>
-        )}
-      </Card>
+        </Card>
+      )}
     </div>
   );
 }
