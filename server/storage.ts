@@ -1,15 +1,16 @@
 import { 
   users, leads, complianceReports, cloneDetectionScans, helpDeskTickets, promoCodeUsage,
-  employees, trainingPrograms, trainingSessions, employeeTraining, certificates, documents,
+  employees, instructors, trainingPrograms, trainingSessions, employeeTraining, certificates, documents,
   auditLogs, notifications, integrations, locations, ticketResponses, specials, featureUpdates,
   upcomingSoftware, softwareVotes, clientComments, commentLikes,
   type User, type InsertUser, type Lead, type InsertLead, type ComplianceReport, type InsertComplianceReport, 
   type CloneDetectionScan, type InsertCloneDetectionScan, type HelpDeskTicket, type InsertHelpDeskTicket, 
   type PromoCodeUsage, type InsertPromoCodeUsage, type Employee, type InsertEmployee,
-  type TrainingProgram, type InsertTrainingProgram, type TrainingSession, type InsertTrainingSession,
-  type EmployeeTraining, type InsertEmployeeTraining, type Certificate, type InsertCertificate,
-  type Document, type InsertDocument, type AuditLog, type InsertAuditLog, type Notification, 
-  type InsertNotification, type Integration, type InsertIntegration, type Location, type InsertLocation,
+  type Instructor, type InsertInstructor, type TrainingProgram, type InsertTrainingProgram, 
+  type TrainingSession, type InsertTrainingSession, type EmployeeTraining, type InsertEmployeeTraining, 
+  type Certificate, type InsertCertificate, type Document, type InsertDocument, type AuditLog, 
+  type InsertAuditLog, type Notification, type InsertNotification, type Integration, 
+  type InsertIntegration, type Location, type InsertLocation,
   companyProfiles, type CompanyProfile, type InsertCompanyProfile, type TicketResponse, type InsertTicketResponse,
   type Special, type InsertSpecial, type FeatureUpdate, type InsertFeatureUpdate,
   type UpcomingSoftware, type InsertUpcomingSoftware, type ClientComment, type InsertClientComment
@@ -80,6 +81,14 @@ export interface IStorage {
   deleteEmployee(id: number): Promise<void>;
   getEmployeesByDepartment(userId: number, department: string): Promise<Employee[]>;
   getEmployeesByLocation(userId: number, location: string): Promise<Employee[]>;
+  
+  // Instructor Management
+  createInstructor(instructor: InsertInstructor): Promise<Instructor>;
+  getInstructors(userId: number): Promise<Instructor[]>;
+  getInstructorById(id: number): Promise<Instructor | undefined>;
+  updateInstructor(id: number, updates: Partial<Instructor>): Promise<void>;
+  deleteInstructor(id: number): Promise<void>;
+  getInstructorsByType(userId: number, type: "internal" | "visiting"): Promise<Instructor[]>;
   
   // Training Program Management
   createTrainingProgram(program: InsertTrainingProgram): Promise<TrainingProgram>;
@@ -643,6 +652,39 @@ export class DatabaseStorage implements IStorage {
   async getEmployeesByLocation(userId: number, location: string): Promise<Employee[]> {
     return await db.select().from(employees)
       .where(and(eq(employees.userId, userId), eq(employees.location, location)));
+  }
+
+  // Instructor Management
+  async createInstructor(insertInstructor: InsertInstructor): Promise<Instructor> {
+    const [instructor] = await db
+      .insert(instructors)
+      .values(insertInstructor)
+      .returning();
+    return instructor;
+  }
+
+  async getInstructors(userId: number): Promise<Instructor[]> {
+    return await db.select().from(instructors).where(eq(instructors.userId, userId));
+  }
+
+  async getInstructorById(id: number): Promise<Instructor | undefined> {
+    const [instructor] = await db.select().from(instructors).where(eq(instructors.id, id));
+    return instructor || undefined;
+  }
+
+  async updateInstructor(id: number, updates: Partial<Instructor>): Promise<void> {
+    await db.update(instructors)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(instructors.id, id));
+  }
+
+  async deleteInstructor(id: number): Promise<void> {
+    await db.delete(instructors).where(eq(instructors.id, id));
+  }
+
+  async getInstructorsByType(userId: number, type: "internal" | "visiting"): Promise<Instructor[]> {
+    return await db.select().from(instructors)
+      .where(and(eq(instructors.userId, userId), eq(instructors.type, type)));
   }
 
   // Training Program Management

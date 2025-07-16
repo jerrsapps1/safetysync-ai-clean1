@@ -352,6 +352,12 @@ export const insertEmployeeSchema = createInsertSchema(employees).omit({
   updatedAt: true,
 });
 
+export const insertInstructorSchema = createInsertSchema(instructors).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
 export const insertTrainingProgramSchema = createInsertSchema(trainingPrograms).omit({
   id: true,
   createdAt: true,
@@ -506,6 +512,8 @@ export type PromoCodeUsage = typeof promoCodeUsage.$inferSelect;
 // Enhanced functionality types
 export type InsertEmployee = z.infer<typeof insertEmployeeSchema>;
 export type Employee = typeof employees.$inferSelect;
+export type InsertInstructor = z.infer<typeof insertInstructorSchema>;
+export type Instructor = typeof instructors.$inferSelect;
 export type InsertTrainingProgram = z.infer<typeof insertTrainingProgramSchema>;
 export type TrainingProgram = typeof trainingPrograms.$inferSelect;
 export type InsertTrainingSession = z.infer<typeof insertTrainingSessionSchema>;
