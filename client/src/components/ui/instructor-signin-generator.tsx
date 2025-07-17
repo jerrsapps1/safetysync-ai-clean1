@@ -661,7 +661,7 @@ export function InstructorSignInGenerator() {
     XLSX.writeFile(workbook, `${filename}-${new Date().toISOString().split('T')[0]}.xlsx`);
   };
 
-  const generateSignInSheet = () => {
+  const generateSignInSheet = async () => {
     console.log('Form data before validation:', formData);
     console.log('Class title:', formData.classTitle);
     console.log('Instructor name:', formData.instructorName);
@@ -698,6 +698,78 @@ export function InstructorSignInGenerator() {
 
     setSavedSheets(prev => [...prev, sheet]);
     
+    // Create training session for calendar integration
+    try {
+      // First create or get training program
+      const trainingProgramData = {
+        userId: 1, // This will be set by the authenticateToken middleware
+        name: formData.classTitle || 'Instructor-Led Training',
+        description: `Training session: ${formData.classTitle || 'Instructor-Led Training'}`,
+        category: 'instructor_led',
+        duration: 480, // 8 hours default
+        validityPeriod: 365, // 1 year
+        isRequired: true,
+        requiresEvaluation: true,
+        oshaStandard: formData.oshaStandard || 'N/A',
+        instructor: formData.instructorName || ''
+      };
+
+      const programResponse = await fetch('/api/training-programs', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify(trainingProgramData)
+      });
+
+      let trainingProgramId = 1; // Default fallback
+      if (programResponse.ok) {
+        const createdProgram = await programResponse.json();
+        trainingProgramId = createdProgram.id;
+        console.log('Training program created:', createdProgram);
+      } else {
+        console.log('Using default training program ID');
+      }
+
+      // Calculate end time if not provided
+      const startTime = formData.startTime || '09:00';
+      const endTime = formData.endTime || '17:00';
+      const startDateTime = new Date(`${formData.date}T${startTime}`);
+      const endDateTime = new Date(`${formData.date}T${endTime}`);
+      
+      const trainingSessionData = {
+        userId: 1, // This will be set by the authenticateToken middleware
+        trainingProgramId: trainingProgramId,
+        sessionName: formData.classTitle || '',
+        startDate: startDateTime.toISOString(),
+        endDate: endDateTime.toISOString(),
+        location: formData.location || 'TBD',
+        capacity: formData.employees?.length || 20,
+        instructor: formData.instructorName || '',
+        status: 'scheduled' as const,
+        notes: `Generated from instructor sign-in sheet. OSHA Standard: ${formData.oshaStandard || 'N/A'}${formData.customReference ? `. Custom Reference: ${formData.customReference}` : ''}`
+      };
+
+      const sessionResponse = await fetch('/api/training-sessions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify(trainingSessionData)
+      });
+
+      if (sessionResponse.ok) {
+        const createdSession = await sessionResponse.json();
+        console.log('Training session created:', createdSession);
+      } else {
+        console.error('Failed to create training session:', await sessionResponse.text());
+      }
+    } catch (error) {
+      console.error('Error creating training session:', error);
+    }
+    
     // Generate and download the printable form
     generatePrintableForm(sheet);
     
@@ -706,7 +778,7 @@ export function InstructorSignInGenerator() {
     
     toast({
       title: "Sign-In Sheet Generated",
-      description: `Generated for ${sheet.employees.length} employees. Ready to print and use in class.`,
+      description: `Generated for ${sheet.employees.length} employees. Training session added to calendar. Ready to print and use in class.`,
       duration: 4000
     });
   };
