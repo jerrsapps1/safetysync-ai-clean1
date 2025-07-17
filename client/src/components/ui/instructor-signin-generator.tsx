@@ -2104,13 +2104,13 @@ END:VCALENDAR`;
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Calendar className="w-5 h-5" />
+                <CardTitle className="flex items-center gap-2 text-white">
+                  <Calendar className="w-5 h-5 text-orange-400" />
                   Session Details
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className="text-gray-400">
                   When and where the training will take place
                 </CardDescription>
               </CardHeader>
@@ -2123,6 +2123,7 @@ END:VCALENDAR`;
                       type="date"
                       value={formData.date}
                       onChange={(e) => setFormData(prev => ({ ...prev, date: e.target.value }))}
+                      className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
                     />
                   </div>
                   
@@ -2133,6 +2134,7 @@ END:VCALENDAR`;
                       value={formData.location}
                       onChange={(e) => setFormData(prev => ({ ...prev, location: e.target.value }))}
                       placeholder="Training location"
+                      className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
                     />
                   </div>
                 </div>
@@ -2145,6 +2147,7 @@ END:VCALENDAR`;
                       type="time"
                       value={formData.startTime}
                       onChange={(e) => setFormData(prev => ({ ...prev, startTime: e.target.value }))}
+                      className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
                     />
                   </div>
                   
@@ -2155,6 +2158,7 @@ END:VCALENDAR`;
                       type="time"
                       value={formData.endTime}
                       onChange={(e) => setFormData(prev => ({ ...prev, endTime: e.target.value }))}
+                      className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
                     />
                   </div>
                 </div>
