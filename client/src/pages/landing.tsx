@@ -259,7 +259,7 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="bg-white text-gray-900 font-sans">
+    <div className="text-gray-900 font-sans min-h-screen bg-gray-50">
       {/* Navigation */}
       <Navigation 
         onTrialClick={handleTrialClick} 
@@ -376,7 +376,7 @@ export default function LandingPage() {
       </section>
 
       {/* Solution Section */}
-      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
