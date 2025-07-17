@@ -859,44 +859,6 @@ export function InstructorSignInGenerator() {
     }
   };
 
-  // Generate sample sign-in form
-  const generateSampleSignInForm = () => {
-    const sampleData = {
-      classTitle: "Fall Protection Training",
-      trainingType: "OSHA Fall Protection (29 CFR 1926.501)",
-      regulatoryReference: "29 CFR 1926.501",
-      date: new Date().toISOString().split('T')[0],
-      startTime: "08:00",
-      endTime: "16:00",
-      location: "Safety Training Center - Conference Room A",
-      instructorName: "Sarah Johnson",
-      instructorCredentials: "CIH, CSP, OSHA Authorized",
-      instructorCompany: "SafetySync.AI",
-      contactHours: "8",
-      employees: [
-        { id: '1', name: 'Michael Thompson', employeeId: 'EMP001', company: 'Construction Corp' },
-        { id: '2', name: 'Jennifer Davis', employeeId: 'EMP002', company: 'Construction Corp' },
-        { id: '3', name: 'Robert Wilson', employeeId: 'EMP003', company: 'Construction Corp' },
-        { id: '4', name: 'Amanda Garcia', employeeId: 'EMP004', company: 'Steel Works Inc' },
-        { id: '5', name: 'David Martinez', employeeId: 'EMP005', company: 'Steel Works Inc' },
-        { id: '6', name: 'Lisa Anderson', employeeId: 'EMP006', company: 'Roofing Solutions' },
-        { id: '7', name: 'James Taylor', employeeId: 'EMP007', company: 'Roofing Solutions' },
-        { id: '8', name: 'Maria Rodriguez', employeeId: 'EMP008', company: 'Building Services' },
-        { id: '9', name: 'Christopher Lee', employeeId: 'EMP009', company: 'Building Services' },
-        { id: '10', name: 'Ashley White', employeeId: 'EMP010', company: 'Safety First LLC' }
-      ]
-    };
-
-    setFormData(sampleData);
-    setActiveTab('create');
-    
-    toast({
-      title: "Sample Form Generated",
-      description: "Fall Protection training session created with 10 sample attendees",
-      duration: 4000
-    });
-  };
-
   // Advanced features helper functions
   const sendEmailNotification = (type: 'reminder' | 'completion' | 'upload', recipients: string[], message: string) => {
     if (!emailNotifications) return;
@@ -1833,14 +1795,6 @@ END:VCALENDAR`;
             onClick={() => setActiveTab('saved')}
           >
             Saved Sheets ({savedSheets.length})
-          </Button>
-          <Button
-            variant="secondary"
-            onClick={generateSampleSignInForm}
-            className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white border-0"
-          >
-            <FileText className="w-4 h-4 mr-2" />
-            Generate Sample
           </Button>
         </div>
       </div>
