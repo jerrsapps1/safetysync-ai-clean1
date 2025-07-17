@@ -2196,6 +2196,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Email automation API
   app.use("/api/email", emailAutomationRoutes);
 
+  // File system API
+  const fileSystemRoutes = await import("./api/file-system");
+  app.use("/api/file-system", fileSystemRoutes.default);
+
   const httpServer = createServer(app);
 
   return httpServer;

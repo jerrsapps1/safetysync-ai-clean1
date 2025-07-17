@@ -500,7 +500,7 @@ export const fileSystemFolders = pgTable("file_system_folders", {
   id: serial("id").primaryKey(),
   userId: integer("user_id").references(() => users.id).notNull(),
   name: text("name").notNull(),
-  parentId: integer("parent_id").references(() => fileSystemFolders.id),
+  parentId: integer("parent_id"),
   path: text("path").notNull(), // Full path like "/Documents/Training Records/Fall Protection"
   isRoot: boolean("is_root").default(false),
   color: text("color").default("#3b82f6"), // Folder color
