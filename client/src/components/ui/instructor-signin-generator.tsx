@@ -1771,10 +1771,10 @@ END:VCALENDAR`;
         </div>
         <div className="flex gap-2">
           {/* Gamification Score Display */}
-          <div className="flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-blue-900/30 to-purple-900/30 rounded-full border border-blue-600/30">
-            <Star className="w-4 h-4 text-yellow-400" />
-            <span className="text-sm font-medium text-white">{gamificationScore} pts</span>
-            <Badge variant="secondary" className="text-xs bg-gray-700/50 text-gray-300">
+          <div className="flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-blue-50 to-purple-50 rounded-full border">
+            <Star className="w-4 h-4 text-yellow-500" />
+            <span className="text-sm font-medium">{gamificationScore} pts</span>
+            <Badge variant="secondary" className="text-xs">
               {achievements.length} achievements
             </Badge>
           </div>
@@ -1877,11 +1877,11 @@ END:VCALENDAR`;
                   </div>
                   
                   {isCustomTraining && (
-                    <div className="space-y-4 p-4 bg-blue-900/20 rounded-lg border border-blue-600/30">
+                    <div className="space-y-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <Plus className="w-4 h-4 text-blue-400" />
-                          <span className="font-medium text-blue-200">Custom Training Setup</span>
+                          <Plus className="w-4 h-4 text-blue-600" />
+                          <span className="font-medium text-blue-800">Custom Training Setup</span>
                         </div>
                         <Button
                           variant="outline"
@@ -2006,19 +2006,19 @@ END:VCALENDAR`;
                 </div>
 
                 {instructorType === 'existing' && selectedInstructor && selectedInstructor !== 'clear' && (
-                  <div className="p-3 bg-gray-700/50 rounded-lg border border-gray-600">
-                    <div className="text-sm font-medium text-gray-200">Selected Instructor:</div>
-                    <div className="text-sm text-gray-400 mt-1">
+                  <div className="p-3 bg-gray-50 rounded-lg border">
+                    <div className="text-sm font-medium text-gray-700">Selected Instructor:</div>
+                    <div className="text-sm text-gray-600 mt-1">
                       {SAMPLE_INSTRUCTORS.find(i => i.id === selectedInstructor)?.name} - {SAMPLE_INSTRUCTORS.find(i => i.id === selectedInstructor)?.credentials}
                     </div>
                   </div>
                 )}
 
                 {instructorType === 'visiting' && (
-                  <div className="space-y-4 p-4 bg-green-900/20 rounded-lg border border-green-600/30">
+                  <div className="space-y-4 p-4 bg-green-50 rounded-lg border border-green-200">
                     <div className="flex items-center gap-2">
-                      <UserPlus className="w-4 h-4 text-green-400" />
-                      <span className="font-medium text-green-200">Visiting Instructor Information</span>
+                      <UserPlus className="w-4 h-4 text-green-600" />
+                      <span className="font-medium text-green-800">Visiting Instructor Information</span>
                     </div>
                     
                     <div>
