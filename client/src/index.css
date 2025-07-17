@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Ensure body and html have proper background */
+html, body {
+  background: linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 58, 138) 50%, rgb(88, 28, 135) 100%);
+  min-height: 100vh;
+}
+
+/* Ensure root element has proper background */
+#root {
+  background: linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 58, 138) 50%, rgb(88, 28, 135) 100%);
+  min-height: 100vh;
+}
+
 /* Floating animations for background icons */
 @keyframes float {
   0%, 100% {
