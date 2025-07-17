@@ -34,6 +34,7 @@ import AchievementBadges from "@/components/achievements/AchievementBadges";
 import DynamicAchievementWidget from "@/components/achievements/DynamicAchievementWidget";
 import { AchievementNotificationManager } from "@/components/achievements/DynamicAchievementNotification";
 import { InstructorSignInGenerator } from "@/components/ui/instructor-signin-generator";
+import TrainingRecordsManager from "@/components/records/TrainingRecordsManager";
 
 import { AIPatternSkeleton } from "@/components/ui/ai-skeleton";
 import { SmoothLoading } from "@/components/ui/smooth-loading";
@@ -2278,6 +2279,17 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 <Button
                   variant="ghost"
                   className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
+                    activeTab === "training-records" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                  }`}
+                  onClick={() => handleTabSwitch("training-records")}
+                  title="Training Records"
+                >
+                  <Database className="w-4 h-4 mr-3 flex-shrink-0" />
+                  {sidebarOpen && <span className="truncate">Training Records</span>}
+                </Button>
+                <Button
+                  variant="ghost"
+                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
                     activeTab === "training" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("training")}
@@ -2339,6 +2351,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 {activeTab === "notifications" && "Notifications & Alerts"}
 
                 {activeTab === "instructor-signin" && "Instructor Sign-In Sheets"}
+                {activeTab === "training-records" && "Training Records"}
 
                 {activeTab === "subscription-billing" && "Subscription & Billing"}
                 {activeTab === "analytics-reports" && "Analytics & Reports"}
@@ -2367,6 +2380,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 {activeTab === "notifications" && "Manage alerts and notification preferences"}
 
                 {activeTab === "instructor-signin" && "Generate sign-in sheets for training classes and manage instructor documentation"}
+                {activeTab === "training-records" && "Comprehensive training session documentation and attendee tracking"}
 
                 {activeTab === "subscription-billing" && "Manage your plan and billing information"}
                 {activeTab === "analytics-reports" && "Generate comprehensive analytics and reports"}
@@ -3076,6 +3090,12 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           {activeTab === "instructor-signin" && (
             <div className="p-8">
               <InstructorSignInGenerator />
+            </div>
+          )}
+
+          {activeTab === "training-records" && (
+            <div className="p-8">
+              <TrainingRecordsManager />
             </div>
           )}
 
