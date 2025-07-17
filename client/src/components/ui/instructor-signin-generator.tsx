@@ -1675,57 +1675,7 @@ END:VCALENDAR`;
             </p>
           </div>
           <div className="flex gap-2">
-            {/* Advanced Tools */}
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setShowNotificationCenter(true)}
-              className="relative bg-black/20 backdrop-blur-sm border-gray-700 text-white hover:bg-black/30"
-            >
-              <Bell className="w-4 h-4" />
-              {notifications.filter(n => !n.read).length > 0 && (
-                <Badge className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center animate-pulse">
-                  {notifications.filter(n => !n.read).length}
-                </Badge>
-              )}
-            </Button>
-          
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setShowReportingDialog(true)}
-              className="bg-black/20 backdrop-blur-sm border-gray-700 text-white hover:bg-black/30"
-            >
-              <BarChart3 className="w-4 h-4" />
-              Reports
-            </Button>
-            
-            <Button
-              variant={bulkOperationMode ? "default" : "outline"}
-              size="sm"
-              onClick={() => setBulkOperationMode(!bulkOperationMode)}
-              className={bulkOperationMode ? "bg-emerald-500 hover:bg-emerald-600 text-white" : "bg-black/20 backdrop-blur-sm border-gray-700 text-white hover:bg-black/30"}
-            >
-              <CheckCircle className="w-4 h-4" />
-              Bulk Mode
-            </Button>
-            
-            <Button
-              variant={activeTab === 'create' ? 'default' : 'outline'}
-              onClick={() => setActiveTab('create')}
-              className={activeTab === 'create' ? "bg-blue-500 hover:bg-blue-600 text-white" : "bg-black/20 backdrop-blur-sm border-gray-700 text-white hover:bg-black/30"}
-            >
-              <Plus className="w-4 h-4 mr-2" />
-              Create New
-            </Button>
-            <Button
-              variant={activeTab === 'saved' ? 'default' : 'outline'}
-              onClick={() => setActiveTab('saved')}
-              className={activeTab === 'saved' ? "bg-blue-500 hover:bg-blue-600 text-white" : "bg-black/20 backdrop-blur-sm border-gray-700 text-white hover:bg-black/30"}
-            >
-              <Archive className="w-4 h-4 mr-2" />
-              Saved Sheets ({savedSheets.length})
-            </Button>
+            {/* Header buttons removed per user request */}
           </div>
         </div>
 
