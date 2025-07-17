@@ -31,7 +31,9 @@ import {
   Building,
   MapPin,
   GraduationCap,
-  Archive
+  Archive,
+  Brain,
+  TrendingUp
 } from 'lucide-react';
 import { SafetySyncIcon } from "@/components/ui/safetysync-icon";
 
@@ -296,22 +298,41 @@ export default function TrainingRecordsManager() {
   }
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-4">
-          <div className="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center">
-            <Database className="w-6 h-6 text-emerald-400" />
-          </div>
-          <div>
-            <h2 className="text-2xl font-bold text-white">Training Records</h2>
-            <p className="text-gray-400">Comprehensive training session documentation and tracking</p>
-          </div>
+    <div className="space-y-6 relative">
+      {/* Tech grid background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 opacity-10 rounded-lg"></div>
+      
+      {/* Floating tech icons */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-10 left-10 animate-float">
+          <Database className="w-8 h-8 text-blue-400/30" />
+        </div>
+        <div className="absolute top-32 right-20 animate-float-delay-1">
+          <Brain className="w-10 h-10 text-purple-400/30" />
+        </div>
+        <div className="absolute bottom-20 left-20 animate-float-delay-2">
+          <TrendingUp className="w-6 h-6 text-green-400/30" />
+        </div>
+        <div className="absolute bottom-32 right-32 animate-float-delay-3">
+          <Shield className="w-7 h-7 text-emerald-400/30" />
+        </div>
+      </div>
+
+      <div className="flex items-center justify-between relative z-10">
+        <div>
+          <h2 className="text-2xl font-bold text-white flex items-center gap-3">
+            <SafetySyncIcon size={32} className="rounded-lg" />
+            Training Records
+          </h2>
+          <p className="text-gray-400">Comprehensive training session documentation and tracking</p>
+          <p className="text-blue-300 text-sm mt-1">
+            📋 Complete audit trail for compliance documentation and certificate tracking
+          </p>
         </div>
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative z-10">
         <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
@@ -362,7 +383,7 @@ export default function TrainingRecordsManager() {
       </div>
 
       {/* Filters */}
-      <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+      <Card className="bg-black/20 backdrop-blur-sm border-gray-800 relative z-10">
         <CardContent className="p-6">
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
             <div className="relative">
@@ -425,7 +446,7 @@ export default function TrainingRecordsManager() {
       </Card>
 
       {/* Records Table */}
-      <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+      <Card className="bg-black/20 backdrop-blur-sm border-gray-800 relative z-10">
         <CardContent className="p-6">
           <div className="overflow-x-auto">
             <table className="w-full text-white">
