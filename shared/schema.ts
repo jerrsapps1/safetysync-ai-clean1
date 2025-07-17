@@ -237,7 +237,13 @@ export const documents = pgTable("documents", {
   userId: integer("user_id").references(() => users.id).notNull(),
   name: text("name").notNull(),
   description: text("description"),
-  category: text("category").notNull(), // policy, procedure, form, safety_data_sheet, etc.
+  category: text("category", { 
+    enum: [
+      "sign_in_sheet", "training_material", "certificate", "instructor_resource", 
+      "student_record", "evaluation_form", "training_roster", "compliance_doc",
+      "policy", "procedure", "form", "safety_data_sheet", "other"
+    ] 
+  }).notNull(),
   fileType: text("file_type").notNull(), // pdf, doc, jpg, etc.
   filePath: text("file_path").notNull(),
   fileSize: integer("file_size"),
@@ -246,6 +252,14 @@ export const documents = pgTable("documents", {
   department: text("department"),
   location: text("location"),
   uploadedBy: integer("uploaded_by").references(() => employees.id),
+  // Training-specific fields
+  trainingSessionId: integer("training_session_id").references(() => trainingSessions.id),
+  instructorId: integer("instructor_id").references(() => instructors.id),
+  employeeId: integer("employee_id").references(() => employees.id),
+  expirationDate: timestamp("expiration_date"),
+  status: text("status", { enum: ["active", "expired", "archived", "pending_review"] }).default("active"),
+  accessLevel: text("access_level", { enum: ["public", "internal", "restricted", "confidential"] }).default("internal"),
+  version: text("version").default("1.0"),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
