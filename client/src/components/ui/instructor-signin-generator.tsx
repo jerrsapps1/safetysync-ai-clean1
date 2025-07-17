@@ -1720,23 +1720,23 @@ END:VCALENDAR`;
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-6 space-y-6 bg-transparent instructor-signin-generator">
+    <div className="max-w-6xl mx-auto p-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold flex items-center gap-2 text-white">
+          <h1 className="text-3xl font-bold flex items-center gap-2">
             <FileText className="w-8 h-8 text-blue-600" />
             Instructor Sign-In Sheet Generator
           </h1>
-          <p className="text-gray-400 mt-2">
+          <p className="text-gray-600 mt-2">
             Create OSHA-compliant attendance records for safety training classes
           </p>
         </div>
         <div className="flex gap-2">
           {/* Gamification Score Display */}
-          <div className="flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-blue-900/30 to-purple-900/30 rounded-full border border-gray-700">
-            <Star className="w-4 h-4 text-yellow-400" />
-            <span className="text-sm font-medium text-white">{gamificationScore} pts</span>
-            <Badge variant="secondary" className="text-xs bg-gray-700 text-gray-300">
+          <div className="flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-blue-50 to-purple-50 rounded-full border">
+            <Star className="w-4 h-4 text-yellow-500" />
+            <span className="text-sm font-medium">{gamificationScore} pts</span>
+            <Badge variant="secondary" className="text-xs">
               {achievements.length} achievements
             </Badge>
           </div>
@@ -1802,13 +1802,13 @@ END:VCALENDAR`;
       {activeTab === 'create' ? (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="space-y-6">
-            <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
+            <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-white">
+                <CardTitle className="flex items-center gap-2">
                   <Shield className="w-5 h-5" />
                   Training Information
                 </CardTitle>
-                <CardDescription className="text-gray-400">
+                <CardDescription>
                   Basic details about the safety training session
                 </CardDescription>
               </CardHeader>
@@ -1831,11 +1831,11 @@ END:VCALENDAR`;
                   </div>
                   
                   {isCustomTraining && (
-                    <div className="space-y-4 p-4 bg-blue-900/30 rounded-lg border border-blue-700/50">
+                    <div className="space-y-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <Plus className="w-4 h-4 text-blue-400" />
-                          <span className="font-medium text-blue-300">Custom Training Setup</span>
+                          <Plus className="w-4 h-4 text-blue-600" />
+                          <span className="font-medium text-blue-800">Custom Training Setup</span>
                         </div>
                         <Button
                           variant="outline"
@@ -1862,7 +1862,7 @@ END:VCALENDAR`;
                         <Label htmlFor="customClassName">Custom Class Name *</Label>
                         <Input
                           id="customClassName"
-                          value={customClassName || ''}
+                          value={customClassName}
                           onChange={(e) => {
                             setCustomClassName(e.target.value);
                             setFormData(prev => ({ ...prev, classTitle: e.target.value }));
@@ -1875,7 +1875,7 @@ END:VCALENDAR`;
                         <Label htmlFor="customStandard">OSHA/ANSI Reference</Label>
                         <Input
                           id="customStandard"
-                          value={customStandard || ''}
+                          value={customStandard}
                           onChange={(e) => {
                             setCustomStandard(e.target.value);
                             setFormData(prev => ({ ...prev, oshaStandard: e.target.value }));
@@ -1892,7 +1892,7 @@ END:VCALENDAR`;
                         <Label htmlFor="classTitle">Class Title *</Label>
                         <Input
                           id="classTitle"
-                          value={formData.classTitle || ''}
+                          value={formData.classTitle}
                           onChange={(e) => setFormData(prev => ({ ...prev, classTitle: e.target.value }))}
                           placeholder="Enter class title"
                           disabled={!isCustomTraining}
@@ -1903,7 +1903,7 @@ END:VCALENDAR`;
                         <Label htmlFor="oshaStandard">OSHA/ANSI Standard</Label>
                         <Input
                           id="oshaStandard"
-                          value={formData.oshaStandard || ''}
+                          value={formData.oshaStandard}
                           onChange={(e) => setFormData(prev => ({ ...prev, oshaStandard: e.target.value }))}
                           placeholder="Auto-filled based on training type"
                           disabled={!isCustomTraining}
@@ -1915,13 +1915,13 @@ END:VCALENDAR`;
               </CardContent>
             </Card>
 
-            <Card className="bg-gray-800/50 border-gray-700">
+            <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-white">
+                <CardTitle className="flex items-center gap-2">
                   <Users className="w-5 h-5" />
                   Instructor Information
                 </CardTitle>
-                <CardDescription className="text-gray-400">
+                <CardDescription>
                   Details about the certified instructor
                 </CardDescription>
               </CardHeader>
@@ -1960,9 +1960,9 @@ END:VCALENDAR`;
                 </div>
 
                 {instructorType === 'existing' && selectedInstructor && selectedInstructor !== 'clear' && (
-                  <div className="p-3 bg-gray-800/50 rounded-lg border border-gray-600">
-                    <div className="text-sm font-medium text-gray-300">Selected Instructor:</div>
-                    <div className="text-sm text-gray-400 mt-1">
+                  <div className="p-3 bg-gray-50 rounded-lg border">
+                    <div className="text-sm font-medium text-gray-700">Selected Instructor:</div>
+                    <div className="text-sm text-gray-600 mt-1">
                       {SAMPLE_INSTRUCTORS.find(i => i.id === selectedInstructor)?.name} - {SAMPLE_INSTRUCTORS.find(i => i.id === selectedInstructor)?.credentials}
                     </div>
                   </div>
@@ -1979,7 +1979,7 @@ END:VCALENDAR`;
                       <Label htmlFor="instructorName">Instructor Name *</Label>
                       <Input
                         id="instructorName"
-                        value={formData.instructorName || ''}
+                        value={formData.instructorName}
                         onChange={(e) => setFormData(prev => ({ ...prev, instructorName: e.target.value }))}
                         placeholder="Full name of visiting instructor"
                       />
@@ -1989,7 +1989,7 @@ END:VCALENDAR`;
                       <Label htmlFor="instructorCredentials">Instructor Credentials</Label>
                       <Input
                         id="instructorCredentials"
-                        value={formData.instructorCredentials || ''}
+                        value={formData.instructorCredentials}
                         onChange={(e) => setFormData(prev => ({ ...prev, instructorCredentials: e.target.value }))}
                         placeholder="e.g., OSHA Authorized, CSP, CIH"
                       />
@@ -1999,7 +1999,7 @@ END:VCALENDAR`;
                       <Label htmlFor="instructorCompany">Instructor Company</Label>
                       <Input
                         id="instructorCompany"
-                        value={formData.instructorCompany || ''}
+                        value={formData.instructorCompany}
                         onChange={(e) => setFormData(prev => ({ ...prev, instructorCompany: e.target.value }))}
                         placeholder="Visiting instructor's company name"
                       />
@@ -2008,9 +2008,9 @@ END:VCALENDAR`;
                 )}
 
                 {instructorType === 'existing' && selectedInstructor && (
-                  <div className="space-y-4 p-4 bg-gray-800/50 rounded-lg border border-gray-600">
+                  <div className="space-y-4 p-4 bg-gray-50 rounded-lg border">
                     <div className="flex items-center justify-between">
-                      <div className="text-sm text-gray-300">
+                      <div className="text-sm text-gray-600">
                         <strong>Selected Instructor:</strong>
                       </div>
                       <Button
@@ -2032,9 +2032,9 @@ END:VCALENDAR`;
                       </Button>
                     </div>
                     <div className="grid grid-cols-1 gap-2 text-sm">
-                      <div className="text-gray-300"><strong>Name:</strong> {formData.instructorName}</div>
-                      <div className="text-gray-300"><strong>Credentials:</strong> {formData.instructorCredentials}</div>
-                      <div className="text-gray-300"><strong>Company:</strong> {formData.instructorCompany}</div>
+                      <div><strong>Name:</strong> {formData.instructorName}</div>
+                      <div><strong>Credentials:</strong> {formData.instructorCredentials}</div>
+                      <div><strong>Company:</strong> {formData.instructorCompany}</div>
                     </div>
                   </div>
                 )}
@@ -2078,9 +2078,9 @@ END:VCALENDAR`;
 
                     {/* Document viewer */}
                     {showDocumentViewer && (
-                      <div className="space-y-3 p-4 bg-gray-800/50 rounded-lg border border-gray-600">
+                      <div className="space-y-3 p-4 bg-gray-50 rounded-lg border">
                         <div className="flex items-center justify-between">
-                          <div className="text-sm font-medium text-gray-300">
+                          <div className="text-sm font-medium">
                             Documents ({getCurrentInstructorDocuments().length})
                           </div>
                           {selectedDocuments.length > 0 && (
@@ -2116,7 +2116,7 @@ END:VCALENDAR`;
                         ) : (
                           <div className="space-y-2 max-h-48 overflow-y-auto">
                             {getCurrentInstructorDocuments().map(doc => (
-                              <div key={doc.id} className="flex items-center space-x-3 p-2 bg-gray-700/50 rounded border border-gray-600">
+                              <div key={doc.id} className="flex items-center space-x-3 p-2 bg-white rounded border">
                                 <input
                                   type="checkbox"
                                   checked={selectedDocuments.includes(doc.id)}
@@ -2164,13 +2164,13 @@ END:VCALENDAR`;
               </CardContent>
             </Card>
 
-            <Card className="bg-gray-800/50 border-gray-700">
+            <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-white">
+                <CardTitle className="flex items-center gap-2">
                   <Calendar className="w-5 h-5" />
                   Session Details
                 </CardTitle>
-                <CardDescription className="text-gray-400">
+                <CardDescription>
                   When and where the training will take place
                 </CardDescription>
               </CardHeader>
@@ -2181,7 +2181,7 @@ END:VCALENDAR`;
                     <Input
                       id="date"
                       type="date"
-                      value={formData.date || ''}
+                      value={formData.date}
                       onChange={(e) => setFormData(prev => ({ ...prev, date: e.target.value }))}
                     />
                   </div>
@@ -2190,7 +2190,7 @@ END:VCALENDAR`;
                     <Label htmlFor="location">Location</Label>
                     <Input
                       id="location"
-                      value={formData.location || ''}
+                      value={formData.location}
                       onChange={(e) => setFormData(prev => ({ ...prev, location: e.target.value }))}
                       placeholder="Training location"
                     />
@@ -2203,7 +2203,7 @@ END:VCALENDAR`;
                     <Input
                       id="startTime"
                       type="time"
-                      value={formData.startTime || ''}
+                      value={formData.startTime}
                       onChange={(e) => setFormData(prev => ({ ...prev, startTime: e.target.value }))}
                     />
                   </div>
@@ -2213,7 +2213,7 @@ END:VCALENDAR`;
                     <Input
                       id="endTime"
                       type="time"
-                      value={formData.endTime || ''}
+                      value={formData.endTime}
                       onChange={(e) => setFormData(prev => ({ ...prev, endTime: e.target.value }))}
                     />
                   </div>
@@ -2240,7 +2240,7 @@ END:VCALENDAR`;
                   <Label htmlFor="customReference">Custom Reference (Optional)</Label>
                   <Input
                     id="customReference"
-                    value={formData.customReference || ''}
+                    value={formData.customReference}
                     onChange={(e) => setFormData(prev => ({ ...prev, customReference: e.target.value }))}
                     placeholder="Enter your own reference (e.g., Company SOP, Internal Training ID, etc.)"
                   />
@@ -2253,13 +2253,13 @@ END:VCALENDAR`;
           </div>
 
           <div className="space-y-6">
-            <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
+            <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-white">
+                <CardTitle className="flex items-center gap-2">
                   <Users className="w-5 h-5" />
                   Training Attendees ({formData.employees?.length || 0})
                 </CardTitle>
-                <CardDescription className="text-gray-400">
+                <CardDescription>
                   Add employees and external students who will attend this training session
                 </CardDescription>
               </CardHeader>
@@ -2300,7 +2300,7 @@ END:VCALENDAR`;
                         <Label htmlFor="employeeName">Employee Name</Label>
                         <Input
                           id="employeeName"
-                          value={newEmployee.name || ''}
+                          value={newEmployee.name}
                           onChange={(e) => setNewEmployee(prev => ({ ...prev, name: e.target.value }))}
                           placeholder="Full name"
                         />
@@ -2310,7 +2310,7 @@ END:VCALENDAR`;
                         <Label htmlFor="employeeId">Employee ID</Label>
                         <Input
                           id="employeeId"
-                          value={newEmployee.employeeId || ''}
+                          value={newEmployee.employeeId}
                           onChange={(e) => setNewEmployee(prev => ({ ...prev, employeeId: e.target.value }))}
                           placeholder="Employee ID or badge number"
                         />
@@ -2320,7 +2320,7 @@ END:VCALENDAR`;
                         <Label htmlFor="employeeCompany">Company (optional)</Label>
                         <Input
                           id="employeeCompany"
-                          value={newEmployee.company || ''}
+                          value={newEmployee.company}
                           onChange={(e) => setNewEmployee(prev => ({ ...prev, company: e.target.value }))}
                           placeholder="Company name (if different from instructor)"
                         />
@@ -2342,9 +2342,9 @@ END:VCALENDAR`;
                 
                 <div className="space-y-2 max-h-60 overflow-y-auto">
                   {formData.employees?.map((employee, index) => (
-                    <div key={employee.id} className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg border border-gray-600">
+                    <div key={employee.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                       <div className="flex-1">
-                        <div className="font-medium text-gray-300">{employee.name}</div>
+                        <div className="font-medium">{employee.name}</div>
                         <div className="text-sm text-gray-500">
                           ID: {employee.employeeId} • {employee.company}
                           {employee.type && (
@@ -2386,10 +2386,10 @@ END:VCALENDAR`;
           </div>
         </div>
       ) : (
-        <Card className="bg-gray-800/50 border-gray-700">
+        <Card>
           <CardHeader>
-            <CardTitle className="text-white">Saved Sign-In Sheets</CardTitle>
-            <CardDescription className="text-gray-400">
+            <CardTitle>Saved Sign-In Sheets</CardTitle>
+            <CardDescription>
               Manage your drafted and generated training attendance records
             </CardDescription>
           </CardHeader>
@@ -2461,10 +2461,10 @@ END:VCALENDAR`;
               
               {/* Bulk Operations */}
               {bulkOperationMode && (
-                <div className="bg-blue-900/30 p-4 rounded-lg border border-blue-700/50">
+                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
                   <div className="flex items-center justify-between mb-3">
-                    <h4 className="font-medium text-blue-300">Bulk Operations</h4>
-                    <span className="text-sm text-blue-400">
+                    <h4 className="font-medium text-blue-800">Bulk Operations</h4>
+                    <span className="text-sm text-blue-600">
                       {selectedSheetsForBulk.length} selected
                     </span>
                   </div>
@@ -2643,11 +2643,11 @@ END:VCALENDAR`;
                           <Label className="text-sm font-medium mb-2 block">Signed Documents</Label>
                           <div className="space-y-2">
                             {sheet.signedDocuments.map(doc => (
-                              <div key={doc.id} className="flex items-center justify-between p-2 bg-gray-800/50 rounded border border-gray-600">
+                              <div key={doc.id} className="flex items-center justify-between p-2 bg-white rounded border">
                                 <div className="flex items-center gap-3">
                                   <FileCheck className="w-4 h-4 text-green-600" />
                                   <div>
-                                    <div className="text-sm font-medium text-gray-300">{doc.fileName}</div>
+                                    <div className="text-sm font-medium">{doc.fileName}</div>
                                     <div className="text-xs text-gray-500">
                                       {new Date(doc.uploadDate).toLocaleDateString()} • {Math.round(doc.fileSize / 1024)}KB
                                     </div>
@@ -2684,12 +2684,12 @@ END:VCALENDAR`;
                           <Label className="text-sm font-medium mb-2 block">Recent Activity</Label>
                           <div className="space-y-1 max-h-20 overflow-y-auto">
                             {sheet.signatureWorkflow.notifications.slice(-3).map(notification => (
-                              <div key={notification.id} className="text-xs p-2 bg-blue-900/30 rounded border border-blue-700/50">
+                              <div key={notification.id} className="text-xs p-2 bg-blue-50 rounded">
                                 <div className="flex items-center gap-2">
-                                  {notification.type === 'upload' && <Upload className="w-3 h-3 text-blue-400" />}
-                                  {notification.type === 'completion' && <CheckCircle className="w-3 h-3 text-green-400" />}
-                                  {notification.type === 'reminder' && <Clock className="w-3 h-3 text-yellow-400" />}
-                                  <span className="text-gray-300">{notification.message}</span>
+                                  {notification.type === 'upload' && <Upload className="w-3 h-3" />}
+                                  {notification.type === 'completion' && <CheckCircle className="w-3 h-3" />}
+                                  {notification.type === 'reminder' && <Clock className="w-3 h-3" />}
+                                  <span>{notification.message}</span>
                                 </div>
                                 <div className="text-gray-500 mt-1">
                                   {new Date(notification.timestamp).toLocaleString()}
@@ -2718,13 +2718,13 @@ END:VCALENDAR`;
       
       {/* Notification Center Dialog */}
       <Dialog open={showNotificationCenter} onOpenChange={setShowNotificationCenter}>
-        <DialogContent className="max-w-2xl bg-gray-900 border-gray-700 text-white">
+        <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2 text-white">
+            <DialogTitle className="flex items-center gap-2">
               <Bell className="w-5 h-5" />
               Notification Center
             </DialogTitle>
-            <DialogDescription className="text-gray-400">
+            <DialogDescription>
               View and manage your training session notifications
             </DialogDescription>
           </DialogHeader>
@@ -2733,7 +2733,7 @@ END:VCALENDAR`;
               <div
                 key={notification.id}
                 className={`p-3 rounded-lg border ${
-                  notification.read ? 'bg-gray-700 border-gray-600' : 'bg-blue-900/30 border-blue-700'
+                  notification.read ? 'bg-gray-50' : 'bg-blue-50 border-blue-200'
                 }`}
               >
                 <div className="flex items-start justify-between">
@@ -2742,8 +2742,8 @@ END:VCALENDAR`;
                     {notification.type === 'completion' && <CheckCircle className="w-4 h-4 text-green-500" />}
                     {notification.type === 'upload' && <Upload className="w-4 h-4 text-blue-500" />}
                     <div>
-                      <p className="text-sm font-medium text-white">{notification.message}</p>
-                      <p className="text-xs text-gray-400 mt-1">
+                      <p className="text-sm font-medium">{notification.message}</p>
+                      <p className="text-xs text-gray-500 mt-1">
                         {new Date(notification.timestamp).toLocaleString()}
                       </p>
                     </div>
@@ -2777,39 +2777,39 @@ END:VCALENDAR`;
 
       {/* Advanced Reporting Dialog */}
       <Dialog open={showReportingDialog} onOpenChange={setShowReportingDialog}>
-        <DialogContent className="max-w-2xl bg-gray-900 border-gray-700 text-white">
+        <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2 text-white">
+            <DialogTitle className="flex items-center gap-2">
               <BarChart3 className="w-5 h-5" />
               Advanced Reports
             </DialogTitle>
-            <DialogDescription className="text-gray-400">
+            <DialogDescription>
               Generate comprehensive reports for training sessions
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <Card className={`cursor-pointer transition-all bg-gray-800 border-gray-700 ${reportType === 'summary' ? 'ring-2 ring-blue-500' : ''}`}>
+              <Card className={`cursor-pointer transition-all ${reportType === 'summary' ? 'ring-2 ring-blue-500' : ''}`}>
                 <CardContent className="p-4 text-center" onClick={() => setReportType('summary')}>
-                  <FileText className="w-8 h-8 mx-auto mb-2 text-blue-400" />
-                  <h3 className="font-medium text-white">Summary Report</h3>
-                  <p className="text-sm text-gray-400">Basic overview and statistics</p>
+                  <FileText className="w-8 h-8 mx-auto mb-2 text-blue-600" />
+                  <h3 className="font-medium">Summary Report</h3>
+                  <p className="text-sm text-gray-600">Basic overview and statistics</p>
                 </CardContent>
               </Card>
               
-              <Card className={`cursor-pointer transition-all bg-gray-800 border-gray-700 ${reportType === 'detailed' ? 'ring-2 ring-blue-500' : ''}`}>
+              <Card className={`cursor-pointer transition-all ${reportType === 'detailed' ? 'ring-2 ring-blue-500' : ''}`}>
                 <CardContent className="p-4 text-center" onClick={() => setReportType('detailed')}>
-                  <FileSpreadsheet className="w-8 h-8 mx-auto mb-2 text-green-400" />
-                  <h3 className="font-medium text-white">Detailed Report</h3>
-                  <p className="text-sm text-gray-400">Excel format with all data</p>
+                  <FileSpreadsheet className="w-8 h-8 mx-auto mb-2 text-green-600" />
+                  <h3 className="font-medium">Detailed Report</h3>
+                  <p className="text-sm text-gray-600">Excel format with all data</p>
                 </CardContent>
               </Card>
               
-              <Card className={`cursor-pointer transition-all bg-gray-800 border-gray-700 ${reportType === 'analytics' ? 'ring-2 ring-blue-500' : ''}`}>
+              <Card className={`cursor-pointer transition-all ${reportType === 'analytics' ? 'ring-2 ring-blue-500' : ''}`}>
                 <CardContent className="p-4 text-center" onClick={() => setReportType('analytics')}>
-                  <BarChart3 className="w-8 h-8 mx-auto mb-2 text-purple-400" />
-                  <h3 className="font-medium text-white">Analytics Report</h3>
-                  <p className="text-sm text-gray-400">Charts and insights</p>
+                  <BarChart3 className="w-8 h-8 mx-auto mb-2 text-purple-600" />
+                  <h3 className="font-medium">Analytics Report</h3>
+                  <p className="text-sm text-gray-600">Charts and insights</p>
                 </CardContent>
               </Card>
             </div>
@@ -2858,13 +2858,13 @@ END:VCALENDAR`;
 
       {/* Email Notification Dialog */}
       <Dialog open={showEmailDialog} onOpenChange={setShowEmailDialog}>
-        <DialogContent className="max-w-2xl bg-gray-900 border-gray-700 text-white">
+        <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2 text-white">
+            <DialogTitle className="flex items-center gap-2">
               <Mail className="w-5 h-5" />
               Send Email Notification
             </DialogTitle>
-            <DialogDescription className="text-gray-400">
+            <DialogDescription>
               Send notifications to training participants
             </DialogDescription>
           </DialogHeader>
@@ -2928,14 +2928,14 @@ END:VCALENDAR`;
         <div className="relative">
           {/* Quick Action Menu Items */}
           {showQuickActionMenu && (
-            <div className="absolute bottom-16 right-0 bg-gray-800 border-gray-700 rounded-lg shadow-lg border p-2 min-w-[160px] animate-in slide-in-from-bottom duration-300">
+            <div className="absolute bottom-16 right-0 bg-white rounded-lg shadow-lg border p-2 min-w-[160px] animate-in slide-in-from-bottom duration-300">
               <div className="space-y-1">
                 {quickActions.map((action, index) => (
                   <Button
                     key={index}
                     variant="ghost"
                     size="sm"
-                    className="w-full justify-start gap-2 hover:bg-gray-700 transition-colors text-white"
+                    className="w-full justify-start gap-2 hover:bg-gray-100 transition-colors"
                     onClick={action.action}
                   >
                     {action.icon}
@@ -2959,7 +2959,7 @@ END:VCALENDAR`;
       {/* Gamified Onboarding Overlay */}
       {showOnboarding && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center">
-          <div className="bg-gray-800 border-gray-700 text-white rounded-xl p-8 max-w-md mx-4 shadow-2xl">
+          <div className="bg-white rounded-xl p-8 max-w-md mx-4 shadow-2xl">
             <div className="text-center space-y-4">
               <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto">
                 <GraduationCap className="w-8 h-8 text-white" />
@@ -3023,7 +3023,7 @@ END:VCALENDAR`;
       {/* Interactive Document Preview Tooltip */}
       {showDocumentPreview && previewDocument && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-gray-800 border-gray-700 text-white rounded-xl max-w-2xl w-full max-h-[80vh] overflow-hidden shadow-2xl">
+          <div className="bg-white rounded-xl max-w-2xl w-full max-h-[80vh] overflow-hidden shadow-2xl">
             <div className="p-6 border-b flex items-center justify-between">
               <h3 className="text-lg font-semibold">Document Preview</h3>
               <Button
@@ -3036,9 +3036,9 @@ END:VCALENDAR`;
             </div>
             
             <div className="p-6 space-y-4">
-              <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-600">
-                <h4 className="font-medium mb-2 text-gray-300">{previewDocument}</h4>
-                <div className="text-sm text-gray-400 space-y-2">
+              <div className="bg-gray-50 rounded-lg p-4">
+                <h4 className="font-medium mb-2">{previewDocument}</h4>
+                <div className="text-sm text-gray-600 space-y-2">
                   <p>📄 Professional OSHA-compliant training sign-in sheet</p>
                   <p>✅ Includes instructor credentials and course details</p>
                   <p>👥 Attendee roster with signature fields</p>
@@ -3046,12 +3046,12 @@ END:VCALENDAR`;
                 </div>
               </div>
               
-              <div className="bg-blue-900/30 rounded-lg p-4 border border-blue-700/50">
-                <h5 className="font-medium text-blue-300 mb-2">Available Formats:</h5>
+              <div className="bg-blue-50 rounded-lg p-4">
+                <h5 className="font-medium text-blue-800 mb-2">Available Formats:</h5>
                 <div className="flex gap-2">
-                  <Badge variant="outline" className="text-blue-400 border-blue-400">PDF</Badge>
-                  <Badge variant="outline" className="text-blue-400 border-blue-400">Word Document</Badge>
-                  <Badge variant="outline" className="text-blue-400 border-blue-400">Excel Spreadsheet</Badge>
+                  <Badge variant="outline" className="text-blue-600">PDF</Badge>
+                  <Badge variant="outline" className="text-blue-600">Word Document</Badge>
+                  <Badge variant="outline" className="text-blue-600">Excel Spreadsheet</Badge>
                 </div>
               </div>
             </div>

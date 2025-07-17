@@ -125,7 +125,7 @@ export function StudentAutocomplete({
   ];
 
   const availableStudents = allStudents.filter(student => 
-    !selectedStudents?.some(selected => 
+    !selectedStudents.some(selected => 
       selected.id === student.id && selected.type === student.type
     )
   );
