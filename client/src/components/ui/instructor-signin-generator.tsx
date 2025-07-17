@@ -1733,10 +1733,10 @@ END:VCALENDAR`;
         </div>
         <div className="flex gap-2">
           {/* Gamification Score Display */}
-          <div className="flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-blue-50 to-purple-50 rounded-full border">
-            <Star className="w-4 h-4 text-yellow-500" />
-            <span className="text-sm font-medium">{gamificationScore} pts</span>
-            <Badge variant="secondary" className="text-xs">
+          <div className="flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-blue-900/30 to-purple-900/30 rounded-full border border-gray-700">
+            <Star className="w-4 h-4 text-yellow-400" />
+            <span className="text-sm font-medium text-white">{gamificationScore} pts</span>
+            <Badge variant="secondary" className="text-xs bg-gray-700 text-gray-300">
               {achievements.length} achievements
             </Badge>
           </div>
@@ -2718,13 +2718,13 @@ END:VCALENDAR`;
       
       {/* Notification Center Dialog */}
       <Dialog open={showNotificationCenter} onOpenChange={setShowNotificationCenter}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-2xl bg-gray-900 border-gray-700 text-white">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
+            <DialogTitle className="flex items-center gap-2 text-white">
               <Bell className="w-5 h-5" />
               Notification Center
             </DialogTitle>
-            <DialogDescription>
+            <DialogDescription className="text-gray-400">
               View and manage your training session notifications
             </DialogDescription>
           </DialogHeader>
@@ -2733,7 +2733,7 @@ END:VCALENDAR`;
               <div
                 key={notification.id}
                 className={`p-3 rounded-lg border ${
-                  notification.read ? 'bg-gray-50' : 'bg-blue-50 border-blue-200'
+                  notification.read ? 'bg-gray-700 border-gray-600' : 'bg-blue-900/30 border-blue-700'
                 }`}
               >
                 <div className="flex items-start justify-between">
@@ -2742,8 +2742,8 @@ END:VCALENDAR`;
                     {notification.type === 'completion' && <CheckCircle className="w-4 h-4 text-green-500" />}
                     {notification.type === 'upload' && <Upload className="w-4 h-4 text-blue-500" />}
                     <div>
-                      <p className="text-sm font-medium">{notification.message}</p>
-                      <p className="text-xs text-gray-500 mt-1">
+                      <p className="text-sm font-medium text-white">{notification.message}</p>
+                      <p className="text-xs text-gray-400 mt-1">
                         {new Date(notification.timestamp).toLocaleString()}
                       </p>
                     </div>
@@ -2777,39 +2777,39 @@ END:VCALENDAR`;
 
       {/* Advanced Reporting Dialog */}
       <Dialog open={showReportingDialog} onOpenChange={setShowReportingDialog}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-2xl bg-gray-900 border-gray-700 text-white">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
+            <DialogTitle className="flex items-center gap-2 text-white">
               <BarChart3 className="w-5 h-5" />
               Advanced Reports
             </DialogTitle>
-            <DialogDescription>
+            <DialogDescription className="text-gray-400">
               Generate comprehensive reports for training sessions
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <Card className={`cursor-pointer transition-all ${reportType === 'summary' ? 'ring-2 ring-blue-500' : ''}`}>
+              <Card className={`cursor-pointer transition-all bg-gray-800 border-gray-700 ${reportType === 'summary' ? 'ring-2 ring-blue-500' : ''}`}>
                 <CardContent className="p-4 text-center" onClick={() => setReportType('summary')}>
-                  <FileText className="w-8 h-8 mx-auto mb-2 text-blue-600" />
-                  <h3 className="font-medium">Summary Report</h3>
-                  <p className="text-sm text-gray-600">Basic overview and statistics</p>
+                  <FileText className="w-8 h-8 mx-auto mb-2 text-blue-400" />
+                  <h3 className="font-medium text-white">Summary Report</h3>
+                  <p className="text-sm text-gray-400">Basic overview and statistics</p>
                 </CardContent>
               </Card>
               
-              <Card className={`cursor-pointer transition-all ${reportType === 'detailed' ? 'ring-2 ring-blue-500' : ''}`}>
+              <Card className={`cursor-pointer transition-all bg-gray-800 border-gray-700 ${reportType === 'detailed' ? 'ring-2 ring-blue-500' : ''}`}>
                 <CardContent className="p-4 text-center" onClick={() => setReportType('detailed')}>
-                  <FileSpreadsheet className="w-8 h-8 mx-auto mb-2 text-green-600" />
-                  <h3 className="font-medium">Detailed Report</h3>
-                  <p className="text-sm text-gray-600">Excel format with all data</p>
+                  <FileSpreadsheet className="w-8 h-8 mx-auto mb-2 text-green-400" />
+                  <h3 className="font-medium text-white">Detailed Report</h3>
+                  <p className="text-sm text-gray-400">Excel format with all data</p>
                 </CardContent>
               </Card>
               
-              <Card className={`cursor-pointer transition-all ${reportType === 'analytics' ? 'ring-2 ring-blue-500' : ''}`}>
+              <Card className={`cursor-pointer transition-all bg-gray-800 border-gray-700 ${reportType === 'analytics' ? 'ring-2 ring-blue-500' : ''}`}>
                 <CardContent className="p-4 text-center" onClick={() => setReportType('analytics')}>
-                  <BarChart3 className="w-8 h-8 mx-auto mb-2 text-purple-600" />
-                  <h3 className="font-medium">Analytics Report</h3>
-                  <p className="text-sm text-gray-600">Charts and insights</p>
+                  <BarChart3 className="w-8 h-8 mx-auto mb-2 text-purple-400" />
+                  <h3 className="font-medium text-white">Analytics Report</h3>
+                  <p className="text-sm text-gray-400">Charts and insights</p>
                 </CardContent>
               </Card>
             </div>
@@ -2858,13 +2858,13 @@ END:VCALENDAR`;
 
       {/* Email Notification Dialog */}
       <Dialog open={showEmailDialog} onOpenChange={setShowEmailDialog}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-2xl bg-gray-900 border-gray-700 text-white">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
+            <DialogTitle className="flex items-center gap-2 text-white">
               <Mail className="w-5 h-5" />
               Send Email Notification
             </DialogTitle>
-            <DialogDescription>
+            <DialogDescription className="text-gray-400">
               Send notifications to training participants
             </DialogDescription>
           </DialogHeader>
@@ -2935,7 +2935,7 @@ END:VCALENDAR`;
                     key={index}
                     variant="ghost"
                     size="sm"
-                    className="w-full justify-start gap-2 hover:bg-gray-100 transition-colors"
+                    className="w-full justify-start gap-2 hover:bg-gray-700 transition-colors text-white"
                     onClick={action.action}
                   >
                     {action.icon}
