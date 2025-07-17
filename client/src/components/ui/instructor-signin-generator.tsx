@@ -216,6 +216,7 @@ export function InstructorSignInGenerator() {
     endDate: ''
   });
   const [showNotificationCenter, setShowNotificationCenter] = useState(false);
+  const [showQuickActionMenu, setShowQuickActionMenu] = useState(false);
   const [notifications, setNotifications] = useState([
     { id: '1', type: 'reminder', message: 'Training session reminder for Fall Protection Training', timestamp: new Date().toISOString(), read: false },
     { id: '2', type: 'completion', message: 'Signed documents uploaded for HAZCOM Training', timestamp: new Date().toISOString(), read: false },
@@ -2850,6 +2851,31 @@ END:VCALENDAR`;
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Floating Quick Actions Menu */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <div className={`${showQuickActionMenu ? 'block' : 'hidden'} mb-4 space-y-2`}>
+          {quickActions.map((action, index) => (
+            <Button
+              key={index}
+              variant="outline"
+              size="sm"
+              onClick={action.action}
+              className="w-full justify-start bg-black/20 backdrop-blur-sm border-gray-700 text-white hover:bg-black/30"
+            >
+              {action.icon}
+              <span className="ml-2">{action.label}</span>
+            </Button>
+          ))}
+        </div>
+        
+        <Button
+          onClick={() => setShowQuickActionMenu(!showQuickActionMenu)}
+          className="w-14 h-14 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-lg"
+        >
+          <Plus className={`w-6 h-6 text-white transition-transform duration-300 ${showQuickActionMenu ? 'rotate-45' : ''}`} />
+        </Button>
+      </div>
       
       </div>
     </div>
