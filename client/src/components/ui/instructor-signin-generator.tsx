@@ -1802,7 +1802,7 @@ END:VCALENDAR`;
       {activeTab === 'create' ? (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="space-y-6">
-            <Card className="bg-gray-800/50 border-gray-700">
+            <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-white">
                   <Shield className="w-5 h-5" />
@@ -1831,11 +1831,11 @@ END:VCALENDAR`;
                   </div>
                   
                   {isCustomTraining && (
-                    <div className="space-y-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <div className="space-y-4 p-4 bg-blue-900/30 rounded-lg border border-blue-700/50">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <Plus className="w-4 h-4 text-blue-600" />
-                          <span className="font-medium text-blue-800">Custom Training Setup</span>
+                          <Plus className="w-4 h-4 text-blue-400" />
+                          <span className="font-medium text-blue-300">Custom Training Setup</span>
                         </div>
                         <Button
                           variant="outline"
@@ -2253,13 +2253,13 @@ END:VCALENDAR`;
           </div>
 
           <div className="space-y-6">
-            <Card>
+            <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle className="flex items-center gap-2 text-white">
                   <Users className="w-5 h-5" />
                   Training Attendees ({formData.employees?.length || 0})
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className="text-gray-400">
                   Add employees and external students who will attend this training session
                 </CardDescription>
               </CardHeader>
@@ -2342,9 +2342,9 @@ END:VCALENDAR`;
                 
                 <div className="space-y-2 max-h-60 overflow-y-auto">
                   {formData.employees?.map((employee, index) => (
-                    <div key={employee.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div key={employee.id} className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg border border-gray-600">
                       <div className="flex-1">
-                        <div className="font-medium">{employee.name}</div>
+                        <div className="font-medium text-gray-300">{employee.name}</div>
                         <div className="text-sm text-gray-500">
                           ID: {employee.employeeId} • {employee.company}
                           {employee.type && (
@@ -2461,10 +2461,10 @@ END:VCALENDAR`;
               
               {/* Bulk Operations */}
               {bulkOperationMode && (
-                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                <div className="bg-blue-900/30 p-4 rounded-lg border border-blue-700/50">
                   <div className="flex items-center justify-between mb-3">
-                    <h4 className="font-medium text-blue-800">Bulk Operations</h4>
-                    <span className="text-sm text-blue-600">
+                    <h4 className="font-medium text-blue-300">Bulk Operations</h4>
+                    <span className="text-sm text-blue-400">
                       {selectedSheetsForBulk.length} selected
                     </span>
                   </div>
