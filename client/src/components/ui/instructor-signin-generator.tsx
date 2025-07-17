@@ -2227,7 +2227,7 @@ END:VCALENDAR`;
                     <Input
                       id="date"
                       type="date"
-                      value={formData.date}
+                      value={formData.date || ''}
                       onChange={(e) => setFormData(prev => ({ ...prev, date: e.target.value }))}
                     />
                   </div>
@@ -2236,7 +2236,7 @@ END:VCALENDAR`;
                     <Label htmlFor="location">Location</Label>
                     <Input
                       id="location"
-                      value={formData.location}
+                      value={formData.location || ''}
                       onChange={(e) => setFormData(prev => ({ ...prev, location: e.target.value }))}
                       placeholder="Training location"
                     />
@@ -2249,7 +2249,7 @@ END:VCALENDAR`;
                     <Input
                       id="startTime"
                       type="time"
-                      value={formData.startTime}
+                      value={formData.startTime || ''}
                       onChange={(e) => setFormData(prev => ({ ...prev, startTime: e.target.value }))}
                     />
                   </div>
@@ -2259,7 +2259,7 @@ END:VCALENDAR`;
                     <Input
                       id="endTime"
                       type="time"
-                      value={formData.endTime}
+                      value={formData.endTime || ''}
                       onChange={(e) => setFormData(prev => ({ ...prev, endTime: e.target.value }))}
                     />
                   </div>
@@ -2286,7 +2286,7 @@ END:VCALENDAR`;
                   <Label htmlFor="customReference">Custom Reference (Optional)</Label>
                   <Input
                     id="customReference"
-                    value={formData.customReference}
+                    value={formData.customReference || ''}
                     onChange={(e) => setFormData(prev => ({ ...prev, customReference: e.target.value }))}
                     placeholder="Enter your own reference (e.g., Company SOP, Internal Training ID, etc.)"
                   />
