@@ -2385,6 +2385,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 {activeTab === "employee-portal" && "Employee Portal"}
                 {activeTab === "notifications" && "Notifications & Alerts"}
 
+                {activeTab === "instructor-signin" && "Instructor Sign-In Sheets"}
                 {activeTab === "training-calendar" && "Training Calendar"}
                 {activeTab === "subscription-billing" && "Subscription & Billing"}
                 {activeTab === "analytics-reports" && "Analytics & Reports"}
@@ -2412,6 +2413,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 {activeTab === "employee-portal" && "Self-service portal for employee access"}
                 {activeTab === "notifications" && "Manage alerts and notification preferences"}
 
+                {activeTab === "instructor-signin" && "Generate sign-in sheets for training classes and manage instructor documentation"}
                 {activeTab === "training-calendar" && "Schedule and manage training sessions"}
                 {activeTab === "subscription-billing" && "Manage your plan and billing information"}
                 {activeTab === "analytics-reports" && "Generate comprehensive analytics and reports"}
