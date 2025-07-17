@@ -1720,7 +1720,7 @@ END:VCALENDAR`;
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-6 space-y-6">
+    <div className="max-w-4xl mx-auto p-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold flex items-center gap-2">
@@ -1733,7 +1733,7 @@ END:VCALENDAR`;
         </div>
         <div className="flex gap-2">
           {/* Gamification Score Display */}
-          <div className="flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-blue-50 to-purple-50 rounded-full border">
+          <div className="flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-blue-900/20 to-purple-900/20 rounded-full border border-gray-700">
             <Star className="w-4 h-4 text-yellow-500" />
             <span className="text-sm font-medium">{gamificationScore} pts</span>
             <Badge variant="secondary" className="text-xs">
@@ -2116,7 +2116,7 @@ END:VCALENDAR`;
                         ) : (
                           <div className="space-y-2 max-h-48 overflow-y-auto">
                             {getCurrentInstructorDocuments().map(doc => (
-                              <div key={doc.id} className="flex items-center space-x-3 p-2 bg-white rounded border">
+                              <div key={doc.id} className="flex items-center space-x-3 p-2 bg-gray-800/50 rounded border-gray-700">
                                 <input
                                   type="checkbox"
                                   checked={selectedDocuments.includes(doc.id)}
@@ -2600,7 +2600,7 @@ END:VCALENDAR`;
                                   <span className="text-sm font-medium text-blue-600">
                                     {Math.round(uploadProgress[`upload-${sheet.id}`])}%
                                   </span>
-                                  <div className="w-20 bg-gray-200 rounded-full h-1">
+                                  <div className="w-20 bg-gray-700 rounded-full h-1">
                                     <div 
                                       className="bg-blue-600 h-1 rounded-full transition-all duration-300"
                                       style={{ width: `${uploadProgress[`upload-${sheet.id}`]}%` }}
@@ -2624,7 +2624,7 @@ END:VCALENDAR`;
                         {/* Progress Bar */}
                         <div className="space-y-2">
                           <Label className="text-sm font-medium">Completion Progress</Label>
-                          <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div className="w-full bg-gray-700 rounded-full h-2">
                             <div 
                               className="bg-blue-600 h-2 rounded-full transition-all duration-300"
                               style={{ 
@@ -2644,7 +2644,7 @@ END:VCALENDAR`;
                           <Label className="text-sm font-medium mb-2 block">Signed Documents</Label>
                           <div className="space-y-2">
                             {sheet.signedDocuments.map(doc => (
-                              <div key={doc.id} className="flex items-center justify-between p-2 bg-white rounded border">
+                              <div key={doc.id} className="flex items-center justify-between p-2 bg-gray-800/50 rounded border-gray-700">
                                 <div className="flex items-center gap-3">
                                   <FileCheck className="w-4 h-4 text-green-600" />
                                   <div>
@@ -2929,7 +2929,7 @@ END:VCALENDAR`;
         <div className="relative">
           {/* Quick Action Menu Items */}
           {showQuickActionMenu && (
-            <div className="absolute bottom-16 right-0 bg-white rounded-lg shadow-lg border p-2 min-w-[160px] animate-in slide-in-from-bottom duration-300">
+            <div className="absolute bottom-16 right-0 bg-gray-800/90 backdrop-blur-sm rounded-lg shadow-lg border-gray-700 p-2 min-w-[160px] animate-in slide-in-from-bottom duration-300">
               <div className="space-y-1">
                 {quickActions.map((action, index) => (
                   <Button
@@ -2960,7 +2960,7 @@ END:VCALENDAR`;
       {/* Gamified Onboarding Overlay */}
       {showOnboarding && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center">
-          <div className="bg-white rounded-xl p-8 max-w-md mx-4 shadow-2xl">
+          <div className="bg-gray-800/90 backdrop-blur-sm rounded-xl p-8 max-w-md mx-4 shadow-2xl border border-gray-700">
             <div className="text-center space-y-4">
               <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto">
                 <GraduationCap className="w-8 h-8 text-white" />
@@ -2976,7 +2976,7 @@ END:VCALENDAR`;
               </div>
               
               {/* Progress Bar */}
-              <div className="w-full bg-gray-200 rounded-full h-2">
+              <div className="w-full bg-gray-700 rounded-full h-2">
                 <div 
                   className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all duration-500"
                   style={{ width: `${((onboardingStep + 1) / 5) * 100}%` }}
@@ -3024,7 +3024,7 @@ END:VCALENDAR`;
       {/* Interactive Document Preview Tooltip */}
       {showDocumentPreview && previewDocument && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-xl max-w-2xl w-full max-h-[80vh] overflow-hidden shadow-2xl">
+          <div className="bg-gray-800/90 backdrop-blur-sm rounded-xl max-w-2xl w-full max-h-[80vh] overflow-hidden shadow-2xl border border-gray-700">
             <div className="p-6 border-b flex items-center justify-between">
               <h3 className="text-lg font-semibold">Document Preview</h3>
               <Button
