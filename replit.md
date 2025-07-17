@@ -130,6 +130,18 @@ User satisfied with comprehensive platform features including dashboard, admin p
 
 ## Recent Changes
 
+- **July 17, 2025** - Removed Training Calendar Functionality:
+  - **TRAINING CALENDAR REMOVAL**: Completely removed TrainingCalendar.tsx component and all related functionality
+  - **NAVIGATION CLEANUP**: Removed training calendar tab from sidebar navigation under Training & Certification section
+  - **WIDGET CLEANUP**: Removed training calendar widget from dashboard widgets configuration
+  - **CONTENT CLEANUP**: Removed all training calendar content rendering, header references, and descriptions
+  - **PLATFORM FOCUS**: Platform now exclusively focuses on instructor sign-in sheet generation and student management
+  - **CALENDAR SEPARATION**: Maintained separation between sign-in sheet generation and calendar functionality per user requirement
+  - **FUTURE CALENDAR**: Framework ready for different calendar type implementation as needed
+  - System streamlined to core documentation purpose without conducting training functionality
+
+## Recent Changes
+
 - **July 16, 2025** - Successfully Implemented All 5 Advanced UI Features from Screenshot Requirements:
   - **INTERACTIVE DOCUMENT PREVIEW TOOLTIP**: Added modal previews with format badges showing PDF, Word, and Excel availability
   - **ANIMATED PROGRESS INDICATORS**: Implemented real-time progress bars with spinning animations and percentage display during file uploads
