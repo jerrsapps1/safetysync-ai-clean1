@@ -118,6 +118,38 @@
   animation: float-delay-5 8.5s ease-in-out infinite 3s;
 }
 
+/* Dark theme for instructor sign-in generator form elements */
+.instructor-signin-generator input,
+.instructor-signin-generator select,
+.instructor-signin-generator textarea,
+.instructor-signin-generator .bg-white,
+.instructor-signin-generator [data-state="closed"],
+.instructor-signin-generator [data-state="open"] {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #f9fafb !important;
+}
+
+.instructor-signin-generator label {
+  color: #d1d5db !important;
+}
+
+.instructor-signin-generator .bg-gray-50 {
+  background-color: #374151 !important;
+}
+
+.instructor-signin-generator .text-gray-900 {
+  color: #f9fafb !important;
+}
+
+.instructor-signin-generator .text-gray-600 {
+  color: #9ca3af !important;
+}
+
+.instructor-signin-generator .text-gray-500 {
+  color: #6b7280 !important;
+}
+
 /* Zywave-inspired color scheme */
 :root {
   --navy-50: #f8fafc;
