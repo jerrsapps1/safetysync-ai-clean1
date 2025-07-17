@@ -48,9 +48,14 @@ import {
   History,
   Calendar as CalendarIcon,
   GraduationCap,
-  Info
+  Info,
+  BookOpen,
+  Brain,
+  TrendingUp
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { SafetySyncIcon } from "@/components/ui/safetysync-icon";
+import { SmoothLoading } from "@/components/ui/smooth-loading";
 import * as XLSX from 'xlsx';
 import { Document, Packer, Paragraph, TextRun } from 'docx';
 import jsPDF from 'jspdf';
@@ -1634,78 +1639,105 @@ END:VCALENDAR`;
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold flex items-center gap-2">
-            <FileText className="w-8 h-8 text-blue-600" />
-            Instructor Sign-In Sheet Generator
-          </h1>
-          <p className="text-gray-600 mt-2">
-            Create OSHA-compliant attendance records for safety training classes
-          </p>
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 p-6 relative overflow-hidden">
+      {/* Tech grid background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 opacity-10"></div>
+      
+      {/* Floating tech icons */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-20 animate-float">
+          <GraduationCap className="w-8 h-8 text-blue-400/30" />
         </div>
-        <div className="flex gap-2">
-          {/* Advanced Tools */}
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setShowNotificationCenter(true)}
-            className="relative"
-          >
-            <Bell className="w-4 h-4" />
-            {notifications.filter(n => !n.read).length > 0 && (
-              <Badge className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center animate-pulse">
-                {notifications.filter(n => !n.read).length}
-              </Badge>
-            )}
-          </Button>
-          
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setShowReportingDialog(true)}
-          >
-            <BarChart3 className="w-4 h-4" />
-            Reports
-          </Button>
-          
-
-          
-          <Button
-            variant={bulkOperationMode ? "default" : "outline"}
-            size="sm"
-            onClick={() => setBulkOperationMode(!bulkOperationMode)}
-          >
-            <CheckCircle className="w-4 h-4" />
-            Bulk Mode
-          </Button>
-          
-          <Button
-            variant={activeTab === 'create' ? 'default' : 'outline'}
-            onClick={() => setActiveTab('create')}
-          >
-            Create New
-          </Button>
-          <Button
-            variant={activeTab === 'saved' ? 'default' : 'outline'}
-            onClick={() => setActiveTab('saved')}
-          >
-            Saved Sheets ({savedSheets.length})
-          </Button>
+        <div className="absolute top-32 right-20 animate-float-delay-1">
+          <FileText className="w-10 h-10 text-purple-400/30" />
+        </div>
+        <div className="absolute bottom-20 left-20 animate-float-delay-2">
+          <Users className="w-6 h-6 text-green-400/30" />
+        </div>
+        <div className="absolute bottom-32 right-32 animate-float-delay-3">
+          <Shield className="w-7 h-7 text-emerald-400/30" />
         </div>
       </div>
+
+      <div className="max-w-4xl mx-auto space-y-6 relative z-10">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-white flex items-center gap-3">
+              <SafetySyncIcon size={32} className="rounded-lg" />
+              Instructor Sign-In Sheet Generator
+            </h1>
+            <p className="text-gray-400 mt-2">
+              Create OSHA-compliant attendance records for safety training classes
+            </p>
+            <p className="text-blue-300 text-sm mt-1">
+              📋 Generate professional sign-in sheets with automated compliance tracking
+            </p>
+          </div>
+          <div className="flex gap-2">
+            {/* Advanced Tools */}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setShowNotificationCenter(true)}
+              className="relative bg-black/20 backdrop-blur-sm border-gray-700 text-white hover:bg-black/30"
+            >
+              <Bell className="w-4 h-4" />
+              {notifications.filter(n => !n.read).length > 0 && (
+                <Badge className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center animate-pulse">
+                  {notifications.filter(n => !n.read).length}
+                </Badge>
+              )}
+            </Button>
+          
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setShowReportingDialog(true)}
+              className="bg-black/20 backdrop-blur-sm border-gray-700 text-white hover:bg-black/30"
+            >
+              <BarChart3 className="w-4 h-4" />
+              Reports
+            </Button>
+            
+            <Button
+              variant={bulkOperationMode ? "default" : "outline"}
+              size="sm"
+              onClick={() => setBulkOperationMode(!bulkOperationMode)}
+              className={bulkOperationMode ? "bg-emerald-500 hover:bg-emerald-600 text-white" : "bg-black/20 backdrop-blur-sm border-gray-700 text-white hover:bg-black/30"}
+            >
+              <CheckCircle className="w-4 h-4" />
+              Bulk Mode
+            </Button>
+            
+            <Button
+              variant={activeTab === 'create' ? 'default' : 'outline'}
+              onClick={() => setActiveTab('create')}
+              className={activeTab === 'create' ? "bg-blue-500 hover:bg-blue-600 text-white" : "bg-black/20 backdrop-blur-sm border-gray-700 text-white hover:bg-black/30"}
+            >
+              <Plus className="w-4 h-4 mr-2" />
+              Create New
+            </Button>
+            <Button
+              variant={activeTab === 'saved' ? 'default' : 'outline'}
+              onClick={() => setActiveTab('saved')}
+              className={activeTab === 'saved' ? "bg-blue-500 hover:bg-blue-600 text-white" : "bg-black/20 backdrop-blur-sm border-gray-700 text-white hover:bg-black/30"}
+            >
+              <Archive className="w-4 h-4 mr-2" />
+              Saved Sheets ({savedSheets.length})
+            </Button>
+          </div>
+        </div>
 
       {activeTab === 'create' ? (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="space-y-6">
-            <Card>
+            <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Shield className="w-5 h-5" />
+                <CardTitle className="flex items-center gap-2 text-white">
+                  <Shield className="w-5 h-5 text-emerald-400" />
                   Training Information
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className="text-gray-400">
                   Basic details about the safety training session
                 </CardDescription>
               </CardHeader>
@@ -1765,6 +1797,7 @@ END:VCALENDAR`;
                             setFormData(prev => ({ ...prev, classTitle: e.target.value }));
                           }}
                           placeholder="Enter your custom class name"
+                          className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
                         />
                       </div>
                       
@@ -1778,6 +1811,7 @@ END:VCALENDAR`;
                             setFormData(prev => ({ ...prev, oshaStandard: e.target.value }));
                           }}
                           placeholder="e.g., 29 CFR 1926.95, ANSI Z359.1, or custom standard"
+                          className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
                         />
                       </div>
                     </div>
@@ -1793,6 +1827,7 @@ END:VCALENDAR`;
                           onChange={(e) => setFormData(prev => ({ ...prev, classTitle: e.target.value }))}
                           placeholder="Enter class title"
                           disabled={!isCustomTraining}
+                          className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400 disabled:opacity-50"
                         />
                       </div>
                       
@@ -1804,6 +1839,7 @@ END:VCALENDAR`;
                           onChange={(e) => setFormData(prev => ({ ...prev, oshaStandard: e.target.value }))}
                           placeholder="Auto-filled based on training type"
                           disabled={!isCustomTraining}
+                          className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400 disabled:opacity-50"
                         />
                       </div>
                     </>
@@ -1812,13 +1848,13 @@ END:VCALENDAR`;
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Users className="w-5 h-5" />
+                <CardTitle className="flex items-center gap-2 text-white">
+                  <Users className="w-5 h-5 text-blue-400" />
                   Instructor Information
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className="text-gray-400">
                   Details about the certified instructor
                 </CardDescription>
               </CardHeader>
@@ -1827,7 +1863,7 @@ END:VCALENDAR`;
                   <Label>Instructor Type *</Label>
                   <div className="flex flex-col gap-2 mt-2 w-full">
                     <Select value={selectedInstructor} onValueChange={handleInstructorSelection}>
-                      <SelectTrigger>
+                      <SelectTrigger className="bg-gray-800/50 border-gray-700 text-white">
                         <SelectValue placeholder="Choose from client instructors" />
                       </SelectTrigger>
                       <SelectContent>
@@ -1848,7 +1884,11 @@ END:VCALENDAR`;
                       type="button"
                       variant={instructorType === 'visiting' ? 'default' : 'outline'}
                       onClick={() => handleInstructorTypeChange('visiting')}
-                      className="w-full h-10 flex items-center justify-center"
+                      className={`w-full h-10 flex items-center justify-center ${
+                        instructorType === 'visiting' 
+                          ? 'bg-emerald-500 hover:bg-emerald-600 text-white' 
+                          : 'bg-black/20 backdrop-blur-sm border-gray-700 text-white hover:bg-black/30'
+                      }`}
                     >
                       <UserPlus className="w-4 h-4 mr-2" />
                       Visiting Instructor
@@ -1879,6 +1919,7 @@ END:VCALENDAR`;
                         value={formData.instructorName}
                         onChange={(e) => setFormData(prev => ({ ...prev, instructorName: e.target.value }))}
                         placeholder="Full name of visiting instructor"
+                        className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
                       />
                     </div>
                     
@@ -1889,6 +1930,7 @@ END:VCALENDAR`;
                         value={formData.instructorCredentials}
                         onChange={(e) => setFormData(prev => ({ ...prev, instructorCredentials: e.target.value }))}
                         placeholder="e.g., OSHA Authorized, CSP, CIH"
+                        className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
                       />
                     </div>
                     
@@ -1899,6 +1941,7 @@ END:VCALENDAR`;
                         value={formData.instructorCompany}
                         onChange={(e) => setFormData(prev => ({ ...prev, instructorCompany: e.target.value }))}
                         placeholder="Visiting instructor's company name"
+                        className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
                       />
                     </div>
                   </div>
@@ -2272,11 +2315,11 @@ END:VCALENDAR`;
             </Card>
 
             <div className="flex gap-3">
-              <Button onClick={saveAsDraft} variant="outline" className="flex-1">
+              <Button onClick={saveAsDraft} variant="outline" className="flex-1 bg-black/20 backdrop-blur-sm border-gray-700 text-white hover:bg-black/30">
                 <Save className="w-4 h-4 mr-2" />
                 Save Draft
               </Button>
-              <Button onClick={generateSignInSheet} className="flex-1">
+              <Button onClick={generateSignInSheet} className="flex-1 bg-gradient-to-r from-emerald-500 to-blue-500 hover:from-emerald-600 hover:to-blue-600 text-white">
                 <Download className="w-4 h-4 mr-2" />
                 Generate & Print
               </Button>
@@ -2799,14 +2842,8 @@ END:VCALENDAR`;
           </div>
         </DialogContent>
       </Dialog>
-
-
-
-
-
-
-
-
+      
+      </div>
     </div>
   );
 }
