@@ -1960,9 +1960,9 @@ END:VCALENDAR`;
                 </div>
 
                 {instructorType === 'existing' && selectedInstructor && selectedInstructor !== 'clear' && (
-                  <div className="p-3 bg-gray-50 rounded-lg border">
-                    <div className="text-sm font-medium text-gray-700">Selected Instructor:</div>
-                    <div className="text-sm text-gray-600 mt-1">
+                  <div className="p-3 bg-gray-800/50 rounded-lg border border-gray-600">
+                    <div className="text-sm font-medium text-gray-300">Selected Instructor:</div>
+                    <div className="text-sm text-gray-400 mt-1">
                       {SAMPLE_INSTRUCTORS.find(i => i.id === selectedInstructor)?.name} - {SAMPLE_INSTRUCTORS.find(i => i.id === selectedInstructor)?.credentials}
                     </div>
                   </div>
@@ -2008,9 +2008,9 @@ END:VCALENDAR`;
                 )}
 
                 {instructorType === 'existing' && selectedInstructor && (
-                  <div className="space-y-4 p-4 bg-gray-50 rounded-lg border">
+                  <div className="space-y-4 p-4 bg-gray-800/50 rounded-lg border border-gray-600">
                     <div className="flex items-center justify-between">
-                      <div className="text-sm text-gray-600">
+                      <div className="text-sm text-gray-300">
                         <strong>Selected Instructor:</strong>
                       </div>
                       <Button
@@ -2032,9 +2032,9 @@ END:VCALENDAR`;
                       </Button>
                     </div>
                     <div className="grid grid-cols-1 gap-2 text-sm">
-                      <div><strong>Name:</strong> {formData.instructorName}</div>
-                      <div><strong>Credentials:</strong> {formData.instructorCredentials}</div>
-                      <div><strong>Company:</strong> {formData.instructorCompany}</div>
+                      <div className="text-gray-300"><strong>Name:</strong> {formData.instructorName}</div>
+                      <div className="text-gray-300"><strong>Credentials:</strong> {formData.instructorCredentials}</div>
+                      <div className="text-gray-300"><strong>Company:</strong> {formData.instructorCompany}</div>
                     </div>
                   </div>
                 )}
@@ -2078,9 +2078,9 @@ END:VCALENDAR`;
 
                     {/* Document viewer */}
                     {showDocumentViewer && (
-                      <div className="space-y-3 p-4 bg-gray-50 rounded-lg border">
+                      <div className="space-y-3 p-4 bg-gray-800/50 rounded-lg border border-gray-600">
                         <div className="flex items-center justify-between">
-                          <div className="text-sm font-medium">
+                          <div className="text-sm font-medium text-gray-300">
                             Documents ({getCurrentInstructorDocuments().length})
                           </div>
                           {selectedDocuments.length > 0 && (
@@ -2643,11 +2643,11 @@ END:VCALENDAR`;
                           <Label className="text-sm font-medium mb-2 block">Signed Documents</Label>
                           <div className="space-y-2">
                             {sheet.signedDocuments.map(doc => (
-                              <div key={doc.id} className="flex items-center justify-between p-2 bg-white rounded border">
+                              <div key={doc.id} className="flex items-center justify-between p-2 bg-gray-800/50 rounded border border-gray-600">
                                 <div className="flex items-center gap-3">
                                   <FileCheck className="w-4 h-4 text-green-600" />
                                   <div>
-                                    <div className="text-sm font-medium">{doc.fileName}</div>
+                                    <div className="text-sm font-medium text-gray-300">{doc.fileName}</div>
                                     <div className="text-xs text-gray-500">
                                       {new Date(doc.uploadDate).toLocaleDateString()} • {Math.round(doc.fileSize / 1024)}KB
                                     </div>
@@ -2684,12 +2684,12 @@ END:VCALENDAR`;
                           <Label className="text-sm font-medium mb-2 block">Recent Activity</Label>
                           <div className="space-y-1 max-h-20 overflow-y-auto">
                             {sheet.signatureWorkflow.notifications.slice(-3).map(notification => (
-                              <div key={notification.id} className="text-xs p-2 bg-blue-50 rounded">
+                              <div key={notification.id} className="text-xs p-2 bg-blue-900/30 rounded border border-blue-700/50">
                                 <div className="flex items-center gap-2">
-                                  {notification.type === 'upload' && <Upload className="w-3 h-3" />}
-                                  {notification.type === 'completion' && <CheckCircle className="w-3 h-3" />}
-                                  {notification.type === 'reminder' && <Clock className="w-3 h-3" />}
-                                  <span>{notification.message}</span>
+                                  {notification.type === 'upload' && <Upload className="w-3 h-3 text-blue-400" />}
+                                  {notification.type === 'completion' && <CheckCircle className="w-3 h-3 text-green-400" />}
+                                  {notification.type === 'reminder' && <Clock className="w-3 h-3 text-yellow-400" />}
+                                  <span className="text-gray-300">{notification.message}</span>
                                 </div>
                                 <div className="text-gray-500 mt-1">
                                   {new Date(notification.timestamp).toLocaleString()}
@@ -3036,9 +3036,9 @@ END:VCALENDAR`;
             </div>
             
             <div className="p-6 space-y-4">
-              <div className="bg-gray-50 rounded-lg p-4">
-                <h4 className="font-medium mb-2">{previewDocument}</h4>
-                <div className="text-sm text-gray-600 space-y-2">
+              <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-600">
+                <h4 className="font-medium mb-2 text-gray-300">{previewDocument}</h4>
+                <div className="text-sm text-gray-400 space-y-2">
                   <p>📄 Professional OSHA-compliant training sign-in sheet</p>
                   <p>✅ Includes instructor credentials and course details</p>
                   <p>👥 Attendee roster with signature fields</p>
@@ -3046,12 +3046,12 @@ END:VCALENDAR`;
                 </div>
               </div>
               
-              <div className="bg-blue-50 rounded-lg p-4">
-                <h5 className="font-medium text-blue-800 mb-2">Available Formats:</h5>
+              <div className="bg-blue-900/30 rounded-lg p-4 border border-blue-700/50">
+                <h5 className="font-medium text-blue-300 mb-2">Available Formats:</h5>
                 <div className="flex gap-2">
-                  <Badge variant="outline" className="text-blue-600">PDF</Badge>
-                  <Badge variant="outline" className="text-blue-600">Word Document</Badge>
-                  <Badge variant="outline" className="text-blue-600">Excel Spreadsheet</Badge>
+                  <Badge variant="outline" className="text-blue-400 border-blue-400">PDF</Badge>
+                  <Badge variant="outline" className="text-blue-400 border-blue-400">Word Document</Badge>
+                  <Badge variant="outline" className="text-blue-400 border-blue-400">Excel Spreadsheet</Badge>
                 </div>
               </div>
             </div>
