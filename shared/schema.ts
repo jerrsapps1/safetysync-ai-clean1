@@ -495,6 +495,73 @@ export const commentLikes = pgTable("comment_likes", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+// File Management System Tables
+export const fileSystemFolders = pgTable("file_system_folders", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  name: text("name").notNull(),
+  parentId: integer("parent_id").references(() => fileSystemFolders.id),
+  path: text("path").notNull(), // Full path like "/Documents/Training Records/Fall Protection"
+  isRoot: boolean("is_root").default(false),
+  color: text("color").default("#3b82f6"), // Folder color
+  icon: text("icon").default("folder"), // Folder icon
+  isShared: boolean("is_shared").default(false),
+  permissions: jsonb("permissions"), // Access permissions
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const fileSystemFiles = pgTable("file_system_files", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  folderId: integer("folder_id").references(() => fileSystemFolders.id),
+  name: text("name").notNull(),
+  originalName: text("original_name").notNull(),
+  fileName: text("file_name").notNull(), // Stored filename
+  fileSize: integer("file_size").notNull(),
+  mimeType: text("mime_type").notNull(),
+  fileExtension: text("file_extension"),
+  filePath: text("file_path").notNull(), // Storage path
+  fileUrl: text("file_url"), // Access URL
+  description: text("description"),
+  tags: text("tags").array(),
+  isShared: boolean("is_shared").default(false),
+  permissions: jsonb("permissions"), // Access permissions
+  downloadCount: integer("download_count").default(0),
+  lastAccessedAt: timestamp("last_accessed_at"),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const fileSystemShares = pgTable("file_system_shares", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  itemId: integer("item_id").notNull(), // Can be file or folder ID
+  itemType: text("item_type", { enum: ["file", "folder"] }).notNull(),
+  shareType: text("share_type", { enum: ["public", "private", "link"] }).default("private"),
+  shareToken: text("share_token").unique(),
+  permissions: text("permissions", { enum: ["read", "write", "admin"] }).default("read"),
+  expiresAt: timestamp("expires_at"),
+  isActive: boolean("is_active").default(true),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const fileSystemFavorites = pgTable("file_system_favorites", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  itemId: integer("item_id").notNull(), // Can be file or folder ID
+  itemType: text("item_type", { enum: ["file", "folder"] }).notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const fileSystemRecent = pgTable("file_system_recent", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  itemId: integer("item_id").notNull(), // Can be file or folder ID
+  itemType: text("item_type", { enum: ["file", "folder"] }).notNull(),
+  accessedAt: timestamp("accessed_at").defaultNow(),
+});
+
 export const insertSpecialSchema = createInsertSchema(specials).omit({
   id: true,
   createdAt: true,
@@ -517,6 +584,34 @@ export const insertClientCommentSchema = createInsertSchema(clientComments).omit
   id: true,
   createdAt: true,
   updatedAt: true,
+});
+
+// File Management Insert Schemas
+export const insertFileSystemFolderSchema = createInsertSchema(fileSystemFolders).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertFileSystemFileSchema = createInsertSchema(fileSystemFiles).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertFileSystemShareSchema = createInsertSchema(fileSystemShares).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertFileSystemFavoriteSchema = createInsertSchema(fileSystemFavorites).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertFileSystemRecentSchema = createInsertSchema(fileSystemRecent).omit({
+  id: true,
+  accessedAt: true,
 });
 
 // Type exports
@@ -567,6 +662,18 @@ export type InsertUpcomingSoftware = z.infer<typeof insertUpcomingSoftwareSchema
 export type UpcomingSoftware = typeof upcomingSoftware.$inferSelect;
 export type InsertClientComment = z.infer<typeof insertClientCommentSchema>;
 export type ClientComment = typeof clientComments.$inferSelect;
+
+// File Management Types
+export type FileSystemFolder = typeof fileSystemFolders.$inferSelect;
+export type InsertFileSystemFolder = z.infer<typeof insertFileSystemFolderSchema>;
+export type FileSystemFile = typeof fileSystemFiles.$inferSelect;
+export type InsertFileSystemFile = z.infer<typeof insertFileSystemFileSchema>;
+export type FileSystemShare = typeof fileSystemShares.$inferSelect;
+export type InsertFileSystemShare = z.infer<typeof insertFileSystemShareSchema>;
+export type FileSystemFavorite = typeof fileSystemFavorites.$inferSelect;
+export type InsertFileSystemFavorite = z.infer<typeof insertFileSystemFavoriteSchema>;
+export type FileSystemRecent = typeof fileSystemRecent.$inferSelect;
+export type InsertFileSystemRecent = z.infer<typeof insertFileSystemRecentSchema>;
 
 // Company Profile Schema
 export const companyProfiles = pgTable("company_profiles", {
