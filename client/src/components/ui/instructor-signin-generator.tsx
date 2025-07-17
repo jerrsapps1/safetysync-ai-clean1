@@ -1908,7 +1908,7 @@ END:VCALENDAR`;
                         <Label htmlFor="customClassName">Custom Class Name *</Label>
                         <Input
                           id="customClassName"
-                          value={customClassName}
+                          value={customClassName || ''}
                           onChange={(e) => {
                             setCustomClassName(e.target.value);
                             setFormData(prev => ({ ...prev, classTitle: e.target.value }));
@@ -1921,7 +1921,7 @@ END:VCALENDAR`;
                         <Label htmlFor="customStandard">OSHA/ANSI Reference</Label>
                         <Input
                           id="customStandard"
-                          value={customStandard}
+                          value={customStandard || ''}
                           onChange={(e) => {
                             setCustomStandard(e.target.value);
                             setFormData(prev => ({ ...prev, oshaStandard: e.target.value }));
@@ -1938,7 +1938,7 @@ END:VCALENDAR`;
                         <Label htmlFor="classTitle">Class Title *</Label>
                         <Input
                           id="classTitle"
-                          value={formData.classTitle}
+                          value={formData.classTitle || ''}
                           onChange={(e) => setFormData(prev => ({ ...prev, classTitle: e.target.value }))}
                           placeholder="Enter class title"
                           disabled={!isCustomTraining}
@@ -1949,7 +1949,7 @@ END:VCALENDAR`;
                         <Label htmlFor="oshaStandard">OSHA/ANSI Standard</Label>
                         <Input
                           id="oshaStandard"
-                          value={formData.oshaStandard}
+                          value={formData.oshaStandard || ''}
                           onChange={(e) => setFormData(prev => ({ ...prev, oshaStandard: e.target.value }))}
                           placeholder="Auto-filled based on training type"
                           disabled={!isCustomTraining}
@@ -2025,7 +2025,7 @@ END:VCALENDAR`;
                       <Label htmlFor="instructorName">Instructor Name *</Label>
                       <Input
                         id="instructorName"
-                        value={formData.instructorName}
+                        value={formData.instructorName || ''}
                         onChange={(e) => setFormData(prev => ({ ...prev, instructorName: e.target.value }))}
                         placeholder="Full name of visiting instructor"
                       />
@@ -2035,7 +2035,7 @@ END:VCALENDAR`;
                       <Label htmlFor="instructorCredentials">Instructor Credentials</Label>
                       <Input
                         id="instructorCredentials"
-                        value={formData.instructorCredentials}
+                        value={formData.instructorCredentials || ''}
                         onChange={(e) => setFormData(prev => ({ ...prev, instructorCredentials: e.target.value }))}
                         placeholder="e.g., OSHA Authorized, CSP, CIH"
                       />
@@ -2045,7 +2045,7 @@ END:VCALENDAR`;
                       <Label htmlFor="instructorCompany">Instructor Company</Label>
                       <Input
                         id="instructorCompany"
-                        value={formData.instructorCompany}
+                        value={formData.instructorCompany || ''}
                         onChange={(e) => setFormData(prev => ({ ...prev, instructorCompany: e.target.value }))}
                         placeholder="Visiting instructor's company name"
                       />
@@ -2346,7 +2346,7 @@ END:VCALENDAR`;
                         <Label htmlFor="employeeName">Employee Name</Label>
                         <Input
                           id="employeeName"
-                          value={newEmployee.name}
+                          value={newEmployee.name || ''}
                           onChange={(e) => setNewEmployee(prev => ({ ...prev, name: e.target.value }))}
                           placeholder="Full name"
                         />
@@ -2356,7 +2356,7 @@ END:VCALENDAR`;
                         <Label htmlFor="employeeId">Employee ID</Label>
                         <Input
                           id="employeeId"
-                          value={newEmployee.employeeId}
+                          value={newEmployee.employeeId || ''}
                           onChange={(e) => setNewEmployee(prev => ({ ...prev, employeeId: e.target.value }))}
                           placeholder="Employee ID or badge number"
                         />
@@ -2366,7 +2366,7 @@ END:VCALENDAR`;
                         <Label htmlFor="employeeCompany">Company (optional)</Label>
                         <Input
                           id="employeeCompany"
-                          value={newEmployee.company}
+                          value={newEmployee.company || ''}
                           onChange={(e) => setNewEmployee(prev => ({ ...prev, company: e.target.value }))}
                           placeholder="Company name (if different from instructor)"
                         />
