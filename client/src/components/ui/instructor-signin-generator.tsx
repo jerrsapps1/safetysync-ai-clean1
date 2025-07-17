@@ -645,6 +645,13 @@ export function InstructorSignInGenerator() {
   };
 
   const generateSignInSheet = () => {
+    console.log('Form data before validation:', formData);
+    console.log('Class title:', formData.classTitle);
+    console.log('Instructor name:', formData.instructorName);
+    console.log('Date:', formData.date);
+    console.log('Employees:', formData.employees);
+    console.log('Employees length:', formData.employees?.length);
+    
     if (!formData.classTitle || !formData.instructorName || !formData.date || !formData.employees?.length) {
       toast({
         title: "Missing Information",
