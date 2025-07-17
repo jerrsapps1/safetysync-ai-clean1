@@ -2161,16 +2161,16 @@ END:VCALENDAR`;
               </CardHeader>
               <CardContent className="space-y-4">
                 <Tabs defaultValue="search" className="w-full">
-                  <TabsList className="grid w-full grid-cols-3 bg-gray-800/50 border-gray-700">
-                    <TabsTrigger value="search" className="flex items-center justify-center gap-2 text-sm">
+                  <TabsList className="flex flex-col w-full space-y-2 bg-transparent p-0 h-auto">
+                    <TabsTrigger value="search" className="flex items-center justify-start gap-2 text-sm w-full bg-gray-800/50 border border-gray-700 text-white hover:bg-gray-700/50 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
                       <Search className="w-4 h-4" />
                       Quick Search
                     </TabsTrigger>
-                    <TabsTrigger value="manual" className="flex items-center justify-center gap-2 text-sm">
+                    <TabsTrigger value="manual" className="flex items-center justify-start gap-2 text-sm w-full bg-gray-800/50 border border-gray-700 text-white hover:bg-gray-700/50 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
                       <UserPlus className="w-4 h-4" />
                       Manual Entry
                     </TabsTrigger>
-                    <TabsTrigger value="manage" className="flex items-center justify-center gap-2 text-sm">
+                    <TabsTrigger value="manage" className="flex items-center justify-start gap-2 text-sm w-full bg-gray-800/50 border border-gray-700 text-white hover:bg-gray-700/50 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
                       <Settings className="w-4 h-4" />
                       Manage Students
                     </TabsTrigger>
