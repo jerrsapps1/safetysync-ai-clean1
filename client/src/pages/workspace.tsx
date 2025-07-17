@@ -2414,7 +2414,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         </div>
 
         {/* Content Area */}
-        <div className="flex-1 p-2 md:p-6 overflow-y-auto">
+        <div className="flex-1 p-2 md:p-6 overflow-y-auto min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900">
           {activeTab === "unified-dashboard" && (
             <div className="space-y-6">
               {/* Widget Management Controls */}
@@ -3094,7 +3094,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           )}
 
           {activeTab === "training-records" && (
-            <div className="p-8">
+            <div className="p-8 min-h-screen">
               <TrainingRecordsManager />
             </div>
           )}
