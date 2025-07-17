@@ -2445,7 +2445,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         </div>
 
         {/* Content Area */}
-        <div className="flex-1 p-2 md:p-6 overflow-y-auto">
+        <div className="flex-1 p-2 md:p-6 overflow-y-auto bg-transparent">
           {activeTab === "unified-dashboard" && (
             <div className="space-y-6">
               {/* Widget Management Controls */}
@@ -3119,7 +3119,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
 
           {activeTab === "instructor-signin" && (
-            <div className="p-8">
+            <div className="p-8 bg-transparent">
               <InstructorSignInGenerator />
             </div>
           )}
