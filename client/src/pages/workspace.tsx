@@ -35,7 +35,6 @@ import DynamicAchievementWidget from "@/components/achievements/DynamicAchieveme
 import { AchievementNotificationManager } from "@/components/achievements/DynamicAchievementNotification";
 import { InstructorSignInGenerator } from "@/components/ui/instructor-signin-generator";
 import TrainingRecordsManager from "@/components/records/TrainingRecordsManager";
-import FileExplorer from "@/components/FileExplorer";
 
 import { AIPatternSkeleton } from "@/components/ui/ai-skeleton";
 import { SmoothLoading } from "@/components/ui/smooth-loading";
@@ -100,8 +99,7 @@ import {
   Square,
   ArrowRight,
   ArrowUp,
-  ArrowDown,
-  Folder
+  ArrowDown
 } from "lucide-react";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
