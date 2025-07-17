@@ -73,7 +73,7 @@ export function StudentAutocomplete({
     queryFn: async () => {
       const response = await fetch('/api/employees', {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${sessionStorage.getItem('auth_token')}`
         }
       });
       if (!response.ok) throw new Error('Failed to fetch employees');
@@ -92,7 +92,7 @@ export function StudentAutocomplete({
       if (!debouncedQuery.trim()) return [];
       const response = await fetch(`/api/external-students/search?q=${encodeURIComponent(debouncedQuery)}`, {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${sessionStorage.getItem('auth_token')}`
         }
       });
       if (!response.ok) throw new Error('Failed to search external students');
