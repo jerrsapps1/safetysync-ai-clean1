@@ -2161,16 +2161,16 @@ END:VCALENDAR`;
               </CardHeader>
               <CardContent className="space-y-4">
                 <Tabs defaultValue="search" className="w-full">
-                  <TabsList className="grid w-full grid-cols-3">
-                    <TabsTrigger value="search" className="flex items-center gap-2">
+                  <TabsList className="grid w-full grid-cols-3 bg-gray-800/50 border-gray-700">
+                    <TabsTrigger value="search" className="flex items-center justify-center gap-2 text-sm">
                       <Search className="w-4 h-4" />
                       Quick Search
                     </TabsTrigger>
-                    <TabsTrigger value="manual" className="flex items-center gap-2">
+                    <TabsTrigger value="manual" className="flex items-center justify-center gap-2 text-sm">
                       <UserPlus className="w-4 h-4" />
                       Manual Entry
                     </TabsTrigger>
-                    <TabsTrigger value="manage" className="flex items-center gap-2">
+                    <TabsTrigger value="manage" className="flex items-center justify-center gap-2 text-sm">
                       <Settings className="w-4 h-4" />
                       Manage Students
                     </TabsTrigger>
