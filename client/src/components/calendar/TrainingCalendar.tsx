@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -161,6 +162,49 @@ export default function TrainingCalendar() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedType, setSelectedType] = useState("all");
 
+  // Fetch training sessions from API
+  const { data: trainingSessions = [], isLoading, error } = useQuery({
+    queryKey: ['training-sessions'],
+    queryFn: async () => {
+      const response = await fetch('/api/training-sessions', {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      if (!response.ok) {
+        throw new Error('Failed to fetch training sessions');
+      }
+      return response.json();
+    }
+  });
+
+  // Transform API data to calendar format
+  const transformedSessions = trainingSessions.map((session: any) => {
+    const startDate = new Date(session.startDate);
+    const endDate = new Date(session.endDate);
+    
+    return {
+      id: session.id,
+      title: session.sessionName,
+      type: 'certification' as const,
+      instructor: session.instructor || 'TBD',
+      date: startDate.toISOString().split('T')[0],
+      time: startDate.toTimeString().split(' ')[0].substring(0, 5),
+      duration: Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60)),
+      location: session.location || 'TBD',
+      capacity: session.capacity || 20,
+      enrolled: 0,
+      status: session.status as 'scheduled' | 'in-progress' | 'completed' | 'cancelled',
+      requirements: [],
+      description: session.notes || 'Training session',
+      materials: [],
+      attendees: []
+    };
+  });
+
+  // Combine API sessions with mock sessions for now
+  const allSessions = [...transformedSessions, ...mockSessions];
+
   const months = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
@@ -189,22 +233,22 @@ export default function TrainingCalendar() {
     }
   };
 
-  const filteredSessions = mockSessions.filter(session => {
+  const filteredSessions = allSessions.filter(session => {
     const matchesSearch = session.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          session.instructor.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesType = selectedType === 'all' || session.type === selectedType;
     return matchesSearch && matchesType;
   });
 
-  const upcomingSessions = mockSessions.filter(session => 
+  const upcomingSessions = allSessions.filter(session => 
     new Date(session.date) > new Date() && session.status === 'scheduled'
   ).length;
 
-  const totalEnrolled = mockSessions.reduce((sum, session) => sum + session.enrolled, 0);
-  const totalCapacity = mockSessions.reduce((sum, session) => sum + session.capacity, 0);
+  const totalEnrolled = allSessions.reduce((sum, session) => sum + session.enrolled, 0);
+  const totalCapacity = allSessions.reduce((sum, session) => sum + session.capacity, 0);
   const utilizationRate = Math.round((totalEnrolled / totalCapacity) * 100);
 
-  const completedSessions = mockSessions.filter(session => session.status === 'completed').length;
+  const completedSessions = allSessions.filter(session => session.status === 'completed').length;
 
   // Generate calendar grid
   const getDaysInMonth = (month: number, year: number) => {
