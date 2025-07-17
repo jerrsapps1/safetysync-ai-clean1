@@ -43,14 +43,14 @@ type StudentOption = Employee | ExternalStudent;
 
 interface StudentAutocompleteProps {
   onSelect: (student: StudentOption) => void;
-  selectedStudents: StudentOption[];
+  selectedStudents?: StudentOption[];
   placeholder?: string;
   className?: string;
 }
 
 export function StudentAutocomplete({ 
   onSelect, 
-  selectedStudents, 
+  selectedStudents = [], 
   placeholder = "Search employees and external students...",
   className = ""
 }: StudentAutocompleteProps) {

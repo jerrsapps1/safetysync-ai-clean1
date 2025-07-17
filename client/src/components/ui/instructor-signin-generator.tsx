@@ -2284,7 +2284,8 @@ END:VCALENDAR`;
                     <div className="space-y-3">
                       <Label>Search Internal Employees & External Students</Label>
                       <StudentAutocomplete
-                        onStudentSelect={handleStudentSelect}
+                        onSelect={handleStudentSelect}
+                        selectedStudents={selectedStudents}
                         placeholder="Type name to search employees and students..."
                         className="w-full"
                       />
