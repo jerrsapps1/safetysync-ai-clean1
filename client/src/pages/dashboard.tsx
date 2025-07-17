@@ -13,7 +13,7 @@ import { Switch } from "@/components/ui/switch";
 import { ComplianceReportGenerator } from "@/components/ui/compliance-report-generator";
 import { AICloneDetector } from "@/components/ui/ai-clone-detector";
 import { CollaborationLayer } from "@/components/ui/collaboration-layer";
-import { AIQuickActions } from "@/components/ui/ai-quick-actions";
+
 import { AIPatternSkeleton } from "@/components/ui/ai-skeleton";
 import { SmoothLoading, ContentWrapper } from "@/components/ui/smooth-loading";
 import { 
@@ -288,19 +288,10 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* AI Quick Actions Sidebar */}
-      <div className="relative z-10">
-        <AIQuickActions 
-          currentPage="dashboard"
-          onActionExecute={(actionId) => {
-            console.log('AI Action executed:', actionId);
-            // Handle specific actions based on actionId
-          }}
-        />
-      </div>
+
       
       {/* Navigation Header */}
-      <div className="glass-effect backdrop-blur-md border-b border-white/20 relative z-10">
+      <div className="bg-black/10 backdrop-blur-md border-b border-white/20 relative z-10">
         <div className="max-w-7xl mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2 md:space-x-4">
@@ -366,7 +357,7 @@ export default function Dashboard() {
         </div>
 
         {/* Quick Navigation Helper */}
-        <Card className="mb-6 glass-effect border-blue-500/30 bg-blue-500/10 backdrop-blur-sm">
+        <Card className="mb-6 bg-blue-500/10 border-blue-500/30 backdrop-blur-sm">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -399,7 +390,7 @@ export default function Dashboard() {
             </div>
           ) : (
             <div className="contents content-fade-in">
-              <Card className="glass-effect border-blue-500/30 bg-blue-500/10 backdrop-blur-sm hover:bg-blue-500/20 transition-all duration-300 group">
+              <Card className="bg-blue-500/10 border-blue-500/30 backdrop-blur-sm hover:bg-blue-500/20 transition-all duration-300 group">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
@@ -413,7 +404,7 @@ export default function Dashboard() {
                 </CardContent>
               </Card>
 
-              <Card className="glass-effect border-green-500/30 bg-green-500/10 backdrop-blur-sm hover:bg-green-500/20 transition-all duration-300 group">
+              <Card className="bg-green-500/10 border-green-500/30 backdrop-blur-sm hover:bg-green-500/20 transition-all duration-300 group">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
@@ -427,7 +418,7 @@ export default function Dashboard() {
                 </CardContent>
               </Card>
 
-              <Card className="glass-effect border-yellow-500/30 bg-yellow-500/10 backdrop-blur-sm hover:bg-yellow-500/20 transition-all duration-300 group">
+              <Card className="bg-yellow-500/10 border-yellow-500/30 backdrop-blur-sm hover:bg-yellow-500/20 transition-all duration-300 group">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
@@ -441,7 +432,7 @@ export default function Dashboard() {
                 </CardContent>
               </Card>
 
-              <Card className="glass-effect border-red-500/30 bg-red-500/10 backdrop-blur-sm hover:bg-red-500/20 transition-all duration-300 group">
+              <Card className="bg-red-500/10 border-red-500/30 backdrop-blur-sm hover:bg-red-500/20 transition-all duration-300 group">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
@@ -486,7 +477,7 @@ export default function Dashboard() {
 
         {/* Main Content Tabs */}
         <Tabs defaultValue="overview" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-11 glass-effect border-white/20 bg-white/5 backdrop-blur-sm">
+          <TabsList className="grid w-full grid-cols-11 bg-white/5 border-white/20 backdrop-blur-sm">
             <TabsTrigger value="overview" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white hover:text-white transition-all duration-300">
               Overview
             </TabsTrigger>
@@ -524,7 +515,7 @@ export default function Dashboard() {
 
           <TabsContent value="overview" className="space-y-6">
             {/* AI-Enhanced Recent Activity */}
-            <Card className="glass-effect border-white/20 bg-white/5 backdrop-blur-sm">
+            <Card className="bg-white/5 border-white/20 backdrop-blur-sm">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-white">
                   <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
@@ -538,7 +529,7 @@ export default function Dashboard() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <div className="flex items-center gap-3 p-3 glass-effect border-green-500/30 bg-green-500/10 rounded-lg hover:bg-green-500/20 transition-all duration-300">
+                  <div className="flex items-center gap-3 p-3 bg-green-500/10 border-green-500/30 rounded-lg hover:bg-green-500/20 transition-all duration-300">
                     <div className="w-8 h-8 bg-gradient-to-r from-green-600 to-green-500 rounded-full flex items-center justify-center">
                       <CheckCircle className="w-5 h-5 text-white" />
                     </div>
@@ -547,7 +538,7 @@ export default function Dashboard() {
                       <p className="text-sm text-green-200">2 hours ago • Compliance score updated automatically</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 p-3 glass-effect border-yellow-500/30 bg-yellow-500/10 rounded-lg hover:bg-yellow-500/20 transition-all duration-300">
+                  <div className="flex items-center gap-3 p-3 bg-yellow-500/10 border-yellow-500/30 rounded-lg hover:bg-yellow-500/20 transition-all duration-300">
                     <div className="w-8 h-8 bg-gradient-to-r from-yellow-600 to-yellow-500 rounded-full flex items-center justify-center">
                       <Clock className="w-5 h-5 text-white" />
                     </div>
@@ -2048,7 +2039,7 @@ export default function Dashboard() {
           </TabsContent>
 
           <TabsContent value="safety-trends" className="space-y-6">
-            <Card className="glass-effect border-white/20 bg-white/5 backdrop-blur-sm">
+            <Card className="bg-white/5 border-white/20 backdrop-blur-sm">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-white">
                   <Activity className="w-5 h-5 text-blue-400" />
