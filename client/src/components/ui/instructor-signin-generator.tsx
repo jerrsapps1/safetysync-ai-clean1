@@ -2183,6 +2183,7 @@ END:VCALENDAR`;
                     value={formData.customReference}
                     onChange={(e) => setFormData(prev => ({ ...prev, customReference: e.target.value }))}
                     placeholder="Enter your own reference (e.g., Company SOP, Internal Training ID, etc.)"
+                    className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
                   />
                   <div className="text-xs text-gray-500 mt-1">
                     Add your own reference number, SOP citation, or internal training identifier
@@ -2193,13 +2194,13 @@ END:VCALENDAR`;
           </div>
 
           <div className="space-y-6">
-            <Card>
+            <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Users className="w-5 h-5" />
+                <CardTitle className="flex items-center gap-2 text-white">
+                  <Users className="w-5 h-5 text-purple-400" />
                   Training Attendees ({formData.employees?.length || 0})
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className="text-gray-400">
                   Add employees and external students who will attend this training session
                 </CardDescription>
               </CardHeader>
@@ -2244,6 +2245,7 @@ END:VCALENDAR`;
                           value={newEmployee.name}
                           onChange={(e) => setNewEmployee(prev => ({ ...prev, name: e.target.value }))}
                           placeholder="Full name"
+                          className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
                         />
                       </div>
                       
@@ -2254,6 +2256,7 @@ END:VCALENDAR`;
                           value={newEmployee.employeeId}
                           onChange={(e) => setNewEmployee(prev => ({ ...prev, employeeId: e.target.value }))}
                           placeholder="Employee ID or badge number"
+                          className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
                         />
                       </div>
                       
@@ -2264,10 +2267,11 @@ END:VCALENDAR`;
                           value={newEmployee.company}
                           onChange={(e) => setNewEmployee(prev => ({ ...prev, company: e.target.value }))}
                           placeholder="Company name (if different from instructor)"
+                          className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
                         />
                       </div>
                       
-                      <Button onClick={addEmployee} className="w-full">
+                      <Button onClick={addEmployee} className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white">
                         <Plus className="w-4 h-4 mr-2" />
                         Add Employee
                       </Button>
@@ -2283,10 +2287,10 @@ END:VCALENDAR`;
                 
                 <div className="space-y-2 max-h-60 overflow-y-auto">
                   {formData.employees?.map((employee, index) => (
-                    <div key={employee.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div key={employee.id} className="flex items-center justify-between p-3 bg-gray-800/50 border border-gray-700 rounded-lg backdrop-blur-sm">
                       <div className="flex-1">
-                        <div className="font-medium">{employee.name}</div>
-                        <div className="text-sm text-gray-500">
+                        <div className="font-medium text-white">{employee.name}</div>
+                        <div className="text-sm text-gray-400">
                           ID: {employee.employeeId} • {employee.company}
                           {employee.type && (
                             <Badge variant={employee.type === 'internal' ? 'default' : 'secondary'} className="ml-2">
@@ -2306,7 +2310,7 @@ END:VCALENDAR`;
                   ))}
                   
                   {(!formData.employees || formData.employees.length === 0) && (
-                    <div className="text-center py-8 text-gray-500">
+                    <div className="text-center py-8 text-gray-400">
                       No attendees added yet. Use the search tab to find employees and students, or manually add them.
                     </div>
                   )}
@@ -2327,10 +2331,10 @@ END:VCALENDAR`;
           </div>
         </div>
       ) : (
-        <Card>
+        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
           <CardHeader>
-            <CardTitle>Saved Sign-In Sheets</CardTitle>
-            <CardDescription>
+            <CardTitle className="text-white">Saved Sign-In Sheets</CardTitle>
+            <CardDescription className="text-gray-400">
               Manage your drafted and generated training attendance records
             </CardDescription>
           </CardHeader>
@@ -2345,14 +2349,14 @@ END:VCALENDAR`;
                     placeholder="Search by title, instructor, or location..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full"
+                    className="w-full bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
                   />
                 </div>
                 
                 <div className="space-y-2">
                   <Label htmlFor="filterStatus">Filter by Status</Label>
                   <Select value={filterStatus} onValueChange={setFilterStatus}>
-                    <SelectTrigger>
+                    <SelectTrigger className="bg-gray-800/50 border-gray-700 text-white">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -2367,7 +2371,7 @@ END:VCALENDAR`;
                 <div className="space-y-2">
                   <Label htmlFor="filterInstructor">Filter by Instructor</Label>
                   <Select value={filterInstructor} onValueChange={setFilterInstructor}>
-                    <SelectTrigger>
+                    <SelectTrigger className="bg-gray-800/50 border-gray-700 text-white">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
