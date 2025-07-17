@@ -2182,7 +2182,7 @@ END:VCALENDAR`;
                       <StudentAutocomplete
                         onSelect={handleStudentSelect}
                         selectedStudents={selectedStudents}
-                        placeholder="Type name to search employees and students..."
+                        placeholder="Student Search"
                         className="w-full"
                       />
                       <div className="text-sm text-gray-500">
