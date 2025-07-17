@@ -1758,14 +1758,14 @@ END:VCALENDAR`;
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-6 space-y-6">
+    <div className="max-w-6xl mx-auto p-6 space-y-6 bg-transparent">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold flex items-center gap-2">
+          <h1 className="text-3xl font-bold flex items-center gap-2 text-white">
             <FileText className="w-8 h-8 text-blue-600" />
             Instructor Sign-In Sheet Generator
           </h1>
-          <p className="text-gray-600 mt-2">
+          <p className="text-gray-400 mt-2">
             Create OSHA-compliant attendance records for safety training classes
           </p>
         </div>
@@ -1848,13 +1848,13 @@ END:VCALENDAR`;
       {activeTab === 'create' ? (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="space-y-6">
-            <Card>
+            <Card className="bg-gray-800/50 border-gray-700">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle className="flex items-center gap-2 text-white">
                   <Shield className="w-5 h-5" />
                   Training Information
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className="text-gray-400">
                   Basic details about the safety training session
                 </CardDescription>
               </CardHeader>
@@ -1961,13 +1961,13 @@ END:VCALENDAR`;
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="bg-gray-800/50 border-gray-700">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle className="flex items-center gap-2 text-white">
                   <Users className="w-5 h-5" />
                   Instructor Information
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className="text-gray-400">
                   Details about the certified instructor
                 </CardDescription>
               </CardHeader>
@@ -2162,7 +2162,7 @@ END:VCALENDAR`;
                         ) : (
                           <div className="space-y-2 max-h-48 overflow-y-auto">
                             {getCurrentInstructorDocuments().map(doc => (
-                              <div key={doc.id} className="flex items-center space-x-3 p-2 bg-white rounded border">
+                              <div key={doc.id} className="flex items-center space-x-3 p-2 bg-gray-700/50 rounded border border-gray-600">
                                 <input
                                   type="checkbox"
                                   checked={selectedDocuments.includes(doc.id)}
@@ -2210,13 +2210,13 @@ END:VCALENDAR`;
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="bg-gray-800/50 border-gray-700">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle className="flex items-center gap-2 text-white">
                   <Calendar className="w-5 h-5" />
                   Session Details
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className="text-gray-400">
                   When and where the training will take place
                 </CardDescription>
               </CardHeader>
@@ -2432,10 +2432,10 @@ END:VCALENDAR`;
           </div>
         </div>
       ) : (
-        <Card>
+        <Card className="bg-gray-800/50 border-gray-700">
           <CardHeader>
-            <CardTitle>Saved Sign-In Sheets</CardTitle>
-            <CardDescription>
+            <CardTitle className="text-white">Saved Sign-In Sheets</CardTitle>
+            <CardDescription className="text-gray-400">
               Manage your drafted and generated training attendance records
             </CardDescription>
           </CardHeader>
@@ -2974,7 +2974,7 @@ END:VCALENDAR`;
         <div className="relative">
           {/* Quick Action Menu Items */}
           {showQuickActionMenu && (
-            <div className="absolute bottom-16 right-0 bg-white rounded-lg shadow-lg border p-2 min-w-[160px] animate-in slide-in-from-bottom duration-300">
+            <div className="absolute bottom-16 right-0 bg-gray-800 border-gray-700 rounded-lg shadow-lg border p-2 min-w-[160px] animate-in slide-in-from-bottom duration-300">
               <div className="space-y-1">
                 {quickActions.map((action, index) => (
                   <Button
@@ -3005,7 +3005,7 @@ END:VCALENDAR`;
       {/* Gamified Onboarding Overlay */}
       {showOnboarding && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center">
-          <div className="bg-white rounded-xl p-8 max-w-md mx-4 shadow-2xl">
+          <div className="bg-gray-800 border-gray-700 text-white rounded-xl p-8 max-w-md mx-4 shadow-2xl">
             <div className="text-center space-y-4">
               <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto">
                 <GraduationCap className="w-8 h-8 text-white" />
@@ -3069,7 +3069,7 @@ END:VCALENDAR`;
       {/* Interactive Document Preview Tooltip */}
       {showDocumentPreview && previewDocument && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-xl max-w-2xl w-full max-h-[80vh] overflow-hidden shadow-2xl">
+          <div className="bg-gray-800 border-gray-700 text-white rounded-xl max-w-2xl w-full max-h-[80vh] overflow-hidden shadow-2xl">
             <div className="p-6 border-b flex items-center justify-between">
               <h3 className="text-lg font-semibold">Document Preview</h3>
               <Button
