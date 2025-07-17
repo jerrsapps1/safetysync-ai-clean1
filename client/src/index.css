@@ -181,9 +181,32 @@
   background-color: transparent !important;
 }
 
-/* Override any remaining white/light backgrounds */
-.instructor-signin-generator * {
-  background-color: inherit;
+/* Nuclear override - Force dark background on ALL elements */
+.instructor-signin-generator,
+.instructor-signin-generator *,
+.instructor-signin-generator *::before,
+.instructor-signin-generator *::after {
+  background-color: #374151 !important;
+  color: #f9fafb !important;
+}
+
+/* Preserve specific colored backgrounds */
+.instructor-signin-generator .bg-blue-900,
+.instructor-signin-generator .bg-green-500,
+.instructor-signin-generator .bg-red-500,
+.instructor-signin-generator .bg-yellow-500,
+.instructor-signin-generator .bg-purple-500,
+.instructor-signin-generator .bg-emerald-500,
+.instructor-signin-generator .bg-orange-500,
+.instructor-signin-generator .bg-pink-500,
+.instructor-signin-generator .bg-transparent {
+  background-color: inherit !important;
+}
+
+/* Override any CSS variable backgrounds */
+.instructor-signin-generator [style*="background"],
+.instructor-signin-generator [style*="background-color"] {
+  background-color: #374151 !important;
 }
 
 .instructor-signin-generator .bg-background {
