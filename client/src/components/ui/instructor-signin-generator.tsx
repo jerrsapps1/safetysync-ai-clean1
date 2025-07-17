@@ -327,15 +327,26 @@ export function InstructorSignInGenerator() {
   };
 
   const handleInstructorSelection = (instructorId: string) => {
-    const instructor = clientInstructors.find(i => i.id === instructorId);
-    if (instructor) {
-      setSelectedInstructor(instructorId);
+    if (instructorId === 'clear') {
+      setSelectedInstructor('');
       setFormData(prev => ({
         ...prev,
-        instructorName: instructor.name,
-        instructorCredentials: instructor.credentials,
-        instructorCompany: instructor.company
+        instructorName: '',
+        instructorCredentials: '',
+        instructorCompany: ''
       }));
+    } else {
+      const instructor = clientInstructors.find(i => i.id === instructorId);
+      if (instructor) {
+        setSelectedInstructor(instructorId);
+        setInstructorType('existing');
+        setFormData(prev => ({
+          ...prev,
+          instructorName: instructor.name,
+          instructorCredentials: instructor.credentials,
+          instructorCompany: instructor.company
+        }));
+      }
     }
   };
 
@@ -1820,7 +1831,7 @@ END:VCALENDAR`;
                         <SelectValue placeholder="Choose from client instructors" />
                       </SelectTrigger>
                       <SelectContent>
-                        {SAMPLE_INSTRUCTORS.map(instructor => (
+                        {clientInstructors.map(instructor => (
                           <SelectItem key={instructor.id} value={instructor.id}>
                             {instructor.name} - {instructor.credentials}
                           </SelectItem>
@@ -1849,7 +1860,7 @@ END:VCALENDAR`;
                   <div className="p-3 bg-gray-50 rounded-lg border">
                     <div className="text-sm font-medium text-gray-700">Selected Instructor:</div>
                     <div className="text-sm text-gray-600 mt-1">
-                      {SAMPLE_INSTRUCTORS.find(i => i.id === selectedInstructor)?.name} - {SAMPLE_INSTRUCTORS.find(i => i.id === selectedInstructor)?.credentials}
+                      {clientInstructors.find(i => i.id === selectedInstructor)?.name} - {clientInstructors.find(i => i.id === selectedInstructor)?.credentials}
                     </div>
                   </div>
                 )}
