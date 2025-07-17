@@ -27,7 +27,7 @@ import CertificateGeneration from "@/components/certificates/CertificateGenerati
 import EmployeePortal from "@/components/portal/EmployeePortal";
 import NotificationSystem from "@/components/notifications/NotificationSystem";
 
-import TrainingCalendar from "@/components/calendar/TrainingCalendar";
+
 import SubscriptionBilling from "@/components/billing/SubscriptionBilling";
 import AnalyticsReports from "@/components/reports/AnalyticsReports";
 import AchievementBadges from "@/components/achievements/AchievementBadges";
@@ -437,7 +437,7 @@ export default function WorkspacePage() {
       "pending-training": <Clock className="w-5 h-5" />,
       "compliance-score": <TrendingUp className="w-5 h-5" />,
       "recent-activity": <Activity className="w-5 h-5" />,
-      "training-calendar": <Calendar className="w-5 h-5" />,
+
       "safety-alerts": <AlertTriangle className="w-5 h-5" />,
       "certification-progress": <Award className="w-5 h-5" />,
       "compliance-trends": <BarChart3 className="w-5 h-5" />,
@@ -493,12 +493,7 @@ export default function WorkspacePage() {
       defaultProps: { x: 0, y: 5, w: 12, h: 4 },
       visible: true
     },
-    {
-      id: "training-calendar",
-      title: "Training Calendar",
-      defaultProps: { x: 12, y: 5, w: 12, h: 4 },
-      visible: true
-    },
+
     {
       id: "safety-alerts",
       title: "Safety Alerts",
@@ -1504,39 +1499,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             </div>
           </div>
         );
-      case "training-calendar":
-        return (
-          <div className="h-full overflow-hidden">
-            <h3 className={`${isSmall ? 'text-sm' : 'text-lg'} font-semibold text-white mb-2`}>Upcoming Training</h3>
-            <div className="space-y-2 overflow-y-auto" style={{ maxHeight: 'calc(100% - 2rem)' }}>
-              <div className="flex items-center space-x-2 p-2 bg-gray-800/50 rounded-lg">
-                <Calendar className={`${isSmall ? 'w-4 h-4' : 'w-5 h-5'} text-blue-400 flex-shrink-0`} />
-                <div className="min-w-0 flex-1">
-                  <p className={`text-white ${isSmall ? 'text-xs' : 'text-sm'} font-medium truncate`}>Fall Protection Training</p>
-                  <p className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-xs'} truncate`}>July 15, 2025 - 9:00 AM</p>
-                </div>
-              </div>
-              {!isSmall && (
-                <>
-                  <div className="flex items-center space-x-2 p-2 bg-gray-800/50 rounded-lg">
-                    <Calendar className="w-5 h-5 text-green-400 flex-shrink-0" />
-                    <div className="min-w-0 flex-1">
-                      <p className="text-white text-sm font-medium truncate">OSHA 30 Hour</p>
-                      <p className="text-gray-400 text-xs truncate">July 22, 2025 - 8:00 AM</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-2 p-2 bg-gray-800/50 rounded-lg">
-                    <Calendar className="w-5 h-5 text-yellow-400 flex-shrink-0" />
-                    <div className="min-w-0 flex-1">
-                      <p className="text-white text-sm font-medium truncate">First Aid/CPR</p>
-                      <p className="text-gray-400 text-xs truncate">July 29, 2025 - 1:00 PM</p>
-                    </div>
-                  </div>
-                </>
-              )}
-            </div>
-          </div>
-        );
+
       case "safety-alerts":
         return (
           <div className="h-full overflow-hidden">
@@ -2300,17 +2263,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <Award className="w-4 h-4 mr-3 flex-shrink-0" />
                   {sidebarOpen && <span className="truncate">Certificate Generation</span>}
                 </Button>
-                <Button
-                  variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                    activeTab === "training-calendar" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
-                  }`}
-                  onClick={() => handleTabSwitch("training-calendar")}
-                  title="Training Calendar"
-                >
-                  <Calendar className="w-4 h-4 mr-3 flex-shrink-0" />
-                  {sidebarOpen && <span className="truncate">Training Calendar</span>}
-                </Button>
+
                 <Button
                   variant="ghost"
                   className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
@@ -2386,7 +2339,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 {activeTab === "notifications" && "Notifications & Alerts"}
 
                 {activeTab === "instructor-signin" && "Instructor Sign-In Sheets"}
-                {activeTab === "training-calendar" && "Training Calendar"}
+
                 {activeTab === "subscription-billing" && "Subscription & Billing"}
                 {activeTab === "analytics-reports" && "Analytics & Reports"}
                 {activeTab === "achievements" && "Achievements & Milestones"}
@@ -2414,7 +2367,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 {activeTab === "notifications" && "Manage alerts and notification preferences"}
 
                 {activeTab === "instructor-signin" && "Generate sign-in sheets for training classes and manage instructor documentation"}
-                {activeTab === "training-calendar" && "Schedule and manage training sessions"}
+
                 {activeTab === "subscription-billing" && "Manage your plan and billing information"}
                 {activeTab === "analytics-reports" && "Generate comprehensive analytics and reports"}
                 {activeTab === "achievements" && "Track your safety milestones and earn achievement badges"}
@@ -3126,11 +3079,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             </div>
           )}
 
-          {activeTab === "training-calendar" && (
-            <div className="p-8">
-              <TrainingCalendar />
-            </div>
-          )}
+
 
           {activeTab === "subscription-billing" && (
             <div className="p-8">
