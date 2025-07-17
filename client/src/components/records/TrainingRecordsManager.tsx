@@ -299,9 +299,6 @@ export default function TrainingRecordsManager() {
 
   return (
     <div className="space-y-6 relative">
-      {/* Tech grid background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 opacity-10 rounded-lg"></div>
-      
       {/* Floating tech icons */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-10 left-10 animate-float">
