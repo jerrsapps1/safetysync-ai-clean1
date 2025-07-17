@@ -1,0 +1,614 @@
+import React, { useState, useRef } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { useToast } from '@/hooks/use-toast';
+import { 
+  Upload, 
+  Download, 
+  FileText, 
+  Search, 
+  Filter, 
+  Plus, 
+  Edit, 
+  Trash2,
+  Users,
+  BookOpen,
+  Award,
+  Shield,
+  ChevronDown,
+  Eye,
+  Calendar,
+  Clock,
+  User
+} from 'lucide-react';
+import { format } from 'date-fns';
+
+// Document category configurations
+const documentCategories = [
+  { 
+    id: 'sign_in_sheet', 
+    name: 'Sign-In Sheets', 
+    icon: Users, 
+    color: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
+    description: 'Instructor and student attendance records'
+  },
+  { 
+    id: 'training_material', 
+    name: 'Training Materials', 
+    icon: BookOpen, 
+    color: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
+    description: 'Course syllabi, presentations, and educational content'
+  },
+  { 
+    id: 'certificate', 
+    name: 'Certificates', 
+    icon: Award, 
+    color: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
+    description: 'Generated certificates and completions'
+  },
+  { 
+    id: 'instructor_resource', 
+    name: 'Instructor Resources', 
+    icon: Shield, 
+    color: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
+    description: 'Instructor guides, evaluation forms, and teaching materials'
+  },
+  { 
+    id: 'student_record', 
+    name: 'Student Records', 
+    icon: FileText, 
+    color: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',
+    description: 'Student progress, evaluations, and training history'
+  },
+  { 
+    id: 'compliance_document', 
+    name: 'Compliance Documents', 
+    icon: Shield, 
+    color: 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200',
+    description: 'Regulatory requirements and compliance records'
+  }
+];
+
+// Training subject configurations
+const trainingSubjects = [
+  'Fall Protection',
+  'HAZWOPER',
+  'Hazard Communication',
+  'Hearing Conservation',
+  'Personal Protective Equipment',
+  'First Aid/CPR',
+  'Lockout/Tagout',
+  'Respiratory Protection',
+  'Forklift Operation',
+  'Crane Operation',
+  'Excavation Safety',
+  'Confined Space Entry',
+  'Electrical Safety',
+  'Chemical Safety',
+  'Fire Safety',
+  'Welding Safety',
+  'Custom Training'
+];
+
+interface TrainingDocument {
+  id: number;
+  fileName: string;
+  fileType: string;
+  category: string;
+  trainingSubject: string;
+  trainingDate: Date;
+  instructorName: string;
+  studentCount: number;
+  location: string;
+  fileSize: number;
+  uploadDate: Date;
+  description?: string;
+  expirationDate?: Date;
+}
+
+// Mock data for demonstration
+const mockDocuments: TrainingDocument[] = [
+  {
+    id: 1,
+    fileName: 'Fall_Protection_Sign_In_Sheet_2025-01-15.pdf',
+    fileType: 'PDF',
+    category: 'sign_in_sheet',
+    trainingSubject: 'Fall Protection',
+    trainingDate: new Date('2025-01-15'),
+    instructorName: 'John Smith',
+    studentCount: 12,
+    location: 'Main Training Room',
+    fileSize: 245760,
+    uploadDate: new Date('2025-01-15T10:30:00'),
+    description: 'Instructor and student attendance for Fall Protection training session'
+  },
+  {
+    id: 2,
+    fileName: 'HAZWOPER_Training_Materials_2025.pdf',
+    fileType: 'PDF',
+    category: 'training_material',
+    trainingSubject: 'HAZWOPER',
+    trainingDate: new Date('2025-01-20'),
+    instructorName: 'Sarah Johnson',
+    studentCount: 8,
+    location: 'Conference Room B',
+    fileSize: 1024000,
+    uploadDate: new Date('2025-01-20T14:15:00'),
+    description: 'Complete HAZWOPER training syllabus and presentation materials'
+  },
+  {
+    id: 3,
+    fileName: 'Forklift_Certification_Mike_Rodriguez.pdf',
+    fileType: 'PDF',
+    category: 'certificate',
+    trainingSubject: 'Forklift Operation',
+    trainingDate: new Date('2025-01-18'),
+    instructorName: 'Lisa Chen',
+    studentCount: 1,
+    location: 'Warehouse Training Area',
+    fileSize: 98304,
+    uploadDate: new Date('2025-01-18T16:45:00'),
+    description: 'Forklift operation certificate for Mike Rodriguez',
+    expirationDate: new Date('2028-01-18')
+  }
+];
+
+export default function TrainingDocumentHub() {
+  const [documents, setDocuments] = useState<TrainingDocument[]>(mockDocuments);
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [selectedSubject, setSelectedSubject] = useState<string>('all');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [isUploadDialogOpen, setIsUploadDialogOpen] = useState(false);
+  const [uploadData, setUploadData] = useState({
+    category: '',
+    trainingSubject: '',
+    trainingDate: '',
+    instructorName: '',
+    studentCount: '',
+    location: '',
+    description: ''
+  });
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const { toast } = useToast();
+
+  // Filter documents based on category, subject, and search term
+  const filteredDocuments = documents.filter(doc => {
+    const matchesCategory = selectedCategory === 'all' || doc.category === selectedCategory;
+    const matchesSubject = selectedSubject === 'all' || doc.trainingSubject === selectedSubject;
+    const matchesSearch = searchTerm === '' || 
+      doc.fileName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      doc.instructorName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      doc.trainingSubject.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    return matchesCategory && matchesSubject && matchesSearch;
+  });
+
+  // Get category info
+  const getCategoryInfo = (categoryId: string) => {
+    return documentCategories.find(cat => cat.id === categoryId) || documentCategories[0];
+  };
+
+  // Format file size
+  const formatFileSize = (bytes: number) => {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  };
+
+  // Handle file upload
+  const handleFileUpload = (files: FileList | null) => {
+    if (!files || files.length === 0) return;
+    
+    const file = files[0];
+    
+    // Validate required fields
+    if (!uploadData.category || !uploadData.trainingSubject || !uploadData.trainingDate || !uploadData.instructorName) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields before uploading.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Create new document entry
+    const newDocument: TrainingDocument = {
+      id: Date.now(),
+      fileName: file.name,
+      fileType: file.type.split('/')[1]?.toUpperCase() || 'UNKNOWN',
+      category: uploadData.category,
+      trainingSubject: uploadData.trainingSubject,
+      trainingDate: new Date(uploadData.trainingDate),
+      instructorName: uploadData.instructorName,
+      studentCount: parseInt(uploadData.studentCount) || 0,
+      location: uploadData.location,
+      fileSize: file.size,
+      uploadDate: new Date(),
+      description: uploadData.description
+    };
+
+    setDocuments(prev => [newDocument, ...prev]);
+    setIsUploadDialogOpen(false);
+    setUploadData({
+      category: '',
+      trainingSubject: '',
+      trainingDate: '',
+      instructorName: '',
+      studentCount: '',
+      location: '',
+      description: ''
+    });
+
+    toast({
+      title: "Upload Successful",
+      description: `${file.name} has been uploaded to the Training Document Hub.`,
+    });
+  };
+
+  // Handle document download
+  const handleDownload = (doc: TrainingDocument) => {
+    // In a real application, this would trigger an actual download
+    toast({
+      title: "Download Started",
+      description: `Downloading ${doc.fileName}...`,
+    });
+  };
+
+  // Handle document deletion
+  const handleDelete = (docId: number) => {
+    setDocuments(prev => prev.filter(doc => doc.id !== docId));
+    toast({
+      title: "Document Deleted",
+      description: "The document has been removed from the hub.",
+    });
+  };
+
+  // Statistics
+  const totalDocuments = documents.length;
+  const documentsByCategory = documentCategories.map(cat => ({
+    ...cat,
+    count: documents.filter(doc => doc.category === cat.id).length
+  }));
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-6">
+      {/* Floating tech icons background */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-8 h-8 bg-blue-500/10 rounded-full animate-pulse" />
+        <div className="absolute top-40 right-20 w-6 h-6 bg-emerald-500/10 rounded-full animate-pulse delay-1000" />
+        <div className="absolute bottom-40 left-20 w-10 h-10 bg-purple-500/10 rounded-full animate-pulse delay-2000" />
+        <div className="absolute bottom-20 right-10 w-4 h-4 bg-yellow-500/10 rounded-full animate-pulse delay-3000" />
+      </div>
+
+      <div className="max-w-7xl mx-auto relative">
+        {/* Header */}
+        <div className="mb-8">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-4xl font-bold text-white mb-2">Training Document Hub</h1>
+              <p className="text-gray-300 text-lg">Centralized training documentation and record management</p>
+            </div>
+            <div className="flex items-center space-x-4">
+              <div className="text-right">
+                <div className="text-2xl font-bold text-white">{totalDocuments}</div>
+                <div className="text-sm text-gray-300">Total Documents</div>
+              </div>
+              <Dialog open={isUploadDialogOpen} onOpenChange={setIsUploadDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button className="bg-emerald-600 hover:bg-emerald-700 text-white">
+                    <Plus className="w-4 h-4 mr-2" />
+                    Upload Document
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-2xl bg-gray-800 border-gray-700">
+                  <DialogHeader>
+                    <DialogTitle className="text-white">Upload Training Document</DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="category" className="text-gray-300">Document Category *</Label>
+                        <Select value={uploadData.category} onValueChange={(value) => setUploadData(prev => ({ ...prev, category: value }))}>
+                          <SelectTrigger className="bg-gray-700 border-gray-600 text-white">
+                            <SelectValue placeholder="Select category" />
+                          </SelectTrigger>
+                          <SelectContent className="bg-gray-700 border-gray-600">
+                            {documentCategories.map(cat => (
+                              <SelectItem key={cat.id} value={cat.id} className="text-white hover:bg-gray-600">
+                                {cat.name}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div>
+                        <Label htmlFor="trainingSubject" className="text-gray-300">Training Subject *</Label>
+                        <Select value={uploadData.trainingSubject} onValueChange={(value) => setUploadData(prev => ({ ...prev, trainingSubject: value }))}>
+                          <SelectTrigger className="bg-gray-700 border-gray-600 text-white">
+                            <SelectValue placeholder="Select subject" />
+                          </SelectTrigger>
+                          <SelectContent className="bg-gray-700 border-gray-600">
+                            {trainingSubjects.map(subject => (
+                              <SelectItem key={subject} value={subject} className="text-white hover:bg-gray-600">
+                                {subject}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="trainingDate" className="text-gray-300">Training Date *</Label>
+                        <Input
+                          id="trainingDate"
+                          type="date"
+                          value={uploadData.trainingDate}
+                          onChange={(e) => setUploadData(prev => ({ ...prev, trainingDate: e.target.value }))}
+                          className="bg-gray-700 border-gray-600 text-white"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="instructorName" className="text-gray-300">Instructor Name *</Label>
+                        <Input
+                          id="instructorName"
+                          value={uploadData.instructorName}
+                          onChange={(e) => setUploadData(prev => ({ ...prev, instructorName: e.target.value }))}
+                          className="bg-gray-700 border-gray-600 text-white"
+                          placeholder="Enter instructor name"
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="studentCount" className="text-gray-300">Student Count</Label>
+                        <Input
+                          id="studentCount"
+                          type="number"
+                          value={uploadData.studentCount}
+                          onChange={(e) => setUploadData(prev => ({ ...prev, studentCount: e.target.value }))}
+                          className="bg-gray-700 border-gray-600 text-white"
+                          placeholder="Number of students"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="location" className="text-gray-300">Location</Label>
+                        <Input
+                          id="location"
+                          value={uploadData.location}
+                          onChange={(e) => setUploadData(prev => ({ ...prev, location: e.target.value }))}
+                          className="bg-gray-700 border-gray-600 text-white"
+                          placeholder="Training location"
+                        />
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="description" className="text-gray-300">Description</Label>
+                      <Input
+                        id="description"
+                        value={uploadData.description}
+                        onChange={(e) => setUploadData(prev => ({ ...prev, description: e.target.value }))}
+                        className="bg-gray-700 border-gray-600 text-white"
+                        placeholder="Brief description of the document"
+                      />
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="file" className="text-gray-300">Select File</Label>
+                      <input
+                        ref={fileInputRef}
+                        type="file"
+                        accept=".pdf,.doc,.docx,.xlsx,.ppt,.pptx"
+                        onChange={(e) => handleFileUpload(e.target.files)}
+                        className="w-full p-2 bg-gray-700 border border-gray-600 rounded text-white file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-emerald-600 file:text-white hover:file:bg-emerald-700"
+                      />
+                    </div>
+                    
+                    <div className="flex justify-end space-x-2">
+                      <Button 
+                        variant="outline" 
+                        onClick={() => setIsUploadDialogOpen(false)}
+                        className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                      >
+                        Cancel
+                      </Button>
+                      <Button 
+                        onClick={() => fileInputRef.current?.click()}
+                        className="bg-emerald-600 hover:bg-emerald-700 text-white"
+                      >
+                        <Upload className="w-4 h-4 mr-2" />
+                        Upload Document
+                      </Button>
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </div>
+          </div>
+        </div>
+
+        {/* Category Overview Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+          {documentsByCategory.map((category) => {
+            const IconComponent = category.icon;
+            return (
+              <Card key={category.id} className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <IconComponent className="w-5 h-5 text-emerald-400" />
+                      <div>
+                        <div className="text-sm font-medium text-white">{category.name}</div>
+                        <div className="text-xs text-gray-400">{category.count} documents</div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+
+        {/* Filters and Search */}
+        <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm mb-6">
+          <CardContent className="p-6">
+            <div className="flex flex-wrap items-center gap-4">
+              <div className="flex items-center space-x-2">
+                <Search className="w-4 h-4 text-gray-400" />
+                <Input
+                  placeholder="Search documents..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-64 bg-gray-700 border-gray-600 text-white"
+                />
+              </div>
+              
+              <div className="flex items-center space-x-2">
+                <Filter className="w-4 h-4 text-gray-400" />
+                <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                  <SelectTrigger className="w-48 bg-gray-700 border-gray-600 text-white">
+                    <SelectValue placeholder="Filter by category" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-gray-700 border-gray-600">
+                    <SelectItem value="all" className="text-white hover:bg-gray-600">All Categories</SelectItem>
+                    {documentCategories.map(cat => (
+                      <SelectItem key={cat.id} value={cat.id} className="text-white hover:bg-gray-600">
+                        {cat.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              
+              <div className="flex items-center space-x-2">
+                <BookOpen className="w-4 h-4 text-gray-400" />
+                <Select value={selectedSubject} onValueChange={setSelectedSubject}>
+                  <SelectTrigger className="w-48 bg-gray-700 border-gray-600 text-white">
+                    <SelectValue placeholder="Filter by subject" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-gray-700 border-gray-600">
+                    <SelectItem value="all" className="text-white hover:bg-gray-600">All Subjects</SelectItem>
+                    {trainingSubjects.map(subject => (
+                      <SelectItem key={subject} value={subject} className="text-white hover:bg-gray-600">
+                        {subject}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Document List */}
+        <div className="space-y-4">
+          {filteredDocuments.length === 0 ? (
+            <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
+              <CardContent className="p-12 text-center">
+                <FileText className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                <h3 className="text-xl font-semibold text-white mb-2">No Documents Found</h3>
+                <p className="text-gray-400">Try adjusting your filters or upload a new document to get started.</p>
+              </CardContent>
+            </Card>
+          ) : (
+            filteredDocuments.map((doc) => {
+              const categoryInfo = getCategoryInfo(doc.category);
+              const IconComponent = categoryInfo.icon;
+              
+              return (
+                <Card key={doc.id} className="bg-gray-800/50 border-gray-700 backdrop-blur-sm hover:bg-gray-800/70 transition-all duration-200">
+                  <CardContent className="p-6">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-4">
+                        <div className="flex-shrink-0">
+                          <IconComponent className="w-8 h-8 text-emerald-400" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center space-x-2 mb-2">
+                            <h3 className="text-lg font-semibold text-white truncate">{doc.fileName}</h3>
+                            <Badge className={categoryInfo.color}>
+                              {categoryInfo.name}
+                            </Badge>
+                          </div>
+                          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-300">
+                            <div className="flex items-center space-x-1">
+                              <BookOpen className="w-4 h-4 text-gray-400" />
+                              <span>{doc.trainingSubject}</span>
+                            </div>
+                            <div className="flex items-center space-x-1">
+                              <User className="w-4 h-4 text-gray-400" />
+                              <span>{doc.instructorName}</span>
+                            </div>
+                            <div className="flex items-center space-x-1">
+                              <Calendar className="w-4 h-4 text-gray-400" />
+                              <span>{format(doc.trainingDate, 'MMM dd, yyyy')}</span>
+                            </div>
+                            <div className="flex items-center space-x-1">
+                              <Users className="w-4 h-4 text-gray-400" />
+                              <span>{doc.studentCount} students</span>
+                            </div>
+                          </div>
+                          {doc.description && (
+                            <p className="mt-2 text-sm text-gray-400">{doc.description}</p>
+                          )}
+                          <div className="flex items-center space-x-4 mt-2 text-xs text-gray-500">
+                            <span>Size: {formatFileSize(doc.fileSize)}</span>
+                            <span>Uploaded: {format(doc.uploadDate, 'MMM dd, yyyy HH:mm')}</span>
+                            {doc.expirationDate && (
+                              <span className="text-yellow-400">
+                                Expires: {format(doc.expirationDate, 'MMM dd, yyyy')}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleDownload(doc)}
+                          className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                        >
+                          <Eye className="w-4 h-4 mr-1" />
+                          View
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleDownload(doc)}
+                          className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                        >
+                          <Download className="w-4 h-4 mr-1" />
+                          Download
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleDelete(doc.id)}
+                          className="border-red-600 text-red-400 hover:bg-red-600/20"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
