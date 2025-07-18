@@ -32,9 +32,14 @@ export const useDashboardData = () => {
   return useQuery<DashboardData>({
     queryKey: ['dashboard-data', user?.id],
     queryFn: async () => {
+      const token = sessionStorage.getItem('auth_token');
+      if (!token) {
+        throw new Error('No authentication token found');
+      }
+      
       const response = await fetch('/api/dashboard/data', {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          'Authorization': `Bearer ${token}`,
         },
       });
       
