@@ -1,17 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { useDashboardData } from "@/hooks/useDashboardData";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import EmployeeManagement from "@/components/enterprise/EmployeeManagement";
-import { InstructorSignInGenerator } from "@/components/ui/instructor-signin-generator";
-import TrainingRecordsManager from "@/components/records/TrainingRecordsManager";
-import TrainingDocumentHub from "@/components/TrainingDocumentHub";
 import { SafetySyncIcon } from "@/components/ui/safetysync-icon";
 
 import { 
@@ -24,11 +16,10 @@ import {
   LogOut,
   ClipboardList,
   FolderOpen,
-  UserCheck,
   BarChart3
 } from "lucide-react";
 
-export default function WorkspaceSimplified() {
+export default function WorkspaceBasic() {
   const { user, isAuthenticated, logout } = useAuth();
   const [activeTab, setActiveTab] = useState("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -65,7 +56,14 @@ export default function WorkspaceSimplified() {
   }, [isAuthenticated]);
 
   if (!isAuthenticated) {
-    return null;
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center">
+        <div className="text-white text-center">
+          <h2 className="text-xl font-semibold mb-2">Loading...</h2>
+          <p className="text-gray-400">Please wait while we load your workspace</p>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -91,10 +89,7 @@ export default function WorkspaceSimplified() {
 
       <div className="flex min-h-screen relative z-10">
         {/* Sidebar */}
-        <motion.div
-          className={`${sidebarOpen ? 'w-64' : 'w-16'} bg-black/20 backdrop-blur-sm border-r border-gray-800 flex flex-col`}
-          initial={sidebarOpen ? "open" : "closed"}
-        >
+        <div className={`${sidebarOpen ? 'w-64' : 'w-16'} bg-black/20 backdrop-blur-sm border-r border-gray-800 flex flex-col transition-all duration-300`}>
           {/* Header */}
           <div className="p-4 border-b border-gray-800">
             <div className="flex items-center justify-between">
@@ -121,7 +116,7 @@ export default function WorkspaceSimplified() {
           </div>
 
           {/* Navigation */}
-          <nav className={`${sidebarOpen ? 'block' : 'hidden'} md:block flex-1 p-4 space-y-2`}>
+          <nav className="flex-1 p-4 space-y-2">
             {/* Dashboard */}
             <Button
               variant="ghost"
@@ -189,7 +184,7 @@ export default function WorkspaceSimplified() {
           </nav>
 
           {/* User Menu */}
-          <div className={`${sidebarOpen ? 'block' : 'hidden'} md:block p-4 border-t border-gray-800`}>
+          <div className="p-4 border-t border-gray-800">
             {sidebarOpen && (
               <div className="mb-4">
                 <div className="flex items-center space-x-3 mb-2">
@@ -212,7 +207,7 @@ export default function WorkspaceSimplified() {
               {sidebarOpen && "Sign Out"}
             </Button>
           </div>
-        </motion.div>
+        </div>
 
         {/* Main Content */}
         <div className="flex-1 flex flex-col min-h-0">
@@ -284,10 +279,8 @@ export default function WorkspaceSimplified() {
                         <FolderOpen className="h-4 w-4 text-muted-foreground" />
                       </CardHeader>
                       <CardContent>
-                        <div className="text-2xl font-bold">
-                          {isDashboardLoading ? "..." : "150"}
-                        </div>
-                        <p className="text-xs text-muted-foregreen">
+                        <div className="text-2xl font-bold">150</div>
+                        <p className="text-xs text-muted-foreground">
                           Training documents stored
                         </p>
                       </CardContent>
@@ -345,31 +338,15 @@ export default function WorkspaceSimplified() {
                 </div>
               )}
 
-              {/* Instructor Sign-In Generator Tab */}
-              {activeTab === "instructor-signin" && (
-                <div className="h-full">
-                  <InstructorSignInGenerator />
-                </div>
-              )}
-
-              {/* Training Records Tab */}
-              {activeTab === "training-records" && (
-                <div className="h-full">
-                  <TrainingRecordsManager />
-                </div>
-              )}
-
-              {/* Document Hub Tab */}
-              {activeTab === "document-hub" && (
-                <div className="h-full">
-                  <TrainingDocumentHub />
-                </div>
-              )}
-
-              {/* Employee Management Tab */}
-              {activeTab === "employees" && (
-                <div className="h-full">
-                  <EmployeeManagement />
+              {/* Other Tabs - Placeholder for now */}
+              {activeTab !== "dashboard" && (
+                <div className="p-6 h-full flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="text-6xl mb-4">🚧</div>
+                    <h2 className="text-xl font-semibold text-white mb-2">Coming Soon</h2>
+                    <p className="text-gray-400">This section is being built for your training documentation needs.</p>
+                    <p className="text-gray-400 mt-2">Dashboard is fully functional - try the other tabs once components are loaded.</p>
+                  </div>
                 </div>
               )}
             </div>
