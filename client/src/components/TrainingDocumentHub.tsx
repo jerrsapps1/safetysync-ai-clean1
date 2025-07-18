@@ -165,6 +165,8 @@ export default function TrainingDocumentHub() {
   const [selectedSubject, setSelectedSubject] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [isUploadDialogOpen, setIsUploadDialogOpen] = useState(false);
+  const [isViewDialogOpen, setIsViewDialogOpen] = useState(false);
+  const [viewingDocument, setViewingDocument] = useState<TrainingDocument | null>(null);
   const [uploadData, setUploadData] = useState({
     category: '',
     trainingSubject: '',
@@ -251,6 +253,12 @@ export default function TrainingDocumentHub() {
       title: "Upload Successful",
       description: `${file.name} has been uploaded to the Training Document Hub.`,
     });
+  };
+
+  // Handle document view
+  const handleView = (doc: TrainingDocument) => {
+    setViewingDocument(doc);
+    setIsViewDialogOpen(true);
   };
 
   // Handle document download
@@ -577,7 +585,7 @@ export default function TrainingDocumentHub() {
                         <Button
                           variant="outline"
                           size="sm"
-                          onClick={() => handleDownload(doc)}
+                          onClick={() => handleView(doc)}
                           className="border-gray-600 text-gray-300 hover:bg-gray-700"
                         >
                           <Eye className="w-4 h-4 mr-1" />
@@ -609,6 +617,108 @@ export default function TrainingDocumentHub() {
           )}
         </div>
       </div>
+
+      {/* View Document Dialog */}
+      <Dialog open={isViewDialogOpen} onOpenChange={setIsViewDialogOpen}>
+        <DialogContent className="max-w-3xl bg-gray-800 border-gray-700">
+          <DialogHeader>
+            <DialogTitle className="text-white">Document Details</DialogTitle>
+          </DialogHeader>
+          {viewingDocument && (
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <div className="w-12 h-12 bg-emerald-600 rounded-lg flex items-center justify-center">
+                    <FileText className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-white">{viewingDocument.fileName}</h3>
+                    <p className="text-gray-300">{viewingDocument.fileType} • {formatFileSize(viewingDocument.fileSize)}</p>
+                  </div>
+                </div>
+                <Badge className={getCategoryInfo(viewingDocument.category).color}>
+                  {getCategoryInfo(viewingDocument.category).name}
+                </Badge>
+              </div>
+
+              <div className="grid grid-cols-2 gap-6">
+                <div className="space-y-4">
+                  <div>
+                    <Label className="text-gray-300">Training Subject</Label>
+                    <p className="text-white font-medium">{viewingDocument.trainingSubject}</p>
+                  </div>
+                  <div>
+                    <Label className="text-gray-300">Instructor</Label>
+                    <p className="text-white font-medium">{viewingDocument.instructorName}</p>
+                  </div>
+                  <div>
+                    <Label className="text-gray-300">Training Date</Label>
+                    <p className="text-white font-medium">{format(viewingDocument.trainingDate, 'MMMM dd, yyyy')}</p>
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <div>
+                    <Label className="text-gray-300">Location</Label>
+                    <p className="text-white font-medium">{viewingDocument.location}</p>
+                  </div>
+                  <div>
+                    <Label className="text-gray-300">Student Count</Label>
+                    <p className="text-white font-medium">{viewingDocument.studentCount} students</p>
+                  </div>
+                  <div>
+                    <Label className="text-gray-300">Upload Date</Label>
+                    <p className="text-white font-medium">{format(viewingDocument.uploadDate, 'MMMM dd, yyyy HH:mm')}</p>
+                  </div>
+                </div>
+              </div>
+
+              {viewingDocument.description && (
+                <div>
+                  <Label className="text-gray-300">Description</Label>
+                  <p className="text-white font-medium bg-gray-700/50 p-3 rounded-lg">{viewingDocument.description}</p>
+                </div>
+              )}
+
+              {viewingDocument.expirationDate && (
+                <div className="bg-yellow-900/20 border border-yellow-600/30 rounded-lg p-4">
+                  <div className="flex items-center space-x-2">
+                    <Clock className="w-5 h-5 text-yellow-400" />
+                    <span className="text-yellow-400 font-medium">Expires: {format(viewingDocument.expirationDate, 'MMMM dd, yyyy')}</span>
+                  </div>
+                </div>
+              )}
+
+              <div className="border-t border-gray-700 pt-4">
+                <div className="bg-gray-700/50 rounded-lg p-4">
+                  <h4 className="text-white font-medium mb-2">Document Preview</h4>
+                  <div className="bg-gray-600 rounded-lg p-8 text-center">
+                    <FileText className="w-16 h-16 text-gray-400 mx-auto mb-2" />
+                    <p className="text-gray-300">Document preview not available</p>
+                    <p className="text-sm text-gray-400 mt-1">Use the download button to view the full document</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex justify-end space-x-3">
+                <Button
+                  variant="outline"
+                  onClick={() => setIsViewDialogOpen(false)}
+                  className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                >
+                  Close
+                </Button>
+                <Button
+                  onClick={() => handleDownload(viewingDocument)}
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white"
+                >
+                  <Download className="w-4 h-4 mr-2" />
+                  Download
+                </Button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
