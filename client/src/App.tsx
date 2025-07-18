@@ -10,6 +10,7 @@ import LandingPage from "@/pages/landing";
 import Dashboard from "@/pages/dashboard";
 import WorkspacePage from "@/pages/workspace";
 import WorkspaceSimplified from "@/pages/workspace-simplified";
+import WorkspaceBasic from "@/pages/workspace-basic";
 import AdminPanel from "@/pages/admin";
 import AdminDashboard from "@/pages/admin-dashboard";
 import TestimonialsPage from "@/pages/testimonials";
@@ -42,7 +43,7 @@ function Router() {
     <Switch>
       <Route path="/" component={LandingPage} />
       <Route path="/dashboard" component={Dashboard} />
-      <Route path="/workspace" component={WorkspaceSimplified} />
+      <Route path="/workspace" component={WorkspaceBasic} />
       <Route path="/workspace-full" component={WorkspacePage} />
       <Route path="/admin" component={AdminPanel} />
       <Route path="/admin-dashboard" component={AdminDashboard} />
