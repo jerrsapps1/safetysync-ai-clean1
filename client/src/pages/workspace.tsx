@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { Link, useLocation } from "wouter";
 import { useAuth } from "@/hooks/useAuth";
+import { useDashboardData } from "@/hooks/useDashboardData";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDynamicAchievements } from "@/hooks/useDynamicAchievements";
 import { Button } from "@/components/ui/button";
@@ -369,6 +370,7 @@ export default function WorkspacePage() {
   
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const { toast } = useToast();
+  const { data: dashboardData, isLoading: isDashboardLoading, error: dashboardError } = useDashboardData();
   
   // Track initial login milestone for achievements
   useEffect(() => {
@@ -1855,49 +1857,48 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
     }
   };
 
-  // Mock data - in production this would come from your API
-  const [stats, setStats] = useState<DashboardStats>({
-    totalEmployees: 147,
-    compliantEmployees: 129,
-    pendingTraining: 8,
-    expiringCertifications: 3,
-    complianceScore: 88
-  });
-
-  const [complianceRecords, setComplianceRecords] = useState<ComplianceRecord[]>([
-    {
-      id: 1,
-      employeeName: "John Smith",
-      training: "Fall Protection",
-      status: "completed",
-      dueDate: "2024-12-15",
-      completedDate: "2024-06-15",
-      certificateUrl: "/certificates/john-smith-fall-protection.pdf"
-    },
-    {
-      id: 2,
-      employeeName: "Sarah Johnson",
-      training: "Forklift Operation",
-      status: "pending",
-      dueDate: "2024-08-20",
-    },
-    {
-      id: 3,
-      employeeName: "Mike Davis",
-      training: "First Aid/CPR",
-      status: "expired",
-      dueDate: "2024-07-01",
-      completedDate: "2023-07-01"
+  // Use optimized dashboard data from API
+  const stats = useMemo(() => {
+    if (dashboardData?.stats) {
+      return {
+        totalEmployees: dashboardData.stats.totalEmployees,
+        compliantEmployees: dashboardData.stats.compliantEmployees,
+        pendingTraining: dashboardData.stats.pendingTraining,
+        expiringCertifications: dashboardData.stats.expiringCertificates,
+        complianceScore: dashboardData.stats.complianceScore
+      };
     }
-  ]);
+    return {
+      totalEmployees: 0,
+      compliantEmployees: 0,
+      pendingTraining: 0,
+      expiringCertifications: 0,
+      complianceScore: 0
+    };
+  }, [dashboardData]);
 
-  if (authLoading) {
+  const complianceRecords = useMemo(() => {
+    if (dashboardData?.recentActivity) {
+      return dashboardData.recentActivity.map(activity => ({
+        id: activity.id,
+        employeeName: activity.employeeName,
+        training: activity.training,
+        status: activity.status,
+        dueDate: activity.date,
+        completedDate: activity.status === 'completed' ? activity.date : undefined,
+        certificateUrl: activity.status === 'completed' ? `/certificates/${activity.id}.pdf` : undefined
+      }));
+    }
+    return [];
+  }, [dashboardData]);
+
+  if (authLoading || isDashboardLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 flex items-center justify-center">
         <div className="max-w-md w-full mx-auto">
           <SmoothLoading 
             variant="ai-skeleton" 
-            text="Loading workspace..." 
+            text={authLoading ? "Loading workspace..." : "Loading dashboard data..."} 
             className="w-full"
           />
         </div>
@@ -1913,6 +1914,20 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         <div className="text-center">
           <SafetySyncIcon size={64} className="mx-auto mb-4 animate-pulse" />
           <p className="text-white text-lg">Redirecting to client portal...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (dashboardError) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 flex items-center justify-center">
+        <div className="text-center">
+          <SafetySyncIcon size={64} className="mx-auto mb-4" />
+          <p className="text-white text-lg mb-4">Error loading dashboard data</p>
+          <Button onClick={() => window.location.reload()} variant="outline" className="text-white border-white hover:bg-white hover:text-black">
+            Reload Page
+          </Button>
         </div>
       </div>
     );

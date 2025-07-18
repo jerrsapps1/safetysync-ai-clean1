@@ -2193,6 +2193,66 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Optimized Dashboard Data API - Single endpoint to reduce loading time
+  app.get('/api/dashboard/data', authenticateToken, async (req, res) => {
+    try {
+      const userId = (req as any).user.id;
+      
+      // Get all dashboard data in parallel to reduce loading time
+      const [employees, certificates, trainingSessions] = await Promise.all([
+        storage.getEmployees(userId),
+        storage.getCertificates(userId),
+        storage.getTrainingSessions(userId)
+      ]);
+
+      // Calculate dashboard statistics
+      const totalEmployees = employees.length;
+      const compliantEmployees = employees.filter(emp => emp.complianceStatus === 'compliant').length;
+      const expiredCertificates = certificates.filter(cert => cert.expirationDate && new Date(cert.expirationDate) < new Date()).length;
+      const expiringCertificates = certificates.filter(cert => 
+        cert.expirationDate && 
+        new Date(cert.expirationDate) > new Date() && 
+        new Date(cert.expirationDate) < new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
+      ).length;
+      
+      const pendingTraining = trainingSessions.filter(session => session.status === 'pending').length;
+      const complianceScore = totalEmployees > 0 ? Math.round((compliantEmployees / totalEmployees) * 100) : 0;
+
+      // Recent activity (last 5 records)
+      const recentActivity = trainingSessions
+        .sort((a, b) => new Date(b.createdAt || b.scheduledDate).getTime() - new Date(a.createdAt || a.scheduledDate).getTime())
+        .slice(0, 5)
+        .map(session => {
+          const employee = employees.find(emp => emp.id === session.employeeId);
+          return {
+            id: session.id,
+            employeeName: employee ? `${employee.firstName} ${employee.lastName}` : 'Unknown',
+            training: session.trainingType || 'Training',
+            status: session.status,
+            date: session.scheduledDate
+          };
+        });
+
+      res.json({
+        stats: {
+          totalEmployees,
+          compliantEmployees,
+          pendingTraining,
+          complianceScore,
+          expiredCertificates,
+          expiringCertificates
+        },
+        recentActivity,
+        employees: employees.slice(0, 10), // Only return top 10 for quick search
+        certificates: certificates.slice(0, 10),
+        trainingSessions: trainingSessions.slice(0, 10)
+      });
+    } catch (error) {
+      console.error('Dashboard data error:', error);
+      res.status(500).json({ error: 'Failed to fetch dashboard data' });
+    }
+  });
+
   // Email automation API
   app.use("/api/email", emailAutomationRoutes);
 
