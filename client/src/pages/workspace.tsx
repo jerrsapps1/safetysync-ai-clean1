@@ -35,6 +35,7 @@ import DynamicAchievementWidget from "@/components/achievements/DynamicAchieveme
 import { AchievementNotificationManager } from "@/components/achievements/DynamicAchievementNotification";
 import { InstructorSignInGenerator } from "@/components/ui/instructor-signin-generator";
 import TrainingRecordsManager from "@/components/records/TrainingRecordsManager";
+import TrainingDocumentHub from "@/components/TrainingDocumentHub";
 
 import { AIPatternSkeleton } from "@/components/ui/ai-skeleton";
 import { SmoothLoading } from "@/components/ui/smooth-loading";
@@ -2290,6 +2291,17 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 <Button
                   variant="ghost"
                   className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
+                    activeTab === "training-document-hub" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                  }`}
+                  onClick={() => handleTabSwitch("training-document-hub")}
+                  title="Training Document Hub"
+                >
+                  <FileText className="w-4 h-4 mr-3 flex-shrink-0" />
+                  {sidebarOpen && <span className="truncate">Training Document Hub</span>}
+                </Button>
+                <Button
+                  variant="ghost"
+                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
                     activeTab === "training" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("training")}
@@ -2352,6 +2364,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
                 {activeTab === "instructor-signin" && "Instructor Sign-In Sheets"}
                 {activeTab === "training-records" && "Training Records"}
+                {activeTab === "training-document-hub" && "Training Document Hub"}
 
                 {activeTab === "subscription-billing" && "Subscription & Billing"}
                 {activeTab === "analytics-reports" && "Analytics & Reports"}
@@ -2381,6 +2394,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
                 {activeTab === "instructor-signin" && "Generate sign-in sheets for training classes and manage instructor documentation"}
                 {activeTab === "training-records" && "Comprehensive training session documentation and attendee tracking"}
+                {activeTab === "training-document-hub" && "Centralized training documentation and record management system"}
 
                 {activeTab === "subscription-billing" && "Manage your plan and billing information"}
                 {activeTab === "analytics-reports" && "Generate comprehensive analytics and reports"}
@@ -3096,6 +3110,12 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           {activeTab === "training-records" && (
             <div className="p-8 min-h-screen">
               <TrainingRecordsManager />
+            </div>
+          )}
+
+          {activeTab === "training-document-hub" && (
+            <div className="p-8 min-h-screen">
+              <TrainingDocumentHub />
             </div>
           )}
 
