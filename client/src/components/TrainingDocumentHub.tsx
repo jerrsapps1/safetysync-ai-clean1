@@ -262,12 +262,67 @@ export default function TrainingDocumentHub() {
   };
 
   // Handle document download
-  const handleDownload = (doc: TrainingDocument) => {
-    // In a real application, this would trigger an actual download
-    toast({
-      title: "Download Started",
-      description: `Downloading ${doc.fileName}...`,
-    });
+  const handleDownload = async (doc: TrainingDocument) => {
+    try {
+      toast({
+        title: "Download Started",
+        description: `Downloading ${doc.fileName}...`,
+      });
+
+      // Get authentication token
+      const token = sessionStorage.getItem('auth_token');
+      if (!token) {
+        toast({
+          title: "Authentication Error",
+          description: "Please log in to download files.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Create download URL using the file system API
+      const downloadUrl = `/api/file-system/files/${doc.id}/download`;
+      
+      // Create a temporary link element to trigger download
+      const link = document.createElement('a');
+      link.href = downloadUrl;
+      link.download = doc.fileName;
+      
+      // Add authentication headers by using fetch and creating blob
+      const response = await fetch(downloadUrl, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Download failed');
+      }
+
+      // Create blob from response and trigger download
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      
+      link.href = url;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      // Clean up the blob URL
+      window.URL.revokeObjectURL(url);
+
+      toast({
+        title: "Download Complete",
+        description: `${doc.fileName} has been downloaded successfully.`,
+      });
+    } catch (error) {
+      console.error('Download error:', error);
+      toast({
+        title: "Download Failed",
+        description: "There was an error downloading the file. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   // Handle document deletion

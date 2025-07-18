@@ -917,12 +917,34 @@ export function InstructorSignInGenerator() {
 
   // Download signed document
   const downloadSignedDocument = (doc: SignedDocument) => {
-    toast({
-      title: "Download Started",
-      description: `Downloading ${doc.fileName}`,
-      duration: 3000
-    });
-    // In a real implementation, this would download the actual file
+    try {
+      // Create a mock file content for demonstration
+      const content = `Sign-In Document: ${doc.fileName}\n\nDate: ${doc.signedDate}\nStatus: ${doc.status}\nVerification: ${doc.isVerified ? 'Verified' : 'Not Verified'}\nSignature: ${doc.signature}\n\nThis is a demonstration of the download functionality.`;
+      
+      // Create and download the file
+      const blob = new Blob([content], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = doc.fileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      
+      toast({
+        title: "Download Complete",
+        description: `${doc.fileName} has been downloaded successfully`,
+        duration: 3000
+      });
+    } catch (error) {
+      toast({
+        title: "Download Failed",
+        description: "There was an error downloading the file",
+        variant: "destructive",
+        duration: 3000
+      });
+    }
   };
 
   // Get workflow status color
