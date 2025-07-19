@@ -18,6 +18,7 @@ export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDial
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
+    username: "",
     email: "",
     company: "",
     password: "",
@@ -32,6 +33,10 @@ export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDial
     
     if (!formData.name.trim()) {
       newErrors.name = "Name is required";
+    }
+    
+    if (!formData.username.trim()) {
+      newErrors.username = "Username is required";
     }
     
     if (!formData.email.trim()) {
@@ -91,7 +96,7 @@ export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDial
   };
 
   const handleClose = () => {
-    setFormData({ name: "", email: "", company: "", password: "", message: "", leadType: "trial" });
+    setFormData({ name: "", username: "", email: "", company: "", password: "", message: "", leadType: "trial" });
     setErrors({});
     onClose();
   };
@@ -120,6 +125,19 @@ export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDial
             {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
           </div>
           
+          <div className="space-y-2">
+            <Label htmlFor="username">Username *</Label>
+            <Input
+              id="username"
+              type="text"
+              value={formData.username}
+              onChange={(e) => handleInputChange("username", e.target.value)}
+              placeholder="Choose a username"
+              className={errors.username ? "border-red-500" : ""}
+            />
+            {errors.username && <p className="text-sm text-red-500">{errors.username}</p>}
+          </div>
+
           <div className="space-y-2">
             <Label htmlFor="email">Work Email *</Label>
             <Input

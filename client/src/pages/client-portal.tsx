@@ -73,7 +73,7 @@ export default function ClientPortal() {
   const [activeTab, setActiveTab] = useState<'specials' | 'updates' | 'upcoming' | 'feedback'>('specials');
   const [newComment, setNewComment] = useState('');
   const [userName, setUserName] = useState('');
-  const [loginEmail, setLoginEmail] = useState('');
+  const [loginUsername, setLoginUsername] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const [showAuthPopup, setShowAuthPopup] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(false);
@@ -91,10 +91,10 @@ export default function ClientPortal() {
     }
   }, [isAuthenticated, isLoading]);
 
-  const handleSuccessfulLogin = async (email: string, password: string) => {
+  const handleSuccessfulLogin = async (username: string, password: string) => {
     setIsAuthenticating(true);
     try {
-      const result = await login(email, password);
+      const result = await login(username, password);
       if (result.success) {
         setForceShowLogin(false);
         toast({
@@ -105,7 +105,7 @@ export default function ClientPortal() {
       } else {
         toast({
           title: "Login Failed",
-          description: result.message || "Invalid email or password",
+          description: result.message || "Invalid username or password",
           variant: "destructive"
         });
       }
@@ -276,10 +276,10 @@ export default function ClientPortal() {
     setIsAuthenticating(true);
     
     try {
-      const result = await login(loginEmail, loginPassword);
+      const result = await login(loginUsername, loginPassword);
       if (result.success) {
         setForceShowLogin(false);
-        setLoginEmail('');
+        setLoginUsername('');
         setLoginPassword('');
         
         toast({
@@ -330,10 +330,10 @@ export default function ClientPortal() {
     setIsAuthenticating(true);
     
     try {
-      const result = await login(loginEmail, loginPassword);
+      const result = await login(loginUsername, loginPassword);
       if (result.success) {
         setShowAuthPopup(false);
-        setLoginEmail('');
+        setLoginUsername('');
         setLoginPassword('');
         
         // Redirect to workspace after successful authentication
@@ -405,10 +405,10 @@ export default function ClientPortal() {
               {(!isAuthenticated || forceShowLogin) ? (
                 <form onSubmit={handleLogin} className="flex items-center space-x-2">
                   <Input
-                    type="email"
-                    placeholder="Email"
-                    value={loginEmail}
-                    onChange={(e) => setLoginEmail(e.target.value)}
+                    type="text"
+                    placeholder="Username"
+                    value={loginUsername}
+                    onChange={(e) => setLoginUsername(e.target.value)}
                     className="w-40 h-8 text-sm bg-white/10 border-white/20 text-white placeholder-gray-400"
                   />
                   <Input
@@ -725,17 +725,17 @@ export default function ClientPortal() {
             
             <form onSubmit={handlePopupAuth} className="space-y-4">
               <div>
-                <label htmlFor="popup-email" className="block text-sm font-medium text-white mb-2">
-                  Email
+                <label htmlFor="popup-username" className="block text-sm font-medium text-white mb-2">
+                  Username
                 </label>
                 <Input
-                  id="popup-email"
-                  type="email"
+                  id="popup-username"
+                  type="text"
                   required
-                  value={loginEmail}
-                  onChange={(e) => setLoginEmail(e.target.value)}
+                  value={loginUsername}
+                  onChange={(e) => setLoginUsername(e.target.value)}
                   className="bg-white/10 border-white/20 text-white placeholder-gray-400"
-                  placeholder="Enter your email"
+                  placeholder="Enter your username"
                 />
               </div>
               
