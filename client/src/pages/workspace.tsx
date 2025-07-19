@@ -37,6 +37,7 @@ import { AchievementNotificationManager } from "@/components/achievements/Dynami
 import { InstructorSignInGenerator } from "@/components/ui/instructor-signin-generator";
 import TrainingRecordsManager from "@/components/records/TrainingRecordsManager";
 import TrainingDocumentHub from "@/components/TrainingDocumentHub";
+import FileManagerTrainingHub from "@/components/FileManagerTrainingHub";
 
 import { AIPatternSkeleton } from "@/components/ui/ai-skeleton";
 import { SmoothLoading } from "@/components/ui/smooth-loading";
@@ -3129,8 +3130,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           )}
 
           {activeTab === "training-document-hub" && (
-            <div className="p-8 min-h-screen">
-              <TrainingDocumentHub />
+            <div className="min-h-screen">
+              <FileManagerTrainingHub />
             </div>
           )}
 
