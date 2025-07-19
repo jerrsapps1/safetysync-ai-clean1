@@ -344,14 +344,7 @@ export default function TrainingDocumentHub() {
     });
   };
 
-  // Handle select all checkbox
-  const toggleSelectAll = () => {
-    if (selectedDocuments.size === filteredDocuments.length) {
-      setSelectedDocuments(new Set());
-    } else {
-      setSelectedDocuments(new Set(filteredDocuments.map(doc => doc.id)));
-    }
-  };
+
 
   // Handle bulk operations
   const handleBulkView = () => {
@@ -683,24 +676,6 @@ export default function TrainingDocumentHub() {
 
         {/* Document List */}
         <div className="space-y-4">
-          {/* Select All Header */}
-          {filteredDocuments.length > 0 && (
-            <Card className="bg-gray-800/30 border-gray-700 backdrop-blur-sm">
-              <CardContent className="p-4">
-                <div className="flex items-center space-x-3">
-                  <Checkbox
-                    checked={selectedDocuments.size === filteredDocuments.length && filteredDocuments.length > 0}
-                    onCheckedChange={toggleSelectAll}
-                    className="border-gray-500"
-                  />
-                  <span className="text-gray-300 text-sm">
-                    Select All ({filteredDocuments.length} documents)
-                  </span>
-                </div>
-              </CardContent>
-            </Card>
-          )}
-
           {filteredDocuments.length === 0 ? (
             <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
               <CardContent className="p-12 text-center">
