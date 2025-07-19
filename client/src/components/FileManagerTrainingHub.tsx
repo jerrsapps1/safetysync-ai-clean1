@@ -347,7 +347,10 @@ export default function FileManagerTrainingHub() {
           { name: 'Electrical_Safety_Discussions', count: 8, desc: 'Electrical safety awareness sessions' },
           { name: 'Heavy_Equipment_Safety', count: 10, desc: 'Heavy machinery and equipment safety' },
           { name: 'Personal_Protective_Equipment', count: 9, desc: 'PPE selection and usage guidance' },
-          { name: 'Hazard_Communication', count: 8, desc: 'Chemical hazard communication training' }
+          { name: 'Hazard_Communication', count: 8, desc: 'Chemical hazard communication training' },
+          { name: 'Confined_Space_Safety', count: 6, desc: 'Confined space entry and safety procedures' },
+          { name: 'Hot_Work_Permits', count: 7, desc: 'Hot work safety and permit procedures' },
+          { name: 'Scaffolding_Safety', count: 5, desc: 'Scaffolding inspection and safety protocols' }
         ];
         
         toolBoxCategories.forEach((category, i) => {
@@ -364,6 +367,81 @@ export default function FileManagerTrainingHub() {
             fileSize: Math.floor(Math.random() * 5000000) + 2000000,
             uploadDate: new Date('2027-09-15'),
             description: category.desc
+          });
+        });
+      
+      // Add deeper level subfolders for specific categories
+      } else if (parentFolder === 'Fall_Protection_Talks') {
+        const fallProtectionTopics = [
+          { name: 'Harness_Inspection_Protocols', count: 4, desc: 'Daily harness inspection procedures' },
+          { name: 'Anchor_Point_Selection', count: 3, desc: 'Proper anchor point identification and testing' },
+          { name: 'Rescue_Procedures', count: 3, desc: 'Fall rescue and emergency response' },
+          { name: 'Ladder_Safety_Guidelines', count: 2, desc: 'Ladder setup and safety procedures' }
+        ];
+        
+        fallProtectionTopics.forEach((topic, i) => {
+          subDocs.push({
+            id: baseId + i + 1,
+            fileName: topic.name,
+            fileType: 'folder',
+            category: 'fall_protection_detail',
+            trainingSubject: topic.name.replace(/_/g, ' '),
+            trainingDate: new Date('2027-09-15'),
+            instructorName: 'Fall Protection Specialist',
+            studentCount: topic.count,
+            location: 'Fall Protection Training',
+            fileSize: Math.floor(Math.random() * 2000000) + 500000,
+            uploadDate: new Date('2027-09-15'),
+            description: topic.desc
+          });
+        });
+      
+      } else if (parentFolder === 'Asbestos_Abatement_Chemicals') {
+        const asbestosChemicals = [
+          { name: 'Encapsulants_and_Sealers', count: 3, desc: 'Asbestos encapsulation products' },
+          { name: 'Surfactants_and_Wetting_Agents', count: 2, desc: 'Fiber suppression chemicals' },
+          { name: 'Decontamination_Solutions', count: 3, desc: 'Personnel and equipment decontamination' }
+        ];
+        
+        asbestosChemicals.forEach((chemical, i) => {
+          subDocs.push({
+            id: baseId + i + 1,
+            fileName: chemical.name,
+            fileType: 'folder',
+            category: 'asbestos_chemical_detail',
+            trainingSubject: chemical.name.replace(/_/g, ' '),
+            trainingDate: new Date('2024-10-28'),
+            instructorName: 'Asbestos Specialist',
+            studentCount: chemical.count,
+            location: 'Chemical Safety',
+            fileSize: Math.floor(Math.random() * 1500000) + 300000,
+            uploadDate: new Date('2024-10-28'),
+            description: chemical.desc
+          });
+        });
+      
+      } else if (parentFolder === 'Emergency_Response_Procedures') {
+        const emergencyTypes = [
+          { name: 'Fire_Emergency_Protocols', count: 4, desc: 'Fire response and evacuation procedures' },
+          { name: 'Chemical_Spill_Response', count: 3, desc: 'Hazardous material spill containment' },
+          { name: 'Medical_Emergency_Response', count: 2, desc: 'Workplace injury and medical emergency protocols' },
+          { name: 'Natural_Disaster_Procedures', count: 3, desc: 'Weather and natural disaster response plans' }
+        ];
+        
+        emergencyTypes.forEach((emergency, i) => {
+          subDocs.push({
+            id: baseId + i + 1,
+            fileName: emergency.name,
+            fileType: 'folder',
+            category: 'emergency_detail',
+            trainingSubject: emergency.name.replace(/_/g, ' '),
+            trainingDate: new Date('2025-01-21'),
+            instructorName: 'Emergency Response Team',
+            studentCount: emergency.count,
+            location: 'Emergency Planning',
+            fileSize: Math.floor(Math.random() * 3000000) + 800000,
+            uploadDate: new Date('2025-01-21'),
+            description: emergency.desc
           });
         });
       }
