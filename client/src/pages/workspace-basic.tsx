@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 
 export default function WorkspaceBasic() {
-  const { user, isAuthenticated, logout } = useAuth();
+  const { user, isAuthenticated, isLoading, logout } = useAuth();
   const [activeTab, setActiveTab] = useState("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const { toast } = useToast();
@@ -48,19 +48,31 @@ export default function WorkspaceBasic() {
     setActiveTab(tab);
   }, []);
 
-  // Redirect if not authenticated
+  // Redirect if not authenticated (but wait for loading to complete)
   useEffect(() => {
-    if (!isAuthenticated) {
-      window.location.href = '/';
+    if (!isLoading && !isAuthenticated) {
+      console.log('Workspace: Not authenticated, redirecting to client portal');
+      window.location.href = '/client-portal';
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, isLoading]);
 
-  if (!isAuthenticated) {
+  if (isLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center">
         <div className="text-white text-center">
           <h2 className="text-xl font-semibold mb-2">Loading...</h2>
           <p className="text-gray-400">Please wait while we load your workspace</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center">
+        <div className="text-white text-center">
+          <h2 className="text-xl font-semibold mb-2">Authentication Required</h2>
+          <p className="text-gray-400">Redirecting to login...</p>
         </div>
       </div>
     );
