@@ -307,7 +307,10 @@ export default function TrainingDocumentHub() {
   const [documents, setDocuments] = useState<TrainingDocument[]>(() => {
     // Load existing documents from localStorage on component mount
     const savedDocuments = localStorage.getItem('trainingDocuments');
-    return savedDocuments ? JSON.parse(savedDocuments) : mockDocuments;
+    console.log('TrainingDocumentHub: Loading documents...', savedDocuments ? 'Found saved documents' : 'Using mock documents');
+    const docs = savedDocuments ? JSON.parse(savedDocuments) : mockDocuments;
+    console.log('TrainingDocumentHub: Loaded documents count:', docs.length);
+    return docs;
   });
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [selectedSubject, setSelectedSubject] = useState<string>('all');
