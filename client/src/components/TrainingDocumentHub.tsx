@@ -219,14 +219,13 @@ export default function TrainingDocumentHub() {
     return () => window.removeEventListener('documentAdded', handleNewDocument as EventListener);
   }, [toast]);
 
-  // Filter documents based on category, subject, search term, and date
+  // Filter documents based on search term and date only
   const filteredDocuments = documents.filter(doc => {
-    const matchesCategory = selectedCategory === '' || doc.category === selectedCategory;
-    const matchesSubject = selectedSubject === 'all' || doc.trainingSubject === selectedSubject;
     const matchesSearch = searchTerm === '' || 
       doc.fileName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       doc.instructorName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      doc.trainingSubject.toLowerCase().includes(searchTerm.toLowerCase());
+      doc.trainingSubject.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      doc.description.toLowerCase().includes(searchTerm.toLowerCase());
     
     // Date filtering
     let matchesDate = true;
@@ -242,7 +241,7 @@ export default function TrainingDocumentHub() {
       }
     }
     
-    return matchesCategory && matchesSubject && matchesSearch && matchesDate;
+    return matchesSearch && matchesDate;
   });
 
   // Get category info
@@ -291,17 +290,8 @@ export default function TrainingDocumentHub() {
     setPreviewFiles(processedFiles);
   };
 
-  // Handle final upload of all selected files
+  // Handle creating training file with optional attachments
   const handleFinalUpload = async () => {
-    if (!selectedFiles || selectedFiles.length === 0) {
-      toast({
-        title: "No Files Selected",
-        description: "Please select files to upload.",
-        variant: "destructive",
-      });
-      return;
-    }
-    
     // Validate required fields
     if (!uploadData.trainingDate || !uploadData.description) {
       toast({
@@ -312,35 +302,58 @@ export default function TrainingDocumentHub() {
       return;
     }
     
-    // Process all selected files
-    const uploadPromises = Array.from(selectedFiles).map(async (file, index) => {
-      const previewFile = previewFiles[index];
-      
-      const newDocument = {
-        id: Date.now() + index,
-        fileName: file.name,
-        fileSize: file.size,
-        fileType: file.type,
+    try {
+      // Create main training file document
+      const mainDocument = {
+        id: Date.now(),
+        fileName: `${uploadData.description}_${uploadData.trainingDate}.txt`,
+        fileSize: 1024, // Estimated size for text content
+        fileType: 'txt',
         uploadDate: new Date().toISOString(),
-        category: 'training_material', // Default category for uploaded files
-        trainingSubject: uploadData.description, // Use description as subject
+        category: 'training_file',
+        trainingSubject: uploadData.description,
         trainingDate: uploadData.trainingDate,
-        instructorName: 'Uploaded by Instructor', // Default instructor name
+        instructorName: 'Training Instructor',
         studentCount: 0,
         location: '',
         description: uploadData.description,
-        content: previewFile.content,
-        fileBlob: previewFile.blob
+        content: `Training File: ${uploadData.description}\nDate: ${uploadData.trainingDate}\nCreated: ${new Date().toLocaleString()}\n\nThis training file can contain multiple attachments and related documents.`,
+        fileBlob: null,
+        attachments: previewFiles.length
       };
 
-      return newDocument;
-    });
+      // Process any attached files
+      let allDocuments = [mainDocument];
+      
+      if (selectedFiles && selectedFiles.length > 0) {
+        const attachmentPromises = Array.from(selectedFiles).map(async (file, index) => {
+          const previewFile = previewFiles[index];
+          
+          return {
+            id: Date.now() + index + 1,
+            fileName: file.name,
+            fileSize: file.size,
+            fileType: file.type,
+            uploadDate: new Date().toISOString(),
+            category: 'attachment',
+            trainingSubject: uploadData.description,
+            trainingDate: uploadData.trainingDate,
+            instructorName: 'Training Instructor',
+            studentCount: 0,
+            location: '',
+            description: `Attachment for: ${uploadData.description}`,
+            content: previewFile.content,
+            fileBlob: previewFile.blob,
+            parentFile: mainDocument.id
+          };
+        });
 
-    try {
-      const newDocuments = await Promise.all(uploadPromises);
+        const attachments = await Promise.all(attachmentPromises);
+        allDocuments = [...allDocuments, ...attachments];
+      }
       
       // Update documents list
-      const updatedDocuments = [...newDocuments, ...documents];
+      const updatedDocuments = [...allDocuments, ...documents];
       setDocuments(updatedDocuments);
       
       // Save to localStorage
@@ -356,15 +369,15 @@ export default function TrainingDocumentHub() {
       setIsUploadDialogOpen(false);
 
       toast({
-        title: "Documents Uploaded",
-        description: `${newDocuments.length} file(s) have been successfully uploaded.`,
+        title: "Training File Created",
+        description: `${uploadData.description} created with ${previewFiles.length} attachment${previewFiles.length !== 1 ? 's' : ''}.`,
       });
 
     } catch (error) {
-      console.error('Upload error:', error);
+      console.error('Creation error:', error);
       toast({
-        title: "Upload Failed",
-        description: "There was an error uploading the files.",
+        title: "Creation Failed",
+        description: "There was an error creating the training file.",
         variant: "destructive",
       });
     }
@@ -930,12 +943,12 @@ This document serves as an official attendance record for the training session.`
                 <DialogTrigger asChild>
                   <Button className="bg-emerald-600 hover:bg-emerald-700 text-white">
                     <Plus className="w-4 h-4 mr-2" />
-                    Upload Document
+                    Create File
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="max-w-2xl bg-gray-800 border-gray-700" aria-describedby="upload-document-description">
+                <DialogContent className="max-w-2xl bg-gray-800 border-gray-700" aria-describedby="create-file-description">
                   <DialogHeader>
-                    <DialogTitle className="text-white">Upload Training Document</DialogTitle>
+                    <DialogTitle className="text-white">Create Training File</DialogTitle>
                   </DialogHeader>
                   <div className="space-y-4">
                     {/* Simplified form - only training date and description */}
@@ -964,7 +977,7 @@ This document serves as an official attendance record for the training session.`
                     
                     {/* Multiple file upload */}
                     <div>
-                      <Label className="text-white">Select Files</Label>
+                      <Label className="text-white">Add Files to This Training Record</Label>
                       <input
                         ref={fileInputRef}
                         type="file"
@@ -978,7 +991,7 @@ This document serves as an official attendance record for the training session.`
                         className="bg-blue-600 hover:bg-blue-700 text-white w-full"
                       >
                         <Upload className="w-4 h-4 mr-2" />
-                        Select Multiple Files
+                        Add Files
                       </Button>
                     </div>
                     
@@ -1041,15 +1054,14 @@ This document serves as an official attendance record for the training session.`
                       >
                         Cancel
                       </Button>
-                      {previewFiles.length > 0 && (
-                        <Button 
-                          onClick={handleFinalUpload}
-                          className="bg-emerald-600 hover:bg-emerald-700 text-white"
-                        >
-                          <Upload className="w-4 h-4 mr-2" />
-                          Upload {previewFiles.length} File{previewFiles.length > 1 ? 's' : ''}
-                        </Button>
-                      )}
+                      <Button 
+                        onClick={handleFinalUpload}
+                        className="bg-emerald-600 hover:bg-emerald-700 text-white"
+                      >
+                        <Plus className="w-4 h-4 mr-2" />
+                        Create Training File
+                        {previewFiles.length > 0 && ` with ${previewFiles.length} Attachment${previewFiles.length > 1 ? 's' : ''}`}
+                      </Button>
                     </div>
                   </div>
                 </DialogContent>
@@ -1060,51 +1072,18 @@ This document serves as an official attendance record for the training session.`
 
 
 
-        {/* Filters and Search */}
+        {/* Search Only */}
         <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm mb-6">
           <CardContent className="p-6">
             <div className="flex flex-wrap items-center gap-4">
               <div className="flex items-center space-x-2">
                 <Search className="w-4 h-4 text-gray-400" />
                 <Input
-                  placeholder="Search documents..."
+                  placeholder="Search training files..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-64 bg-gray-700 border-gray-600 text-white"
                 />
-              </div>
-              
-              <div className="flex items-center space-x-2">
-                <Filter className="w-4 h-4 text-gray-400" />
-                <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                  <SelectTrigger className="w-48 bg-gray-700 border-gray-600 text-white">
-                    <SelectValue placeholder="Filter by category" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-gray-700 border-gray-600">
-                    {documentCategories.map(cat => (
-                      <SelectItem key={cat.id} value={cat.id} className="text-white hover:bg-gray-600">
-                        {cat.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              
-              <div className="flex items-center space-x-2">
-                <BookOpen className="w-4 h-4 text-gray-400" />
-                <Select value={selectedSubject} onValueChange={setSelectedSubject}>
-                  <SelectTrigger className="w-48 bg-gray-700 border-gray-600 text-white">
-                    <SelectValue placeholder="Filter by subject" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-gray-700 border-gray-600">
-                    <SelectItem value="all" className="text-white hover:bg-gray-600">All Subjects</SelectItem>
-                    {trainingSubjects.map(subject => (
-                      <SelectItem key={subject} value={subject} className="text-white hover:bg-gray-600">
-                        {subject}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
               </div>
               
               <div className="flex items-center space-x-2">
