@@ -890,10 +890,6 @@ This document serves as an official attendance record for the training session.`
               <p className="text-gray-300 text-lg">Centralized training documentation and record management</p>
             </div>
             <div className="flex items-center space-x-4">
-              <div className="text-right">
-                <div className="text-2xl font-bold text-white">{totalDocuments}</div>
-                <div className="text-sm text-gray-300">Total Documents</div>
-              </div>
               <Dialog open={isUploadDialogOpen} onOpenChange={setIsUploadDialogOpen}>
                 <DialogTrigger asChild>
                   <Button className="bg-emerald-600 hover:bg-emerald-700 text-white">
