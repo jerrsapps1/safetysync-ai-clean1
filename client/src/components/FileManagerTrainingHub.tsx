@@ -502,70 +502,90 @@ This training file was created using the Create File system.`
         </div>
         
         {/* Action Bar */}
-        <div className="flex items-center justify-between p-3 bg-gray-50 border-t border-gray-200">
-          <div className="flex items-center space-x-2">
-            <input type="checkbox" className="rounded" />
+        <div className="flex items-center justify-between p-4 border-b border-gray-200">
+          <div className="flex items-center space-x-3">
             <Button
               onClick={() => setIsCreateFileDialogOpen(true)}
               size="sm"
-              className="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-1.5"
+              className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-full"
             >
-              Create
+              + New
             </Button>
-            <Button size="sm" variant="outline" className="text-xs">
-              Upload
-            </Button>
-            <Button size="sm" variant="outline" className="text-xs">
-              Download
-            </Button>
-            <Button size="sm" variant="outline" className="text-xs">
-              Move / Copy
-            </Button>
-            <Button size="sm" variant="outline" className="text-xs">
-              Delete
-            </Button>
+            <div className="flex items-center space-x-2 text-sm text-gray-600">
+              <Button size="sm" variant="ghost" className="text-xs">
+                Type
+              </Button>
+              <Button size="sm" variant="ghost" className="text-xs">
+                People
+              </Button>
+              <Button size="sm" variant="ghost" className="text-xs">
+                Modified
+              </Button>
+              <Button size="sm" variant="ghost" className="text-xs">
+                Location
+              </Button>
+            </div>
           </div>
           
-          <div className="flex items-center space-x-2">
-            <input
-              type="text"
-              placeholder="Search files..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="px-3 py-1.5 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent w-64"
-            />
+          <div className="flex items-center space-x-3">
+            <div className="flex items-center bg-gray-100 rounded-lg px-3 py-2">
+              <Search className="w-4 h-4 text-gray-400 mr-2" />
+              <input
+                type="text"
+                placeholder="Search in Drive"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="bg-transparent text-sm outline-none w-64"
+              />
+            </div>
+            <Button size="sm" variant="ghost" className="p-2">
+              <Grid className="w-4 h-4" />
+            </Button>
+            <Button size="sm" variant="ghost" className="p-2">
+              <Settings className="w-4 h-4" />
+            </Button>
           </div>
         </div>
       </div>
 
       {/* File List */}
-      <div className="p-4">
-        <div className="bg-white rounded-lg border border-gray-200">
-          {/* Back button when in subfolder */}
-          {currentPath.length > 0 && (
-            <div className="flex items-center p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer"
-                 onClick={navigateBack}>
-              <div className="mr-3">
-                <input type="checkbox" className="rounded opacity-0" disabled />
-              </div>
-              <FolderIcon className="w-8 h-8 text-gray-400 mr-4 flex-shrink-0" />
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center space-x-2 mb-1">
-                  <h3 className="text-sm font-medium text-gray-600">
-                    .. (Back to parent folder)
-                  </h3>
-                </div>
-              </div>
+      <div className="bg-white">
+        {/* Table Header */}
+        <div className="grid grid-cols-12 gap-4 p-4 border-b border-gray-200 bg-gray-50 text-sm font-medium text-gray-600">
+          <div className="col-span-1">
+            <input type="checkbox" className="rounded" />
+          </div>
+          <div className="col-span-5">Name</div>
+          <div className="col-span-3">Last modified</div>
+          <div className="col-span-2">Owner</div>
+          <div className="col-span-1">Location</div>
+        </div>
+        
+        {/* Back button when in subfolder */}
+        {currentPath.length > 0 && (
+          <div className="grid grid-cols-12 gap-4 p-4 border-b border-gray-100 hover:bg-blue-50 cursor-pointer items-center"
+               onClick={navigateBack}>
+            <div className="col-span-1">
+              <input type="checkbox" className="rounded opacity-50" disabled />
             </div>
-          )}
-          
-          {/* Current level documents */}
-          {getCurrentLevelDocuments().map((doc) => (
-            <div
-              key={doc.id}
-              className="flex items-center p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer"
-              onClick={() => handleViewDocument(doc)}
-            >
+            <div className="col-span-5 flex items-center">
+              <FolderIcon className="w-5 h-5 text-gray-400 mr-3" />
+              <span className="text-sm text-gray-600">.. (Back to parent folder)</span>
+            </div>
+            <div className="col-span-3 text-sm text-gray-500">-</div>
+            <div className="col-span-2 text-sm text-gray-500">-</div>
+            <div className="col-span-1 text-sm text-gray-500">-</div>
+          </div>
+        )}
+        
+        {/* Current level documents */}
+        {getCurrentLevelDocuments().map((doc) => (
+          <div
+            key={doc.id}
+            className="grid grid-cols-12 gap-4 p-4 border-b border-gray-100 hover:bg-blue-50 cursor-pointer items-center"
+            onClick={() => handleViewDocument(doc)}
+          >
+            <div className="col-span-1">
               <input
                 type="checkbox"
                 checked={selectedDocuments.has(doc.id)}
@@ -573,29 +593,36 @@ This training file was created using the Create File system.`
                   e.stopPropagation();
                   toggleDocumentSelection(doc.id);
                 }}
-                className="mr-3 rounded"
+                className="rounded"
               />
-              
-              <FolderIcon className="w-8 h-8 text-blue-500 mr-4 flex-shrink-0" />
-              
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center space-x-2 mb-1">
-                  <h3 className="text-sm font-medium text-gray-900 truncate">
-                    {doc.fileName.replace(/_/g, ' ')} ({doc.studentCount})
-                  </h3>
-                </div>
-                <div className="text-xs text-gray-500">
-                  {formatFileSize(doc.fileSize)} created on {formatDate(doc.trainingDate)}
-                </div>
+            </div>
+            
+            <div className="col-span-5 flex items-center">
+              <FolderIcon className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
+              <span className="text-sm text-gray-900 truncate">
+                {doc.fileName.replace(/_/g, ' ')}
+              </span>
+            </div>
+            
+            <div className="col-span-3 text-sm text-gray-600">
+              Created • {formatDate(doc.trainingDate)}
+            </div>
+            
+            <div className="col-span-2 flex items-center">
+              <div className="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center text-white text-xs font-medium mr-2">
+                {doc.instructorName.charAt(0)}
               </div>
-              
-              <div className="flex items-center space-x-2 text-gray-400">
-                <Eye className="w-4 h-4" />
-                <User className="w-4 h-4" />
+              <span className="text-sm text-gray-600 truncate">me</span>
+            </div>
+            
+            <div className="col-span-1">
+              <div className="flex items-center text-sm text-gray-600">
+                <FolderIcon className="w-4 h-4 mr-1" />
+                <span className="text-xs">{doc.location.split(' ')[0]}</span>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
 
       {/* Create File Dialog */}
