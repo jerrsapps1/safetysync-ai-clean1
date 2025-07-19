@@ -182,6 +182,7 @@ export default function FileManagerTrainingHub() {
   });
   
   const [searchTerm, setSearchTerm] = useState('');
+  const [currentPath, setCurrentPath] = useState<string[]>([]);
   const [isCreateFileDialogOpen, setIsCreateFileDialogOpen] = useState(false);
   const [isViewDialogOpen, setIsViewDialogOpen] = useState(false);
   const [viewingDocument, setViewingDocument] = useState<TrainingDocument | null>(null);
@@ -211,14 +212,120 @@ export default function FileManagerTrainingHub() {
     });
   };
 
-  // Filter documents
-  const filteredDocuments = documents.filter(doc => {
-    return searchTerm === '' || 
-      doc.fileName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      doc.instructorName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      doc.trainingSubject.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      doc.description.toLowerCase().includes(searchTerm.toLowerCase());
-  });
+  // Get documents for current folder level
+  const getCurrentLevelDocuments = () => {
+    let currentDocs = documents;
+    
+    // If we're in a subfolder, create sample subdocuments
+    if (currentPath.length > 0) {
+      const parentFolder = currentPath[currentPath.length - 1];
+      
+      // Generate subdocuments based on parent folder
+      const subDocs: TrainingDocument[] = [];
+      const baseId = Date.now();
+      
+      if (parentFolder === 'Safety_Management_System_Analysis') {
+        subDocs.push(
+          {
+            id: baseId + 1,
+            fileName: 'DOM_Inspection_Report.txt',
+            fileType: 'txt',
+            category: 'analysis_document',
+            trainingSubject: 'DOM Inspection Report',
+            trainingDate: new Date('2025-01-21'),
+            instructorName: 'System Analysis',
+            studentCount: 1,
+            location: 'Web Analysis',
+            fileSize: 15400,
+            uploadDate: new Date('2025-01-21'),
+            description: 'Detailed DOM inspection results and workspace analysis'
+          },
+          {
+            id: baseId + 2,
+            fileName: 'Workspace_Metrics.json',
+            fileType: 'json',
+            category: 'data_file',
+            trainingSubject: 'Workspace Metrics',
+            trainingDate: new Date('2025-01-21'),
+            instructorName: 'Data Collection',
+            studentCount: 1,
+            location: 'System Data',
+            fileSize: 8200,
+            uploadDate: new Date('2025-01-21'),
+            description: 'Workspace performance and usage metrics data'
+          }
+        );
+      } else if (parentFolder === 'Abatement_SDS') {
+        for (let i = 1; i <= 27; i++) {
+          subDocs.push({
+            id: baseId + i,
+            fileName: `Abatement_Chemical_${i.toString().padStart(3, '0')}.pdf`,
+            fileType: 'pdf',
+            category: 'sds_document',
+            trainingSubject: `Abatement Chemical ${i}`,
+            trainingDate: new Date('2024-10-28'),
+            instructorName: 'Chemical Safety',
+            studentCount: 1,
+            location: 'Chemical Database',
+            fileSize: Math.floor(Math.random() * 500000) + 100000,
+            uploadDate: new Date('2024-10-28'),
+            description: `Safety data sheet for abatement chemical compound ${i}`
+          });
+        }
+      } else if (parentFolder === 'Demo_SDS') {
+        for (let i = 1; i <= 16; i++) {
+          subDocs.push({
+            id: baseId + i,
+            fileName: `Demo_Training_SDS_${i.toString().padStart(2, '0')}.pdf`,
+            fileType: 'pdf',
+            category: 'training_sds',
+            trainingSubject: `Demo Training SDS ${i}`,
+            trainingDate: new Date('2024-10-28'),
+            instructorName: 'Training Materials',
+            studentCount: 1,
+            location: 'Training Database',
+            fileSize: Math.floor(Math.random() * 300000) + 50000,
+            uploadDate: new Date('2024-10-28'),
+            description: `Demo safety data sheet for training purposes - compound ${i}`
+          });
+        }
+      } else if (parentFolder === 'EHS_Manuals') {
+        const manualNames = [
+          'Emergency_Response_Procedures',
+          'Environmental_Compliance_Guidelines',
+          'Health_Safety_Training_Protocols',
+          'Workplace_Safety_Standards'
+        ];
+        manualNames.forEach((name, i) => {
+          subDocs.push({
+            id: baseId + i + 1,
+            fileName: `${name}.pdf`,
+            fileType: 'pdf',
+            category: 'safety_manual',
+            trainingSubject: name.replace(/_/g, ' '),
+            trainingDate: new Date('2025-01-21'),
+            instructorName: 'EH&S Department',
+            studentCount: 1,
+            location: 'Safety Documentation',
+            fileSize: Math.floor(Math.random() * 20000000) + 5000000,
+            uploadDate: new Date('2025-01-21'),
+            description: `Comprehensive ${name.replace(/_/g, ' ').toLowerCase()} manual`
+          });
+        });
+      }
+      
+      currentDocs = subDocs;
+    }
+    
+    // Apply search filter
+    return currentDocs.filter(doc => {
+      return searchTerm === '' || 
+        doc.fileName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        doc.instructorName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        doc.trainingSubject.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        doc.description.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+  };
 
   // Handle document selection
   const toggleDocumentSelection = (docId: number) => {
@@ -231,10 +338,32 @@ export default function FileManagerTrainingHub() {
     setSelectedDocuments(newSelected);
   };
 
+  // Handle folder navigation
+  const handleFolderClick = (doc: TrainingDocument, event: React.MouseEvent) => {
+    event.stopPropagation();
+    if (doc.fileType === 'folder') {
+      setCurrentPath([...currentPath, doc.fileName]);
+    }
+  };
+
+  // Handle breadcrumb navigation
+  const navigateToPath = (pathIndex: number) => {
+    setCurrentPath(currentPath.slice(0, pathIndex + 1));
+  };
+
+  // Navigate back to parent
+  const navigateBack = () => {
+    setCurrentPath(currentPath.slice(0, -1));
+  };
+
   // Handle view document
   const handleViewDocument = (doc: TrainingDocument) => {
-    setViewingDocument(doc);
-    setIsViewDialogOpen(true);
+    if (doc.fileType === 'folder') {
+      handleFolderClick(doc, {} as React.MouseEvent);
+    } else {
+      setViewingDocument(doc);
+      setIsViewDialogOpen(true);
+    }
   };
 
   // Handle create file
@@ -287,8 +416,24 @@ This training file was created using the Create File system.`
       <div className="bg-white border-b border-gray-200">
         <div className="flex items-center justify-between p-4">
           <div className="flex items-center space-x-2 text-gray-600 text-sm">
-            <Home className="w-4 h-4" />
-            <span>Home</span>
+            <button 
+              onClick={() => setCurrentPath([])}
+              className="flex items-center space-x-1 hover:text-blue-600 cursor-pointer"
+            >
+              <Home className="w-4 h-4" />
+              <span>Home</span>
+            </button>
+            {currentPath.map((folder, index) => (
+              <div key={index} className="flex items-center space-x-2">
+                <span>/</span>
+                <button
+                  onClick={() => navigateToPath(index)}
+                  className="hover:text-blue-600 cursor-pointer"
+                >
+                  {folder.replace(/_/g, ' ')}
+                </button>
+              </div>
+            ))}
           </div>
           <div className="flex items-center space-x-2">
             <Button size="sm" variant="outline" className="text-xs">
@@ -342,7 +487,26 @@ This training file was created using the Create File system.`
       {/* File List */}
       <div className="p-4">
         <div className="bg-white rounded-lg border border-gray-200">
-          {filteredDocuments.map((doc) => (
+          {/* Back button when in subfolder */}
+          {currentPath.length > 0 && (
+            <div className="flex items-center p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer"
+                 onClick={navigateBack}>
+              <div className="mr-3">
+                <input type="checkbox" className="rounded opacity-0" disabled />
+              </div>
+              <FolderIcon className="w-8 h-8 text-gray-400 mr-4 flex-shrink-0" />
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center space-x-2 mb-1">
+                  <h3 className="text-sm font-medium text-gray-600">
+                    .. (Back to parent folder)
+                  </h3>
+                </div>
+              </div>
+            </div>
+          )}
+          
+          {/* Current level documents */}
+          {getCurrentLevelDocuments().map((doc) => (
             <div
               key={doc.id}
               className="flex items-center p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer"
