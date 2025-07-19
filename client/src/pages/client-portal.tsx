@@ -339,8 +339,10 @@ export default function ClientPortal() {
         setLoginUsername('');
         setLoginPassword('');
         
-        // Redirect to workspace after successful authentication
-        window.location.href = '/workspace';
+        // Navigate to workspace after successful authentication
+        setTimeout(() => {
+          window.location.href = '/workspace';
+        }, 500);
         
         toast({
           title: "Authentication Successful",
@@ -455,12 +457,12 @@ export default function ClientPortal() {
                   
                   <span className="text-white text-sm">Welcome, {user?.name}</span>
                   <Button 
-                    onClick={() => window.location.href = '/workspace'}
+                    onClick={() => setShowAuthPopup(true)}
                     variant="ghost"
                     className="text-emerald-300 hover:text-emerald-200 hover:bg-emerald-700/50"
                   >
                     <Settings className="w-4 h-4 mr-2" />
-                    Workspace
+                    Access Workspace
                   </Button>
                   <Button 
                     onClick={handleLogout}
