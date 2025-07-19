@@ -185,6 +185,7 @@ export default function TrainingDocumentHub() {
   });
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedSubject, setSelectedSubject] = useState<string>('all');
+  const [dateFilter, setDateFilter] = useState<{ from: string; to: string }>({ from: '', to: '' });
   const [searchTerm, setSearchTerm] = useState('');
   const [isUploadDialogOpen, setIsUploadDialogOpen] = useState(false);
   const [isViewDialogOpen, setIsViewDialogOpen] = useState(false);
@@ -217,7 +218,7 @@ export default function TrainingDocumentHub() {
     return () => window.removeEventListener('documentAdded', handleNewDocument as EventListener);
   }, [toast]);
 
-  // Filter documents based on category, subject, and search term
+  // Filter documents based on category, subject, search term, and date
   const filteredDocuments = documents.filter(doc => {
     const matchesCategory = selectedCategory === 'all' || doc.category === selectedCategory;
     const matchesSubject = selectedSubject === 'all' || doc.trainingSubject === selectedSubject;
@@ -226,7 +227,21 @@ export default function TrainingDocumentHub() {
       doc.instructorName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       doc.trainingSubject.toLowerCase().includes(searchTerm.toLowerCase());
     
-    return matchesCategory && matchesSubject && matchesSearch;
+    // Date filtering
+    let matchesDate = true;
+    if (dateFilter.from || dateFilter.to) {
+      const docDate = new Date(doc.trainingDate);
+      if (dateFilter.from) {
+        const fromDate = new Date(dateFilter.from);
+        matchesDate = matchesDate && docDate >= fromDate;
+      }
+      if (dateFilter.to) {
+        const toDate = new Date(dateFilter.to);
+        matchesDate = matchesDate && docDate <= toDate;
+      }
+    }
+    
+    return matchesCategory && matchesSubject && matchesSearch && matchesDate;
   });
 
   // Get category info
@@ -1075,6 +1090,25 @@ This document serves as an official attendance record for the training session.`
                     ))}
                   </SelectContent>
                 </Select>
+              </div>
+              
+              <div className="flex items-center space-x-2">
+                <Calendar className="w-4 h-4 text-gray-400" />
+                <Input
+                  type="date"
+                  placeholder="From date"
+                  value={dateFilter.from}
+                  onChange={(e) => setDateFilter(prev => ({ ...prev, from: e.target.value }))}
+                  className="w-40 bg-gray-700 border-gray-600 text-white"
+                />
+                <span className="text-gray-400">to</span>
+                <Input
+                  type="date"
+                  placeholder="To date"
+                  value={dateFilter.to}
+                  onChange={(e) => setDateFilter(prev => ({ ...prev, to: e.target.value }))}
+                  className="w-40 bg-gray-700 border-gray-600 text-white"
+                />
               </div>
             </div>
           </CardContent>
