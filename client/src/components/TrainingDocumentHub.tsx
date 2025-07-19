@@ -30,6 +30,7 @@ import {
   Printer
 } from 'lucide-react';
 import { format } from 'date-fns';
+import jsPDF from 'jspdf';
 
 // Document category configurations
 const documentCategories = [
@@ -293,26 +294,15 @@ export default function TrainingDocumentHub() {
   // Handle document regeneration/print
   const handleRegenerateDocument = (doc: TrainingDocument) => {
     if (doc.category === 'sign_in_sheet') {
-      // Recreate the sign-in sheet with available data
-      const regeneratedContent = generatePrintableSignInSheet(doc);
-      
-      // Create and download the regenerated file
-      const blob = new Blob([regeneratedContent], { type: 'text/plain' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `${doc.fileName.replace('.pdf', '_REGENERATED.txt')}`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
+      // Generate PDF version of the sign-in sheet
+      generatePDFSignInSheet(doc);
 
       const hasOriginalData = doc.generatedEmployees && doc.generatedEmployees.length > 0;
       toast({
-        title: "Document Regenerated",
+        title: "PDF Generated",
         description: hasOriginalData 
-          ? `${doc.fileName} has been regenerated with original employee data and downloaded.`
-          : `${doc.fileName} has been regenerated with training data and downloaded.`,
+          ? `${doc.fileName} has been regenerated as PDF with original employee data.`
+          : `${doc.fileName} has been regenerated as PDF with training data.`,
       });
     } else {
       toast({
@@ -321,6 +311,102 @@ export default function TrainingDocumentHub() {
         variant: "destructive"
       });
     }
+  };
+
+  // Generate PDF sign-in sheet
+  const generatePDFSignInSheet = (doc: TrainingDocument) => {
+    const pdf = new jsPDF();
+    
+    // Set up document
+    pdf.setFontSize(18);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('TRAINING SIGN-IN SHEET', 105, 25, { align: 'center' });
+    
+    // Training details
+    pdf.setFontSize(12);
+    pdf.setFont('helvetica', 'normal');
+    
+    const timeRange = doc.startTime && doc.endTime ? ` (${doc.startTime} - ${doc.endTime})` : '';
+    const credentials = doc.instructorCredentials ? ` - ${doc.instructorCredentials}` : '';
+    const company = doc.instructorCompany ? ` (${doc.instructorCompany})` : '';
+    const standard = doc.oshaStandard || doc.customReference || 'N/A';
+    
+    let yPos = 45;
+    pdf.text(`Training Subject: ${doc.trainingSubject}${timeRange}`, 20, yPos);
+    yPos += 8;
+    pdf.text(`Date: ${format(doc.trainingDate, 'MMMM dd, yyyy')}`, 20, yPos);
+    yPos += 8;
+    pdf.text(`Instructor: ${doc.instructorName}${credentials}${company}`, 20, yPos);
+    yPos += 8;
+    pdf.text(`Location: ${doc.location}`, 20, yPos);
+    yPos += 8;
+    pdf.text(`Total Students: ${doc.studentCount}`, 20, yPos);
+    yPos += 8;
+    pdf.text(`OSHA/Regulatory Standard: ${standard}`, 20, yPos);
+    yPos += 12;
+
+    if (doc.description) {
+      pdf.text(`Description: ${doc.description}`, 20, yPos);
+      yPos += 12;
+    }
+    
+    // Student attendance section
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('STUDENT ATTENDANCE:', 20, yPos);
+    yPos += 10;
+    
+    // Header for attendance
+    pdf.setFont('helvetica', 'normal');
+    pdf.text('Name', 20, yPos);
+    pdf.text('Signature', 120, yPos);
+    pdf.line(20, yPos + 2, 190, yPos + 2); // Header underline
+    yPos += 10;
+    
+    // Generate attendee list
+    let attendeeNames: string[] = [];
+    if (doc.generatedEmployees && doc.generatedEmployees.length > 0) {
+      attendeeNames = doc.generatedEmployees.map(emp => emp.name);
+    } else {
+      // Fallback realistic names
+      const fallbackNames = [
+        'John Smith', 'Maria Garcia', 'David Johnson', 'Sarah Wilson', 
+        'Michael Brown', 'Jennifer Davis', 'Robert Miller', 'Lisa Anderson',
+        'James Taylor', 'Jessica Martinez', 'Christopher Lee', 'Amanda White',
+        'Daniel Garcia', 'Ashley Thompson', 'Matthew Jackson', 'Emily Rodriguez'
+      ];
+      attendeeNames = fallbackNames.slice(0, doc.studentCount || 8);
+    }
+    
+    // Add attendees with signature lines
+    attendeeNames.forEach((name, index) => {
+      if (yPos > 250) { // Start new page if needed
+        pdf.addPage();
+        yPos = 30;
+      }
+      
+      pdf.text(`${(index + 1).toString().padStart(2, '0')}. ${name}`, 20, yPos);
+      pdf.line(120, yPos, 180, yPos); // Signature line
+      yPos += 12;
+    });
+    
+    // Instructor signature section
+    yPos += 10;
+    if (yPos > 250) {
+      pdf.addPage();
+      yPos = 30;
+    }
+    
+    pdf.text(`Instructor Signature: ________________    Date: ${format(doc.trainingDate, 'MM/dd/yyyy')}`, 20, yPos);
+    yPos += 15;
+    
+    // Footer
+    pdf.setFontSize(10);
+    pdf.text('This document serves as an official attendance record for the training session.', 20, yPos);
+    pdf.text('Generated from SafetySync.AI Training Document Hub', 20, yPos + 8);
+    
+    // Download the PDF
+    const fileName = doc.fileName.replace('.pdf', '_REGENERATED.pdf');
+    pdf.save(fileName);
   };
 
   // Generate printable sign-in sheet content
