@@ -111,6 +111,13 @@ interface TrainingDocument {
   uploadDate: Date;
   description?: string;
   expirationDate?: Date;
+  generatedEmployees?: any[]; // Store actual employee data from sign-in generator
+  oshaStandard?: string;
+  customReference?: string;
+  instructorCredentials?: string;
+  instructorCompany?: string;
+  startTime?: string;
+  endTime?: string;
 }
 
 // Mock data for demonstration
@@ -161,7 +168,11 @@ const mockDocuments: TrainingDocument[] = [
 ];
 
 export default function TrainingDocumentHub() {
-  const [documents, setDocuments] = useState<TrainingDocument[]>(mockDocuments);
+  const [documents, setDocuments] = useState<TrainingDocument[]>(() => {
+    // Load existing documents from localStorage on component mount
+    const savedDocuments = localStorage.getItem('trainingDocuments');
+    return savedDocuments ? JSON.parse(savedDocuments) : mockDocuments;
+  });
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedSubject, setSelectedSubject] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState('');
@@ -180,6 +191,21 @@ export default function TrainingDocumentHub() {
   });
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
+
+  // Listen for new documents from sign-in generator
+  React.useEffect(() => {
+    const handleNewDocument = (event: CustomEvent) => {
+      const newDocument = event.detail;
+      setDocuments(prev => [newDocument, ...prev]);
+      toast({
+        title: "Document Added",
+        description: `Sign-in sheet for ${newDocument.trainingSubject} has been added to the document hub.`,
+      });
+    };
+
+    window.addEventListener('documentAdded', handleNewDocument as EventListener);
+    return () => window.removeEventListener('documentAdded', handleNewDocument as EventListener);
+  }, [toast]);
 
   // Filter documents based on category, subject, and search term
   const filteredDocuments = documents.filter(doc => {
@@ -267,25 +293,39 @@ export default function TrainingDocumentHub() {
   const generatePreviewContent = (doc: TrainingDocument) => {
     switch (doc.category) {
       case 'sign_in_sheet':
-        const studentNames = [
-          'John Smith', 'Maria Garcia', 'David Johnson', 'Sarah Wilson', 
-          'Michael Brown', 'Jennifer Davis', 'Robert Miller', 'Lisa Anderson',
-          'James Taylor', 'Jessica Martinez', 'Christopher Lee', 'Amanda White',
-          'Daniel Garcia', 'Ashley Thompson', 'Matthew Jackson', 'Emily Rodriguez'
-        ];
-        
-        const attendeeList = studentNames
-          .slice(0, doc.studentCount || 8)
-          .map((name, index) => `${(index + 1).toString().padStart(2, '0')}. ${name.padEnd(20)} ________________`)
-          .join('\n');
+        // Use actual employee data if available from sign-in generator
+        let attendeeList = '';
+        if (doc.generatedEmployees && doc.generatedEmployees.length > 0) {
+          attendeeList = doc.generatedEmployees
+            .map((employee, index) => `${(index + 1).toString().padStart(2, '0')}. ${employee.name.padEnd(20)} ________________`)
+            .join('\n');
+        } else {
+          // Fallback to generic names
+          const studentNames = [
+            'John Smith', 'Maria Garcia', 'David Johnson', 'Sarah Wilson', 
+            'Michael Brown', 'Jennifer Davis', 'Robert Miller', 'Lisa Anderson',
+            'James Taylor', 'Jessica Martinez', 'Christopher Lee', 'Amanda White',
+            'Daniel Garcia', 'Ashley Thompson', 'Matthew Jackson', 'Emily Rodriguez'
+          ];
+          attendeeList = studentNames
+            .slice(0, doc.studentCount || 8)
+            .map((name, index) => `${(index + 1).toString().padStart(2, '0')}. ${name.padEnd(20)} ________________`)
+            .join('\n');
+        }
+
+        const timeRange = doc.startTime && doc.endTime ? ` (${doc.startTime} - ${doc.endTime})` : '';
+        const credentials = doc.instructorCredentials ? ` - ${doc.instructorCredentials}` : '';
+        const company = doc.instructorCompany ? ` (${doc.instructorCompany})` : '';
+        const standard = doc.oshaStandard || doc.customReference || 'N/A';
 
         return `TRAINING SIGN-IN SHEET
 
-Training Subject: ${doc.trainingSubject || 'Safety Training'}
+Training Subject: ${doc.trainingSubject || 'Safety Training'}${timeRange}
 Date: ${format(doc.trainingDate, 'MMMM dd, yyyy')}
-Instructor: ${doc.instructorName || 'N/A'}
+Instructor: ${doc.instructorName || 'N/A'}${credentials}${company}
 Location: ${doc.location || 'N/A'}
 Total Students: ${doc.studentCount || 'N/A'}
+OSHA/Regulatory Standard: ${standard}
 
 Description: ${doc.description || 'No description provided'}
 
@@ -380,25 +420,40 @@ This is a training-related document.`;
       
       switch (doc.category) {
         case 'sign-in-sheets':
-          const downloadStudentNames = [
-            'John Smith', 'Maria Garcia', 'David Johnson', 'Sarah Wilson', 
-            'Michael Brown', 'Jennifer Davis', 'Robert Miller', 'Lisa Anderson',
-            'James Taylor', 'Jessica Martinez', 'Christopher Lee', 'Amanda White',
-            'Daniel Garcia', 'Ashley Thompson', 'Matthew Jackson', 'Emily Rodriguez'
-          ];
-          
-          const downloadAttendeeList = downloadStudentNames
-            .slice(0, doc.studentCount || 8)
-            .map((name, index) => `${(index + 1).toString().padStart(2, '0')}. ${name.padEnd(20)} ________________`)
-            .join('\n');
+        case 'sign_in_sheet':
+          // Use actual employee data if available from sign-in generator
+          let downloadAttendeeList = '';
+          if (doc.generatedEmployees && doc.generatedEmployees.length > 0) {
+            downloadAttendeeList = doc.generatedEmployees
+              .map((employee, index) => `${(index + 1).toString().padStart(2, '0')}. ${employee.name.padEnd(20)} ________________`)
+              .join('\n');
+          } else {
+            // Fallback to generic names
+            const downloadStudentNames = [
+              'John Smith', 'Maria Garcia', 'David Johnson', 'Sarah Wilson', 
+              'Michael Brown', 'Jennifer Davis', 'Robert Miller', 'Lisa Anderson',
+              'James Taylor', 'Jessica Martinez', 'Christopher Lee', 'Amanda White',
+              'Daniel Garcia', 'Ashley Thompson', 'Matthew Jackson', 'Emily Rodriguez'
+            ];
+            downloadAttendeeList = downloadStudentNames
+              .slice(0, doc.studentCount || 8)
+              .map((name, index) => `${(index + 1).toString().padStart(2, '0')}. ${name.padEnd(20)} ________________`)
+              .join('\n');
+          }
+
+          const downloadTimeRange = doc.startTime && doc.endTime ? ` (${doc.startTime} - ${doc.endTime})` : '';
+          const downloadCredentials = doc.instructorCredentials ? ` - ${doc.instructorCredentials}` : '';
+          const downloadCompany = doc.instructorCompany ? ` (${doc.instructorCompany})` : '';
+          const downloadStandard = doc.oshaStandard || doc.customReference || 'N/A';
 
           content = `TRAINING SIGN-IN SHEET
 
-Training Subject: ${doc.trainingSubject || 'Safety Training'}
+Training Subject: ${doc.trainingSubject || 'Safety Training'}${downloadTimeRange}
 Date: ${new Date(doc.uploadDate).toLocaleDateString()}
-Instructor: ${doc.instructorName || 'N/A'}
+Instructor: ${doc.instructorName || 'N/A'}${downloadCredentials}${downloadCompany}
 Location: ${doc.location || 'N/A'}
 Total Students: ${doc.studentCount || 'N/A'}
+OSHA/Regulatory Standard: ${downloadStandard}
 
 Description: ${doc.description || 'No description provided'}
 

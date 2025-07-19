@@ -130,9 +130,13 @@ User satisfied with comprehensive platform features including dashboard, admin p
 
 ## Recent Changes
 
-- **July 19, 2025** - Fixed Document Preview Functionality and Enhanced Training Document Interface:
-  - **WORKING DOCUMENT PREVIEW**: Implemented functional document preview showing actual content based on document category and type
-  - **STUDENT ATTENDANCE LISTS**: Added realistic student names and signature lines to sign-in sheet previews and downloads
+- **July 19, 2025** - Integrated Sign-In Generator with Document Hub and Enhanced Preview Functionality:
+  - **GENERATOR INTEGRATION**: Connected InstructorSignInGenerator with TrainingDocumentHub to automatically save generated documents
+  - **REAL EMPLOYEE DATA**: Document previews now show actual employee names from sign-in generator instead of generic placeholders
+  - **ENHANCED PREVIEW CONTENT**: Added instructor credentials, company, time ranges, and OSHA standards to preview display
+  - **AUTOMATIC DOCUMENT CREATION**: Generated sign-in sheets automatically appear in document hub with complete metadata
+  - **PERSISTENT STORAGE**: Documents persist across sessions using localStorage integration
+  - **REAL-TIME NOTIFICATIONS**: Users receive toast notifications when new documents are added from generator
   - **CATEGORY-SPECIFIC PREVIEWS**: Different preview formats for sign-in sheets, training materials, certificates, instructor resources, student records, and compliance documents
   - **FORMATTED DISPLAY**: Clean, scrollable preview area with proper formatting and monospace font for readability
   - **ACCESSIBILITY FIX**: Added proper aria-describedby attributes to dialog components to resolve console warnings

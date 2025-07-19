@@ -776,11 +776,49 @@ export function InstructorSignInGenerator() {
     // Initialize signature workflow
     initializeSignatureWorkflow(sheet);
     
+    // Add to Training Document Hub
+    saveToDocumentHub(sheet);
+    
     toast({
       title: "Sign-In Sheet Generated",
-      description: `Generated for ${sheet.employees.length} employees. Training session added to calendar. Ready to print and use in class.`,
+      description: `Generated for ${sheet.employees.length} employees. Training session added to calendar and document hub. Ready to print and use in class.`,
       duration: 4000
     });
+  };
+
+  // Save generated sign-in sheet to Training Document Hub
+  const saveToDocumentHub = (sheet: SignInSheet) => {
+    const documentHubData = {
+      id: parseInt(sheet.id),
+      fileName: `${sheet.classTitle}_SignIn_${sheet.date.replace(/\//g, '-')}.pdf`,
+      fileType: 'PDF',
+      category: 'sign_in_sheet',
+      trainingSubject: sheet.classTitle,
+      trainingDate: new Date(sheet.date),
+      instructorName: sheet.instructorName,
+      studentCount: sheet.employees.length,
+      location: sheet.location,
+      fileSize: 25600, // Approximate PDF size
+      uploadDate: new Date(),
+      description: `Generated sign-in sheet for ${sheet.classTitle} training conducted by ${sheet.instructorName}`,
+      generatedEmployees: sheet.employees, // Store actual employee data
+      oshaStandard: sheet.oshaStandard,
+      customReference: sheet.customReference,
+      instructorCredentials: sheet.instructorCredentials,
+      instructorCompany: sheet.instructorCompany,
+      startTime: sheet.startTime,
+      endTime: sheet.endTime
+    };
+
+    // Save to localStorage to persist across components
+    const existingDocuments = JSON.parse(localStorage.getItem('trainingDocuments') || '[]');
+    const updatedDocuments = [documentHubData, ...existingDocuments];
+    localStorage.setItem('trainingDocuments', JSON.stringify(updatedDocuments));
+    
+    // Also dispatch a custom event to notify the document hub
+    window.dispatchEvent(new CustomEvent('documentAdded', { 
+      detail: documentHubData 
+    }));
   };
 
   // Initialize signature workflow
