@@ -130,6 +130,14 @@ User satisfied with comprehensive platform features including dashboard, admin p
 
 ## Recent Changes
 
+- **July 19, 2025** - Fixed Case-Sensitive Email Login Issue:
+  - **AUTHENTICATION FIX**: Modified getUserByEmail function to use case-insensitive email comparison
+  - **SQL IMPROVEMENT**: Updated database query to use LOWER() function for email matching
+  - **USER EXPERIENCE**: Users can now login with any combination of uppercase/lowercase letters in their email
+  - **VERIFIED FUNCTIONALITY**: Both "test@example.com" and "TEST@EXAMPLE.COM" now work with same password
+  - **SECURITY MAINTAINED**: Password hashing and JWT token generation remain unchanged
+  - Login system now accepts email addresses regardless of case sensitivity
+
 - **July 18, 2025** - Fixed Critical Workspace Loading Issues and Download Functionality:
   - **WORKSPACE LOADING FIX**: Created workspace-basic.tsx to resolve loading issues with complex component dependencies
   - **DOWNLOAD FUNCTIONALITY**: Fixed TrainingDocumentHub download buttons to create actual downloadable files instead of using problematic file system API
