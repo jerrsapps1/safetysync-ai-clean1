@@ -736,3 +736,20 @@ export type InsertCompanyProfile = z.infer<typeof insertCompanyProfileSchema>;
 export type CompanyProfile = typeof companyProfiles.$inferSelect;
 export type InsertTicketResponse = z.infer<typeof insertTicketResponseSchema>;
 export type TicketResponse = typeof ticketResponses.$inferSelect;
+
+// AI Document Processing tables
+export const processedDocuments = pgTable('processed_documents', {
+  id: serial('id').primaryKey(),
+  userId: integer('user_id').references(() => users.id).notNull(),
+  originalFileName: text('original_file_name').notNull(),
+  documentType: text('document_type').notNull(), // signin, evaluation, certificate
+  aiExtractedData: text('ai_extracted_data').notNull(), // JSON string
+  verificationStatus: text('verification_status').default('pending'), // pending, verified, rejected
+  instructorNotes: text('instructor_notes'),
+  processingDate: timestamp('processing_date').defaultNow().notNull(),
+  certificatesGenerated: integer('certificates_generated').default(0),
+});
+
+export const insertProcessedDocumentSchema = createInsertSchema(processedDocuments);
+export type SelectProcessedDocument = typeof processedDocuments.$inferSelect;
+export type InsertProcessedDocument = z.infer<typeof insertProcessedDocumentSchema>;

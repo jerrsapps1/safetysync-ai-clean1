@@ -2269,6 +2269,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
   const fileSystemRoutes = await import("./api/file-system");
   app.use("/api/file-system", fileSystemRoutes.default);
 
+  // AI Document Processing Routes
+  app.post("/api/ai/process-signin", authenticateToken, async (req, res) => {
+    const { uploadAndProcessSignIn } = await import("./api/ai-document-processing");
+    return uploadAndProcessSignIn(req, res);
+  });
+
+  app.post("/api/ai/verify-and-generate", authenticateToken, async (req, res) => {
+    const { verifyAndGenerateCertificates } = await import("./api/ai-document-processing");
+    return verifyAndGenerateCertificates(req, res);
+  });
+
+  app.get("/api/ai/processed-documents", authenticateToken, async (req, res) => {
+    const { getProcessedDocuments } = await import("./api/ai-document-processing");
+    return getProcessedDocuments(req, res);
+  });
+
+  app.get("/api/ai/certificates", authenticateToken, async (req, res) => {
+    const { getGeneratedCertificates } = await import("./api/ai-document-processing");
+    return getGeneratedCertificates(req, res);
+  });
+
+  app.post("/api/ai/wallet-card/:certificateId", authenticateToken, async (req, res) => {
+    const { generateWalletCard } = await import("./api/ai-document-processing");
+    return generateWalletCard(req, res);
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;
