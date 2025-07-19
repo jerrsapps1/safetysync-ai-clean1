@@ -26,7 +26,8 @@ import {
   Eye,
   Calendar,
   Clock,
-  User
+  User,
+  Printer
 } from 'lucide-react';
 import { format } from 'date-fns';
 
@@ -287,6 +288,69 @@ export default function TrainingDocumentHub() {
   const handleView = (doc: TrainingDocument) => {
     setViewingDocument(doc);
     setIsViewDialogOpen(true);
+  };
+
+  // Handle document regeneration/print
+  const handleRegenerateDocument = (doc: TrainingDocument) => {
+    if (doc.category === 'sign_in_sheet' && doc.generatedEmployees) {
+      // Recreate the exact sign-in sheet with original data
+      const regeneratedContent = generatePrintableSignInSheet(doc);
+      
+      // Create and download the regenerated file
+      const blob = new Blob([regeneratedContent], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `${doc.fileName.replace('.pdf', '_REGENERATED.txt')}`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      toast({
+        title: "Document Regenerated",
+        description: `${doc.fileName} has been regenerated with original data and downloaded.`,
+      });
+    } else {
+      toast({
+        title: "Cannot Regenerate",
+        description: "This document type doesn't support regeneration or lacks original data.",
+        variant: "destructive"
+      });
+    }
+  };
+
+  // Generate printable sign-in sheet content
+  const generatePrintableSignInSheet = (doc: TrainingDocument) => {
+    const attendeeList = doc.generatedEmployees!
+      .map((employee, index) => `${(index + 1).toString().padStart(2, '0')}. ${employee.name.padEnd(20)} ________________`)
+      .join('\n');
+
+    const timeRange = doc.startTime && doc.endTime ? ` (${doc.startTime} - ${doc.endTime})` : '';
+    const credentials = doc.instructorCredentials ? ` - ${doc.instructorCredentials}` : '';
+    const company = doc.instructorCompany ? ` (${doc.instructorCompany})` : '';
+    const standard = doc.oshaStandard || doc.customReference || 'N/A';
+
+    return `TRAINING SIGN-IN SHEET
+
+Training Subject: ${doc.trainingSubject}${timeRange}
+Date: ${format(doc.trainingDate, 'MMMM dd, yyyy')}
+Instructor: ${doc.instructorName}${credentials}${company}
+Location: ${doc.location}
+Total Students: ${doc.studentCount}
+OSHA/Regulatory Standard: ${standard}
+
+Description: ${doc.description || 'No description provided'}
+
+STUDENT ATTENDANCE:
+Name                     Signature
+----------------------------------------
+${attendeeList}
+
+Instructor Signature: ________________    Date: ${format(doc.trainingDate, 'MM/dd/yyyy')}
+
+This document serves as an official attendance record for the training session.
+Generated from SafetySync.AI Training Document Hub`;
   };
 
   // Generate document preview content
@@ -1027,6 +1091,15 @@ This document serves as an official attendance record for the training session.`
                 >
                   Close
                 </Button>
+                {viewingDocument.category === 'sign_in_sheet' && viewingDocument.generatedEmployees && (
+                  <Button
+                    onClick={() => handleRegenerateDocument(viewingDocument)}
+                    className="bg-blue-600 hover:bg-blue-700 text-white"
+                  >
+                    <Printer className="w-4 h-4 mr-2" />
+                    Print Original
+                  </Button>
+                )}
                 <Button
                   onClick={() => handleDownload(viewingDocument)}
                   className="bg-emerald-600 hover:bg-emerald-700 text-white"
