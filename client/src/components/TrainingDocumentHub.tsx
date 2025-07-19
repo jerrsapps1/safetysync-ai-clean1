@@ -263,6 +263,91 @@ export default function TrainingDocumentHub() {
     setIsViewDialogOpen(true);
   };
 
+  // Generate document preview content
+  const generatePreviewContent = (doc: TrainingDocument) => {
+    switch (doc.category) {
+      case 'sign_in_sheet':
+        return `TRAINING SIGN-IN SHEET
+
+Training Subject: ${doc.trainingSubject || 'Safety Training'}
+Date: ${format(doc.trainingDate, 'MMMM dd, yyyy')}
+Instructor: ${doc.instructorName || 'N/A'}
+Location: ${doc.location || 'N/A'}
+Student Count: ${doc.studentCount || 'N/A'}
+
+Description: ${doc.description || 'No description provided'}
+
+This document serves as an attendance record for the training session.`;
+      
+      case 'training_material':
+        return `TRAINING MATERIALS
+
+Document: ${doc.fileName}
+Subject: ${doc.trainingSubject || 'Safety Training'}
+Date: ${format(doc.trainingDate, 'MMMM dd, yyyy')}
+
+Description: ${doc.description || 'No description provided'}
+
+This document contains training materials for safety compliance.`;
+      
+      case 'certificate':
+        return `TRAINING CERTIFICATE
+
+Document: ${doc.fileName}
+Subject: ${doc.trainingSubject || 'Safety Training'}
+Date: ${format(doc.trainingDate, 'MMMM dd, yyyy')}
+Instructor: ${doc.instructorName || 'N/A'}
+
+Description: ${doc.description || 'No description provided'}
+
+This certificate verifies completion of safety training requirements.`;
+      
+      case 'instructor_resource':
+        return `INSTRUCTOR RESOURCES
+
+Document: ${doc.fileName}
+Subject: ${doc.trainingSubject || 'Safety Training'}
+Date: ${format(doc.trainingDate, 'MMMM dd, yyyy')}
+
+Description: ${doc.description || 'No description provided'}
+
+This document contains resources for training instructors.`;
+      
+      case 'student_record':
+        return `STUDENT RECORDS
+
+Document: ${doc.fileName}
+Subject: ${doc.trainingSubject || 'Safety Training'}
+Date: ${format(doc.trainingDate, 'MMMM dd, yyyy')}
+Student Count: ${doc.studentCount || 'N/A'}
+
+Description: ${doc.description || 'No description provided'}
+
+This document contains student training records.`;
+      
+      case 'compliance_document':
+        return `COMPLIANCE DOCUMENT
+
+Document: ${doc.fileName}
+Subject: ${doc.trainingSubject || 'Safety Training'}
+Date: ${format(doc.trainingDate, 'MMMM dd, yyyy')}
+
+Description: ${doc.description || 'No description provided'}
+
+This document contains compliance-related training information.`;
+      
+      default:
+        return `TRAINING DOCUMENT
+
+Document: ${doc.fileName}
+Date: ${format(doc.trainingDate, 'MMMM dd, yyyy')}
+
+Description: ${doc.description || 'No description provided'}
+
+This is a training-related document.`;
+    }
+  };
+
   // Handle document download
   const handleDownload = async (doc: TrainingDocument) => {
     try {
@@ -418,7 +503,7 @@ export default function TrainingDocumentHub() {
                     Upload Document
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="max-w-2xl bg-gray-800 border-gray-700">
+                <DialogContent className="max-w-2xl bg-gray-800 border-gray-700" aria-describedby="upload-document-description">
                   <DialogHeader>
                     <DialogTitle className="text-white">Upload Training Document</DialogTitle>
                   </DialogHeader>
@@ -752,7 +837,7 @@ export default function TrainingDocumentHub() {
 
       {/* View Document Dialog */}
       <Dialog open={isViewDialogOpen} onOpenChange={setIsViewDialogOpen}>
-        <DialogContent className="max-w-3xl bg-gray-800 border-gray-700">
+        <DialogContent className="max-w-3xl bg-gray-800 border-gray-700" aria-describedby="document-preview-description">
           <DialogHeader>
             <DialogTitle className="text-white">Document Details</DialogTitle>
           </DialogHeader>
@@ -823,10 +908,10 @@ export default function TrainingDocumentHub() {
               <div className="border-t border-gray-700 pt-4">
                 <div className="bg-gray-700/50 rounded-lg p-4">
                   <h4 className="text-white font-medium mb-2">Document Preview</h4>
-                  <div className="bg-gray-600 rounded-lg p-8 text-center">
-                    <FileText className="w-16 h-16 text-gray-400 mx-auto mb-2" />
-                    <p className="text-gray-300">Document preview not available</p>
-                    <p className="text-sm text-gray-400 mt-1">Use the download button to view the full document</p>
+                  <div className="bg-gray-600 rounded-lg p-4 max-h-64 overflow-y-auto">
+                    <pre className="text-sm text-gray-200 whitespace-pre-wrap font-mono leading-relaxed">
+                      {generatePreviewContent(viewingDocument)}
+                    </pre>
                   </div>
                 </div>
               </div>
