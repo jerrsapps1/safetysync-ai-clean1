@@ -192,14 +192,15 @@ export default function TrainingDocumentHub() {
   const [viewingDocument, setViewingDocument] = useState<TrainingDocument | null>(null);
   const [selectedDocuments, setSelectedDocuments] = useState<Set<number>>(new Set());
   const [uploadData, setUploadData] = useState({
-    category: '',
-    trainingSubject: '',
     trainingDate: '',
-    instructorName: '',
-    studentCount: '',
-    location: '',
     description: ''
   });
+  const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
+  const [previewFiles, setPreviewFiles] = useState<Array<{
+    file: File;
+    content: string;
+    blob: string;
+  }>>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
@@ -258,95 +259,115 @@ export default function TrainingDocumentHub() {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   };
 
-  // Handle file upload
-  const handleFileUpload = async (files: FileList | null) => {
+  // Handle multiple file selection
+  const handleFileSelection = async (files: FileList | null) => {
     if (!files || files.length === 0) return;
     
-    const file = files[0];
+    setSelectedFiles(files);
     
-    // Validate required fields
-    if (!uploadData.category || !uploadData.trainingSubject || !uploadData.trainingDate || !uploadData.instructorName) {
+    // Process each file for preview
+    const filePromises = Array.from(files).map(async (file) => {
+      let fileContent = '';
+      let fileBlob: string = '';
+
+      // Read file content for preview
+      if (file.type === 'application/pdf') {
+        // For PDF files, we'll show basic info since PDF parsing requires additional setup
+        fileContent = `PDF Document: ${file.name}\nSize: ${formatFileSize(file.size)}\nType: ${file.type}`;
+      } else if (file.type.includes('text') || file.name.endsWith('.txt')) {
+        const text = await file.text();
+        fileContent = text.slice(0, 500) + (text.length > 500 ? '...' : '');
+      } else {
+        fileContent = `File: ${file.name}\nSize: ${formatFileSize(file.size)}\nType: ${file.type}\nUploaded: ${new Date().toLocaleString()}`;
+      }
+
+      // Create blob URL for download
+      fileBlob = URL.createObjectURL(file);
+
+      return { file, content: fileContent, blob: fileBlob };
+    });
+
+    const processedFiles = await Promise.all(filePromises);
+    setPreviewFiles(processedFiles);
+  };
+
+  // Handle final upload of all selected files
+  const handleFinalUpload = async () => {
+    if (!selectedFiles || selectedFiles.length === 0) {
       toast({
-        title: "Missing Information",
-        description: "Please fill in all required fields before uploading.",
+        title: "No Files Selected",
+        description: "Please select files to upload.",
         variant: "destructive",
       });
       return;
     }
-
-    // Read file content
-    let fileContent = '';
-    let fileBlob: string | null = null;
     
-    try {
-      // Convert file to base64 for storage
-      const reader = new FileReader();
-      const base64Promise = new Promise<string>((resolve) => {
-        reader.onload = () => resolve(reader.result as string);
-        reader.readAsDataURL(file);
+    // Validate required fields
+    if (!uploadData.trainingDate || !uploadData.description) {
+      toast({
+        title: "Missing Information", 
+        description: "Please fill in training date and description.",
+        variant: "destructive",
       });
-      fileBlob = await base64Promise;
-
-      // Try to extract text content for preview
-      if (file.type === 'application/pdf') {
-        // For PDF files, we'll store the base64 and show a PDF preview indicator
-        fileContent = 'PDF_CONTENT_AVAILABLE';
-      } else if (file.type.startsWith('text/') || file.name.endsWith('.txt')) {
-        // For text files, read the actual content
-        const textReader = new FileReader();
-        const textPromise = new Promise<string>((resolve) => {
-          textReader.onload = () => resolve(textReader.result as string);
-          textReader.readAsText(file);
-        });
-        fileContent = await textPromise;
-      } else {
-        fileContent = `FILE_UPLOADED: ${file.name} (${file.type})`;
-      }
-    } catch (error) {
-      console.error('Error reading file:', error);
-      fileContent = `Unable to read file content: ${file.name}`;
+      return;
     }
+    
+    // Process all selected files
+    const uploadPromises = Array.from(selectedFiles).map(async (file, index) => {
+      const previewFile = previewFiles[index];
+      
+      const newDocument = {
+        id: Date.now() + index,
+        fileName: file.name,
+        fileSize: file.size,
+        fileType: file.type,
+        uploadDate: new Date().toISOString(),
+        category: 'training_material', // Default category for uploaded files
+        trainingSubject: uploadData.description, // Use description as subject
+        trainingDate: uploadData.trainingDate,
+        instructorName: 'Uploaded by Instructor', // Default instructor name
+        studentCount: 0,
+        location: '',
+        description: uploadData.description,
+        content: previewFile.content,
+        fileBlob: previewFile.blob
+      };
 
-    // Create new document entry with actual file data
-    const newDocument: TrainingDocument = {
-      id: Date.now(),
-      fileName: file.name,
-      fileType: file.type.split('/')[1]?.toUpperCase() || 'UNKNOWN',
-      category: uploadData.category,
-      trainingSubject: uploadData.trainingSubject,
-      trainingDate: new Date(uploadData.trainingDate),
-      instructorName: uploadData.instructorName,
-      studentCount: parseInt(uploadData.studentCount) || 0,
-      location: uploadData.location,
-      fileSize: file.size,
-      uploadDate: new Date(),
-      description: uploadData.description,
-      // Store actual file data
-      fileContent: fileContent,
-      fileBlob: fileBlob,
-      originalFile: {
-        name: file.name,
-        type: file.type,
-        size: file.size
-      }
-    };
-
-    setDocuments(prev => [newDocument, ...prev]);
-    setIsUploadDialogOpen(false);
-    setUploadData({
-      category: '',
-      trainingSubject: '',
-      trainingDate: '',
-      instructorName: '',
-      studentCount: '',
-      location: '',
-      description: ''
+      return newDocument;
     });
 
-    toast({
-      title: "Upload Successful",
-      description: `${file.name} has been uploaded and content extracted for preview.`,
-    });
+    try {
+      const newDocuments = await Promise.all(uploadPromises);
+      
+      // Update documents list
+      const updatedDocuments = [...newDocuments, ...documents];
+      setDocuments(updatedDocuments);
+      
+      // Save to localStorage
+      localStorage.setItem('trainingDocuments', JSON.stringify(updatedDocuments));
+
+      // Reset form and state
+      setUploadData({
+        trainingDate: '',
+        description: ''
+      });
+      setSelectedFiles(null);
+      setPreviewFiles([]);
+      setIsUploadDialogOpen(false);
+
+      toast({
+        title: "Documents Uploaded",
+        description: `${newDocuments.length} file(s) have been successfully uploaded.`,
+      });
+
+    } catch (error) {
+      console.error('Upload error:', error);
+      toast({
+        title: "Upload Failed",
+        description: "There was an error uploading the files.",
+        variant: "destructive",
+      });
+    }
   };
 
   // Handle document view
@@ -917,42 +938,10 @@ This document serves as an official attendance record for the training session.`
                     <DialogTitle className="text-white">Upload Training Document</DialogTitle>
                   </DialogHeader>
                   <div className="space-y-4">
+                    {/* Simplified form - only training date and description */}
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <Label htmlFor="category" className="text-gray-300">Document Category *</Label>
-                        <Select value={uploadData.category} onValueChange={(value) => setUploadData(prev => ({ ...prev, category: value }))}>
-                          <SelectTrigger className="bg-gray-700 border-gray-600 text-white">
-                            <SelectValue placeholder="Select category" />
-                          </SelectTrigger>
-                          <SelectContent className="bg-gray-700 border-gray-600">
-                            {documentCategories.map(cat => (
-                              <SelectItem key={cat.id} value={cat.id} className="text-white hover:bg-gray-600">
-                                {cat.name}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div>
-                        <Label htmlFor="trainingSubject" className="text-gray-300">Training Subject *</Label>
-                        <Select value={uploadData.trainingSubject} onValueChange={(value) => setUploadData(prev => ({ ...prev, trainingSubject: value }))}>
-                          <SelectTrigger className="bg-gray-700 border-gray-600 text-white">
-                            <SelectValue placeholder="Select subject" />
-                          </SelectTrigger>
-                          <SelectContent className="bg-gray-700 border-gray-600">
-                            {trainingSubjects.map(subject => (
-                              <SelectItem key={subject} value={subject} className="text-white hover:bg-gray-600">
-                                {subject}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="trainingDate" className="text-gray-300">Training Date *</Label>
+                        <Label htmlFor="trainingDate" className="text-white">Training Date *</Label>
                         <Input
                           id="trainingDate"
                           type="date"
@@ -962,78 +951,105 @@ This document serves as an official attendance record for the training session.`
                         />
                       </div>
                       <div>
-                        <Label htmlFor="instructorName" className="text-gray-300">Instructor Name *</Label>
+                        <Label htmlFor="description" className="text-white">Folder Description *</Label>
                         <Input
-                          id="instructorName"
-                          value={uploadData.instructorName}
-                          onChange={(e) => setUploadData(prev => ({ ...prev, instructorName: e.target.value }))}
+                          id="description"
+                          value={uploadData.description}
+                          onChange={(e) => setUploadData(prev => ({ ...prev, description: e.target.value }))}
+                          placeholder="e.g., Forklift Safety Training, Fire Drill Session"
                           className="bg-gray-700 border-gray-600 text-white"
-                          placeholder="Enter instructor name"
                         />
                       </div>
                     </div>
                     
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="studentCount" className="text-gray-300">Student Count</Label>
-                        <Input
-                          id="studentCount"
-                          type="number"
-                          value={uploadData.studentCount}
-                          onChange={(e) => setUploadData(prev => ({ ...prev, studentCount: e.target.value }))}
-                          className="bg-gray-700 border-gray-600 text-white"
-                          placeholder="Number of students"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="location" className="text-gray-300">Location</Label>
-                        <Input
-                          id="location"
-                          value={uploadData.location}
-                          onChange={(e) => setUploadData(prev => ({ ...prev, location: e.target.value }))}
-                          className="bg-gray-700 border-gray-600 text-white"
-                          placeholder="Training location"
-                        />
-                      </div>
-                    </div>
-                    
+                    {/* Multiple file upload */}
                     <div>
-                      <Label htmlFor="description" className="text-gray-300">Description</Label>
-                      <Input
-                        id="description"
-                        value={uploadData.description}
-                        onChange={(e) => setUploadData(prev => ({ ...prev, description: e.target.value }))}
-                        className="bg-gray-700 border-gray-600 text-white"
-                        placeholder="Brief description of the document"
-                      />
-                    </div>
-                    
-                    <div>
-                      <Label htmlFor="file" className="text-gray-300">Select File</Label>
+                      <Label className="text-white">Select Files</Label>
                       <input
                         ref={fileInputRef}
                         type="file"
-                        accept=".pdf,.doc,.docx,.xlsx,.ppt,.pptx"
-                        onChange={(e) => handleFileUpload(e.target.files)}
-                        className="w-full p-2 bg-gray-700 border border-gray-600 rounded text-white file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-emerald-600 file:text-white hover:file:bg-emerald-700"
+                        multiple
+                        onChange={(e) => handleFileSelection(e.target.files)}
+                        className="hidden"
+                        accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png,.xlsx,.xls"
                       />
+                      <Button 
+                        onClick={() => fileInputRef.current?.click()}
+                        className="bg-blue-600 hover:bg-blue-700 text-white w-full"
+                      >
+                        <Upload className="w-4 h-4 mr-2" />
+                        Select Multiple Files
+                      </Button>
                     </div>
                     
+                    {/* File previews */}
+                    {previewFiles.length > 0 && (
+                      <div className="space-y-4">
+                        <Label className="text-white">File Previews ({previewFiles.length} files selected)</Label>
+                        <div className="max-h-64 overflow-y-auto space-y-2">
+                          {previewFiles.map((fileData, index) => (
+                            <Card key={index} className="bg-gray-700/50 border-gray-600">
+                              <CardContent className="p-4">
+                                <div className="flex items-start justify-between">
+                                  <div className="flex-1">
+                                    <div className="flex items-center gap-2 mb-2">
+                                      <FileText className="w-4 h-4 text-blue-400" />
+                                      <span className="text-white font-medium">{fileData.file.name}</span>
+                                      <span className="text-gray-400 text-sm">({formatFileSize(fileData.file.size)})</span>
+                                    </div>
+                                    <div className="text-gray-300 text-sm bg-gray-800 p-2 rounded max-h-20 overflow-y-auto font-mono">
+                                      {fileData.content}
+                                    </div>
+                                  </div>
+                                  <div className="flex gap-2 ml-4">
+                                    <Button
+                                      size="sm"
+                                      variant="outline"
+                                      onClick={() => window.open(fileData.blob, '_blank')}
+                                      className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                                    >
+                                      <Download className="w-3 h-3" />
+                                    </Button>
+                                    <Button
+                                      size="sm"
+                                      variant="outline"
+                                      onClick={() => window.print()}
+                                      className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                                    >
+                                      <Printer className="w-3 h-3" />
+                                    </Button>
+                                  </div>
+                                </div>
+                              </CardContent>
+                            </Card>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    
+                    {/* Action buttons */}
                     <div className="flex justify-end space-x-2">
                       <Button 
                         variant="outline" 
-                        onClick={() => setIsUploadDialogOpen(false)}
+                        onClick={() => {
+                          setIsUploadDialogOpen(false);
+                          setSelectedFiles(null);
+                          setPreviewFiles([]);
+                          setUploadData({ trainingDate: '', description: '' });
+                        }}
                         className="border-gray-600 text-gray-300 hover:bg-gray-700"
                       >
                         Cancel
                       </Button>
-                      <Button 
-                        onClick={() => fileInputRef.current?.click()}
-                        className="bg-emerald-600 hover:bg-emerald-700 text-white"
-                      >
-                        <Upload className="w-4 h-4 mr-2" />
-                        Upload Document
-                      </Button>
+                      {previewFiles.length > 0 && (
+                        <Button 
+                          onClick={handleFinalUpload}
+                          className="bg-emerald-600 hover:bg-emerald-700 text-white"
+                        >
+                          <Upload className="w-4 h-4 mr-2" />
+                          Upload {previewFiles.length} File{previewFiles.length > 1 ? 's' : ''}
+                        </Button>
+                      )}
                     </div>
                   </div>
                 </DialogContent>
