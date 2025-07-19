@@ -43,8 +43,8 @@ function Router() {
     <Switch>
       <Route path="/" component={LandingPage} />
       <Route path="/dashboard" component={Dashboard} />
-      <Route path="/workspace" component={WorkspaceBasic} />
-      <Route path="/workspace-full" component={WorkspacePage} />
+      <Route path="/workspace" component={WorkspacePage} />
+      <Route path="/workspace-basic" component={WorkspaceBasic} />
       <Route path="/admin" component={AdminPanel} />
       <Route path="/admin-dashboard" component={AdminDashboard} />
       <Route path="/industry-research" component={TestimonialsPage} />
