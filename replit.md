@@ -141,6 +141,7 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - **DUAL PURPOSE**: System maintains email addresses for contact purposes while using usernames for login security
   - **USER FLEXIBILITY**: Clients can now create custom usernames for easier login while retaining professional email contact
   - **VERIFIED FUNCTIONALITY**: Authentication system successfully tested with username login and logout workflows
+- **TEST CREDENTIALS**: Username: `testuser`, Password: `password` (confirmed working via API testing)
   - Platform now provides flexible username-based authentication while avoiding proprietary Microsoft dependencies
 
 - **July 19, 2025** - Fixed Case-Sensitive Email Login Issue:
