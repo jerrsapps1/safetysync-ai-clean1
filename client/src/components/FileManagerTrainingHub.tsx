@@ -367,7 +367,7 @@ This training file was created using the Create File system.`
                   </h3>
                 </div>
                 <div className="text-xs text-gray-500">
-                  {formatFileSize(doc.fileSize)} updated by {doc.instructorName} on {formatDate(doc.uploadDate)}
+                  {formatFileSize(doc.fileSize)} created on {formatDate(doc.trainingDate)}
                 </div>
               </div>
               
@@ -438,16 +438,16 @@ This training file was created using the Create File system.`
             <div className="space-y-4">
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
-                  <strong>Date:</strong> {formatDate(viewingDocument.trainingDate)}
+                  <strong>Training Date:</strong> {formatDate(viewingDocument.trainingDate)}
                 </div>
                 <div>
-                  <strong>Instructor:</strong> {viewingDocument.instructorName}
+                  <strong>Location:</strong> {viewingDocument.location}
                 </div>
                 <div>
-                  <strong>Files:</strong> {viewingDocument.studentCount}
+                  <strong>File Count:</strong> {viewingDocument.studentCount}
                 </div>
                 <div>
-                  <strong>Size:</strong> {formatFileSize(viewingDocument.fileSize)}
+                  <strong>Total Size:</strong> {formatFileSize(viewingDocument.fileSize)}
                 </div>
               </div>
               <div>
