@@ -177,129 +177,161 @@ const mockDocuments: TrainingDocument[] = [
   },
   {
     id: 4,
-    fileName: 'Alamo1_Employee_Training_Analysis_2025-06-07.txt',
+    fileName: 'Safety_Management_System_Analysis_2025-01-21.txt',
     fileType: 'txt',
     category: 'training_file',
-    trainingSubject: 'Alamo1 Employee Training Analysis',
-    trainingDate: new Date('2025-06-07'),
-    instructorName: 'Training Instructor',
-    studentCount: 5,
-    location: 'Workspace Analysis',
-    fileSize: 15420,
+    trainingSubject: 'Safety Management System Analysis',
+    trainingDate: new Date('2025-01-21'),
+    instructorName: 'Gerardo Hernandez',
+    studentCount: 47,
+    location: 'Safety Management Workspace',
+    fileSize: 45120,
     uploadDate: new Date(),
-    description: 'DOM inspection and workspace analysis for Alamo1 employee training system',
-    fileContent: `Training File: Alamo1 Employee Training Analysis
-Date: 2025-06-07
+    description: 'Comprehensive safety workspace analysis with SDS and manual organization',
+    fileContent: `Training File: Safety Management System Analysis
+Date: 2025-01-21
 Created: ${new Date().toLocaleString()}
+Updated by: Gerardo Hernandez
 
-WORKSPACE ANALYSIS SUMMARY:
-- Workspace: Alamo1 Employee Training
-- Size: 6.14 GB
-- Users: 5 active users
-- Last Updated: June 07, 2025
-- Owner: You
+SAFETY WORKSPACE SUMMARY:
+- Workspace: Safety Management System
+- Total Files: 47 organized documents
+- File Categories: SDS sheets, safety manuals, emergency procedures
+- Last Updated: January 21st, 2025
+- System Type: Dark themed, branded workspace
 
-DOM INSPECTION DATA:
-Body Element Properties:
-- className: "user-home light home"
-- clientHeight: 911
-- clientWidth: 1365
-- Element contains workspace navigation and file management interface
+FILE ORGANIZATION STRUCTURE:
+1. Abatement SDS (27 files) - 5.36 MB
+   - Updated: October 28th, 2024
+   - Contains chemical safety data sheets for abatement procedures
 
-WORKSPACE STRUCTURE:
-- Home, Workspaces, Activity, Search navigation
-- Filter and View controls for document management
-- Create Workspace functionality
-- User permission and access controls
+2. Demo SDS (16 files) - 2.98 MB  
+   - Updated: October 28th, 2024
+   - Training and demonstration safety data sheets
 
-TECHNICAL DETAILS:
-jQuery version: 18307737908279805232 (Active)
-Attributes: class, data-new-gr-c-s-check-loaded, data-gr-ext-installed
-Base URI: https://ws.onehub.com/home
+3. EH&S Manuals (4 files) - 80.78 MB
+   - Updated: January 21st, 2025
+   - Environmental Health & Safety procedure manuals
 
-This training file demonstrates how DOM inspection data can be organized using the Create File system.`
+WORKSPACE FEATURES:
+- Navigation: Home, Workspaces, Activity, Search
+- File Management: Filter, View, Select All, Upload, Create, Download
+- Sharing & Permissions: Controlled access with user management
+- DOM Properties: workspace workspace-files dark branded (className)
+
+TECHNICAL ANALYSIS:
+- Base URI: https://ws.onehub.com/workspaces/1425029/files
+- Client Dimensions: 1350x1147 pixels
+- jQuery Version: 18303268933776429601 (Active)
+- File System: Organized folder structure with file count displays
+
+This demonstrates how safety documentation can be efficiently organized using Create File approach.`
   },
   {
     id: 5,
-    fileName: 'Project_Safety_Submittals_Review_2025-04-22.txt',
+    fileName: 'SDS_Collection_Management_2024-10-28.txt',
     fileType: 'txt',
     category: 'training_file',
-    trainingSubject: 'Project Safety Submittals Review',
-    trainingDate: new Date('2025-04-22'),
-    instructorName: 'Training Instructor',
-    studentCount: 16,
-    location: 'Project Analysis',
-    fileSize: 8960,
+    trainingSubject: 'SDS Collection Management',
+    trainingDate: new Date('2024-10-28'),
+    instructorName: 'Gerardo Hernandez',
+    studentCount: 43,
+    location: 'Chemical Safety Documentation',
+    fileSize: 8340,
     uploadDate: new Date(),
-    description: 'Safety project workspace documentation and user metrics review',
-    fileContent: `Training File: Project Safety Submittals Review
-Date: 2025-04-22
+    description: 'Safety Data Sheet collection and chemical documentation management',
+    fileContent: `Training File: SDS Collection Management
+Date: 2024-10-28
 Created: ${new Date().toLocaleString()}
+Updated by: Gerardo Hernandez
 
-WORKSPACE ANALYSIS SUMMARY:
-- Workspace: Project Safety Submittals
-- Size: 5.5 GB
-- Users: 16 active users
-- Last Updated: April 22, 2025
-- Owner: You
+SDS DOCUMENTATION SUMMARY:
+- Total SDS Files: 43 (Abatement: 27, Demo: 16)
+- Combined Size: 8.34 MB of safety documentation
+- Last Updated: October 28th, 2024
+- Organization: Categorized by usage type
 
-SAFETY DOCUMENTATION REVIEW:
-Comprehensive review of safety submittal processes and documentation workflow.
-Analysis of user engagement and document management practices.
+ABATEMENT SDS COLLECTION (27 files):
+- File Size: 5.36 MB
+- Purpose: Chemical safety data for abatement procedures
+- Usage: Active remediation and cleanup operations
+- Maintenance: Regularly updated for compliance
 
-WORKSPACE FEATURES ANALYZED:
-- File organization structure for safety documents
-- User access patterns and permission levels
-- Document version control and approval workflow
-- Safety compliance tracking and reporting
+DEMO SDS COLLECTION (16 files):
+- File Size: 2.98 MB  
+- Purpose: Training and demonstration materials
+- Usage: Safety training sessions and new employee orientation
+- Access: Educational reference materials
 
-USER METRICS:
-- 16 team members with various access levels
-- Large file repository (5.5 GB) indicating extensive documentation
-- Recent activity shows active project management
+CHEMICAL SAFETY MANAGEMENT:
+- Organized by chemical type and usage category
+- Quick access through folder structure
+- Version control for regulatory compliance
+- Easy search and retrieval system
 
-This training file shows how workspace analysis data fits the Create File organization approach.`
+COMPLIANCE FEATURES:
+- Regulatory requirement tracking
+- Expiration date monitoring
+- Update notification system
+- Access permission management
+
+This shows how chemical safety documentation fits perfectly with Create File organization.`
   },
   {
     id: 6,
-    fileName: 'Legal_Workspace_Documentation_2025-01-29.txt',
+    fileName: 'EHS_Manual_Collection_2025-01-21.txt',
     fileType: 'txt',
     category: 'training_file',
-    trainingSubject: 'Legal Workspace Documentation',
-    trainingDate: new Date('2025-01-29'),
-    instructorName: 'Training Instructor',
-    studentCount: 2,
-    location: 'Legal Analysis',
-    fileSize: 3240,
+    trainingSubject: 'EH&S Manual Collection',
+    trainingDate: new Date('2025-01-21'),
+    instructorName: 'Gerardo Hernandez',
+    studentCount: 4,
+    location: 'Environmental Health & Safety',
+    fileSize: 80780,
     uploadDate: new Date(),
-    description: 'Legal department workspace analysis and documentation structure',
-    fileContent: `Training File: Legal Workspace Documentation
-Date: 2025-01-29
+    description: 'Environmental Health & Safety manual collection and procedure documentation',
+    fileContent: `Training File: EH&S Manual Collection
+Date: 2025-01-21
 Created: ${new Date().toLocaleString()}
+Updated by: Gerardo Hernandez
 
-WORKSPACE ANALYSIS SUMMARY:
-- Workspace: Legal
-- Size: 607 MB
-- Users: Legal department access
-- Last Updated: January 29, 2025
-- Owner: You
+EH&S MANUAL SUMMARY:
+- Collection: 4 comprehensive safety manuals
+- Total Size: 80.78 MB of detailed procedures
+- Last Updated: January 21st, 2025
+- Content: Environmental Health & Safety protocols
 
-LEGAL DOCUMENTATION STRUCTURE:
-Analysis of legal document organization and access controls.
-Review of confidential document handling procedures.
+MANUAL ORGANIZATION:
+1. Emergency Response Procedures
+2. Environmental Compliance Guidelines  
+3. Health & Safety Training Protocols
+4. Workplace Safety Standards
+
+DOCUMENT CHARACTERISTICS:
+- Comprehensive procedure documentation
+- Large file sizes indicating detailed content
+- Recent updates showing active maintenance
+- Critical safety information repository
+
+WORKSPACE INTEGRATION:
+- Organized within Safety Management System
+- Shared permissions for authorized personnel
+- Version control for regulatory compliance
+- Easy access through folder navigation
 
 COMPLIANCE FEATURES:
-- Document security protocols
-- Access permission management
-- Audit trail maintenance  
-- Legal compliance tracking
+- Environmental regulations adherence
+- Health safety standard documentation
+- Emergency procedure protocols
+- Regular update and review cycles
 
-SECURITY ANALYSIS:
-- Restricted access workspace (smaller user base for confidentiality)
-- Moderate file size (607 MB) suggesting focused document collection
-- Older last update date may indicate established, stable document set
+USAGE TRACKING:
+- Training reference materials
+- Compliance audit documentation
+- Emergency response guidelines
+- Safety protocol enforcement
 
-This demonstrates how legal and compliance documentation can be organized using descriptive training files.`
+This demonstrates how comprehensive safety manuals can be organized using the Create File system for maximum accessibility and compliance management.`
   }
 ];
 
