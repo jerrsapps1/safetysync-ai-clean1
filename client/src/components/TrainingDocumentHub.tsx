@@ -183,7 +183,7 @@ export default function TrainingDocumentHub() {
     const savedDocuments = localStorage.getItem('trainingDocuments');
     return savedDocuments ? JSON.parse(savedDocuments) : mockDocuments;
   });
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [selectedSubject, setSelectedSubject] = useState<string>('all');
   const [dateFilter, setDateFilter] = useState<{ from: string; to: string }>({ from: '', to: '' });
   const [searchTerm, setSearchTerm] = useState('');
@@ -220,7 +220,7 @@ export default function TrainingDocumentHub() {
 
   // Filter documents based on category, subject, search term, and date
   const filteredDocuments = documents.filter(doc => {
-    const matchesCategory = selectedCategory === 'all' || doc.category === selectedCategory;
+    const matchesCategory = selectedCategory === '' || doc.category === selectedCategory;
     const matchesSubject = selectedSubject === 'all' || doc.trainingSubject === selectedSubject;
     const matchesSearch = searchTerm === '' || 
       doc.fileName.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -1065,7 +1065,6 @@ This document serves as an official attendance record for the training session.`
                     <SelectValue placeholder="Filter by category" />
                   </SelectTrigger>
                   <SelectContent className="bg-gray-700 border-gray-600">
-                    <SelectItem value="all" className="text-white hover:bg-gray-600">All Categories</SelectItem>
                     {documentCategories.map(cat => (
                       <SelectItem key={cat.id} value={cat.id} className="text-white hover:bg-gray-600">
                         {cat.name}
