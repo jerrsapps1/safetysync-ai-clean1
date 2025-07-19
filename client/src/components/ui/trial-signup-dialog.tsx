@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
-import { Loader2, CheckCircle } from "lucide-react";
+import { Loader2, CheckCircle, Eye, EyeOff } from "lucide-react";
 
 interface TrialSignupDialogProps {
   isOpen: boolean;
@@ -16,6 +16,7 @@ interface TrialSignupDialogProps {
 
 export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDialogProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     username: "",
@@ -98,6 +99,7 @@ export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDial
   const handleClose = () => {
     setFormData({ name: "", username: "", email: "", company: "", password: "", message: "", leadType: "trial" });
     setErrors({});
+    setShowPassword(false);
     onClose();
   };
 
@@ -166,14 +168,25 @@ export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDial
           
           <div className="space-y-2">
             <Label htmlFor="password">Password *</Label>
-            <Input
-              id="password"
-              type="password"
-              value={formData.password}
-              onChange={(e) => handleInputChange("password", e.target.value)}
-              placeholder="Create a secure password"
-              className={errors.password ? "border-red-500" : ""}
-            />
+            <div className="relative">
+              <Input
+                id="password"
+                type={showPassword ? "text" : "password"}
+                value={formData.password}
+                onChange={(e) => handleInputChange("password", e.target.value)}
+                placeholder="Create a secure password"
+                className={`pr-10 ${errors.password ? "border-red-500" : ""}`}
+              />
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 px-2"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              </Button>
+            </div>
             {errors.password && <p className="text-sm text-red-500">{errors.password}</p>}
           </div>
           
