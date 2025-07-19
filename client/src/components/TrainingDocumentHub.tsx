@@ -174,6 +174,132 @@ const mockDocuments: TrainingDocument[] = [
     uploadDate: new Date('2025-01-18T16:45:00'),
     description: 'Forklift operation certificate for Mike Rodriguez',
     expirationDate: new Date('2028-01-18')
+  },
+  {
+    id: 4,
+    fileName: 'Alamo1_Employee_Training_Analysis_2025-06-07.txt',
+    fileType: 'txt',
+    category: 'training_file',
+    trainingSubject: 'Alamo1 Employee Training Analysis',
+    trainingDate: new Date('2025-06-07'),
+    instructorName: 'Training Instructor',
+    studentCount: 5,
+    location: 'Workspace Analysis',
+    fileSize: 15420,
+    uploadDate: new Date(),
+    description: 'DOM inspection and workspace analysis for Alamo1 employee training system',
+    fileContent: `Training File: Alamo1 Employee Training Analysis
+Date: 2025-06-07
+Created: ${new Date().toLocaleString()}
+
+WORKSPACE ANALYSIS SUMMARY:
+- Workspace: Alamo1 Employee Training
+- Size: 6.14 GB
+- Users: 5 active users
+- Last Updated: June 07, 2025
+- Owner: You
+
+DOM INSPECTION DATA:
+Body Element Properties:
+- className: "user-home light home"
+- clientHeight: 911
+- clientWidth: 1365
+- Element contains workspace navigation and file management interface
+
+WORKSPACE STRUCTURE:
+- Home, Workspaces, Activity, Search navigation
+- Filter and View controls for document management
+- Create Workspace functionality
+- User permission and access controls
+
+TECHNICAL DETAILS:
+jQuery version: 18307737908279805232 (Active)
+Attributes: class, data-new-gr-c-s-check-loaded, data-gr-ext-installed
+Base URI: https://ws.onehub.com/home
+
+This training file demonstrates how DOM inspection data can be organized using the Create File system.`
+  },
+  {
+    id: 5,
+    fileName: 'Project_Safety_Submittals_Review_2025-04-22.txt',
+    fileType: 'txt',
+    category: 'training_file',
+    trainingSubject: 'Project Safety Submittals Review',
+    trainingDate: new Date('2025-04-22'),
+    instructorName: 'Training Instructor',
+    studentCount: 16,
+    location: 'Project Analysis',
+    fileSize: 8960,
+    uploadDate: new Date(),
+    description: 'Safety project workspace documentation and user metrics review',
+    fileContent: `Training File: Project Safety Submittals Review
+Date: 2025-04-22
+Created: ${new Date().toLocaleString()}
+
+WORKSPACE ANALYSIS SUMMARY:
+- Workspace: Project Safety Submittals
+- Size: 5.5 GB
+- Users: 16 active users
+- Last Updated: April 22, 2025
+- Owner: You
+
+SAFETY DOCUMENTATION REVIEW:
+Comprehensive review of safety submittal processes and documentation workflow.
+Analysis of user engagement and document management practices.
+
+WORKSPACE FEATURES ANALYZED:
+- File organization structure for safety documents
+- User access patterns and permission levels
+- Document version control and approval workflow
+- Safety compliance tracking and reporting
+
+USER METRICS:
+- 16 team members with various access levels
+- Large file repository (5.5 GB) indicating extensive documentation
+- Recent activity shows active project management
+
+This training file shows how workspace analysis data fits the Create File organization approach.`
+  },
+  {
+    id: 6,
+    fileName: 'Legal_Workspace_Documentation_2025-01-29.txt',
+    fileType: 'txt',
+    category: 'training_file',
+    trainingSubject: 'Legal Workspace Documentation',
+    trainingDate: new Date('2025-01-29'),
+    instructorName: 'Training Instructor',
+    studentCount: 2,
+    location: 'Legal Analysis',
+    fileSize: 3240,
+    uploadDate: new Date(),
+    description: 'Legal department workspace analysis and documentation structure',
+    fileContent: `Training File: Legal Workspace Documentation
+Date: 2025-01-29
+Created: ${new Date().toLocaleString()}
+
+WORKSPACE ANALYSIS SUMMARY:
+- Workspace: Legal
+- Size: 607 MB
+- Users: Legal department access
+- Last Updated: January 29, 2025
+- Owner: You
+
+LEGAL DOCUMENTATION STRUCTURE:
+Analysis of legal document organization and access controls.
+Review of confidential document handling procedures.
+
+COMPLIANCE FEATURES:
+- Document security protocols
+- Access permission management
+- Audit trail maintenance  
+- Legal compliance tracking
+
+SECURITY ANALYSIS:
+- Restricted access workspace (smaller user base for confidentiality)
+- Moderate file size (607 MB) suggesting focused document collection
+- Older last update date may indicate established, stable document set
+
+This demonstrates how legal and compliance documentation can be organized using descriptive training files.`
   }
 ];
 
