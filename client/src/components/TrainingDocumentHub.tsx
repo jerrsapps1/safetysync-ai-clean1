@@ -267,17 +267,36 @@ export default function TrainingDocumentHub() {
   const generatePreviewContent = (doc: TrainingDocument) => {
     switch (doc.category) {
       case 'sign_in_sheet':
+        const studentNames = [
+          'John Smith', 'Maria Garcia', 'David Johnson', 'Sarah Wilson', 
+          'Michael Brown', 'Jennifer Davis', 'Robert Miller', 'Lisa Anderson',
+          'James Taylor', 'Jessica Martinez', 'Christopher Lee', 'Amanda White',
+          'Daniel Garcia', 'Ashley Thompson', 'Matthew Jackson', 'Emily Rodriguez'
+        ];
+        
+        const attendeeList = studentNames
+          .slice(0, doc.studentCount || 8)
+          .map((name, index) => `${(index + 1).toString().padStart(2, '0')}. ${name.padEnd(20)} ________________`)
+          .join('\n');
+
         return `TRAINING SIGN-IN SHEET
 
 Training Subject: ${doc.trainingSubject || 'Safety Training'}
 Date: ${format(doc.trainingDate, 'MMMM dd, yyyy')}
 Instructor: ${doc.instructorName || 'N/A'}
 Location: ${doc.location || 'N/A'}
-Student Count: ${doc.studentCount || 'N/A'}
+Total Students: ${doc.studentCount || 'N/A'}
 
 Description: ${doc.description || 'No description provided'}
 
-This document serves as an attendance record for the training session.`;
+STUDENT ATTENDANCE:
+Name                     Signature
+----------------------------------------
+${attendeeList}
+
+Instructor Signature: ________________    Date: ${format(doc.trainingDate, 'MM/dd/yyyy')}
+
+This document serves as an official attendance record for the training session.`;
       
       case 'training_material':
         return `TRAINING MATERIALS
@@ -361,7 +380,36 @@ This is a training-related document.`;
       
       switch (doc.category) {
         case 'sign-in-sheets':
-          content = `TRAINING SIGN-IN SHEET\n\nTraining Subject: ${doc.trainingSubject || 'Safety Training'}\nDate: ${new Date(doc.uploadDate).toLocaleDateString()}\nInstructor: ${doc.instructorName || 'N/A'}\nLocation: ${doc.location || 'N/A'}\nStudent Count: ${doc.studentCount || 'N/A'}\n\nDescription: ${doc.description || 'No description provided'}\n\nThis is a demonstration of the download functionality for training sign-in sheets.`;
+          const downloadStudentNames = [
+            'John Smith', 'Maria Garcia', 'David Johnson', 'Sarah Wilson', 
+            'Michael Brown', 'Jennifer Davis', 'Robert Miller', 'Lisa Anderson',
+            'James Taylor', 'Jessica Martinez', 'Christopher Lee', 'Amanda White',
+            'Daniel Garcia', 'Ashley Thompson', 'Matthew Jackson', 'Emily Rodriguez'
+          ];
+          
+          const downloadAttendeeList = downloadStudentNames
+            .slice(0, doc.studentCount || 8)
+            .map((name, index) => `${(index + 1).toString().padStart(2, '0')}. ${name.padEnd(20)} ________________`)
+            .join('\n');
+
+          content = `TRAINING SIGN-IN SHEET
+
+Training Subject: ${doc.trainingSubject || 'Safety Training'}
+Date: ${new Date(doc.uploadDate).toLocaleDateString()}
+Instructor: ${doc.instructorName || 'N/A'}
+Location: ${doc.location || 'N/A'}
+Total Students: ${doc.studentCount || 'N/A'}
+
+Description: ${doc.description || 'No description provided'}
+
+STUDENT ATTENDANCE:
+Name                     Signature
+----------------------------------------
+${downloadAttendeeList}
+
+Instructor Signature: ________________    Date: ${new Date(doc.uploadDate).toLocaleDateString()}
+
+This document serves as an official attendance record for the training session.`;
           break;
         case 'training-materials':
           content = `TRAINING MATERIALS\n\nDocument: ${doc.fileName}\nSubject: ${doc.trainingSubject || 'Safety Training'}\nDate: ${new Date(doc.uploadDate).toLocaleDateString()}\n\nDescription: ${doc.description || 'No description provided'}\n\nThis document contains training materials for safety compliance.`;
