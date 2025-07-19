@@ -38,6 +38,7 @@ import { InstructorSignInGenerator } from "@/components/ui/instructor-signin-gen
 import TrainingRecordsManager from "@/components/records/TrainingRecordsManager";
 import TrainingDocumentHub from "@/components/TrainingDocumentHub";
 import FileManagerTrainingHub from "@/components/FileManagerTrainingHub";
+import AIDocumentProcessor from "@/components/AIDocumentProcessor";
 
 import { AIPatternSkeleton } from "@/components/ui/ai-skeleton";
 import { SmoothLoading } from "@/components/ui/smooth-loading";
@@ -2273,6 +2274,17 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 <Button
                   variant="ghost"
                   className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
+                    activeTab === "ai-document-processor" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                  }`}
+                  onClick={() => handleTabSwitch("ai-document-processor")}
+                  title="AI Document Processor"
+                >
+                  <Brain className="w-4 h-4 mr-3 flex-shrink-0" />
+                  {sidebarOpen && <span className="truncate">AI Document Processor</span>}
+                </Button>
+                <Button
+                  variant="ghost"
+                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
                     activeTab === "certificates" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("certificates")}
@@ -3135,7 +3147,11 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             </div>
           )}
 
-
+          {activeTab === "ai-document-processor" && (
+            <div className="p-8 min-h-screen">
+              <AIDocumentProcessor />
+            </div>
+          )}
 
           {activeTab === "subscription-billing" && (
             <div className="p-8">
