@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Checkbox } from '@/components/ui/checkbox';
 import { useToast } from '@/hooks/use-toast';
 import { 
   Upload, 
@@ -167,6 +168,7 @@ export default function TrainingDocumentHub() {
   const [isUploadDialogOpen, setIsUploadDialogOpen] = useState(false);
   const [isViewDialogOpen, setIsViewDialogOpen] = useState(false);
   const [viewingDocument, setViewingDocument] = useState<TrainingDocument | null>(null);
+  const [selectedDocuments, setSelectedDocuments] = useState<Set<number>>(new Set());
   const [uploadData, setUploadData] = useState({
     category: '',
     trainingSubject: '',
@@ -326,6 +328,63 @@ export default function TrainingDocumentHub() {
     toast({
       title: "Document Deleted",
       description: "The document has been removed from the hub.",
+    });
+  };
+
+  // Handle checkbox selection
+  const toggleDocumentSelection = (docId: number) => {
+    setSelectedDocuments(prev => {
+      const newSelection = new Set(prev);
+      if (newSelection.has(docId)) {
+        newSelection.delete(docId);
+      } else {
+        newSelection.add(docId);
+      }
+      return newSelection;
+    });
+  };
+
+  // Handle select all checkbox
+  const toggleSelectAll = () => {
+    if (selectedDocuments.size === filteredDocuments.length) {
+      setSelectedDocuments(new Set());
+    } else {
+      setSelectedDocuments(new Set(filteredDocuments.map(doc => doc.id)));
+    }
+  };
+
+  // Handle bulk operations
+  const handleBulkView = () => {
+    if (selectedDocuments.size === 1) {
+      const docId = Array.from(selectedDocuments)[0];
+      const doc = documents.find(d => d.id === docId);
+      if (doc) handleView(doc);
+    } else {
+      toast({
+        title: "Multiple Documents Selected",
+        description: "Please select only one document to view.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleBulkDownload = () => {
+    selectedDocuments.forEach(docId => {
+      const doc = documents.find(d => d.id === docId);
+      if (doc) handleDownload(doc);
+    });
+    toast({
+      title: "Bulk Download Started",
+      description: `Downloading ${selectedDocuments.size} documents.`,
+    });
+  };
+
+  const handleBulkDelete = () => {
+    setDocuments(prev => prev.filter(doc => !selectedDocuments.has(doc.id)));
+    setSelectedDocuments(new Set());
+    toast({
+      title: "Documents Deleted",
+      description: `${selectedDocuments.size} documents have been removed.`,
     });
   };
 
@@ -569,8 +628,79 @@ export default function TrainingDocumentHub() {
           </CardContent>
         </Card>
 
+        {/* Bulk Actions Bar */}
+        {selectedDocuments.size > 0 && (
+          <Card className="bg-emerald-800/20 border-emerald-600/30 backdrop-blur-sm mb-6">
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <div className="text-emerald-400 font-medium">
+                    {selectedDocuments.size} document{selectedDocuments.size > 1 ? 's' : ''} selected
+                  </div>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setSelectedDocuments(new Set())}
+                    className="text-gray-400 hover:text-white"
+                  >
+                    Clear Selection
+                  </Button>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleBulkView}
+                    disabled={selectedDocuments.size !== 1}
+                    className="border-gray-600 text-gray-300 hover:bg-gray-700 disabled:opacity-50"
+                  >
+                    <Eye className="w-4 h-4 mr-1" />
+                    View
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleBulkDownload}
+                    className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                  >
+                    <Download className="w-4 h-4 mr-1" />
+                    Download ({selectedDocuments.size})
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleBulkDelete}
+                    className="border-red-600 text-red-400 hover:bg-red-600/20"
+                  >
+                    <Trash2 className="w-4 h-4 mr-1" />
+                    Delete ({selectedDocuments.size})
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
         {/* Document List */}
         <div className="space-y-4">
+          {/* Select All Header */}
+          {filteredDocuments.length > 0 && (
+            <Card className="bg-gray-800/30 border-gray-700 backdrop-blur-sm">
+              <CardContent className="p-4">
+                <div className="flex items-center space-x-3">
+                  <Checkbox
+                    checked={selectedDocuments.size === filteredDocuments.length && filteredDocuments.length > 0}
+                    onCheckedChange={toggleSelectAll}
+                    className="border-gray-500"
+                  />
+                  <span className="text-gray-300 text-sm">
+                    Select All ({filteredDocuments.length} documents)
+                  </span>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
           {filteredDocuments.length === 0 ? (
             <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
               <CardContent className="p-12 text-center">
@@ -585,10 +715,15 @@ export default function TrainingDocumentHub() {
               const IconComponent = categoryInfo.icon;
               
               return (
-                <Card key={doc.id} className="bg-gray-800/50 border-gray-700 backdrop-blur-sm hover:bg-gray-800/70 transition-all duration-200">
+                <Card key={doc.id} className={`bg-gray-800/50 border-gray-700 backdrop-blur-sm hover:bg-gray-800/70 transition-all duration-200 ${selectedDocuments.has(doc.id) ? 'ring-1 ring-emerald-500 bg-emerald-900/10' : ''}`}>
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-4">
+                        <Checkbox
+                          checked={selectedDocuments.has(doc.id)}
+                          onCheckedChange={() => toggleDocumentSelection(doc.id)}
+                          className="border-gray-500"
+                        />
                         <div className="flex-shrink-0">
                           <IconComponent className="w-8 h-8 text-emerald-400" />
                         </div>
@@ -630,34 +765,6 @@ export default function TrainingDocumentHub() {
                             )}
                           </div>
                         </div>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => handleView(doc)}
-                          className="border-gray-600 text-gray-300 hover:bg-gray-700"
-                        >
-                          <Eye className="w-4 h-4 mr-1" />
-                          View
-                        </Button>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => handleDownload(doc)}
-                          className="border-gray-600 text-gray-300 hover:bg-gray-700"
-                        >
-                          <Download className="w-4 h-4 mr-1" />
-                          Download
-                        </Button>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => handleDelete(doc.id)}
-                          className="border-red-600 text-red-400 hover:bg-red-600/20"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </Button>
                       </div>
                     </div>
                   </CardContent>
