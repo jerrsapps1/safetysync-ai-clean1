@@ -120,6 +120,14 @@ interface TrainingDocument {
   instructorCompany?: string;
   startTime?: string;
   endTime?: string;
+  // New fields for uploaded file content
+  fileContent?: string;
+  fileBlob?: string;
+  originalFile?: {
+    name: string;
+    type: string;
+    size: number;
+  };
 }
 
 // Mock data for demonstration
@@ -236,7 +244,7 @@ export default function TrainingDocumentHub() {
   };
 
   // Handle file upload
-  const handleFileUpload = (files: FileList | null) => {
+  const handleFileUpload = async (files: FileList | null) => {
     if (!files || files.length === 0) return;
     
     const file = files[0];
@@ -251,7 +259,40 @@ export default function TrainingDocumentHub() {
       return;
     }
 
-    // Create new document entry
+    // Read file content
+    let fileContent = '';
+    let fileBlob: string | null = null;
+    
+    try {
+      // Convert file to base64 for storage
+      const reader = new FileReader();
+      const base64Promise = new Promise<string>((resolve) => {
+        reader.onload = () => resolve(reader.result as string);
+        reader.readAsDataURL(file);
+      });
+      fileBlob = await base64Promise;
+
+      // Try to extract text content for preview
+      if (file.type === 'application/pdf') {
+        // For PDF files, we'll store the base64 and show a PDF preview indicator
+        fileContent = 'PDF_CONTENT_AVAILABLE';
+      } else if (file.type.startsWith('text/') || file.name.endsWith('.txt')) {
+        // For text files, read the actual content
+        const textReader = new FileReader();
+        const textPromise = new Promise<string>((resolve) => {
+          textReader.onload = () => resolve(textReader.result as string);
+          textReader.readAsText(file);
+        });
+        fileContent = await textPromise;
+      } else {
+        fileContent = `FILE_UPLOADED: ${file.name} (${file.type})`;
+      }
+    } catch (error) {
+      console.error('Error reading file:', error);
+      fileContent = `Unable to read file content: ${file.name}`;
+    }
+
+    // Create new document entry with actual file data
     const newDocument: TrainingDocument = {
       id: Date.now(),
       fileName: file.name,
@@ -264,7 +305,15 @@ export default function TrainingDocumentHub() {
       location: uploadData.location,
       fileSize: file.size,
       uploadDate: new Date(),
-      description: uploadData.description
+      description: uploadData.description,
+      // Store actual file data
+      fileContent: fileContent,
+      fileBlob: fileBlob,
+      originalFile: {
+        name: file.name,
+        type: file.type,
+        size: file.size
+      }
     };
 
     setDocuments(prev => [newDocument, ...prev]);
@@ -281,7 +330,7 @@ export default function TrainingDocumentHub() {
 
     toast({
       title: "Upload Successful",
-      description: `${file.name} has been uploaded to the Training Document Hub.`,
+      description: `${file.name} has been uploaded and content extracted for preview.`,
     });
   };
 
@@ -460,6 +509,67 @@ Generated from SafetySync.AI Training Document Hub`;
 
   // Generate document preview content
   const generatePreviewContent = (doc: TrainingDocument) => {
+    // If document has actual file content, show it first
+    if (doc.fileContent && doc.fileContent !== '') {
+      if (doc.fileContent === 'PDF_CONTENT_AVAILABLE') {
+        return `PDF DOCUMENT PREVIEW
+
+File: ${doc.fileName}
+Type: ${doc.fileType}
+Size: ${formatFileSize(doc.fileSize)}
+Uploaded: ${format(doc.uploadDate, 'MMMM dd, yyyy HH:mm')}
+
+Training Details:
+Subject: ${doc.trainingSubject}
+Date: ${format(doc.trainingDate, 'MMMM dd, yyyy')}
+Instructor: ${doc.instructorName}
+Location: ${doc.location || 'N/A'}
+Student Count: ${doc.studentCount || 'N/A'}
+
+Description: ${doc.description || 'No description provided'}
+
+This is your uploaded PDF file. Click "Print Original" to regenerate as a formatted PDF, or "Download" to access the original file.`;
+      } else if (doc.fileContent.startsWith('FILE_UPLOADED:')) {
+        return `UPLOADED FILE PREVIEW
+
+${doc.fileContent}
+
+File Details:
+Type: ${doc.fileType}
+Size: ${formatFileSize(doc.fileSize)}
+Uploaded: ${format(doc.uploadDate, 'MMMM dd, yyyy HH:mm')}
+
+Training Details:
+Subject: ${doc.trainingSubject}
+Date: ${format(doc.trainingDate, 'MMMM dd, yyyy')}
+Instructor: ${doc.instructorName}
+Location: ${doc.location || 'N/A'}
+Student Count: ${doc.studentCount || 'N/A'}
+
+Description: ${doc.description || 'No description provided'}`;
+      } else {
+        // Show actual text content
+        return `FILE CONTENT PREVIEW
+
+File: ${doc.fileName}
+Type: ${doc.fileType}
+Size: ${formatFileSize(doc.fileSize)}
+Uploaded: ${format(doc.uploadDate, 'MMMM dd, yyyy HH:mm')}
+
+--- ACTUAL FILE CONTENT ---
+${doc.fileContent}
+
+--- TRAINING METADATA ---
+Subject: ${doc.trainingSubject}
+Date: ${format(doc.trainingDate, 'MMMM dd, yyyy')}
+Instructor: ${doc.instructorName}
+Location: ${doc.location || 'N/A'}
+Student Count: ${doc.studentCount || 'N/A'}
+Description: ${doc.description || 'No description provided'}`;
+      }
+    }
+
+    // Fallback to generated content for documents created by sign-in generator
     switch (doc.category) {
       case 'sign_in_sheet':
         // Use actual employee data if available from sign-in generator
@@ -584,7 +694,23 @@ This is a training-related document.`;
         description: `Downloading ${doc.fileName}...`,
       });
 
-      // Create mock document content based on category
+      // If we have the original uploaded file, download that
+      if (doc.fileBlob) {
+        const link = document.createElement('a');
+        link.href = doc.fileBlob;
+        link.download = doc.fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        toast({
+          title: "Download Complete",
+          description: `Original file ${doc.fileName} has been downloaded.`,
+        });
+        return;
+      }
+
+      // Create mock document content based on category for generated documents
       let content = '';
       
       switch (doc.category) {
