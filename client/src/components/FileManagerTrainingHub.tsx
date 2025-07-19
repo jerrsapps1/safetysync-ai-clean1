@@ -228,88 +228,142 @@ export default function FileManagerTrainingHub() {
         subDocs.push(
           {
             id: baseId + 1,
-            fileName: 'DOM_Inspection_Report.txt',
-            fileType: 'txt',
-            category: 'analysis_document',
-            trainingSubject: 'DOM Inspection Report',
+            fileName: 'DOM_Analysis_Reports',
+            fileType: 'folder',
+            category: 'analysis_subfolder',
+            trainingSubject: 'DOM Analysis Reports',
             trainingDate: new Date('2025-01-21'),
             instructorName: 'System Analysis',
-            studentCount: 1,
+            studentCount: 8,
             location: 'Web Analysis',
             fileSize: 15400,
             uploadDate: new Date('2025-01-21'),
-            description: 'Detailed DOM inspection results and workspace analysis'
+            description: 'Complete DOM inspection analysis reports'
           },
           {
             id: baseId + 2,
-            fileName: 'Workspace_Metrics.json',
-            fileType: 'json',
-            category: 'data_file',
-            trainingSubject: 'Workspace Metrics',
+            fileName: 'Workspace_Performance_Data',
+            fileType: 'folder',
+            category: 'performance_subfolder',
+            trainingSubject: 'Workspace Performance Data',
             trainingDate: new Date('2025-01-21'),
             instructorName: 'Data Collection',
-            studentCount: 1,
+            studentCount: 12,
             location: 'System Data',
             fileSize: 8200,
             uploadDate: new Date('2025-01-21'),
-            description: 'Workspace performance and usage metrics data'
+            description: 'Performance metrics and usage analytics'
+          },
+          {
+            id: baseId + 3,
+            fileName: 'Security_Assessments',
+            fileType: 'folder',
+            category: 'security_subfolder',
+            trainingSubject: 'Security Assessments',
+            trainingDate: new Date('2025-01-21'),
+            instructorName: 'Security Team',
+            studentCount: 6,
+            location: 'Security Analysis',
+            fileSize: 25600,
+            uploadDate: new Date('2025-01-21'),
+            description: 'Security vulnerability assessments and reports'
           }
         );
       } else if (parentFolder === 'Abatement_SDS') {
-        for (let i = 1; i <= 27; i++) {
+        const subfolders = [
+          { name: 'Asbestos_Abatement_Chemicals', count: 8, desc: 'Asbestos removal chemical safety sheets' },
+          { name: 'Lead_Paint_Removal_Chemicals', count: 6, desc: 'Lead paint abatement chemical documentation' },
+          { name: 'Mold_Remediation_Products', count: 7, desc: 'Mold removal and treatment chemicals' },
+          { name: 'General_Cleaning_Solvents', count: 6, desc: 'General purpose cleaning and decontamination' }
+        ];
+        
+        subfolders.forEach((folder, index) => {
           subDocs.push({
-            id: baseId + i,
-            fileName: `Abatement_Chemical_${i.toString().padStart(3, '0')}.pdf`,
-            fileType: 'pdf',
-            category: 'sds_document',
-            trainingSubject: `Abatement Chemical ${i}`,
+            id: baseId + index + 1,
+            fileName: folder.name,
+            fileType: 'folder',
+            category: 'sds_subfolder',
+            trainingSubject: folder.name.replace(/_/g, ' '),
             trainingDate: new Date('2024-10-28'),
             instructorName: 'Chemical Safety',
-            studentCount: 1,
+            studentCount: folder.count,
             location: 'Chemical Database',
-            fileSize: Math.floor(Math.random() * 500000) + 100000,
+            fileSize: Math.floor(Math.random() * 5000000) + 1000000,
             uploadDate: new Date('2024-10-28'),
-            description: `Safety data sheet for abatement chemical compound ${i}`
+            description: folder.desc
           });
-        }
+        });
       } else if (parentFolder === 'Demo_SDS') {
-        for (let i = 1; i <= 16; i++) {
+        const demoCategories = [
+          { name: 'Basic_Chemical_Safety_Training', count: 5, desc: 'Basic chemical handling training materials' },
+          { name: 'Advanced_Hazmat_Procedures', count: 4, desc: 'Advanced hazardous materials training' },
+          { name: 'Emergency_Response_Training', count: 4, desc: 'Chemical emergency response procedures' },
+          { name: 'PPE_Selection_Guidelines', count: 3, desc: 'Personal protective equipment selection guides' }
+        ];
+        
+        demoCategories.forEach((category, index) => {
           subDocs.push({
-            id: baseId + i,
-            fileName: `Demo_Training_SDS_${i.toString().padStart(2, '0')}.pdf`,
-            fileType: 'pdf',
-            category: 'training_sds',
-            trainingSubject: `Demo Training SDS ${i}`,
+            id: baseId + index + 1,
+            fileName: category.name,
+            fileType: 'folder',
+            category: 'demo_subfolder',
+            trainingSubject: category.name.replace(/_/g, ' '),
             trainingDate: new Date('2024-10-28'),
             instructorName: 'Training Materials',
-            studentCount: 1,
+            studentCount: category.count,
             location: 'Training Database',
-            fileSize: Math.floor(Math.random() * 300000) + 50000,
+            fileSize: Math.floor(Math.random() * 3000000) + 500000,
             uploadDate: new Date('2024-10-28'),
-            description: `Demo safety data sheet for training purposes - compound ${i}`
+            description: category.desc
           });
-        }
+        });
       } else if (parentFolder === 'EHS_Manuals') {
-        const manualNames = [
-          'Emergency_Response_Procedures',
-          'Environmental_Compliance_Guidelines',
-          'Health_Safety_Training_Protocols',
-          'Workplace_Safety_Standards'
+        const manualCategories = [
+          { name: 'Emergency_Response_Procedures', count: 8, desc: 'Emergency response and evacuation procedures' },
+          { name: 'Environmental_Compliance_Guidelines', count: 12, desc: 'Environmental regulations and compliance' },
+          { name: 'Health_Safety_Training_Protocols', count: 15, desc: 'Health and safety training documentation' },
+          { name: 'Workplace_Safety_Standards', count: 10, desc: 'OSHA workplace safety standards and requirements' }
         ];
-        manualNames.forEach((name, i) => {
+        
+        manualCategories.forEach((manual, i) => {
           subDocs.push({
             id: baseId + i + 1,
-            fileName: `${name}.pdf`,
-            fileType: 'pdf',
-            category: 'safety_manual',
-            trainingSubject: name.replace(/_/g, ' '),
+            fileName: manual.name,
+            fileType: 'folder',
+            category: 'ehs_subfolder',
+            trainingSubject: manual.name.replace(/_/g, ' '),
             trainingDate: new Date('2025-01-21'),
             instructorName: 'EH&S Department',
-            studentCount: 1,
+            studentCount: manual.count,
             location: 'Safety Documentation',
-            fileSize: Math.floor(Math.random() * 20000000) + 5000000,
+            fileSize: Math.floor(Math.random() * 50000000) + 10000000,
             uploadDate: new Date('2025-01-21'),
-            description: `Comprehensive ${name.replace(/_/g, ' ').toLowerCase()} manual`
+            description: manual.desc
+          });
+        });
+      } else if (parentFolder === 'Tool_Box_Talks') {
+        const toolBoxCategories = [
+          { name: 'Fall_Protection_Talks', count: 12, desc: 'Fall protection safety toolbox talks' },
+          { name: 'Electrical_Safety_Discussions', count: 8, desc: 'Electrical safety awareness sessions' },
+          { name: 'Heavy_Equipment_Safety', count: 10, desc: 'Heavy machinery and equipment safety' },
+          { name: 'Personal_Protective_Equipment', count: 9, desc: 'PPE selection and usage guidance' },
+          { name: 'Hazard_Communication', count: 8, desc: 'Chemical hazard communication training' }
+        ];
+        
+        toolBoxCategories.forEach((category, i) => {
+          subDocs.push({
+            id: baseId + i + 1,
+            fileName: category.name,
+            fileType: 'folder',
+            category: 'toolbox_subfolder',
+            trainingSubject: category.name.replace(/_/g, ' '),
+            trainingDate: new Date('2027-09-15'),
+            instructorName: 'Safety Training',
+            studentCount: category.count,
+            location: 'Training Sessions',
+            fileSize: Math.floor(Math.random() * 5000000) + 2000000,
+            uploadDate: new Date('2027-09-15'),
+            description: category.desc
           });
         });
       }
