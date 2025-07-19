@@ -457,7 +457,10 @@ export default function ClientPortal() {
                   
                   <span className="text-white text-sm">Welcome, {user?.name}</span>
                   <Button 
-                    onClick={() => setShowAuthPopup(true)}
+                    onClick={() => {
+                      // Direct navigation since user is already authenticated
+                      window.location.href = '/workspace';
+                    }}
                     variant="ghost"
                     className="text-emerald-300 hover:text-emerald-200 hover:bg-emerald-700/50"
                   >

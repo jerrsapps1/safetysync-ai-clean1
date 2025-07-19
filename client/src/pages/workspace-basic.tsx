@@ -48,6 +48,11 @@ export default function WorkspaceBasic() {
     setActiveTab(tab);
   }, []);
 
+  // Debug logging for authentication status
+  useEffect(() => {
+    console.log('Workspace auth check:', { isLoading, isAuthenticated, user });
+  }, [isLoading, isAuthenticated, user]);
+
   // Redirect if not authenticated (but wait for loading to complete)
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
