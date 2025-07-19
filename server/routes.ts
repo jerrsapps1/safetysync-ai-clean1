@@ -172,12 +172,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const userData = insertUserSchema.parse(req.body);
       
-      // Check if user already exists
-      const existingUser = await storage.getUserByEmail(userData.email);
-      if (existingUser) {
+      // Check if user already exists by email
+      const existingUserByEmail = await storage.getUserByEmail(userData.email);
+      if (existingUserByEmail) {
         return res.status(400).json({ 
           success: false, 
-          message: "User already exists with this email" 
+          message: "User with this email already exists" 
+        });
+      }
+
+      // Check if username already exists
+      const existingUserByUsername = await storage.getUserByUsername(userData.username);
+      if (existingUserByUsername) {
+        return res.status(400).json({ 
+          success: false, 
+          message: "Username is already taken. Please choose a different username." 
         });
       }
 
@@ -220,12 +229,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const loginData = loginUserSchema.parse(req.body);
       
-      // Find user by email
-      const user = await storage.getUserByEmail(loginData.email);
+      // Find user by username
+      const user = await storage.getUserByUsername(loginData.username);
       if (!user) {
         return res.status(400).json({ 
           success: false, 
-          message: "Invalid email or password" 
+          message: "Invalid username or password" 
         });
       }
 
@@ -234,7 +243,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (!isValidPassword) {
         return res.status(400).json({ 
           success: false, 
-          message: "Invalid email or password" 
+          message: "Invalid username or password" 
         });
       }
 
@@ -243,7 +252,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Generate JWT token
       const token = jwt.sign(
-        { userId: user.id, email: user.email },
+        { userId: user.id, username: user.username, email: user.email },
         process.env.JWT_SECRET || 'development-secret-key',
         { expiresIn: '24h' }
       );
