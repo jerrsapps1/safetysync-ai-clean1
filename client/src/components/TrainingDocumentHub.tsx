@@ -292,12 +292,8 @@ export default function TrainingDocumentHub() {
 
   // Handle document regeneration/print
   const handleRegenerateDocument = (doc: TrainingDocument) => {
-    console.log('Document category:', doc.category);
-    console.log('Generated employees:', doc.generatedEmployees);
-    console.log('Full document:', doc);
-    
-    if (doc.category === 'sign_in_sheet' && doc.generatedEmployees) {
-      // Recreate the exact sign-in sheet with original data
+    if (doc.category === 'sign_in_sheet') {
+      // Recreate the sign-in sheet with available data
       const regeneratedContent = generatePrintableSignInSheet(doc);
       
       // Create and download the regenerated file
@@ -311,14 +307,17 @@ export default function TrainingDocumentHub() {
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
 
+      const hasOriginalData = doc.generatedEmployees && doc.generatedEmployees.length > 0;
       toast({
         title: "Document Regenerated",
-        description: `${doc.fileName} has been regenerated with original data and downloaded.`,
+        description: hasOriginalData 
+          ? `${doc.fileName} has been regenerated with original employee data and downloaded.`
+          : `${doc.fileName} has been regenerated with training data and downloaded.`,
       });
     } else {
       toast({
         title: "Cannot Regenerate",
-        description: "This document type doesn't support regeneration or lacks original data.",
+        description: "Only sign-in sheets can be regenerated.",
         variant: "destructive"
       });
     }
