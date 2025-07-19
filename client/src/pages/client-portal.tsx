@@ -28,6 +28,7 @@ import {
   Heart,
   Send,
   Eye,
+  EyeOff,
   TrendingUp
 } from 'lucide-react';
 
@@ -75,6 +76,8 @@ export default function ClientPortal() {
   const [userName, setUserName] = useState('');
   const [loginUsername, setLoginUsername] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPopupPassword, setShowPopupPassword] = useState(false);
   const [showAuthPopup, setShowAuthPopup] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(false);
   const [forceShowLogin, setForceShowLogin] = useState(false);
@@ -411,13 +414,24 @@ export default function ClientPortal() {
                     onChange={(e) => setLoginUsername(e.target.value)}
                     className="w-40 h-8 text-sm bg-white/10 border-white/20 text-white placeholder-gray-400"
                   />
-                  <Input
-                    type="password"
-                    placeholder="Password"
-                    value={loginPassword}
-                    onChange={(e) => setLoginPassword(e.target.value)}
-                    className="w-40 h-8 text-sm bg-white/10 border-white/20 text-white placeholder-gray-400"
-                  />
+                  <div className="relative">
+                    <Input
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Password"
+                      value={loginPassword}
+                      onChange={(e) => setLoginPassword(e.target.value)}
+                      className="w-40 h-8 text-sm bg-white/10 border-white/20 text-white placeholder-gray-400 pr-8"
+                    />
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      className="absolute right-1 top-1/2 transform -translate-y-1/2 p-1 text-gray-400 hover:text-white h-6 w-6"
+                      onClick={() => setShowPassword(!showPassword)}
+                    >
+                      {showPassword ? <EyeOff className="w-3 h-3" /> : <Eye className="w-3 h-3" />}
+                    </Button>
+                  </div>
                   <Button
                     type="submit"
                     disabled={isAuthenticating}
@@ -743,15 +757,26 @@ export default function ClientPortal() {
                 <label htmlFor="popup-password" className="block text-sm font-medium text-white mb-2">
                   Password
                 </label>
-                <Input
-                  id="popup-password"
-                  type="password"
-                  required
-                  value={loginPassword}
-                  onChange={(e) => setLoginPassword(e.target.value)}
-                  className="bg-white/10 border-white/20 text-white placeholder-gray-400"
-                  placeholder="Enter your password"
-                />
+                <div className="relative">
+                  <Input
+                    id="popup-password"
+                    type={showPopupPassword ? "text" : "password"}
+                    required
+                    value={loginPassword}
+                    onChange={(e) => setLoginPassword(e.target.value)}
+                    className="bg-white/10 border-white/20 text-white placeholder-gray-400 pr-10"
+                    placeholder="Enter your password"
+                  />
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 px-2 text-gray-400 hover:text-white"
+                    onClick={() => setShowPopupPassword(!showPopupPassword)}
+                  >
+                    {showPopupPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </Button>
+                </div>
               </div>
               
               <div className="flex space-x-3 pt-4">
