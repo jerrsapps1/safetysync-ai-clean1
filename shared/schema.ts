@@ -213,23 +213,22 @@ export const employeeTraining = pgTable("employee_training", {
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
-// Certificates Generated
+// AI Generated Certificates
 export const certificates = pgTable("certificates", {
   id: serial("id").primaryKey(),
   userId: integer("user_id").references(() => users.id).notNull(),
-  employeeId: integer("employee_id").references(() => employees.id).notNull(),
-  trainingRecordId: integer("training_record_id").references(() => employeeTraining.id).notNull(),
-  certificateNumber: text("certificate_number").notNull().unique(),
-  certificateType: text("certificate_type", { enum: ["certificate", "wallet_card"] }).notNull(),
-  format: text("format", { enum: ["pdf", "digital"] }).notNull(),
-  filePath: text("file_path"),
-  issuedDate: timestamp("issued_date").defaultNow(),
-  expirationDate: timestamp("expiration_date"),
-  instructorName: text("instructor_name"),
-  instructorCredentials: text("instructor_credentials"),
-  oshaStandards: text("osha_standards").array(),
-  equipmentAuthorized: text("equipment_authorized").array(),
-  createdAt: timestamp("created_at").defaultNow(),
+  employeeName: text("employee_name").notNull(),
+  employeeId: text("employee_id"),
+  certificationType: text("certificate_type").notNull(),
+  issueDate: timestamp("issue_date").notNull(),
+  expirationDate: timestamp("expiration_date").notNull(),
+  instructorName: text("instructor_name").notNull(),
+  instructorCredentials: text("instructor_credentials").notNull(),
+  trainingStandards: text("training_standards").array().notNull(),
+  certificateContent: text("certificate_content").notNull(), // JSON string
+  walletCardContent: text("wallet_card_content"), // JSON string for wallet card
+  status: text("status", { enum: ["active", "expired", "revoked"] }).default("active"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
 // Document Management
@@ -414,11 +413,6 @@ export const insertEmployeeTrainingSchema = createInsertSchema(employeeTraining)
   id: true,
   createdAt: true,
   updatedAt: true,
-});
-
-export const insertCertificateSchema = createInsertSchema(certificates).omit({
-  id: true,
-  createdAt: true,
 });
 
 export const insertDocumentSchema = createInsertSchema(documents).omit({
@@ -753,3 +747,13 @@ export const processedDocuments = pgTable('processed_documents', {
 export const insertProcessedDocumentSchema = createInsertSchema(processedDocuments);
 export type SelectProcessedDocument = typeof processedDocuments.$inferSelect;
 export type InsertProcessedDocument = z.infer<typeof insertProcessedDocumentSchema>;
+
+export const insertCertificateSchema = createInsertSchema(certificates).omit({
+  id: true,
+  createdAt: true,
+});
+
+export type SelectCertificate = typeof certificates.$inferSelect;
+export type InsertCertificate = z.infer<typeof insertCertificateSchema>;
+
+

@@ -288,11 +288,15 @@ export async function verifyAndGenerateCertificates(req: Request, res: Response)
       .set({ certificatesGenerated: certificateIds.length })
       .where(eq(processedDocuments.id, documentId));
 
+    // Log successful certificate generation
+    console.log(`✓ Generated ${certificateIds.length} certificates for user ${userId}`);
+    console.log(`✓ Certificate IDs: ${certificateIds.join(', ')}`);
+    
     res.json({
       success: true,
       certificatesGenerated: certificateIds.length,
       certificateIds,
-      message: `Successfully generated ${certificateIds.length} certificates`
+      message: `Successfully generated ${certificateIds.length} professional certificates and wallet cards`
     });
 
   } catch (error) {

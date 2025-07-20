@@ -615,25 +615,62 @@ Date: January 21, 2025`
               />
             </div>
 
-            {/* Verify and Generate Button */}
-            <Button
-              onClick={verifyAndGenerate}
-              disabled={verifyMutation.isPending}
-              className="w-full"
-              size="lg"
-            >
-              {verifyMutation.isPending ? (
-                <>
-                  <Brain className="h-4 w-4 mr-2 animate-spin" />
-                  Generating Certificates...
-                </>
-              ) : (
-                <>
-                  <CheckCircle className="h-4 w-4 mr-2" />
-                  Verify & Generate Certificates
-                </>
-              )}
-            </Button>
+            {/* Verify and Generate Section */}
+            <div className="bg-gradient-to-r from-emerald-50 to-blue-50 border border-emerald-200 rounded-lg p-6 space-y-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-lg font-semibold text-emerald-800 flex items-center">
+                    <CheckCircle className="h-5 w-5 mr-2" />
+                    Ready to Generate Certificates
+                  </h3>
+                  <p className="text-sm text-emerald-600 mt-1">
+                    Review the extracted information above, then generate professional certificates and wallet cards
+                  </p>
+                </div>
+                <div className="text-right text-sm text-emerald-700">
+                  <div className="font-medium">
+                    Eligible: {editedData?.employees.filter(emp => emp.completionStatus === 'completed' && emp.signature).length || 0} employees
+                  </div>
+                  <div className="text-xs">
+                    Total: {editedData?.employees.length || 0} employees
+                  </div>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                <div className="flex items-center space-x-2 text-emerald-600">
+                  <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                  <span>Professional PDF certificates</span>
+                </div>
+                <div className="flex items-center space-x-2 text-emerald-600">
+                  <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                  <span>Digital wallet cards</span>
+                </div>
+                <div className="flex items-center space-x-2 text-emerald-600">
+                  <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                  <span>OSHA compliance records</span>
+                </div>
+              </div>
+              
+              <Button
+                onClick={verifyAndGenerate}
+                disabled={verifyMutation.isPending}
+                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+                size="lg"
+              >
+                {verifyMutation.isPending ? (
+                  <>
+                    <Brain className="h-4 w-4 mr-2 animate-spin" />
+                    Processing & Generating Certificates...
+                  </>
+                ) : (
+                  <>
+                    <CheckCircle className="h-4 w-4 mr-2" />
+                    Verify & Generate Certificates ({editedData?.employees.filter(emp => emp.completionStatus === 'completed' && emp.signature).length || 0})
+                  </>
+                )}
+              </Button>
+            </div>
           </CardContent>
         </Card>
       )}
