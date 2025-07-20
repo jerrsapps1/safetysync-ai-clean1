@@ -2271,8 +2271,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // AI Document Processing Routes
   app.post("/api/ai/process-signin", authenticateToken, async (req, res) => {
-    const { uploadAndProcessSignIn } = await import("./api/ai-document-processing");
-    return uploadAndProcessSignIn(req, res);
+    try {
+      const { uploadAndProcessSignIn } = await import("./api/ai-document-processing");
+      return uploadAndProcessSignIn(req, res);
+    } catch (error) {
+      console.error('AI processing route error:', error);
+      res.status(500).json({ success: false, error: 'Processing failed' });
+    }
   });
 
   app.post("/api/ai/verify-and-generate", authenticateToken, async (req, res) => {
