@@ -17,7 +17,10 @@ export function useAuth() {
     // Check if user is logged in on page load
     const checkAuthStatus = async () => {
       try {
-        const token = sessionStorage.getItem('auth_token');
+        // Check both localStorage and sessionStorage for token
+        const token = localStorage.getItem('auth_token') || sessionStorage.getItem('auth_token');
+        const rememberMe = localStorage.getItem('remember_me') === 'true';
+        
         if (token) {
           const response = await fetch('/api/auth/me', {
             headers: {
@@ -29,11 +32,16 @@ export function useAuth() {
             const userData = await response.json();
             setUser(userData.user);
           } else {
+            // Clear invalid tokens from both storages
+            localStorage.removeItem('auth_token');
+            localStorage.removeItem('remember_me');
             sessionStorage.removeItem('auth_token');
           }
         }
       } catch (error) {
         console.error('Error checking auth status:', error);
+        localStorage.removeItem('auth_token');
+        localStorage.removeItem('remember_me');
         sessionStorage.removeItem('auth_token');
       } finally {
         setIsLoading(false);
@@ -43,7 +51,7 @@ export function useAuth() {
     checkAuthStatus();
   }, []);
 
-  const login = async (username: string, password: string) => {
+  const login = async (username: string, password: string, rememberMe: boolean = false) => {
     try {
       const response = await fetch('/api/auth/login', {
         method: 'POST',
@@ -56,11 +64,13 @@ export function useAuth() {
       const result = await response.json();
       
       if (result.success) {
-        // Use sessionStorage instead of localStorage for better security
-        // This will clear when browser/tab is closed
-        sessionStorage.setItem('auth_token', result.token);
+        // Use localStorage for "remember me", sessionStorage for temporary sessions
+        const storage = rememberMe ? localStorage : sessionStorage;
+        storage.setItem('auth_token', result.token);
+        storage.setItem('remember_me', rememberMe.toString());
+        
         setUser(result.user);
-        setIsLoading(false); // Ensure loading is false after successful login
+        setIsLoading(false);
         console.log('Login successful, user set:', result.user);
         return { success: true, user: result.user };
       } else {
@@ -77,6 +87,9 @@ export function useAuth() {
     } catch (error) {
       console.error('Logout API call failed:', error);
     }
+    // Clear tokens from both storages
+    localStorage.removeItem('auth_token');
+    localStorage.removeItem('remember_me');
     sessionStorage.removeItem('auth_token');
     setUser(null);
   };

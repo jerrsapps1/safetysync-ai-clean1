@@ -76,6 +76,7 @@ export default function ClientPortal() {
   const [userName, setUserName] = useState('');
   const [loginUsername, setLoginUsername] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showPopupPassword, setShowPopupPassword] = useState(false);
   const [showAuthPopup, setShowAuthPopup] = useState(false);
@@ -94,15 +95,15 @@ export default function ClientPortal() {
     }
   }, [isAuthenticated, isLoading]);
 
-  const handleSuccessfulLogin = async (username: string, password: string) => {
+  const handleSuccessfulLogin = async (username: string, password: string, remember: boolean = false) => {
     setIsAuthenticating(true);
     try {
-      const result = await login(username, password);
+      const result = await login(username, password, remember);
       if (result.success) {
         setForceShowLogin(false);
         toast({
           title: "Welcome Back!",
-          description: "You have been successfully logged in",
+          description: remember ? "You will stay logged in" : "You have been successfully logged in",
           variant: "default"
         });
       } else {
@@ -279,7 +280,7 @@ export default function ClientPortal() {
     setIsAuthenticating(true);
     
     try {
-      const result = await login(loginUsername, loginPassword);
+      const result = await login(loginUsername, loginPassword, rememberMe);
       if (result.success) {
         setForceShowLogin(false);
         setLoginUsername('');
@@ -287,7 +288,7 @@ export default function ClientPortal() {
         
         toast({
           title: "Welcome Back!",
-          description: "You have been successfully signed in",
+          description: rememberMe ? "You will stay logged in" : "You have been successfully signed in",
           duration: 3000,
         });
       } else {
@@ -408,41 +409,55 @@ export default function ClientPortal() {
                 Home
               </Button>
               {(!isAuthenticated || forceShowLogin) ? (
-                <form onSubmit={handleLogin} className="flex items-center space-x-2">
-                  <Input
-                    type="text"
-                    placeholder="Username"
-                    value={loginUsername}
-                    onChange={(e) => setLoginUsername(e.target.value)}
-                    className="w-40 h-8 text-sm bg-white/10 border-white/20 text-white placeholder-gray-400"
-                  />
-                  <div className="relative">
+                <div className="space-y-2">
+                  <form onSubmit={handleLogin} className="flex items-center space-x-2">
                     <Input
-                      type={showPassword ? "text" : "password"}
-                      placeholder="Password"
-                      value={loginPassword}
-                      onChange={(e) => setLoginPassword(e.target.value)}
-                      className="w-40 h-8 text-sm bg-white/10 border-white/20 text-white placeholder-gray-400 pr-8"
+                      type="text"
+                      placeholder="Username"
+                      value={loginUsername}
+                      onChange={(e) => setLoginUsername(e.target.value)}
+                      className="w-40 h-8 text-sm bg-white/10 border-white/20 text-white placeholder-gray-400"
                     />
+                    <div className="relative">
+                      <Input
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Password"
+                        value={loginPassword}
+                        onChange={(e) => setLoginPassword(e.target.value)}
+                        className="w-40 h-8 text-sm bg-white/10 border-white/20 text-white placeholder-gray-400 pr-8"
+                      />
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="absolute right-1 top-1/2 transform -translate-y-1/2 p-1 text-gray-400 hover:text-white h-6 w-6"
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        {showPassword ? <EyeOff className="w-3 h-3" /> : <Eye className="w-3 h-3" />}
+                      </Button>
+                    </div>
                     <Button
-                      type="button"
-                      variant="ghost"
+                      type="submit"
+                      disabled={isAuthenticating}
                       size="sm"
-                      className="absolute right-1 top-1/2 transform -translate-y-1/2 p-1 text-gray-400 hover:text-white h-6 w-6"
-                      onClick={() => setShowPassword(!showPassword)}
+                      className="bg-blue-600 hover:bg-blue-700 text-white"
                     >
-                      {showPassword ? <EyeOff className="w-3 h-3" /> : <Eye className="w-3 h-3" />}
+                      {isAuthenticating ? "..." : "Sign In"}
                     </Button>
+                  </form>
+                  <div className="flex items-center space-x-2 text-sm">
+                    <input
+                      id="remember-me"
+                      type="checkbox"
+                      checked={rememberMe}
+                      onChange={(e) => setRememberMe(e.target.checked)}
+                      className="h-3 w-3 rounded border-white/20 bg-white/10 text-blue-600 focus:ring-blue-500"
+                    />
+                    <label htmlFor="remember-me" className="text-gray-300 cursor-pointer">
+                      Remember me
+                    </label>
                   </div>
-                  <Button
-                    type="submit"
-                    disabled={isAuthenticating}
-                    size="sm"
-                    className="bg-blue-600 hover:bg-blue-700 text-white"
-                  >
-                    {isAuthenticating ? "..." : "Sign In"}
-                  </Button>
-                </form>
+                </div>
               ) : (
                 <div className="flex items-center space-x-4">
                   {/* Account Status Alert in Header */}
