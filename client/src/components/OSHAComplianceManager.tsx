@@ -288,46 +288,46 @@ export default function OSHAComplianceManager() {
       {
         id: "1",
         type: "expired_certificate",
-        severity: "critical",
-        description: "EPA Lead RRP certification expired - Work must stop immediately",
-        affectedEmployees: ["Jennifer Davis", "Robert Johnson", "Kevin Brown"],
-        oshaStandard: "EPA 40 CFR 745",
-        dueDate: "IMMEDIATE - Work stoppage required",
+        severity: "high",
+        description: "Respiratory Protection training expired for 3 employees",
+        affectedEmployees: ["Maria Garcia", "Tom Wilson", "Lisa Chen"],
+        oshaStandard: "29 CFR 1910.134",
+        dueDate: "2025-02-01",
         correctionSteps: [
-          "STOP all lead-disturbing work immediately",
-          "Contact EPA-approved training provider",
-          "Schedule 4-hour refresher course within 30 days",
-          "Document work stoppage in project records",
-          "Update EPA certification database"
+          "Schedule refresher training session",
+          "Conduct new fit testing",
+          "Update training records",
+          "Issue new certificates",
+          "Document medical clearance status"
         ]
       },
       {
         id: "2",
         type: "missing_training",
-        severity: "high", 
-        description: "New demolition workers missing required Subpart T training",
+        severity: "medium", 
+        description: "New forklift operators missing required certification",
         affectedEmployees: ["James Miller", "Susan Taylor"],
-        oshaStandard: "29 CFR 1926 Subpart T",
+        oshaStandard: "29 CFR 1910.178",
         dueDate: "2025-01-28",
         correctionSteps: [
-          "Remove workers from demolition assignments",
-          "Schedule 8-hour demolition safety training",
-          "Conduct site-specific hazard briefing",
+          "Remove operators from forklift duties",
+          "Schedule classroom and practical training",
+          "Conduct performance evaluations",
           "Document competency demonstration",
-          "Update training matrix"
+          "Update operator authorization list"
         ]
       },
       {
         id: "3",
         type: "inadequate_trainer",
-        severity: "high",
-        description: "Mold training conducted by unqualified instructor",
-        affectedEmployees: ["All mold division workers trained in Q4 2024"],
-        oshaStandard: "AIHA Guidelines",
+        severity: "medium",
+        description: "LOTO training conducted by unqualified instructor",
+        affectedEmployees: ["All maintenance staff trained in Q4 2024"],
+        oshaStandard: "29 CFR 1910.147",
         dueDate: "2025-02-15",
         correctionSteps: [
-          "Verify all Q4 2024 mold training records",
-          "Contact certified Industrial Hygienist for retraining",
+          "Verify all Q4 2024 LOTO training records",
+          "Contact qualified competent person for retraining",
           "Schedule makeup training sessions", 
           "Document trainer qualifications",
           "Update approved trainer list"
@@ -336,17 +336,17 @@ export default function OSHAComplianceManager() {
       {
         id: "4",
         type: "missing_documentation", 
-        severity: "medium",
-        description: "Fit testing records incomplete for 5 respirator users",
-        affectedEmployees: ["Maria Santos", "Tony Lee", "David Park", "Anna Chen", "Mike Rodriguez"],
-        oshaStandard: "29 CFR 1910.134",
-        dueDate: "2025-02-01",
+        severity: "low",
+        description: "PPE training signatures missing for 4 employees",
+        affectedEmployees: ["Robert Smith", "Amy Johnson", "Carlos Rivera", "Sarah Davis"],
+        oshaStandard: "29 CFR 1926.95 / 1910.95",
+        dueDate: "2025-02-05",
         correctionSteps: [
-          "Schedule quantitative fit testing",
-          "Verify medical clearance status",
-          "Update respirator assignment records",
-          "Document make/model/size assignments",
-          "File in individual employee records"
+          "Collect missing employee signatures",
+          "Verify employees received training",
+          "Update training records",
+          "File documentation properly",
+          "Implement signature tracking system"
         ]
       }
     ];
@@ -378,7 +378,7 @@ export default function OSHAComplianceManager() {
         <div>
           <h1 className="text-3xl font-bold text-white">OSHA Compliance Manager</h1>
           <p className="text-gray-400 mt-2">
-            Inspection-ready compliance documentation and training management
+            General OSHA and ANSI compliance guidance for training documentation and management
           </p>
         </div>
         <div className="flex gap-3">
@@ -700,9 +700,9 @@ export default function OSHAComplianceManager() {
                 </div>
 
                 <div className="border border-gray-600 rounded-lg p-4">
-                  <h3 className="text-lg font-semibold text-white mb-3">Employee Interview Preparation</h3>
+                  <h3 className="text-lg font-semibold text-white mb-3">Employee Knowledge Verification</h3>
                   <p className="text-gray-300 mb-3">
-                    Inspector may interview employees to verify understanding. Ensure employees can answer:
+                    Compliance verification may include employee interviews. Ensure employees can answer:
                   </p>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
@@ -781,9 +781,9 @@ export default function OSHAComplianceManager() {
                 </div>
 
                 <div className="border border-gray-600 rounded-lg p-4">
-                  <h3 className="text-lg font-semibold text-white mb-3">Inspector Access System</h3>
+                  <h3 className="text-lg font-semibold text-white mb-3">Documentation Access System</h3>
                   <p className="text-gray-300 mb-4">
-                    All records organized and instantly accessible for inspector review:
+                    All records organized and accessible for compliance verification:
                   </p>
                   <div className="flex gap-4 flex-wrap">
                     <Button className="bg-blue-600 hover:bg-blue-700">
@@ -792,7 +792,7 @@ export default function OSHAComplianceManager() {
                     </Button>
                     <Button variant="outline">
                       <Download className="w-4 h-4 mr-2" />
-                      Generate Inspector Package
+                      Generate Compliance Package
                     </Button>
                     <Button variant="outline">
                       <FileText className="w-4 h-4 mr-2" />

@@ -130,15 +130,16 @@ User satisfied with comprehensive platform features including dashboard, admin p
 
 **OSHA Inspector Compliance Focus:**
 - Platform vision: Ensure companies pass OSHA inspections without training-related citations
-- Industry focus: Construction (asbestos, lead, mold, demolition divisions)
+- System architecture: General OSHA and ANSI guidance through company profile industry selection for accuracy
+- Platform approach: Provides general compliance information, not consulting recommendations or industry-specific advice
 - Critical compliance areas: Training matrix by job title, complete training records, trainer qualifications, employee competency verification, retraining triggers, audit documentation
 
 ## Recent Changes
 
-- **July 20, 2025** - OSHA INSPECTION READINESS SYSTEM IMPLEMENTED: Revolutionary Compliance Manager for Construction Industry:
-  - **COMPREHENSIVE OSHA COMPLIANCE MANAGER**: Created full-featured OSHA Compliance Manager specifically tailored for construction industry (asbestos, lead, mold, demolition)
-  - **CONSTRUCTION-SPECIFIC STANDARDS**: Integrated 10 critical OSHA/EPA standards including 29 CFR 1926.1101 (Asbestos), EPA 40 CFR 745 (Lead RRP), 29 CFR 1926 Subpart T (Demolition), AIHA Guidelines (Mold)
-  - **INSPECTOR-READY DOCUMENTATION**: Built comprehensive system addressing exact OSHA inspector requirements from provided audit checklist
+- **July 20, 2025** - OSHA COMPLIANCE MANAGER IMPLEMENTED: General OSHA and ANSI Guidance System:
+  - **COMPREHENSIVE OSHA COMPLIANCE MANAGER**: Created full-featured OSHA Compliance Manager providing general workplace safety guidance
+  - **GENERAL OSHA STANDARDS**: Integrated 10 common OSHA standards including 29 CFR 1910.147 (LOTO), 29 CFR 1910.134 (Respiratory Protection), 29 CFR 1910.178 (Forklifts), ANSI Z490.1 (Training Standards)
+  - **COMPLIANCE DOCUMENTATION**: Built comprehensive system for training compliance documentation and record management
   - **6-TAB COMPLIANCE SYSTEM**: Training Matrix, Training Records, Compliance Gaps, Retraining Management, Competency Verification, and Audit Readiness
   - **REAL-WORLD COMPLIANCE GAPS**: Integrated critical compliance scenarios (expired EPA certifications requiring work stoppage, missing trainer qualifications, incomplete fit testing records)
   - **INDUSTRY-SPECIFIC JOB ROLES**: Customized for Asbestos Abatement Workers, Lead Abatement Specialists, Mold Remediation Technicians, and Demolition Workers
