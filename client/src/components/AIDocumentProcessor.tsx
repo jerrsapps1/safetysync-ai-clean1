@@ -108,9 +108,9 @@ export default function AIDocumentProcessor() {
     onSuccess: (data) => {
       console.log('Processing successful, received data:', data);
       
-      // Handle different response structures
-      const extractedData = data.processedDocument || data.extractedData;
-      const docId = data.documentId || data.processedDocument?.id;
+      // Extract data from correct structure - data is in processedDocument.ai_extracted_data
+      const extractedData = data.processedDocument?.ai_extracted_data || data.extractedData;
+      const docId = data.processedDocument?.id || data.documentId;
       
       setProcessedData(extractedData);
       setDocumentId(docId);
@@ -120,7 +120,7 @@ export default function AIDocumentProcessor() {
       const trainingTitle = extractedData?.trainingTitle || 'training document';
       
       toast({
-        title: "🎉 Document Processed Successfully!",
+        title: "Document Processed Successfully!",
         description: `AI extracted ${employeeCount} employees from ${trainingTitle}. Ready for verification!`,
       });
       queryClient.invalidateQueries({ queryKey: ['/api/ai/processed-documents'] });
@@ -537,7 +537,7 @@ Date: January 21, 2025`
             <div className="space-y-2">
               <Label>Training Standards</Label>
               <div className="flex flex-wrap gap-2">
-                {editedData?.trainingStandards.map((standard, index) => (
+                {(editedData?.trainingStandards || []).map((standard, index) => (
                   <Badge key={index} variant="secondary">
                     <Shield className="h-3 w-3 mr-1" />
                     {standard}
@@ -549,7 +549,7 @@ Date: January 21, 2025`
             {/* Employee List */}
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <Label className="text-lg">Employee Attendance ({editedData?.employees.length})</Label>
+                <Label className="text-lg">Employee Attendance ({editedData?.employees?.length || 0})</Label>
                 <div className="flex items-center space-x-4">
                   <div className="flex items-center space-x-2">
                     <Checkbox
