@@ -77,23 +77,33 @@ export default function AIDocumentProcessor() {
 
       // Use FormData for real file uploads to handle different file types (PDF, Word, text)
       const formData = new FormData();
-      formData.append('signInDocument', file);
+      formData.append('file', file);
       
-      const response = await fetch('/api/ai/process-signin', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${authToken}`
-          // Don't set Content-Type for FormData - browser sets it with boundary
-        },
-        body: formData
-      });
-      
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message || 'Processing failed');
+      try {
+        const response = await fetch('/api/ai/process-signin', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${authToken}`
+            // Don't set Content-Type for FormData - browser sets it with boundary
+          },
+          body: formData
+        });
+        
+        if (!response.ok) {
+          const error = await response.json().catch(() => ({ error: 'Network error' }));
+          throw new Error(error.error || error.message || 'Processing failed');
+        }
+        
+        const data = await response.json();
+        if (!data.success) {
+          throw new Error(data.error || 'Processing failed');
+        }
+        
+        return data;
+      } catch (error) {
+        console.error('Upload error caught:', error);
+        throw error;
       }
-      
-      return response.json();
     },
     onSuccess: (data) => {
       setProcessedData(data.extractedData);
