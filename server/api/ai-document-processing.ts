@@ -87,17 +87,28 @@ export async function uploadAndProcessSignIn(req: Request, res: Response) {
         
         // Handle different file types
         if (req.file.mimetype === 'application/pdf') {
-          // For PDF files, use pdf-parse
+          // For PDF files, use dynamic import to handle ES modules
           try {
-            const pdfParse = require('pdf-parse');
-            const pdfData = await pdfParse(req.file.buffer);
+            const pdfParse = await import('pdf-parse');
+            const pdfData = await pdfParse.default(req.file.buffer);
             documentContent = pdfData.text;
             console.log('PDF parsed successfully, text length:', documentContent.length);
           } catch (pdfError) {
             console.error('PDF parsing failed:', pdfError);
-            // Fallback to binary text extraction
-            documentContent = req.file.buffer.toString('utf-8').replace(/[^\x20-\x7E\n\r\t]/g, ' ');
-            console.log('Using fallback text extraction for PDF');
+            // Enhanced fallback: extract readable text from PDF structure
+            const rawText = req.file.buffer.toString('utf-8');
+            // Extract text between parentheses which often contains readable content in PDFs
+            const textMatches = rawText.match(/\((.*?)\)/g);
+            if (textMatches) {
+              documentContent = textMatches
+                .map(match => match.replace(/[()]/g, ''))
+                .filter(text => text.length > 2 && /[a-zA-Z]/.test(text))
+                .join(' ');
+            } else {
+              // Basic cleanup of binary data
+              documentContent = rawText.replace(/[^\x20-\x7E\n\r\t]/g, ' ');
+            }
+            console.log('Using enhanced fallback text extraction for PDF');
           }
         } else if (req.file.mimetype.includes('text/') || req.file.originalname.endsWith('.txt')) {
           // Plain text files
