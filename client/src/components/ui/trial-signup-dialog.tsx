@@ -7,6 +7,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { Loader2, CheckCircle, Eye, EyeOff } from "lucide-react";
+import PasswordStrengthIndicator from "@/components/PasswordStrengthIndicator";
 
 interface TrialSignupDialogProps {
   isOpen: boolean;
@@ -17,6 +18,7 @@ interface TrialSignupDialogProps {
 export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDialogProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [isPasswordStrong, setIsPasswordStrong] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     username: "",
@@ -52,7 +54,9 @@ export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDial
 
     if (!formData.password.trim()) {
       newErrors.password = "Password is required";
-    } else if (formData.password.length < 6) {
+    } else if (!isPasswordStrong) {
+      newErrors.password = "Password must meet all security requirements";
+    } else if (formData.password.length < 8) {
       newErrors.password = "Password must be at least 6 characters";
     }
     
@@ -188,6 +192,10 @@ export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDial
               </Button>
             </div>
             {errors.password && <p className="text-sm text-red-500">{errors.password}</p>}
+            <PasswordStrengthIndicator 
+              password={formData.password} 
+              onStrengthChange={setIsPasswordStrong}
+            />
           </div>
           
           <div className="space-y-2">
