@@ -13,11 +13,14 @@ import {
   insertEmployeeTrainingSchema, insertCertificateSchema, insertDocumentSchema,
   insertAuditLogSchema, insertNotificationSchema, insertIntegrationSchema, insertLocationSchema,
   insertCompanyProfileSchema,
-  insertTicketResponseSchema
+  insertTicketResponseSchema, insertTrainingRequestSchema, insertUpcomingTrainingSchema,
+  trainingRequests, upcomingTraining
 } from "@shared/schema";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { db } from "./db";
+import { and, eq, desc } from "drizzle-orm";
 
 // Generate compliance report data based on type
 async function generateComplianceReportData(reportType: string, periodStart?: string, periodEnd?: string, userId?: number) {
@@ -2318,6 +2321,178 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/compliance/dismiss", authenticateToken, async (req, res) => {
     const { dismissRecommendation } = await import("./api/compliance-recommendations");
     return dismissRecommendation(req, res);
+  });
+
+  // Employee Certificate Management Routes
+  app.get("/api/employees/:employeeId/certificates", authenticateToken, async (req, res) => {
+    const { getEmployeeCertificates } = await import("./api/employee-certificates");
+    return getEmployeeCertificates(req, res);
+  });
+
+  app.post("/api/employees/:employeeId/certificates", authenticateToken, async (req, res) => {
+    const { addEmployeeCertificate } = await import("./api/employee-certificates");
+    return addEmployeeCertificate(req, res);
+  });
+
+  // Generate certificate and automatically create employee certificate
+  app.post("/api/certificates/generate-for-employee", authenticateToken, async (req, res) => {
+    try {
+      const { EmployeeCertificateService } = await import("./employee-certificate-service");
+      const employeeCertService = new EmployeeCertificateService();
+
+      const result = await employeeCertService.generateAndStoreEmployeeCertificate({
+        ...req.body,
+        userId: req.user?.id
+      });
+
+      res.json(result);
+    } catch (error) {
+      console.error("Error generating certificate for employee:", error);
+      res.status(500).json({ 
+        success: false,
+        error: error instanceof Error ? error.message : "Failed to generate certificate for employee" 
+      });
+    }
+  });
+
+  // Training Requests API routes
+  app.get("/api/training-requests/:employeeId", authenticateToken, async (req, res) => {
+    try {
+      const employeeId = parseInt(req.params.employeeId);
+      const userId = req.user?.id;
+      
+      if (!userId || !employeeId) {
+        return res.status(400).json({ success: false, error: 'Missing required parameters' });
+      }
+
+      const requests = await db
+        .select({
+          id: trainingRequests.id,
+          trainingName: trainingRequests.trainingName,
+          requestDate: trainingRequests.requestDate,
+          status: trainingRequests.status,
+          notes: trainingRequests.notes,
+          scheduledDate: trainingRequests.scheduledDate,
+          createdAt: trainingRequests.createdAt
+        })
+        .from(trainingRequests)
+        .where(and(
+          eq(trainingRequests.employeeId, employeeId),
+          eq(trainingRequests.userId, userId)
+        ))
+        .orderBy(desc(trainingRequests.requestDate));
+
+      res.json(requests);
+    } catch (error) {
+      console.error("Error fetching training requests:", error);
+      res.status(500).json({ success: false, error: "Failed to fetch training requests" });
+    }
+  });
+
+  app.post("/api/training-requests", authenticateToken, async (req, res) => {
+    try {
+      const userId = req.user?.id;
+      if (!userId) {
+        return res.status(401).json({ success: false, error: 'Unauthorized' });
+      }
+
+      const validatedData = insertTrainingRequestSchema.parse({
+        ...req.body,
+        userId
+      });
+
+      const [request] = await db
+        .insert(trainingRequests)
+        .values(validatedData)
+        .returning();
+
+      res.status(201).json(request);
+    } catch (error) {
+      console.error("Error creating training request:", error);
+      res.status(400).json({ 
+        success: false, 
+        error: "Invalid training request data" 
+      });
+    }
+  });
+
+  // Upcoming Training API routes
+  app.get("/api/upcoming-training/:employeeId", authenticateToken, async (req, res) => {
+    try {
+      const employeeId = parseInt(req.params.employeeId);
+      const userId = req.user?.id;
+      
+      if (!userId || !employeeId) {
+        return res.status(400).json({ success: false, error: 'Missing required parameters' });
+      }
+
+      const upcoming = await db
+        .select()
+        .from(upcomingTraining)
+        .where(and(
+          eq(upcomingTraining.employeeId, employeeId),
+          eq(upcomingTraining.userId, userId)
+        ))
+        .orderBy(upcomingTraining.date);
+
+      res.json(upcoming);
+    } catch (error) {
+      console.error("Error fetching upcoming training:", error);
+      res.status(500).json({ success: false, error: "Failed to fetch upcoming training" });
+    }
+  });
+
+  app.post("/api/upcoming-training", authenticateToken, async (req, res) => {
+    try {
+      const userId = req.user?.id;
+      if (!userId) {
+        return res.status(401).json({ success: false, error: 'Unauthorized' });
+      }
+
+      const validatedData = insertUpcomingTrainingSchema.parse({
+        ...req.body,
+        userId
+      });
+
+      const [training] = await db
+        .insert(upcomingTraining)
+        .values(validatedData)
+        .returning();
+
+      res.status(201).json(training);
+    } catch (error) {
+      console.error("Error creating upcoming training:", error);
+      res.status(400).json({ 
+        success: false, 
+        error: "Invalid upcoming training data" 
+      });
+    }
+  });
+
+  app.put("/api/employees/:employeeId/certificates/:certificateId", authenticateToken, async (req, res) => {
+    const { updateEmployeeCertificate } = await import("./api/employee-certificates");
+    return updateEmployeeCertificate(req, res);
+  });
+
+  app.delete("/api/employees/:employeeId/certificates/:certificateId", authenticateToken, async (req, res) => {
+    const { deleteEmployeeCertificate } = await import("./api/employee-certificates");
+    return deleteEmployeeCertificate(req, res);
+  });
+
+  app.post("/api/employees/:employeeId/generate-qr-code", authenticateToken, async (req, res) => {
+    const { generateEmployeeQrCode } = await import("./api/employee-certificates");
+    return generateEmployeeQrCode(req, res);
+  });
+
+  app.get("/api/employees/:employeeId/qr-code", authenticateToken, async (req, res) => {
+    const { getEmployeeQrCode } = await import("./api/employee-certificates");
+    return getEmployeeQrCode(req, res);
+  });
+
+  // Public QR Code Access (no authentication required)
+  app.get("/api/public/employee-certs/:qrCodeData", async (req, res) => {
+    const { viewEmployeeCertificatesPublic } = await import("./api/employee-certificates");
+    return viewEmployeeCertificatesPublic(req, res);
   });
 
   const httpServer = createServer(app);

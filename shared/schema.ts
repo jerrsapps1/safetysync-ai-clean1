@@ -213,7 +213,72 @@ export const employeeTraining = pgTable("employee_training", {
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
-// AI Generated Certificates
+// Employee Certificates - stores all certificates for each employee profile
+export const employeeCertificates = pgTable("employee_certificates", {
+  id: serial("id").primaryKey(),
+  employeeId: integer("employee_id").references(() => employees.id).notNull(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  certificateName: text("certificate_name").notNull(),
+  certificationType: text("certificate_type").notNull(),
+  issueDate: timestamp("issue_date").notNull(),
+  expirationDate: timestamp("expiration_date"),
+  issuingOrganization: text("issuing_organization"),
+  instructorName: text("instructor_name"),
+  instructorCredentials: text("instructor_credentials"),
+  trainingStandards: text("training_standards").array(),
+  certificateNumber: text("certificate_number"),
+  certificateFilePath: text("certificate_file_path"), // File path for certificate
+  walletCardFilePath: text("wallet_card_file_path"), // File path for wallet card
+  uploadedFromExternal: boolean("uploaded_from_external").default(false), // From previous company
+  notes: text("notes"), // HR notes about the certificate
+  status: text("status", { enum: ["active", "expired", "revoked"] }).default("active"),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+// Employee QR Codes - for quick access to all certificates
+export const employeeQrCodes = pgTable("employee_qr_codes", {
+  id: serial("id").primaryKey(),
+  employeeId: integer("employee_id").references(() => employees.id).notNull(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  qrCodeData: text("qr_code_data").notNull(), // Unique identifier for QR access
+  qrCodeImagePath: text("qr_code_image_path"), // Path to QR code image file
+  isActive: boolean("is_active").default(true),
+  accessCount: integer("access_count").default(0), // Track how many times scanned
+  lastAccessedAt: timestamp("last_accessed_at"),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+// Training requests from employees
+export const trainingRequests = pgTable("training_requests", {
+  id: serial("id").primaryKey(),
+  employeeId: integer("employee_id").references(() => employees.id).notNull(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  trainingName: text("training_name").notNull(),
+  requestDate: timestamp("request_date").defaultNow(),
+  status: varchar("status", { length: 20 }).default("pending"), // pending, approved, scheduled, completed
+  notes: text("notes"),
+  approvedBy: integer("approved_by").references(() => employees.id),
+  scheduledDate: timestamp("scheduled_date"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+// Upcoming training sessions for employees
+export const upcomingTraining = pgTable("upcoming_training", {
+  id: serial("id").primaryKey(),
+  employeeId: integer("employee_id").references(() => employees.id).notNull(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  title: text("title").notNull(),
+  date: timestamp("date").notNull(),
+  location: text("location"),
+  duration: text("duration"),
+  trainer: text("trainer"),
+  status: varchar("status", { length: 20 }).default("registered"), // registered, confirmed, completed
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+// AI Generated Certificates (Legacy - for backward compatibility)
 export const certificates = pgTable("certificates", {
   id: serial("id").primaryKey(),
   userId: integer("user_id").references(() => users.id).notNull(),
@@ -330,6 +395,16 @@ export const locations = pgTable("locations", {
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
+
+// Schema types for Employee Certificates
+export const insertEmployeeCertificateSchema = createInsertSchema(employeeCertificates);
+export type InsertEmployeeCertificate = z.infer<typeof insertEmployeeCertificateSchema>;
+export type EmployeeCertificate = typeof employeeCertificates.$inferSelect;
+
+// Schema types for Employee QR Codes
+export const insertEmployeeQrCodeSchema = createInsertSchema(employeeQrCodes);
+export type InsertEmployeeQrCode = z.infer<typeof insertEmployeeQrCodeSchema>;
+export type EmployeeQrCode = typeof employeeQrCodes.$inferSelect;
 
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
@@ -754,7 +829,22 @@ export const insertCertificateSchema = createInsertSchema(certificates).omit({
   createdAt: true,
 });
 
+export const insertTrainingRequestSchema = createInsertSchema(trainingRequests).omit({
+  id: true,
+  createdAt: true,
+  requestDate: true,
+});
+
+export const insertUpcomingTrainingSchema = createInsertSchema(upcomingTraining).omit({
+  id: true,
+  createdAt: true,
+});
+
 export type SelectCertificate = typeof certificates.$inferSelect;
 export type InsertCertificate = z.infer<typeof insertCertificateSchema>;
+export type TrainingRequest = typeof trainingRequests.$inferSelect;
+export type InsertTrainingRequest = z.infer<typeof insertTrainingRequestSchema>;
+export type UpcomingTraining = typeof upcomingTraining.$inferSelect;
+export type InsertUpcomingTraining = z.infer<typeof insertUpcomingTrainingSchema>;
 
 
