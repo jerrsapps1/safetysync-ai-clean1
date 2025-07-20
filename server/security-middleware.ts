@@ -31,11 +31,11 @@ export const securityHeaders = helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://js.stripe.com"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://js.stripe.com", "http://localhost:*", "ws://localhost:*"],
       styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
       fontSrc: ["'self'", "https://fonts.gstatic.com"],
       imgSrc: ["'self'", "data:", "https:", "blob:"],
-      connectSrc: ["'self'", "https://api.stripe.com"],
+      connectSrc: ["'self'", "https://api.stripe.com", "http://localhost:*", "ws://localhost:*", "wss://localhost:*"],
       frameSrc: ["'self'", "https://js.stripe.com"],
     },
   },

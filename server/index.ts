@@ -9,17 +9,15 @@ import {
 
 const app = express();
 
-// Enhanced security middleware
-app.use(securityHeaders);
+// Enhanced security middleware (disable in development for Vite compatibility)
+if (process.env.NODE_ENV === 'production') {
+  app.use(securityHeaders);
+  app.use(generalLimiter);
+  app.use('/api/auth/login', loginLimiter);
+}
 
 // Trust proxy for rate limiting
 app.set('trust proxy', 1);
-
-// Apply rate limiting to all routes
-app.use(generalLimiter);
-
-// Apply stricter rate limiting to login routes
-app.use('/api/auth/login', loginLimiter);
 
 // Basic rate limiting - more permissive for development
 const requestCounts = new Map();
