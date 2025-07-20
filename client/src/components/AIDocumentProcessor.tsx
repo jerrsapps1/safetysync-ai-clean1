@@ -77,7 +77,7 @@ export default function AIDocumentProcessor() {
 
       // Use FormData for real file uploads to handle different file types (PDF, Word, text)
       const formData = new FormData();
-      formData.append('file', file);
+      formData.append('signInDocument', file);
       
       try {
         const response = await fetch('/api/ai/process-signin', {
@@ -106,12 +106,22 @@ export default function AIDocumentProcessor() {
       }
     },
     onSuccess: (data) => {
-      setProcessedData(data.extractedData);
-      setDocumentId(data.processedDocument.id);
-      setEditedData(data.extractedData);
+      console.log('Processing successful, received data:', data);
+      
+      // Handle different response structures
+      const extractedData = data.processedDocument || data.extractedData;
+      const docId = data.documentId || data.processedDocument?.id;
+      
+      setProcessedData(extractedData);
+      setDocumentId(docId);
+      setEditedData(extractedData);
+      
+      const employeeCount = extractedData?.employees?.length || 0;
+      const trainingTitle = extractedData?.trainingTitle || 'training document';
+      
       toast({
-        title: "Document Processed Successfully",
-        description: "AI has extracted training information. Please verify the details below.",
+        title: "🎉 Document Processed Successfully!",
+        description: `AI extracted ${employeeCount} employees from ${trainingTitle}. Ready for verification!`,
       });
       queryClient.invalidateQueries({ queryKey: ['/api/ai/processed-documents'] });
     },

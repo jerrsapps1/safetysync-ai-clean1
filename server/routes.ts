@@ -2273,7 +2273,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/ai/process-signin", authenticateToken, async (req, res) => {
     try {
       const { uploadAndProcessSignIn } = await import("./api/ai-document-processing");
-      return uploadAndProcessSignIn(req, res);
+      await uploadAndProcessSignIn(req, res);
     } catch (error) {
       console.error('AI processing route error:', error);
       res.status(500).json({ success: false, error: 'Processing failed' });
