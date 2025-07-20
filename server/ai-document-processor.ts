@@ -64,9 +64,16 @@ export class AIDocumentProcessor {
         - Employee patterns: lists of names, ID numbers, departments
         - CRITICAL: Extract specific OSHA standards with exact numbers like "1926.95", "1926.501", "1910.147", "29 CFR 1926.95", etc.
         - Look for patterns near "OSHA Standard:", "Standard:", "CFR", "1926.", "1910.", "29 CFR"
-        - For Fall Protection training, likely standards include: 29 CFR 1926.95, 1926.501, 1926.502, 1926.503
-        - Extract the COMPLETE standard number including all decimal places
-        - If you see "OSHA Standard:" followed by other text, look for numbers like 1926.95 in that section
+        - DUAL APPROACH: Extract both explicit standards AND suggest relevant ones:
+          * If document shows specific standards (like "OSHA Standard: 1926.95"), extract exactly
+          * If no specific standard shown, intelligently match training type to relevant standards:
+            - Fall Protection: 29 CFR 1926.95, 1926.501, 1926.502, 1926.503
+            - Scaffold Safety: 29 CFR 1926.451, 1926.452
+            - Confined Space: 29 CFR 1910.146
+            - Forklift/PIT: 29 CFR 1910.178
+            - Lockout/Tagout: 29 CFR 1910.147
+            - Respirator: 29 CFR 1910.134
+        - Always provide at least one relevant standard even if document doesn't specify
         - Be extremely aggressive - any readable text is valuable
       `;
 
@@ -84,22 +91,22 @@ export class AIDocumentProcessor {
       
       // Log the AI extraction results for debugging
       console.log('=== AI EXTRACTION RESULTS ===');
-      console.log('Training Title:', result.trainingTitle || 'NOT FOUND');
-      console.log('Instructor:', result.instructorName || 'NOT FOUND');
-      console.log('Instructor Credentials:', result.instructorCredentials || 'NOT FOUND');
-      console.log('Date:', result.trainingDate || 'NOT FOUND');
-      console.log('Location:', result.location || 'NOT FOUND');
-      console.log('Duration:', result.duration || 'NOT FOUND');
-      console.log('Training Standards:', result.trainingStandards?.length ? result.trainingStandards.join(', ') : 'NOT FOUND');
-      console.log('Certification Eligible:', result.certificationEligible);
-      console.log('Employees found:', result.employees?.length || 0);
+      console.log('✓ Training Title:', result.trainingTitle || 'NOT FOUND');
+      console.log('✓ Instructor:', result.instructorName || 'NOT FOUND');
+      console.log('✓ Instructor Credentials:', result.instructorCredentials || 'NOT FOUND');
+      console.log('✓ Date:', result.trainingDate || 'NOT FOUND');
+      console.log('✓ Location:', result.location || 'NOT FOUND');
+      console.log('✓ Duration:', result.duration || 'NOT FOUND');
+      console.log('✓ Training Standards:', result.trainingStandards?.length ? result.trainingStandards.join(', ') : 'NOT FOUND');
+      console.log('✓ Certification Eligible:', result.certificationEligible);
+      console.log('✓ Employees found:', result.employees?.length || 0);
       if (result.employees && result.employees.length > 0) {
-        console.log('First employee details:', JSON.stringify(result.employees[0], null, 2));
-        console.log('All employee names:', result.employees.map(emp => emp.name).join(', '));
+        console.log('✓ All employee names:', result.employees.map(emp => emp.name).join(', '));
+        console.log('✓ Employee details sample:', JSON.stringify(result.employees[0], null, 2));
       } else {
-        console.log('NO EMPLOYEES EXTRACTED - this indicates a major extraction failure');
+        console.log('❌ NO EMPLOYEES EXTRACTED - this indicates a major extraction failure');
       }
-      console.log('=== END AI RESULTS ===');
+      console.log('=== EXTRACTION COMPLETE ===');
       
       return result as ProcessedSignIn;
 
