@@ -54,6 +54,12 @@ export function Navigation({ onTrialClick, onDemoClick, onLoginClick }: Navigati
                 Case Studies
               </a>
               <a 
+                href="/hr"
+                className="text-gray-700 hover:text-gray-900 hover:bg-gray-100/50 px-3 py-2 text-sm font-medium transition-colors rounded-md"
+              >
+                For HR Teams
+              </a>
+              <a 
                 href="/pricing"
                 className="text-gray-700 hover:text-gray-900 hover:bg-gray-100/50 px-3 py-2 text-sm font-medium transition-colors rounded-md"
               >
@@ -132,6 +138,12 @@ export function Navigation({ onTrialClick, onDemoClick, onLoginClick }: Navigati
                 className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 transition-colors"
               >
                 Case Studies
+              </a>
+              <a 
+                href="/hr"
+                className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 transition-colors"
+              >
+                For HR Teams
               </a>
               <a 
                 href="/pricing"
