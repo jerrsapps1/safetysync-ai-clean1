@@ -11,54 +11,107 @@ import { AlertCircle, CheckCircle2, Calendar, Users, FileText, Shield, Clock, Do
 import { useToast } from "@/hooks/use-toast";
 
 // OSHA Standards and Training Requirements
+// Construction Industry OSHA Standards (Asbestos, Lead, Mold, Demolition focus)
 const OSHA_STANDARDS = [
   {
-    standard: "29 CFR 1910.147",
-    title: "Lockout/Tagout",
-    frequency: "initial + retraining when needed",
-    duration: "4 hours",
+    standard: "29 CFR 1926.1101",
+    title: "Asbestos Worker Training",
+    frequency: "Initial (32 hrs) + Annual (8 hrs)",
+    duration: "32 hours initial, 8 hours refresher",
     competencyRequired: true,
-    recordRetention: "3 years"
+    recordRetention: "EPA requires 3 years",
+    trainerQuals: "EPA-accredited trainer",
+    appliesTo: "Asbestos abatement crews"
   },
   {
-    standard: "29 CFR 1926.95",
-    title: "Fall Protection",
-    frequency: "initial + annual",
-    duration: "8 hours",
+    standard: "29 CFR 1926.62",
+    title: "Lead in Construction",
+    frequency: "Initial + retraining if exposure changes",
+    duration: "Variable based on exposure level",
     competencyRequired: true,
-    recordRetention: "3 years"
+    recordRetention: "40 years",
+    trainerQuals: "Competent person",
+    appliesTo: "Lead abatement + demo crews"
+  },
+  {
+    standard: "EPA 40 CFR 745",
+    title: "Lead Renovator (RRP Rule)",
+    frequency: "Initial (8 hrs) + Refresher (every 5 yrs)",
+    duration: "8 hours initial, 4 hours refresher",
+    competencyRequired: true,
+    recordRetention: "3 years",
+    trainerQuals: "EPA-certified training provider",
+    appliesTo: "Lead renovators"
+  },
+  {
+    standard: "29 CFR 1926 Subpart T",
+    title: "Demolition Safety",
+    frequency: "Initial + new site/process",
+    duration: "8 hours + site-specific",
+    competencyRequired: true,
+    recordRetention: "3 years",
+    trainerQuals: "Competent person",
+    appliesTo: "Demo workers"
   },
   {
     standard: "29 CFR 1910.134",
     title: "Respiratory Protection",
-    frequency: "initial + annual",
+    frequency: "Initial + annual + fit testing",
+    duration: "4 hours + medical eval",
+    competencyRequired: true,
+    recordRetention: "Medical records 30 years",
+    trainerQuals: "Medical provider + qualified trainer",
+    appliesTo: "All who wear respirators (critical for asbestos/lead/mold)"
+  },
+  {
+    standard: "29 CFR 1926.1153",
+    title: "Silica Awareness",
+    frequency: "Initial + task change",
     duration: "4 hours",
     competencyRequired: true,
-    recordRetention: "3 years"
+    recordRetention: "30 years",
+    trainerQuals: "Competent person",
+    appliesTo: "Demo & abatement workers"
+  },
+  {
+    standard: "29 CFR 1926.500",
+    title: "Fall Protection",
+    frequency: "Initial + new hazard",
+    duration: "8 hours",
+    competencyRequired: true,
+    recordRetention: "3 years",
+    trainerQuals: "Fall protection competent person",
+    appliesTo: "Demo and elevated work"
   },
   {
     standard: "29 CFR 1910.1200",
-    title: "Hazard Communication",
-    frequency: "initial + when new chemicals introduced",
+    title: "Hazard Communication (GHS)",
+    frequency: "Initial + chemical updates",
     duration: "4 hours",
     competencyRequired: true,
-    recordRetention: "30 years"
+    recordRetention: "30 years",
+    trainerQuals: "Safety manager or trainer",
+    appliesTo: "All workers handling chemicals"
   },
   {
-    standard: "29 CFR 1910.146",
-    title: "Confined Space Entry",
-    frequency: "initial + annual",
+    standard: "29 CFR 1926.95",
+    title: "Personal Protective Equipment",
+    frequency: "Initial + equipment change",
+    duration: "4 hours + demonstration",
+    competencyRequired: true,
+    recordRetention: "3 years",
+    trainerQuals: "Safety officer",
+    appliesTo: "All workers"
+  },
+  {
+    standard: "AIHA Guidelines",
+    title: "Mold Awareness & Remediation",
+    frequency: "Initial + task change",
     duration: "8 hours",
     competencyRequired: true,
-    recordRetention: "1 year"
-  },
-  {
-    standard: "29 CFR 1910.178",
-    title: "Forklift Operation",
-    frequency: "initial + every 3 years",
-    duration: "4 hours",
-    competencyRequired: true,
-    recordRetention: "operator employed + 3 years"
+    recordRetention: "3 years",
+    trainerQuals: "Qualified Industrial Hygienist",
+    appliesTo: "Mold remediation crews"
   }
 ];
 
@@ -113,63 +166,126 @@ export default function OSHAComplianceManager() {
     const sampleMatrix: TrainingMatrix[] = [
       {
         id: "1",
-        jobTitle: "Production Worker",
-        department: "Manufacturing",
-        requiredTraining: ["29 CFR 1910.147", "29 CFR 1910.1200", "29 CFR 1910.134"],
+        jobTitle: "Asbestos Abatement Worker",
+        department: "Abatement Division",
+        requiredTraining: ["29 CFR 1926.1101", "29 CFR 1910.134", "29 CFR 1910.1200", "29 CFR 1926.95"],
         frequency: {
-          "29 CFR 1910.147": "annual",
+          "29 CFR 1926.1101": "Initial (32 hrs) + Annual (8 hrs)",
+          "29 CFR 1910.134": "annual + fit testing",
           "29 CFR 1910.1200": "initial + updates",
-          "29 CFR 1910.134": "annual"
+          "29 CFR 1926.95": "initial + equipment change"
         },
-        responsibleParty: "Safety Manager",
-        hazardExposure: ["Chemical exposure", "Machine hazards", "Respiratory hazards"]
+        responsibleParty: "EPA-Accredited Supervisor",
+        hazardExposure: ["Asbestos fibers", "Respiratory hazards", "Chemical exposure", "Fall hazards"]
       },
       {
         id: "2", 
-        jobTitle: "Forklift Operator",
-        department: "Warehouse",
-        requiredTraining: ["29 CFR 1910.178", "29 CFR 1910.1200"],
+        jobTitle: "Lead Abatement Specialist",
+        department: "Abatement Division",
+        requiredTraining: ["29 CFR 1926.62", "EPA 40 CFR 745", "29 CFR 1910.134", "29 CFR 1926.95"],
         frequency: {
-          "29 CFR 1910.178": "every 3 years",
+          "29 CFR 1926.62": "initial + exposure changes",
+          "EPA 40 CFR 745": "Initial (8 hrs) + Refresher (every 5 yrs)",
+          "29 CFR 1910.134": "annual + fit testing",
+          "29 CFR 1926.95": "initial + equipment change"
+        },
+        responsibleParty: "Competent Person - Lead",
+        hazardExposure: ["Lead exposure", "Respiratory hazards", "Chemical exposure", "Fall hazards"]
+      },
+      {
+        id: "3",
+        jobTitle: "Mold Remediation Technician", 
+        department: "Abatement Division",
+        requiredTraining: ["AIHA Guidelines", "29 CFR 1910.134", "29 CFR 1910.1200", "29 CFR 1926.95"],
+        frequency: {
+          "AIHA Guidelines": "initial + task change",
+          "29 CFR 1910.134": "annual + fit testing", 
+          "29 CFR 1910.1200": "initial + updates",
+          "29 CFR 1926.95": "initial + equipment change"
+        },
+        responsibleParty: "Qualified Industrial Hygienist",
+        hazardExposure: ["Mold spores", "Respiratory hazards", "Chemical exposure", "Moisture hazards"]
+      },
+      {
+        id: "4",
+        jobTitle: "Demolition Worker",
+        department: "Demolition Division", 
+        requiredTraining: ["29 CFR 1926 Subpart T", "29 CFR 1926.500", "29 CFR 1926.1153", "29 CFR 1910.1200"],
+        frequency: {
+          "29 CFR 1926 Subpart T": "initial + new site/process",
+          "29 CFR 1926.500": "initial + new hazard",
+          "29 CFR 1926.1153": "initial + task change",
           "29 CFR 1910.1200": "initial + updates"
         },
-        responsibleParty: "Warehouse Supervisor",
-        hazardExposure: ["Vehicle operation", "Chemical exposure"]
+        responsibleParty: "Demolition Competent Person",
+        hazardExposure: ["Structural collapse", "Fall hazards", "Silica exposure", "Chemical exposure", "Heavy equipment"]
       }
     ];
 
     const sampleRecords: TrainingRecord[] = [
       {
         id: "1",
-        employeeName: "John Smith",
-        employeeId: "EMP001",
+        employeeName: "Michael Thompson",
+        employeeId: "ASB001",
         trainerName: "Sarah Johnson",
-        trainerQualifications: "OSHA Authorized Trainer, CIH",
-        trainingTopic: "Fall Protection",
-        oshaStandard: "29 CFR 1926.95",
-        trainingDate: "2024-12-15",
-        trainingMethod: "Classroom + Hands-on",
-        assessmentResults: "Pass - 92%",
+        trainerQualifications: "EPA-Accredited Asbestos Instructor, CIH",
+        trainingTopic: "Asbestos Worker Training",
+        oshaStandard: "29 CFR 1926.1101",
+        trainingDate: "2024-11-15",
+        trainingMethod: "EPA-Approved Course + Hands-on",
+        assessmentResults: "Pass - 94% + Practical Demo",
         employeeSignature: true,
-        proofOfUnderstanding: "Written test + Practical demonstration",
-        nextRetrainingDue: "2025-12-15",
+        proofOfUnderstanding: "Written exam + Air monitoring exercise + PPE donning/doffing",
+        nextRetrainingDue: "2025-11-15",
         status: "current"
       },
       {
         id: "2",
-        employeeName: "Maria Garcia",
-        employeeId: "EMP002",
-        trainerName: "Mike Rodriguez",
-        trainerQualifications: "Certified Safety Professional",
-        trainingTopic: "Respiratory Protection",
-        oshaStandard: "29 CFR 1910.134",
-        trainingDate: "2024-01-20",
-        trainingMethod: "Online + Fit Testing",
-        assessmentResults: "Pass - 88%",
+        employeeName: "Jennifer Davis",
+        employeeId: "LEAD002",
+        trainerName: "Mark Rodriguez",
+        trainerQualifications: "EPA RRP Certified Instructor",
+        trainingTopic: "Lead Renovator Training",
+        oshaStandard: "EPA 40 CFR 745",
+        trainingDate: "2020-03-10",
+        trainingMethod: "EPA-Approved Course + Hands-on",
+        assessmentResults: "Pass - 89%",
         employeeSignature: true,
-        proofOfUnderstanding: "Fit test results + Quiz",
-        nextRetrainingDue: "2025-01-20",
+        proofOfUnderstanding: "Written test + Work practice standards demonstration",
+        nextRetrainingDue: "2025-03-10",
         status: "expired"
+      },
+      {
+        id: "3",
+        employeeName: "Carlos Martinez",
+        employeeId: "DEMO003",
+        trainerName: "Lisa Chen",
+        trainerQualifications: "Demolition Competent Person, CSP",
+        trainingTopic: "Demolition Safety",
+        oshaStandard: "29 CFR 1926 Subpart T",
+        trainingDate: "2024-09-20",
+        trainingMethod: "Classroom + Site-Specific Training",
+        assessmentResults: "Pass - 91%",
+        employeeSignature: true,
+        proofOfUnderstanding: "Hazard assessment + Sequence planning exercise",
+        nextRetrainingDue: "New project assignment",
+        status: "current"
+      },
+      {
+        id: "4",
+        employeeName: "Amanda Wilson",
+        employeeId: "MOLD004", 
+        trainerName: "Dr. Robert Kim",
+        trainerQualifications: "Certified Industrial Hygienist, AIHA Member",
+        trainingTopic: "Mold Remediation Training",
+        oshaStandard: "AIHA Guidelines",
+        trainingDate: "2024-10-05",
+        trainingMethod: "Classroom + Field Assessment",
+        assessmentResults: "Pass - 96%",
+        employeeSignature: true,
+        proofOfUnderstanding: "Moisture assessment + Containment setup demonstration",
+        nextRetrainingDue: "Task assignment change",
+        status: "current"
       }
     ];
 
@@ -177,31 +293,65 @@ export default function OSHAComplianceManager() {
       {
         id: "1",
         type: "expired_certificate",
-        severity: "high",
-        description: "Respiratory Protection training expired for 3 employees",
-        affectedEmployees: ["Maria Garcia", "Tom Wilson", "Lisa Chen"],
-        oshaStandard: "29 CFR 1910.134",
-        dueDate: "2025-02-01",
+        severity: "critical",
+        description: "EPA Lead RRP certification expired - Work must stop immediately",
+        affectedEmployees: ["Jennifer Davis", "Robert Johnson", "Kevin Brown"],
+        oshaStandard: "EPA 40 CFR 745",
+        dueDate: "IMMEDIATE - Work stoppage required",
         correctionSteps: [
-          "Schedule refresher training session",
-          "Conduct new fit testing",
-          "Update training records",
-          "Issue new certificates"
+          "STOP all lead-disturbing work immediately",
+          "Contact EPA-approved training provider",
+          "Schedule 4-hour refresher course within 30 days",
+          "Document work stoppage in project records",
+          "Update EPA certification database"
         ]
       },
       {
         id: "2",
-        type: "missing_documentation",
-        severity: "critical",
-        description: "Trainer qualifications not documented for LOTO training",
-        affectedEmployees: ["All maintenance staff"],
-        oshaStandard: "29 CFR 1910.147",
-        dueDate: "2025-01-25",
+        type: "missing_training",
+        severity: "high", 
+        description: "New demolition workers missing required Subpart T training",
+        affectedEmployees: ["James Miller", "Susan Taylor"],
+        oshaStandard: "29 CFR 1926 Subpart T",
+        dueDate: "2025-01-28",
         correctionSteps: [
-          "Obtain trainer credential documentation",
-          "Verify competency authority",
-          "Update training records",
-          "File documentation in audit folder"
+          "Remove workers from demolition assignments",
+          "Schedule 8-hour demolition safety training",
+          "Conduct site-specific hazard briefing",
+          "Document competency demonstration",
+          "Update training matrix"
+        ]
+      },
+      {
+        id: "3",
+        type: "inadequate_trainer",
+        severity: "high",
+        description: "Mold training conducted by unqualified instructor",
+        affectedEmployees: ["All mold division workers trained in Q4 2024"],
+        oshaStandard: "AIHA Guidelines",
+        dueDate: "2025-02-15",
+        correctionSteps: [
+          "Verify all Q4 2024 mold training records",
+          "Contact certified Industrial Hygienist for retraining",
+          "Schedule makeup training sessions", 
+          "Document trainer qualifications",
+          "Update approved trainer list"
+        ]
+      },
+      {
+        id: "4",
+        type: "missing_documentation", 
+        severity: "medium",
+        description: "Fit testing records incomplete for 5 respirator users",
+        affectedEmployees: ["Maria Santos", "Tony Lee", "David Park", "Anna Chen", "Mike Rodriguez"],
+        oshaStandard: "29 CFR 1910.134",
+        dueDate: "2025-02-01",
+        correctionSteps: [
+          "Schedule quantitative fit testing",
+          "Verify medical clearance status",
+          "Update respirator assignment records",
+          "Document make/model/size assignments",
+          "File in individual employee records"
         ]
       }
     ];
