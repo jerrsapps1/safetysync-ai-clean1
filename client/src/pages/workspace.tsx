@@ -42,6 +42,7 @@ import AIDocumentProcessor from "@/components/AIDocumentProcessor";
 import EmployeeProfile from "@/components/EmployeeProfile";
 import ComplianceRecommendationEngine from "@/components/ComplianceRecommendationEngine";
 import InstructorTrainingCompletion from "@/components/InstructorTrainingCompletion";
+import OSHAComplianceManager from "@/components/OSHAComplianceManager";
 
 import { AIPatternSkeleton } from "@/components/ui/ai-skeleton";
 import { SmoothLoading } from "@/components/ui/smooth-loading";
@@ -2062,6 +2063,19 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     >
                       <FileText className="w-4 h-4 mr-3 flex-shrink-0" />
                       {sidebarOpen && <span className="truncate">Compliance Reports</span>}
+                    </Button>
+                  </motion.div>
+                  <motion.div variants={subItemVariants}>
+                    <Button
+                      variant="ghost"
+                      className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
+                        activeTab === "osha-compliance" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                      }`}
+                      onClick={() => handleTabSwitch("osha-compliance")}
+                      title="OSHA Compliance Manager"
+                    >
+                      <Shield className="w-4 h-4 mr-3 flex-shrink-0" />
+                      {sidebarOpen && <span className="truncate">OSHA Compliance Manager</span>}
                     </Button>
                   </motion.div>
                   <motion.div variants={subItemVariants}>
