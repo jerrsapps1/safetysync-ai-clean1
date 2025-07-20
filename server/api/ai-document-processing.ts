@@ -87,29 +87,101 @@ export async function uploadAndProcessSignIn(req: Request, res: Response) {
         
         // Handle different file types
         if (req.file.mimetype === 'application/pdf') {
-          // For PDF files, use dynamic import to handle ES modules
+          // Try multiple PDF extraction methods
+          let extractionMethod = 'none';
+          
+          // Method 1: pdf-parse library
           try {
             const pdfParse = await import('pdf-parse');
             const pdfData = await pdfParse.default(req.file.buffer);
-            documentContent = pdfData.text;
-            console.log('PDF parsed successfully, text length:', documentContent.length);
-          } catch (pdfError) {
-            console.error('PDF parsing failed:', pdfError);
-            // Enhanced fallback: extract readable text from PDF structure
-            const rawText = req.file.buffer.toString('utf-8');
-            // Extract text between parentheses which often contains readable content in PDFs
-            const textMatches = rawText.match(/\((.*?)\)/g);
-            if (textMatches) {
-              documentContent = textMatches
-                .map(match => match.replace(/[()]/g, ''))
-                .filter(text => text.length > 2 && /[a-zA-Z]/.test(text))
-                .join(' ');
+            if (pdfData.text && pdfData.text.length > 100) {
+              documentContent = pdfData.text;
+              extractionMethod = 'pdf-parse';
+              console.log('PDF parsed successfully with pdf-parse, text length:', documentContent.length);
             } else {
-              // Basic cleanup of binary data
-              documentContent = rawText.replace(/[^\x20-\x7E\n\r\t]/g, ' ');
+              throw new Error('pdf-parse returned insufficient text');
             }
-            console.log('Using enhanced fallback text extraction for PDF');
+          } catch (pdfError) {
+            console.error('pdf-parse failed:', pdfError);
+            
+            // Method 2: Try pdfreader
+            try {
+              const pdfreader = await import('pdfreader');
+              const extractedLines: string[] = [];
+              
+              await new Promise((resolve, reject) => {
+                new pdfreader.PdfReader().parseBuffer(req.file.buffer, (err: any, item: any) => {
+                  if (err) {
+                    reject(err);
+                  } else if (!item) {
+                    resolve(null);
+                  } else if (item.text) {
+                    extractedLines.push(item.text);
+                  }
+                });
+              });
+              
+              if (extractedLines.length > 0) {
+                documentContent = extractedLines.join(' ');
+                extractionMethod = 'pdfreader';
+                console.log('PDF parsed successfully with pdfreader, text length:', documentContent.length);
+              } else {
+                throw new Error('pdfreader returned no text');
+              }
+            } catch (pdfreaderError) {
+              console.error('pdfreader failed:', pdfreaderError);
+              
+              // Method 3: Enhanced manual extraction
+              const rawText = req.file.buffer.toString('utf-8');
+              console.log('Both PDF libraries failed, trying manual extraction...');
+              
+              // Strategy 1: Extract all text between common PDF delimiters
+              const patterns = [
+                /\((.*?)\)/g,          // Text in parentheses
+                /\[(.*?)\]/g,          // Text in brackets  
+                /BT\s+(.*?)\s+ET/g,    // Between BT and ET (PDF text operators)
+                /Tj\s*\((.*?)\)/g,     // Tj operators with text
+                />\s*\((.*?)\)\s*</g   // XML-like text content
+              ];
+              
+              const extractedTexts: string[] = [];
+              for (const pattern of patterns) {
+                const matches = rawText.match(pattern);
+                if (matches) {
+                  extractedTexts.push(...matches.map(match => 
+                    match.replace(/[()[\]<>]/g, '')
+                         .replace(/BT|ET|Tj/g, '')
+                         .trim()
+                  ).filter(text => text.length > 2 && /[a-zA-Z]/.test(text)));
+                }
+              }
+              
+              if (extractedTexts.length > 10) {
+                documentContent = extractedTexts.join(' ');
+                extractionMethod = 'manual-patterns';
+                console.log('Manual pattern extraction successful, text length:', documentContent.length);
+              } else {
+                // Final fallback: aggressive word extraction
+                const wordMatches = rawText.match(/[A-Za-z][A-Za-z0-9\s\-\.]{1,50}/g);
+                if (wordMatches && wordMatches.length > 20) {
+                  documentContent = wordMatches
+                    .filter(text => text.length > 2 && /[a-zA-Z]/.test(text))
+                    .join(' ');
+                  extractionMethod = 'word-extraction';
+                  console.log('Word extraction method successful, text length:', documentContent.length);
+                } else {
+                  documentContent = rawText
+                    .replace(/[^\x20-\x7E\n\r\t]/g, ' ')
+                    .replace(/\s+/g, ' ')
+                    .trim();
+                  extractionMethod = 'basic-cleanup';
+                  console.log('Using basic cleanup as last resort, text length:', documentContent.length);
+                }
+              }
+            }
           }
+          
+          console.log(`PDF extraction method used: ${extractionMethod}`);
         } else if (req.file.mimetype.includes('text/') || req.file.originalname.endsWith('.txt')) {
           // Plain text files
           documentContent = req.file.buffer.toString('utf-8');
@@ -129,7 +201,13 @@ export async function uploadAndProcessSignIn(req: Request, res: Response) {
         }
         
         // Show preview of extracted content for debugging
-        console.log('Text preview:', documentContent.substring(0, 200) + '...');
+        console.log('=== EXTRACTED TEXT PREVIEW ===');
+        console.log('First 500 characters:', documentContent.substring(0, 500));
+        console.log('=== MIDDLE SECTION ===');
+        console.log('Middle 500 characters:', documentContent.substring(Math.floor(documentContent.length/2), Math.floor(documentContent.length/2) + 500));
+        console.log('=== LAST SECTION ===');
+        console.log('Last 500 characters:', documentContent.substring(Math.max(0, documentContent.length - 500)));
+        console.log('=== END DEBUG ===');
         
         // Process with AI
         const processedData = await aiDocumentProcessor.processSignInDocument(
