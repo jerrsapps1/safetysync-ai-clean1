@@ -70,7 +70,7 @@ export default function AIDocumentProcessor() {
       // For testing, let's use the sample documents directly
       const text = await file.text();
       
-      const authToken = localStorage.getItem('token') || sessionStorage.getItem('token');
+      const authToken = sessionStorage.getItem('auth_token');
       const response = await fetch('/api/ai/process-signin', {
         method: 'POST',
         headers: {
@@ -111,7 +111,7 @@ export default function AIDocumentProcessor() {
 
   const processTextMutation = useMutation({
     mutationFn: async (documentContent: string) => {
-      const authToken = localStorage.getItem('token') || sessionStorage.getItem('token');
+      const authToken = sessionStorage.getItem('auth_token');
       const response = await fetch('/api/ai/process-signin', {
         method: 'POST',
         headers: {
