@@ -17,6 +17,35 @@ import {
   insertTicketResponseSchema, insertTrainingRequestSchema, insertUpcomingTrainingSessionSchema,
   trainingRequests, upcomingTrainingSessions
 } from "@shared/schema";
+
+// Security tracking for failed login attempts
+const failedAttempts = new Map<string, { count: number; lastAttempt: Date }>();
+
+const trackFailedLogin = (identifier: string): boolean => {
+  const now = new Date();
+  const attempts = failedAttempts.get(identifier);
+  
+  if (!attempts) {
+    failedAttempts.set(identifier, { count: 1, lastAttempt: now });
+    return false; // Not locked out
+  }
+  
+  // Reset count if last attempt was more than 15 minutes ago
+  if (now.getTime() - attempts.lastAttempt.getTime() > 15 * 60 * 1000) {
+    failedAttempts.set(identifier, { count: 1, lastAttempt: now });
+    return false;
+  }
+  
+  attempts.count++;
+  attempts.lastAttempt = now;
+  
+  // Lock out after 5 failed attempts
+  return attempts.count >= 5;
+};
+
+const clearFailedAttempts = (identifier: string): void => {
+  failedAttempts.delete(identifier);
+};
 import { z } from "zod";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -232,11 +261,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // User login endpoint
   app.post("/api/auth/login", async (req, res) => {
     try {
+      const clientIP = req.ip || req.connection.remoteAddress || 'unknown';
       const loginData = loginUserSchema.parse(req.body);
       
+      // Sanitize inputs
+      const sanitizedUsername = loginData.username.trim().toLowerCase();
+      
+      // Check if account is locked due to failed attempts
+      const isLocked = trackFailedLogin(sanitizedUsername);
+      if (isLocked) {
+        return res.status(429).json({ 
+          success: false, 
+          message: "Account temporarily locked due to too many failed attempts. Please try again in 15 minutes." 
+        });
+      }
+      
       // Find user by username
-      const user = await storage.getUserByUsername(loginData.username);
+      const user = await storage.getUserByUsername(sanitizedUsername);
       if (!user) {
+        // Record failed attempt without revealing if username exists
+        trackFailedLogin(sanitizedUsername);
         return res.status(400).json({ 
           success: false, 
           message: "Invalid username or password" 
@@ -246,21 +290,49 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Verify password
       const isValidPassword = await bcrypt.compare(loginData.password, user.password);
       if (!isValidPassword) {
+        // Record failed attempt
+        trackFailedLogin(sanitizedUsername);
+        
+        // Audit log for failed login
+        console.log('SECURITY_AUDIT: Failed login attempt', {
+          username: sanitizedUsername,
+          ip: clientIP,
+          timestamp: new Date().toISOString(),
+          userAgent: req.headers['user-agent']
+        });
+        
         return res.status(400).json({ 
           success: false, 
           message: "Invalid username or password" 
         });
       }
 
+      // Clear failed attempts on successful login
+      clearFailedAttempts(sanitizedUsername);
+      
       // Update last login
       await storage.updateUserLogin(user.id);
 
-      // Generate JWT token
+      // Generate secure JWT token with longer expiration for "remember me"
       const token = jwt.sign(
-        { userId: user.id, username: user.username, email: user.email },
-        process.env.JWT_SECRET || 'development-secret-key',
-        { expiresIn: '24h' }
+        { 
+          userId: user.id, 
+          username: user.username, 
+          email: user.email,
+          iat: Math.floor(Date.now() / 1000)
+        },
+        process.env.JWT_SECRET || 'development-secret-key-change-in-production',
+        { expiresIn: '7d' } // Extended for deployment persistence
       );
+
+      // Audit log for successful login
+      console.log('SECURITY_AUDIT: Successful login', {
+        userId: user.id,
+        username: sanitizedUsername,
+        ip: clientIP,
+        timestamp: new Date().toISOString(),
+        userAgent: req.headers['user-agent']
+      });
 
       // Don't return password in response
       const { password, ...userWithoutPassword } = user;

@@ -1,27 +1,25 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import { 
+  securityHeaders, 
+  generalLimiter,
+  loginLimiter 
+} from "./security-middleware";
 
 const app = express();
 
-// Security middleware
-app.use((req, res, next) => {
-  // Remove server signature
-  res.removeHeader('X-Powered-By');
-  
-  // Security headers
-  res.setHeader('X-Frame-Options', 'DENY');
-  res.setHeader('X-Content-Type-Options', 'nosniff');
-  res.setHeader('X-XSS-Protection', '1; mode=block');
-  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
-  res.setHeader('Permissions-Policy', 'geolocation=(), microphone=(), camera=()');
-  
-  // Rate limiting headers
-  res.setHeader('X-RateLimit-Limit', '100');
-  res.setHeader('X-RateLimit-Remaining', '99');
-  
-  next();
-});
+// Enhanced security middleware
+app.use(securityHeaders);
+
+// Trust proxy for rate limiting
+app.set('trust proxy', 1);
+
+// Apply rate limiting to all routes
+app.use(generalLimiter);
+
+// Apply stricter rate limiting to login routes
+app.use('/api/auth/login', loginLimiter);
 
 // Basic rate limiting - more permissive for development
 const requestCounts = new Map();
