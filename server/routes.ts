@@ -5,6 +5,7 @@ import { storage } from "./storage";
 import { cloneDetector } from "./ai-clone-detection";
 import { emailAutomation } from "./email-automation";
 import emailAutomationRoutes from "./api/email-automation";
+import instructorTrainingSessionRoutes from "./api/instructor-training-sessions";
 import { billingAnalytics } from "./billing-analytics";
 import { 
   insertLeadSchema, insertUserSchema, loginUserSchema, insertComplianceReportSchema, 
@@ -13,8 +14,8 @@ import {
   insertEmployeeTrainingSchema, insertCertificateSchema, insertDocumentSchema,
   insertAuditLogSchema, insertNotificationSchema, insertIntegrationSchema, insertLocationSchema,
   insertCompanyProfileSchema,
-  insertTicketResponseSchema, insertTrainingRequestSchema, insertUpcomingTrainingSchema,
-  trainingRequests, upcomingTraining
+  insertTicketResponseSchema, insertTrainingRequestSchema, insertUpcomingTrainingSessionSchema,
+  trainingRequests, upcomingTrainingSessions
 } from "@shared/schema";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
@@ -2307,6 +2308,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
     return generateWalletCard(req, res);
   });
 
+  // Instructor-led Training Completion Routes
+  app.post("/api/instructor/complete-training", authenticateToken, async (req, res) => {
+    try {
+      const { completeInstructorTraining } = await import("./api/instructor-training-completion");
+      await completeInstructorTraining(req, res);
+    } catch (error) {
+      console.error('Instructor training completion route error:', error);
+      res.status(500).json({ success: false, error: 'Training completion failed' });
+    }
+  });
+
+  app.get("/api/instructor/training-sessions", authenticateToken, async (req, res) => {
+    try {
+      const { getInstructorTrainingSessions } = await import("./api/instructor-training-completion");
+      await getInstructorTrainingSessions(req, res);
+    } catch (error) {
+      console.error('Get training sessions route error:', error);
+      res.status(500).json({ success: false, error: 'Failed to fetch training sessions' });
+    }
+  });
+
   // Compliance Recommendation Engine Routes
   app.get("/api/compliance/recommendations", authenticateToken, async (req, res) => {
     const { getPersonalizedRecommendations } = await import("./api/compliance-recommendations");
@@ -2428,12 +2450,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const upcoming = await db
         .select()
-        .from(upcomingTraining)
+        .from(upcomingTrainingSessions)
         .where(and(
-          eq(upcomingTraining.employeeId, employeeId),
-          eq(upcomingTraining.userId, userId)
+          eq(upcomingTrainingSessions.employeeId, employeeId),
+          eq(upcomingTrainingSessions.userId, userId)
         ))
-        .orderBy(upcomingTraining.date);
+        .orderBy(upcomingTrainingSessions.date);
 
       res.json(upcoming);
     } catch (error) {
@@ -2449,13 +2471,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(401).json({ success: false, error: 'Unauthorized' });
       }
 
-      const validatedData = insertUpcomingTrainingSchema.parse({
+      const validatedData = insertUpcomingTrainingSessionSchema.parse({
         ...req.body,
         userId
       });
 
       const [training] = await db
-        .insert(upcomingTraining)
+        .insert(upcomingTrainingSessions)
         .values(validatedData)
         .returning();
 
@@ -2494,6 +2516,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
     const { viewEmployeeCertificatesPublic } = await import("./api/employee-certificates");
     return viewEmployeeCertificatesPublic(req, res);
   });
+
+  // Register instructor training session routes
+  instructorTrainingSessionRoutes(app);
 
   const httpServer = createServer(app);
 
