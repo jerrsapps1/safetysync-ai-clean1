@@ -194,14 +194,12 @@ export default function AIDocumentProcessor() {
 
   const verifyMutation = useMutation({
     mutationFn: async () => {
-      return apiRequest(`/api/ai/verify-and-generate`, {
-        method: 'POST',
-        body: JSON.stringify({
-          documentId,
-          verifiedData: editedData,
-          instructorNotes
-        })
+      const response = await apiRequest('POST', '/api/ai/verify-and-generate', {
+        documentId,
+        verifiedData: editedData,
+        instructorNotes
       });
+      return response.json();
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['/api/ai/certificates'] });
