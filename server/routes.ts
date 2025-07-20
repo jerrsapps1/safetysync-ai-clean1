@@ -2304,6 +2304,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
     return generateWalletCard(req, res);
   });
 
+  // Compliance Recommendation Engine Routes
+  app.get("/api/compliance/recommendations", authenticateToken, async (req, res) => {
+    const { getPersonalizedRecommendations } = await import("./api/compliance-recommendations");
+    return getPersonalizedRecommendations(req, res);
+  });
+
+  app.get("/api/compliance/analytics", authenticateToken, async (req, res) => {
+    const { getComplianceAnalytics } = await import("./api/compliance-recommendations");
+    return getComplianceAnalytics(req, res);
+  });
+
+  app.post("/api/compliance/dismiss", authenticateToken, async (req, res) => {
+    const { dismissRecommendation } = await import("./api/compliance-recommendations");
+    return dismissRecommendation(req, res);
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;
