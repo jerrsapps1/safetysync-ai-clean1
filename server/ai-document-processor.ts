@@ -140,47 +140,80 @@ export class AIDocumentProcessor {
       return certificateIds;
     }
 
+    // Import the certificate generator
+    const { certificateGenerator } = await import('./certificate-generator');
+
     for (const employee of processedData.employees) {
       if (employee.completionStatus === 'completed' && employee.signature) {
         
-        // Generate certificate content using AI
-        const certificateContent = await this.generateCertificateContent(
-          employee.name,
-          processedData.trainingTitle,
-          processedData.instructorName,
-          processedData.instructorCredentials,
-          processedData.trainingDate,
-          processedData.trainingStandards
-        );
+        try {
+          // Generate professional OSHA-compliant certificate
+          const certResult = await certificateGenerator.generateCertificate({
+            employeeName: employee.name,
+            employeeId: employee.employeeId || `EMP${Date.now().toString().slice(-6)}`,
+            trainingName: processedData.trainingTitle,
+            completionDate: processedData.trainingDate,
+            instructorName: processedData.instructorName,
+            instructorCredentials: processedData.instructorCredentials,
+            location: processedData.location,
+            duration: processedData.duration,
+            companyName: 'SafetySync.AI'
+          });
 
-        // Generate wallet card content
-        const walletCardContent = await this.generateWalletCardContent(
-          employee.name,
-          processedData.trainingTitle,
-          processedData.trainingDate,
-          processedData.trainingStandards,
-          certificateContent.validityPeriod
-        );
+          // Generate wallet card
+          const walletCardHtml = certificateGenerator.generateWalletCard({
+            employeeName: employee.name,
+            employeeId: employee.employeeId || `EMP${Date.now().toString().slice(-6)}`,
+            trainingName: processedData.trainingTitle,
+            completionDate: processedData.trainingDate,
+            expiryDate: certResult.expiryDate,
+            instructorName: processedData.instructorName,
+            instructorCredentials: processedData.instructorCredentials,
+            companyName: 'SafetySync.AI',
+            certificateNumber: certResult.certificateNumber
+          });
 
-        // Store certificate in database
-        const [certificate] = await db.insert(certificates).values({
-          userId,
-          employeeName: employee.name,
-          employeeId: employee.employeeId || null,
-          certificationType: processedData.trainingTitle,
-          issueDate: new Date(processedData.trainingDate),
-          expirationDate: this.calculateExpirationDate(processedData.trainingTitle),
-          instructorName: processedData.instructorName,
-          instructorCredentials: processedData.instructorCredentials,
-          trainingStandards: processedData.trainingStandards,
-          certificateContent: JSON.stringify(certificateContent),
-          walletCardContent: JSON.stringify(walletCardContent),
-          status: 'active'
-        }).returning();
-        
-        console.log(`✓ Generated certificate for ${employee.name}: ${processedData.trainingTitle}`);
+          // Save wallet card to file
+          const fs = await import('fs/promises');
+          const path = await import('path');
+          const walletCardDir = path.join(process.cwd(), 'uploads', 'wallet-cards');
+          try {
+            await fs.access(walletCardDir);
+          } catch {
+            await fs.mkdir(walletCardDir, { recursive: true });
+          }
 
-        certificateIds.push(certificate.id.toString());
+          const walletCardFilename = `wallet_card_${employee.employeeId || `EMP${Date.now().toString().slice(-6)}`}_${Date.now()}.html`;
+          const walletCardPath = path.join(walletCardDir, walletCardFilename);
+          await fs.writeFile(walletCardPath, walletCardHtml, 'utf8');
+
+          // Store certificate in database
+          const [certificate] = await db.insert(certificates).values({
+            userId,
+            employeeName: employee.name,
+            employeeId: employee.employeeId || null,
+            certificationType: processedData.trainingTitle,
+            issueDate: new Date(processedData.trainingDate),
+            expirationDate: new Date(certResult.expiryDate),
+            instructorName: processedData.instructorName,
+            instructorCredentials: processedData.instructorCredentials,
+            trainingStandards: processedData.trainingStandards,
+            certificateContent: certResult.certificateUrl,
+            walletCardContent: `/uploads/wallet-cards/${walletCardFilename}`,
+            certificateNumber: certResult.certificateNumber,
+            status: 'active'
+          }).returning();
+          
+          console.log(`✓ Generated professional certificate for ${employee.name}: ${certResult.certificateNumber}`);
+          console.log(`✓ Certificate URL: ${certResult.certificateUrl}`);
+          console.log(`✓ Wallet Card URL: /uploads/wallet-cards/${walletCardFilename}`);
+
+          certificateIds.push(certificate.id.toString());
+
+        } catch (error) {
+          console.error(`Failed to generate certificate for ${employee.name}:`, error);
+          // Continue with other employees even if one fails
+        }
       }
     }
 

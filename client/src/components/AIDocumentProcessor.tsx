@@ -206,15 +206,15 @@ export default function AIDocumentProcessor() {
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['/api/ai/certificates'] });
       toast({
-        title: "Certificates Generated",
-        description: `Successfully generated ${data.certificatesGenerated} certificates`,
+        title: "Certificates Generated Successfully!",
+        description: `Generated ${data.certificatesGenerated} professional OSHA-compliant certificates and wallet cards. View them in the Generated Certificates section below.`,
       });
-      // Reset form
-      setSelectedFile(null);
-      setProcessedData(null);
-      setEditedData(null);
-      setDocumentId(null);
-      setInstructorNotes('');
+      // Don't reset form immediately - let user see results
+      // setSelectedFile(null);
+      // setProcessedData(null);
+      // setEditedData(null);
+      // setDocumentId(null);
+      // setInstructorNotes('');
     },
     onError: (error) => {
       toast({
@@ -770,14 +770,38 @@ Date: January 21, 2025`
                       <Users className="h-3 w-3 mr-1" />
                       {cert.instructorName}
                     </p>
+                    {cert.certificateNumber && (
+                      <p className="flex items-center">
+                        <Shield className="h-3 w-3 mr-1" />
+                        {cert.certificateNumber}
+                      </p>
+                    )}
                   </div>
 
                   <div className="flex space-x-2">
-                    <Button variant="outline" size="sm" className="flex-1">
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="flex-1"
+                      onClick={() => {
+                        if (cert.certificateContent) {
+                          window.open(cert.certificateContent, '_blank');
+                        }
+                      }}
+                    >
                       <Download className="h-3 w-3 mr-1" />
-                      Download
+                      Certificate
                     </Button>
-                    <Button variant="outline" size="sm" className="flex-1">
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="flex-1"
+                      onClick={() => {
+                        if (cert.walletCardContent) {
+                          window.open(cert.walletCardContent, '_blank');
+                        }
+                      }}
+                    >
                       <CreditCard className="h-3 w-3 mr-1" />
                       Wallet Card
                     </Button>
