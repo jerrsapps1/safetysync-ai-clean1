@@ -62,7 +62,7 @@ async function generateComplianceReportData(reportType: string, periodStart?: st
     name: `${emp.firstName} ${emp.lastName}`,
     position: emp.position,
     department: emp.department,
-    hireDate: emp.hireDate.toISOString().split('T')[0]
+    hireDate: emp.hireDate ? emp.hireDate.toISOString().split('T')[0] : new Date().toISOString().split('T')[0]
   }));
 
   const mockTrainingData = [
@@ -166,6 +166,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const hashedPassword = await bcrypt.hash("test123", 10);
       const user = await storage.createUser({
+        username: "testuser",
         email: "test@safetysync.ai",
         password: hashedPassword,
         name: "Test User",
@@ -177,7 +178,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json({ success: true, user: userWithoutPassword });
     } catch (error) {
       console.error("Error creating test user:", error);
-      res.status(500).json({ success: false, message: error.message });
+      res.status(500).json({ 
+        success: false, 
+        message: error instanceof Error ? error.message : "Failed to create test user" 
+      });
     }
   });
 
@@ -186,6 +190,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const hashedPassword = await bcrypt.hash("demo123", 10);
       const user = await storage.createUser({
+        username: "demouser",
         email: "demo@safetysync.ai",
         password: hashedPassword,
         name: "Demo User",
@@ -197,7 +202,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json({ success: true, user: userWithoutPassword });
     } catch (error) {
       console.error("Error creating demo user:", error);
-      res.status(500).json({ success: false, message: error.message });
+      res.status(500).json({ 
+        success: false, 
+        message: error instanceof Error ? error.message : "Failed to create demo user" 
+      });
     }
   });
 
@@ -313,7 +321,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Update last login
       await storage.updateUserLogin(user.id);
 
-      // Generate secure JWT token with longer expiration for "remember me"
+      // Generate secure JWT token with longer expiration for deployment persistence
       const token = jwt.sign(
         { 
           userId: user.id, 
