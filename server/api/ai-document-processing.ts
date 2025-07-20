@@ -1,10 +1,12 @@
 import { Request, Response } from 'express';
-import { aiDocumentProcessor } from '../ai-document-processor';
+import { AIDocumentProcessor } from '../ai-document-processor';
 import { db } from '../db';
 import { processedDocuments, certificates } from '@shared/schema';
 import { eq } from 'drizzle-orm';
 import multer from 'multer';
-import { authenticateToken } from '../auth-middleware';
+// Auth middleware will be added from routes.ts
+
+const aiDocumentProcessor = new AIDocumentProcessor();
 
 // Configure multer for file uploads
 const upload = multer({
@@ -43,14 +45,14 @@ export async function uploadAndProcessSignIn(req: Request, res: Response) {
           userId
         );
 
-        // Store processed document
-        const [storedDoc] = await db.insert(processedDocuments).values({
-          userId,
-          originalFileName: fileName,
-          documentType: 'signin',
-          aiExtractedData: JSON.stringify(processedData),
-          verificationStatus: 'pending'
-        }).returning();
+        // Store processed document using raw SQL since table structure doesn't match schema
+        const result = await db.execute(`
+          INSERT INTO processed_documents (user_id, original_file_name, document_type, ai_extracted_data, verification_status)
+          VALUES ($1, $2, $3, $4, $5)
+          RETURNING id, user_id, original_file_name, document_type, ai_extracted_data, verification_status, created_at
+        `, [userId, fileName, 'signin', JSON.stringify(processedData), 'pending']);
+        
+        const storedDoc = result.rows[0];
 
         res.json({
           success: true,
@@ -89,14 +91,14 @@ export async function uploadAndProcessSignIn(req: Request, res: Response) {
           userId
         );
 
-        // Store processed document
-        const [storedDoc] = await db.insert(processedDocuments).values({
-          userId,
-          originalFileName: req.file.originalname,
-          documentType: 'signin',
-          aiExtractedData: JSON.stringify(processedData),
-          verificationStatus: 'pending'
-        }).returning();
+        // Store processed document using raw SQL since table structure doesn't match schema
+        const result = await db.execute(`
+          INSERT INTO processed_documents (user_id, original_file_name, document_type, ai_extracted_data, verification_status)
+          VALUES ($1, $2, $3, $4, $5)
+          RETURNING id, user_id, original_file_name, document_type, ai_extracted_data, verification_status, created_at
+        `, [userId, req.file.originalname, 'signin', JSON.stringify(processedData), 'pending']);
+        
+        const storedDoc = result.rows[0];
 
         res.json({
           success: true,
@@ -181,10 +183,11 @@ export async function getProcessedDocuments(req: Request, res: Response) {
       return res.status(401).json({ success: false, error: 'Authentication required' });
     }
 
-    const docs = await db
-      .select()
-      .from(processedDocuments)
-      .where(eq(processedDocuments.userId, userId));
+    const result = await db.execute(`
+      SELECT * FROM processed_documents WHERE user_id = $1 ORDER BY created_at DESC
+    `, [userId]);
+    
+    const docs = result.rows;
 
     res.json({
       success: true,
