@@ -1,0 +1,752 @@
+# Employee Portal - Complete Code Package
+
+This package contains all the code needed to implement a comprehensive employee self-service portal with training record viewing, certificate downloads, training requests, and profile management.
+
+## Overview
+
+The employee portal system includes:
+- **Training Record Viewing**: View completed certifications and expiry dates
+- **Certificate Downloads**: Download and view training certificates
+- **Training Requests**: Submit requests for new training or renewals
+- **Profile Management**: Update profile photo and view personal information
+- **Progress Tracking**: Visual progress indicators for training completion
+- **Mobile Responsive**: Optimized for mobile devices
+
+## 1. Database Schema (shared/schema.ts)
+
+Training requests table structure:
+
+```typescript
+export const trainingRequests = pgTable("training_requests", {
+  id: serial("id").primaryKey(),
+  employeeId: integer("employee_id").references(() => employees.id).notNull(),
+  trainingTypeId: integer("training_type_id").references(() => trainingTypes.id).notNull(),
+  requestDate: timestamp("request_date").defaultNow(),
+  status: varchar("status", { length: 20 }).default("pending"), // pending, approved, scheduled, completed
+  notes: text("notes"),
+  approvedBy: integer("approved_by").references(() => employees.id),
+  scheduledDate: timestamp("scheduled_date"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const upcomingTraining = pgTable("upcoming_training", {
+  id: serial("id").primaryKey(),
+  employeeId: integer("employee_id").references(() => employees.id).notNull(),
+  title: text("title").notNull(),
+  date: timestamp("date").notNull(),
+  location: text("location"),
+  duration: text("duration"),
+  trainer: text("trainer"),
+  status: varchar("status", { length: 20 }).default("registered"), // registered, confirmed, completed
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+// Schema for form validation
+export const insertTrainingRequestSchema = createInsertSchema(trainingRequests).omit({
+  id: true,
+  createdAt: true,
+  requestDate: true,
+});
+
+export type TrainingRequest = typeof trainingRequests.$inferSelect;
+export type InsertTrainingRequest = z.infer<typeof insertTrainingRequestSchema>;
+```
+
+## 2. API Routes (server/routes.ts)
+
+Add these routes to your Express server:
+
+```typescript
+// Get employee portal data
+app.get("/api/employee-portal/:employeeId", async (req, res) => {
+  try {
+    const employeeId = req.params.employeeId;
+    const employees = await dbStorage.getEmployees(1); // Adjust company ID as needed
+    const employee = employees.find(emp => emp.employeeId === employeeId);
+    
+    if (!employee) {
+      return res.status(404).json({ message: "Employee not found" });
+    }
+    
+    res.json(employee);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to fetch employee data" });
+  }
+});
+
+// Get training requests for employee
+app.get("/api/training-requests/:employeeId", async (req, res) => {
+  try {
+    const employeeId = req.params.employeeId;
+    const requests = await dbStorage.getTrainingRequestsByEmployee(employeeId);
+    res.json(requests);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to fetch training requests" });
+  }
+});
+
+// Submit training request
+app.post("/api/training-requests", async (req, res) => {
+  try {
+    const validatedData = insertTrainingRequestSchema.parse(req.body);
+    const request = await dbStorage.createTrainingRequest(validatedData);
+    res.status(201).json(request);
+  } catch (error) {
+    res.status(400).json({ message: "Invalid training request data", error });
+  }
+});
+
+// Get upcoming training for employee
+app.get("/api/upcoming-training/:employeeId", async (req, res) => {
+  try {
+    const employeeId = req.params.employeeId;
+    const upcomingTraining = await dbStorage.getUpcomingTraining(employeeId);
+    res.json(upcomingTraining);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to fetch upcoming training" });
+  }
+});
+
+// Update employee photo
+app.post("/api/employees/:id/photo", upload.single('photo'), async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    if (!req.file) {
+      return res.status(400).json({ message: "No photo uploaded" });
+    }
+    
+    const photoUrl = `/uploads/${req.file.filename}`;
+    const employee = await dbStorage.updateEmployee(id, { photo: photoUrl });
+    
+    if (!employee) {
+      return res.status(404).json({ message: "Employee not found" });
+    }
+    
+    res.json({ photo: photoUrl });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to update photo" });
+  }
+});
+```
+
+## 3. Storage Methods (server/storage.ts)
+
+Add these methods to your storage interface:
+
+```typescript
+interface IStorage {
+  // Training Requests
+  getTrainingRequestsByEmployee(employeeId: string): Promise<TrainingRequest[]>;
+  createTrainingRequest(data: InsertTrainingRequest): Promise<TrainingRequest>;
+  updateTrainingRequest(id: number, data: Partial<InsertTrainingRequest>): Promise<TrainingRequest | null>;
+  
+  // Upcoming Training
+  getUpcomingTraining(employeeId: string): Promise<UpcomingTraining[]>;
+  createUpcomingTraining(data: InsertUpcomingTraining): Promise<UpcomingTraining>;
+}
+
+// Implementation for database storage
+class DatabaseStorage implements IStorage {
+  async getTrainingRequestsByEmployee(employeeId: string): Promise<TrainingRequest[]> {
+    const employee = await db
+      .select()
+      .from(employees)
+      .where(eq(employees.employeeId, employeeId))
+      .limit(1);
+    
+    if (!employee.length) return [];
+    
+    const requests = await db
+      .select({
+        id: trainingRequests.id,
+        trainingTypeId: trainingRequests.trainingTypeId,
+        trainingTypeName: trainingTypes.name,
+        requestDate: trainingRequests.requestDate,
+        status: trainingRequests.status,
+        notes: trainingRequests.notes,
+        requestedBy: sql`${employees.firstName} || ' ' || ${employees.lastName}`.as('requestedBy'),
+      })
+      .from(trainingRequests)
+      .leftJoin(trainingTypes, eq(trainingRequests.trainingTypeId, trainingTypes.id))
+      .leftJoin(employees, eq(trainingRequests.employeeId, employees.id))
+      .where(eq(trainingRequests.employeeId, employee[0].id))
+      .orderBy(desc(trainingRequests.requestDate));
+    
+    return requests;
+  }
+
+  async createTrainingRequest(data: InsertTrainingRequest): Promise<TrainingRequest> {
+    const [result] = await db
+      .insert(trainingRequests)
+      .values(data)
+      .returning();
+    
+    return result;
+  }
+
+  async getUpcomingTraining(employeeId: string): Promise<UpcomingTraining[]> {
+    const employee = await db
+      .select()
+      .from(employees)
+      .where(eq(employees.employeeId, employeeId))
+      .limit(1);
+    
+    if (!employee.length) return [];
+    
+    const upcoming = await db
+      .select()
+      .from(upcomingTraining)
+      .where(eq(upcomingTraining.employeeId, employee[0].id))
+      .orderBy(upcomingTraining.date);
+    
+    return upcoming;
+  }
+}
+```
+
+## 4. Utility Functions (client/src/lib/utils.ts)
+
+Status checking utilities for the employee portal:
+
+```typescript
+export function getCertificationStatus(record: TrainingRecord): "valid" | "expiring" | "expired" {
+  if (!record.expiryDate) return "valid";
+  
+  const now = new Date();
+  const expiryDate = new Date(record.expiryDate);
+  const daysUntilExpiry = Math.ceil((expiryDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+  
+  if (daysUntilExpiry < 0) return "expired";
+  if (daysUntilExpiry <= 30) return "expiring";
+  return "valid";
+}
+
+export function getTrainingStatus(employee: EmployeeWithTraining): "compliant" | "pending" | "expired" {
+  if (!employee.trainingRecords || employee.trainingRecords.length === 0) {
+    return "pending";
+  }
+
+  const now = new Date();
+  let hasExpired = false;
+  let allCompliant = true;
+
+  for (const record of employee.trainingRecords) {
+    if (record.expiryDate && new Date(record.expiryDate) < now) {
+      hasExpired = true;
+      allCompliant = false;
+    }
+  }
+
+  if (hasExpired) return "expired";
+  if (allCompliant && employee.trainingRecords.length > 0) return "compliant";
+  return "pending";
+}
+
+export function formatDate(date: Date | string): string {
+  return new Date(date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+}
+```
+
+## 5. Employee Portal Page Component (client/src/pages/employee-portal.tsx)
+
+Complete React component for employee self-service portal:
+
+```typescript
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Progress } from "@/components/ui/progress";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { 
+  User, 
+  Award, 
+  Calendar, 
+  Clock, 
+  Download, 
+  Bell, 
+  Settings, 
+  Camera,
+  QrCode,
+  FileText,
+  AlertCircle,
+  CheckCircle,
+  BookOpen
+} from "lucide-react";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
+import { apiRequest, queryClient } from "@/lib/queryClient";
+import { EmployeeWithTraining } from "@shared/schema";
+import CompanyHeader from "@/components/company-header";
+import { getTrainingStatus, formatDate, getCertificationStatus } from "@/lib/utils";
+
+interface TrainingRequest {
+  id: number;
+  trainingTypeId: number;
+  trainingTypeName: string;
+  requestDate: string;
+  status: "pending" | "approved" | "scheduled" | "completed";
+  requestedBy: string;
+  notes?: string;
+}
+
+interface UpcomingTraining {
+  id: number;
+  title: string;
+  date: string;
+  location: string;
+  duration: string;
+  trainer: string;
+  status: "registered" | "confirmed" | "completed";
+}
+
+export default function EmployeePortalPage() {
+  const { toast } = useToast();
+  const [employeeId, setEmployeeId] = useState("EMP001"); // This would come from auth context
+  const [isPhotoDialogOpen, setIsPhotoDialogOpen] = useState(false);
+  const [isRequestDialogOpen, setIsRequestDialogOpen] = useState(false);
+  const [selectedTrainingType, setSelectedTrainingType] = useState("");
+  const [requestNotes, setRequestNotes] = useState("");
+
+  const { data: employee } = useQuery<EmployeeWithTraining>({
+    queryKey: ['/api/employee-portal', employeeId],
+  });
+
+  const { data: trainingRequests } = useQuery<TrainingRequest[]>({
+    queryKey: ['/api/training-requests', employeeId],
+  });
+
+  const { data: upcomingTraining } = useQuery<UpcomingTraining[]>({
+    queryKey: ['/api/upcoming-training', employeeId],
+  });
+
+  const { data: trainingTypes } = useQuery({
+    queryKey: ['/api/training-types'],
+  });
+
+  const updatePhotoMutation = useMutation({
+    mutationFn: async (file: File) => {
+      const formData = new FormData();
+      formData.append('photo', file);
+      const response = await fetch(`/api/employees/${employee?.id}/photo`, {
+        method: 'POST',
+        body: formData,
+      });
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/employee-portal'] });
+      setIsPhotoDialogOpen(false);
+      toast({
+        title: "Photo Updated",
+        description: "Your profile photo has been updated successfully.",
+      });
+    },
+  });
+
+  const requestTrainingMutation = useMutation({
+    mutationFn: async (data: { trainingTypeId: string; notes: string }) => {
+      const response = await apiRequest("POST", `/api/training-requests`, {
+        employeeId,
+        trainingTypeId: parseInt(data.trainingTypeId),
+        notes: data.notes,
+      });
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/training-requests'] });
+      setIsRequestDialogOpen(false);
+      setSelectedTrainingType("");
+      setRequestNotes("");
+      toast({
+        title: "Training Requested",
+        description: "Your training request has been submitted for approval.",
+      });
+    },
+  });
+
+  // Mock data for demonstration
+  const mockEmployee: EmployeeWithTraining = {
+    id: 1,
+    employeeId: "EMP001",
+    firstName: "John",
+    lastName: "Smith",
+    email: "john.smith@company.com",
+    phone: "(555) 123-4567",
+    department: "Construction",
+    position: "Site Supervisor",
+    hireDate: "2023-01-15",
+    status: "active",
+    photo: null,
+    companyId: 1,
+    company: { id: 1, name: "SafetySync.ai", logo: null, primaryColor: "#3b82f6", secondaryColor: "#1e40af" },
+    trainingRecords: [
+      {
+        id: 1,
+        employeeId: 1,
+        trainingTypeId: 1,
+        completionDate: "2024-06-15",
+        expiryDate: "2025-06-15",
+        certificateNumber: "FP-2024-001",
+        certificateUrl: "/certificates/fp-001.pdf",
+        createdAt: "2024-06-15",
+        trainingType: {
+          id: 1,
+          name: "Fall Protection",
+          description: "OSHA compliant fall protection training",
+          validityPeriod: 365,
+          isRequired: true,
+          companyId: 1,
+          createdAt: "2024-01-01"
+        }
+      }
+    ]
+  };
+
+  const employeeData = employee || mockEmployee;
+  const overallStatus = getTrainingStatus(employeeData);
+  const completedTrainings = employeeData.trainingRecords.length;
+  const totalRequiredTrainings = 8; // This would come from company requirements
+
+  const handlePhotoUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      updatePhotoMutation.mutate(file);
+    }
+  };
+
+  const handleRequestTraining = () => {
+    if (selectedTrainingType) {
+      requestTrainingMutation.mutate({
+        trainingTypeId: selectedTrainingType,
+        notes: requestNotes
+      });
+    }
+  };
+
+  const getStatusIcon = (status: string) => {
+    switch (status) {
+      case "compliant": return <CheckCircle className="h-4 w-4 text-green-600" />;
+      case "pending": return <Clock className="h-4 w-4 text-yellow-600" />;
+      case "expired": return <AlertCircle className="h-4 w-4 text-red-600" />;
+      default: return <AlertCircle className="h-4 w-4 text-gray-600" />;
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <div className="bg-white border-b border-gray-200 px-4 py-6">
+        <CompanyHeader 
+          title={`${employeeData.firstName} ${employeeData.lastName}`} 
+          description={`${employeeData.position} • ${employeeData.department}`} 
+        />
+        <div className="mt-6 flex items-center justify-between">
+          <div className="flex items-center space-x-4">
+            <Avatar className="h-12 w-12">
+              <AvatarImage src={employeeData.photo || ""} />
+              <AvatarFallback>
+                {employeeData.firstName[0]}{employeeData.lastName[0]}
+              </AvatarFallback>
+            </Avatar>
+            <div>
+              <h2 className="text-lg font-semibold text-gray-900">
+                My Training Portal
+              </h2>
+              <p className="text-sm text-gray-600">View training records and submit requests</p>
+            </div>
+          </div>
+          <div className="flex items-center space-x-2">
+            {getStatusIcon(overallStatus)}
+            <Badge variant={overallStatus === "compliant" ? "default" : overallStatus === "pending" ? "secondary" : "destructive"}>
+              {overallStatus}
+            </Badge>
+          </div>
+        </div>
+      </div>
+
+      <div className="p-4 space-y-6">
+        {/* Quick Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <Card>
+            <CardContent className="p-4 text-center">
+              <div className="text-2xl font-bold text-blue-600">{completedTrainings}</div>
+              <div className="text-xs text-gray-600">Completed</div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="p-4 text-center">
+              <div className="text-2xl font-bold text-green-600">
+                {employeeData.trainingRecords.filter(r => getCertificationStatus(r) === "valid").length}
+              </div>
+              <div className="text-xs text-gray-600">Active Certs</div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="p-4 text-center">
+              <div className="text-2xl font-bold text-yellow-600">
+                {employeeData.trainingRecords.filter(r => getCertificationStatus(r) === "expiring").length}
+              </div>
+              <div className="text-xs text-gray-600">Expiring</div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="p-4 text-center">
+              <div className="text-2xl font-bold text-red-600">
+                {employeeData.trainingRecords.filter(r => getCertificationStatus(r) === "expired").length}
+              </div>
+              <div className="text-xs text-gray-600">Expired</div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Training Progress */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center text-lg">
+              <BookOpen className="h-5 w-5 mr-2" />
+              Training Progress
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-2">
+              <div className="flex justify-between text-sm">
+                <span>Overall Completion</span>
+                <span>{Math.round((completedTrainings / totalRequiredTrainings) * 100)}%</span>
+              </div>
+              <Progress value={(completedTrainings / totalRequiredTrainings) * 100} className="h-2" />
+              <p className="text-xs text-gray-600">
+                {completedTrainings} of {totalRequiredTrainings} required trainings completed
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Main Content Tabs */}
+        <Tabs defaultValue="training" className="w-full">
+          <TabsList className="grid w-full grid-cols-4">
+            <TabsTrigger value="training" className="text-xs">Training</TabsTrigger>
+            <TabsTrigger value="schedule" className="text-xs">Schedule</TabsTrigger>
+            <TabsTrigger value="requests" className="text-xs">Requests</TabsTrigger>
+            <TabsTrigger value="profile" className="text-xs">Profile</TabsTrigger>
+          </TabsList>
+
+          {/* Training Records */}
+          <TabsContent value="training" className="space-y-4">
+            <div className="flex justify-between items-center">
+              <h3 className="text-lg font-semibold">My Certifications</h3>
+              <Dialog open={isRequestDialogOpen} onOpenChange={setIsRequestDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button size="sm">
+                    <BookOpen className="h-4 w-4 mr-2" />
+                    Request Training
+                  </Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Request Training</DialogTitle>
+                    <DialogDescription>
+                      Submit a request for new training or certification renewal
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="space-y-4">
+                    <div>
+                      <Label>Training Type</Label>
+                      <select 
+                        className="w-full p-2 border border-gray-300 rounded-md"
+                        value={selectedTrainingType}
+                        onChange={(e) => setSelectedTrainingType(e.target.value)}
+                      >
+                        <option value="">Select training type</option>
+                        <option value="1">Fall Protection</option>
+                        <option value="2">Rigging Safety</option>
+                        <option value="3">First Aid</option>
+                        <option value="4">Scaffold Training</option>
+                        <option value="5">Forklift Operation</option>
+                      </select>
+                    </div>
+                    <div>
+                      <Label>Notes (Optional)</Label>
+                      <Textarea
+                        value={requestNotes}
+                        onChange={(e) => setRequestNotes(e.target.value)}
+                        placeholder="Reason for request or additional details"
+                        rows={3}
+                      />
+                    </div>
+                    <div className="flex gap-2">
+                      <Button 
+                        onClick={handleRequestTraining}
+                        disabled={!selectedTrainingType || requestTrainingMutation.isPending}
+                        className="flex-1"
+                      >
+                        {requestTrainingMutation.isPending ? "Submitting..." : "Submit Request"}
+                      </Button>
+                      <Button variant="outline" onClick={() => setIsRequestDialogOpen(false)}>
+                        Cancel
+                      </Button>
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </div>
+
+            <div className="space-y-3">
+              {employeeData.trainingRecords.map((record) => {
+                const status = getCertificationStatus(record);
+                return (
+                  <Card key={record.id}>
+                    <CardContent className="p-4">
+                      <div className="flex justify-between items-start">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2">
+                            <h4 className="font-medium">{record.trainingType.name}</h4>
+                            <Badge variant={status === "valid" ? "default" : status === "expiring" ? "secondary" : "destructive"}>
+                              {status}
+                            </Badge>
+                          </div>
+                          <div className="text-sm text-gray-600 mt-1">
+                            <p>Completed: {formatDate(record.completionDate)}</p>
+                            <p>Expires: {formatDate(record.expiryDate)}</p>
+                            <p>Certificate: {record.certificateNumber}</p>
+                          </div>
+                        </div>
+                        <div className="flex gap-2">
+                          <Button size="sm" variant="outline">
+                            <Download className="h-4 w-4 mr-1" />
+                            Download
+                          </Button>
+                          <Button size="sm" variant="outline">
+                            <QrCode className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+          </TabsContent>
+
+          {/* Profile Tab */}
+          <TabsContent value="profile" className="space-y-4">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center">
+                  <User className="h-5 w-5 mr-2" />
+                  Profile Information
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex items-center space-x-4">
+                  <Avatar className="h-20 w-20">
+                    <AvatarImage src={employeeData.photo || ""} />
+                    <AvatarFallback className="text-lg">
+                      {employeeData.firstName[0]}{employeeData.lastName[0]}
+                    </AvatarFallback>
+                  </Avatar>
+                  <Dialog open={isPhotoDialogOpen} onOpenChange={setIsPhotoDialogOpen}>
+                    <DialogTrigger asChild>
+                      <Button variant="outline" size="sm">
+                        <Camera className="h-4 w-4 mr-2" />
+                        Update Photo
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <DialogHeader>
+                        <DialogTitle>Update Profile Photo</DialogTitle>
+                        <DialogDescription>
+                          Upload a new profile photo
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="space-y-4">
+                        <Input
+                          type="file"
+                          accept="image/*"
+                          onChange={handlePhotoUpload}
+                          disabled={updatePhotoMutation.isPending}
+                        />
+                        {updatePhotoMutation.isPending && (
+                          <p className="text-sm text-gray-600">Uploading...</p>
+                        )}
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label className="text-sm font-medium text-gray-600">Employee ID</Label>
+                    <p className="text-sm">{employeeData.employeeId}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-gray-600">Department</Label>
+                    <p className="text-sm">{employeeData.department}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-gray-600">Position</Label>
+                    <p className="text-sm">{employeeData.position}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-gray-600">Hire Date</Label>
+                    <p className="text-sm">{formatDate(employeeData.hireDate)}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-gray-600">Email</Label>
+                    <p className="text-sm">{employeeData.email}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-gray-600">Phone</Label>
+                    <p className="text-sm">{employeeData.phone}</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
+      </div>
+    </div>
+  );
+}
+```
+
+## 6. Required Dependencies
+
+```json
+{
+  "@tanstack/react-query": "^5.x.x",
+  "lucide-react": "^0.x.x",
+  "multer": "^1.x.x"
+}
+```
+
+## Features Included
+
+1. **Training Record Viewing**: View all completed certifications with status indicators
+2. **Certificate Downloads**: Download training certificates and view QR codes
+3. **Training Requests**: Submit requests for new training with notes
+4. **Profile Management**: Update profile photo and view personal information
+5. **Progress Tracking**: Visual progress indicators for training completion
+6. **Status Indicators**: Real-time certification status (valid, expiring, expired)
+7. **Mobile Responsive**: Optimized for mobile devices and tablets
+8. **Tab Navigation**: Organized interface with training, schedule, requests, and profile tabs
+
+## Usage Instructions
+
+1. Copy the database schema updates to your schema file
+2. Add the API routes to your Express server
+3. Implement the storage methods in your storage layer
+4. Add the utility functions to your utils file
+5. Copy the React component to your frontend
+6. Configure file upload handling (multer middleware)
+7. Set up authentication to pass employee ID to the portal
+
+This package provides a complete employee self-service portal that integrates seamlessly with the training management system.

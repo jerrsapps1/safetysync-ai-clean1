@@ -39,6 +39,8 @@ import TrainingRecordsManager from "@/components/records/TrainingRecordsManager"
 import TrainingDocumentHub from "@/components/TrainingDocumentHub";
 import FileManagerTrainingHub from "@/components/FileManagerTrainingHub";
 import AIDocumentProcessor from "@/components/AIDocumentProcessor";
+import EmployeeProfile from "@/components/EmployeeProfile";
+import ComplianceRecommendationEngine from "@/components/ComplianceRecommendationEngine";
 
 import { AIPatternSkeleton } from "@/components/ui/ai-skeleton";
 import { SmoothLoading } from "@/components/ui/smooth-loading";
@@ -731,6 +733,8 @@ export default function WorkspacePage() {
   const [selectedTraining, setSelectedTraining] = useState<any>(null);
   const [showEmployeeDetails, setShowEmployeeDetails] = useState(false);
   const [showTrainingDetails, setShowTrainingDetails] = useState(false);
+  const [showEmployeeProfile, setShowEmployeeProfile] = useState(false);
+  const [selectedEmployeeForProfile, setSelectedEmployeeForProfile] = useState<number | null>(null);
   
   // Form state for Add Employee
   const [newEmployee, setNewEmployee] = useState({
@@ -2132,6 +2136,17 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 <Button
                   variant="ghost"
                   className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
+                    activeTab === "employee-profile" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                  }`}
+                  onClick={() => handleTabSwitch("employee-profile")}
+                  title="Employee Profile"
+                >
+                  <User className="w-4 h-4 mr-3 flex-shrink-0" />
+                  {sidebarOpen && <span className="truncate">Employee Profile</span>}
+                </Button>
+                <Button
+                  variant="ghost"
+                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
                     activeTab === "employee-portal" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("employee-portal")}
@@ -2380,6 +2395,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 {activeTab === "unified-dashboard" && "Dashboard"}
                 {activeTab === "employees" && "Employee Management"}
                 {activeTab === "employee-insights" && "Employee Insights"}
+                {activeTab === "employee-profile" && "Employee Profile"}
                 {activeTab === "training" && "Training Management"}
                 {activeTab === "certificates" && "Certificate Generation"}
                 {activeTab === "reports" && "Compliance Reports"}
@@ -2410,6 +2426,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 )}
                 {activeTab === "employees" && "Manage employee certifications and training"}
                 {activeTab === "employee-insights" && "AI-powered analytics and insights for employee data"}
+                {activeTab === "employee-profile" && "View and manage individual employee certificate profiles"}
                 {activeTab === "training" && "Schedule and track safety training"}
                 {activeTab === "certificates" && "Generate professional certificates and cards"}
                 {activeTab === "reports" && "Generate compliance reports for audits"}
@@ -2704,6 +2721,68 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           {activeTab === "employee-insights" && (
             <div className="rounded-lg">
               <EmployeeInsightsDashboard />
+            </div>
+          )}
+
+          {activeTab === "employee-profile" && (
+            <div className="p-2 md:p-6">
+              {selectedEmployeeForProfile ? (
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <Button
+                      variant="outline"
+                      onClick={() => {
+                        setSelectedEmployeeForProfile(null);
+                        setShowEmployeeProfile(false);
+                      }}
+                      className="text-white border-white/20 hover:bg-white/10"
+                    >
+                      <ArrowLeft className="w-4 h-4 mr-2" />
+                      Back to Employee Selection
+                    </Button>
+                  </div>
+                  <EmployeeProfile employeeId={selectedEmployeeForProfile} />
+                </div>
+              ) : (
+                <div className="space-y-6">
+                  <div className="text-center">
+                    <h2 className="text-2xl font-bold text-white mb-2">Select Employee Profile</h2>
+                    <p className="text-gray-400">Choose an employee to view and manage their certificate profile</p>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {employees.map((employee) => (
+                      <Card key={employee.id} className="bg-black/20 backdrop-blur-sm border-gray-800 hover:border-gray-600 transition-colors cursor-pointer"
+                        onClick={() => setSelectedEmployeeForProfile(employee.id)}>
+                        <CardContent className="p-4">
+                          <div className="flex items-center space-x-3">
+                            <div className="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center">
+                              <User className="w-5 h-5 text-white" />
+                            </div>
+                            <div>
+                              <h3 className="text-white font-semibold">{employee.name}</h3>
+                              <p className="text-gray-400 text-sm">{employee.department}</p>
+                              <p className="text-gray-500 text-xs">{employee.position}</p>
+                            </div>
+                          </div>
+                          <div className="mt-3 pt-3 border-t border-gray-700">
+                            <div className="flex justify-between text-sm">
+                              <span className="text-gray-400">Certificates:</span>
+                              <span className="text-emerald-400">{employee.certifications?.length || 0}</span>
+                            </div>
+                            <div className="flex justify-between text-sm mt-1">
+                              <span className="text-gray-400">Status:</span>
+                              <span className={employee.status === 'Active' ? 'text-green-400' : 'text-red-400'}>
+                                {employee.status}
+                              </span>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           )}
 
