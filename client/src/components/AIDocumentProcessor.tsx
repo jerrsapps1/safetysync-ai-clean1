@@ -70,11 +70,12 @@ export default function AIDocumentProcessor() {
       // For testing, let's use the sample documents directly
       const text = await file.text();
       
+      const authToken = localStorage.getItem('token') || sessionStorage.getItem('token');
       const response = await fetch('/api/ai/process-signin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${authToken}`
         },
         body: JSON.stringify({
           documentContent: text,
@@ -110,11 +111,12 @@ export default function AIDocumentProcessor() {
 
   const processTextMutation = useMutation({
     mutationFn: async (documentContent: string) => {
+      const authToken = localStorage.getItem('token') || sessionStorage.getItem('token');
       const response = await fetch('/api/ai/process-signin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${authToken}`
         },
         body: JSON.stringify({
           documentContent: documentContent,
