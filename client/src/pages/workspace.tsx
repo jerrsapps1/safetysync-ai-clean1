@@ -41,6 +41,7 @@ import FileManagerTrainingHub from "@/components/FileManagerTrainingHub";
 import AIDocumentProcessor from "@/components/AIDocumentProcessor";
 import EmployeeProfile from "@/components/EmployeeProfile";
 import ComplianceRecommendationEngine from "@/components/ComplianceRecommendationEngine";
+import InstructorTrainingCompletion from "@/components/InstructorTrainingCompletion";
 
 import { AIPatternSkeleton } from "@/components/ui/ai-skeleton";
 import { SmoothLoading } from "@/components/ui/smooth-loading";
@@ -2308,6 +2309,17 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <Award className="w-4 h-4 mr-3 flex-shrink-0" />
                   {sidebarOpen && <span className="truncate">Certificate Generation</span>}
                 </Button>
+                <Button
+                  variant="ghost"
+                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
+                    activeTab === "instructor-training-completion" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                  }`}
+                  onClick={() => handleTabSwitch("instructor-training-completion")}
+                  title="Complete Instructor Training"
+                >
+                  <CheckCircle className="w-4 h-4 mr-3 flex-shrink-0" />
+                  {sidebarOpen && <span className="truncate">Complete Instructor Training</span>}
+                </Button>
 
                 <Button
                   variant="ghost"
@@ -3229,6 +3241,12 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           {activeTab === "ai-document-processor" && (
             <div className="p-8 min-h-screen">
               <AIDocumentProcessor />
+            </div>
+          )}
+
+          {activeTab === "instructor-training-completion" && (
+            <div className="p-8 min-h-screen">
+              <InstructorTrainingCompletion />
             </div>
           )}
 

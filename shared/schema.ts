@@ -250,32 +250,46 @@ export const employeeQrCodes = pgTable("employee_qr_codes", {
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
-// Training requests from employees
+// Training requests from employees AND instructor-led training tracking
 export const trainingRequests = pgTable("training_requests", {
   id: serial("id").primaryKey(),
-  employeeId: integer("employee_id").references(() => employees.id).notNull(),
+  employeeId: integer("employee_id").references(() => employees.id), // Optional for instructor-led
   userId: integer("user_id").references(() => users.id).notNull(),
-  trainingName: text("training_name").notNull(),
+  employeeName: text("employee_name"), // For instructor-led training with multiple employees
+  requestType: text("request_type").default("employee_request"), // employee_request, instructor_led
+  trainingName: text("training_name"), // Deprecated - use trainingType
+  trainingType: text("training_type").notNull(),
+  urgency: text("urgency").default("standard"), // low, standard, high, urgent
+  preferredDate: timestamp("preferred_date"),
+  location: text("location"),
+  specialRequirements: text("special_requirements"),
   requestDate: timestamp("request_date").defaultNow(),
   status: varchar("status", { length: 20 }).default("pending"), // pending, approved, scheduled, completed
   notes: text("notes"),
   approvedBy: integer("approved_by").references(() => employees.id),
   scheduledDate: timestamp("scheduled_date"),
+  completedAt: timestamp("completed_at"), // For instructor-led completions
   createdAt: timestamp("created_at").defaultNow(),
 });
 
-// Upcoming training sessions for employees
-export const upcomingTraining = pgTable("upcoming_training", {
+// Upcoming training sessions for employees AND instructor-led sessions
+export const upcomingTrainingSessions = pgTable("upcoming_training_sessions", {
   id: serial("id").primaryKey(),
-  employeeId: integer("employee_id").references(() => employees.id).notNull(),
+  employeeId: integer("employee_id").references(() => employees.id), // Optional for instructor-led
   userId: integer("user_id").references(() => users.id).notNull(),
+  sessionType: text("session_type").default("employee_session"), // employee_session, instructor_led
   title: text("title").notNull(),
   date: timestamp("date").notNull(),
   location: text("location"),
   duration: text("duration"),
   trainer: text("trainer"),
-  status: varchar("status", { length: 20 }).default("registered"), // registered, confirmed, completed
+  plannedAttendees: integer("planned_attendees").default(1),
+  actualAttendees: integer("actual_attendees"),
+  status: varchar("status", { length: 20 }).default("scheduled"), // scheduled, in_progress, completed, cancelled
+  trainingStandards: text("training_standards").array(),
+  notes: text("notes"),
   createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
 });
 
 // AI Generated Certificates (Legacy - for backward compatibility)
@@ -835,16 +849,17 @@ export const insertTrainingRequestSchema = createInsertSchema(trainingRequests).
   requestDate: true,
 });
 
-export const insertUpcomingTrainingSchema = createInsertSchema(upcomingTraining).omit({
+export const insertUpcomingTrainingSessionSchema = createInsertSchema(upcomingTrainingSessions).omit({
   id: true,
   createdAt: true,
+  updatedAt: true,
 });
 
 export type SelectCertificate = typeof certificates.$inferSelect;
 export type InsertCertificate = z.infer<typeof insertCertificateSchema>;
 export type TrainingRequest = typeof trainingRequests.$inferSelect;
 export type InsertTrainingRequest = z.infer<typeof insertTrainingRequestSchema>;
-export type UpcomingTraining = typeof upcomingTraining.$inferSelect;
-export type InsertUpcomingTraining = z.infer<typeof insertUpcomingTrainingSchema>;
+export type UpcomingTrainingSession = typeof upcomingTrainingSessions.$inferSelect;
+export type InsertUpcomingTrainingSession = z.infer<typeof insertUpcomingTrainingSessionSchema>;
 
 
