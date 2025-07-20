@@ -30,6 +30,45 @@ export async function uploadAndProcessSignIn(req: Request, res: Response) {
       return res.status(401).json({ success: false, error: 'Authentication required' });
     }
 
+    // Handle both file upload and direct text
+    if (req.body.documentContent) {
+      // Direct text processing
+      try {
+        const documentContent = req.body.documentContent;
+        const fileName = req.body.fileName || 'document.txt';
+        
+        // Process with AI
+        const processedData = await aiDocumentProcessor.processSignInDocument(
+          documentContent, 
+          userId
+        );
+
+        // Store processed document
+        const [storedDoc] = await db.insert(processedDocuments).values({
+          userId,
+          originalFileName: fileName,
+          documentType: 'signin',
+          aiExtractedData: JSON.stringify(processedData),
+          verificationStatus: 'pending'
+        }).returning();
+
+        res.json({
+          success: true,
+          processedDocument: storedDoc,
+          extractedData: processedData,
+          message: 'Document processed successfully. Please verify the extracted information.'
+        });
+
+      } catch (error) {
+        console.error('AI processing error:', error);
+        res.status(500).json({ 
+          success: false, 
+          error: 'Failed to process document with AI' 
+        });
+      }
+      return;
+    }
+
     // Handle file upload
     upload.single('signInDocument')(req, res, async (err) => {
       if (err) {

@@ -67,38 +67,83 @@ export default function AIDocumentProcessor() {
 
   const processMutation = useMutation({
     mutationFn: async (file: File) => {
-      const formData = new FormData();
-      formData.append('signInDocument', file);
+      // For testing, let's use the sample documents directly
+      const text = await file.text();
       
       const response = await fetch('/api/ai/process-signin', {
         method: 'POST',
         headers: {
+          'Content-Type': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
-        body: formData
+        body: JSON.stringify({
+          documentContent: text,
+          fileName: file.name
+        })
       });
       
       if (!response.ok) {
-        throw new Error('Failed to process document');
+        const error = await response.json();
+        throw new Error(error.message || 'Processing failed');
       }
       
       return response.json();
     },
     onSuccess: (data) => {
       setProcessedData(data.extractedData);
-      setEditedData(data.extractedData);
       setDocumentId(data.processedDocument.id);
-      queryClient.invalidateQueries({ queryKey: ['/api/ai/processed-documents'] });
+      setEditedData(data.extractedData);
       toast({
-        title: "Document Processed",
-        description: "AI has extracted the training information. Please verify before generating certificates.",
+        title: "Document Processed Successfully",
+        description: "AI has extracted training information. Please verify the details below.",
       });
+      queryClient.invalidateQueries({ queryKey: ['/api/ai/processed-documents'] });
     },
     onError: (error) => {
       toast({
         title: "Processing Failed",
-        description: error.message,
-        variant: "destructive",
+        description: error.message || "Failed to process document. Please try again.",
+        variant: "destructive"
+      });
+    }
+  });
+
+  const processTextMutation = useMutation({
+    mutationFn: async (documentContent: string) => {
+      const response = await fetch('/api/ai/process-signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify({
+          documentContent: documentContent,
+          fileName: 'sample-document.txt'
+        })
+      });
+      
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Processing failed');
+      }
+      
+      return response.json();
+    },
+    onSuccess: (data) => {
+      setProcessedData(data.extractedData);
+      setDocumentId(data.processedDocument.id);
+      setEditedData(data.extractedData);
+      toast({
+        title: "Document Processed Successfully",
+        description: "AI has extracted training information. Please verify the details below.",
+      });
+      queryClient.invalidateQueries({ queryKey: ['/api/ai/processed-documents'] });
+    },
+    onError: (error) => {
+      toast({
+        title: "Processing Failed",
+        description: error.message || "Failed to process document. Please try again.",
+        variant: "destructive"
       });
     }
   });
@@ -155,6 +200,121 @@ export default function AIDocumentProcessor() {
 
     setIsProcessing(true);
     processMutation.mutate(selectedFile);
+  };
+
+  const processSampleDocument = async (sampleType: string) => {
+    const sampleDocuments = {
+      'fall-protection': `FALL PROTECTION TRAINING SIGN-IN SHEET
+
+Training Date: January 15, 2025
+Training Time: 8:00 AM - 12:00 PM
+Instructor: Michael Rodriguez
+Instructor Credentials: OSHA Authorized Trainer #TX-4567, 15 years experience
+Company: SafetySync Construction
+Location: Austin, TX Training Center
+
+Training Program: Fall Protection for Construction Workers
+OSHA Standard: 29 CFR 1926.501
+Training Duration: 4 Hours
+
+EMPLOYEE SIGN-IN:
+
+1. Name: James Wilson
+   Employee ID: EMP-2045
+   Department: Construction
+   Signature: James Wilson
+   Time In: 8:00 AM
+   Time Out: 12:00 PM
+
+2. Name: Maria Garcia
+   Employee ID: EMP-2046
+   Department: Safety
+   Signature: Maria Garcia
+   Time In: 8:00 AM
+   Time Out: 12:00 PM
+
+3. Name: Robert Johnson
+   Employee ID: EMP-2047
+   Department: Construction
+   Signature: Robert Johnson
+   Time In: 8:00 AM
+   Time Out: 12:00 PM
+
+4. Name: Sarah Chen
+   Employee ID: EMP-2048
+   Department: Engineering
+   Signature: Sarah Chen
+   Time In: 8:00 AM
+   Time Out: 12:00 PM
+
+5. Name: David Miller
+   Employee ID: EMP-2049
+   Department: Construction
+   Signature: David Miller
+   Time In: 8:00 AM
+   Time Out: 12:00 PM
+
+TRAINING TOPICS COVERED:
+- Fall hazard identification
+- Personal fall arrest systems
+- Guardrail systems
+- Safety net systems
+- Ladder safety
+- Scaffold safety
+- Roof work procedures
+
+ASSESSMENT: All participants passed written and practical assessments with 85% or higher score.
+
+Instructor Signature: Michael Rodriguez
+Date: January 15, 2025`,
+
+      'osha-10': `OSHA 10-HOUR CONSTRUCTION SAFETY TRAINING
+ATTENDANCE RECORD
+
+Course Dates: January 20-21, 2025
+Training Hours: Day 1: 9:00 AM - 2:00 PM | Day 2: 9:00 AM - 2:00 PM
+Total Training Time: 10 Hours
+Instructor: Jennifer Brown, MS, CSP
+Instructor Credentials: OSHA Authorized Outreach Trainer #CA-8901
+Company: SafetySync Industrial Solutions
+Training Location: Los Angeles Safety Training Center
+
+STUDENT ROSTER:
+
+1. Student: Michael Thompson
+   Employee ID: EMP-3001
+   Department: Site Supervision
+   Final Exam Score: 92%
+   Certification Status: PASSED
+
+2. Student: Lisa Anderson
+   Employee ID: EMP-3002
+   Department: Quality Control
+   Final Exam Score: 89%
+   Certification Status: PASSED
+
+3. Student: Carlos Martinez
+   Employee ID: EMP-3003
+   Department: Equipment Operations
+   Final Exam Score: 91%
+   Certification Status: PASSED
+
+4. Student: Amanda White
+   Employee ID: EMP-3004
+   Department: Project Management
+   Final Exam Score: 95%
+   Certification Status: PASSED
+
+All students successfully completed the required 10 hours of training and passed the final examination.
+
+Instructor Signature: Jennifer Brown, MS, CSP
+Date: January 21, 2025`
+    };
+
+    const documentContent = sampleDocuments[sampleType as keyof typeof sampleDocuments];
+    if (documentContent) {
+      processTextMutation.mutate(documentContent);
+    }
   };
 
   const verifyAndGenerate = () => {
@@ -254,6 +414,29 @@ export default function AIDocumentProcessor() {
               </>
             )}
           </Button>
+
+          {/* Sample Document Testing */}
+          <div className="border-t pt-4">
+            <p className="text-sm text-gray-600 mb-3">Or try with sample documents:</p>
+            <div className="flex flex-wrap gap-2">
+              <Button
+                onClick={() => processSampleDocument('fall-protection')}
+                variant="outline"
+                size="sm"
+                disabled={processTextMutation.isPending}
+              >
+                Fall Protection Sample
+              </Button>
+              <Button
+                onClick={() => processSampleDocument('osha-10')}
+                variant="outline"
+                size="sm"
+                disabled={processTextMutation.isPending}
+              >
+                OSHA 10-Hour Sample
+              </Button>
+            </div>
+          </div>
         </CardContent>
       </Card>
 
