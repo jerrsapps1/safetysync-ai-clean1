@@ -41,7 +41,7 @@ export class AIDocumentProcessor {
           "trainingDate": "YYYY-MM-DD",
           "location": "string",
           "duration": "string (e.g. '4 hours', '8 hours')",
-          "trainingStandards": ["OSHA 1926.95", "ANSI Z359.1", etc],
+          "trainingStandards": ["29 CFR 1926.95", "OSHA 1926.501", "ANSI Z359.1", etc - EXTRACT EXACT NUMBERS],
           "employees": [
             {
               "name": "First Last",
@@ -62,8 +62,12 @@ export class AIDocumentProcessor {
         - Find company/location clues: building names, addresses, city names
         - Look for time patterns: AM/PM, hours, duration indicators
         - Employee patterns: lists of names, ID numbers, departments
+        - CRITICAL: Extract specific OSHA standards with exact numbers like "1926.95", "1926.501", "1910.147", "29 CFR 1926.95", etc.
+        - Look for patterns near "OSHA Standard:", "Standard:", "CFR", "1926.", "1910.", "29 CFR"
+        - For Fall Protection training, likely standards include: 29 CFR 1926.95, 1926.501, 1926.502, 1926.503
+        - Extract the COMPLETE standard number including all decimal places
+        - If you see "OSHA Standard:" followed by other text, look for numbers like 1926.95 in that section
         - Be extremely aggressive - any readable text is valuable
-        - If minimal readable content, focus on whatever keywords you can identify
       `;
 
       const response = await openai.chat.completions.create({
