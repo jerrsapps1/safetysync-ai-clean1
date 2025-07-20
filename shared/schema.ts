@@ -225,8 +225,9 @@ export const certificates = pgTable("certificates", {
   instructorName: text("instructor_name").notNull(),
   instructorCredentials: text("instructor_credentials").notNull(),
   trainingStandards: text("training_standards").array().notNull(),
-  certificateContent: text("certificate_content").notNull(), // JSON string
-  walletCardContent: text("wallet_card_content"), // JSON string for wallet card
+  certificateNumber: text("certificate_number").notNull(), // Unique certificate number
+  certificateContent: text("certificate_content").notNull(), // URL to certificate file
+  walletCardContent: text("wallet_card_content"), // URL to wallet card file
   status: text("status", { enum: ["active", "expired", "revoked"] }).default("active"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });

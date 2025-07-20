@@ -1,4 +1,5 @@
 import type { Express } from "express";
+import express from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { cloneDetector } from "./ai-clone-detection";
@@ -2261,6 +2262,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ error: 'Failed to fetch dashboard data' });
     }
   });
+
+  // Serve uploaded files (certificates and wallet cards)
+  app.use('/uploads', express.static('uploads'));
 
   // Email automation API
   app.use("/api/email", emailAutomationRoutes);
