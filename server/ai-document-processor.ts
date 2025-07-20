@@ -153,6 +153,15 @@ export class AIDocumentProcessor {
           processedData.trainingStandards
         );
 
+        // Generate wallet card content
+        const walletCardContent = await this.generateWalletCardContent(
+          employee.name,
+          processedData.trainingTitle,
+          processedData.trainingDate,
+          processedData.trainingStandards,
+          certificateContent.validityPeriod
+        );
+
         // Store certificate in database
         const [certificate] = await db.insert(certificates).values({
           userId,
@@ -165,8 +174,11 @@ export class AIDocumentProcessor {
           instructorCredentials: processedData.instructorCredentials,
           trainingStandards: processedData.trainingStandards,
           certificateContent: JSON.stringify(certificateContent),
+          walletCardContent: JSON.stringify(walletCardContent),
           status: 'active'
         }).returning();
+        
+        console.log(`✓ Generated certificate for ${employee.name}: ${processedData.trainingTitle}`);
 
         certificateIds.push(certificate.id.toString());
       }
@@ -209,6 +221,55 @@ export class AIDocumentProcessor {
       messages: [{ role: "user", content: prompt }],
       response_format: { type: "json_object" },
       temperature: 0.2
+    });
+
+    return JSON.parse(response.choices[0].message.content || '{}');
+  }
+
+  private async generateWalletCardContent(
+    employeeName: string,
+    trainingTitle: string,
+    trainingDate: string,
+    standards: string[],
+    validityPeriod: string
+  ) {
+    const prompt = `
+      Generate professional wallet card content that mimics a physical certification card for:
+      Employee: ${employeeName}
+      Training: ${trainingTitle}
+      Date: ${trainingDate}
+      Standards: ${standards.join(', ')}
+      Validity: ${validityPeriod}
+
+      Return JSON with:
+      {
+        "frontSide": {
+          "companyLogo": "SafetySync.AI",
+          "cardTitle": "Safety Certification Card",
+          "employeeName": "${employeeName}",
+          "employeeId": "if available",
+          "certificationName": "${trainingTitle}",
+          "issueDate": "${trainingDate}",
+          "expirationDate": "calculated expiration",
+          "instructorCredentials": "authorizing credentials"
+        },
+        "backSide": {
+          "authorizedEquipment": ["specific equipment/machinery based on training"],
+          "complianceStandards": ["${standards.join('", "')}"],
+          "restrictionsNotes": "any limitations or requirements",
+          "employerInfo": "Company certification authority",
+          "cardNumber": "unique identifier"
+        }
+      }
+
+      Make it look like a real certification card that employees would carry in their wallet.
+    `;
+
+    const response = await openai.chat.completions.create({
+      model: "gpt-4o", // the newest OpenAI model is "gpt-4o" which was released May 13, 2024. do not change this unless explicitly requested by the user
+      messages: [{ role: "user", content: prompt }],
+      response_format: { type: "json_object" },
+      temperature: 0.1
     });
 
     return JSON.parse(response.choices[0].message.content || '{}');
