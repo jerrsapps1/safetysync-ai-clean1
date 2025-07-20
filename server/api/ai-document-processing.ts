@@ -46,11 +46,12 @@ export async function uploadAndProcessSignIn(req: Request, res: Response) {
         );
 
         // Store processed document using raw SQL since table structure doesn't match schema
-        const result = await db.execute(`
-          INSERT INTO processed_documents (user_id, original_file_name, document_type, ai_extracted_data, verification_status)
-          VALUES ($1, $2, $3, $4, $5)
-          RETURNING id, user_id, original_file_name, document_type, ai_extracted_data, verification_status, created_at
-        `, [userId, fileName, 'signin', JSON.stringify(processedData), 'pending']);
+        const result = await db.execute({
+          sql: `INSERT INTO processed_documents (user_id, original_file_name, document_type, ai_extracted_data, verification_status)
+                VALUES (?, ?, ?, ?, ?)
+                RETURNING id, user_id, original_file_name, document_type, ai_extracted_data, verification_status, created_at`,
+          args: [userId, fileName, 'signin', JSON.stringify(processedData), 'pending']
+        });
         
         const storedDoc = result.rows[0];
 
@@ -92,11 +93,12 @@ export async function uploadAndProcessSignIn(req: Request, res: Response) {
         );
 
         // Store processed document using raw SQL since table structure doesn't match schema
-        const result = await db.execute(`
-          INSERT INTO processed_documents (user_id, original_file_name, document_type, ai_extracted_data, verification_status)
-          VALUES ($1, $2, $3, $4, $5)
-          RETURNING id, user_id, original_file_name, document_type, ai_extracted_data, verification_status, created_at
-        `, [userId, req.file.originalname, 'signin', JSON.stringify(processedData), 'pending']);
+        const result = await db.execute({
+          sql: `INSERT INTO processed_documents (user_id, original_file_name, document_type, ai_extracted_data, verification_status)
+                VALUES (?, ?, ?, ?, ?)
+                RETURNING id, user_id, original_file_name, document_type, ai_extracted_data, verification_status, created_at`,
+          args: [userId, req.file.originalname, 'signin', JSON.stringify(processedData), 'pending']
+        });
         
         const storedDoc = result.rows[0];
 
@@ -183,9 +185,10 @@ export async function getProcessedDocuments(req: Request, res: Response) {
       return res.status(401).json({ success: false, error: 'Authentication required' });
     }
 
-    const result = await db.execute(`
-      SELECT * FROM processed_documents WHERE user_id = $1 ORDER BY created_at DESC
-    `, [userId]);
+    const result = await db.execute({
+      sql: `SELECT * FROM processed_documents WHERE user_id = ? ORDER BY created_at DESC`,
+      args: [userId]
+    });
     
     const docs = result.rows;
 
