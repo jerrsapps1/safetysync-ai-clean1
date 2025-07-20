@@ -54,10 +54,16 @@ export class AIDocumentProcessor {
           "evaluationRequired": true/false
         }
 
-        CRITICAL: Extract ALL employee names and IDs even if text is corrupted or fragmented from PDF conversion.
-        Look for patterns like: "John Smith", "EMP-1234", dates, instructor names, training titles.
-        Be aggressive in extraction - capture partial information rather than miss it entirely.
-        Common certification training: Fall Protection, Scaffold Safety, Confined Space, Forklift, OSHA, Safety.
+        CRITICAL INSTRUCTIONS for PDF text extraction:
+        - The text may be heavily corrupted with PDF artifacts, binary data, or fragmented words
+        - Look for ANY readable patterns: names (John, Smith, Mary), training keywords (Fall, Protection, OSHA, Safety), dates (2025, January, Jan), numbers (employee IDs)
+        - Extract partial matches even if incomplete: "John" + "Smith" = "John Smith", "Fall" + "Protection" = "Fall Protection"
+        - Search for instructor patterns: names near words like "instructor", "trainer", "conducted", "by"
+        - Find company/location clues: building names, addresses, city names
+        - Look for time patterns: AM/PM, hours, duration indicators
+        - Employee patterns: lists of names, ID numbers, departments
+        - Be extremely aggressive - any readable text is valuable
+        - If minimal readable content, focus on whatever keywords you can identify
       `;
 
       const response = await openai.chat.completions.create({
@@ -73,14 +79,23 @@ export class AIDocumentProcessor {
       const result = JSON.parse(response.choices[0].message.content || '{}');
       
       // Log the AI extraction results for debugging
-      console.log('AI Extraction Results:');
-      console.log('Training Title:', result.trainingTitle);
-      console.log('Instructor:', result.instructorName);
-      console.log('Date:', result.trainingDate);
+      console.log('=== AI EXTRACTION RESULTS ===');
+      console.log('Training Title:', result.trainingTitle || 'NOT FOUND');
+      console.log('Instructor:', result.instructorName || 'NOT FOUND');
+      console.log('Instructor Credentials:', result.instructorCredentials || 'NOT FOUND');
+      console.log('Date:', result.trainingDate || 'NOT FOUND');
+      console.log('Location:', result.location || 'NOT FOUND');
+      console.log('Duration:', result.duration || 'NOT FOUND');
+      console.log('Training Standards:', result.trainingStandards?.length ? result.trainingStandards.join(', ') : 'NOT FOUND');
+      console.log('Certification Eligible:', result.certificationEligible);
       console.log('Employees found:', result.employees?.length || 0);
       if (result.employees && result.employees.length > 0) {
-        console.log('First employee:', result.employees[0]);
+        console.log('First employee details:', JSON.stringify(result.employees[0], null, 2));
+        console.log('All employee names:', result.employees.map(emp => emp.name).join(', '));
+      } else {
+        console.log('NO EMPLOYEES EXTRACTED - this indicates a major extraction failure');
       }
+      console.log('=== END AI RESULTS ===');
       
       return result as ProcessedSignIn;
 
