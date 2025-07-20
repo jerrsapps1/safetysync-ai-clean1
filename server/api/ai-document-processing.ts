@@ -276,11 +276,47 @@ export async function verifyAndGenerateCertificates(req: Request, res: Response)
       })
       .where(eq(processedDocuments.id, documentId));
 
-    // Generate certificates
-    const certificateIds = await aiDocumentProcessor.generateCertificates(
-      verifiedData,
-      userId
-    );
+    // ENHANCED: Create or update employee profiles and assign certificates
+    const { EmployeeCertificateService } = await import('../employee-certificate-service');
+    const employeeCertService = new EmployeeCertificateService();
+
+    const certificateIds = [];
+    const employeeProfileUpdates = [];
+
+    // Process each employee from the training document
+    for (const employee of verifiedData.employees) {
+      if (employee.completionStatus === 'completed') {
+        try {
+          // Create employee profile if needed and generate certificate
+          const result = await employeeCertService.generateAndStoreEmployeeCertificate({
+            employeeName: employee.name,
+            employeeId: employee.employeeId || `AUTO-${Date.now()}-${Math.random().toString(36).substr(2, 4)}`,
+            trainingTitle: verifiedData.trainingTitle,
+            instructorName: verifiedData.instructorName,
+            instructorCredentials: verifiedData.instructorCredentials,
+            trainingDate: verifiedData.trainingDate,
+            location: verifiedData.location,
+            duration: verifiedData.duration,
+            trainingStandards: verifiedData.trainingStandards,
+            certificationType: verifiedData.trainingTitle,
+            expirationDate: new Date(new Date(verifiedData.trainingDate).getTime() + (365 * 24 * 60 * 60 * 1000)).toISOString().split('T')[0], // 1 year
+            userId
+          });
+
+          if (result.success) {
+            certificateIds.push(result.certificateId);
+            employeeProfileUpdates.push({
+              employeeName: employee.name,
+              profileCreated: result.profileCreated,
+              certificateId: result.certificateId
+            });
+          }
+        } catch (employeeError) {
+          console.error(`Error processing employee ${employee.name}:`, employeeError);
+          // Continue with other employees even if one fails
+        }
+      }
+    }
 
     // Update certificate count
     await db
@@ -288,15 +324,17 @@ export async function verifyAndGenerateCertificates(req: Request, res: Response)
       .set({ certificatesGenerated: certificateIds.length })
       .where(eq(processedDocuments.id, documentId));
 
-    // Log successful certificate generation
+    // Log successful certificate generation and employee profile integration
     console.log(`✓ Generated ${certificateIds.length} certificates for user ${userId}`);
     console.log(`✓ Certificate IDs: ${certificateIds.join(', ')}`);
+    console.log(`✓ Employee Profile Updates:`, employeeProfileUpdates);
     
     res.json({
       success: true,
       certificatesGenerated: certificateIds.length,
       certificateIds,
-      message: `Successfully generated ${certificateIds.length} professional certificates and wallet cards`
+      employeeProfileUpdates,
+      message: `Successfully generated ${certificateIds.length} certificates and integrated with Employee Profile system. ${employeeProfileUpdates.filter(e => e.profileCreated).length} new employee profiles created.`
     });
 
   } catch (error) {

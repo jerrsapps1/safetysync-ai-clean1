@@ -11,51 +11,98 @@ export class EmployeeCertificateService {
   }
 
   async generateAndStoreEmployeeCertificate(data: {
-    employeeId: number;
+    employeeId?: number;
     userId: number;
     employeeName: string;
-    employeeIdString: string;
-    trainingName: string;
-    completionDate: string;
+    employeeIdString?: string;
+    trainingName?: string;
+    trainingTitle?: string;
+    completionDate?: string;
+    trainingDate?: string;
     instructorName: string;
     instructorCredentials: string;
     location: string;
     duration: string;
     companyName?: string;
+    trainingStandards?: string[];
+    certificationType?: string;
+    expirationDate?: string;
   }) {
-    // Verify employee exists and belongs to user
-    const [employee] = await db
-      .select()
-      .from(employees)
-      .where(and(eq(employees.id, data.employeeId), eq(employees.userId, data.userId)));
+    // Normalize the data for flexibility
+    const normalizedData = {
+      ...data,
+      trainingName: data.trainingName || data.trainingTitle || 'General Training',
+      completionDate: data.completionDate || data.trainingDate || new Date().toISOString().split('T')[0],
+      employeeIdString: data.employeeIdString || data.employeeId?.toString() || `AUTO-${Date.now()}`
+    };
 
-    if (!employee) {
-      throw new Error('Employee not found or access denied');
+    let employee;
+    let profileCreated = false;
+
+    if (data.employeeId) {
+      // Verify existing employee
+      const [existingEmployee] = await db
+        .select()
+        .from(employees)
+        .where(and(eq(employees.id, data.employeeId), eq(employees.userId, data.userId)));
+
+      if (!existingEmployee) {
+        throw new Error('Employee not found or access denied');
+      }
+      employee = existingEmployee;
+    } else {
+      // Create new employee profile from training document
+      try {
+        const [newEmployee] = await db
+          .insert(employees)
+          .values({
+            userId: data.userId,
+            firstName: normalizedData.employeeName.split(' ')[0] || 'Unknown',
+            lastName: normalizedData.employeeName.split(' ').slice(1).join(' ') || 'Employee',
+            employeeId: normalizedData.employeeIdString,
+            email: `${normalizedData.employeeName.toLowerCase().replace(/\s+/g, '.')}@company.com`,
+            phone: '(555) 000-0000',
+            position: 'Employee',
+            department: 'General',
+            location: normalizedData.location || 'Main Office',
+            hireDate: new Date(normalizedData.completionDate),
+            status: 'Active',
+            notes: `Profile created from training document: ${normalizedData.trainingName}`
+          })
+          .returning();
+
+        employee = newEmployee;
+        profileCreated = true;
+        console.log(`✓ Created new employee profile: ${normalizedData.employeeName} (ID: ${employee.id})`);
+      } catch (error) {
+        console.error(`Error creating employee profile for ${normalizedData.employeeName}:`, error);
+        throw new Error(`Failed to create employee profile: ${error.message}`);
+      }
     }
 
     // Generate certificate using existing generator
     const certificateResult = await this.certificateGenerator.generateCertificate({
-      employeeName: data.employeeName,
-      employeeId: data.employeeIdString,
-      trainingName: data.trainingName,
-      completionDate: data.completionDate,
-      instructorName: data.instructorName,
-      instructorCredentials: data.instructorCredentials,
-      location: data.location,
-      duration: data.duration,
-      companyName: data.companyName
+      employeeName: normalizedData.employeeName,
+      employeeId: normalizedData.employeeIdString,
+      trainingName: normalizedData.trainingName,
+      completionDate: normalizedData.completionDate,
+      instructorName: normalizedData.instructorName,
+      instructorCredentials: normalizedData.instructorCredentials,
+      location: normalizedData.location,
+      duration: normalizedData.duration,
+      companyName: normalizedData.companyName
     });
 
     // Generate wallet card
     const walletCardHtml = this.certificateGenerator.generateWalletCard({
-      employeeName: data.employeeName,
-      employeeId: data.employeeIdString,
-      trainingName: data.trainingName,
-      completionDate: data.completionDate,
-      expiryDate: certificateResult.expiryDate,
-      instructorName: data.instructorName,
-      instructorCredentials: data.instructorCredentials,
-      companyName: data.companyName || 'SafetySync.AI',
+      employeeName: normalizedData.employeeName,
+      employeeId: normalizedData.employeeIdString,
+      trainingName: normalizedData.trainingName,
+      completionDate: normalizedData.completionDate,
+      expiryDate: data.expirationDate || certificateResult.expiryDate,
+      instructorName: normalizedData.instructorName,
+      instructorCredentials: normalizedData.instructorCredentials,
+      companyName: normalizedData.companyName || 'SafetySync.AI',
       certificateNumber: certificateResult.certificateNumber
     });
 
@@ -70,46 +117,50 @@ export class EmployeeCertificateService {
       await fs.mkdir(uploadsDir, { recursive: true });
     }
 
-    const walletCardFilename = `wallet_card_${data.employeeIdString}_${Date.now()}.html`;
+    const walletCardFilename = `wallet_card_${normalizedData.employeeIdString}_${Date.now()}.html`;
     const walletCardFilepath = path.join(uploadsDir, walletCardFilename);
     await fs.writeFile(walletCardFilepath, walletCardHtml, 'utf8');
     const walletCardUrl = `/uploads/wallet-cards/${walletCardFilename}`;
 
     // Determine training standards based on training name
-    const trainingStandards = this.getTrainingStandards(data.trainingName);
+    const trainingStandards = data.trainingStandards || this.getTrainingStandards(normalizedData.trainingName);
 
     // Store certificate in employee certificates table
     const [newEmployeeCertificate] = await db
       .insert(employeeCertificates)
       .values({
-        employeeId: data.employeeId,
+        employeeId: employee.id,
         userId: data.userId,
-        certificateName: data.trainingName,
-        certificationType: this.getCertificationType(data.trainingName),
-        issueDate: new Date(data.completionDate),
-        expirationDate: new Date(certificateResult.expiryDate),
-        issuingOrganization: data.companyName || 'SafetySync.AI',
-        instructorName: data.instructorName,
-        instructorCredentials: data.instructorCredentials,
+        certificateName: normalizedData.trainingName,
+        certificationType: data.certificationType || this.getCertificationType(normalizedData.trainingName),
+        issueDate: new Date(normalizedData.completionDate),
+        expirationDate: new Date(data.expirationDate || certificateResult.expiryDate),
+        issuingOrganization: normalizedData.companyName || 'SafetySync.AI',
+        instructorName: normalizedData.instructorName,
+        instructorCredentials: normalizedData.instructorCredentials,
         trainingStandards: trainingStandards,
         certificateNumber: certificateResult.certificateNumber,
         certificateFilePath: certificateResult.certificateUrl,
         walletCardFilePath: walletCardUrl,
         uploadedFromExternal: false,
-        notes: `Generated from training completed on ${data.completionDate} at ${data.location}`,
+        notes: `Generated from training completed on ${normalizedData.completionDate} at ${normalizedData.location}`,
         status: 'active'
       })
       .returning();
 
-    console.log(`✓ Generated and stored certificate for employee ${data.employeeName}: ${data.trainingName}`);
+    console.log(`✓ Generated and stored certificate for employee ${normalizedData.employeeName}: ${normalizedData.trainingName}`);
 
     return {
       success: true,
       certificate: newEmployeeCertificate,
+      certificateId: newEmployeeCertificate.id,
       certificateUrl: certificateResult.certificateUrl,
       walletCardUrl: walletCardUrl,
       certificateNumber: certificateResult.certificateNumber,
-      expiryDate: certificateResult.expiryDate
+      expiryDate: data.expirationDate || certificateResult.expiryDate,
+      profileCreated: profileCreated,
+      employeeId: employee.id,
+      employeeName: normalizedData.employeeName
     };
   }
 

@@ -203,16 +203,22 @@ export default function AIDocumentProcessor() {
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['/api/ai/certificates'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/employees'] });
+      
+      // Show detailed success message with Employee Profile integration
+      const profilesCreated = data.employeeProfileUpdates?.filter(e => e.profileCreated)?.length || 0;
+      const totalEmployees = data.employeeProfileUpdates?.length || 0;
+      
       toast({
-        title: "Certificates Generated Successfully!",
-        description: `Generated ${data.certificatesGenerated} professional OSHA-compliant certificates and wallet cards. View them in the Generated Certificates section below.`,
+        title: "Complete Workflow Success!",
+        description: `✓ Generated ${data.certificatesGenerated} certificates and wallet cards
+✓ ${profilesCreated} new employee profiles created
+✓ ${totalEmployees} employees integrated with certificate system
+✓ All certificates accessible via Employee Profile QR codes`,
       });
+      
+      console.log('Employee Profile Integration Results:', data.employeeProfileUpdates);
       // Don't reset form immediately - let user see results
-      // setSelectedFile(null);
-      // setProcessedData(null);
-      // setEditedData(null);
-      // setDocumentId(null);
-      // setInstructorNotes('');
     },
     onError: (error) => {
       toast({
