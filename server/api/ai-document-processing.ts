@@ -88,9 +88,17 @@ export async function uploadAndProcessSignIn(req: Request, res: Response) {
         // Handle different file types
         if (req.file.mimetype === 'application/pdf') {
           // For PDF files, use pdf-parse
-          const pdfParse = await import('pdf-parse');
-          const pdfData = await pdfParse.default(req.file.buffer);
-          documentContent = pdfData.text;
+          try {
+            const pdfParse = require('pdf-parse');
+            const pdfData = await pdfParse(req.file.buffer);
+            documentContent = pdfData.text;
+            console.log('PDF parsed successfully, text length:', documentContent.length);
+          } catch (pdfError) {
+            console.error('PDF parsing failed:', pdfError);
+            // Fallback to binary text extraction
+            documentContent = req.file.buffer.toString('utf-8').replace(/[^\x20-\x7E\n\r\t]/g, ' ');
+            console.log('Using fallback text extraction for PDF');
+          }
         } else if (req.file.mimetype.includes('text/') || req.file.originalname.endsWith('.txt')) {
           // Plain text files
           documentContent = req.file.buffer.toString('utf-8');
@@ -104,6 +112,13 @@ export async function uploadAndProcessSignIn(req: Request, res: Response) {
         
         console.log(`Processing ${req.file.mimetype} file: ${req.file.originalname}`);
         console.log(`Extracted text length: ${documentContent.length} characters`);
+        
+        if (documentContent.length === 0) {
+          throw new Error('No text content could be extracted from the uploaded file');
+        }
+        
+        // Show preview of extracted content for debugging
+        console.log('Text preview:', documentContent.substring(0, 200) + '...');
         
         // Process with AI
         const processedData = await aiDocumentProcessor.processSignInDocument(
