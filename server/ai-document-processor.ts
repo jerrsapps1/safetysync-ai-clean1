@@ -29,6 +29,9 @@ export class AIDocumentProcessor {
   async processSignInDocument(documentContent: string, instructorId: number): Promise<ProcessedSignIn> {
     try {
       const prompt = `
+        You are an expert at extracting training information from documents, including PDFs with encoding artifacts.
+        This content may contain PDF binary data, formatting characters, or fragmented text. Look for patterns and extract ALL available information.
+        
         Analyze this training sign-in document and extract structured information.
         Return JSON with this exact format:
         {
@@ -51,8 +54,10 @@ export class AIDocumentProcessor {
           "evaluationRequired": true/false
         }
 
-        Extract all employee names, check for signatures/initials, determine if training qualifies for certification.
-        Common certification-eligible training: Fall Protection, Scaffold Safety, Confined Space, Forklift Operation, etc.
+        CRITICAL: Extract ALL employee names and IDs even if text is corrupted or fragmented from PDF conversion.
+        Look for patterns like: "John Smith", "EMP-1234", dates, instructor names, training titles.
+        Be aggressive in extraction - capture partial information rather than miss it entirely.
+        Common certification training: Fall Protection, Scaffold Safety, Confined Space, Forklift, OSHA, Safety.
       `;
 
       const response = await openai.chat.completions.create({
@@ -66,6 +71,17 @@ export class AIDocumentProcessor {
       });
 
       const result = JSON.parse(response.choices[0].message.content || '{}');
+      
+      // Log the AI extraction results for debugging
+      console.log('AI Extraction Results:');
+      console.log('Training Title:', result.trainingTitle);
+      console.log('Instructor:', result.instructorName);
+      console.log('Date:', result.trainingDate);
+      console.log('Employees found:', result.employees?.length || 0);
+      if (result.employees && result.employees.length > 0) {
+        console.log('First employee:', result.employees[0]);
+      }
+      
       return result as ProcessedSignIn;
 
     } catch (error) {
