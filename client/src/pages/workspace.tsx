@@ -2830,6 +2830,12 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             </div>
           )}
 
+          {activeTab === "osha-compliance" && (
+            <div className="space-y-6">
+              <OSHAComplianceManager />
+            </div>
+          )}
+
           {activeTab === "document-manager" && (
             <div className="space-y-6">
               <DocumentManager />
