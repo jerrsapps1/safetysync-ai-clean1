@@ -83,8 +83,27 @@ export async function uploadAndProcessSignIn(req: Request, res: Response) {
       }
 
       try {
-        // Convert file buffer to text (for PDFs, you might need a PDF parser)
-        const documentContent = req.file.buffer.toString('utf-8');
+        let documentContent = '';
+        
+        // Handle different file types
+        if (req.file.mimetype === 'application/pdf') {
+          // For PDF files, use pdf-parse
+          const pdfParse = await import('pdf-parse');
+          const pdfData = await pdfParse.default(req.file.buffer);
+          documentContent = pdfData.text;
+        } else if (req.file.mimetype.includes('text/') || req.file.originalname.endsWith('.txt')) {
+          // Plain text files
+          documentContent = req.file.buffer.toString('utf-8');
+        } else if (req.file.mimetype.includes('application/vnd.openxmlformats-officedocument.wordprocessingml.document')) {
+          // Word documents - convert buffer to text (basic extraction)
+          documentContent = req.file.buffer.toString('utf-8').replace(/[^\x20-\x7E\n\r\t]/g, ' ');
+        } else {
+          // Fallback - try to extract text
+          documentContent = req.file.buffer.toString('utf-8');
+        }
+        
+        console.log(`Processing ${req.file.mimetype} file: ${req.file.originalname}`);
+        console.log(`Extracted text length: ${documentContent.length} characters`);
         
         // Process with AI
         const processedData = await aiDocumentProcessor.processSignInDocument(
