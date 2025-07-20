@@ -67,25 +67,25 @@ export default function AIDocumentProcessor() {
 
   const processMutation = useMutation({
     mutationFn: async (file: File) => {
-      // For testing, let's use the sample documents directly
-      const text = await file.text();
-      
       const authToken = sessionStorage.getItem('auth_token');
       console.log('File upload - Auth token:', authToken ? `${authToken.substring(0, 20)}...` : 'No token found');
+      console.log('Uploading file:', file.name, 'Type:', file.type, 'Size:', file.size);
       
       if (!authToken) {
         throw new Error('Authentication required. Please log in again.');
       }
+
+      // Use FormData for real file uploads to handle different file types (PDF, Word, text)
+      const formData = new FormData();
+      formData.append('signInDocument', file);
+      
       const response = await fetch('/api/ai/process-signin', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
           'Authorization': `Bearer ${authToken}`
+          // Don't set Content-Type for FormData - browser sets it with boundary
         },
-        body: JSON.stringify({
-          documentContent: text,
-          fileName: file.name
-        })
+        body: formData
       });
       
       if (!response.ok) {
