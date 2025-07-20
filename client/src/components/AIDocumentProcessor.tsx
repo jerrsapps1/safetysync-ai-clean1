@@ -71,6 +71,11 @@ export default function AIDocumentProcessor() {
       const text = await file.text();
       
       const authToken = sessionStorage.getItem('auth_token');
+      console.log('File upload - Auth token:', authToken ? `${authToken.substring(0, 20)}...` : 'No token found');
+      
+      if (!authToken) {
+        throw new Error('Authentication required. Please log in again.');
+      }
       const response = await fetch('/api/ai/process-signin', {
         method: 'POST',
         headers: {
@@ -112,6 +117,12 @@ export default function AIDocumentProcessor() {
   const processTextMutation = useMutation({
     mutationFn: async (documentContent: string) => {
       const authToken = sessionStorage.getItem('auth_token');
+      console.log('Sample processing - Auth token:', authToken ? `${authToken.substring(0, 20)}...` : 'No token found');
+      
+      if (!authToken) {
+        throw new Error('Authentication required. Please log in again.');
+      }
+      
       const response = await fetch('/api/ai/process-signin', {
         method: 'POST',
         headers: {
