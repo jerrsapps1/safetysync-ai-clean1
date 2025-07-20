@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -54,6 +54,17 @@ export default function AIDocumentProcessor() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
   const queryClient = useQueryClient();
+
+  // Add error boundary for unhandled promise rejections
+  useEffect(() => {
+    const handleUnhandledRejection = (event: PromiseRejectionEvent) => {
+      console.error('Unhandled promise rejection:', event.reason);
+      event.preventDefault(); // Prevent default browser behavior
+    };
+
+    window.addEventListener('unhandledrejection', handleUnhandledRejection);
+    return () => window.removeEventListener('unhandledrejection', handleUnhandledRejection);
+  }, []);
 
   const { data: processedDocuments } = useQuery({
     queryKey: ['/api/ai/processed-documents'],
@@ -581,7 +592,7 @@ Date: January 21, 2025`
                   <span>Certificate</span>
                 </div>
                 
-                {editedData?.employees.map((employee, index) => (
+                {(editedData?.employees || []).map((employee, index) => (
                   <div key={index} className="px-4 py-3 grid grid-cols-5 gap-4 border-t items-center">
                     <Input
                       value={employee.name}
@@ -608,7 +619,7 @@ Date: January 21, 2025`
                       <option value="absent">Absent</option>
                     </select>
                     <div className="text-center">
-                      {employee.signature && employee.completionStatus === 'completed' && editedData.certificationEligible ? (
+                      {employee.signature && employee.completionStatus === 'completed' && editedData?.certificationEligible ? (
                         <Badge variant="default" className="bg-green-100 text-green-800">
                           <CreditCard className="h-3 w-3 mr-1" />
                           Will Generate
@@ -649,10 +660,10 @@ Date: January 21, 2025`
                 </div>
                 <div className="text-right text-sm text-emerald-700">
                   <div className="font-medium">
-                    Eligible: {editedData?.employees.filter(emp => emp.completionStatus === 'completed' && emp.signature).length || 0} employees
+                    Eligible: {editedData?.employees?.filter(emp => emp.completionStatus === 'completed' && emp.signature).length || 0} employees
                   </div>
                   <div className="text-xs">
-                    Total: {editedData?.employees.length || 0} employees
+                    Total: {editedData?.employees?.length || 0} employees
                   </div>
                 </div>
               </div>
@@ -686,7 +697,7 @@ Date: January 21, 2025`
                 ) : (
                   <>
                     <CheckCircle className="h-4 w-4 mr-2" />
-                    Verify & Generate Certificates ({editedData?.employees.filter(emp => emp.completionStatus === 'completed' && emp.signature).length || 0})
+                    Verify & Generate Certificates ({editedData?.employees?.filter(emp => emp.completionStatus === 'completed' && emp.signature).length || 0})
                   </>
                 )}
               </Button>
