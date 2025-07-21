@@ -200,9 +200,9 @@ export default function LandingPage() {
       setPendingSignupData(null);
       
       toast({
-        title: "Account Created Successfully! 🎉",
-        description: `Welcome to SafetySync.AI! Your ${pendingSignupData.type === 'trial' ? 'free trial' : 'demo'} is now active.`,
-        duration: 5000,
+        title: "Account Created Successfully!",
+        description: `Welcome to SafetySync.AI! Your ${pendingSignupData.type === 'trial' ? 'free trial' : 'demo'} is now active. You're being redirected to your workspace.`,
+        duration: 4000,
       });
       
       // Redirect new trial users to workspace
@@ -212,11 +212,12 @@ export default function LandingPage() {
         }, 2000); // Longer delay to show success message
       }
     } catch (error) {
+      console.error('Registration error:', error);
       toast({
-        title: "Error",
-        description: "Failed to create account. Please try again.",
+        title: "Registration Failed",
+        description: "Unable to create your account. Please check your information and try again.",
         variant: "destructive",
-        duration: 3000,
+        duration: 4000,
       });
     }
   };

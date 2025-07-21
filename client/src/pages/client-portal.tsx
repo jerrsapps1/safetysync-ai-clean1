@@ -416,7 +416,9 @@ export default function ClientPortal() {
                       placeholder="Username"
                       value={loginUsername}
                       onChange={(e) => setLoginUsername(e.target.value)}
-                      className="w-40 h-8 text-sm bg-white/10 border-white/20 text-white placeholder-gray-400"
+                      className="w-40 h-8 text-sm bg-white/10 border-white/20 text-white placeholder-gray-400 focus:border-blue-400 focus:ring-blue-400/50"
+                      disabled={isAuthenticating}
+                      autoComplete="username"
                     />
                     <div className="relative">
                       <Input
@@ -424,7 +426,9 @@ export default function ClientPortal() {
                         placeholder="Password"
                         value={loginPassword}
                         onChange={(e) => setLoginPassword(e.target.value)}
-                        className="w-40 h-8 text-sm bg-white/10 border-white/20 text-white placeholder-gray-400 pr-8"
+                        className="w-40 h-8 text-sm bg-white/10 border-white/20 text-white placeholder-gray-400 pr-8 focus:border-blue-400 focus:ring-blue-400/50"
+                        disabled={isAuthenticating}
+                        autoComplete="current-password"
                       />
                       <Button
                         type="button"
@@ -432,17 +436,22 @@ export default function ClientPortal() {
                         size="sm"
                         className="absolute right-1 top-1/2 transform -translate-y-1/2 p-1 text-gray-400 hover:text-white h-6 w-6"
                         onClick={() => setShowPassword(!showPassword)}
+                        disabled={isAuthenticating}
                       >
                         {showPassword ? <EyeOff className="w-3 h-3" /> : <Eye className="w-3 h-3" />}
                       </Button>
                     </div>
                     <Button
                       type="submit"
-                      disabled={isAuthenticating}
+                      disabled={isAuthenticating || !loginUsername.trim() || !loginPassword.trim()}
                       size="sm"
-                      className="bg-blue-600 hover:bg-blue-700 text-white"
+                      className="bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50 min-w-[70px]"
                     >
-                      {isAuthenticating ? "..." : "Sign In"}
+                      {isAuthenticating ? (
+                        <div className="flex items-center space-x-1">
+                          <div className="animate-spin rounded-full h-3 w-3 border-2 border-white border-t-transparent"></div>
+                        </div>
+                      ) : "Sign In"}
                     </Button>
                   </form>
                   <div className="flex items-center space-x-2 text-sm">
