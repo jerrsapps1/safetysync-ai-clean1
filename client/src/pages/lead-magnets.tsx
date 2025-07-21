@@ -4,9 +4,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
+import { PageHeader } from "@/components/ui/page-header";
 import { useToast } from "@/hooks/use-toast";
 import { trackConversionEvent } from "@/lib/analytics";
-import { Link } from "wouter";
 import { 
   Download, 
   FileText, 
@@ -25,8 +25,7 @@ import {
   Building,
   Factory,
   Heart,
-  Wrench,
-  Home
+  Wrench
 } from "lucide-react";
 
 interface LeadMagnet {
@@ -251,17 +250,7 @@ export default function LeadMagnetsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
-      {/* Top Home Button */}
-      <div className="bg-white border-b border-gray-200 px-4 sm:px-6 lg:px-8 py-3">
-        <div className="max-w-7xl mx-auto">
-          <Link href="/">
-            <Button variant="secondary" className="flex items-center gap-2 bg-gray-100 text-gray-700 hover:bg-gray-200">
-              <Home className="w-4 h-4" />
-              Back to Home
-            </Button>
-          </Link>
-        </div>
-      </div>
+      <PageHeader />
 
       {/* Header */}
       <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16 px-4 sm:px-6 lg:px-8">
@@ -520,17 +509,7 @@ export default function LeadMagnetsPage() {
           </div>
         </section>
 
-        {/* Bottom Home Button */}
-        <div className="bg-white border-t border-gray-200 px-4 sm:px-6 lg:px-8 py-6 mt-12">
-          <div className="max-w-7xl mx-auto text-center">
-            <Link href="/">
-              <Button variant="secondary" className="flex items-center gap-2 mx-auto bg-gray-100 text-gray-700 hover:bg-gray-200">
-                <Home className="w-4 h-4" />
-                Back to Home
-              </Button>
-            </Link>
-          </div>
-        </div>
+
       </div>
     </div>
   );

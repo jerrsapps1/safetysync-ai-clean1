@@ -1,10 +1,10 @@
 import React from 'react';
-import ResponsiveNavbar from '../components/ResponsiveNavbar';
+import { PageHeader } from '@/components/ui/page-header';
 
 export default function HRTeamsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <ResponsiveNavbar />
+      <PageHeader />
       
       {/* Hero Section */}
       <div className="bg-white">

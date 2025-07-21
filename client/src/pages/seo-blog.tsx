@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Link } from "wouter";
+import { PageHeader } from "@/components/ui/page-header";
 import { 
   Clock, 
   User, 
@@ -13,8 +13,7 @@ import {
   AlertTriangle,
   FileText,
   Target,
-  BarChart3,
-  Home
+  BarChart3
 } from "lucide-react";
 
 interface BlogPost {
@@ -117,17 +116,7 @@ const categories = ['All', 'Compliance', 'Technology', 'Manufacturing', 'Trainin
 export default function SEOBlogPage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Top Home Button */}
-      <div className="bg-white border-b border-gray-200 px-4 sm:px-6 lg:px-8 py-3">
-        <div className="max-w-7xl mx-auto">
-          <Link href="/">
-            <Button variant="outline" className="flex items-center gap-2">
-              <Home className="w-4 h-4" />
-              Back to Home
-            </Button>
-          </Link>
-        </div>
-      </div>
+      <PageHeader />
 
       {/* Header */}
       <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16 px-4 sm:px-6 lg:px-8">
@@ -335,17 +324,7 @@ export default function SEOBlogPage() {
           </div>
         </section>
 
-        {/* Bottom Home Button */}
-        <div className="bg-white border-t border-gray-200 px-4 sm:px-6 lg:px-8 py-6">
-          <div className="max-w-7xl mx-auto text-center">
-            <Link href="/">
-              <Button variant="outline" className="flex items-center gap-2 mx-auto">
-                <Home className="w-4 h-4" />
-                Back to Home
-              </Button>
-            </Link>
-          </div>
-        </div>
+
       </div>
     </div>
   );

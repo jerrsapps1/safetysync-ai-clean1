@@ -4,25 +4,15 @@ import { Button } from "@/components/ui/button";
 import { PricingCalculator } from "@/components/ui/pricing-calculator";
 import { FAQSection } from "@/components/ui/faq-section";
 import { LiveChatWidget } from "@/components/ui/live-chat-widget";
-import { ArrowLeft, MessageCircle, Home } from "lucide-react";
-import { Link } from "wouter";
+import { PageHeader } from "@/components/ui/page-header";
+import { MessageCircle } from "lucide-react";
 
 export default function PricingPage() {
   const [showChat, setShowChat] = useState(false);
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Top Home Button */}
-      <div className="bg-white border-b border-gray-200 px-4 sm:px-6 lg:px-8 py-3">
-        <div className="max-w-7xl mx-auto">
-          <Link href="/">
-            <Button variant="secondary" className="flex items-center gap-2 bg-gray-100 text-gray-700 hover:bg-gray-200">
-              <Home className="w-4 h-4" />
-              Back to Home
-            </Button>
-          </Link>
-        </div>
-      </div>
+      <PageHeader />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Header */}
@@ -82,10 +72,9 @@ export default function PricingPage() {
         {/* Live Chat */}
         {showChat && (
           <LiveChatWidget 
+            isOpen={showChat}
+            onToggle={() => setShowChat(!showChat)}
             onClose={() => setShowChat(false)}
-            onSendMessage={(message) => {
-              console.log('Chat message:', message);
-            }}
           />
         )}
 
@@ -99,17 +88,7 @@ export default function PricingPage() {
           </Button>
         </div>
 
-        {/* Bottom Home Button */}
-        <div className="bg-white border-t border-gray-200 px-4 sm:px-6 lg:px-8 py-6 mt-12">
-          <div className="max-w-7xl mx-auto text-center">
-            <Link href="/">
-              <Button variant="secondary" className="flex items-center gap-2 mx-auto bg-gray-100 text-gray-700 hover:bg-gray-200">
-                <Home className="w-4 h-4" />
-                Back to Home
-              </Button>
-            </Link>
-          </div>
-        </div>
+
       </div>
     </div>
   );
