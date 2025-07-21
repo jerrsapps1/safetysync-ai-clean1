@@ -79,7 +79,7 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
             <div className="p-3 bg-gradient-to-b from-purple-50 to-purple-100 rounded-lg">
               <BarChart3 className="w-10 h-10 mx-auto mb-2 text-purple-600" />
               <div className="text-sm font-semibold">Employee-Centric QR</div>
-              <div className="text-xs text-gray-600">Hard hat verification system</div>
+              <div className="text-xs text-gray-600">Mobile verification system</div>
             </div>
           </div>
         </div>
@@ -142,12 +142,12 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
           <div className="bg-gradient-to-r from-green-50 to-blue-50 p-4 rounded-lg border border-green-200">
             <h3 className="font-bold mb-3 text-lg text-green-800">Smart Employee Compliance</h3>
             <p className="text-sm text-gray-700 mb-3">
-              Employee-centric approach with QR code verification on hard hats. Each employee has their own 
-              profile with digital wallet cards that replace physical certification cards for field verification.
+              Employee-centric approach with QR code verification. Each employee has their own 
+              profile with digital wallet cards that replace physical certification cards for easy verification.
             </p>
             <div className="grid grid-cols-2 gap-3 text-xs">
               <div className="bg-white/70 p-2 rounded">
-                <strong>QR Features:</strong> Hard hat verification • Digital wallet cards • Real-time access
+                <strong>QR Features:</strong> Mobile verification • Digital wallet cards • Real-time access
               </div>
               <div className="bg-white/70 p-2 rounded">
                 <strong>Training Focus:</strong> Document processing • Certificate generation • OSHA compliance
