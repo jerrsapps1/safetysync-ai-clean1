@@ -356,6 +356,13 @@ export default function WorkspacePage() {
   const { user, isLoading: authLoading, isAuthenticated, logout } = useAuth();
   const { trackMilestone } = useDynamicAchievements();
   const [location, setLocation] = useLocation();
+
+  console.log('🏢 WORKSPACE: Component render', { 
+    isAuthenticated, 
+    authLoading, 
+    hasUser: !!user,
+    location 
+  });
   
   // Extract tab from URL or default to overview
   const getActiveTabFromUrl = () => {
