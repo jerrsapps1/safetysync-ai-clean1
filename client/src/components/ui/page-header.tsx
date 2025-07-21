@@ -104,17 +104,16 @@ export function PageHeader({}: PageHeaderProps) {
         <div className="absolute bottom-6 left-2 right-2">
           <Link href="/client-portal">
             <Button 
-              variant={!isHovered ? "ghost" : "default"}
-              size={!isHovered ? "sm" : "default"}
               className={`
-                ${!isHovered ? 'w-12 h-12 p-0 bg-emerald-500/20 hover:bg-emerald-500/30' : 'w-full bg-emerald-600 hover:bg-emerald-700'} 
-                text-white font-medium border border-emerald-400/30
+                ${!isHovered ? 'w-12 h-12 p-0' : 'w-full'} 
+                bg-emerald-600 hover:bg-emerald-700 text-white font-medium border border-emerald-400 
+                shadow-lg transition-all duration-300
               `}
               onClick={() => setIsMobileOpen(false)}
               title={!isHovered ? "Client Login" : undefined}
             >
               {!isHovered ? (
-                <Users className="w-5 h-5" />
+                <Users className="w-5 h-5 text-white" />
               ) : (
                 "Client Login"
               )}
