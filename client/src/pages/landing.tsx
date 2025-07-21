@@ -351,6 +351,67 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Pain Points Section */}
+      <section className="py-12 md:py-16 px-4 md:px-6 max-w-6xl mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+            Sound Familiar?
+          </h2>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            You're juggling compliance requirements while trying to keep your team safe. These challenges shouldn't slow you down.
+          </p>
+        </div>
+        
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-16">
+          <div className="bg-red-50 border-l-4 border-red-400 p-6 rounded-r-lg">
+            <div className="flex items-start">
+              <AlertTriangle className="w-5 h-5 text-red-500 mt-0.5 mr-3 flex-shrink-0" />
+              <div>
+                <h3 className="text-lg font-semibold text-red-800 mb-2">Spreadsheet Chaos</h3>
+                <p className="text-red-700">Training records scattered across multiple Excel files, outdated certifications slipping through cracks, and manual tracking eating up hours every week.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="bg-red-50 border-l-4 border-red-400 p-6 rounded-r-lg">
+            <div className="flex items-start">
+              <Clock className="w-5 h-5 text-red-500 mt-0.5 mr-3 flex-shrink-0" />
+              <div>
+                <h3 className="text-lg font-semibold text-red-800 mb-2">Last-Minute Panic</h3>
+                <p className="text-red-700">OSHA inspections announced with little warning, scrambling to find documentation, and spending sleepless nights preparing compliance reports.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="bg-red-50 border-l-4 border-red-400 p-6 rounded-r-lg">
+            <div className="flex items-start">
+              <FileX className="w-5 h-5 text-red-500 mt-0.5 mr-3 flex-shrink-0" />
+              <div>
+                <h3 className="text-lg font-semibold text-red-800 mb-2">Paperwork Overload</h3>
+                <p className="text-red-700">Drowning in forms, certificates, and training documentation that's impossible to organize, search, or access when you need it most.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="bg-red-50 border-l-4 border-red-400 p-6 rounded-r-lg">
+            <div className="flex items-start">
+              <AlertCircle className="w-5 h-5 text-red-500 mt-0.5 mr-3 flex-shrink-0" />
+              <div>
+                <h3 className="text-lg font-semibold text-red-800 mb-2">Compliance Blind Spots</h3>
+                <p className="text-red-700">Never knowing if you're truly compliant, missing renewal deadlines, and worrying about violations that could cost thousands in fines.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div className="text-center">
+          <div className="inline-flex items-center px-6 py-3 bg-emerald-100 border border-emerald-300 rounded-lg">
+            <CheckCircle className="w-5 h-5 text-emerald-600 mr-2" />
+            <span className="text-emerald-800 font-medium">There's a better way. Let us show you.</span>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="py-12 md:py-16 px-4 md:px-6 max-w-6xl mx-auto">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12">
