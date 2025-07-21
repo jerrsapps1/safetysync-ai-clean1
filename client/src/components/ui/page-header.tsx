@@ -71,13 +71,8 @@ export function PageHeader({}: PageHeaderProps) {
             </div>
           </div>
 
-          {/* CTA Buttons */}
-          <div className="hidden md:flex items-center space-x-3">
-            <Link href="/">
-              <Button size="sm" className="bg-emerald-600 hover:bg-emerald-700 text-white">
-                Get Started Free
-              </Button>
-            </Link>
+          {/* Client Login Button */}
+          <div className="hidden md:flex items-center">
             <Link href="/client-portal">
               <Button variant="outline" size="sm" className="text-gray-700 border-gray-300 hover:bg-gray-100">
                 Client Login
@@ -168,17 +163,8 @@ export function PageHeader({}: PageHeaderProps) {
               </a>
             </Link>
             
-            {/* Mobile CTA Buttons */}
-            <div className="pt-4 pb-2 border-t border-gray-200 space-y-2">
-              <Link href="/">
-                <Button 
-                  size="sm" 
-                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Get Started Free
-                </Button>
-              </Link>
+            {/* Mobile Client Login Button */}
+            <div className="pt-4 pb-2 border-t border-gray-200">
               <Link href="/client-portal">
                 <Button 
                   variant="outline" 
