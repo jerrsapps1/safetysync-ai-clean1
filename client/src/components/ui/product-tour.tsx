@@ -89,43 +89,43 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
     },
     {
       id: "dashboard",
-      title: "Streamlined Trial Signup Experience", 
-      description: "Enterprise-grade authentication system with simplified user onboarding",
+      title: "Revolutionary AI Document Processing", 
+      description: "Transform training sign-in sheets into structured compliance data automatically",
       content: (
         <div className="space-y-5">
           <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-5 rounded-lg border border-blue-200">
-            <h3 className="font-bold mb-3 text-lg text-blue-800">Enterprise Authentication System</h3>
+            <h3 className="font-bold mb-3 text-lg text-blue-800">AI Document Processing Engine</h3>
             <div className="flex items-center gap-4 mb-3">
-              <div className="text-4xl font-bold text-green-600">100%</div>
+              <div className="text-4xl font-bold text-green-600">97%</div>
               <div className="flex-1">
-                <Progress value={100} className="mb-1" />
-                <div className="text-xs text-gray-600">Professional validation for all user types</div>
+                <Progress value={97} className="mb-1" />
+                <div className="text-xs text-gray-600">Accuracy rate for training document extraction</div>
               </div>
             </div>
             <p className="text-sm text-gray-700 mb-3">
-              Our streamlined trial signup removes barriers while maintaining enterprise security standards. 
-              Changed "Work Email" to "Email", made company optional, removed unnecessary questions.
+              Upload training sign-in sheets, safety meeting records, or certification documents and watch our AI 
+              instantly extract employee names, training details, instructor credentials, and compliance standards.
             </p>
             <div className="bg-white/70 rounded p-3 text-xs">
-              <strong>Recent Updates:</strong> Simplified email field • Optional company name • 
-              Removed "How can we help?" section • Accepts any valid email address
+              <strong>AI Capabilities:</strong> Multi-layer PDF extraction • Intelligent data recognition • 
+              Automatic certificate generation • Real-time verification
             </div>
           </div>
           <div className="grid grid-cols-3 gap-3">
             <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
               <CheckCircle className="w-8 h-8 mx-auto text-green-600 mb-1" />
-              <div className="text-sm font-bold">Easy Signup</div>
-              <div className="text-xs text-gray-600">Streamlined form</div>
+              <div className="text-sm font-bold">PDF Processing</div>
+              <div className="text-xs text-gray-600">Multi-layer extraction</div>
             </div>
             <div className="text-center p-3 bg-yellow-50 rounded-lg border border-yellow-200">
               <Bell className="w-8 h-8 mx-auto text-yellow-600 mb-1" />
-              <div className="text-sm font-bold">No Barriers</div>
-              <div className="text-xs text-gray-600">Optional company</div>
+              <div className="text-sm font-bold">Auto Detection</div>
+              <div className="text-xs text-gray-600">Smart data recognition</div>
             </div>
             <div className="text-center p-3 bg-blue-50 rounded-lg border border-blue-200">
               <BarChart3 className="w-8 h-8 mx-auto text-blue-600 mb-1" />
-              <div className="text-sm font-bold">Enterprise Grade</div>
-              <div className="text-xs text-gray-600">Security maintained</div>
+              <div className="text-sm font-bold">Instant Certs</div>
+              <div className="text-xs text-gray-600">Generated automatically</div>
             </div>
           </div>
         </div>
