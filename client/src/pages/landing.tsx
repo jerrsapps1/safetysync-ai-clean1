@@ -5,6 +5,7 @@ import { PageHeader } from "@/components/ui/page-header";
 import { TrialSignupDialog } from "@/components/ui/trial-signup-dialog";
 import { DemoRequestDialog } from "@/components/ui/demo-request-dialog";
 import { Toaster } from "@/components/ui/toaster";
+import { Link } from "wouter";
 
 import { ProductTour } from "@/components/ui/product-tour";
 import { LiveChatWidget } from "@/components/ui/live-chat-widget";
@@ -264,6 +265,23 @@ export default function LandingPage() {
     <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white font-sans">
       {/* Navigation */}
       <PageHeader />
+      
+      {/* Emergency Client Login Button - Temporary Fix */}
+      <div className="fixed top-4 right-4 z-[70]">
+        <Link href="/client-portal">
+          <Button 
+            className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 shadow-xl border-2 border-emerald-300"
+            style={{
+              backgroundColor: '#059669',
+              borderColor: '#34d399',
+              color: 'white'
+            }}
+          >
+            <Users className="w-4 h-4 mr-2" />
+            Client Login
+          </Button>
+        </Link>
+      </div>
       
       {/* Main Content with Sidebar Margin */}
       <div className="md:ml-16">
