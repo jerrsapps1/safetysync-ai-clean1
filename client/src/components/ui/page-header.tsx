@@ -42,11 +42,11 @@ export function PageHeader({}: PageHeaderProps) {
         {isMobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
       </Button>
 
-      {/* Sidebar */}
+      {/* Hover-Based Icon Sidebar */}
       <aside 
         className={`
           fixed left-0 top-0 z-40 h-full transform transition-all duration-300 ease-in-out
-          glass-panel shadow-2xl
+          bg-gray-900 border-r border-gray-700 shadow-2xl
           ${isMobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
           ${isHovered ? 'w-64' : 'w-16'}
         `}
@@ -100,29 +100,20 @@ export function PageHeader({}: PageHeaderProps) {
           </div>
         </nav>
 
-        {/* Client Login Button - Force Visible */}
-        <div className="absolute bottom-6 left-2 right-2 z-[60]">
+        {/* Client Login Button - Hover Sidebar */}
+        <div className="absolute bottom-6 left-2 right-2">
           <Link href="/client-portal">
             <Button 
               className={`
-                ${!isHovered ? 'w-12 h-12 p-0' : 'w-full'} 
-                !bg-emerald-600 hover:!bg-emerald-700 !text-white !font-bold !border-2 !border-emerald-300 
-                !shadow-xl transition-all duration-300 !relative !opacity-100 !visible
+                ${!isHovered ? 'w-12 h-12 p-0 justify-center' : 'w-full justify-start px-3'} 
+                bg-emerald-600 hover:bg-emerald-700 text-white font-medium border border-emerald-400 
+                shadow-lg transition-all duration-300
               `}
-              style={{
-                backgroundColor: '#059669 !important',
-                borderColor: '#34d399 !important',
-                color: 'white !important',
-                zIndex: 60
-              }}
               onClick={() => setIsMobileOpen(false)}
               title={!isHovered ? "Client Login" : undefined}
             >
-              {!isHovered ? (
-                <Users className="w-6 h-6 !text-white drop-shadow-lg" style={{ color: 'white !important' }} />
-              ) : (
-                <span className="!text-white !font-bold" style={{ color: 'white !important' }}>Client Login</span>
-              )}
+              <Users className={`${!isHovered ? 'w-5 h-5' : 'w-5 h-5 mr-3'} text-white flex-shrink-0`} />
+              {isHovered && <span className="text-white">Client Login</span>}
             </Button>
           </Link>
         </div>
