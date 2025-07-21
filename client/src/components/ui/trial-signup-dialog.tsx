@@ -34,30 +34,47 @@ export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDial
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
     
+    // Name validation
     if (!formData.name.trim()) {
-      newErrors.name = "Name is required";
+      newErrors.name = "Full name is required";
+    } else if (formData.name.trim().length < 2) {
+      newErrors.name = "Name must be at least 2 characters";
     }
     
+    // Username validation - professional standards
     if (!formData.username.trim()) {
       newErrors.username = "Username is required";
+    } else if (formData.username.length < 3) {
+      newErrors.username = "Username must be at least 3 characters";
+    } else if (!/^[a-zA-Z0-9_-]+$/.test(formData.username)) {
+      newErrors.username = "Username can only contain letters, numbers, hyphens, and underscores";
+    } else if (formData.username.length > 30) {
+      newErrors.username = "Username must be less than 30 characters";
     }
     
+    // Email validation - professional standards
     if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
+      newErrors.email = "Work email is required";
+    } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid work email address";
+    } else if (formData.email.includes("@gmail.com") || formData.email.includes("@yahoo.com") || formData.email.includes("@hotmail.com")) {
+      newErrors.email = "Please use your work email address (not personal email)";
     }
     
+    // Company validation
     if (!formData.company.trim()) {
       newErrors.company = "Company name is required";
+    } else if (formData.company.trim().length < 2) {
+      newErrors.company = "Company name must be at least 2 characters";
     }
 
+    // Password validation - enterprise standards
     if (!formData.password.trim()) {
       newErrors.password = "Password is required";
     } else if (!isPasswordStrong) {
-      newErrors.password = "Password must meet all security requirements";
+      newErrors.password = "Password must meet all security requirements below";
     } else if (formData.password.length < 8) {
-      newErrors.password = "Password must be at least 6 characters";
+      newErrors.password = "Password must be at least 8 characters";
     }
     
     setErrors(newErrors);
@@ -137,10 +154,12 @@ export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDial
               id="username"
               type="text"
               value={formData.username}
-              onChange={(e) => handleInputChange("username", e.target.value)}
-              placeholder="Choose a username"
+              onChange={(e) => handleInputChange("username", e.target.value.toLowerCase().replace(/[^a-z0-9_-]/g, ''))}
+              placeholder="john_smith or john-smith"
               className={errors.username ? "border-red-500" : ""}
+              maxLength={30}
             />
+            <p className="text-xs text-gray-500">3-30 characters. Letters, numbers, hyphens, and underscores only.</p>
             {errors.username && <p className="text-sm text-red-500">{errors.username}</p>}
           </div>
 
@@ -150,10 +169,12 @@ export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDial
               id="email"
               type="email"
               value={formData.email}
-              onChange={(e) => handleInputChange("email", e.target.value)}
+              onChange={(e) => handleInputChange("email", e.target.value.toLowerCase())}
               placeholder="john@company.com"
               className={errors.email ? "border-red-500" : ""}
+              autoComplete="work email"
             />
+            <p className="text-xs text-gray-500">Use your work email address for account security</p>
             {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
           </div>
           

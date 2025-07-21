@@ -214,12 +214,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const userData = insertUserSchema.parse(req.body);
       
+      // Enterprise-level validation
+      if (!userData.username || userData.username.length < 3 || userData.username.length > 30) {
+        return res.status(400).json({
+          success: false,
+          message: "Username must be between 3-30 characters"
+        });
+      }
+      
+      if (!/^[a-zA-Z0-9_-]+$/.test(userData.username)) {
+        return res.status(400).json({
+          success: false,
+          message: "Username can only contain letters, numbers, hyphens, and underscores"
+        });
+      }
+      
       // Check if user already exists by email
       const existingUserByEmail = await storage.getUserByEmail(userData.email);
       if (existingUserByEmail) {
         return res.status(400).json({ 
           success: false, 
-          message: "User with this email already exists" 
+          message: "An account with this email already exists. Please try logging in instead." 
         });
       }
 
@@ -244,9 +259,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Don't return password in response
       const { password, ...userWithoutPassword } = user;
 
+      console.log(`✅ NEW USER REGISTERED: ${user.username} (${user.email}) - Company: ${user.company || 'Not provided'}`);
+      
       res.status(201).json({ 
         success: true, 
-        message: "User registered successfully",
+        message: "Account created successfully! Welcome to SafetySync.AI",
         user: userWithoutPassword 
       });
     } catch (error) {
@@ -260,7 +277,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         console.error("Error registering user:", error);
         res.status(500).json({ 
           success: false, 
-          message: "Internal server error" 
+          message: "Account creation failed. Please check your information and try again." 
         });
       }
     }
