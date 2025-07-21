@@ -136,6 +136,7 @@ export default function LandingPage() {
           },
           body: JSON.stringify({
             name: pendingSignupData.data.name,
+            username: pendingSignupData.data.username,
             email: pendingSignupData.data.email,
             password: pendingSignupData.data.password,
             company: pendingSignupData.data.company,
@@ -154,7 +155,7 @@ export default function LandingPage() {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              email: pendingSignupData.data.email,
+              username: pendingSignupData.data.username,
               password: pendingSignupData.data.password
             }),
           });
