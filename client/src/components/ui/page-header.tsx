@@ -26,7 +26,7 @@ export function PageHeader({}: PageHeaderProps) {
           </div>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <div className="ml-10 flex items-baseline space-x-8">
               <Link href="/">
                 <a className="text-gray-700 hover:text-gray-900 hover:bg-gray-100/50 px-3 py-2 text-sm font-medium transition-colors rounded-md">
@@ -77,7 +77,7 @@ export function PageHeader({}: PageHeaderProps) {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <Button
               variant="ghost"
               size="sm"
