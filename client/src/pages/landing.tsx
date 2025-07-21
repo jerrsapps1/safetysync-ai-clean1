@@ -261,7 +261,7 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="text-white font-sans min-h-screen">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 text-white font-sans">
       {/* Navigation */}
       <PageHeader />
       
@@ -269,7 +269,7 @@ export default function LandingPage() {
       <div className="md:ml-16">
 
       {/* Hero Section */}
-      <section className="relative text-white pt-20 md:pt-32 pb-16 md:pb-32 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center overflow-hidden">
+      <section className="relative pt-20 md:pt-32 pb-16 md:pb-32 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center overflow-hidden">
         {/* Floating Background Icons */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 left-20 animate-float opacity-20">
@@ -294,8 +294,8 @@ export default function LandingPage() {
         
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <div className="mb-8">
-            <span className="inline-flex items-center px-6 py-3 rounded-full glass-panel text-emerald-300 text-sm font-medium">
-              <Shield className="w-4 h-4 mr-2" />
+            <span className="inline-flex items-center px-6 py-3 rounded-full bg-black/20 backdrop-blur-sm border border-gray-800 text-emerald-300 text-sm font-medium">
+              <Shield className="w-4 h-4 mr-2 text-emerald-400" />
               AI-Powered Compliance Platform
             </span>
           </div>
@@ -312,13 +312,13 @@ export default function LandingPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Button 
               onClick={handleDemoClick}
-              className="glass-card text-white font-semibold px-8 py-4 rounded-2xl hover:scale-105 transform transition-all duration-300"
+              className="bg-black/20 backdrop-blur-sm border border-gray-800 text-white font-semibold px-8 py-4 rounded-2xl hover:bg-gray-800/30 hover:scale-105 transform transition-all duration-300"
             >
               Book a Demo
             </Button>
             <Button 
               onClick={handleTrialClick}
-              className="elegant-button text-white font-semibold px-8 py-4 rounded-2xl hover:scale-105 transform transition-all duration-300"
+              className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-8 py-4 rounded-2xl hover:scale-105 transform transition-all duration-300"
             >
               Get Started Free
             </Button>
@@ -363,7 +363,7 @@ export default function LandingPage() {
         </div>
         
         <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-16">
-          <div className="glass-card border-l-4 border-red-500 p-6 rounded-lg">
+          <div className="bg-black/20 border border-gray-800 border-l-4 border-red-500 p-6 rounded-lg">
             <div className="flex items-start">
               <AlertTriangle className="w-5 h-5 text-red-400 mt-0.5 mr-3 flex-shrink-0" />
               <div>
@@ -373,7 +373,7 @@ export default function LandingPage() {
             </div>
           </div>
           
-          <div className="glass-card border-l-4 border-red-500 p-6 rounded-lg">
+          <div className="bg-black/20 border border-gray-800 border-l-4 border-red-500 p-6 rounded-lg">
             <div className="flex items-start">
               <Clock className="w-5 h-5 text-red-400 mt-0.5 mr-3 flex-shrink-0" />
               <div>
@@ -383,7 +383,7 @@ export default function LandingPage() {
             </div>
           </div>
           
-          <div className="glass-card border-l-4 border-red-500 p-6 rounded-lg">
+          <div className="bg-black/20 border border-gray-800 border-l-4 border-red-500 p-6 rounded-lg">
             <div className="flex items-start">
               <FileX className="w-5 h-5 text-red-400 mt-0.5 mr-3 flex-shrink-0" />
               <div>
@@ -393,7 +393,7 @@ export default function LandingPage() {
             </div>
           </div>
           
-          <div className="glass-card border-l-4 border-red-500 p-6 rounded-lg">
+          <div className="bg-black/20 border border-gray-800 border-l-4 border-red-500 p-6 rounded-lg">
             <div className="flex items-start">
               <AlertCircle className="w-5 h-5 text-red-400 mt-0.5 mr-3 flex-shrink-0" />
               <div>
@@ -405,7 +405,7 @@ export default function LandingPage() {
         </div>
         
         <div className="text-center">
-          <div className="inline-flex items-center px-6 py-3 glass-panel border-emerald-500/30 rounded-lg">
+          <div className="inline-flex items-center px-6 py-3 bg-black/20 border border-gray-800 rounded-lg">
             <CheckCircle className="w-5 h-5 text-emerald-400 mr-2" />
             <span className="text-emerald-200 font-medium">There's a better way. Let us show you.</span>
           </div>
@@ -413,7 +413,7 @@ export default function LandingPage() {
       </section>
 
       {/* Key Benefits Section */}
-      <section className="py-16 px-4 md:px-6 max-w-6xl mx-auto glass-panel rounded-lg">
+      <section className="py-16 px-4 md:px-6 max-w-6xl mx-auto bg-black/20 border border-gray-800 rounded-lg">
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
             Why SafetySync.AI is Different
@@ -424,7 +424,7 @@ export default function LandingPage() {
         </div>
         
         <div className="grid md:grid-cols-2 gap-8">
-          <div className="tech-surface p-6 rounded-xl">
+          <div className="bg-gray-800/50 border border-gray-700 p-6 rounded-xl hover:bg-gray-800/70 transition-all duration-300">
             <div className="flex items-start">
               <div className="flex-shrink-0 w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mr-4">
                 <ShieldCheck className="w-6 h-6 text-emerald-400" />
@@ -436,7 +436,7 @@ export default function LandingPage() {
             </div>
           </div>
           
-          <div className="tech-surface p-6 rounded-xl">
+          <div className="bg-gray-800/50 border border-gray-700 p-6 rounded-xl hover:bg-gray-800/70 transition-all duration-300">
             <div className="flex items-start">
               <div className="flex-shrink-0 w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mr-4">
                 <FileText className="w-6 h-6 text-emerald-400" />
@@ -448,7 +448,7 @@ export default function LandingPage() {
             </div>
           </div>
           
-          <div className="tech-surface p-6 rounded-xl">
+          <div className="bg-gray-800/50 border border-gray-700 p-6 rounded-xl hover:bg-gray-800/70 transition-all duration-300">
             <div className="flex items-start">
               <div className="flex-shrink-0 w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mr-4">
                 <Clock className="w-6 h-6 text-emerald-400" />
@@ -460,7 +460,7 @@ export default function LandingPage() {
             </div>
           </div>
           
-          <div className="tech-surface p-6 rounded-xl">
+          <div className="bg-gray-800/50 border border-gray-700 p-6 rounded-xl hover:bg-gray-800/70 transition-all duration-300">
             <div className="flex items-start">
               <div className="flex-shrink-0 w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mr-4">
                 <Shield className="w-6 h-6 text-emerald-400" />
@@ -486,37 +486,37 @@ export default function LandingPage() {
         </div>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="bg-blue-900/20 p-6 rounded-lg border border-blue-500/30 backdrop-blur-sm">
+          <div className="bg-black/20 border border-gray-800 p-6 rounded-lg">
             <h3 className="text-lg font-semibold text-blue-200 mb-3">💰 Cost Concerns</h3>
             <p className="text-blue-300 mb-2 font-medium">"This might be too expensive for our budget."</p>
             <p className="text-blue-400 text-sm">We offer flexible pricing plans to match companies of all sizes. Most clients save more in avoided fines than they spend on our platform.</p>
           </div>
           
-          <div className="bg-blue-900/20 p-6 rounded-lg border border-blue-500/30 backdrop-blur-sm">
+          <div className="bg-black/20 border border-gray-800 p-6 rounded-lg">
             <h3 className="text-lg font-semibold text-blue-200 mb-3">🔧 Complexity Worries</h3>
             <p className="text-blue-300 mb-2 font-medium">"Our team isn't tech-savvy enough."</p>
             <p className="text-blue-400 text-sm">Our software is easy to integrate and use—no steep learning curve. Most teams are up and running in under an hour.</p>
           </div>
           
-          <div className="bg-blue-900/20 p-6 rounded-lg border border-blue-500/30 backdrop-blur-sm">
+          <div className="bg-black/20 border border-gray-800 p-6 rounded-lg">
             <h3 className="text-lg font-semibold text-blue-200 mb-3">🔗 Integration Issues</h3>
             <p className="text-blue-300 mb-2 font-medium">"Will this work with our current systems?"</p>
             <p className="text-blue-400 text-sm">Built to integrate seamlessly with existing HR and training platforms. We handle data migration so you don't lose anything.</p>
           </div>
           
-          <div className="bg-blue-900/20 p-6 rounded-lg border border-blue-500/30 backdrop-blur-sm">
+          <div className="bg-black/20 border border-gray-800 p-6 rounded-lg">
             <h3 className="text-lg font-semibold text-blue-200 mb-3">⚙️ Customization Needs</h3>
             <p className="text-blue-300 mb-2 font-medium">"Our processes are very specific."</p>
             <p className="text-blue-400 text-sm">Highly customizable to match your unique workflows, industry requirements, and compliance standards. Built for flexibility.</p>
           </div>
           
-          <div className="bg-blue-900/20 p-6 rounded-lg border border-blue-500/30 backdrop-blur-sm">
+          <div className="bg-black/20 border border-gray-800 p-6 rounded-lg">
             <h3 className="text-lg font-semibold text-blue-200 mb-3">🔐 Security Concerns</h3>
             <p className="text-blue-300 mb-2 font-medium">"How secure is our sensitive data?"</p>
             <p className="text-blue-400 text-sm">Enterprise-grade security with SOC 2 compliance, encrypted data storage, and regular security audits. Your data is safer than spreadsheets.</p>
           </div>
           
-          <div className="bg-blue-900/20 p-6 rounded-lg border border-blue-500/30 backdrop-blur-sm">
+          <div className="bg-black/20 border border-gray-800 p-6 rounded-lg">
             <h3 className="text-lg font-semibold text-blue-200 mb-3">🤝 Trust & Reliability</h3>
             <p className="text-blue-300 mb-2 font-medium">"How do I know you're reliable?"</p>
             <p className="text-blue-400 text-sm">Trusted by 500+ companies with 99.9% uptime, dedicated customer success team, and proven track record in safety compliance.</p>
@@ -539,19 +539,19 @@ export default function LandingPage() {
           Built for Safety Leaders Who Do It All
         </h2>
         <div className="grid md:grid-cols-2 gap-6 md:gap-8 text-left">
-          <div className="bg-gray-800/50 p-6 rounded-2xl border border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/70 transition-all duration-300">
+          <div className="bg-gray-800/50 border border-gray-700 p-6 rounded-2xl hover:bg-gray-800/70 transition-all duration-300">
             <h3 className="text-xl font-semibold mb-2 text-white">Real-Time Dashboards</h3>
             <p className="text-gray-300">Stay ahead of inspections with live visibility into training, audits, and corrective actions.</p>
           </div>
-          <div className="bg-gray-800/50 p-6 rounded-2xl border border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/70 transition-all duration-300">
+          <div className="bg-gray-800/50 border border-gray-700 p-6 rounded-2xl hover:bg-gray-800/70 transition-all duration-300">
             <h3 className="text-xl font-semibold mb-2 text-white">Mobile-First Access</h3>
             <p className="text-gray-300">Assign tasks and complete checklists from any device—field to office, online or offline.</p>
           </div>
-          <div className="bg-gray-800/50 p-6 rounded-2xl border border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/70 transition-all duration-300">
+          <div className="bg-gray-800/50 border border-gray-700 p-6 rounded-2xl hover:bg-gray-800/70 transition-all duration-300">
             <h3 className="text-xl font-semibold mb-2 text-white">Training Management</h3>
             <p className="text-gray-300">Easily assign, track, and verify required safety trainings across teams, roles, and locations.</p>
           </div>
-          <div className="bg-gray-800/50 p-6 rounded-2xl border border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/70 transition-all duration-300">
+          <div className="bg-gray-800/50 border border-gray-700 p-6 rounded-2xl hover:bg-gray-800/70 transition-all duration-300">
             <h3 className="text-xl font-semibold mb-2 text-white">Compliance Automation</h3>
             <p className="text-gray-300">Simplify OSHA recordkeeping, deadline reminders, and documentation—zero guesswork, full confidence.</p>
           </div>
@@ -559,7 +559,7 @@ export default function LandingPage() {
       </section>
 
       {/* Solution Section */}
-      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-800/30 backdrop-blur-sm">
+      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20 border border-gray-800">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
