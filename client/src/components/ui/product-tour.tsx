@@ -28,8 +28,6 @@ interface TourStep {
   content: React.ReactNode;
   duration: number;
   position: 'center' | 'left' | 'right' | 'top' | 'bottom';
-  voiceoverScript?: string; // For future voiceover implementation
-  keyPoints?: string[]; // Main points for voiceover
 }
 
 interface ProductTourProps {
@@ -42,7 +40,6 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [audioEnabled, setAudioEnabled] = useState(false); // For future voiceover feature
 
   const tourSteps: TourStep[] = [
     {
@@ -396,26 +393,12 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
               <CardTitle className="flex items-center gap-2">
                 <Play className="w-5 h-5" />
                 Product Tour
-                {audioEnabled && (
-                  <Badge variant="secondary" className="text-xs">
-                    🎧 Audio Ready
-                  </Badge>
-                )}
               </CardTitle>
               <CardDescription>
                 Step {currentStep + 1} of {tourSteps.length} - {currentTourStep.title}
               </CardDescription>
             </div>
             <div className="flex items-center gap-2">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setAudioEnabled(!audioEnabled)}
-                className="text-purple-600 hover:text-purple-700"
-                title="Future voiceover feature"
-              >
-                🎙️
-              </Button>
               <Button variant="ghost" size="sm" onClick={onClose}>
                 <X className="w-4 h-4" />
               </Button>
