@@ -40,6 +40,7 @@ import HRTeamsPage from "@/pages/hr-teams";
 import AuthTest from "@/pages/auth-test";
 import PublicEmployeeCertificates from "@/components/PublicEmployeeCertificates";
 import { SkeletonDemo } from "@/components/ui/skeleton-demo";
+import SidebarDemoPage from "@/pages/sidebar-demo";
 
 function Router() {
   return (
@@ -77,6 +78,7 @@ function Router() {
       <Route path="/auth-test" component={AuthTest} />
       <Route path="/employee-certs/:qrCodeData" component={PublicEmployeeCertificates} />
       <Route path="/skeleton-demo" component={SkeletonDemo} />
+      <Route path="/sidebar-demo" component={SidebarDemoPage} />
       <Route component={NotFound} />
     </Switch>
   );
