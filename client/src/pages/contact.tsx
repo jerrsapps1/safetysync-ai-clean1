@@ -104,7 +104,7 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
       <PageHeader />
 
       {/* Main Content with Sidebar Margin */}
@@ -112,10 +112,10 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Get in Touch
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Ready to streamline your OSHA compliance? We're here to help you get started, 
             answer questions, and ensure your safety management success.
           </p>
@@ -124,18 +124,18 @@ export default function ContactPage() {
         {/* Contact Options */}
         <div className="flex justify-center mb-16">
           {contactOptions.map((option) => (
-            <Card key={option.title} className="text-center hover:shadow-lg transition-shadow max-w-md">
+            <Card key={option.title} className="text-center hover:shadow-xl transition-all duration-300 max-w-md bg-gray-800/50 border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/70">
               <CardHeader className="pb-4">
                 <div className={`w-12 h-12 ${option.color} rounded-lg flex items-center justify-center mx-auto mb-4`}>
                   <option.icon className="w-6 h-6 text-white" />
                 </div>
-                <CardTitle className="text-lg">{option.title}</CardTitle>
-                <CardDescription className="text-sm">
+                <CardTitle className="text-lg text-white">{option.title}</CardTitle>
+                <CardDescription className="text-sm text-gray-300">
                   {option.description}
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
+                <div className="flex items-center justify-center gap-2 text-sm text-gray-300">
                   <Mail className="w-4 h-4" />
                   <span className="font-medium">{option.email}</span>
                 </div>
@@ -147,13 +147,13 @@ export default function ContactPage() {
         {/* Main Contact Form */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           {/* Contact Form */}
-          <Card>
+          <Card className="bg-gray-800/50 border-gray-700/50 backdrop-blur-sm">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-white">
                 <MessageCircle className="w-5 h-5" />
                 Send us a Message
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-gray-300">
                 Fill out the form below and we'll get back to you promptly.
               </CardDescription>
             </CardHeader>

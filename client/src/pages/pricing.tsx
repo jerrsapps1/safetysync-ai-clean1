@@ -11,7 +11,7 @@ export default function PricingPage() {
   const [showChat, setShowChat] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
       <PageHeader />
 
       {/* Main Content with Sidebar Margin */}
@@ -19,10 +19,10 @@ export default function PricingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Simple, Transparent Pricing
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
             Choose the perfect plan for your organization. All plans include our core compliance features 
             with a 30-day free trial and no setup fees.
           </p>
@@ -31,9 +31,9 @@ export default function PricingPage() {
         {/* Certificate & Digital Card Services Link */}
         <section className="mb-20">
           <div className="text-center">
-            <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-8 max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Professional Certificate & Digital Card Services</h2>
-              <p className="text-xl text-gray-600 mb-6">
+            <div className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 border border-blue-500/30 rounded-lg p-8 max-w-4xl mx-auto backdrop-blur-sm">
+              <h2 className="text-3xl font-bold text-white mb-4">Professional Certificate & Digital Card Services</h2>
+              <p className="text-xl text-gray-300 mb-6">
                 Generate high-quality OSHA-compliant certificates and digital wallet cards with plan-specific allowances
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
