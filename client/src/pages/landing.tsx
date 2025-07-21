@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Navigation } from "@/components/ui/navigation";
+import { PageHeader } from "@/components/ui/page-header";
 import { TrialSignupDialog } from "@/components/ui/trial-signup-dialog";
 import { DemoRequestDialog } from "@/components/ui/demo-request-dialog";
 import { Toaster } from "@/components/ui/toaster";
@@ -261,11 +261,10 @@ export default function LandingPage() {
   return (
     <div className="text-gray-900 font-sans min-h-screen bg-gray-50">
       {/* Navigation */}
-      <Navigation 
-        onTrialClick={handleTrialClick} 
-        onDemoClick={handleDemoClick}
-        onLoginClick={handleLoginClick}
-      />
+      <PageHeader />
+      
+      {/* Main Content with Sidebar Margin */}
+      <div className="md:ml-64">
 
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-purple-800 text-white pt-20 md:pt-32 pb-16 md:pb-32 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center overflow-hidden">
@@ -628,6 +627,7 @@ export default function LandingPage() {
       />
       
       <Toaster />
+      </div>
     </div>
   );
 };
