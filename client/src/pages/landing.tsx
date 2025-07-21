@@ -261,7 +261,7 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="text-white font-sans min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+    <div className="text-white font-sans min-h-screen">
       {/* Navigation */}
       <PageHeader />
       
@@ -269,7 +269,7 @@ export default function LandingPage() {
       <div className="md:ml-16">
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-blue-900 text-white pt-20 md:pt-32 pb-16 md:pb-32 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center overflow-hidden">
+      <section className="relative text-white pt-20 md:pt-32 pb-16 md:pb-32 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center overflow-hidden">
         {/* Floating Background Icons */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 left-20 animate-float opacity-20">
@@ -294,7 +294,7 @@ export default function LandingPage() {
         
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <div className="mb-8">
-            <span className="inline-flex items-center px-4 py-2 rounded-full bg-blue-500/20 text-blue-200 text-sm font-medium backdrop-blur-sm border border-blue-300/30">
+            <span className="inline-flex items-center px-6 py-3 rounded-full glass-panel text-emerald-300 text-sm font-medium">
               <Shield className="w-4 h-4 mr-2" />
               AI-Powered Compliance Platform
             </span>
@@ -305,36 +305,36 @@ export default function LandingPage() {
             <span className="block text-emerald-300">Made Simple</span>
           </h1>
           
-          <p className="text-base sm:text-lg md:text-xl text-blue-100 max-w-2xl mx-auto mb-8 md:mb-12 leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8 md:mb-12 leading-relaxed">
             Ditch the spreadsheets. SafetySync.AI brings all your safety and compliance workflows into one smart, powerful platform—so you can stay inspection-ready, reduce risk, and focus on what matters most.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Button 
               onClick={handleDemoClick}
-              className="bg-white text-blue-700 font-semibold px-6 py-3 rounded-2xl shadow hover:bg-gray-100 transition-all duration-200 hover:scale-105 hover:shadow-lg transform"
+              className="glass-card text-white font-semibold px-8 py-4 rounded-2xl hover:scale-105 transform transition-all duration-300"
             >
               Book a Demo
             </Button>
             <Button 
               onClick={handleTrialClick}
-              className="bg-emerald-500 text-white font-semibold px-6 py-3 rounded-2xl shadow hover:bg-emerald-600 transition-all duration-200 hover:scale-105 hover:shadow-lg transform"
+              className="elegant-button text-white font-semibold px-8 py-4 rounded-2xl hover:scale-105 transform transition-all duration-300"
             >
               Get Started Free
             </Button>
           </div>
           
-          <div className="flex flex-col sm:flex-row gap-8 justify-center text-sm text-blue-200 mb-8">
+          <div className="flex flex-col sm:flex-row gap-8 justify-center text-sm text-gray-300 mb-8">
             <div className="flex items-center justify-center">
-              <CheckCircle className="w-4 h-4 mr-2" />
+              <CheckCircle className="w-4 h-4 mr-2 text-emerald-400" />
               No Credit Card Required
             </div>
             <div className="flex items-center justify-center">
-              <Shield className="w-4 h-4 mr-2" />
+              <Shield className="w-4 h-4 mr-2 text-emerald-400" />
               OSHA Compliant
             </div>
             <div className="flex items-center justify-center">
-              <Timer className="w-4 h-4 mr-2" />
+              <Timer className="w-4 h-4 mr-2 text-emerald-400" />
               Setup in Minutes
             </div>
           </div>
@@ -343,7 +343,7 @@ export default function LandingPage() {
             <Button 
               onClick={() => setShowProductTour(true)}
               variant="link"
-              className="text-blue-200 hover:text-white underline"
+              className="text-gray-300 hover:text-emerald-400 underline transition-colors duration-300"
             >
               Take a Quick Tour
             </Button>
@@ -363,7 +363,7 @@ export default function LandingPage() {
         </div>
         
         <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-16">
-          <div className="bg-red-900/20 border-l-4 border-red-500 p-6 rounded-r-lg backdrop-blur-sm">
+          <div className="glass-card border-l-4 border-red-500 p-6 rounded-lg">
             <div className="flex items-start">
               <AlertTriangle className="w-5 h-5 text-red-400 mt-0.5 mr-3 flex-shrink-0" />
               <div>
@@ -373,7 +373,7 @@ export default function LandingPage() {
             </div>
           </div>
           
-          <div className="bg-red-900/20 border-l-4 border-red-500 p-6 rounded-r-lg backdrop-blur-sm">
+          <div className="glass-card border-l-4 border-red-500 p-6 rounded-lg">
             <div className="flex items-start">
               <Clock className="w-5 h-5 text-red-400 mt-0.5 mr-3 flex-shrink-0" />
               <div>
@@ -383,7 +383,7 @@ export default function LandingPage() {
             </div>
           </div>
           
-          <div className="bg-red-900/20 border-l-4 border-red-500 p-6 rounded-r-lg backdrop-blur-sm">
+          <div className="glass-card border-l-4 border-red-500 p-6 rounded-lg">
             <div className="flex items-start">
               <FileX className="w-5 h-5 text-red-400 mt-0.5 mr-3 flex-shrink-0" />
               <div>
@@ -393,7 +393,7 @@ export default function LandingPage() {
             </div>
           </div>
           
-          <div className="bg-red-900/20 border-l-4 border-red-500 p-6 rounded-r-lg backdrop-blur-sm">
+          <div className="glass-card border-l-4 border-red-500 p-6 rounded-lg">
             <div className="flex items-start">
               <AlertCircle className="w-5 h-5 text-red-400 mt-0.5 mr-3 flex-shrink-0" />
               <div>
@@ -405,7 +405,7 @@ export default function LandingPage() {
         </div>
         
         <div className="text-center">
-          <div className="inline-flex items-center px-6 py-3 bg-emerald-900/30 border border-emerald-500/30 rounded-lg backdrop-blur-sm">
+          <div className="inline-flex items-center px-6 py-3 glass-panel border-emerald-500/30 rounded-lg">
             <CheckCircle className="w-5 h-5 text-emerald-400 mr-2" />
             <span className="text-emerald-200 font-medium">There's a better way. Let us show you.</span>
           </div>
@@ -413,7 +413,7 @@ export default function LandingPage() {
       </section>
 
       {/* Key Benefits Section */}
-      <section className="py-16 px-4 md:px-6 max-w-6xl mx-auto bg-emerald-900/20 backdrop-blur-sm rounded-lg">
+      <section className="py-16 px-4 md:px-6 max-w-6xl mx-auto glass-panel rounded-lg">
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
             Why SafetySync.AI is Different
@@ -424,7 +424,7 @@ export default function LandingPage() {
         </div>
         
         <div className="grid md:grid-cols-2 gap-8">
-          <div className="bg-gray-800/50 p-6 rounded-xl border border-emerald-500/30 backdrop-blur-sm hover:bg-gray-800/70 transition-all duration-300">
+          <div className="tech-surface p-6 rounded-xl">
             <div className="flex items-start">
               <div className="flex-shrink-0 w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mr-4">
                 <ShieldCheck className="w-6 h-6 text-emerald-400" />
@@ -436,7 +436,7 @@ export default function LandingPage() {
             </div>
           </div>
           
-          <div className="bg-gray-800/50 p-6 rounded-xl border border-emerald-500/30 backdrop-blur-sm hover:bg-gray-800/70 transition-all duration-300">
+          <div className="tech-surface p-6 rounded-xl">
             <div className="flex items-start">
               <div className="flex-shrink-0 w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mr-4">
                 <FileText className="w-6 h-6 text-emerald-400" />
@@ -448,7 +448,7 @@ export default function LandingPage() {
             </div>
           </div>
           
-          <div className="bg-gray-800/50 p-6 rounded-xl border border-emerald-500/30 backdrop-blur-sm hover:bg-gray-800/70 transition-all duration-300">
+          <div className="tech-surface p-6 rounded-xl">
             <div className="flex items-start">
               <div className="flex-shrink-0 w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mr-4">
                 <Clock className="w-6 h-6 text-emerald-400" />
@@ -460,7 +460,7 @@ export default function LandingPage() {
             </div>
           </div>
           
-          <div className="bg-gray-800/50 p-6 rounded-xl border border-emerald-500/30 backdrop-blur-sm hover:bg-gray-800/70 transition-all duration-300">
+          <div className="tech-surface p-6 rounded-xl">
             <div className="flex items-start">
               <div className="flex-shrink-0 w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mr-4">
                 <Shield className="w-6 h-6 text-emerald-400" />
