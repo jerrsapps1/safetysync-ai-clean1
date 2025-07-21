@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { PageHeader } from "@/components/ui/page-header";
 import { 
   TrendingUp, 
   Clock, 
@@ -10,9 +11,7 @@ import {
   ArrowRight,
   Building,
   BarChart3,
-  Target,
-  ArrowLeft,
-  Home
+  Target
 } from "lucide-react";
 import { Link } from "wouter";
 
@@ -157,17 +156,7 @@ export default function CaseStudiesPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Top Home Button */}
-      <div className="bg-white border-b border-gray-200 px-4 sm:px-6 lg:px-8 py-3">
-        <div className="max-w-7xl mx-auto">
-          <Link href="/">
-            <Button variant="secondary" className="flex items-center gap-2 bg-gray-100 text-gray-700 hover:bg-gray-200">
-              <Home className="w-4 h-4" />
-              Back to Home
-            </Button>
-          </Link>
-        </div>
-      </div>
+      <PageHeader />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Header */}
@@ -385,17 +374,7 @@ export default function CaseStudiesPage() {
           </CardContent>
         </Card>
 
-        {/* Bottom Home Button */}
-        <div className="bg-white border-t border-gray-200 px-4 sm:px-6 lg:px-8 py-6 mt-12">
-          <div className="max-w-7xl mx-auto text-center">
-            <Link href="/">
-              <Button variant="secondary" className="flex items-center gap-2 mx-auto bg-gray-100 text-gray-700 hover:bg-gray-200">
-                <Home className="w-4 h-4" />
-                Back to Home
-              </Button>
-            </Link>
-          </div>
-        </div>
+
       </div>
     </div>
   );
