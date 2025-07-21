@@ -46,7 +46,7 @@ export function PageHeader({}: PageHeaderProps) {
       <aside 
         className={`
           fixed left-0 top-0 z-40 h-full transform transition-all duration-300 ease-in-out
-          bg-gray-900 border-r border-gray-700 shadow-2xl
+          bg-blue-900/90 backdrop-blur-sm border-r border-blue-700/50 shadow-2xl
           ${isMobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
           ${isHovered ? 'w-64' : 'w-16'}
         `}
@@ -100,20 +100,20 @@ export function PageHeader({}: PageHeaderProps) {
           </div>
         </nav>
 
-        {/* Client Login Button - Hover Sidebar */}
+        {/* Client Login Button - Bright and Visible */}
         <div className="absolute bottom-6 left-2 right-2">
           <Link href="/client-portal">
             <Button 
               className={`
                 ${!isHovered ? 'w-12 h-12 p-0 justify-center' : 'w-full justify-start px-3'} 
-                bg-emerald-600 hover:bg-emerald-700 text-white font-medium border border-emerald-400 
-                shadow-lg transition-all duration-300
+                bg-emerald-500 hover:bg-emerald-600 text-white font-bold border-2 border-white
+                shadow-2xl transition-all duration-300 ring-2 ring-emerald-300/50
               `}
               onClick={() => setIsMobileOpen(false)}
               title={!isHovered ? "Client Login" : undefined}
             >
-              <Users className={`${!isHovered ? 'w-5 h-5' : 'w-5 h-5 mr-3'} text-white flex-shrink-0`} />
-              {isHovered && <span className="text-white">Client Login</span>}
+              <Users className={`${!isHovered ? 'w-6 h-6' : 'w-5 h-5 mr-3'} text-white flex-shrink-0 drop-shadow-lg`} />
+              {isHovered && <span className="text-white font-bold">Client Login</span>}
             </Button>
           </Link>
         </div>
