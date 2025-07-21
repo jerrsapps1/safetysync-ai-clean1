@@ -46,7 +46,7 @@ export function PageHeader({}: PageHeaderProps) {
       <aside 
         className={`
           fixed left-0 top-0 z-40 h-full transform transition-all duration-300 ease-in-out
-          bg-gray-900 border-r border-gray-800 shadow-2xl
+          glass-panel shadow-2xl
           ${isMobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
           ${isHovered ? 'w-64' : 'w-16'}
         `}
@@ -54,7 +54,7 @@ export function PageHeader({}: PageHeaderProps) {
         onMouseLeave={() => setIsHovered(false)}
       >
         {/* Header */}
-        <div className="flex items-center justify-between h-16 px-4 border-b border-gray-800">
+        <div className="flex items-center justify-between h-16 px-4 border-b border-white/10">
           <Link href="/">
             <div className="flex items-center space-x-3 cursor-pointer">
               <SafetySyncIcon size={32} />
@@ -78,7 +78,7 @@ export function PageHeader({}: PageHeaderProps) {
               return (
                 <Link key={item.name} href={item.href}>
                   <div 
-                    className="flex items-center px-3 py-3 text-sm font-medium text-gray-300 rounded-lg hover:bg-gray-800 hover:text-emerald-400 transition-colors group relative cursor-pointer"
+                    className="flex items-center px-3 py-3 text-sm font-medium text-gray-300 rounded-lg tech-surface hover:text-emerald-400 group relative cursor-pointer"
                     onClick={() => setIsMobileOpen(false)}
                     title={!isHovered ? item.name : undefined}
                   >
@@ -89,7 +89,7 @@ export function PageHeader({}: PageHeaderProps) {
                     
                     {/* Tooltip for collapsed state */}
                     {!isHovered && (
-                      <div className="absolute left-full ml-2 px-3 py-2 bg-gray-800 text-white text-sm rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">
+                      <div className="absolute left-full ml-2 px-3 py-2 glass-panel text-white text-sm rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">
                         {item.name}
                       </div>
                     )}
@@ -108,7 +108,7 @@ export function PageHeader({}: PageHeaderProps) {
               size={!isHovered ? "sm" : "default"}
               className={`
                 ${!isHovered ? 'w-12 h-12 p-0' : 'w-full'} 
-                bg-emerald-600 hover:bg-emerald-700 text-white
+                elegant-button text-white font-medium
               `}
               onClick={() => setIsMobileOpen(false)}
               title={!isHovered ? "Client Login" : undefined}
