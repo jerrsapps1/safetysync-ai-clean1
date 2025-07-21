@@ -266,14 +266,7 @@ export default function LandingPage() {
       {/* Navigation */}
       <PageHeader />
       
-      {/* Debug: Always Visible Client Login Button */}
-      <div className="fixed bottom-4 right-4 z-[100]">
-        <Link href="/client-portal">
-          <Button className="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 text-lg shadow-2xl border-4 border-yellow-400">
-            🚀 CLIENT LOGIN 🚀
-          </Button>
-        </Link>
-      </div>
+
       
       {/* Main Content with Sidebar Margin */}
       <div className="md:ml-16">
