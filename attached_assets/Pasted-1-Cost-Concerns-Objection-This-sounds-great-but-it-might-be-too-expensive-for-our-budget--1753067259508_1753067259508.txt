@@ -1,0 +1,18 @@
+1. Cost Concerns
+•	Objection: “This sounds great, but it might be too expensive for our budget.”
+•	Reasoning: Carla may be working within a limited budget, and cost will always be a concern. As someone in a compliance role, she may not have the discretion to approve software purchases without a clear ROI.
+2. Fear of Complexity
+•	Objection: “Our team isn’t tech-savvy; I’m not sure they’ll be able to use the software easily.”
+•	Reasoning: Carla might be worried about the learning curve or potential disruptions in operations during onboarding. If the software seems complicated or requires extensive training, she might shy away from it.
+3. Integration Challenges
+•	Objection: “We already use a system for HR/training. I’m not sure this will integrate with our existing tools.”
+•	Reasoning: Carla’s company may already have other software in place for HR, learning management, or safety tracking. She might be concerned about data migration or disruption of current processes if she switches systems.
+4. Lack of Customization
+•	Objection: “We have very specific needs, and I’m worried this solution won’t be flexible enough for our processes.”
+•	Reasoning: Carla may feel that the software won’t meet the unique requirements of her business or industry, whether it’s related to how training is documented, the structure of reports, or specific compliance nuances that need attention.
+5. Data Security Concerns
+•	Objection: “How secure is my data? We handle sensitive employee information, and I need assurance it’s safe.”
+•	Reasoning: Especially if Carla works in industries like healthcare or construction where sensitive data is prevalent, data security is a high concern. She’ll want to ensure that the software meets regulatory standards for privacy and protection.
+6. Vendor Reputation / Trust Issues
+•	Objection: “How do I know your company is reliable? What if something goes wrong after we commit?”
+•	Reasoning: Carla may need reassurance about the software’s reliability, the customer service experience, and how long the company has been in business. Trust is key in compliance software decisions, as any failures could lead to significant liabilities.
