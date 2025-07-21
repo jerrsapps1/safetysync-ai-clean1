@@ -77,8 +77,8 @@ export function PageHeader({}: PageHeaderProps) {
               const IconComponent = item.icon;
               return (
                 <Link key={item.name} href={item.href}>
-                  <a 
-                    className="flex items-center px-3 py-3 text-sm font-medium text-gray-300 rounded-lg hover:bg-gray-800 hover:text-emerald-400 transition-colors group relative"
+                  <div 
+                    className="flex items-center px-3 py-3 text-sm font-medium text-gray-300 rounded-lg hover:bg-gray-800 hover:text-emerald-400 transition-colors group relative cursor-pointer"
                     onClick={() => setIsMobileOpen(false)}
                     title={!isHovered ? item.name : undefined}
                   >
@@ -93,7 +93,7 @@ export function PageHeader({}: PageHeaderProps) {
                         {item.name}
                       </div>
                     )}
-                  </a>
+                  </div>
                 </Link>
               );
             })}

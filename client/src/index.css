@@ -2,16 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Ensure body and html have proper background */
+/* Professional gradient background matching logo colors */
 html, body {
-  background: linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 58, 138) 50%, rgb(88, 28, 135) 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #1e40af 50%, #7c3aed 100%);
+  background-attachment: fixed;
   min-height: 100vh;
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
-/* Ensure root element has proper background */
+/* Glassmorphic root element */
 #root {
-  background: linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 58, 138) 50%, rgb(88, 28, 135) 100%);
+  background: transparent;
   min-height: 100vh;
+  position: relative;
+}
+
+/* Tech grid pattern overlay */
+#root::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(16, 185, 129, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 185, 129, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: -1;
 }
 
 /* Floating animations for background icons */
@@ -130,8 +149,9 @@ html, body {
   animation: float-delay-5 8.5s ease-in-out infinite 3s;
 }
 
-/* Zywave-inspired color scheme */
+/* SafetySync.AI Brand Color Palette - Matching Logo */
 :root {
+  /* Navy/Slate from logo background */
   --navy-50: #f8fafc;
   --navy-100: #f1f5f9;
   --navy-200: #e2e8f0;
@@ -142,58 +162,41 @@ html, body {
   --navy-700: #334155;
   --navy-800: #1e293b;
   --navy-900: #0f172a;
-  --green-500: #10b981;
-  --green-600: #059669;
-  --green-700: #047857;
+  
+  /* Emerald greens from logo shield */
+  --emerald-300: #34d399;
+  --emerald-400: #10b981;
+  --emerald-500: #059669;
+  --emerald-600: #047857;
+  
+  /* Blues and purples from logo gradient */
+  --blue-600: #1e40af;
+  --purple-600: #7c3aed;
+  
+  /* Glassmorphic surface colors */
+  --glass-light: rgba(255, 255, 255, 0.1);
+  --glass-medium: rgba(255, 255, 255, 0.15);
+  --glass-dark: rgba(0, 0, 0, 0.2);
+  --glass-border: rgba(255, 255, 255, 0.2);
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+/* Professional glassmorphic effects using logo colors */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-.animate-float-delay-1 {
-  animation: float 3s ease-in-out infinite;
-  animation-delay: 0.5s;
-}
-
-.animate-float-delay-2 {
-  animation: float 3s ease-in-out infinite;
-  animation-delay: 1s;
-}
-
-.animate-float-delay-3 {
-  animation: float 3s ease-in-out infinite;
-  animation-delay: 1.5s;
-}
-
-.animate-float-delay-4 {
-  animation: float 3s ease-in-out infinite;
-  animation-delay: 2s;
-}
-
-.animate-float-delay-5 {
-  animation: float 3s ease-in-out infinite;
-  animation-delay: 2.5s;
-}
-
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
-  50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.6); }
-}
-
-@keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.floating-animation {
-  animation: float 3s ease-in-out infinite;
+.glass-panel {
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  box-shadow: 
+    0 4px 24px rgba(0, 0, 0, 0.2),
+    0 0 20px rgba(16, 185, 129, 0.1);
 }
 
 .pulse-glow {
@@ -201,29 +204,17 @@ html, body {
 }
 
 .gradient-animate {
-  background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
+  background: linear-gradient(-45deg, #10b981, #1e40af, #7c3aed, #059669);
   background-size: 400% 400%;
   animation: gradient-shift 15s ease infinite;
 }
 
-.tech-grid {
-  background-image: 
-    linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
-  background-size: 20px 20px;
-}
-
 .tech-grid-pattern {
   background-image: 
-    linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
-  background-size: 20px 20px;
+    linear-gradient(rgba(16, 185, 129, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 185, 129, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
   animation: grid-flow 20s linear infinite;
-}
-
-@keyframes grid-flow {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(20px, 20px); }
 }
 
 /* AI Skeleton Animations */
@@ -405,49 +396,38 @@ html, body {
 
 
 
+/* Theme variables using SafetySync.AI logo colors */
 :root {
-  --background: hsl(0, 0%, 100%);
-  --foreground: hsl(222, 84%, 4.9%);
-  --muted: hsl(210, 40%, 96%);
-  --muted-foreground: hsl(215, 16%, 46.9%);
-  --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(222, 84%, 4.9%);
-  --card: hsl(0, 0%, 100%);
-  --card-foreground: hsl(222, 84%, 4.9%);
-  --border: hsl(214, 32%, 91%);
-  --input: hsl(214, 32%, 91%);
-  --primary: hsl(142, 76%, 36%);
-  --primary-foreground: hsl(355, 100%, 97%);
-  --secondary: hsl(210, 40%, 96%);
-  --secondary-foreground: hsl(222, 47%, 11%);
-  --accent: hsl(210, 40%, 96%);
-  --accent-foreground: hsl(222, 47%, 11%);
-  --destructive: hsl(0, 84%, 60%);
-  --destructive-foreground: hsl(210, 40%, 98%);
-  --ring: hsl(222, 84%, 4.9%);
-  --radius: 0.5rem;
-}
-
-.dark {
-  --background: hsl(222, 84%, 4.9%);
-  --foreground: hsl(210, 40%, 98%);
+  --background: hsl(218, 100%, 6%); /* Navy-900 */
+  --foreground: hsl(0, 0%, 98%);
   --muted: hsl(217, 32%, 17%);
   --muted-foreground: hsl(215, 20%, 65%);
-  --popover: hsl(222, 84%, 4.9%);
-  --popover-foreground: hsl(210, 40%, 98%);
-  --card: hsl(222, 84%, 4.9%);
-  --card-foreground: hsl(210, 40%, 98%);
-  --border: hsl(217, 32%, 17%);
-  --input: hsl(217, 32%, 17%);
-  --primary: hsl(142, 76%, 36%);
-  --primary-foreground: hsl(355, 100%, 97%);
-  --secondary: hsl(217, 32%, 17%);
-  --secondary-foreground: hsl(210, 40%, 98%);
-  --accent: hsl(217, 32%, 17%);
-  --accent-foreground: hsl(210, 40%, 98%);
-  --destructive: hsl(0, 62%, 30%);
-  --destructive-foreground: hsl(210, 40%, 98%);
-  --ring: hsl(212, 12%, 87%);
+  --popover: hsl(218, 100%, 6%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: rgba(255, 255, 255, 0.05);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: rgba(16, 185, 129, 0.2);
+  --input: rgba(255, 255, 255, 0.1);
+  --primary: hsl(160, 84%, 39%); /* Emerald-500 from logo */
+  --primary-foreground: hsl(0, 0%, 98%);
+  --secondary: rgba(255, 255, 255, 0.1);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(217, 91%, 60%); /* Blue-600 from logo */
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(160, 84%, 39%);
+  --radius: 0.75rem;
+  
+  /* Sidebar colors */
+  --sidebar-background: rgba(15, 23, 42, 0.8);
+  --sidebar-foreground: hsl(0, 0%, 98%);
+  --sidebar-primary: hsl(160, 84%, 39%);
+  --sidebar-primary-foreground: hsl(0, 0%, 98%);
+  --sidebar-accent: rgba(255, 255, 255, 0.1);
+  --sidebar-accent-foreground: hsl(0, 0%, 98%);
+  --sidebar-border: rgba(16, 185, 129, 0.2);
+  --sidebar-ring: hsl(160, 84%, 39%);
 }
 
 @layer base {
@@ -456,7 +436,40 @@ html, body {
   }
 
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    @apply font-sans antialiased text-foreground;
+    background: transparent; /* Let the gradient handle background */
+  }
+}
+
+/* Enhanced glassmorphic components */
+@layer components {
+  .glass-card {
+    @apply backdrop-blur-xl bg-white/10 border border-white/20;
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  
+  .glass-panel {
+    @apply backdrop-blur-lg border;
+    background: rgba(15, 23, 42, 0.4);
+    border-color: rgba(16, 185, 129, 0.2);
+    box-shadow: 
+      0 4px 24px rgba(0, 0, 0, 0.2),
+      0 0 20px rgba(16, 185, 129, 0.1);
+  }
+  
+  .tech-surface {
+    @apply backdrop-blur-md border;
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(16, 185, 129, 0.15);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .tech-surface:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(16, 185, 129, 0.3);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.15);
   }
 }
 
