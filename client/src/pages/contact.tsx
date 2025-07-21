@@ -205,7 +205,6 @@ export default function ContactPage() {
                       <SelectItem value="sales">Sales & Pricing Information</SelectItem>
                       <SelectItem value="demo">Request a Demo</SelectItem>
                       <SelectItem value="support">Technical Support</SelectItem>
-                      <SelectItem value="partnership">Partnership Inquiry</SelectItem>
                       <SelectItem value="security">Security Questions</SelectItem>
                       <SelectItem value="other">Other</SelectItem>
                     </SelectContent>
