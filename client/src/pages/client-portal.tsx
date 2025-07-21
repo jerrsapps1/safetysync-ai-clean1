@@ -342,7 +342,7 @@ export default function ClientPortal() {
         
         // Navigate to workspace after successful authentication
         setTimeout(() => {
-          window.location.href = '/workspace';
+          window.location.replace('/workspace');
         }, 500);
         
         toast({

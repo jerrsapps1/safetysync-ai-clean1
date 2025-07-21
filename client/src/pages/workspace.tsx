@@ -1925,9 +1925,11 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
     );
   }
 
-  if (!isAuthenticated) {
-    // Redirect to landing page instead of client portal to avoid redirect loop
-    window.location.href = '/';
+  if (!isAuthenticated && !authLoading) {
+    // Only redirect if we're sure authentication has finished loading
+    setTimeout(() => {
+      window.location.replace('/');
+    }, 100);
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 flex items-center justify-center">
         <div className="text-center">
