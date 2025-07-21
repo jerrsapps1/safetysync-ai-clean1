@@ -132,7 +132,9 @@ export default function ContactPage() {
     <div className="min-h-screen bg-gray-50">
       <PageHeader />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      {/* Main Content with Sidebar Margin */}
+      <div className="md:ml-64">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -442,7 +444,7 @@ export default function ContactPage() {
           </CardContent>
         </Card>
 
-
+        </div>
       </div>
     </div>
   );
