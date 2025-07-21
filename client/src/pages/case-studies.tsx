@@ -176,10 +176,10 @@ export default function CaseStudiesPage() {
             {industryMetrics.map((metric, index) => (
               <div key={index} className="text-center">
                 <div className="flex items-center justify-center mb-2">
-                  <metric.icon className="w-6 h-6 text-blue-600 mr-2" />
-                  <div className="text-2xl font-bold text-blue-600">{metric.value}</div>
+                  <metric.icon className="w-6 h-6 text-emerald-400 mr-2" />
+                  <div className="text-2xl font-bold text-emerald-400">{metric.value}</div>
                 </div>
-                <div className="text-sm text-gray-600">{metric.metric}</div>
+                <div className="text-sm text-gray-300">{metric.metric}</div>
               </div>
             ))}
           </div>
@@ -193,13 +193,13 @@ export default function CaseStudiesPage() {
               <Card key={study.id} className="hover:shadow-xl transition-all duration-300 bg-gray-800/50 border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/70">
                 <CardHeader>
                   <div className="flex items-center justify-between mb-2">
-                    <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+                    <Badge variant="outline" className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30">
                       Featured
                     </Badge>
-                    <div className="text-sm text-gray-500">{study.timeline}</div>
+                    <div className="text-sm text-gray-300">{study.timeline}</div>
                   </div>
-                  <CardTitle className="text-xl text-gray-900">{study.company}</CardTitle>
-                  <CardDescription className="flex items-center gap-4 text-sm">
+                  <CardTitle className="text-xl text-white">{study.company}</CardTitle>
+                  <CardDescription className="flex items-center gap-4 text-sm text-gray-300">
                     <span className="flex items-center gap-1">
                       <Building className="w-4 h-4" />
                       {study.industry}
@@ -213,23 +213,23 @@ export default function CaseStudiesPage() {
                 <CardContent className="space-y-6">
                   {/* Challenge */}
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-2">The Challenge</h4>
-                    <p className="text-gray-600 text-sm leading-relaxed">{study.challenge}</p>
+                    <h4 className="font-semibold text-white mb-2">The Challenge</h4>
+                    <p className="text-gray-300 text-sm leading-relaxed">{study.challenge}</p>
                   </div>
 
                   {/* Solution */}
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-2">SafetySync Solution</h4>
-                    <p className="text-gray-600 text-sm leading-relaxed">{study.solution}</p>
+                    <h4 className="font-semibold text-white mb-2">SafetySync Solution</h4>
+                    <p className="text-gray-300 text-sm leading-relaxed">{study.solution}</p>
                   </div>
 
                   {/* Key Implementation Points */}
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Implementation Highlights</h4>
+                    <h4 className="font-semibold text-white mb-2">Implementation Highlights</h4>
                     <ul className="space-y-1">
                       {study.implementation.slice(0, 3).map((item, index) => (
-                        <li key={index} className="flex items-start gap-2 text-sm text-gray-600">
-                          <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                        <li key={index} className="flex items-start gap-2 text-sm text-gray-300">
+                          <CheckCircle className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
                           {item}
                         </li>
                       ))}
@@ -237,35 +237,35 @@ export default function CaseStudiesPage() {
                   </div>
 
                   {/* Results Grid */}
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <div className="bg-gray-700/50 rounded-lg p-4 backdrop-blur-sm">
+                    <h4 className="font-semibold text-white mb-3 flex items-center gap-2">
                       <BarChart3 className="w-4 h-4" />
                       Measurable Results
                     </h4>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="text-center">
-                        <div className="text-2xl font-bold text-green-600">{study.results.timeReduction}</div>
-                        <div className="text-xs text-gray-600">Time Reduction</div>
+                        <div className="text-2xl font-bold text-emerald-400">{study.results.timeReduction}</div>
+                        <div className="text-xs text-gray-300">Time Reduction</div>
                       </div>
                       <div className="text-center">
-                        <div className="text-2xl font-bold text-blue-600">{study.results.costSavings}</div>
-                        <div className="text-xs text-gray-600">Annual Savings</div>
+                        <div className="text-2xl font-bold text-blue-400">{study.results.costSavings}</div>
+                        <div className="text-xs text-gray-300">Annual Savings</div>
                       </div>
                       <div className="text-center">
-                        <div className="text-2xl font-bold text-purple-600">{study.results.complianceImprovement}</div>
-                        <div className="text-xs text-gray-600">Compliance Score</div>
+                        <div className="text-2xl font-bold text-purple-400">{study.results.complianceImprovement}</div>
+                        <div className="text-xs text-gray-300">Compliance Score</div>
                       </div>
                       <div className="text-center">
-                        <div className="text-2xl font-bold text-orange-600">{study.results.roi}</div>
-                        <div className="text-xs text-gray-600">ROI</div>
+                        <div className="text-2xl font-bold text-orange-400">{study.results.roi}</div>
+                        <div className="text-xs text-gray-300">ROI</div>
                       </div>
                     </div>
                   </div>
 
                   {/* Quote */}
-                  <blockquote className="border-l-4 border-blue-200 pl-4 italic text-gray-700">
+                  <blockquote className="border-l-4 border-emerald-500/50 pl-4 italic text-gray-300">
                     "{study.quote}"
-                    <footer className="mt-2 text-sm text-gray-600">
+                    <footer className="mt-2 text-sm text-gray-400">
                       — {study.author}, {study.authorTitle}
                     </footer>
                   </blockquote>
@@ -277,16 +277,16 @@ export default function CaseStudiesPage() {
 
         {/* All Case Studies */}
         <section className="mb-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8">More Success Stories</h2>
+          <h2 className="text-2xl font-bold text-white mb-8">More Success Stories</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {allStudies.map((study) => (
-              <Card key={study.id} className="hover:shadow-lg transition-shadow">
+              <Card key={study.id} className="hover:shadow-lg transition-shadow bg-gray-800/50 border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/70">
                 <CardHeader>
                   <div className="flex items-center justify-between mb-2">
-                    <CardTitle className="text-lg text-gray-900">{study.company}</CardTitle>
-                    <div className="text-sm text-gray-500">{study.timeline}</div>
+                    <CardTitle className="text-lg text-white">{study.company}</CardTitle>
+                    <div className="text-sm text-gray-300">{study.timeline}</div>
                   </div>
-                  <CardDescription className="flex items-center gap-4 text-sm">
+                  <CardDescription className="flex items-center gap-4 text-sm text-gray-300">
                     <span className="flex items-center gap-1">
                       <Building className="w-4 h-4" />
                       {study.industry}
@@ -298,25 +298,25 @@ export default function CaseStudiesPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
+                  <p className="text-gray-300 text-sm leading-relaxed line-clamp-3">
                     {study.challenge}
                   </p>
                   
                   {/* Results Summary */}
-                  <div className="bg-gray-50 rounded-lg p-3">
+                  <div className="bg-gray-700/50 rounded-lg p-3 backdrop-blur-sm">
                     <div className="grid grid-cols-2 gap-3 text-center">
                       <div>
-                        <div className="text-lg font-bold text-green-600">{study.results.timeReduction}</div>
-                        <div className="text-xs text-gray-600">Time Saved</div>
+                        <div className="text-lg font-bold text-emerald-400">{study.results.timeReduction}</div>
+                        <div className="text-xs text-gray-300">Time Saved</div>
                       </div>
                       <div>
-                        <div className="text-lg font-bold text-blue-600">{study.results.roi}</div>
-                        <div className="text-xs text-gray-600">ROI</div>
+                        <div className="text-lg font-bold text-blue-400">{study.results.roi}</div>
+                        <div className="text-xs text-gray-300">ROI</div>
                       </div>
                     </div>
                   </div>
 
-                  <blockquote className="text-sm italic text-gray-600 border-l-2 border-gray-200 pl-3">
+                  <blockquote className="text-sm italic text-gray-300 border-l-2 border-emerald-500/50 pl-3">
                     "{study.quote}"
                   </blockquote>
                 </CardContent>
@@ -327,23 +327,23 @@ export default function CaseStudiesPage() {
 
         {/* Industry Impact */}
         <section className="mb-16">
-          <Card className="bg-gradient-to-br from-blue-50 to-purple-50">
+          <Card className="bg-gray-800/50 border-gray-700/50 backdrop-blur-sm">
             <CardContent className="p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+              <h2 className="text-2xl font-bold text-white mb-6 text-center">
                 Industry-Wide Impact
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-600 mb-2">1,200+</div>
-                  <div className="text-gray-600">Companies Transformed</div>
+                  <div className="text-3xl font-bold text-blue-400 mb-2">1,200+</div>
+                  <div className="text-gray-300">Companies Transformed</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-green-600 mb-2">$8.5M</div>
-                  <div className="text-gray-600">Total Cost Savings</div>
+                  <div className="text-3xl font-bold text-emerald-400 mb-2">$8.5M</div>
+                  <div className="text-gray-300">Total Cost Savings</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-purple-600 mb-2">99.2%</div>
-                  <div className="text-gray-600">Customer Satisfaction</div>
+                  <div className="text-3xl font-bold text-purple-400 mb-2">99.2%</div>
+                  <div className="text-gray-300">Customer Satisfaction</div>
                 </div>
               </div>
             </CardContent>
