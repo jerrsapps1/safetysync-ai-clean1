@@ -18,6 +18,7 @@ interface TrialSignupDialogProps {
 export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDialogProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isPasswordStrong, setIsPasswordStrong] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -25,6 +26,7 @@ export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDial
     email: "",
     company: "",
     password: "",
+    confirmPassword: "",
     message: "",
     leadType: "trial"
   });
@@ -70,6 +72,13 @@ export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDial
     } else if (formData.password.length < 8) {
       newErrors.password = "Password must be at least 8 characters";
     }
+
+    // Password confirmation validation
+    if (!formData.confirmPassword.trim()) {
+      newErrors.confirmPassword = "Please confirm your password";
+    } else if (formData.password !== formData.confirmPassword) {
+      newErrors.confirmPassword = "Passwords do not match";
+    }
     
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -112,9 +121,11 @@ export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDial
   };
 
   const handleClose = () => {
-    setFormData({ name: "", username: "", email: "", company: "", password: "", message: "", leadType: "trial" });
+    setFormData({ name: "", username: "", email: "", company: "", password: "", confirmPassword: "", message: "", leadType: "trial" });
     setErrors({});
     setShowPassword(false);
+    setShowConfirmPassword(false);
+    setIsPasswordStrong(false);
     onClose();
   };
 
@@ -194,6 +205,7 @@ export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDial
                 onChange={(e) => handleInputChange("password", e.target.value)}
                 placeholder="Create a secure password"
                 className={`pr-10 ${errors.password ? "border-red-500" : ""}`}
+                autoComplete="new-password"
               />
               <Button
                 type="button"
@@ -210,6 +222,37 @@ export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDial
               password={formData.password} 
               onStrengthChange={setIsPasswordStrong}
             />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="confirmPassword">Confirm Password *</Label>
+            <div className="relative">
+              <Input
+                id="confirmPassword"
+                type={showConfirmPassword ? "text" : "password"}
+                value={formData.confirmPassword}
+                onChange={(e) => handleInputChange("confirmPassword", e.target.value)}
+                placeholder="Confirm your password"
+                className={`pr-10 ${errors.confirmPassword ? "border-red-500" : ""}`}
+                autoComplete="new-password"
+              />
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 px-2"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              >
+                {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              </Button>
+            </div>
+            {errors.confirmPassword && <p className="text-sm text-red-500">{errors.confirmPassword}</p>}
+            {formData.confirmPassword && formData.password === formData.confirmPassword && (
+              <p className="text-sm text-green-600 flex items-center gap-1">
+                <CheckCircle className="w-4 h-4" />
+                Passwords match
+              </p>
+            )}
           </div>
           
 
