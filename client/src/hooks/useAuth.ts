@@ -53,6 +53,8 @@ export function useAuth() {
 
   const login = async (username: string, password: string, rememberMe: boolean = false) => {
     try {
+      console.log('🔐 USEAUTH: Starting login request', { username, rememberMe });
+      
       const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
@@ -62,6 +64,12 @@ export function useAuth() {
       });
 
       const result = await response.json();
+      console.log('🔐 USEAUTH: Login response received', { 
+        status: response.status, 
+        success: result.success, 
+        hasToken: !!result.token,
+        hasUser: !!result.user 
+      });
       
       if (result.success) {
         // Use localStorage for "remember me", sessionStorage for temporary sessions
@@ -69,14 +77,19 @@ export function useAuth() {
         storage.setItem('auth_token', result.token);
         storage.setItem('remember_me', rememberMe.toString());
         
+        console.log('🔐 USEAUTH: Token stored in', rememberMe ? 'localStorage' : 'sessionStorage');
+        
         setUser(result.user);
         setIsLoading(false);
-        console.log('Login successful, user set:', result.user);
+        console.log('🔐 USEAUTH: User set in state', result.user);
+        
         return { success: true, user: result.user };
       } else {
+        console.error('🔐 USEAUTH: Login failed', result.message);
         return { success: false, message: result.message };
       }
     } catch (error) {
+      console.error('🔐 USEAUTH: Login error:', error);
       return { success: false, message: 'Login failed' };
     }
   };
