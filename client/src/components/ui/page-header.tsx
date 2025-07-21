@@ -107,8 +107,8 @@ export function PageHeader({}: PageHeaderProps) {
               variant={!isHovered ? "ghost" : "default"}
               size={!isHovered ? "sm" : "default"}
               className={`
-                ${!isHovered ? 'w-12 h-12 p-0' : 'w-full'} 
-                elegant-button text-white font-medium
+                ${!isHovered ? 'w-12 h-12 p-0 bg-emerald-500/20 hover:bg-emerald-500/30' : 'w-full bg-emerald-600 hover:bg-emerald-700'} 
+                text-white font-medium border border-emerald-400/30
               `}
               onClick={() => setIsMobileOpen(false)}
               title={!isHovered ? "Client Login" : undefined}
