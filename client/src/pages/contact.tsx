@@ -76,36 +76,11 @@ export default function ContactPage() {
 
   const contactOptions = [
     {
-      title: "Sales & Pricing",
-      description: "Get pricing information and discuss your compliance needs",
-      icon: Building,
-      color: "bg-blue-500",
-      email: "sales@safetysync.ai",
-      response: "Within 2 hours"
-    },
-    {
-      title: "Technical Support",
-      description: "Get help with platform features and troubleshooting",
+      title: "Sales & Support",
+      description: "Get pricing information, discuss compliance needs, or get help with platform features",
       icon: HeadphonesIcon,
-      color: "bg-green-500",
-      email: "support@safetysync.ai",
-      response: "Within 4 hours (business hours)"
-    },
-    {
-      title: "Partnership Inquiries",
-      description: "Explore partnership opportunities and integrations",
-      icon: Users,
-      color: "bg-purple-500",
-      email: "partnerships@safetysync.ai",
-      response: "Within 24 hours"
-    },
-    {
-      title: "Security & Compliance",
-      description: "Security questions and compliance documentation",
-      icon: Shield,
-      color: "bg-red-500",
-      email: "security@safetysync.ai",
-      response: "Within 6 hours"
+      color: "bg-blue-500",
+      email: "hello@safetysync.ai"
     }
   ];
 
@@ -147,9 +122,9 @@ export default function ContactPage() {
         </div>
 
         {/* Contact Options */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="flex justify-center mb-16">
           {contactOptions.map((option) => (
-            <Card key={option.title} className="text-center hover:shadow-lg transition-shadow">
+            <Card key={option.title} className="text-center hover:shadow-lg transition-shadow max-w-md">
               <CardHeader className="pb-4">
                 <div className={`w-12 h-12 ${option.color} rounded-lg flex items-center justify-center mx-auto mb-4`}>
                   <option.icon className="w-6 h-6 text-white" />
@@ -160,15 +135,9 @@ export default function ContactPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
-                    <Mail className="w-4 h-4" />
-                    <span className="font-medium">{option.email}</span>
-                  </div>
-                  <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
-                    <Clock className="w-4 h-4" />
-                    <span>Response: {option.response}</span>
-                  </div>
+                <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
+                  <Mail className="w-4 h-4" />
+                  <span className="font-medium">{option.email}</span>
                 </div>
               </CardContent>
             </Card>
