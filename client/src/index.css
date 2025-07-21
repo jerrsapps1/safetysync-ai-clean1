@@ -193,9 +193,9 @@ html, body {
 }
 
 .glass-panel {
-  background: rgba(15, 23, 42, 0.4);
+  background: rgba(30, 64, 175, 0.3);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(16, 185, 129, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 
     0 4px 24px rgba(0, 0, 0, 0.2),
     0 0 20px rgba(16, 185, 129, 0.1);
