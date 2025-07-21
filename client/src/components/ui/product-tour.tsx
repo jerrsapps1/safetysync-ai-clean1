@@ -55,31 +55,31 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
             <Shield className="w-20 h-20 mx-auto mb-4 text-blue-600" />
             <h2 className="text-2xl font-bold mb-3">Welcome to SafetySync.ai</h2>
             <p className="text-gray-700 text-lg mb-4">
-              The first AI-powered OSHA compliance platform designed specifically for construction, 
-              manufacturing, and industrial businesses. Let's explore how we revolutionize safety management.
+              The revolutionary AI-powered training documentation platform designed to become the largest 
+              collection of training documents for companies. Built with enterprise-grade security and streamlined signup.
             </p>
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
               <p className="text-sm text-blue-800">
-                <strong>Save 15+ hours weekly</strong> on compliance management while ensuring 
-                100% OSHA regulatory adherence through intelligent automation.
+                <strong>Save 15+ hours weekly</strong> on training compliance while ensuring companies 
+                pass OSHA inspections without training-related citations.
               </p>
             </div>
           </div>
           <div className="grid grid-cols-3 gap-4 text-center">
             <div className="p-3 bg-gradient-to-b from-blue-50 to-blue-100 rounded-lg">
               <Users className="w-10 h-10 mx-auto mb-2 text-blue-600" />
-              <div className="text-sm font-semibold">AI Employee Tracking</div>
-              <div className="text-xs text-gray-600">Smart certification monitoring</div>
+              <div className="text-sm font-semibold">Enterprise Authentication</div>
+              <div className="text-xs text-gray-600">Professional validation for all users</div>
             </div>
             <div className="p-3 bg-gradient-to-b from-green-50 to-green-100 rounded-lg">
               <FileText className="w-10 h-10 mx-auto mb-2 text-green-600" />
-              <div className="text-sm font-semibold">Instant Audit Reports</div>
-              <div className="text-xs text-gray-600">One-click compliance docs</div>
+              <div className="text-sm font-semibold">AI Document Processing</div>
+              <div className="text-xs text-gray-600">Revolutionary training doc extraction</div>
             </div>
             <div className="p-3 bg-gradient-to-b from-purple-50 to-purple-100 rounded-lg">
               <BarChart3 className="w-10 h-10 mx-auto mb-2 text-purple-600" />
-              <div className="text-sm font-semibold">Predictive Analytics</div>
-              <div className="text-xs text-gray-600">Risk assessment AI</div>
+              <div className="text-sm font-semibold">Employee-Centric QR</div>
+              <div className="text-xs text-gray-600">Hard hat verification system</div>
             </div>
           </div>
         </div>
@@ -89,43 +89,43 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
     },
     {
       id: "dashboard",
-      title: "AI-Powered Compliance Dashboard",
-      description: "Revolutionary real-time compliance monitoring with predictive analytics",
+      title: "Streamlined Trial Signup Experience", 
+      description: "Enterprise-grade authentication system with simplified user onboarding",
       content: (
         <div className="space-y-5">
           <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-5 rounded-lg border border-blue-200">
-            <h3 className="font-bold mb-3 text-lg text-blue-800">AI Compliance Intelligence</h3>
+            <h3 className="font-bold mb-3 text-lg text-blue-800">Enterprise Authentication System</h3>
             <div className="flex items-center gap-4 mb-3">
-              <div className="text-4xl font-bold text-green-600">94%</div>
+              <div className="text-4xl font-bold text-green-600">100%</div>
               <div className="flex-1">
-                <Progress value={94} className="mb-1" />
-                <div className="text-xs text-gray-600">Real-time compliance score calculated by AI</div>
+                <Progress value={100} className="mb-1" />
+                <div className="text-xs text-gray-600">Professional validation for all user types</div>
               </div>
             </div>
             <p className="text-sm text-gray-700 mb-3">
-              Our AI continuously monitors 47 different compliance factors across all departments, 
-              automatically calculating risk levels and predicting compliance issues before they occur.
+              Our streamlined trial signup removes barriers while maintaining enterprise security standards. 
+              Changed "Work Email" to "Email", made company optional, removed unnecessary questions.
             </p>
             <div className="bg-white/70 rounded p-3 text-xs">
-              <strong>AI Features:</strong> Predictive risk assessment • Automated gap analysis • 
-              Smart training recommendations • Regulatory change alerts
+              <strong>Recent Updates:</strong> Simplified email field • Optional company name • 
+              Removed "How can we help?" section • Accepts any valid email address
             </div>
           </div>
           <div className="grid grid-cols-3 gap-3">
             <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
               <CheckCircle className="w-8 h-8 mx-auto text-green-600 mb-1" />
-              <div className="text-sm font-bold">156 Compliant</div>
-              <div className="text-xs text-gray-600">Active certifications</div>
+              <div className="text-sm font-bold">Easy Signup</div>
+              <div className="text-xs text-gray-600">Streamlined form</div>
             </div>
             <div className="text-center p-3 bg-yellow-50 rounded-lg border border-yellow-200">
               <Bell className="w-8 h-8 mx-auto text-yellow-600 mb-1" />
-              <div className="text-sm font-bold">8 Expiring Soon</div>
-              <div className="text-xs text-gray-600">Auto-alerts sent</div>
+              <div className="text-sm font-bold">No Barriers</div>
+              <div className="text-xs text-gray-600">Optional company</div>
             </div>
             <div className="text-center p-3 bg-blue-50 rounded-lg border border-blue-200">
               <BarChart3 className="w-8 h-8 mx-auto text-blue-600 mb-1" />
-              <div className="text-sm font-bold">23 Insights</div>
-              <div className="text-xs text-gray-600">AI recommendations</div>
+              <div className="text-sm font-bold">Enterprise Grade</div>
+              <div className="text-xs text-gray-600">Security maintained</div>
             </div>
           </div>
         </div>
@@ -142,15 +142,15 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
           <div className="bg-gradient-to-r from-green-50 to-blue-50 p-4 rounded-lg border border-green-200">
             <h3 className="font-bold mb-3 text-lg text-green-800">Smart Employee Compliance</h3>
             <p className="text-sm text-gray-700 mb-3">
-              Every employee gets personalized compliance profiles with AI-driven training recommendations, 
-              automated certification tracking, and predictive renewal alerts. No more manual spreadsheets or missed renewals.
+              Employee-centric approach with QR code verification on hard hats. Each employee has their own 
+              profile with digital wallet cards that replace physical certification cards for field verification.
             </p>
             <div className="grid grid-cols-2 gap-3 text-xs">
               <div className="bg-white/70 p-2 rounded">
-                <strong>AI Features:</strong> Predictive training needs • Smart scheduling • Risk profiling
+                <strong>QR Features:</strong> Hard hat verification • Digital wallet cards • Real-time access
               </div>
               <div className="bg-white/70 p-2 rounded">
-                <strong>Automation:</strong> Cert renewal alerts • Training assignments • Compliance scoring
+                <strong>Training Focus:</strong> Document processing • Certificate generation • OSHA compliance
               </div>
             </div>
           </div>
@@ -198,9 +198,8 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
               </div>
             </div>
             <p className="text-sm text-gray-700 mb-4">
-              Our AI analyzes your entire compliance database and generates comprehensive, 
-              audit-ready reports that automatically highlight risks, gaps, and recommendations. 
-              Perfect for OSHA inspections, insurance audits, and internal reviews.
+              Revolutionary AI document processing extracts training data from PDFs and generates 
+              inspector-ready documentation. Ensures companies pass OSHA inspections without training-related citations.
             </p>
             <div className="grid grid-cols-2 gap-3 mb-4">
               <div className="bg-white/70 p-3 rounded text-xs">
