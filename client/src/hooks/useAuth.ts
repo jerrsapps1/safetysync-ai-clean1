@@ -22,6 +22,7 @@ export function useAuth() {
         const rememberMe = localStorage.getItem('remember_me') === 'true';
         
         if (token) {
+          console.log('🔐 USEAUTH: Checking token validity', { tokenLength: token.length });
           const response = await fetch('/api/auth/me', {
             headers: {
               'Authorization': `Bearer ${token}`
@@ -30,8 +31,10 @@ export function useAuth() {
           
           if (response.ok) {
             const userData = await response.json();
+            console.log('🔐 USEAUTH: Token validation successful', userData.user);
             setUser(userData.user);
           } else {
+            console.log('🔐 USEAUTH: Token validation failed, clearing storage');
             // Clear invalid tokens from both storages
             localStorage.removeItem('auth_token');
             localStorage.removeItem('remember_me');
@@ -75,9 +78,12 @@ export function useAuth() {
         // Use localStorage for "remember me", sessionStorage for temporary sessions
         const storage = rememberMe ? localStorage : sessionStorage;
         storage.setItem('auth_token', result.token);
-        storage.setItem('remember_me', rememberMe.toString());
+        if (rememberMe) {
+          localStorage.setItem('remember_me', 'true');
+        }
         
         console.log('🔐 USEAUTH: Token stored in', rememberMe ? 'localStorage' : 'sessionStorage');
+        console.log('🔐 USEAUTH: Token preview', result.token.substring(0, 20) + '...');
         
         setUser(result.user);
         setIsLoading(false);
