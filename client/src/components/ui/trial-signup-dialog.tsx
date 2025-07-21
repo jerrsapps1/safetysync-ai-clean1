@@ -169,15 +169,16 @@ export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDial
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="email">Email *</Label>
+            <Label htmlFor="trial-email">Email *</Label>
             <Input
-              id="email"
+              id="trial-email"
+              name="trial-email"
               type="email"
               value={formData.email}
               onChange={(e) => handleInputChange("email", e.target.value.toLowerCase())}
               placeholder="john@company.com"
               className={errors.email ? "border-red-500" : ""}
-              autoComplete="email"
+              autoComplete="trial-email"
             />
             {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
           </div>

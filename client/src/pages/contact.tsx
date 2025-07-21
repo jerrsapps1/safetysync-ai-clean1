@@ -172,14 +172,16 @@ export default function ContactPage() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="email">Email Address *</Label>
+                    <Label htmlFor="contact-email">Email Address *</Label>
                     <Input
-                      id="email"
+                      id="contact-email"
+                      name="contact-email"
                       type="email"
                       value={formData.email}
                       onChange={(e) => handleInputChange("email", e.target.value)}
                       required
                       placeholder="john@company.com"
+                      autoComplete="contact-email"
                     />
                   </div>
                 </div>

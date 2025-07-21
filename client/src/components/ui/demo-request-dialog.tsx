@@ -329,14 +329,16 @@ export function DemoRequestDialog({ isOpen, onClose, onSubmit }: DemoRequestDial
           </div>
           
           <div className="space-y-2">
-            <Label htmlFor="email">Work Email *</Label>
+            <Label htmlFor="demo-email">Work Email *</Label>
             <Input
-              id="email"
+              id="demo-email"
+              name="demo-email"
               type="email"
               value={formData.email}
               onChange={(e) => handleInputChange("email", e.target.value)}
               placeholder="john@company.com"
               className={errors.email ? "border-red-500" : ""}
+              autoComplete="demo-email"
             />
             {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
           </div>
