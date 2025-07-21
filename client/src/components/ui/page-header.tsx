@@ -71,6 +71,24 @@ export function PageHeader({}: PageHeaderProps) {
           {/* Remove collapse button since it's hover-based now */}
         </div>
 
+        {/* Client Login Button - At Top */}
+        <div className="mt-6 px-2">
+          <Link href="/client-portal">
+            <Button 
+              className={`
+                ${!isHovered ? 'w-12 h-12 p-0 justify-center' : 'w-full justify-start px-3'} 
+                bg-emerald-500 hover:bg-emerald-600 text-white font-bold border-2 border-white
+                shadow-2xl transition-all duration-300 ring-2 ring-emerald-300/50
+              `}
+              onClick={() => setIsMobileOpen(false)}
+              title={!isHovered ? "Client Login" : undefined}
+            >
+              <Users className={`${!isHovered ? 'w-6 h-6' : 'w-5 h-5 mr-3'} text-white flex-shrink-0 drop-shadow-lg`} />
+              {isHovered && <span className="text-white font-bold">Client Login</span>}
+            </Button>
+          </Link>
+        </div>
+
         {/* Navigation */}
         <nav className="mt-8 px-2">
           <div className="space-y-2">
@@ -101,23 +119,7 @@ export function PageHeader({}: PageHeaderProps) {
           </div>
         </nav>
 
-        {/* Client Login Button - Responsive to Sidebar Hover */}
-        <div className="absolute bottom-6 left-2 right-2">
-          <Link href="/client-portal">
-            <Button 
-              className={`
-                ${!isHovered ? 'w-12 h-12 p-0 justify-center' : 'w-full justify-start px-3'} 
-                bg-emerald-500 hover:bg-emerald-600 text-white font-bold border-2 border-white
-                shadow-2xl transition-all duration-300 ring-2 ring-emerald-300/50
-              `}
-              onClick={() => setIsMobileOpen(false)}
-              title={!isHovered ? "Client Login" : undefined}
-            >
-              <Users className={`${!isHovered ? 'w-6 h-6' : 'w-5 h-5 mr-3'} text-white flex-shrink-0 drop-shadow-lg`} />
-              {isHovered && <span className="text-white font-bold">Client Login</span>}
-            </Button>
-          </Link>
-        </div>
+
       </aside>
 
       {/* Overlay for mobile */}
