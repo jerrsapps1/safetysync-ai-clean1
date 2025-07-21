@@ -27,7 +27,6 @@ export function PageHeader({}: PageHeaderProps) {
     { name: "Case Studies", href: "/case-studies", icon: FileText },
     { name: "For HR Teams", href: "/hr", icon: Users },
     { name: "Pricing", href: "/pricing", icon: DollarSign },
-    { name: "Resources", href: "/resources", icon: BookOpen },
     { name: "Contact", href: "/contact", icon: Phone },
   ];
 

@@ -63,7 +63,7 @@ function Router() {
       <Route path="/ab-testing" component={ABTestingDashboard} />
       <Route path="/blog" component={SEOBlogPage} />
       <Route path="/blog/:slug" component={BlogPostPage} />
-      <Route path="/resources" component={LeadMagnetsPage} />
+
       <Route path="/sitemap" component={SitemapPage} />
       <Route path="/dns-management" component={DNSManagementPage} />
       <Route path="/backup-recovery" component={BackupRecoveryPage} />
