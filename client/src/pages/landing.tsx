@@ -559,92 +559,92 @@ export default function LandingPage() {
       </section>
 
       {/* Solution Section */}
-      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20 border border-gray-800">
+      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-800/30">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
               A Simple Solution to Stay <span className="text-emerald-400">OSHA-Compliant</span>
             </h2>
-            <h3 className="text-xl text-gray-300 mb-8">
+            <h3 className="text-xl text-gray-200 mb-8">
               Automated, Accurate, and Always Ready
             </h3>
-            <p className="text-lg text-gray-300 max-w-3xl mx-auto mb-12">
+            <p className="text-lg text-gray-200 max-w-3xl mx-auto mb-12">
               SafetySync.AI is the all-in-one compliance tracker designed specifically for companies like yours. We handle the tedious documentation work—so you don't have to.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="bg-gray-800/50 rounded-xl border border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/70 transition-all duration-300">
+            <Card className="bg-gray-700/40 rounded-xl border border-gray-600 hover:bg-gray-700/60 transition-all duration-300">
               <CardContent className="p-8">
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mr-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-emerald-500/30 rounded-lg flex items-center justify-center mr-4">
                     <Users className="w-6 h-6 text-emerald-400" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-white mb-2">Automated Tracking & Reminders</h3>
-                    <p className="text-gray-300">Eliminate manual paperwork and get automatic alerts for training expiration dates and certification renewals.</p>
+                    <p className="text-gray-200">Eliminate manual paperwork and get automatic alerts for training expiration dates and certification renewals.</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
             
-            <Card className="bg-gray-800/50 rounded-xl border border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/70 transition-all duration-300">
+            <Card className="bg-gray-700/40 rounded-xl border border-gray-600 hover:bg-gray-700/60 transition-all duration-300">
               <CardContent className="p-8">
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mr-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-emerald-500/30 rounded-lg flex items-center justify-center mr-4">
                     <FileText className="w-6 h-6 text-emerald-400" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-white mb-2">Centralized Database</h3>
-                    <p className="text-gray-300">All your employee training records and certifications in one easy-to-navigate system.</p>
+                    <p className="text-gray-200">All your employee training records and certifications in one easy-to-navigate system.</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
             
-            <Card className="bg-gray-800/50 rounded-xl border border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/70 transition-all duration-300">
+            <Card className="bg-gray-700/40 rounded-xl border border-gray-600 hover:bg-gray-700/60 transition-all duration-300">
               <CardContent className="p-8">
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mr-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-blue-500/30 rounded-lg flex items-center justify-center mr-4">
                     <BarChart3 className="w-6 h-6 text-blue-400" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-white mb-2">Audit-Ready Reports</h3>
-                    <p className="text-gray-300">Generate detailed, audit-proof reports in minutes—no more scrambling for documents when the inspectors arrive.</p>
+                    <p className="text-gray-200">Generate detailed, audit-proof reports in minutes—no more scrambling for documents when the inspectors arrive.</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
             
-            <Card className="bg-gray-800/50 rounded-xl border border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/70 transition-all duration-300">
+            <Card className="bg-gray-700/40 rounded-xl border border-gray-600 hover:bg-gray-700/60 transition-all duration-300">
               <CardContent className="p-8">
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mr-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-purple-500/30 rounded-lg flex items-center justify-center mr-4">
                     <Clock className="w-6 h-6 text-purple-400" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-white mb-2">Easy Integration</h3>
-                    <p className="text-gray-300">Seamlessly integrates with your existing HR or training systems—no disruption to your workflow.</p>
+                    <p className="text-gray-200">Seamlessly integrates with your existing HR or training systems—no disruption to your workflow.</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
             
-            <Card className="bg-gray-800/50 rounded-xl border border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/70 transition-all duration-300">
+            <Card className="bg-gray-700/40 rounded-xl border border-gray-600 hover:bg-gray-700/60 transition-all duration-300">
               <CardContent className="p-8">
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mr-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-orange-500/30 rounded-lg flex items-center justify-center mr-4">
                     <TrendingUp className="w-6 h-6 text-orange-400" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-white mb-2">Complete Peace of Mind</h3>
-                    <p className="text-gray-300">Trust that your compliance is always up-to-date and accurate, with secure data storage that meets industry standards.</p>
+                    <p className="text-gray-200">Trust that your compliance is always up-to-date and accurate, with secure data storage that meets industry standards.</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
             
-            <Card className="bg-gray-800/50 rounded-xl border border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/70 transition-all duration-300">
+            <Card className="bg-gray-700/40 rounded-xl border border-gray-600 hover:bg-gray-700/60 transition-all duration-300">
               <CardContent className="p-8">
                 <div className="flex items-start">
                   <div className="flex-shrink-0 w-12 h-12 bg-red-500/20 rounded-lg flex items-center justify-center mr-4">
@@ -679,11 +679,11 @@ export default function LandingPage() {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-20 px-6 text-center bg-gray-900 text-white">
+      <section className="py-20 px-6 text-center bg-gray-700/50 text-white">
         <h2 className="text-3xl font-bold mb-4">
           Get Peace of Mind—Without the Paper Chase
         </h2>
-        <p className="text-lg mb-8 max-w-2xl mx-auto">
+        <p className="text-lg mb-8 max-w-2xl mx-auto text-gray-100">
           Join safety professionals across construction, manufacturing, and industrial services who trust SafetySync.AI to streamline their compliance.
         </p>
         <div className="flex justify-center gap-4">
