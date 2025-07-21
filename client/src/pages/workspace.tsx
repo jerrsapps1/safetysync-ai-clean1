@@ -1933,15 +1933,16 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
   }
 
   if (!isAuthenticated && !authLoading) {
-    // Only redirect if we're sure authentication has finished loading
+    console.log('🏢 WORKSPACE: Not authenticated, redirecting to client portal');
+    // Redirect to client portal instead of home
     setTimeout(() => {
-      window.location.replace('/');
+      window.location.replace('/client-portal');
     }, 100);
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 flex items-center justify-center">
         <div className="text-center">
           <SafetySyncIcon size={64} className="mx-auto mb-4 animate-pulse" />
-          <p className="text-white text-lg">Redirecting to home...</p>
+          <p className="text-white text-lg">Redirecting to login...</p>
         </div>
       </div>
     );

@@ -346,7 +346,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           email: user.email,
           iat: Math.floor(Date.now() / 1000)
         },
-        process.env.JWT_SECRET || 'development-secret-key-change-in-production',
+        process.env.JWT_SECRET || 'development-secret-key',
         { expiresIn: '7d' } // Extended for deployment persistence
       );
 

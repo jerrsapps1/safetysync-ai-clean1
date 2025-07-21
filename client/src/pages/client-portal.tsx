@@ -106,6 +106,10 @@ export default function ClientPortal() {
           description: remember ? "You will stay logged in" : "You have been successfully logged in",
           variant: "default"
         });
+        // Redirect to workspace after successful login
+        setTimeout(() => {
+          window.location.href = '/workspace';
+        }, 1000);
       } else {
         toast({
           title: "Login Failed",
