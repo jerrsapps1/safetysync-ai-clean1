@@ -412,6 +412,127 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Key Benefits Section */}
+      <section className="py-16 px-4 md:px-6 max-w-6xl mx-auto bg-emerald-50">
+        <div className="text-center mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+            Why SafetySync.AI is Different
+          </h2>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            Stop fighting compliance chaos. Start confidently managing safety with automated tracking that works.
+          </p>
+        </div>
+        
+        <div className="grid md:grid-cols-2 gap-8">
+          <div className="bg-white p-6 rounded-xl shadow-sm border border-emerald-200">
+            <div className="flex items-start">
+              <div className="flex-shrink-0 w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mr-4">
+                <ShieldCheck className="w-6 h-6 text-emerald-700" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Automate Compliance Tracking</h3>
+                <p className="text-gray-600">Track all OSHA-required training in one place and never worry about expired certifications again. Automated alerts keep you ahead of deadlines.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="bg-white p-6 rounded-xl shadow-sm border border-emerald-200">
+            <div className="flex items-start">
+              <div className="flex-shrink-0 w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mr-4">
+                <FileText className="w-6 h-6 text-emerald-700" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Simplify Audits</h3>
+                <p className="text-gray-600">Quickly generate reports that prove your compliance, so you're always audit-ready. No more scrambling when inspectors arrive.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="bg-white p-6 rounded-xl shadow-sm border border-emerald-200">
+            <div className="flex items-start">
+              <div className="flex-shrink-0 w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mr-4">
+                <Clock className="w-6 h-6 text-emerald-700" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Stay Ahead of Deadlines</h3>
+                <p className="text-gray-600">Receive reminders for upcoming training and expiration dates, helping you stay ahead of regulatory requirements before they become problems.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="bg-white p-6 rounded-xl shadow-sm border border-emerald-200">
+            <div className="flex items-start">
+              <div className="flex-shrink-0 w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mr-4">
+                <Shield className="w-6 h-6 text-emerald-700" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Reduce Risk & Liability</h3>
+                <p className="text-gray-600">Minimize the risk of penalties by ensuring all employee training is properly documented and up-to-date with enterprise-grade security.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Objection Handling Section */}
+      <section className="py-16 px-4 md:px-6 max-w-6xl mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+            Common Concerns? We've Got You Covered
+          </h2>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            We understand your hesitations. Here's how we address the most common concerns from safety managers like you.
+          </p>
+        </div>
+        
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
+            <h3 className="text-lg font-semibold text-blue-900 mb-3">💰 Cost Concerns</h3>
+            <p className="text-blue-800 mb-2 font-medium">"This might be too expensive for our budget."</p>
+            <p className="text-blue-700 text-sm">We offer flexible pricing plans to match companies of all sizes. Most clients save more in avoided fines than they spend on our platform.</p>
+          </div>
+          
+          <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
+            <h3 className="text-lg font-semibold text-blue-900 mb-3">🔧 Complexity Worries</h3>
+            <p className="text-blue-800 mb-2 font-medium">"Our team isn't tech-savvy enough."</p>
+            <p className="text-blue-700 text-sm">Our software is easy to integrate and use—no steep learning curve. Most teams are up and running in under an hour.</p>
+          </div>
+          
+          <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
+            <h3 className="text-lg font-semibold text-blue-900 mb-3">🔗 Integration Issues</h3>
+            <p className="text-blue-800 mb-2 font-medium">"Will this work with our current systems?"</p>
+            <p className="text-blue-700 text-sm">Built to integrate seamlessly with existing HR and training platforms. We handle data migration so you don't lose anything.</p>
+          </div>
+          
+          <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
+            <h3 className="text-lg font-semibold text-blue-900 mb-3">⚙️ Customization Needs</h3>
+            <p className="text-blue-800 mb-2 font-medium">"Our processes are very specific."</p>
+            <p className="text-blue-700 text-sm">Highly customizable to match your unique workflows, industry requirements, and compliance standards. Built for flexibility.</p>
+          </div>
+          
+          <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
+            <h3 className="text-lg font-semibold text-blue-900 mb-3">🔐 Security Concerns</h3>
+            <p className="text-blue-800 mb-2 font-medium">"How secure is our sensitive data?"</p>
+            <p className="text-blue-700 text-sm">Enterprise-grade security with SOC 2 compliance, encrypted data storage, and regular security audits. Your data is safer than spreadsheets.</p>
+          </div>
+          
+          <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
+            <h3 className="text-lg font-semibold text-blue-900 mb-3">🤝 Trust & Reliability</h3>
+            <p className="text-blue-800 mb-2 font-medium">"How do I know you're reliable?"</p>
+            <p className="text-blue-700 text-sm">Trusted by 500+ companies with 99.9% uptime, dedicated customer success team, and proven track record in safety compliance.</p>
+          </div>
+        </div>
+        
+        <div className="text-center mt-12">
+          <Button 
+            onClick={handleTrialClick}
+            className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-lg text-lg font-semibold"
+          >
+            Still Have Questions? Start Your Free Trial
+          </Button>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="py-12 md:py-16 px-4 md:px-6 max-w-6xl mx-auto">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12">
