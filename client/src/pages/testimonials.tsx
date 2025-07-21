@@ -136,7 +136,7 @@ export default function TestimonialsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
       <PageHeader />
 
       {/* Main Content with Sidebar Margin */}
@@ -144,25 +144,25 @@ export default function TestimonialsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Industry Research & Implementation Studies
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
             Hypothetical business scenarios based on industry research and academic studies of compliance management implementations. 
             These educational examples demonstrate potential outcomes suggested by published research.
           </p>
           
           {/* Legal Disclaimer */}
-          <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-4xl mx-auto mb-8">
-            <p className="text-sm text-gray-700 font-semibold mb-2">
+          <div className="bg-red-900/20 border border-red-500/30 rounded-lg p-6 max-w-4xl mx-auto mb-8 backdrop-blur-sm">
+            <p className="text-sm text-red-200 font-semibold mb-2">
               EDUCATIONAL RESEARCH SCENARIOS - NOT CUSTOMER TESTIMONIALS OR ENDORSEMENTS
             </p>
-            <p className="text-sm text-gray-700 mb-2">
+            <p className="text-sm text-red-300 mb-2">
               The following content presents hypothetical business scenarios based solely on published industry research. 
               These are NOT customer testimonials, reviews, or endorsements of any kind. 
               No actual customer experiences, real companies, or individual results are represented.
             </p>
-            <p className="text-sm text-gray-700">
+            <p className="text-sm text-red-300">
               All data presented is derived from third-party industry studies and academic research. 
               Individual results vary significantly and depend on numerous business-specific factors. 
               These educational examples make no guarantees, warranties, or promises regarding specific outcomes.
@@ -193,7 +193,7 @@ export default function TestimonialsPage() {
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
           {researchScenarios.map((scenario) => (
-            <Card key={scenario.id} className="p-6 hover:shadow-lg transition-shadow">
+            <Card key={scenario.id} className="p-6 hover:shadow-xl transition-all duration-300 bg-gray-800/50 border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/70">
               <CardContent className="p-0">
                 {/* Header */}
                 <div className="flex items-start justify-between mb-4">
@@ -202,9 +202,9 @@ export default function TestimonialsPage() {
                       {scenario.name.split(' ').map(n => n[0]).join('')}
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900">{scenario.name}</h3>
-                      <p className="text-sm text-gray-600">{scenario.title}</p>
-                      <p className="text-sm text-blue-600 font-medium">{scenario.company}</p>
+                      <h3 className="font-semibold text-white">{scenario.name}</h3>
+                      <p className="text-sm text-gray-300">{scenario.title}</p>
+                      <p className="text-sm text-emerald-400 font-medium">{scenario.company}</p>
                     </div>
                   </div>
                   <Quote className="w-8 h-8 text-gray-300" />
@@ -221,7 +221,7 @@ export default function TestimonialsPage() {
                 )}
 
                 {/* Testimonial */}
-                <blockquote className="text-gray-700 mb-6 leading-relaxed">
+                <blockquote className="text-gray-300 mb-6 leading-relaxed">
                   "{scenario.researchFindings}"
                 </blockquote>
 

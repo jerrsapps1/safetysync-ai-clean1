@@ -155,7 +155,7 @@ export default function CaseStudiesPage() {
   const allStudies = caseStudies.filter(study => !study.featured);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
       <PageHeader />
 
       {/* Main Content with Sidebar Margin */}
@@ -163,10 +163,10 @@ export default function CaseStudiesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Real Results from Real Companies
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
             Discover how industry leaders across construction, manufacturing, and energy 
             sectors achieved dramatic compliance improvements with SafetySync.AI
           </p>
@@ -187,10 +187,10 @@ export default function CaseStudiesPage() {
 
         {/* Featured Case Studies */}
         <section className="mb-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8">Featured Success Stories</h2>
+          <h2 className="text-2xl font-bold text-white mb-8">Featured Success Stories</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {featuredStudies.map((study) => (
-              <Card key={study.id} className="hover:shadow-xl transition-shadow duration-300">
+              <Card key={study.id} className="hover:shadow-xl transition-all duration-300 bg-gray-800/50 border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/70">
                 <CardHeader>
                   <div className="flex items-center justify-between mb-2">
                     <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
