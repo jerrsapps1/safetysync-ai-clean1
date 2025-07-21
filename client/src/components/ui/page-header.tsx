@@ -19,7 +19,7 @@ interface PageHeaderProps {
 }
 
 export function PageHeader({}: PageHeaderProps) {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   const navigationItems = [
@@ -44,18 +44,22 @@ export function PageHeader({}: PageHeaderProps) {
       </Button>
 
       {/* Sidebar */}
-      <aside className={`
-        fixed left-0 top-0 z-40 h-full transform transition-all duration-300 ease-in-out
-        bg-gray-900 border-r border-gray-800 shadow-2xl
-        ${isMobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
-        ${isCollapsed ? 'w-16' : 'w-64'}
-      `}>
+      <aside 
+        className={`
+          fixed left-0 top-0 z-40 h-full transform transition-all duration-300 ease-in-out
+          bg-gray-900 border-r border-gray-800 shadow-2xl
+          ${isMobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
+          ${isHovered ? 'w-64' : 'w-16'}
+        `}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         {/* Header */}
         <div className="flex items-center justify-between h-16 px-4 border-b border-gray-800">
           <Link href="/">
             <div className="flex items-center space-x-3 cursor-pointer">
               <SafetySyncIcon size={32} />
-              {!isCollapsed && (
+              {isHovered && (
                 <div>
                   <h1 className="text-lg font-bold text-white">SafetySync.AI</h1>
                   <p className="text-xs text-emerald-400 -mt-1">OSHA Compliance</p>
@@ -64,14 +68,7 @@ export function PageHeader({}: PageHeaderProps) {
             </div>
           </Link>
           
-          <Button
-            variant="ghost"
-            size="sm"
-            className="hidden md:flex text-gray-400 hover:text-white hover:bg-gray-800"
-            onClick={() => setIsCollapsed(!isCollapsed)}
-          >
-            <ArrowRight className={`h-4 w-4 transition-transform ${isCollapsed ? 'rotate-180' : ''}`} />
-          </Button>
+          {/* Remove collapse button since it's hover-based now */}
         </div>
 
         {/* Navigation */}
@@ -84,15 +81,15 @@ export function PageHeader({}: PageHeaderProps) {
                   <a 
                     className="flex items-center px-3 py-3 text-sm font-medium text-gray-300 rounded-lg hover:bg-gray-800 hover:text-emerald-400 transition-colors group relative"
                     onClick={() => setIsMobileOpen(false)}
-                    title={isCollapsed ? item.name : undefined}
+                    title={!isHovered ? item.name : undefined}
                   >
                     <IconComponent className="w-5 h-5 text-gray-400 group-hover:text-emerald-400 flex-shrink-0" />
-                    {!isCollapsed && (
+                    {isHovered && (
                       <span className="ml-3">{item.name}</span>
                     )}
                     
                     {/* Tooltip for collapsed state */}
-                    {isCollapsed && (
+                    {!isHovered && (
                       <div className="absolute left-full ml-2 px-3 py-2 bg-gray-800 text-white text-sm rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">
                         {item.name}
                       </div>
@@ -108,16 +105,16 @@ export function PageHeader({}: PageHeaderProps) {
         <div className="absolute bottom-6 left-2 right-2">
           <Link href="/client-portal">
             <Button 
-              variant={isCollapsed ? "ghost" : "default"}
-              size={isCollapsed ? "sm" : "default"}
+              variant={!isHovered ? "ghost" : "default"}
+              size={!isHovered ? "sm" : "default"}
               className={`
-                ${isCollapsed ? 'w-12 h-12 p-0' : 'w-full'} 
+                ${!isHovered ? 'w-12 h-12 p-0' : 'w-full'} 
                 bg-emerald-600 hover:bg-emerald-700 text-white
               `}
               onClick={() => setIsMobileOpen(false)}
-              title={isCollapsed ? "Client Login" : undefined}
+              title={!isHovered ? "Client Login" : undefined}
             >
-              {isCollapsed ? (
+              {!isHovered ? (
                 <Users className="w-5 h-5" />
               ) : (
                 "Client Login"
