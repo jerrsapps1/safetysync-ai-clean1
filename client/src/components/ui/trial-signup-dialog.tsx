@@ -54,19 +54,13 @@ export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDial
     
     // Email validation - professional standards
     if (!formData.email.trim()) {
-      newErrors.email = "Work email is required";
+      newErrors.email = "Email is required";
     } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formData.email)) {
-      newErrors.email = "Please enter a valid work email address";
-    } else if (formData.email.includes("@gmail.com") || formData.email.includes("@yahoo.com") || formData.email.includes("@hotmail.com")) {
-      newErrors.email = "Please use your work email address (not personal email)";
+      newErrors.email = "Please enter a valid email address";
     }
     
     // Company validation
-    if (!formData.company.trim()) {
-      newErrors.company = "Company name is required";
-    } else if (formData.company.trim().length < 2) {
-      newErrors.company = "Company name must be at least 2 characters";
-    }
+
 
     // Password validation - enterprise standards
     if (!formData.password.trim()) {
@@ -164,7 +158,7 @@ export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDial
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="email">Work Email *</Label>
+            <Label htmlFor="email">Email *</Label>
             <Input
               id="email"
               type="email"
@@ -172,19 +166,18 @@ export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDial
               onChange={(e) => handleInputChange("email", e.target.value.toLowerCase())}
               placeholder="john@company.com"
               className={errors.email ? "border-red-500" : ""}
-              autoComplete="work email"
+              autoComplete="email"
             />
-            <p className="text-xs text-gray-500">Use your work email address for account security</p>
             {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
           </div>
           
           <div className="space-y-2">
-            <Label htmlFor="company">Company Name *</Label>
+            <Label htmlFor="company">Company Name</Label>
             <Input
               id="company"
               value={formData.company}
               onChange={(e) => handleInputChange("company", e.target.value)}
-              placeholder="Your Company"
+              placeholder="Your Company (Optional)"
               className={errors.company ? "border-red-500" : ""}
             />
             {errors.company && <p className="text-sm text-red-500">{errors.company}</p>}
@@ -219,16 +212,7 @@ export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDial
             />
           </div>
           
-          <div className="space-y-2">
-            <Label htmlFor="message">How can we help? (Optional)</Label>
-            <Textarea
-              id="message"
-              value={formData.message}
-              onChange={(e) => handleInputChange("message", e.target.value)}
-              placeholder="Tell us about your compliance needs..."
-              rows={3}
-            />
-          </div>
+
           
           <div className="flex space-x-2 pt-4">
             <Button 
