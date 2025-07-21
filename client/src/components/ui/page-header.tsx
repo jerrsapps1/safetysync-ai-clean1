@@ -100,22 +100,28 @@ export function PageHeader({}: PageHeaderProps) {
           </div>
         </nav>
 
-        {/* Client Login Button - Always Visible */}
-        <div className="absolute bottom-6 left-2 right-2 z-50">
+        {/* Client Login Button - Force Visible */}
+        <div className="absolute bottom-6 left-2 right-2 z-[60]">
           <Link href="/client-portal">
             <Button 
               className={`
                 ${!isHovered ? 'w-12 h-12 p-0' : 'w-full'} 
-                bg-emerald-600 hover:bg-emerald-700 text-white font-bold border-2 border-emerald-300 
-                shadow-xl transition-all duration-300 relative
+                !bg-emerald-600 hover:!bg-emerald-700 !text-white !font-bold !border-2 !border-emerald-300 
+                !shadow-xl transition-all duration-300 !relative !opacity-100 !visible
               `}
+              style={{
+                backgroundColor: '#059669 !important',
+                borderColor: '#34d399 !important',
+                color: 'white !important',
+                zIndex: 60
+              }}
               onClick={() => setIsMobileOpen(false)}
               title={!isHovered ? "Client Login" : undefined}
             >
               {!isHovered ? (
-                <Users className="w-6 h-6 text-white drop-shadow-lg" />
+                <Users className="w-6 h-6 !text-white drop-shadow-lg" style={{ color: 'white !important' }} />
               ) : (
-                <span className="text-white font-bold">Client Login</span>
+                <span className="!text-white !font-bold" style={{ color: 'white !important' }}>Client Login</span>
               )}
             </Button>
           </Link>
