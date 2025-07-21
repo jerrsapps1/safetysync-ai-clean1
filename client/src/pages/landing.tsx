@@ -264,7 +264,7 @@ export default function LandingPage() {
       <PageHeader />
       
       {/* Main Content with Sidebar Margin */}
-      <div className="md:ml-64">
+      <div className="md:ml-16">
 
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-purple-800 text-white pt-20 md:pt-32 pb-16 md:pb-32 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center overflow-hidden">
