@@ -68,16 +68,12 @@ export function PageHeader({}: PageHeaderProps) {
                   Contact
                 </a>
               </Link>
+              <Link href="/client-portal">
+                <a className="text-gray-700 hover:text-gray-900 hover:bg-gray-100/50 px-3 py-2 text-sm font-medium transition-colors rounded-md border border-gray-300">
+                  Client Login
+                </a>
+              </Link>
             </div>
-          </div>
-
-          {/* Client Login Button */}
-          <div className="hidden md:flex items-baseline">
-            <Link href="/client-portal">
-              <a className="text-gray-700 hover:text-gray-900 hover:bg-gray-100/50 px-3 py-2 text-sm font-medium transition-colors rounded-md border border-gray-300">
-                Client Login
-              </a>
-            </Link>
           </div>
 
           {/* Mobile menu button */}
