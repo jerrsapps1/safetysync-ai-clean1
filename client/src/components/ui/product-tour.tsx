@@ -103,7 +103,7 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
               </div>
             </div>
             <p className="text-sm text-gray-700 mb-3">
-              Upload training sign-in sheets, safety meeting records, or certification documents and watch our AI 
+              Upload training sign-in sheets or certification documents and watch our AI 
               instantly extract employee names, training details, instructor credentials, and compliance standards.
             </p>
             <div className="bg-white/70 rounded p-3 text-xs">
