@@ -266,22 +266,7 @@ export default function LandingPage() {
       {/* Navigation */}
       <PageHeader />
       
-      {/* Emergency Client Login Button - Temporary Fix */}
-      <div className="fixed top-4 right-4 z-[70]">
-        <Link href="/client-portal">
-          <Button 
-            className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 shadow-xl border-2 border-emerald-300"
-            style={{
-              backgroundColor: '#059669',
-              borderColor: '#34d399',
-              color: 'white'
-            }}
-          >
-            <Users className="w-4 h-4 mr-2" />
-            Client Login
-          </Button>
-        </Link>
-      </div>
+
       
       {/* Main Content with Sidebar Margin */}
       <div className="md:ml-16">
