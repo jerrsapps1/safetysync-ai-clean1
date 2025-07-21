@@ -72,11 +72,11 @@ export function PageHeader({}: PageHeaderProps) {
           </div>
 
           {/* Client Login Button */}
-          <div className="hidden md:flex items-center">
+          <div className="hidden md:flex items-baseline">
             <Link href="/client-portal">
-              <Button variant="outline" size="sm" className="text-gray-700 border-gray-300 hover:bg-gray-100 h-9">
+              <a className="text-gray-700 hover:text-gray-900 hover:bg-gray-100/50 px-3 py-2 text-sm font-medium transition-colors rounded-md border border-gray-300">
                 Client Login
-              </Button>
+              </a>
             </Link>
           </div>
 
