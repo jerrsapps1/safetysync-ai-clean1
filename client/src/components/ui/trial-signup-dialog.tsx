@@ -94,21 +94,32 @@ export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDial
     setIsSubmitting(true);
     
     try {
-      console.log("🔐 TRIAL SIGNUP: Starting registration process", { username: formData.username, email: formData.email, company: formData.company });
+      console.log("🔐 TRIAL SIGNUP: Starting registration process", { 
+        username: formData.username, 
+        email: formData.email, 
+        company: formData.company,
+        nameLength: formData.name.length,
+        passwordLength: formData.password.length 
+      });
+      
+      // Prepare registration data
+      const registrationData = {
+        username: formData.username.trim(),
+        email: formData.email.trim().toLowerCase(),
+        password: formData.password,
+        name: formData.name.trim(),
+        company: formData.company.trim() || null
+      };
+      
+      console.log("🔐 TRIAL SIGNUP: Sending registration data", registrationData);
       
       // Direct API call to register the user
       const response = await apiRequest('/api/auth/register', {
         method: 'POST',
-        body: JSON.stringify({
-          username: formData.username.trim(),
-          email: formData.email.trim().toLowerCase(),
-          password: formData.password,
-          name: formData.name.trim(),
-          company: formData.company.trim() || null
-        })
+        body: JSON.stringify(registrationData)
       });
 
-      console.log("🔐 TRIAL SIGNUP: Registration successful", response);
+      console.log("🔐 TRIAL SIGNUP: Registration response received", response);
 
       // Generate JWT token for automatic login
       const loginResponse = await apiRequest('/api/auth/login', {
@@ -143,11 +154,25 @@ export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDial
       
     } catch (error: any) {
       console.error("🔐 TRIAL SIGNUP: Registration failed", error);
+      console.error("🔐 TRIAL SIGNUP: Error details", {
+        message: error.message,
+        stack: error.stack,
+        name: error.name
+      });
       
       let errorMessage = "Unable to create your account. Please try again.";
       
       if (error.message) {
-        errorMessage = error.message;
+        // Extract useful error message from API response
+        if (error.message.includes("duplicate key value violates unique constraint")) {
+          if (error.message.includes("users_email_unique")) {
+            errorMessage = "An account with this email already exists. Please try logging in instead.";
+          } else if (error.message.includes("users_username_unique")) {
+            errorMessage = "Username is already taken. Please choose a different username.";
+          }
+        } else {
+          errorMessage = error.message;
+        }
       }
       
       toast({
