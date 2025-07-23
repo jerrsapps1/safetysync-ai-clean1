@@ -100,18 +100,9 @@ export default function LandingPage() {
 
 
   const handleTrialSubmit = (data: any) => {
-    // Track trial signup started
-    trackConversionEvent(CONVERSION_EVENTS.TRIAL_SIGNUP_STARTED);
-    
-    // Show terms dialog before creating account
-    setPendingSignupData({
-      type: 'trial',
-      data: data,
-      userEmail: data.email,
-      planName: 'Professional Trial'
-    });
-    setIsTrialDialogOpen(false);
-    setShowTermsDialog(true);
+    // This is now handled directly in the TrialSignupDialog component
+    // No need for terms dialog for simplified user experience
+    console.log("Trial signup completed via direct registration");
   };
 
   const handleDemoSubmit = (data: any) => {

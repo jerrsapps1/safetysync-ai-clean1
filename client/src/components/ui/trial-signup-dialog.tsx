@@ -94,19 +94,67 @@ export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDial
     setIsSubmitting(true);
     
     try {
-      // Call the parent component's submit handler
-      if (onSubmit) {
-        onSubmit(formData);
+      console.log("🔐 TRIAL SIGNUP: Starting registration process", { username: formData.username, email: formData.email, company: formData.company });
+      
+      // Direct API call to register the user
+      const response = await apiRequest('/api/auth/register', {
+        method: 'POST',
+        body: JSON.stringify({
+          username: formData.username.trim(),
+          email: formData.email.trim().toLowerCase(),
+          password: formData.password,
+          name: formData.name.trim(),
+          company: formData.company.trim() || null
+        })
+      });
+
+      console.log("🔐 TRIAL SIGNUP: Registration successful", response);
+
+      // Generate JWT token for automatic login
+      const loginResponse = await apiRequest('/api/auth/login', {
+        method: 'POST',
+        body: JSON.stringify({
+          username: formData.username.trim(),
+          password: formData.password
+        })
+      });
+
+      console.log("🔐 TRIAL SIGNUP: Auto-login successful", { user: loginResponse.user?.username });
+
+      // Store the token
+      if (loginResponse.token) {
+        localStorage.setItem('auth-token', loginResponse.token);
+        sessionStorage.setItem('auth-token', loginResponse.token);
+      }
+
+      toast({
+        title: "Account Created Successfully! 🎉",
+        description: "Welcome to SafetySync.AI! You're now logged in and ready to explore.",
+        duration: 5000,
+      });
+      
+      // Close dialog first
+      handleClose();
+      
+      // Redirect to workspace after short delay
+      setTimeout(() => {
+        window.location.href = '/workspace';
+      }, 1000);
+      
+    } catch (error: any) {
+      console.error("🔐 TRIAL SIGNUP: Registration failed", error);
+      
+      let errorMessage = "Unable to create your account. Please try again.";
+      
+      if (error.message) {
+        errorMessage = error.message;
       }
       
-      // Close the dialog after successful submission
-      handleClose();
-    } catch (error) {
-      console.error("Error during submission:", error);
       toast({
-        title: "Submission Failed", 
-        description: "Unable to process your request. Please try again.",
+        title: "Registration Failed", 
+        description: errorMessage,
         variant: "destructive",
+        duration: 5000,
       });
     } finally {
       setIsSubmitting(false);
