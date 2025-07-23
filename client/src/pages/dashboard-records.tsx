@@ -29,8 +29,15 @@ export default function DashboardRecordsPage() {
       setIsLoading(true);
       setError(null);
 
+      console.log('🔍 FRONTEND: Fetching dashboard data...');
       const response = await fetch('/api/dashboard');
       const data = await response.json();
+
+      console.log('📊 FRONTEND: Dashboard response:', { 
+        success: data.success, 
+        recordCount: data.records?.length,
+        sampleRecord: data.records?.[0] 
+      });
 
       if (!response.ok) {
         throw new Error(data.message || 'Failed to fetch records');
@@ -181,7 +188,8 @@ export default function DashboardRecordsPage() {
                           {record.id}
                         </TableCell>
                         <TableCell className="text-white">
-                          {record.employee_name || record.employeeName || '—'}
+                          {record.employee_name || record.employeeName || 
+                           (record.employees && record.employees[0]?.name) || '—'}
                         </TableCell>
                         <TableCell className="text-white">
                           {record.course || record.trainingTitle || '—'}
@@ -191,7 +199,8 @@ export default function DashboardRecordsPage() {
                            (record.processingDate ? new Date(record.processingDate).toLocaleDateString() : '—')}
                         </TableCell>
                         <TableCell className="text-white">
-                          {record.certificate_id || record.certificateNumber || '—'}
+                          {record.certificate_id || record.certificateNumber || 
+                           (record.employees && record.employees[0]?.employeeId) || '—'}
                         </TableCell>
                       </TableRow>
                     ))}
