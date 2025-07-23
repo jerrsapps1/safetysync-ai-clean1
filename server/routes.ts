@@ -21,7 +21,7 @@ import {
 } from "@shared/schema";
 import { boomiAI } from "./ai-boomi-integration";
 import { googleDocumentAI } from "./google-documentai-processor";
-import { db } from "./db";
+import { db, pool } from "./db";
 import multer from "multer";
 
 // Safe import for pdf-parse to avoid test file errors
@@ -699,8 +699,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
         ORDER BY processing_date DESC
       `);
 
-      // Format like your Python: [{ "id": k, **db[k] } for k in db.keys()]
-      const dashboardRecords = records.map(record => ({
+      // Ensure records is an array and format like your Python: [{ "id": k, **db[k] } for k in db.keys()]
+      const recordsArray = Array.isArray(records) ? records : records.rows || [];
+      const dashboardRecords = recordsArray.map(record => ({
         id: record.id,
         ...JSON.parse(record.ai_extracted_data || '{}'),
         processingDate: record.processing_date
@@ -739,8 +740,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
         LIMIT 100
       `);
 
-      // Format response similar to your Python list comprehension
-      const allRecords = records.map(record => ({
+      // Ensure records is an array and format response similar to your Python list comprehension
+      const recordsArray = Array.isArray(records) ? records : records.rows || [];
+      const allRecords = recordsArray.map(record => ({
         id: record.id,
         data: JSON.parse(record.ai_extracted_data || '{}'),
         processingDate: record.processing_date
@@ -787,7 +789,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const recordId = crypto.randomUUID();
       
       // Store in PostgreSQL (equivalent to your db[record_id] = data)
-      await db.execute(`
+      await pool.query(`
         INSERT INTO processed_documents (ai_extracted_data, processing_date, document_type)
         VALUES ($1, NOW(), 'text')
       `, [
