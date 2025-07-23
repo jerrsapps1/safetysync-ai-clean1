@@ -4,6 +4,8 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { cloneDetector } from "./ai-clone-detection";
 import { emailAutomation } from "./email-automation";
+import { sendVerificationEmail, sendWelcomeEmail } from "./email-service";
+import crypto from "crypto";
 import emailAutomationRoutes from "./api/email-automation";
 import instructorTrainingSessionRoutes from "./api/instructor-training-sessions";
 import { billingAnalytics } from "./billing-analytics";
@@ -250,21 +252,37 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Hash password
       const hashedPassword = await bcrypt.hash(userData.password, 10);
       
-      // Create user
+      // Generate email verification token
+      const verificationToken = crypto.randomBytes(32).toString('hex');
+      const verificationExpires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
+      
+      // Create user with email verification
       const user = await storage.createUser({
         ...userData,
-        password: hashedPassword
+        password: hashedPassword,
+        emailVerificationToken: verificationToken,
+        emailVerificationExpires: verificationExpires,
+        isEmailVerified: false
       });
 
-      // Don't return password in response
-      const { password, ...userWithoutPassword } = user;
+      // Send verification email
+      const emailSent = await sendVerificationEmail({
+        email: user.email,
+        name: user.name,
+        verificationToken,
+        company: user.company || undefined
+      });
 
-      console.log(`✅ NEW USER REGISTERED: ${user.username} (${user.email}) - Company: ${user.company || 'Not provided'}`);
+      // Don't return password or token in response
+      const { password, emailVerificationToken, ...userWithoutPassword } = user;
+
+      console.log(`✅ NEW USER REGISTERED: ${user.username} (${user.email}) - Company: ${user.company || 'Not provided'} - Email sent: ${emailSent}`);
       
       res.status(201).json({ 
         success: true, 
-        message: "Account created successfully! Welcome to SafetySync.AI",
-        user: userWithoutPassword 
+        message: "Account created successfully! Please check your email to verify your account.",
+        user: userWithoutPassword,
+        emailSent
       });
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -467,6 +485,111 @@ export async function registerRoutes(app: Express): Promise<Server> {
           message: "Internal server error" 
         });
       }
+    }
+  });
+
+  // Email verification endpoint
+  app.get("/api/auth/verify-email", async (req, res) => {
+    try {
+      const { token } = req.query;
+      
+      if (!token || typeof token !== 'string') {
+        return res.status(400).json({
+          success: false,
+          message: "Invalid verification token"
+        });
+      }
+
+      const user = await storage.getUserByVerificationToken(token);
+      
+      if (!user) {
+        return res.status(400).json({
+          success: false,
+          message: "Invalid or expired verification link"
+        });
+      }
+
+      // Check if token has expired
+      if (user.emailVerificationExpires && new Date() > user.emailVerificationExpires) {
+        return res.status(400).json({
+          success: false,
+          message: "Verification link has expired. Please request a new one."
+        });
+      }
+
+      // Verify the user's email
+      await storage.verifyUserEmail(user.id);
+
+      // Send welcome email
+      await sendWelcomeEmail(user.email, user.name);
+
+      console.log(`✅ EMAIL VERIFIED: ${user.username} (${user.email})`);
+
+      res.json({
+        success: true,
+        message: "Email verified successfully! Your account is now active."
+      });
+    } catch (error) {
+      console.error("Email verification error:", error);
+      res.status(500).json({
+        success: false,
+        message: "Verification failed. Please try again."
+      });
+    }
+  });
+
+  // Resend verification email endpoint
+  app.post("/api/auth/resend-verification", async (req, res) => {
+    try {
+      const { email } = req.body;
+      
+      if (!email) {
+        return res.status(400).json({
+          success: false,
+          message: "Email address is required"
+        });
+      }
+
+      const user = await storage.getUserByEmail(email);
+      
+      if (!user) {
+        return res.status(404).json({
+          success: false,
+          message: "User not found"
+        });
+      }
+
+      if (user.isEmailVerified) {
+        return res.status(400).json({
+          success: false,
+          message: "Email is already verified"
+        });
+      }
+
+      // Generate new verification token
+      const verificationToken = crypto.randomBytes(32).toString('hex');
+      const verificationExpires = new Date(Date.now() + 24 * 60 * 60 * 1000);
+
+      await storage.updateUserVerificationToken(user.id, verificationToken, verificationExpires);
+
+      // Send new verification email
+      const emailSent = await sendVerificationEmail({
+        email: user.email,
+        name: user.name,
+        verificationToken,
+        company: user.company || undefined
+      });
+
+      res.json({
+        success: true,
+        message: emailSent ? "Verification email sent successfully" : "Email sent with limited delivery confirmation"
+      });
+    } catch (error) {
+      console.error("Resend verification error:", error);
+      res.status(500).json({
+        success: false,
+        message: "Failed to resend verification email"
+      });
     }
   });
 

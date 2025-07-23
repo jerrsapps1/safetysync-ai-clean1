@@ -34,6 +34,7 @@ import IncidentResponsePage from "@/pages/incident-response";
 import OperationsDashboardPage from "@/pages/operations-dashboard";
 import SafetyTrendsPage from "@/pages/safety-trends";
 import ContactPage from "@/pages/contact";
+import VerifyEmailPage from "@/pages/verify-email";
 import HelpdeskPage from "@/pages/helpdesk";
 import ClientPortalPage from "@/pages/client-portal";
 import HRTeamsPage from "@/pages/hr-teams";
@@ -72,6 +73,7 @@ function Router() {
       <Route path="/operations" component={OperationsDashboardPage} />
       <Route path="/safety-trends" component={SafetyTrendsPage} />
       <Route path="/contact" component={ContactPage} />
+      <Route path="/verify-email" component={VerifyEmailPage} />
       <Route path="/helpdesk" component={HelpdeskPage} />
       <Route path="/client-portal" component={ClientPortalPage} />
       <Route path="/hr" component={HRTeamsPage} />

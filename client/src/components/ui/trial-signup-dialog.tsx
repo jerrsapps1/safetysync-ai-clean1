@@ -121,36 +121,26 @@ export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDial
 
       console.log("🔐 TRIAL SIGNUP: Registration response received", response);
 
-      // Generate JWT token for automatic login
-      const loginResponse = await apiRequest('/api/auth/login', {
-        method: 'POST',
-        body: JSON.stringify({
-          username: formData.username.trim(),
-          password: formData.password
-        })
-      });
-
-      console.log("🔐 TRIAL SIGNUP: Auto-login successful", { user: loginResponse.user?.username });
-
-      // Store the token
-      if (loginResponse.token) {
-        localStorage.setItem('auth-token', loginResponse.token);
-        sessionStorage.setItem('auth-token', loginResponse.token);
-      }
+      // Don't auto-login anymore - require email verification first
+      console.log("🔐 TRIAL SIGNUP: Registration complete, verification email sent");
 
       toast({
-        title: "Account Created Successfully! 🎉",
-        description: "Welcome to SafetySync.AI! You're now logged in and ready to explore.",
-        duration: 5000,
+        title: "Account Created! Check Your Email 📧",
+        description: "We've sent a verification email to your inbox. Please check your email and click the verification link to access your workspace.",
+        duration: 8000,
       });
       
       // Close dialog first
       handleClose();
       
-      // Redirect to workspace after short delay
+      // Show warm popup about checking email
       setTimeout(() => {
-        window.location.href = '/workspace';
-      }, 1000);
+        toast({
+          title: "📬 Check Your Email",
+          description: `We sent a verification link to ${formData.email}. Click the link to verify your account and access SafetySync.AI!`,
+          duration: 10000,
+        });
+      }, 2000);
       
     } catch (error: any) {
       console.error("🔐 TRIAL SIGNUP: Registration failed", error);
