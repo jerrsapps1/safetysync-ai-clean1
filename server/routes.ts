@@ -657,7 +657,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Store extracted data (equivalent to your store_extracted_data function)
       const recordId = crypto.randomUUID();
       
-      await db.execute(`
+      await pool.query(`
         INSERT INTO processed_documents (ai_extracted_data, processing_date, original_file_name, document_type)
         VALUES ($1, NOW(), $2, 'pdf')
       `, [
@@ -693,7 +693,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/dashboard", async (req, res) => {
     try {
       // Get all records with full data (equivalent to your Python list comprehension)
-      const records = await db.execute(`
+      const records = await pool.query(`
         SELECT id, ai_extracted_data, processing_date
         FROM processed_documents 
         ORDER BY processing_date DESC
@@ -701,11 +701,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Ensure records is an array and format like your Python: [{ "id": k, **db[k] } for k in db.keys()]
       const recordsArray = Array.isArray(records) ? records : records.rows || [];
-      const dashboardRecords = recordsArray.map(record => ({
-        id: record.id,
-        ...JSON.parse(record.ai_extracted_data || '{}'),
-        processingDate: record.processing_date
-      }));
+      const dashboardRecords = recordsArray.map(record => {
+        let extractedData = {};
+        try {
+          extractedData = typeof record.ai_extracted_data === 'string' 
+            ? JSON.parse(record.ai_extracted_data) 
+            : record.ai_extracted_data || {};
+        } catch (e) {
+          console.warn('Failed to parse ai_extracted_data:', record.ai_extracted_data);
+        }
+        return {
+          id: record.id,
+          ...extractedData,
+          processingDate: record.processing_date
+        };
+      });
 
       console.log(`📊 DASHBOARD: Retrieved ${dashboardRecords.length} records`);
 
@@ -733,7 +743,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/records", async (req, res) => {
     try {
       // Get all processed documents from PostgreSQL (equivalent to your db.keys() approach)  
-      const records = await db.execute(`
+      const records = await pool.query(`
         SELECT id, ai_extracted_data, processing_date
         FROM processed_documents 
         ORDER BY processing_date DESC
@@ -790,8 +800,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Store in PostgreSQL (equivalent to your db[record_id] = data)
       await pool.query(`
-        INSERT INTO processed_documents (ai_extracted_data, processing_date, document_type)
-        VALUES ($1, NOW(), 'text')
+        INSERT INTO processed_documents (ai_extracted_data, processing_date, document_type, original_file_name)
+        VALUES ($1, NOW(), 'text', 'demo-text-input')
       `, [
         JSON.stringify(result.extractedData)
       ]);

@@ -7,6 +7,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Upload, FileText, AlertCircle, CheckCircle } from "lucide-react";
 
 // TypeScript equivalent of your Python Flask upload_form.html template
+// TypeScript React equivalent of your Python Flask upload.html template
 export default function UploadFormPage() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
