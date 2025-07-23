@@ -38,8 +38,8 @@ export class GoogleDocumentAIProcessor {
       
       if (result.document?.entities) {
         for (const entity of result.document.entities) {
-          if (entity.type && entity.mentionText) {
-            data[entity.type] = entity.mentionText;
+          if (entity.type_ && entity.mentionText) {
+            data[entity.type_] = entity.mentionText;
           }
         }
       }
@@ -47,7 +47,7 @@ export class GoogleDocumentAIProcessor {
       console.log(`✅ GOOGLE CLOUD AI: Extracted ${Object.keys(data).length} entities`);
       return data;
 
-    } catch (error) {
+    } catch (error: any) {
       console.error('❌ GOOGLE CLOUD AI ERROR:', error);
       throw new Error(`Google Cloud Document AI processing failed: ${error.message}`);
     }
@@ -60,8 +60,8 @@ export class GoogleDocumentAIProcessor {
       
       // Store in PostgreSQL (equivalent to your db[record_id] = data)
       await db.execute(`
-        INSERT INTO processed_documents (ai_extracted_data, processing_date, document_type, verification_status)
-        VALUES ($1, NOW(), 'pdf-google-ai', 'processed')
+        INSERT INTO processed_documents (ai_extracted_data, processing_date, document_type)
+        VALUES ($1, NOW(), 'pdf-google-ai')
       `, [
         JSON.stringify(data)
       ]);
@@ -69,7 +69,7 @@ export class GoogleDocumentAIProcessor {
       console.log(`💾 STORAGE: Record ${recordId} stored in PostgreSQL`);
       return recordId;
 
-    } catch (error) {
+    } catch (error: any) {
       console.error('❌ STORAGE ERROR:', error);
       throw new Error(`Failed to store extracted data: ${error.message}`);
     }
@@ -94,7 +94,7 @@ export class GoogleDocumentAIProcessor {
         processingMethod: 'Google Cloud Document AI'
       };
 
-    } catch (error) {
+    } catch (error: any) {
       console.error('❌ PROCESS AND STORE ERROR:', error);
       throw error;
     }
