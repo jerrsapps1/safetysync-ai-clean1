@@ -593,6 +593,48 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // View all records endpoint (equivalent to your Python Flask route)
+  app.get("/api/records", async (req, res) => {
+    try {
+      // Get all processed documents from PostgreSQL (equivalent to your db.keys() approach)
+      const records = await db.execute(`
+        SELECT id, extracted_data, processing_method, confidence, created_at
+        FROM processed_documents 
+        ORDER BY created_at DESC
+        LIMIT 100
+      `);
+
+      // Format response similar to your Python list comprehension
+      const allRecords = records.map(record => ({
+        id: record.id,
+        data: JSON.parse(record.extracted_data || '{}'),
+        processingMethod: record.processing_method,
+        confidence: record.confidence,
+        createdAt: record.created_at
+      }));
+
+      console.log(`📋 RECORDS VIEW: Retrieved ${allRecords.length} records`);
+      
+      res.json({
+        success: true,
+        count: allRecords.length,
+        records: allRecords,
+        pythonEquivalent: {
+          note: "This TypeScript/PostgreSQL route provides the same functionality as your Python Flask @app.route('/records', methods=['GET'])",
+          originalPythonCode: "all_records = [{ 'id': k, 'data': db[k] } for k in db.keys()]; return jsonify(all_records)"
+        }
+      });
+
+    } catch (error) {
+      console.error("❌ RECORDS VIEW ERROR:", error);
+      res.status(500).json({
+        success: false,
+        message: "Failed to retrieve records",
+        error: error.message
+      });
+    }
+  });
+
   // Demo data extraction endpoint (equivalent to your Python Replit DB example)
   app.post("/api/demo/extract-and-store", async (req, res) => {
     try {
@@ -612,6 +654,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const recordId = crypto.randomUUID();
       
       // Store in PostgreSQL (equivalent to your db[record_id] = data)
+      await db.execute(`
+        INSERT INTO processed_documents (id, extracted_data, processing_method, confidence, recommendations, created_at)
+        VALUES ($1, $2, $3, $4, $5, NOW())
+      `, [
+        recordId, 
+        JSON.stringify(result.extractedData),
+        result.processingMethod,
+        result.confidence,
+        JSON.stringify(result.recommendations)
+      ]);
+
       const storedData = {
         id: recordId,
         extractedData: result.extractedData,
