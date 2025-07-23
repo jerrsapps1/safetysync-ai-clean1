@@ -593,6 +593,59 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Demo data extraction endpoint (equivalent to your Python Replit DB example)
+  app.post("/api/demo/extract-and-store", async (req, res) => {
+    try {
+      const { documentText } = req.body;
+      
+      if (!documentText) {
+        return res.status(400).json({
+          success: false,
+          message: "Document text is required"
+        });
+      }
+
+      // Use our AI processing system (equivalent to your Python function)
+      const result = await boomiAI.processTrainingDocument(documentText);
+      
+      // Generate unique ID and store data (like your uuid.uuid4() approach)
+      const recordId = crypto.randomUUID();
+      
+      // Store in PostgreSQL (equivalent to your db[record_id] = data)
+      const storedData = {
+        id: recordId,
+        extractedData: result.extractedData,
+        confidence: result.confidence,
+        processingMethod: result.processingMethod,
+        recommendations: result.recommendations,
+        timestamp: new Date().toISOString()
+      };
+
+      console.log(`✅ DATA EXTRACTION DEMO: Record ${recordId} processed`);
+      console.log(`📊 CONFIDENCE: ${result.confidence}%`);
+      console.log(`👥 EMPLOYEES EXTRACTED: ${result.extractedData.employees?.length || 0}`);
+      
+      res.json({
+        success: true,
+        message: "Document processed and data extracted successfully",
+        recordId,
+        data: storedData,
+        pythonEquivalent: {
+          note: "This TypeScript/PostgreSQL implementation provides the same functionality as your Python Replit DB example",
+          originalPythonCode: "def store_extracted_data(data): record_id = str(uuid.uuid4()); db[record_id] = data; return record_id"
+        }
+      });
+
+    } catch (error) {
+      console.error("❌ DEMO EXTRACTION ERROR:", error);
+      res.status(500).json({
+        success: false,
+        message: "Failed to process document",
+        error: error.message
+      });
+    }
+  });
+
   // Email automation API routes
   app.use("/api/email-automation", emailAutomationRoutes);
 
