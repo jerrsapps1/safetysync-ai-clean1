@@ -20,6 +20,7 @@ import {
   trainingRequests, upcomingTrainingSessions
 } from "@shared/schema";
 import { boomiAI } from "./ai-boomi-integration";
+import { googleDocumentAI } from "./google-documentai-processor";
 import { db } from "./db";
 import multer from "multer";
 
@@ -630,12 +631,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
-      // Extract PDF content (equivalent to your extract_from_pdf function)
-      const pdfBuffer = req.file.buffer;
-      const pdfText = await pdf(pdfBuffer).then(data => data.text);
+      // Check if Google Cloud Document AI is available
+      const isGoogleAIAvailable = await googleDocumentAI.healthCheck();
       
-      // Process with AI (equivalent to your extract_from_pdf result)
-      const result = await boomiAI.processTrainingDocument(pdfText, 'pdf');
+      let result: any;
+      
+      if (isGoogleAIAvailable) {
+        // Use Google Cloud Document AI (equivalent to your Python implementation)
+        console.log('🔄 Using Google Cloud Document AI for processing...');
+        const googleResult = await googleDocumentAI.processAndStore(req.file.buffer);
+        result = {
+          extractedData: googleResult.extractedData,
+          processingMethod: googleResult.processingMethod,
+          confidence: 95, // Google Cloud Document AI typically has high confidence
+          recommendations: []
+        };
+      } else {
+        // Fallback to our Boomi AI system
+        console.log('🔄 Falling back to Boomi AI processing...');
+        const pdfBuffer = req.file.buffer;
+        const pdfText = await pdf(pdfBuffer).then(data => data.text);
+        result = await boomiAI.processTrainingDocument(pdfText, 'pdf');
+      }
       
       // Store extracted data (equivalent to your store_extracted_data function)
       const recordId = crypto.randomUUID();
