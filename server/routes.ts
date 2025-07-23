@@ -19,6 +19,33 @@ import {
   insertTicketResponseSchema, insertTrainingRequestSchema, insertUpcomingTrainingSessionSchema,
   trainingRequests, upcomingTrainingSessions
 } from "@shared/schema";
+import { boomiAI } from "./ai-boomi-integration";
+import { db } from "./db";
+import multer from "multer";
+
+// Safe import for pdf-parse to avoid test file errors
+let pdf: any;
+try {
+  pdf = require("pdf-parse");
+} catch (error) {
+  console.warn("PDF-parse not available, using fallback");
+  pdf = () => Promise.resolve({ text: "PDF processing unavailable" });
+}
+
+// Configure multer for PDF uploads
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    fileSize: 10 * 1024 * 1024, // 10MB limit
+  },
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype === 'application/pdf') {
+      cb(null, true);
+    } else {
+      cb(new Error('Only PDF files are allowed'));
+    }
+  }
+});
 
 // Security tracking for failed login attempts
 const failedAttempts = new Map<string, { count: number; lastAttempt: Date }>();
@@ -593,24 +620,113 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Upload PDF endpoint (equivalent to your Python Flask /upload route)
+  app.post("/api/upload", upload.single('pdf'), async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ 
+          error: "No file uploaded",
+          pythonEquivalent: "Matches your Python: if 'pdf' not in request.files: return jsonify({'error': 'No file uploaded'}), 400"
+        });
+      }
+
+      // Extract PDF content (equivalent to your extract_from_pdf function)
+      const pdfBuffer = req.file.buffer;
+      const pdfText = await pdf(pdfBuffer).then(data => data.text);
+      
+      // Process with AI (equivalent to your extract_from_pdf result)
+      const result = await boomiAI.processTrainingDocument(pdfText, 'pdf');
+      
+      // Store extracted data (equivalent to your store_extracted_data function)
+      const recordId = crypto.randomUUID();
+      
+      await db.execute(`
+        INSERT INTO processed_documents (ai_extracted_data, processing_date, original_file_name, document_type)
+        VALUES ($1, NOW(), $2, 'pdf')
+      `, [
+        JSON.stringify(result.extractedData),
+        req.file.originalname
+      ]);
+
+      console.log(`📄 PDF UPLOADED: ${req.file.originalname} processed as ${recordId}`);
+      console.log(`👥 EXTRACTED: ${result.extractedData.employees?.length || 0} employees`);
+
+      // Return response matching your Python format
+      res.json({
+        id: recordId,
+        data: result.extractedData,
+        confidence: result.confidence,
+        processingMethod: result.processingMethod,
+        pythonEquivalent: {
+          note: "This matches your Python: record_id = store_extracted_data(result); return jsonify({'id': record_id, 'data': result})",
+          originalFile: req.file.originalname
+        }
+      });
+
+    } catch (error) {
+      console.error("❌ PDF UPLOAD ERROR:", error);
+      res.status(500).json({
+        error: "Failed to process PDF file",
+        message: error.message
+      });
+    }
+  });
+
+  // Dashboard data endpoint (equivalent to your Python Flask /dashboard route)
+  app.get("/api/dashboard", async (req, res) => {
+    try {
+      // Get all records with full data (equivalent to your Python list comprehension)
+      const records = await db.execute(`
+        SELECT id, ai_extracted_data, processing_date
+        FROM processed_documents 
+        ORDER BY processing_date DESC
+      `);
+
+      // Format like your Python: [{ "id": k, **db[k] } for k in db.keys()]
+      const dashboardRecords = records.map(record => ({
+        id: record.id,
+        ...JSON.parse(record.ai_extracted_data || '{}'),
+        processingDate: record.processing_date
+      }));
+
+      console.log(`📊 DASHBOARD: Retrieved ${dashboardRecords.length} records`);
+
+      res.json({
+        success: true,
+        records: dashboardRecords,
+        totalCount: dashboardRecords.length,
+        pythonEquivalent: {
+          note: "This matches your Python: records = [{ 'id': k, **db[k] } for k in db.keys()]; return render_template('dashboard.html', records=records)",
+          originalPythonCode: "records = [{ 'id': k, **db[k] } for k in db.keys()]"
+        }
+      });
+
+    } catch (error) {
+      console.error("❌ DASHBOARD ERROR:", error);
+      res.status(500).json({
+        success: false,
+        message: "Failed to load dashboard data",
+        error: error.message
+      });
+    }
+  });
+
   // View all records endpoint (equivalent to your Python Flask route)
   app.get("/api/records", async (req, res) => {
     try {
-      // Get all processed documents from PostgreSQL (equivalent to your db.keys() approach)
+      // Get all processed documents from PostgreSQL (equivalent to your db.keys() approach)  
       const records = await db.execute(`
-        SELECT id, extracted_data, processing_method, confidence, created_at
+        SELECT id, ai_extracted_data, processing_date
         FROM processed_documents 
-        ORDER BY created_at DESC
+        ORDER BY processing_date DESC
         LIMIT 100
       `);
 
       // Format response similar to your Python list comprehension
       const allRecords = records.map(record => ({
         id: record.id,
-        data: JSON.parse(record.extracted_data || '{}'),
-        processingMethod: record.processing_method,
-        confidence: record.confidence,
-        createdAt: record.created_at
+        data: JSON.parse(record.ai_extracted_data || '{}'),
+        processingDate: record.processing_date
       }));
 
       console.log(`📋 RECORDS VIEW: Retrieved ${allRecords.length} records`);
@@ -655,14 +771,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Store in PostgreSQL (equivalent to your db[record_id] = data)
       await db.execute(`
-        INSERT INTO processed_documents (id, extracted_data, processing_method, confidence, recommendations, created_at)
-        VALUES ($1, $2, $3, $4, $5, NOW())
+        INSERT INTO processed_documents (ai_extracted_data, processing_date, document_type)
+        VALUES ($1, NOW(), 'text')
       `, [
-        recordId, 
-        JSON.stringify(result.extractedData),
-        result.processingMethod,
-        result.confidence,
-        JSON.stringify(result.recommendations)
+        JSON.stringify(result.extractedData)
       ]);
 
       const storedData = {
