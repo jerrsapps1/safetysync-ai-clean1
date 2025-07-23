@@ -263,7 +263,7 @@ export default function LandingPage() {
       <div className="md:ml-16">
 
       {/* Hero Section */}
-      <section className="relative pt-20 md:pt-32 pb-16 md:pb-32 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center overflow-hidden">
+      <section className="relative pt-16 md:pt-32 pb-12 md:pb-32 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center overflow-hidden">
         {/* Floating Background Icons */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 left-20 animate-float opacity-20">
@@ -294,42 +294,42 @@ export default function LandingPage() {
             </span>
           </div>
           
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4 md:mb-6">
             <span className="block text-white">Modern Safety Management,</span>
             <span className="block text-emerald-300">Made Simple</span>
           </h1>
           
-          <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8 md:mb-12 leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 max-w-2xl mx-auto mb-6 md:mb-8 lg:mb-12 leading-relaxed px-4">
             Ditch the spreadsheets. SafetySync.AI brings all your safety and compliance workflows into one smart, powerful platform—so you can stay inspection-ready, reduce risk, and focus on what matters most.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 md:mb-12 px-4">
             <Button 
               onClick={handleDemoClick}
-              className="bg-black/20 backdrop-blur-sm border border-gray-800 text-white font-semibold px-8 py-4 rounded-2xl hover:bg-gray-800/30 hover:scale-105 transform transition-all duration-300"
+              className="bg-black/20 backdrop-blur-sm border border-gray-800 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-2xl hover:bg-gray-800/30 hover:scale-105 transform transition-all duration-300"
             >
               Book a Demo
             </Button>
             <Button 
               onClick={handleTrialClick}
-              className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-8 py-4 rounded-2xl hover:scale-105 transform transition-all duration-300"
+              className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-2xl hover:scale-105 transform transition-all duration-300"
             >
               Get Started Free
             </Button>
           </div>
           
-          <div className="flex flex-col sm:flex-row gap-8 justify-center text-sm text-gray-300 mb-8">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center text-xs sm:text-sm text-gray-300 mb-6 md:mb-8 px-4">
             <div className="flex items-center justify-center">
-              <CheckCircle className="w-4 h-4 mr-2 text-emerald-400" />
-              No Credit Card Required
+              <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 mr-2 text-emerald-400 flex-shrink-0" />
+              <span>No Credit Card Required</span>
             </div>
             <div className="flex items-center justify-center">
-              <Shield className="w-4 h-4 mr-2 text-emerald-400" />
-              OSHA Compliant
+              <Shield className="w-3 h-3 sm:w-4 sm:h-4 mr-2 text-emerald-400 flex-shrink-0" />
+              <span>OSHA Compliant</span>
             </div>
             <div className="flex items-center justify-center">
-              <Timer className="w-4 h-4 mr-2 text-emerald-400" />
-              Setup in Minutes
+              <Timer className="w-3 h-3 sm:w-4 sm:h-4 mr-2 text-emerald-400 flex-shrink-0" />
+              <span>Setup in Minutes</span>
             </div>
           </div>
           

@@ -27,8 +27,12 @@ export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
   getUserByEmail(email: string): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
+  getUserByVerificationToken(token: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
+  verifyUserEmail(userId: number): Promise<void>;
+  updateUserVerificationToken(userId: number, token: string, expires: Date): Promise<void>;
   updateUserLogin(id: number): Promise<void>;
+  updateUserLoginStats(id: number): Promise<void>;
   getAllUsers(): Promise<User[]>;
   
   // Lead management
@@ -193,6 +197,39 @@ export class DatabaseStorage implements IStorage {
   async getUserByUsername(username: string): Promise<User | undefined> {
     const [user] = await db.select().from(users).where(eq(sql`LOWER(${users.username})`, username.toLowerCase()));
     return user || undefined;
+  }
+
+  async getUserByVerificationToken(token: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.emailVerificationToken, token));
+    return user || undefined;
+  }
+
+  async verifyUserEmail(userId: number): Promise<void> {
+    await db.update(users)
+      .set({
+        isEmailVerified: true,
+        emailVerificationToken: null,
+        emailVerificationExpires: null
+      })
+      .where(eq(users.id, userId));
+  }
+
+  async updateUserVerificationToken(userId: number, token: string, expires: Date): Promise<void> {
+    await db.update(users)
+      .set({
+        emailVerificationToken: token,
+        emailVerificationExpires: expires
+      })
+      .where(eq(users.id, userId));
+  }
+
+  async updateUserLoginStats(userId: number): Promise<void> {
+    await db.update(users)
+      .set({
+        totalLogins: sql`${users.totalLogins} + 1`,
+        lastLoginAt: new Date()
+      })
+      .where(eq(users.id, userId));
   }
 
   async updateUserLogin(id: number): Promise<void> {
