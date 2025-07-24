@@ -627,6 +627,23 @@ export default function ClientPortal() {
                 : `Welcome back, ${user?.name}! Access your workspace and explore our client features below.`
               }
             </p>
+            
+            {/* Access Workspace Button for Unauthenticated Users */}
+            {(!isAuthenticated || forceShowLogin) && (
+              <div className="mb-8">
+                <Button 
+                  onClick={handleWorkspaceAccess}
+                  size="lg"
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 text-lg font-semibold"
+                >
+                  <Settings className="w-5 h-5 mr-2" />
+                  Access Client Workspace
+                </Button>
+                <p className="text-sm text-gray-400 mt-2">
+                  Requires client authentication
+                </p>
+              </div>
+            )}
           </div>
 
 
