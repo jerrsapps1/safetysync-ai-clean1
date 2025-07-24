@@ -411,31 +411,32 @@ export default function ClientPortal() {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]" />
 
       {/* Header */}
-      <header className="relative z-10 bg-black/20 backdrop-blur-sm border-b border-white/10">
+      <header className="relative z-10 bg-black/30 backdrop-blur-sm border-b border-white/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <SafetySyncIcon size={32} className="mr-3" />
-              <span className="text-xl font-bold text-white">SafetySync.AI Client Portal</span>
+          <div className="flex justify-between items-center h-16 md:h-20">
+            <div className="flex items-center min-w-0 flex-1">
+              <SafetySyncIcon size={32} className="mr-2 flex-shrink-0" />
+              <span className="text-lg md:text-xl font-bold text-white truncate">SafetySync.AI Client Portal</span>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 md:space-x-4 flex-shrink-0">
               <Button 
                 onClick={() => window.location.href = '/'}
                 variant="ghost"
-                className="text-gray-300 hover:text-white hover:bg-gray-700/50"
+                size="sm"
+                className="text-gray-300 hover:text-white hover:bg-gray-700/50 px-2 md:px-3"
               >
-                <Home className="w-4 h-4 mr-2" />
-                Home
+                <Home className="w-4 h-4 mr-1 md:mr-2" />
+                <span className="hidden sm:inline">Home</span>
               </Button>
               {(!isAuthenticated || forceShowLogin) ? (
                 <div className="space-y-2">
-                  <form onSubmit={handleLogin} className="flex items-center space-x-2">
+                  <form onSubmit={handleLogin} className="flex items-center space-x-1 md:space-x-2">
                     <Input
                       type="text"
                       placeholder="Username"
                       value={loginUsername}
                       onChange={(e) => setLoginUsername(e.target.value)}
-                      className="w-40 h-8 text-sm bg-white/10 border-white/20 text-white placeholder-gray-400 focus:border-blue-400 focus:ring-blue-400/50"
+                      className="w-28 md:w-40 h-8 text-sm bg-white/10 border-white/20 text-white placeholder-gray-400 focus:border-blue-400 focus:ring-blue-400/50"
                       disabled={isAuthenticating}
                       autoComplete="username"
                     />
@@ -445,7 +446,7 @@ export default function ClientPortal() {
                         placeholder="Password"
                         value={loginPassword}
                         onChange={(e) => setLoginPassword(e.target.value)}
-                        className="w-40 h-8 text-sm bg-white/10 border-white/20 text-white placeholder-gray-400 pr-8 focus:border-blue-400 focus:ring-blue-400/50"
+                        className="w-28 md:w-40 h-8 text-sm bg-white/10 border-white/20 text-white placeholder-gray-400 pr-8 focus:border-blue-400 focus:ring-blue-400/50"
                         disabled={isAuthenticating}
                         autoComplete="current-password"
                       />

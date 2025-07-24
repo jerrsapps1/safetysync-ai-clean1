@@ -77,7 +77,7 @@ export function PageHeader({}: PageHeaderProps) {
             <Button 
               className={`
                 ${!isHovered ? 'w-12 h-12 p-0 justify-center' : 'w-full justify-start px-3'} 
-                bg-emerald-500 hover:bg-emerald-600 text-white font-bold border-2 border-white
+                bg-emerald-500 hover:bg-emerald-600 text-white font-bold border-2 border-emerald-700
                 shadow-2xl transition-all duration-300 ring-2 ring-emerald-300/50
               `}
               onClick={() => setIsMobileOpen(false)}
