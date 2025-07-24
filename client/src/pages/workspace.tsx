@@ -374,11 +374,11 @@ export default function WorkspacePage() {
   
   // Hierarchical navigation state
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
-    'compliance-reporting': false,
-    'employee-management': false,
-    'organization': false,
+    'employee-features': false,
+    'compliance-features': false,
+    'training-features': false,
     'system-tools': false,
-    'training-certification': false
+    'document-features': false
   });
   
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -2003,25 +2003,26 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           </div>
         </div>
 
-        {/* Navigation */}
+        {/* Navigation - Organized by Tutorial Order */}
         <nav className={`${sidebarOpen ? 'block' : 'hidden'} md:block flex-1 p-4 space-y-2`}>
-          {/* Dashboard - Standalone */}
+          <div className="space-y-2">
+          {/* Step 1: Company Profile Setup */}
           <motion.div
             variants={navButtonVariants}
             initial="idle"
             whileHover="hover"
-            animate={activeTab === "unified-dashboard" ? "active" : "idle"}
+            animate={activeTab === "company-profile" ? "active" : "idle"}
           >
             <Button
               variant="ghost"
               className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                activeTab === "unified-dashboard" ? "text-white bg-gray-700/30" : ""
+                activeTab === "company-profile" ? "text-white bg-gray-700/30" : ""
               }`}
-              onClick={() => handleTabSwitch("unified-dashboard")}
-              title="Dashboard"
+              onClick={() => handleTabSwitch("company-profile")}
+              title="Company Profile Setup"
             >
-              <Home className="w-5 h-5 mr-3 flex-shrink-0" />
-              {sidebarOpen && <span className="truncate">Dashboard</span>}
+              <Building className="w-5 h-5 mr-3 flex-shrink-0" />
+              {sidebarOpen && <span className="truncate">1. Company Profile</span>}
             </Button>
           </motion.div>
 
@@ -2195,49 +2196,49 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             )}
           </div>
 
-          {/* Organization Section */}
-          <div className="space-y-1">
-            <Button
-              variant="ghost"
-              className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3"
-              onClick={() => toggleSection('organization')}
-              title="Organization"
-            >
-              <Building className="w-5 h-5 mr-3 flex-shrink-0" />
-              {sidebarOpen && <span className="truncate">Organization</span>}
-              {sidebarOpen && (
-                expandedSections['organization'] ? 
-                  <ChevronDown className="w-4 h-4 ml-auto flex-shrink-0" /> : 
-                  <ChevronRight className="w-4 h-4 ml-auto flex-shrink-0" />
+            {/* Compliance & Reporting Features */}
+            <div className="space-y-1">
+              <Button
+                variant="ghost"
+                className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3"
+                onClick={() => toggleSection('compliance-features')}
+                title="Compliance & Reporting"
+              >
+                <Shield className="w-5 h-5 mr-3 flex-shrink-0" />
+                {sidebarOpen && <span className="truncate">Compliance & Reporting</span>}
+                {sidebarOpen && (
+                  expandedSections['compliance-features'] ? 
+                    <ChevronDown className="w-4 h-4 ml-auto flex-shrink-0" /> : 
+                    <ChevronRight className="w-4 h-4 ml-auto flex-shrink-0" />
+                )}
+              </Button>
+              {expandedSections['compliance-features'] && (
+                <div className="ml-6 space-y-1">
+                  <Button
+                    variant="ghost"
+                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
+                      activeTab === "reports" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                    }`}
+                    onClick={() => handleTabSwitch("reports")}
+                    title="Compliance Reports"
+                  >
+                    <FileText className="w-4 h-4 mr-3 flex-shrink-0" />
+                    {sidebarOpen && <span className="truncate">Compliance Reports</span>}
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
+                      activeTab === "trends" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                    }`}
+                    onClick={() => handleTabSwitch("trends")}
+                    title="Safety Trends"
+                  >
+                    <TrendingUp className="w-4 h-4 mr-3 flex-shrink-0" />
+                    {sidebarOpen && <span className="truncate">Safety Trends</span>}
+                  </Button>
+                </div>
               )}
-            </Button>
-            {expandedSections['organization'] && (
-              <div className="ml-6 space-y-1">
-                <Button
-                  variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                    activeTab === "company-profile" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
-                  }`}
-                  onClick={() => handleTabSwitch("company-profile")}
-                  title="Company Profile"
-                >
-                  <Building className="w-4 h-4 mr-3 flex-shrink-0" />
-                  {sidebarOpen && <span className="truncate">Company Profile</span>}
-                </Button>
-                <Button
-                  variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                    activeTab === "instructors" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
-                  }`}
-                  onClick={() => handleTabSwitch("instructors")}
-                  title="Instructor Management"
-                >
-                  <GraduationCap className="w-4 h-4 mr-3 flex-shrink-0" />
-                  {sidebarOpen && <span className="truncate">Instructor Management</span>}
-                </Button>
-              </div>
-            )}
-          </div>
+            </div>
           {/* System & Tools Section */}
           <div className="space-y-1">
             <Button
@@ -2300,28 +2301,50 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <CreditCard className="w-4 h-4 mr-3 flex-shrink-0" />
                   {sidebarOpen && <span className="truncate">Subscription & Billing</span>}
                 </Button>
+                <Button
+                  variant="ghost"
+                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
+                    activeTab === "instructors" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                  }`}
+                  onClick={() => handleTabSwitch("instructors")}
+                  title="Instructor Management"
+                >
+                  <GraduationCap className="w-4 h-4 mr-3 flex-shrink-0" />
+                  {sidebarOpen && <span className="truncate">Instructor Management</span>}
+                </Button>
+                <Button
+                  variant="ghost"
+                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
+                    activeTab === "document-manager" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                  }`}
+                  onClick={() => handleTabSwitch("document-manager")}
+                  title="Document Management"
+                >
+                  <Database className="w-4 h-4 mr-3 flex-shrink-0" />
+                  {sidebarOpen && <span className="truncate">Document Management</span>}
+                </Button>
               </div>
             )}
           </div>
 
-          {/* Training & Certification Section */}
-          <div className="space-y-1">
-            <Button
-              variant="ghost"
-              className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3"
-              onClick={() => toggleSection('training-certification')}
-              title="Training & Certification"
-            >
-              <BookOpen className="w-5 h-5 mr-3 flex-shrink-0" />
-              {sidebarOpen && <span className="truncate">Training & Certification</span>}
-              {sidebarOpen && (
-                expandedSections['training-certification'] ? 
-                  <ChevronDown className="w-4 h-4 ml-auto flex-shrink-0" /> : 
-                  <ChevronRight className="w-4 h-4 ml-auto flex-shrink-0" />
-              )}
-            </Button>
-            {expandedSections['training-certification'] && (
-              <div className="ml-6 space-y-1">
+            {/* Training & Document Features */}
+            <div className="space-y-1">
+              <Button
+                variant="ghost"
+                className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3"
+                onClick={() => toggleSection('training-features')}
+                title="Training & Documents"
+              >
+                <BookOpen className="w-5 h-5 mr-3 flex-shrink-0" />
+                {sidebarOpen && <span className="truncate">Training & Documents</span>}
+                {sidebarOpen && (
+                  expandedSections['training-features'] ? 
+                    <ChevronDown className="w-4 h-4 ml-auto flex-shrink-0" /> : 
+                    <ChevronRight className="w-4 h-4 ml-auto flex-shrink-0" />
+                )}
+              </Button>
+              {expandedSections['training-features'] && (
+                <div className="ml-6 space-y-1">
                 <Button
                   variant="ghost"
                   className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
@@ -2404,6 +2427,96 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             )}
           </div>
 
+          {/* System Tools */}
+          <div className="space-y-1">
+            <Button
+              variant="ghost"
+              className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3"
+              onClick={() => toggleSection('system-tools')}
+              title="System Tools"
+            >
+              <Settings className="w-5 h-5 mr-3 flex-shrink-0" />
+              {sidebarOpen && <span className="truncate">System Tools</span>}
+              {sidebarOpen && (
+                expandedSections['system-tools'] ? 
+                  <ChevronDown className="w-4 h-4 ml-auto flex-shrink-0" /> : 
+                  <ChevronRight className="w-4 h-4 ml-auto flex-shrink-0" />
+              )}
+            </Button>
+            {expandedSections['system-tools'] && (
+                <div className="ml-6 space-y-1">
+                  <Button
+                    variant="ghost"
+                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
+                      activeTab === "achievements" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                    }`}
+                    onClick={() => handleTabSwitch("achievements")}
+                    title="Achievements & Milestones"
+                  >
+                    <Award className="w-4 h-4 mr-3 flex-shrink-0" />
+                    {sidebarOpen && <span className="truncate">Achievements & Milestones</span>}
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
+                      activeTab === "notifications" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                    }`}
+                    onClick={() => handleTabSwitch("notifications")}
+                    title="Notifications & Alerts"
+                  >
+                    <Bell className="w-4 h-4 mr-3 flex-shrink-0" />
+                    {sidebarOpen && <span className="truncate">Notifications & Alerts</span>}
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
+                      activeTab === "settings" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                    }`}
+                    onClick={() => handleTabSwitch("settings")}
+                    title="Workspace Settings"
+                  >
+                    <Settings className="w-4 h-4 mr-3 flex-shrink-0" />
+                    {sidebarOpen && <span className="truncate">Workspace Settings</span>}
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
+                      activeTab === "subscription-billing" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                    }`}
+                    onClick={() => handleTabSwitch("subscription-billing")}
+                    title="Subscription & Billing"
+                  >
+                    <CreditCard className="w-4 h-4 mr-3 flex-shrink-0" />
+                    {sidebarOpen && <span className="truncate">Subscription & Billing</span>}
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
+                      activeTab === "instructors" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                    }`}
+                    onClick={() => handleTabSwitch("instructors")}
+                    title="Instructor Management"
+                  >
+                    <GraduationCap className="w-4 h-4 mr-3 flex-shrink-0" />
+                    {sidebarOpen && <span className="truncate">Instructor Management</span>}
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
+                      activeTab === "document-manager" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                    }`}
+                    onClick={() => handleTabSwitch("document-manager")}
+                    title="Document Management"
+                  >
+                    <Database className="w-4 h-4 mr-3 flex-shrink-0" />
+                    {sidebarOpen && <span className="truncate">Document Management</span>}
+                  </Button>
+                </div>
+              )}
+            </div>
+
+          </div>
+
         </nav>
 
         {/* User Menu */}
@@ -2439,8 +2552,11 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <div className="flex items-center justify-between">
             <div className="flex-1 min-w-0">
               <h1 className="text-lg md:text-2xl font-bold text-white truncate">
-                {activeTab === "unified-dashboard" && "Dashboard"}
-                {activeTab === "employees" && "Employee Management"}
+                {activeTab === "unified-dashboard" && "5. Dashboard Overview"}
+                {activeTab === "company-profile" && "1. Company Profile Setup"}
+                {activeTab === "employees" && "2. Employee Management"}
+                {activeTab === "osha-compliance" && "3. Training Standards Configuration"}
+                {activeTab === "ai-document-processor" && "4. Document Upload & Processing"}
                 {activeTab === "employee-insights" && "Employee Insights"}
                 {activeTab === "employee-profile" && "Employee Profile"}
                 {activeTab === "training" && "Training Management"}
@@ -2467,11 +2583,14 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               <p className="text-gray-400 text-sm md:text-base">
                 {activeTab === "unified-dashboard" && (
                   <span>
-                    Comprehensive overview combining analytics, compliance management, and actionable insights
+                    Final step: Review your complete compliance dashboard with all integrated data
                     <span className="hidden lg:inline text-gray-500 text-sm ml-4">• Drag widgets to reposition • Drag corners to resize • Click manage to show/hide</span>
                   </span>
                 )}
-                {activeTab === "employees" && "Manage employee certifications and training"}
+                {activeTab === "company-profile" && "Step 1: Set up your company profile and industry-specific compliance requirements"}
+                {activeTab === "employees" && "Step 2: Add your employees and their job classifications for training assignments"}
+                {activeTab === "osha-compliance" && "Step 3: Configure your industry-specific training standards and compliance requirements"}
+                {activeTab === "ai-document-processor" && "Step 4: Upload training documents for AI processing and automatic employee certificate generation"}
                 {activeTab === "employee-insights" && "AI-powered analytics and insights for employee data"}
                 {activeTab === "employee-profile" && "View and manage individual employee certificate profiles"}
                 {activeTab === "training" && "Schedule and track safety training"}
