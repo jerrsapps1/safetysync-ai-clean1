@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/hooks/useAuth';
 import { SafetySyncIcon } from '@/components/ui/safetysync-icon';
+import ClientOnboardingTutorial from '@/components/ClientOnboardingTutorial';
 import {
   Home,
   LogIn,
@@ -29,7 +30,9 @@ import {
   Send,
   Eye,
   EyeOff,
-  TrendingUp
+  TrendingUp,
+  BookOpen,
+  Play
 } from 'lucide-react';
 
 interface Special {
@@ -73,6 +76,8 @@ interface Comment {
 export default function ClientPortal() {
   const [activeTab, setActiveTab] = useState<'specials' | 'updates' | 'upcoming' | 'feedback'>('specials');
   const [newComment, setNewComment] = useState('');
+  const [showOnboardingTutorial, setShowOnboardingTutorial] = useState(false);
+  const [completedOnboardingSteps, setCompletedOnboardingSteps] = useState<number[]>([]);
   const [userName, setUserName] = useState('');
   const [loginUsername, setLoginUsername] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
@@ -85,13 +90,23 @@ export default function ClientPortal() {
   const { toast } = useToast();
   const { user, isAuthenticated, isLoading, login, logout } = useAuth();
 
-  // Initialize authentication state
+  // Initialize authentication state and load onboarding progress
   useEffect(() => {
     // Only force login if not already authenticated and not loading
     if (!isLoading && !isAuthenticated) {
       setForceShowLogin(true);
     } else if (!isLoading && isAuthenticated) {
       setForceShowLogin(false);
+    }
+    
+    // Load completed onboarding steps
+    const savedSteps = localStorage.getItem('completedOnboardingSteps');
+    if (savedSteps) {
+      try {
+        setCompletedOnboardingSteps(JSON.parse(savedSteps));
+      } catch (e) {
+        console.error('Failed to parse saved onboarding steps:', e);
+      }
     }
   }, [isAuthenticated, isLoading]);
 
@@ -485,6 +500,14 @@ export default function ClientPortal() {
                   
                   <span className="text-white text-sm">Welcome, {user?.name}</span>
                   <Button 
+                    onClick={() => setShowOnboardingTutorial(true)}
+                    variant="ghost"
+                    className="text-blue-300 hover:text-blue-200 hover:bg-blue-700/50"
+                  >
+                    <BookOpen className="w-4 h-4 mr-2" />
+                    Setup Guide
+                  </Button>
+                  <Button 
                     onClick={() => {
                       // Direct navigation since user is already authenticated
                       window.location.href = '/workspace';
@@ -833,6 +856,17 @@ export default function ClientPortal() {
           </div>
         </div>
       )}
+
+      {/* Onboarding Tutorial */}
+      <ClientOnboardingTutorial
+        isOpen={showOnboardingTutorial}
+        onClose={() => setShowOnboardingTutorial(false)}
+        onStepComplete={(stepId) => {
+          setCompletedOnboardingSteps(prev => [...prev, stepId]);
+          localStorage.setItem('completedOnboardingSteps', JSON.stringify([...completedOnboardingSteps, stepId]));
+        }}
+        completedSteps={completedOnboardingSteps}
+      />
     </div>
   );
 }
