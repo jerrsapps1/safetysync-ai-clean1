@@ -411,14 +411,93 @@ export default function ClientPortal() {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]" />
 
       {/* Header */}
-      <header className="relative z-10 bg-black/30 backdrop-blur-sm border-b border-white/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16 md:h-20">
-            <div className="flex items-center min-w-0 flex-1">
-              <SafetySyncIcon size={32} className="mr-2 flex-shrink-0" />
-              <span className="text-lg md:text-xl font-bold text-white truncate">SafetySync.AI Client Portal</span>
+      <header className="relative z-10 bg-black/40 backdrop-blur-sm border-b border-white/20">
+        <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
+          {/* Mobile Header - Stack vertically */}
+          <div className="md:hidden">
+            {/* Top row with logo and home button */}
+            <div className="flex justify-between items-center h-14 border-b border-white/10">
+              <div className="flex items-center min-w-0 flex-1">
+                <SafetySyncIcon size={28} className="mr-2 flex-shrink-0" />
+                <span className="text-base font-bold text-white truncate">SafetySync.AI Client Portal</span>
+              </div>
+              <Button 
+                onClick={() => window.location.href = '/'}
+                variant="ghost"
+                size="sm"
+                className="text-gray-300 hover:text-white hover:bg-gray-700/50 px-2"
+              >
+                <Home className="w-4 h-4" />
+              </Button>
             </div>
-            <div className="flex items-center space-x-2 md:space-x-4 flex-shrink-0">
+            {/* Bottom row with login form */}
+            {(!isAuthenticated || forceShowLogin) && (
+              <div className="py-3">
+                <form onSubmit={handleLogin} className="flex items-center justify-center space-x-2">
+                  <Input
+                    type="text"
+                    placeholder="Username"
+                    value={loginUsername}
+                    onChange={(e) => setLoginUsername(e.target.value)}
+                    className="w-24 h-8 text-xs bg-white/10 border-white/20 text-white placeholder-gray-400 focus:border-blue-400 focus:ring-blue-400/50"
+                    disabled={isAuthenticating}
+                    autoComplete="username"
+                  />
+                  <div className="relative">
+                    <Input
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Password"
+                      value={loginPassword}
+                      onChange={(e) => setLoginPassword(e.target.value)}
+                      className="w-24 h-8 text-xs bg-white/10 border-white/20 text-white placeholder-gray-400 pr-6 focus:border-blue-400 focus:ring-blue-400/50"
+                      disabled={isAuthenticating}
+                      autoComplete="current-password"
+                    />
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      className="absolute right-0 top-1/2 transform -translate-y-1/2 p-1 text-gray-400 hover:text-white h-6 w-6"
+                      onClick={() => setShowPassword(!showPassword)}
+                      disabled={isAuthenticating}
+                    >
+                      {showPassword ? <EyeOff className="w-3 h-3" /> : <Eye className="w-3 h-3" />}
+                    </Button>
+                  </div>
+                  <Button
+                    type="submit"
+                    disabled={isAuthenticating || !loginUsername.trim() || !loginPassword.trim()}
+                    size="sm"
+                    className="bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50 text-xs px-3 h-8"
+                  >
+                    {isAuthenticating ? (
+                      <div className="animate-spin rounded-full h-3 w-3 border-2 border-white border-t-transparent"></div>
+                    ) : "Sign In"}
+                  </Button>
+                </form>
+                <div className="flex items-center justify-center space-x-2 text-xs mt-2">
+                  <input
+                    id="remember-me-mobile"
+                    type="checkbox"
+                    checked={rememberMe}
+                    onChange={(e) => setRememberMe(e.target.checked)}
+                    className="h-3 w-3 rounded border-white/20 bg-white/10 text-blue-600 focus:ring-blue-500"
+                  />
+                  <label htmlFor="remember-me-mobile" className="text-gray-300 cursor-pointer">
+                    Remember me
+                  </label>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Desktop Header - Single row */}
+          <div className="hidden md:flex justify-between items-center h-20">
+            <div className="flex items-center min-w-0 flex-1">
+              <SafetySyncIcon size={32} className="mr-3 flex-shrink-0" />
+              <span className="text-xl font-bold text-white truncate">SafetySync.AI Client Portal</span>
+            </div>
+            <div className="flex items-center space-x-4 flex-shrink-0">
               <Button 
                 onClick={() => window.location.href = '/'}
                 variant="ghost"
