@@ -683,7 +683,7 @@ export default function LandingPage() {
         <div className="flex justify-center gap-4">
           <Button 
             onClick={handleDemoClick}
-            className="bg-white text-gray-900 font-semibold px-6 py-3 rounded-2xl hover:bg-gray-100 transition-all duration-200 hover:scale-105 hover:shadow-lg transform"
+            className="bg-gray-800/60 border border-gray-600 text-white font-semibold px-6 py-3 rounded-2xl hover:bg-gray-700/60 transition-all duration-200 hover:scale-105 hover:shadow-lg transform"
           >
             Book a Demo
           </Button>
@@ -714,7 +714,7 @@ export default function LandingPage() {
             </Button>
             <Button 
               onClick={handleDemoClick}
-              className="bg-white text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-all duration-200 hover:scale-105 hover:shadow-lg transform"
+              className="bg-gray-800/60 border border-gray-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-700/60 transition-all duration-200 hover:scale-105 hover:shadow-lg transform"
             >
               Book a Demo
             </Button>
