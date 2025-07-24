@@ -36,10 +36,10 @@ export function PageHeader({}: PageHeaderProps) {
       <Button
         variant="ghost"
         size="sm"
-        className="fixed top-4 left-4 z-50 md:hidden bg-gray-800/80 border border-gray-600 text-white hover:bg-gray-700/80 shadow-md"
+        className="fixed top-4 left-4 z-50 md:hidden bg-gray-800/80 border border-gray-600 text-gray-900 hover:bg-gray-700/80 shadow-md"
         onClick={() => setIsMobileOpen(!isMobileOpen)}
       >
-        {isMobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        {isMobileOpen ? <X className="h-5 w-5 text-gray-900" /> : <Menu className="h-5 w-5 text-gray-900" />}
       </Button>
 
       {/* Hover-Based Icon Sidebar - Always Visible on Desktop */}
