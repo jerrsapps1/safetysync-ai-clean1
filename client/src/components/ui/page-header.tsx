@@ -36,7 +36,7 @@ export function PageHeader({}: PageHeaderProps) {
       <Button
         variant="ghost"
         size="sm"
-        className="fixed top-4 left-4 z-50 md:hidden bg-white shadow-md"
+        className="fixed top-4 left-4 z-50 md:hidden bg-gray-800/80 border border-gray-600 text-white hover:bg-gray-700/80 shadow-md"
         onClick={() => setIsMobileOpen(!isMobileOpen)}
       >
         {isMobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
