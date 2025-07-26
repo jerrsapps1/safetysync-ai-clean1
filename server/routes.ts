@@ -2807,6 +2807,71 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Signup Details API
+  app.get('/api/signup-details', async (req, res) => {
+    try {
+      // Replace this mock with your real DB fetch
+      const data = [
+        { name: 'Alice Johnson', email: 'alice.johnson@acmecorp.com', date: '2025-07-01', plan: 'Pro' },
+        { name: 'Bob Martinez', email: 'bob.martinez@techsolutions.com', date: '2025-07-01', plan: 'Basic' },
+        { name: 'Carla Stevens', email: 'carla.stevens@manufacturing.com', date: '2025-07-01', plan: 'Lifer' },
+        { name: 'David Chen', email: 'david.chen@constructionplus.com', date: '2025-07-02', plan: 'Basic' },
+        { name: 'Emma Wilson', email: 'emma.wilson@safetymanagement.com', date: '2025-07-02', plan: 'Pro' },
+        { name: 'Frank Rodriguez', email: 'frank.rodriguez@industrialcorp.com', date: '2025-07-02', plan: 'Enterprise' },
+        { name: 'Grace Thompson', email: 'grace.thompson@compliance.com', date: '2025-07-03', plan: 'Basic' },
+        { name: 'Henry Kim', email: 'henry.kim@construction.com', date: '2025-07-03', plan: 'Pro' },
+        { name: 'Isabella Garcia', email: 'isabella.garcia@logistics.com', date: '2025-07-03', plan: 'Basic' },
+        { name: 'Jack Brown', email: 'jack.brown@oilfield.com', date: '2025-07-04', plan: 'Enterprise' },
+        { name: 'Kate Anderson', email: 'kate.anderson@warehouse.com', date: '2025-07-04', plan: 'Pro' },
+        { name: 'Liam Taylor', email: 'liam.taylor@mining.com', date: '2025-07-04', plan: 'Lifer' },
+        { name: 'Maya Patel', email: 'maya.patel@chemical.com', date: '2025-07-05', plan: 'Basic' },
+        { name: 'Noah Williams', email: 'noah.williams@steel.com', date: '2025-07-05', plan: 'Pro' },
+        { name: 'Olivia Davis', email: 'olivia.davis@automotive.com', date: '2025-07-05', plan: 'Enterprise' },
+        { name: 'Peter Johnson', email: 'peter.johnson@utilities.com', date: '2025-07-06', plan: 'Basic' },
+        { name: 'Quinn Roberts', email: 'quinn.roberts@aerospace.com', date: '2025-07-06', plan: 'Pro' },
+        { name: 'Rachel Lee', email: 'rachel.lee@pharmaceutical.com', date: '2025-07-06', plan: 'Lifer' },
+        { name: 'Samuel Miller', email: 'samuel.miller@energy.com', date: '2025-07-07', plan: 'Basic' },
+        { name: 'Tina Moore', email: 'tina.moore@healthcare.com', date: '2025-07-07', plan: 'Enterprise' },
+        { name: 'Ulysses Clark', email: 'ulysses.clark@transport.com', date: '2025-07-08', plan: 'Pro' },
+        { name: 'Victoria White', email: 'victoria.white@retail.com', date: '2025-07-08', plan: 'Basic' },
+        { name: 'William Jones', email: 'william.jones@agriculture.com', date: '2025-07-08', plan: 'Lifer' },
+        { name: 'Ximena Lopez', email: 'ximena.lopez@textiles.com', date: '2025-07-09', plan: 'Pro' },
+        { name: 'Yuki Tanaka', email: 'yuki.tanaka@electronics.com', date: '2025-07-09', plan: 'Enterprise' },
+        { name: 'Zoe Martin', email: 'zoe.martin@foodservice.com', date: '2025-07-10', plan: 'Basic' },
+        { name: 'Aaron Foster', email: 'aaron.foster@maritime.com', date: '2025-07-10', plan: 'Pro' },
+        { name: 'Bella Cooper', email: 'bella.cooper@forestry.com', date: '2025-07-11', plan: 'Lifer' },
+        { name: 'Carlos Rivera', email: 'carlos.rivera@plastics.com', date: '2025-07-11', plan: 'Basic' },
+        { name: 'Diana Scott', email: 'diana.scott@metals.com', date: '2025-07-12', plan: 'Enterprise' },
+        { name: 'Ethan Ward', email: 'ethan.ward@paper.com', date: '2025-07-12', plan: 'Pro' },
+        { name: 'Fiona Bell', email: 'fiona.bell@glass.com', date: '2025-07-13', plan: 'Basic' },
+        { name: 'Gabriel Torres', email: 'gabriel.torres@ceramics.com', date: '2025-07-13', plan: 'Lifer' },
+        { name: 'Hannah Price', email: 'hannah.price@rubber.com', date: '2025-07-14', plan: 'Pro' },
+        { name: 'Ivan Petrov', email: 'ivan.petrov@concrete.com', date: '2025-07-14', plan: 'Enterprise' },
+        { name: 'Julia Santos', email: 'julia.santos@timber.com', date: '2025-07-15', plan: 'Basic' },
+        { name: 'Kevin Murphy', email: 'kevin.murphy@aluminum.com', date: '2025-07-15', plan: 'Pro' },
+        { name: 'Luna Chang', email: 'luna.chang@copper.com', date: '2025-07-16', plan: 'Lifer' },
+        { name: 'Marco Silva', email: 'marco.silva@zinc.com', date: '2025-07-16', plan: 'Basic' },
+        { name: 'Nina Brooks', email: 'nina.brooks@lead.com', date: '2025-07-17', plan: 'Enterprise' },
+        { name: 'Oscar Vega', email: 'oscar.vega@nickel.com', date: '2025-07-17', plan: 'Pro' },
+        { name: 'Paula Khan', email: 'paula.khan@titanium.com', date: '2025-07-18', plan: 'Basic' },
+        { name: 'Quincy Reed', email: 'quincy.reed@cobalt.com', date: '2025-07-18', plan: 'Lifer' },
+        { name: 'Rosa Mendez', email: 'rosa.mendez@lithium.com', date: '2025-07-19', plan: 'Pro' },
+        { name: 'Shane Kelly', email: 'shane.kelly@uranium.com', date: '2025-07-19', plan: 'Enterprise' },
+        { name: 'Tara Singh', email: 'tara.singh@platinum.com', date: '2025-07-20', plan: 'Basic' },
+        { name: 'Ulrich Weber', email: 'ulrich.weber@palladium.com', date: '2025-07-20', plan: 'Pro' },
+        { name: 'Vera Novak', email: 'vera.novak@gold.com', date: '2025-07-21', plan: 'Lifer' },
+        { name: 'Wade Barnes', email: 'wade.barnes@silver.com', date: '2025-07-21', plan: 'Basic' },
+        { name: 'Xara Ahmed', email: 'xara.ahmed@bronze.com', date: '2025-07-22', plan: 'Enterprise' },
+        { name: 'Yale Cross', email: 'yale.cross@brass.com', date: '2025-07-22', plan: 'Pro' },
+        { name: 'Zara Flynn', email: 'zara.flynn@steel.com', date: '2025-07-23', plan: 'Basic' }
+      ];
+      res.json(data);
+    } catch (err) {
+      console.error('Signup detail error:', err);
+      res.status(500).json({ error: 'Could not load signup details' });
+    }
+  });
+
   // Serve uploaded files (certificates and wallet cards)
   app.use('/uploads', express.static('uploads'));
 
