@@ -123,8 +123,20 @@ app.use((req, res, next) => {
     port,
     host: "0.0.0.0",
     reusePort: true,
-  }, () => {
+  }, async () => {
     log(`serving on port ${port}`);
+    
+    // Initialize email automation cron jobs
+    if (process.env.BREVO_API_KEY) {
+      try {
+        await import('./cronEmail');
+        console.log('✅ Email automation cron jobs started');
+      } catch (error) {
+        console.log('Email automation initialization failed:', error instanceof Error ? error.message : error);
+      }
+    } else {
+      console.log('⚠️  BREVO_API_KEY not found, email automation disabled');
+    }
     
     // Initialize clone detector after server starts
     setTimeout(async () => {
