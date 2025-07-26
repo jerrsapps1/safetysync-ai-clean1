@@ -373,7 +373,7 @@ export default function OSHAComplianceManager() {
   };
 
   return (
-    <div className="p-6 space-y-6 bg-blue-800 min-h-screen text-white">
+    <div className="p-6 space-y-6 bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 min-h-screen text-white">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-white">OSHA Compliance Manager</h1>
@@ -408,7 +408,7 @@ export default function OSHAComplianceManager() {
         </TabsList>
 
         <TabsContent value="matrix" className="space-y-6">
-          <Card className="bg-blue-700 border-blue-600">
+          <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-white">
                 <Shield className="w-5 h-5" />
@@ -464,7 +464,7 @@ export default function OSHAComplianceManager() {
         </TabsContent>
 
         <TabsContent value="records" className="space-y-6">
-          <Card className="bg-blue-700 border-blue-600">
+          <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-white">
                 <FileText className="w-5 h-5" />
@@ -530,7 +530,7 @@ export default function OSHAComplianceManager() {
         </TabsContent>
 
         <TabsContent value="gaps" className="space-y-6">
-          <Card className="bg-blue-700 border-blue-600">
+          <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-white">
                 <AlertCircle className="w-5 h-5 text-red-500" />
@@ -594,7 +594,7 @@ export default function OSHAComplianceManager() {
         </TabsContent>
 
         <TabsContent value="retraining" className="space-y-6">
-          <Card className="bg-blue-700 border-blue-600">
+          <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-white">
                 <Clock className="w-5 h-5" />
@@ -657,7 +657,7 @@ export default function OSHAComplianceManager() {
         </TabsContent>
 
         <TabsContent value="competency" className="space-y-6">
-          <Card className="bg-blue-700 border-blue-600">
+          <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-white">
                 <Users className="w-5 h-5" />
@@ -731,7 +731,7 @@ export default function OSHAComplianceManager() {
         </TabsContent>
 
         <TabsContent value="audit" className="space-y-6">
-          <Card className="bg-blue-700 border-blue-600">
+          <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-white">
                 <CheckCircle2 className="w-5 h-5 text-green-500" />
