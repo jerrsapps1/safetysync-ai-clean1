@@ -1728,7 +1728,7 @@ export default function Dashboard() {
                         <Award className="w-5 h-5 text-blue-600" />
                         Certificate Generation
                       </CardTitle>
-                      <CardDescription>Plan-specific allowances (15-250 included first month), then $5.95 each</CardDescription>
+                      <CardDescription>Pay-per-use: $5.95 per certificate or digital card</CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-4">
@@ -1807,7 +1807,7 @@ export default function Dashboard() {
                           </Button>
                         </div>
                         <p className="text-xs text-blue-400 mt-2">
-                          *Plan-specific allowances: Essential (15), Professional (50), Enterprise (100), Enterprise Plus (250). Additional certificates: $5.95 each, automatically billed to monthly subscription. Instructors can add EM 385-1-1 references themselves when generating certificates.
+                          *All certificates: $5.95 each, automatically billed to monthly subscription. No free inclusions. Instructors can add EM 385-1-1 references themselves when generating certificates.
                         </p>
                       </div>
                     </CardContent>
@@ -1820,7 +1820,7 @@ export default function Dashboard() {
                         <CreditCard className="w-5 h-5 text-green-600" />
                         Digital Wallet Cards
                       </CardTitle>
-                      <CardDescription>Plan-specific allowances (15-250 included first month), then $5.95 each</CardDescription>
+                      <CardDescription>Pay-per-use: $5.95 per certificate or digital card</CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-4">
@@ -1917,7 +1917,7 @@ export default function Dashboard() {
                           </Button>
                         </div>
                         <p className="text-xs text-blue-400 mt-2">
-                          *Plan-specific allowances: Essential (15), Professional (50), Enterprise (100), Enterprise Plus (250). Additional cards: $5.95 each, automatically billed to monthly subscription. Instructors can add EM 385-1-1 references themselves when generating cards.
+                          *All digital cards: $5.95 each, automatically billed to monthly subscription. No free inclusions. Instructors can add EM 385-1-1 references themselves when generating cards.
                         </p>
                       </div>
                     </CardContent>

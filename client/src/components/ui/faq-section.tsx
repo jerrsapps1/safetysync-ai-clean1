@@ -90,7 +90,7 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
     {
       id: "7",
       question: "How much does SafetySync cost?",
-      answer: "Pricing starts at $99/month for up to 100 employees with our Starter plan. Professional plans begin at $199/month for up to 500 employees. Enterprise pricing is available for larger organizations. All plans include a 30-day free trial with no setup fees.",
+      answer: "Pricing starts at $99/month for up to 100 employees with our Starter plan. Professional plans begin at $199/month for up to 500 employees. Enterprise pricing is available for larger organizations. All plans include a 6-hour free trial with no setup fees. Certificate and digital wallet card generation is $5.95 per item with no free inclusions.",
       category: "pricing",
       popular: true,
       tags: ["pricing", "cost", "plans", "trial"]

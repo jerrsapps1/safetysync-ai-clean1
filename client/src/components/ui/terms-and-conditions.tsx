@@ -158,13 +158,13 @@ export function TermsAndConditions({
                 <div>
                   <h4 className="font-semibold text-blue-800">3. CERTIFICATE AND DIGITAL WALLET CARD PRICING</h4>
                   <p className="mt-1">
-                    <strong>Plan-Specific Allowances:</strong> Each subscription plan includes different certificate and digital wallet card allowances for the first month: Essential (15), Professional (50), Enterprise (100), Enterprise Plus (250).
+                    <strong>Pay-Per-Use Model:</strong> All subscription plans operate on a pay-per-use basis with no free certificate or digital wallet card inclusions.
                     <br />
-                    <strong>Overage Charges:</strong> Additional certificates or digital wallet cards beyond the included amounts are automatically charged at $5.95 per item.
+                    <strong>Uniform Pricing:</strong> All certificates and digital wallet cards are charged at $5.95 per item regardless of subscription level.
                     <br />
-                    <strong>Automatic Billing:</strong> Overage charges are automatically calculated and added to your monthly invoice based on actual usage. Service remains uninterrupted regardless of usage.
+                    <strong>Automatic Billing:</strong> All certificate and card generation charges are automatically calculated and added to your monthly invoice based on actual usage. Service remains uninterrupted regardless of usage.
                     <br />
-                    <strong>No Service Interruption:</strong> You can generate certificates and cards as needed without service limitations - additional usage is simply billed to your monthly subscription.
+                    <strong>No Service Interruption:</strong> You can generate certificates and cards as needed without service limitations - all usage is billed to your monthly subscription.
                     <br />
                     <strong>Professional Quality:</strong> All generated certificates and digital wallet cards meet OSHA, ANSI, and EM 385-1-1 compliance standards.
                   </p>

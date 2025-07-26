@@ -157,6 +157,18 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - **CONSISTENT EXPERIENCE**: Workspace View now serves as primary landing page for workspace access, with User Guide accessible as secondary tab
   - Fixed redirect flow: Client Portal → Access Workspace → Workspace View (unified-dashboard) instead of User Guide
 
+- **July 26, 2025** - PRICING STRUCTURE OVERHAUL: REMOVED FREE CERTIFICATES/WALLET CARDS AND REDUCED TRIAL PERIOD:
+  - **ELIMINATED FREE INCLUSIONS**: Removed all free certificate and digital wallet card inclusions from all membership levels (Essential, Professional, Enterprise, Enterprise Plus)
+  - **UNIFORM PAY-PER-USE**: All plans now operate on pay-per-use basis with $5.95 per certificate or digital card for all subscription levels
+  - **TRIAL PERIOD REDUCTION**: Changed trial period from 14 days to 6 hours for more focused evaluation window
+  - **PRICING CALCULATOR UPDATE**: Updated all pricing tier features to show "Certificate & card generation ($5.95 per certificate or digital card)" instead of free inclusions
+  - **CERTIFICATE SERVICES PAGE**: Updated certificate services pricing structure to reflect pay-per-use model across all membership tiers
+  - **DASHBOARD PRICING**: Updated dashboard certificate and digital card generation sections to remove plan-specific allowances and show uniform $5.95 pricing
+  - **TERMS & CONDITIONS**: Revised certificate pricing section to reflect pay-per-use model with no free inclusions across all subscription plans
+  - **TRIAL SIGNUP DIALOG**: Updated trial signup description from "14 days" to "6 hours" for streamlined evaluation period
+  - **BILLING TRANSPARENCY**: Updated all billing information to clarify that all certificates and cards are charged at $5.95 with no free inclusions
+  - Platform now operates on simplified pay-per-use model eliminating free allowances while reducing trial commitment to 6-hour evaluation window
+
 - **July 26, 2025** - DASHBOARD DATA FLOW DIAGRAM CREATION COMPLETED:
   - **DATA FLOW VISUALIZATION**: Created comprehensive data flow diagram showing how information moves through the /dashboard page system
   - **AUTHENTICATION DATA FLOW**: Mapped complete user login flow from credentials through JWT validation to dashboard content display
