@@ -1909,7 +1909,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
   if (authLoading || isDashboardLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-slate-600 via-blue-500 to-purple-600 flex items-center justify-center">
         <div className="max-w-md w-full mx-auto">
           <SmoothLoading 
             variant="ai-skeleton" 
@@ -1923,7 +1923,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
   if (authLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-slate-600 via-blue-500 to-purple-600 flex items-center justify-center">
         <div className="text-center">
           <SafetySyncIcon size={64} className="mx-auto mb-4 animate-pulse" />
           <p className="text-white text-lg">Loading workspace...</p>
@@ -1939,7 +1939,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
       window.location.replace('/client-portal');
     }, 100);
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-slate-600 via-blue-500 to-purple-600 flex items-center justify-center">
         <div className="text-center">
           <SafetySyncIcon size={64} className="mx-auto mb-4 animate-pulse" />
           <p className="text-white text-lg">Redirecting to login...</p>
@@ -1950,7 +1950,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
   if (dashboardError) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-slate-600 via-blue-500 to-purple-600 flex items-center justify-center">
         <div className="text-center">
           <SafetySyncIcon size={64} className="mx-auto mb-4" />
           <p className="text-white text-lg mb-4">Error loading dashboard data</p>
@@ -1968,16 +1968,16 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-700 via-blue-500 to-purple-600 flex flex-col md:flex-row">
+    <div className="min-h-screen bg-gradient-to-br from-slate-600 via-blue-500 to-purple-600 flex flex-col md:flex-row">
       {/* Sidebar */}
       <motion.div 
-        className={`${sidebarOpen ? 'w-full md:w-64' : 'w-full md:w-16'} ${sidebarOpen ? 'h-auto' : 'h-16'} md:h-auto bg-black/20 backdrop-blur-sm border-r border-gray-800 flex flex-col md:border-r md:border-b-0 border-b`}
+        className={`${sidebarOpen ? 'w-full md:w-64' : 'w-full md:w-16'} ${sidebarOpen ? 'h-auto' : 'h-16'} md:h-auto bg-slate-600/50 backdrop-blur-sm border-r border-slate-500 flex flex-col md:border-r md:border-b-0 border-b`}
         variants={sidebarVariants}
         animate={sidebarOpen ? "open" : "closed"}
         initial={sidebarOpen ? "open" : "closed"}
       >
         {/* Header */}
-        <div className="p-4 border-b border-gray-800">
+        <div className="p-4 border-b border-slate-500">
           <div className="flex items-center justify-between">
             {sidebarOpen ? (
               <div className="flex items-center space-x-3">
@@ -1996,7 +1996,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               variant="ghost"
               size="sm"
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="text-gray-400 hover:text-white"
+              className="text-slate-300 hover:text-white"
             >
               {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </Button>
@@ -3045,10 +3045,10 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   Add Instructor
                 </Button>
               </div>
-              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+              <Card className="bg-slate-600/50 backdrop-blur-sm border-slate-500">
                 <CardContent className="p-2 md:p-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                    <Card className="bg-gray-800/50 border-gray-700">
+                    <Card className="bg-slate-600/50 border-slate-500">
                       <CardContent className="p-4">
                         <div className="flex items-center space-x-3 mb-3">
                           <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
@@ -3102,7 +3102,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                         </div>
                       </CardContent>
                     </Card>
-                    <Card className="bg-gray-800/50 border-gray-700">
+                    <Card className="bg-slate-600/50 border-slate-500">
                       <CardContent className="p-4">
                         <div className="flex items-center space-x-3 mb-3">
                           <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center">
@@ -3293,7 +3293,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
           {activeTab === "settings" && (
             <div className="space-y-6">
-              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+              <Card className="bg-slate-600/50 backdrop-blur-sm border-slate-500">
                 <CardHeader>
                   <CardTitle className="text-white">Workspace Settings</CardTitle>
                   <CardDescription className="text-gray-400">
@@ -3308,7 +3308,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                         id="companyName"
                         value={workspaceSettings.companyName}
                         onChange={(e) => setWorkspaceSettings({...workspaceSettings, companyName: e.target.value})}
-                        className="bg-gray-800/50 border-gray-700 text-white"
+                        className="bg-slate-600/50 border-slate-500 text-white"
                         placeholder="Your Company Name"
                       />
                     </div>
@@ -3330,7 +3330,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                         id="customDomain"
                         value={workspaceSettings.customDomain}
                         onChange={(e) => setWorkspaceSettings({...workspaceSettings, customDomain: e.target.value})}
-                        className="bg-gray-800/50 border-gray-700 text-white"
+                        className="bg-slate-600/50 border-slate-500 text-white"
                         placeholder="safety.yourcompany.com"
                       />
                     </div>
