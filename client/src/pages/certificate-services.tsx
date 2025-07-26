@@ -94,7 +94,7 @@ export default function CertificateServicesPage() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Certificate Generation Pricing</h2>
             <p className="text-white text-lg">
-              Plan-specific allowances with transparent overage pricing
+              Pay-per-use pricing for all membership levels
             </p>
           </div>
 
@@ -105,9 +105,9 @@ export default function CertificateServicesPage() {
                 <div className="text-2xl font-bold">$49/month</div>
               </CardHeader>
               <CardContent className="text-center">
-                <div className="text-lg font-semibold mb-2">15 items included</div>
-                <div className="text-sm text-white">First month: 15 certificates + 15 digital cards</div>
-                <div className="text-sm text-white mt-2">Additional: $5.95 each</div>
+                <div className="text-lg font-semibold mb-2">Pay-per-use</div>
+                <div className="text-sm text-white">$5.95 per certificate</div>
+                <div className="text-sm text-white mt-2">$5.95 per digital card</div>
               </CardContent>
             </Card>
 
@@ -117,9 +117,9 @@ export default function CertificateServicesPage() {
                 <div className="text-2xl font-bold">$112/month</div>
               </CardHeader>
               <CardContent className="text-center">
-                <div className="text-lg font-semibold mb-2">50 items included</div>
-                <div className="text-sm text-white">First month: 50 certificates + 50 digital cards</div>
-                <div className="text-sm text-white mt-2">Additional: $5.95 each</div>
+                <div className="text-lg font-semibold mb-2">Pay-per-use</div>
+                <div className="text-sm text-white">$5.95 per certificate</div>
+                <div className="text-sm text-white mt-2">$5.95 per digital card</div>
               </CardContent>
             </Card>
 
@@ -129,9 +129,9 @@ export default function CertificateServicesPage() {
                 <div className="text-2xl font-bold">$258/month</div>
               </CardHeader>
               <CardContent className="text-center">
-                <div className="text-lg font-semibold mb-2">100 items included</div>
-                <div className="text-sm text-white">First month: 100 certificates + 100 digital cards</div>
-                <div className="text-sm text-white mt-2">Additional: $5.95 each</div>
+                <div className="text-lg font-semibold mb-2">Pay-per-use</div>
+                <div className="text-sm text-white">$5.95 per certificate</div>
+                <div className="text-sm text-white mt-2">$5.95 per digital card</div>
               </CardContent>
             </Card>
 
@@ -141,9 +141,9 @@ export default function CertificateServicesPage() {
                 <div className="text-2xl font-bold">$686/month</div>
               </CardHeader>
               <CardContent className="text-center">
-                <div className="text-lg font-semibold mb-2">250 items included</div>
-                <div className="text-sm text-white">First month: 250 certificates + 250 digital cards</div>
-                <div className="text-sm text-white mt-2">Additional: $5.95 each</div>
+                <div className="text-lg font-semibold mb-2">Pay-per-use</div>
+                <div className="text-sm text-white">$5.95 per certificate</div>
+                <div className="text-sm text-white mt-2">$5.95 per digital card</div>
               </CardContent>
             </Card>
           </div>
@@ -151,7 +151,7 @@ export default function CertificateServicesPage() {
           <div className="bg-blue-900/30 backdrop-blur-sm border border-blue-400/30 rounded-lg p-6 text-center">
             <h3 className="text-xl font-semibold mb-2">Billing Information</h3>
             <p className="text-white">
-              Additional certificates and digital cards are automatically billed to your monthly subscription at $5.95 each. 
+              All certificates and digital cards are billed at $5.95 each with no free inclusions. 
               Service remains uninterrupted - generate as needed.
             </p>
           </div>

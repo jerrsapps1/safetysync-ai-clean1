@@ -54,7 +54,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
         "Basic dashboard",
         "Custom branding",
         "CSV exports",
-        "Certificate & card generation (15 certificates + 15 digital cards included first month, additional items billed at $5.95 each to monthly subscription)"
+        "Certificate & card generation ($5.95 per certificate or digital card)"
       ]
     },
     {
@@ -71,7 +71,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
         "Advanced dashboard",
         "API integrations",
         "Priority support",
-        "Certificate & card generation (50 certificates + 50 digital cards included first month, additional items billed at $5.95 each to monthly subscription)"
+        "Certificate & card generation ($5.95 per certificate or digital card)"
       ]
     },
     {
@@ -90,7 +90,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
         "SLA guarantee",
         "Custom workflows",
         "Audit assistance",
-        "Certificate & card generation (100 certificates + 100 digital cards included first month, additional items billed at $5.95 each to monthly subscription)"
+        "Certificate & card generation ($5.95 per certificate or digital card)"
       ]
     },
     {
@@ -107,7 +107,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
         "White-label solution",
         "Unlimited integrations",
         "Dedicated infrastructure",
-        "Certificate & card generation (250 certificates + 250 digital cards included first month, additional items billed at $5.95 each to monthly subscription)"
+        "Certificate & card generation ($5.95 per certificate or digital card)"
       ]
     }
   ];
