@@ -1,4 +1,4 @@
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { UserGuide } from "@/components/ui/user-guide";
 import { Home, Brain } from "lucide-react";
@@ -11,7 +11,7 @@ export default function UserGuidePage() {
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <Link href="/">
+              <Link to="/">
                 <Button variant="ghost" size="sm" className="text-blue-500 hover:text-blue-800">
                   <Home className="w-4 h-4 mr-2" />
                   Home
@@ -27,13 +27,13 @@ export default function UserGuidePage() {
               </div>
             </div>
             <div className="flex items-center space-x-2">
-              <Link href="/workspace">
+              <Link to="/workspace">
                 <Button variant="outline" size="sm">Workspace</Button>
               </Link>
-              <Link href="/pricing">
+              <Link to="/pricing">
                 <Button variant="outline" size="sm">Pricing</Button>
               </Link>
-              <Link href="/industry-research">
+              <Link to="/industry-research">
                 <Button variant="outline" size="sm">Industry Research</Button>
               </Link>
             </div>
@@ -44,7 +44,7 @@ export default function UserGuidePage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Back to Dashboard Button */}
         <div className="mb-6">
-          <Link href="/workspace">
+          <Link to="/workspace">
             <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white">
               ← Back to Workspace
             </Button>

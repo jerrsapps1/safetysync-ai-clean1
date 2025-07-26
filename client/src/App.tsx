@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -50,51 +50,51 @@ import SidebarDemoPage from "@/pages/sidebar-demo";
 import DownloadDocsPage from "@/pages/download-docs";
 import AdminEmailPage from "@/pages/admin-email";
 
-function Router() {
+function AppRouter() {
   return (
-    <Switch>
-      <Route path="/" component={LandingPage} />
-      <Route path="/landing-simple" component={LandingPageSimple} />
-      <Route path="/dashboard" component={Dashboard} />
-      <Route path="/workspace" component={WorkspacePage} />
-      <Route path="/workspace-basic" component={WorkspaceBasic} />
-      <Route path="/admin" component={AdminPanel} />
-      <Route path="/admin-dashboard" component={AdminDashboard} />
-      <Route path="/industry-research" component={TestimonialsPage} />
-      <Route path="/case-studies" component={CaseStudiesPage} />
-      <Route path="/pricing" component={PricingPage} />
-      <Route path="/certificate-services" component={CertificateServicesPage} />
-      <Route path="/user-guide" component={UserGuidePage} />
-      <Route path="/developers" component={DeveloperPortal} />
-      <Route path="/analytics" component={AnalyticsPage} />
-      <Route path="/conversion-tracking" component={AnalyticsDashboard} />
-      <Route path="/email-automation" component={EmailPreviewPage} />
-      <Route path="/ab-testing" component={ABTestingDashboard} />
-      <Route path="/blog" component={SEOBlogPage} />
-      <Route path="/blog/:slug" component={BlogPostPage} />
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/landing-simple" element={<LandingPageSimple />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/workspace" element={<WorkspacePage />} />
+      <Route path="/workspace-basic" element={<WorkspaceBasic />} />
+      <Route path="/admin" element={<AdminPanel />} />
+      <Route path="/admin-dashboard" element={<AdminDashboard />} />
+      <Route path="/industry-research" element={<TestimonialsPage />} />
+      <Route path="/case-studies" element={<CaseStudiesPage />} />
+      <Route path="/pricing" element={<PricingPage />} />
+      <Route path="/certificate-services" element={<CertificateServicesPage />} />
+      <Route path="/user-guide" element={<UserGuidePage />} />
+      <Route path="/developers" element={<DeveloperPortal />} />
+      <Route path="/analytics" element={<AnalyticsPage />} />
+      <Route path="/conversion-tracking" element={<AnalyticsDashboard />} />
+      <Route path="/email-automation" element={<EmailPreviewPage />} />
+      <Route path="/ab-testing" element={<ABTestingDashboard />} />
+      <Route path="/blog" element={<SEOBlogPage />} />
+      <Route path="/blog/:slug" element={<BlogPostPage />} />
 
-      <Route path="/sitemap" component={SitemapPage} />
-      <Route path="/dns-management" component={DNSManagementPage} />
-      <Route path="/backup-recovery" component={BackupRecoveryPage} />
-      <Route path="/system-health" component={SystemHealthPage} />
-      <Route path="/incident-response" component={IncidentResponsePage} />
-      <Route path="/operations" component={OperationsDashboardPage} />
-      <Route path="/safety-trends" component={SafetyTrendsPage} />
-      <Route path="/contact" component={ContactPage} />
-      <Route path="/verify-email" component={VerifyEmailPage} />
-      <Route path="/upload" component={UploadFormPage} />
-      <Route path="/dashboard-records" component={DashboardRecordsPage} />
-      <Route path="/helpdesk" component={HelpdeskPage} />
-      <Route path="/client-portal" component={ClientPortalPage} />
-      <Route path="/hr" component={HRTeamsPage} />
-      <Route path="/auth-test" component={AuthTest} />
-      <Route path="/employee-certs/:qrCodeData" component={PublicEmployeeCertificates} />
-      <Route path="/skeleton-demo" component={SkeletonDemo} />
-      <Route path="/sidebar-demo" component={SidebarDemoPage} />
-      <Route path="/download-docs" component={DownloadDocsPage} />
-      <Route path="/admin-email" component={AdminEmailPage} />
-      <Route component={NotFound} />
-    </Switch>
+      <Route path="/sitemap" element={<SitemapPage />} />
+      <Route path="/dns-management" element={<DNSManagementPage />} />
+      <Route path="/backup-recovery" element={<BackupRecoveryPage />} />
+      <Route path="/system-health" element={<SystemHealthPage />} />
+      <Route path="/incident-response" element={<IncidentResponsePage />} />
+      <Route path="/operations" element={<OperationsDashboardPage />} />
+      <Route path="/safety-trends" element={<SafetyTrendsPage />} />
+      <Route path="/contact" element={<ContactPage />} />
+      <Route path="/verify-email" element={<VerifyEmailPage />} />
+      <Route path="/upload" element={<UploadFormPage />} />
+      <Route path="/dashboard-records" element={<DashboardRecordsPage />} />
+      <Route path="/helpdesk" element={<HelpdeskPage />} />
+      <Route path="/client-portal" element={<ClientPortalPage />} />
+      <Route path="/hr" element={<HRTeamsPage />} />
+      <Route path="/auth-test" element={<AuthTest />} />
+      <Route path="/employee-certs/:qrCodeData" element={<PublicEmployeeCertificates />} />
+      <Route path="/skeleton-demo" element={<SkeletonDemo />} />
+      <Route path="/sidebar-demo" element={<SidebarDemoPage />} />
+      <Route path="/download-docs" element={<DownloadDocsPage />} />
+      <Route path="/admin-email" element={<AdminEmailPage />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }
 
@@ -106,7 +106,9 @@ function App() {
           <CopyrightProtection />
           <Toaster />
 
-          <Router />
+          <Router>
+            <AppRouter />
+          </Router>
         </TooltipProvider>
       </CartProvider>
     </QueryClientProvider>

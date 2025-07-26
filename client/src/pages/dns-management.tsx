@@ -1,6 +1,6 @@
 import DNSManagement from "@/components/dns-management";
 import { Navigation } from "@/components/ui/navigation";
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Home, ArrowLeft } from "lucide-react";
 
@@ -18,13 +18,13 @@ export default function DNSManagementPage() {
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <Link href="/">
+              <Link to="/">
                 <Button variant="ghost" size="sm" className="text-blue-500 hover:text-blue-800 hover:bg-blue-100/50">
                   <Home className="w-4 h-4 mr-2" />
                   Home
                 </Button>
               </Link>
-              <Link href="/admin">
+              <Link to="/admin">
                 <Button variant="ghost" size="sm" className="text-blue-500 hover:text-blue-800 hover:bg-blue-100/50">
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   Back to Admin

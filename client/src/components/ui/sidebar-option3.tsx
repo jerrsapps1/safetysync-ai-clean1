@@ -12,7 +12,7 @@ import {
   X,
   ArrowRight
 } from "lucide-react";
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 
 interface SidebarOption3Props {
   // No props needed - this will be the same navigation for all pages
@@ -23,12 +23,12 @@ export function SidebarOption3({}: SidebarOption3Props) {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   const navigationItems = [
-    { name: "Home", href: "/", icon: Home },
-    { name: "Case Studies", href: "/case-studies", icon: FileText },
-    { name: "For HR Teams", href: "/hr", icon: Users },
-    { name: "Pricing", href: "/pricing", icon: DollarSign },
-    { name: "Resources", href: "/resources", icon: BookOpen },
-    { name: "Contact", href: "/contact", icon: Phone },
+    { name: "Home", to: "/", icon: Home },
+    { name: "Case Studies", to: "/case-studies", icon: FileText },
+    { name: "For HR Teams", to: "/hr", icon: Users },
+    { name: "Pricing", to: "/pricing", icon: DollarSign },
+    { name: "Resources", to: "/resources", icon: BookOpen },
+    { name: "Contact", to: "/contact", icon: Phone },
   ];
 
   return (
@@ -52,7 +52,7 @@ export function SidebarOption3({}: SidebarOption3Props) {
       `}>
         {/* Header */}
         <div className="flex items-center justify-between h-16 px-4 border-b border-blue-700">
-          <Link href="/">
+          <Link to="/">
             <div className="flex items-center space-x-3 cursor-pointer">
               <SafetySyncIcon size={32} />
               {!isCollapsed && (
@@ -80,9 +80,9 @@ export function SidebarOption3({}: SidebarOption3Props) {
             {navigationItems.map((item) => {
               const IconComponent = item.icon;
               return (
-                <Link key={item.name} href={item.href}>
-                  <a 
-                    className="flex items-center px-3 py-3 text-sm font-medium text-white rounded-lg hover:bg-blue-700 hover:text-violet-400 transition-colors group relative"
+                <Link key={item.name} to={item.to}>
+                  <div 
+                    className="flex items-center px-3 py-3 text-sm font-medium text-white rounded-lg hover:bg-blue-700 hover:text-violet-400 transition-colors group relative cursor-pointer"
                     onClick={() => setIsMobileOpen(false)}
                     title={isCollapsed ? item.name : undefined}
                   >
@@ -97,7 +97,7 @@ export function SidebarOption3({}: SidebarOption3Props) {
                         {item.name}
                       </div>
                     )}
-                  </a>
+                  </div>
                 </Link>
               );
             })}
@@ -106,7 +106,7 @@ export function SidebarOption3({}: SidebarOption3Props) {
 
         {/* Client Login Button */}
         <div className="absolute bottom-6 left-2 right-2">
-          <Link href="/client-portal">
+          <Link to="/client-portal">
             <Button 
               variant={isCollapsed ? "ghost" : "default"}
               size={isCollapsed ? "sm" : "default"}
