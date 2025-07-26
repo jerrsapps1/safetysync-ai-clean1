@@ -210,7 +210,7 @@ export default function InstructorTrainingCompletion() {
                     <div className="flex justify-between items-start">
                       <div>
                         <h3 className="font-semibold">{session.title}</h3>
-                        <div className="flex items-center space-x-4 text-sm text-gray-600 mt-2">
+                        <div className="flex items-center space-x-4 text-sm text-blue-500 mt-2">
                           <div className="flex items-center space-x-1">
                             <Calendar className="h-4 w-4" />
                             <span>{new Date(session.date).toLocaleDateString()}</span>
@@ -236,7 +236,7 @@ export default function InstructorTrainingCompletion() {
                   </div>
                 ))
             ) : (
-              <div className="text-center py-8 text-gray-500">
+              <div className="text-center py-8 text-blue-400">
                 No scheduled training sessions found. Create a training session first.
               </div>
             )}
@@ -255,7 +255,7 @@ export default function InstructorTrainingCompletion() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex justify-between items-center">
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-blue-500">
                 Mark employee attendance and completion status for certificate generation
               </p>
               <Button onClick={addEmployee} variant="outline" size="sm">
@@ -334,7 +334,7 @@ export default function InstructorTrainingCompletion() {
               ))}
 
               {employees.length === 0 && (
-                <div className="text-center py-8 text-gray-500 border-2 border-dashed border-gray-200 rounded-lg">
+                <div className="text-center py-8 text-blue-400 border-2 border-dashed border-gray-200 rounded-lg">
                   No employees added yet. Click "Add Employee" to start recording attendance.
                 </div>
               )}
@@ -373,7 +373,7 @@ export default function InstructorTrainingCompletion() {
             <div className="flex justify-between items-center">
               <div>
                 <h3 className="font-semibold">Ready to Complete Training</h3>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-blue-500">
                   This will generate certificates for completed employees and integrate with Employee Profiles
                 </p>
               </div>

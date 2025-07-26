@@ -162,10 +162,10 @@ const QuickSearchWidget = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'active': return 'bg-green-100 text-green-700';
-      case 'inactive': return 'bg-gray-100 text-gray-700';
+      case 'inactive': return 'bg-gray-100 text-blue-600';
       case 'training': return 'bg-blue-100 text-blue-700';
       case 'on-leave': return 'bg-yellow-100 text-yellow-700';
-      default: return 'bg-gray-100 text-gray-700';
+      default: return 'bg-gray-100 text-blue-600';
     }
   };
 
@@ -174,8 +174,8 @@ const QuickSearchWidget = () => {
       case 'Current': return 'bg-green-100 text-green-700';
       case 'Expiring Soon': return 'bg-yellow-100 text-yellow-700';
       case 'Needs Renewal': return 'bg-red-100 text-red-700';
-      case 'No Certificates': return 'bg-gray-100 text-gray-700';
-      default: return 'bg-gray-100 text-gray-700';
+      case 'No Certificates': return 'bg-gray-100 text-blue-600';
+      default: return 'bg-gray-100 text-blue-600';
     }
   };
 
@@ -193,8 +193,8 @@ const QuickSearchWidget = () => {
               </div>
               <div>
                 <h4 className="font-semibold">{employee.name}</h4>
-                <p className="text-sm text-gray-600">{employee.position} • {employee.department}</p>
-                <p className="text-xs text-gray-500">ID: {employee.employeeId}</p>
+                <p className="text-sm text-blue-500">{employee.position} • {employee.department}</p>
+                <p className="text-xs text-blue-400">ID: {employee.employeeId}</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -209,7 +209,7 @@ const QuickSearchWidget = () => {
               </Button>
             </div>
           </div>
-          <div className="mt-2 flex items-center gap-4 text-sm text-gray-500">
+          <div className="mt-2 flex items-center gap-4 text-sm text-blue-400">
             <div className="flex items-center gap-1">
               <Mail className="w-3 h-3" />
               {employee.email}
@@ -244,7 +244,7 @@ const QuickSearchWidget = () => {
             </div>
             <div>
               <h4 className="font-medium">{employee.name}</h4>
-              <p className="text-sm text-gray-600">{employee.position} • {employee.department}</p>
+              <p className="text-sm text-blue-500">{employee.position} • {employee.department}</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -285,7 +285,7 @@ const QuickSearchWidget = () => {
                   </div>
                   <div>
                     <p className="font-medium">{employee.name}</p>
-                    <p className="text-xs text-gray-500">{employee.employeeId}</p>
+                    <p className="text-xs text-blue-400">{employee.employeeId}</p>
                   </div>
                 </div>
               </td>
@@ -374,25 +374,25 @@ const QuickSearchWidget = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="text-center p-3 bg-blue-50 rounded-lg">
               <div className="text-2xl font-bold text-blue-600">{filteredEmployees.length}</div>
-              <div className="text-sm text-gray-600">Total Results</div>
+              <div className="text-sm text-blue-500">Total Results</div>
             </div>
             <div className="text-center p-3 bg-green-50 rounded-lg">
               <div className="text-2xl font-bold text-green-600">
                 {filteredEmployees.filter(emp => emp.status === 'active').length}
               </div>
-              <div className="text-sm text-gray-600">Active</div>
+              <div className="text-sm text-blue-500">Active</div>
             </div>
             <div className="text-center p-3 bg-yellow-50 rounded-lg">
               <div className="text-2xl font-bold text-yellow-600">
                 {filteredEmployees.filter(emp => emp.trainingStatus === 'Expiring Soon').length}
               </div>
-              <div className="text-sm text-gray-600">Expiring Soon</div>
+              <div className="text-sm text-blue-500">Expiring Soon</div>
             </div>
             <div className="text-center p-3 bg-red-50 rounded-lg">
               <div className="text-2xl font-bold text-red-600">
                 {filteredEmployees.filter(emp => emp.trainingStatus === 'Needs Renewal').length}
               </div>
-              <div className="text-sm text-gray-600">Needs Renewal</div>
+              <div className="text-sm text-blue-500">Needs Renewal</div>
             </div>
           </div>
         </div>
@@ -404,8 +404,8 @@ const QuickSearchWidget = () => {
   const renderResults = () => {
     if (filteredEmployees.length === 0) {
       return (
-        <div className="text-center py-8 text-gray-500">
-          <Users className="w-12 h-12 mx-auto mb-2 text-gray-400" />
+        <div className="text-center py-8 text-blue-400">
+          <Users className="w-12 h-12 mx-auto mb-2 text-blue-300" />
           <p>No employees found matching your search criteria</p>
         </div>
       );
@@ -495,8 +495,8 @@ const QuickSearchWidget = () => {
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2">
-                <Users className="w-4 h-4 text-gray-500" />
-                <span className="text-sm text-gray-600">
+                <Users className="w-4 h-4 text-blue-400" />
+                <span className="text-sm text-blue-500">
                   {filteredEmployees.length} employees found
                 </span>
               </div>

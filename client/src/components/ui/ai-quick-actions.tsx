@@ -361,7 +361,7 @@ export function AIQuickActions({ onActionExecute, currentPage = 'dashboard' }: A
       case 'compliance': return 'bg-red-100 text-red-800';
       case 'training': return 'bg-green-100 text-green-800';
       case 'reporting': return 'bg-orange-100 text-orange-800';
-      default: return 'bg-gray-100 text-gray-800';
+      default: return 'bg-gray-100 text-blue-700';
     }
   };
 
@@ -455,11 +455,11 @@ export function AIQuickActions({ onActionExecute, currentPage = 'dashboard' }: A
                             {action.category}
                           </Badge>
                         </div>
-                        <p className="text-xs text-gray-600">{action.description}</p>
+                        <p className="text-xs text-blue-500">{action.description}</p>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
-                            <Clock className="w-3 h-3 text-gray-400" />
-                            <span className="text-xs text-gray-500">{action.estimatedTime}</span>
+                            <Clock className="w-3 h-3 text-blue-300" />
+                            <span className="text-xs text-blue-400">{action.estimatedTime}</span>
                           </div>
                           <Button
                             size="sm"
@@ -503,9 +503,9 @@ export function AIQuickActions({ onActionExecute, currentPage = 'dashboard' }: A
                             {insight.confidence}% confident
                           </Badge>
                         </div>
-                        <p className="text-xs text-gray-600">{insight.description}</p>
+                        <p className="text-xs text-blue-500">{insight.description}</p>
                         <div className="flex items-center justify-between">
-                          <span className="text-xs text-gray-500">
+                          <span className="text-xs text-blue-400">
                             {new Date(insight.timestamp).toLocaleTimeString()}
                           </span>
                           {insight.actionable && (
@@ -532,7 +532,7 @@ export function AIQuickActions({ onActionExecute, currentPage = 'dashboard' }: A
                         <div className={`max-w-[80%] p-2 rounded-lg text-xs ${
                           message.role === 'user' 
                             ? 'bg-blue-500 text-white' 
-                            : 'bg-gray-100 text-gray-800'
+                            : 'bg-gray-100 text-blue-700'
                         }`}>
                           {message.content}
                         </div>
@@ -540,11 +540,11 @@ export function AIQuickActions({ onActionExecute, currentPage = 'dashboard' }: A
                     ))}
                     {isProcessing && (
                       <div className="flex justify-start">
-                        <div className="bg-gray-100 text-gray-800 p-2 rounded-lg text-xs">
+                        <div className="bg-gray-100 text-blue-700 p-2 rounded-lg text-xs">
                           <div className="flex space-x-1">
-                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
-                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                            <div className="w-2 h-2 bg-blue-300 rounded-full animate-bounce"></div>
+                            <div className="w-2 h-2 bg-blue-300 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
+                            <div className="w-2 h-2 bg-blue-300 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
                           </div>
                         </div>
                       </div>

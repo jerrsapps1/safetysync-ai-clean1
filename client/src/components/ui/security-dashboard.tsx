@@ -161,9 +161,9 @@ export function SecurityDashboard({ isRealTime = true }: SecurityDashboardProps)
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Security Operations Center</h1>
-          <p className="text-gray-600 mt-2">Real-time security monitoring and threat intelligence</p>
-          <div className="flex items-center gap-2 mt-2 text-sm text-gray-500">
+          <h1 className="text-3xl font-bold text-blue-800">Security Operations Center</h1>
+          <p className="text-blue-500 mt-2">Real-time security monitoring and threat intelligence</p>
+          <div className="flex items-center gap-2 mt-2 text-sm text-blue-400">
             <Activity className="w-4 h-4" />
             <span>Last updated: {lastUpdate.toLocaleTimeString()}</span>
             {isRealTime && (
@@ -192,11 +192,11 @@ export function SecurityDashboard({ isRealTime = true }: SecurityDashboardProps)
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Threat Level</p>
+                <p className="text-sm font-medium text-blue-500">Threat Level</p>
                 <p className="text-2xl font-bold text-yellow-600">MEDIUM</p>
                 <div className="flex items-center mt-2">
                   <Shield className="w-4 h-4 text-yellow-500 mr-1" />
-                  <span className="text-sm text-gray-600">{activeThreats} active threats</span>
+                  <span className="text-sm text-blue-500">{activeThreats} active threats</span>
                 </div>
               </div>
               <ShieldAlert className="w-8 h-8 text-yellow-500" />
@@ -208,7 +208,7 @@ export function SecurityDashboard({ isRealTime = true }: SecurityDashboardProps)
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Blocked Attacks</p>
+                <p className="text-sm font-medium text-blue-500">Blocked Attacks</p>
                 <p className="text-2xl font-bold text-green-600">{securityMetrics.blockedAttacks.toLocaleString()}</p>
                 <div className="flex items-center mt-2">
                   <TrendingUp className="w-4 h-4 text-green-500 mr-1" />
@@ -224,11 +224,11 @@ export function SecurityDashboard({ isRealTime = true }: SecurityDashboardProps)
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Active Sessions</p>
+                <p className="text-sm font-medium text-blue-500">Active Sessions</p>
                 <p className="text-2xl font-bold text-blue-600">{securityMetrics.activeSessions}</p>
                 <div className="flex items-center mt-2">
                   <Eye className="w-4 h-4 text-blue-500 mr-1" />
-                  <span className="text-sm text-gray-600">Real-time monitoring</span>
+                  <span className="text-sm text-blue-500">Real-time monitoring</span>
                 </div>
               </div>
               <Activity className="w-8 h-8 text-blue-500" />
@@ -240,7 +240,7 @@ export function SecurityDashboard({ isRealTime = true }: SecurityDashboardProps)
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">System Uptime</p>
+                <p className="text-sm font-medium text-blue-500">System Uptime</p>
                 <p className="text-2xl font-bold text-green-600">{securityMetrics.systemUptime}%</p>
                 <div className="flex items-center mt-2">
                   <CheckCircle className="w-4 h-4 text-green-500 mr-1" />
@@ -277,10 +277,10 @@ export function SecurityDashboard({ isRealTime = true }: SecurityDashboardProps)
                           {alert.status.toUpperCase()}
                         </Badge>
                       </div>
-                      <AlertDescription className="text-sm text-gray-600">
+                      <AlertDescription className="text-sm text-blue-500">
                         {alert.description}
                       </AlertDescription>
-                      <div className="mt-2 text-xs text-gray-500">
+                      <div className="mt-2 text-xs text-blue-400">
                         <span>{alert.timestamp}</span> • <span>{alert.source}</span>
                       </div>
                     </div>
@@ -379,7 +379,7 @@ export function SecurityDashboard({ isRealTime = true }: SecurityDashboardProps)
                     </div>
                     <div>
                       <h4 className="font-medium">{threat.country}</h4>
-                      <p className="text-sm text-gray-600">{threat.threats} threats detected</p>
+                      <p className="text-sm text-blue-500">{threat.threats} threats detected</p>
                     </div>
                   </div>
                   {getThreatBadge(threat.risk)}
@@ -433,7 +433,7 @@ export function SecurityDashboard({ isRealTime = true }: SecurityDashboardProps)
                   <h4 className="font-medium">{framework.framework}</h4>
                   <Badge className="bg-green-100 text-green-800">COMPLIANT</Badge>
                 </div>
-                <div className="space-y-1 text-sm text-gray-600">
+                <div className="space-y-1 text-sm text-blue-500">
                   <div className="flex justify-between">
                     <span>Last Audit:</span>
                     <span>{framework.lastAudit}</span>

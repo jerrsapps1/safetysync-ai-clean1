@@ -238,7 +238,7 @@ export function CollaborationLayer({
       }
     }
     if (type === 'question') return 'bg-blue-500';
-    return 'bg-gray-500';
+    return 'bg-blue-400';
   };
 
   const filteredAnnotations = showResolved ? annotations : annotations.filter(a => !a.resolved);
@@ -484,7 +484,7 @@ export function CollaborationLayer({
                     </Avatar>
                     <div>
                       <p className="font-medium">{annotation.author}</p>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-blue-500">
                         {new Date(annotation.timestamp).toLocaleString()}
                       </p>
                     </div>
@@ -502,7 +502,7 @@ export function CollaborationLayer({
                   </div>
                 </div>
 
-                <p className="text-gray-700">{annotation.content}</p>
+                <p className="text-blue-600">{annotation.content}</p>
 
                 <div className="flex items-center gap-2">
                   <Button
@@ -540,11 +540,11 @@ export function CollaborationLayer({
                             <div className="flex-1">
                               <div className="flex items-center gap-2">
                                 <span className="text-sm font-medium">{reply.author}</span>
-                                <span className="text-xs text-gray-500">
+                                <span className="text-xs text-blue-400">
                                   {new Date(reply.timestamp).toLocaleString()}
                                 </span>
                               </div>
-                              <p className="text-sm text-gray-700 mt-1">{reply.content}</p>
+                              <p className="text-sm text-blue-600 mt-1">{reply.content}</p>
                             </div>
                           </div>
                         ))}
@@ -587,25 +587,25 @@ export function CollaborationLayer({
               <p className="text-2xl font-bold text-red-600">
                 {annotations.filter(a => a.type === 'issue' && !a.resolved).length}
               </p>
-              <p className="text-sm text-gray-600">Open Issues</p>
+              <p className="text-sm text-blue-500">Open Issues</p>
             </div>
             <div className="text-center p-3 bg-blue-50 rounded-lg">
               <p className="text-2xl font-bold text-blue-600">
                 {annotations.filter(a => a.type === 'question' && !a.resolved).length}
               </p>
-              <p className="text-sm text-gray-600">Questions</p>
+              <p className="text-sm text-blue-500">Questions</p>
             </div>
             <div className="text-center p-3 bg-green-50 rounded-lg">
               <p className="text-2xl font-bold text-green-600">
                 {annotations.filter(a => a.type === 'approved').length}
               </p>
-              <p className="text-sm text-gray-600">Approved</p>
+              <p className="text-sm text-blue-500">Approved</p>
             </div>
             <div className="text-center p-3 bg-gray-50 rounded-lg">
-              <p className="text-2xl font-bold text-gray-600">
+              <p className="text-2xl font-bold text-blue-500">
                 {annotations.reduce((sum, a) => sum + a.replies.length, 0)}
               </p>
-              <p className="text-sm text-gray-600">Total Replies</p>
+              <p className="text-sm text-blue-500">Total Replies</p>
             </div>
           </div>
         </CardContent>

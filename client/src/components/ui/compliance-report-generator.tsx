@@ -207,7 +207,7 @@ export function ComplianceReportGenerator({ onReportGenerated }: ComplianceRepor
                   <SelectItem key={type.value} value={type.value}>
                     <div className="flex flex-col">
                       <div className="font-medium">{type.label}</div>
-                      <div className="text-xs text-gray-500">{type.description}</div>
+                      <div className="text-xs text-blue-400">{type.description}</div>
                     </div>
                   </SelectItem>
                 ))}
@@ -304,7 +304,7 @@ export function ComplianceReportGenerator({ onReportGenerated }: ComplianceRepor
         </CardHeader>
         <CardContent>
           {existingReports.length === 0 ? (
-            <div className="text-center py-8 text-gray-500">
+            <div className="text-center py-8 text-blue-400">
               <FileText className="w-12 h-12 mx-auto mb-4 text-gray-300" />
               <p>No reports generated yet.</p>
               <p className="text-sm">Generate your first compliance report above.</p>
@@ -317,7 +317,7 @@ export function ComplianceReportGenerator({ onReportGenerated }: ComplianceRepor
                     <FileText className="w-8 h-8 text-blue-500" />
                     <div>
                       <div className="font-medium">{report.reportName}</div>
-                      <div className="text-sm text-gray-500">
+                      <div className="text-sm text-blue-400">
                         Generated on {new Date(report.generatedAt).toLocaleDateString()}
                       </div>
                     </div>
@@ -397,7 +397,7 @@ export function ComplianceReportGenerator({ onReportGenerated }: ComplianceRepor
                           <Users className="w-4 h-4 text-blue-500" />
                           <div className="text-2xl font-bold">{generatedReport.complianceStats.totalEmployees}</div>
                         </div>
-                        <div className="text-sm text-gray-500">Total Employees</div>
+                        <div className="text-sm text-blue-400">Total Employees</div>
                       </CardContent>
                     </Card>
                     <Card>
@@ -406,7 +406,7 @@ export function ComplianceReportGenerator({ onReportGenerated }: ComplianceRepor
                           <CheckCircle className="w-4 h-4 text-green-500" />
                           <div className="text-2xl font-bold">{generatedReport.complianceStats.compliantEmployees}</div>
                         </div>
-                        <div className="text-sm text-gray-500">Compliant</div>
+                        <div className="text-sm text-blue-400">Compliant</div>
                       </CardContent>
                     </Card>
                     <Card>
@@ -415,7 +415,7 @@ export function ComplianceReportGenerator({ onReportGenerated }: ComplianceRepor
                           <Clock className="w-4 h-4 text-yellow-500" />
                           <div className="text-2xl font-bold">{generatedReport.complianceStats.pendingTraining}</div>
                         </div>
-                        <div className="text-sm text-gray-500">Pending</div>
+                        <div className="text-sm text-blue-400">Pending</div>
                       </CardContent>
                     </Card>
                     <Card>
@@ -424,7 +424,7 @@ export function ComplianceReportGenerator({ onReportGenerated }: ComplianceRepor
                           <AlertTriangle className="w-4 h-4 text-red-500" />
                           <div className="text-2xl font-bold">{generatedReport.complianceStats.expiredCertifications}</div>
                         </div>
-                        <div className="text-sm text-gray-500">Expired</div>
+                        <div className="text-sm text-blue-400">Expired</div>
                       </CardContent>
                     </Card>
                   </div>
@@ -457,7 +457,7 @@ export function ComplianceReportGenerator({ onReportGenerated }: ComplianceRepor
                             <div className="flex items-center justify-between">
                               <div>
                                 <div className="font-medium">{employee.employeeName}</div>
-                                <div className="text-sm text-gray-500">{employee.position} - {employee.department}</div>
+                                <div className="text-sm text-blue-400">{employee.position} - {employee.department}</div>
                               </div>
                               <div className="text-right">
                                 <div className="text-sm">
@@ -520,7 +520,7 @@ export function ComplianceReportGenerator({ onReportGenerated }: ComplianceRepor
                                 <span className="text-sm">{dept}</span>
                                 <div className="flex items-center gap-2">
                                   <span className="text-sm font-medium">{count}</span>
-                                  <span className="text-xs text-gray-500">({percentage}%)</span>
+                                  <span className="text-xs text-blue-400">({percentage}%)</span>
                                 </div>
                               </div>
                             );

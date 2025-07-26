@@ -188,7 +188,7 @@ export default function SystemHealth() {
       case "error":
         return "bg-red-500";
       default:
-        return "bg-gray-500";
+        return "bg-blue-400";
     }
   };
 
@@ -206,7 +206,7 @@ export default function SystemHealth() {
       case "error":
         return <XCircle className="w-4 h-4 text-red-400" />;
       default:
-        return <Clock className="w-4 h-4 text-gray-400" />;
+        return <Clock className="w-4 h-4 text-blue-300" />;
     }
   };
 
@@ -324,15 +324,15 @@ export default function SystemHealth() {
                     </div>
                     <div className="grid grid-cols-3 gap-4 mt-3 text-sm">
                       <div>
-                        <p className="text-gray-400">Uptime</p>
+                        <p className="text-blue-300">Uptime</p>
                         <p className="text-white font-semibold">{service.uptime}</p>
                       </div>
                       <div>
-                        <p className="text-gray-400">Response Time</p>
+                        <p className="text-blue-300">Response Time</p>
                         <p className="text-white font-semibold">{service.responseTime}</p>
                       </div>
                       <div>
-                        <p className="text-gray-400">Last Check</p>
+                        <p className="text-blue-300">Last Check</p>
                         <p className="text-white font-semibold">{service.lastCheck}</p>
                       </div>
                     </div>
@@ -364,7 +364,7 @@ export default function SystemHealth() {
                       </div>
                     </div>
                     <div className="mt-3">
-                      <p className="text-sm text-gray-400">Target: {metric.target}</p>
+                      <p className="text-sm text-blue-300">Target: {metric.target}</p>
                     </div>
                   </CardContent>
                 </Card>

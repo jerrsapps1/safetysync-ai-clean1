@@ -46,12 +46,12 @@ export function SidebarOption3({}: SidebarOption3Props) {
       {/* Sidebar */}
       <aside className={`
         fixed left-0 top-0 z-40 h-full transform transition-all duration-300 ease-in-out
-        bg-gray-900 border-r border-gray-800 shadow-2xl
+        bg-blue-800 border-r border-blue-700 shadow-2xl
         ${isMobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
         ${isCollapsed ? 'w-16' : 'w-64'}
       `}>
         {/* Header */}
-        <div className="flex items-center justify-between h-16 px-4 border-b border-gray-800">
+        <div className="flex items-center justify-between h-16 px-4 border-b border-blue-700">
           <Link href="/">
             <div className="flex items-center space-x-3 cursor-pointer">
               <SafetySyncIcon size={32} />
@@ -67,7 +67,7 @@ export function SidebarOption3({}: SidebarOption3Props) {
           <Button
             variant="ghost"
             size="sm"
-            className="hidden md:flex text-gray-400 hover:text-white hover:bg-gray-800"
+            className="hidden md:flex text-blue-300 hover:text-white hover:bg-blue-700"
             onClick={() => setIsCollapsed(!isCollapsed)}
           >
             <ArrowRight className={`h-4 w-4 transition-transform ${isCollapsed ? 'rotate-180' : ''}`} />
@@ -82,18 +82,18 @@ export function SidebarOption3({}: SidebarOption3Props) {
               return (
                 <Link key={item.name} href={item.href}>
                   <a 
-                    className="flex items-center px-3 py-3 text-sm font-medium text-gray-300 rounded-lg hover:bg-gray-800 hover:text-emerald-400 transition-colors group relative"
+                    className="flex items-center px-3 py-3 text-sm font-medium text-gray-300 rounded-lg hover:bg-blue-700 hover:text-emerald-400 transition-colors group relative"
                     onClick={() => setIsMobileOpen(false)}
                     title={isCollapsed ? item.name : undefined}
                   >
-                    <IconComponent className="w-5 h-5 text-gray-400 group-hover:text-emerald-400 flex-shrink-0" />
+                    <IconComponent className="w-5 h-5 text-blue-300 group-hover:text-emerald-400 flex-shrink-0" />
                     {!isCollapsed && (
                       <span className="ml-3">{item.name}</span>
                     )}
                     
                     {/* Tooltip for collapsed state */}
                     {isCollapsed && (
-                      <div className="absolute left-full ml-2 px-3 py-2 bg-gray-800 text-white text-sm rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">
+                      <div className="absolute left-full ml-2 px-3 py-2 bg-blue-700 text-white text-sm rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">
                         {item.name}
                       </div>
                     )}

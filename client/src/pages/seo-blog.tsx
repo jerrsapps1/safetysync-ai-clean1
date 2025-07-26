@@ -131,11 +131,11 @@ export default function SEOBlogPage() {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
             <div className="relative max-w-md w-full">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-300 w-5 h-5" />
               <input
                 type="text"
                 placeholder="Search articles..."
-                className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
+                className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-blue-800"
               />
             </div>
             <Button className="bg-white text-blue-600 hover:bg-gray-100 px-6 py-3">
@@ -161,7 +161,7 @@ export default function SEOBlogPage() {
 
         {/* Featured Posts */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+          <h2 className="text-2xl font-bold text-blue-800 mb-6 flex items-center">
             <TrendingUp className="w-6 h-6 mr-2 text-blue-600" />
             Featured Articles
           </h2>
@@ -172,7 +172,7 @@ export default function SEOBlogPage() {
                 <CardHeader className="pb-4">
                   <div className="flex items-center justify-between mb-3">
                     <Badge className="bg-blue-100 text-blue-800">{post.category}</Badge>
-                    <div className="flex items-center text-sm text-gray-500">
+                    <div className="flex items-center text-sm text-blue-400">
                       <Clock className="w-4 h-4 mr-1" />
                       {post.readTime} min read
                     </div>
@@ -182,12 +182,12 @@ export default function SEOBlogPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-600 mb-4 line-clamp-3">
+                  <p className="text-blue-500 mb-4 line-clamp-3">
                     {post.excerpt}
                   </p>
                   
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center text-sm text-gray-500">
+                    <div className="flex items-center text-sm text-blue-400">
                       <User className="w-4 h-4 mr-1" />
                       {post.author}
                       <Calendar className="w-4 h-4 ml-3 mr-1" />
@@ -218,7 +218,7 @@ export default function SEOBlogPage() {
 
         {/* All Posts */}
         <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+          <h2 className="text-2xl font-bold text-blue-800 mb-6 flex items-center">
             <FileText className="w-6 h-6 mr-2 text-blue-600" />
             All Articles
           </h2>
@@ -229,7 +229,7 @@ export default function SEOBlogPage() {
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between mb-2">
                     <Badge variant="outline" className="text-xs">{post.category}</Badge>
-                    <div className="flex items-center text-xs text-gray-500">
+                    <div className="flex items-center text-xs text-blue-400">
                       <Clock className="w-3 h-3 mr-1" />
                       {post.readTime}m
                     </div>
@@ -242,11 +242,11 @@ export default function SEOBlogPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="pt-0">
-                  <p className="text-gray-600 text-sm mb-3 line-clamp-2">
+                  <p className="text-blue-500 text-sm mb-3 line-clamp-2">
                     {post.excerpt}
                   </p>
                   
-                  <div className="flex items-center justify-between text-xs text-gray-500 mb-3">
+                  <div className="flex items-center justify-between text-xs text-blue-400 mb-3">
                     <span>{post.author}</span>
                     <span>{new Date(post.publishDate).toLocaleDateString()}</span>
                   </div>
@@ -267,7 +267,7 @@ export default function SEOBlogPage() {
 
         {/* SEO Content Section */}
         <section className="mt-16 bg-white rounded-lg p-8 shadow-sm">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+          <h2 className="text-2xl font-bold text-blue-800 mb-6">
             Why Choose SafetySync.AI for OSHA Compliance Management?
           </h2>
           
@@ -277,7 +277,7 @@ export default function SEOBlogPage() {
                 <CheckCircle className="w-5 h-5 mr-2 text-green-600" />
                 Comprehensive OSHA Coverage
               </h3>
-              <p className="text-gray-600 mb-4">
+              <p className="text-blue-500 mb-4">
                 Our platform covers all major OSHA standards including 29 CFR 1910 (General Industry) and 
                 29 CFR 1926 (Construction). From fall protection to hazard communication, we ensure complete 
                 compliance across all workplace safety requirements.
@@ -287,7 +287,7 @@ export default function SEOBlogPage() {
                 <Target className="w-5 h-5 mr-2 text-blue-600" />
                 Industry-Specific Solutions
               </h3>
-              <p className="text-gray-600">
+              <p className="text-blue-500">
                 Whether you're in construction, manufacturing, healthcare, or general industry, our AI-powered 
                 platform adapts to your specific regulatory requirements and industry best practices.
               </p>
@@ -298,7 +298,7 @@ export default function SEOBlogPage() {
                 <BarChart3 className="w-5 h-5 mr-2 text-purple-600" />
                 Proven ROI and Time Savings
               </h3>
-              <p className="text-gray-600 mb-4">
+              <p className="text-blue-500 mb-4">
                 Companies using SafetySync.AI report saving 15+ hours weekly on compliance tasks, reducing 
                 OSHA violations by 87%, and achieving an average ROI of 340% within the first year.
               </p>
@@ -307,7 +307,7 @@ export default function SEOBlogPage() {
                 <AlertTriangle className="w-5 h-5 mr-2 text-orange-600" />
                 Risk Mitigation
               </h3>
-              <p className="text-gray-600">
+              <p className="text-blue-500">
                 Our AI-powered risk assessment identifies potential compliance gaps before they become violations, 
                 helping you maintain a proactive safety posture and avoid costly penalties.
               </p>
@@ -318,7 +318,7 @@ export default function SEOBlogPage() {
             <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
               Start Your Free Trial Today
             </Button>
-            <p className="text-sm text-gray-500 mt-2">
+            <p className="text-sm text-blue-400 mt-2">
               No credit card required • 90-day free trial • Full platform access
             </p>
           </div>

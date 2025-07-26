@@ -579,7 +579,7 @@ export default function EmployeeManagement() {
             <SafetySyncIcon size={32} className="rounded-lg" />
             Employee Management
           </h1>
-          <p className="text-gray-400 mt-1">Manage your workforce with comprehensive employee tracking and analytics</p>
+          <p className="text-blue-300 mt-1">Manage your workforce with comprehensive employee tracking and analytics</p>
         </div>
         <div className="flex flex-wrap gap-2">
           <Button 
@@ -610,7 +610,7 @@ export default function EmployeeManagement() {
           <Button 
             variant="outline"
             onClick={() => setShowBulkActions(!showBulkActions)}
-            className="bg-gray-500/20 hover:bg-gray-500/30 border-gray-500/30 text-gray-300 hover:text-gray-200"
+            className="bg-blue-400/20 hover:bg-blue-400/30 border-blue-400/30 text-gray-300 hover:text-gray-200"
           >
             <CheckSquare className="w-4 h-4 mr-2" />
             Bulk Actions
@@ -627,11 +627,11 @@ export default function EmployeeManagement() {
 
       {/* Analytics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 relative z-10">
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-400">Total Employees</p>
+                <p className="text-sm text-blue-300">Total Employees</p>
                 <p className="text-2xl font-bold text-white">{analytics.totalEmployees}</p>
               </div>
               <Users className="w-8 h-8 text-blue-400" />
@@ -639,24 +639,24 @@ export default function EmployeeManagement() {
           </CardContent>
         </Card>
         
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-400">Active Employees</p>
+                <p className="text-sm text-blue-300">Active Employees</p>
                 <p className="text-2xl font-bold text-emerald-400">{analytics.activeEmployees}</p>
-                <p className="text-xs text-gray-500">{analytics.activeRate}% active rate</p>
+                <p className="text-xs text-blue-400">{analytics.activeRate}% active rate</p>
               </div>
               <CheckCircle className="w-8 h-8 text-emerald-400" />
             </div>
           </CardContent>
         </Card>
         
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-400">Departments</p>
+                <p className="text-sm text-blue-300">Departments</p>
                 <p className="text-2xl font-bold text-purple-400">{analytics.departments.length}</p>
               </div>
               <Building className="w-8 h-8 text-purple-400" />
@@ -664,11 +664,11 @@ export default function EmployeeManagement() {
           </CardContent>
         </Card>
         
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-400">Certification Rate</p>
+                <p className="text-sm text-blue-300">Certification Rate</p>
                 <p className="text-2xl font-bold text-orange-400">{analytics.certificationComplianceRate}%</p>
               </div>
               <Award className="w-8 h-8 text-orange-400" />
@@ -676,13 +676,13 @@ export default function EmployeeManagement() {
           </CardContent>
         </Card>
         
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-400">ID Verification</p>
+                <p className="text-sm text-blue-300">ID Verification</p>
                 <p className="text-2xl font-bold text-cyan-400">{analytics.verifiedEmployees}</p>
-                <p className="text-xs text-gray-500">of {analytics.totalEmployees} verified</p>
+                <p className="text-xs text-blue-400">of {analytics.totalEmployees} verified</p>
               </div>
               <ShieldCheck className="w-8 h-8 text-cyan-400" />
             </div>
@@ -700,7 +700,7 @@ export default function EmployeeManagement() {
                   variant="outline" 
                   size="sm"
                   onClick={handleSelectAll}
-                  className="bg-gray-500/20 hover:bg-gray-500/30 border-gray-500/30 text-gray-300 hover:text-gray-200"
+                  className="bg-blue-400/20 hover:bg-blue-400/30 border-blue-400/30 text-gray-300 hover:text-gray-200"
                 >
                   {selectedEmployees.length === filteredAndSortedEmployees.length ? (
                     <>
@@ -746,12 +746,12 @@ export default function EmployeeManagement() {
       )}
 
       {/* Search and Filters */}
-      <div className="bg-black/20 backdrop-blur-sm border-gray-800 rounded-lg p-6 shadow-sm relative z-10">
+      <div className="bg-black/20 backdrop-blur-sm border-blue-700 rounded-lg p-6 shadow-sm relative z-10">
         <h3 className="text-lg font-semibold mb-4 text-white">Search and Filter Employees</h3>
         
         {/* Search Input */}
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-400 mb-2">
+          <label className="block text-sm font-medium text-blue-300 mb-2">
             Search Employees
           </label>
           <input
@@ -759,10 +759,10 @@ export default function EmployeeManagement() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Search by name, email, ID, position, or department..."
-            className="w-full px-3 py-2 border border-gray-600 bg-black/30 text-white placeholder-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-3 py-2 border border-blue-500 bg-black/30 text-white placeholder-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
           {searchTerm && (
-            <p className="text-sm text-gray-400 mt-2">
+            <p className="text-sm text-blue-300 mt-2">
               Searching for: "{searchTerm}" - Found {filteredAndSortedEmployees.length} results
             </p>
           )}
@@ -781,11 +781,11 @@ export default function EmployeeManagement() {
         {/* Filters */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-400 mb-1">Department</label>
+            <label className="block text-sm font-medium text-blue-300 mb-1">Department</label>
             <select 
               value={filterDepartment} 
               onChange={(e) => setFilterDepartment(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-600 bg-black/30 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-blue-500 bg-black/30 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
               <option value="">Select Department</option>
               {analytics.departments.map(dept => (
@@ -795,11 +795,11 @@ export default function EmployeeManagement() {
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-400 mb-1">Status</label>
+            <label className="block text-sm font-medium text-blue-300 mb-1">Status</label>
             <select 
               value={filterStatus} 
               onChange={(e) => setFilterStatus(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-600 bg-black/30 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-blue-500 bg-black/30 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
               <option value="">Select Status</option>
               <option value="active">Active</option>
@@ -809,11 +809,11 @@ export default function EmployeeManagement() {
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-400 mb-1">Location</label>
+            <label className="block text-sm font-medium text-blue-300 mb-1">Location</label>
             <select 
               value={filterLocation} 
               onChange={(e) => setFilterLocation(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-600 bg-black/30 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-blue-500 bg-black/30 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
               <option value="">Select Location</option>
               {analytics.locations.map(loc => (
@@ -823,11 +823,11 @@ export default function EmployeeManagement() {
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-400 mb-1">ID Verification</label>
+            <label className="block text-sm font-medium text-blue-300 mb-1">ID Verification</label>
             <select 
               value={filterVerification} 
               onChange={(e) => setFilterVerification(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-600 bg-black/30 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-blue-500 bg-black/30 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
               <option value="">All Employees</option>
               <option value="verified">✓ Verified IDs</option>
@@ -836,12 +836,12 @@ export default function EmployeeManagement() {
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-400 mb-1">Sort By</label>
+            <label className="block text-sm font-medium text-blue-300 mb-1">Sort By</label>
             <div className="flex gap-2">
               <select 
                 value={sortBy} 
                 onChange={(e) => setSortBy(e.target.value)}
-                className="flex-1 px-3 py-2 border border-gray-600 bg-black/30 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="flex-1 px-3 py-2 border border-blue-500 bg-black/30 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
                 <option value="name">Name</option>
                 <option value="department">Department</option>
@@ -851,7 +851,7 @@ export default function EmployeeManagement() {
               </select>
               <button 
                 onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
-                className="px-3 py-2 border border-gray-600 bg-black/30 text-white rounded-md hover:bg-gray-600/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="px-3 py-2 border border-blue-500 bg-black/30 text-white rounded-md hover:bg-blue-500/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
                 {sortOrder === 'asc' ? '↑' : '↓'}
               </button>
@@ -861,11 +861,11 @@ export default function EmployeeManagement() {
       </div>
 
       {/* Employee List */}
-      <Card className="bg-black/20 backdrop-blur-sm border-gray-800 relative z-10">
+      <Card className="bg-black/20 backdrop-blur-sm border-blue-700 relative z-10">
         <CardContent className="p-0">
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-800/50 border-b border-gray-700">
+              <thead className="bg-blue-700/50 border-b border-blue-600">
                 <tr>
                   <th className="px-4 py-3 text-left text-sm font-medium text-gray-300">
                     <div className="flex items-center gap-2">
@@ -886,9 +886,9 @@ export default function EmployeeManagement() {
                   <th className="px-4 py-3 text-left text-sm font-medium text-gray-300">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-700">
+              <tbody className="divide-y divide-blue-600">
                 {filteredAndSortedEmployees.map((employee) => (
-                  <tr key={employee.id} className="hover:bg-gray-800/30">
+                  <tr key={employee.id} className="hover:bg-blue-700/30">
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-3">
                         <input
@@ -902,8 +902,8 @@ export default function EmployeeManagement() {
                             {employee.firstName} {employee.lastName}
                             <EmployeeBadge isVerified={employee.employeeIdVerified || false} variant="compact" />
                           </div>
-                          <div className="text-sm text-gray-400">{employee.email}</div>
-                          <div className="text-xs text-gray-500 flex items-center gap-1">
+                          <div className="text-sm text-blue-300">{employee.email}</div>
+                          <div className="text-xs text-blue-400 flex items-center gap-1">
                             ID: {employee.employeeId}
                             {employee.employeeIdVerified && (
                               <span className="text-emerald-500 text-xs">✓ Verified</span>
@@ -935,7 +935,7 @@ export default function EmployeeManagement() {
                             setSelectedEmployee(employee);
                             setShowEditDialog(true);
                           }}
-                          className="bg-gray-500/20 hover:bg-gray-500/30 border-gray-500/30 text-gray-300 hover:text-gray-200"
+                          className="bg-blue-400/20 hover:bg-blue-400/30 border-blue-400/30 text-gray-300 hover:text-gray-200"
                         >
                           <Eye className="w-4 h-4" />
                         </Button>
@@ -967,24 +967,24 @@ export default function EmployeeManagement() {
           
           {searchTerm.trim() === '' ? (
             <div className="text-center py-12">
-              <Search className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">Search for Employees</h3>
-              <p className="text-gray-600">
+              <Search className="w-16 h-16 text-blue-300 mx-auto mb-4" />
+              <h3 className="text-lg font-medium text-blue-800 mb-2">Search for Employees</h3>
+              <p className="text-blue-500">
                 Use the search bar above to find specific employees by name, ID, position, or department.
               </p>
             </div>
           ) : filteredAndSortedEmployees.length === 0 ? (
             <div className="text-center py-8">
-              <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-600">No employees found matching your search criteria</p>
-              <p className="text-sm text-gray-500 mt-2">Try adjusting your search term or filters</p>
+              <Users className="w-12 h-12 text-blue-300 mx-auto mb-4" />
+              <p className="text-blue-500">No employees found matching your search criteria</p>
+              <p className="text-sm text-blue-400 mt-2">Try adjusting your search term or filters</p>
             </div>
           ) : null}
         </CardContent>
       </Card>
 
       {/* Department Analytics */}
-      <Card className="bg-black/20 backdrop-blur-sm border-gray-800 relative z-10">
+      <Card className="bg-black/20 backdrop-blur-sm border-blue-700 relative z-10">
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-white">
             <BarChart3 className="w-5 h-5 text-blue-400" />
@@ -998,11 +998,11 @@ export default function EmployeeManagement() {
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-sm font-medium text-gray-300">{dept.name}</span>
-                    <span className="text-sm text-gray-400">{dept.activeCount}/{dept.count}</span>
+                    <span className="text-sm text-blue-300">{dept.activeCount}/{dept.count}</span>
                   </div>
                   <Progress 
                     value={dept.count > 0 ? (dept.activeCount / dept.count) * 100 : 0}
-                    className="h-2 bg-gray-700"
+                    className="h-2 bg-blue-600"
                   />
                 </div>
               </div>
@@ -1013,7 +1013,7 @@ export default function EmployeeManagement() {
 
       {/* Add Employee Dialog */}
       <Dialog open={showAddDialog} onOpenChange={setShowAddDialog}>
-        <DialogContent className="max-w-2xl bg-gray-900/95 border-gray-800 text-white">
+        <DialogContent className="max-w-2xl bg-blue-800/95 border-blue-700 text-white">
           <DialogHeader>
             <DialogTitle className="text-white">Add New Employee</DialogTitle>
           </DialogHeader>
@@ -1026,14 +1026,14 @@ export default function EmployeeManagement() {
                   value={newEmployee.employeeId}
                   onChange={(e) => setNewEmployee({...newEmployee, employeeId: e.target.value})}
                   placeholder="EMP-001"
-                  className="bg-gray-800 border-gray-700 text-white placeholder-gray-400"
+                  className="bg-blue-700 border-blue-600 text-white placeholder-blue-300"
                 />
                 <div className="flex items-center space-x-2">
                   <Checkbox
                     id="employeeIdVerified"
                     checked={newEmployee.employeeIdVerified}
                     onCheckedChange={(checked) => setNewEmployee({...newEmployee, employeeIdVerified: !!checked})}
-                    className="border-gray-600 data-[state=checked]:bg-emerald-600 data-[state=checked]:border-emerald-600"
+                    className="border-blue-500 data-[state=checked]:bg-emerald-600 data-[state=checked]:border-emerald-600"
                   />
                   <Label htmlFor="employeeIdVerified" className="text-gray-300 text-sm">
                     Employee ID Verified
@@ -1047,7 +1047,7 @@ export default function EmployeeManagement() {
                   value={newEmployee.firstName}
                   onChange={(e) => setNewEmployee({...newEmployee, firstName: e.target.value})}
                   placeholder="John"
-                  className="bg-gray-800 border-gray-700 text-white placeholder-gray-400"
+                  className="bg-blue-700 border-blue-600 text-white placeholder-blue-300"
                 />
               </div>
               <div className="space-y-2">
@@ -1057,7 +1057,7 @@ export default function EmployeeManagement() {
                   value={newEmployee.lastName}
                   onChange={(e) => setNewEmployee({...newEmployee, lastName: e.target.value})}
                   placeholder="Doe"
-                  className="bg-gray-800 border-gray-700 text-white placeholder-gray-400"
+                  className="bg-blue-700 border-blue-600 text-white placeholder-blue-300"
                 />
               </div>
               <div className="space-y-2">
@@ -1068,7 +1068,7 @@ export default function EmployeeManagement() {
                   value={newEmployee.email}
                   onChange={(e) => setNewEmployee({...newEmployee, email: e.target.value})}
                   placeholder="john.doe@company.com"
-                  className="bg-gray-800 border-gray-700 text-white placeholder-gray-400"
+                  className="bg-blue-700 border-blue-600 text-white placeholder-blue-300"
                 />
               </div>
               <div className="space-y-2">
@@ -1078,7 +1078,7 @@ export default function EmployeeManagement() {
                   value={newEmployee.phone}
                   onChange={(e) => setNewEmployee({...newEmployee, phone: e.target.value})}
                   placeholder="555-0123"
-                  className="bg-gray-800 border-gray-700 text-white placeholder-gray-400"
+                  className="bg-blue-700 border-blue-600 text-white placeholder-blue-300"
                 />
               </div>
               <div className="space-y-2">
@@ -1088,18 +1088,18 @@ export default function EmployeeManagement() {
                   value={newEmployee.position}
                   onChange={(e) => setNewEmployee({...newEmployee, position: e.target.value})}
                   placeholder="Safety Coordinator"
-                  className="bg-gray-800 border-gray-700 text-white placeholder-gray-400"
+                  className="bg-blue-700 border-blue-600 text-white placeholder-blue-300"
                 />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="department" className="text-gray-300">Department</Label>
                 <Select value={newEmployee.department} onValueChange={(value) => setNewEmployee({...newEmployee, department: value})}>
-                  <SelectTrigger className="bg-gray-800 border-gray-700 text-white">
+                  <SelectTrigger className="bg-blue-700 border-blue-600 text-white">
                     <SelectValue placeholder="Select department" />
                   </SelectTrigger>
-                  <SelectContent className="bg-gray-800 border-gray-700">
+                  <SelectContent className="bg-blue-700 border-blue-600">
                     {analytics.departments.map(dept => (
-                      <SelectItem key={dept} value={dept} className="text-white hover:bg-gray-700">{dept}</SelectItem>
+                      <SelectItem key={dept} value={dept} className="text-white hover:bg-blue-600">{dept}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
@@ -1107,12 +1107,12 @@ export default function EmployeeManagement() {
               <div className="space-y-2">
                 <Label htmlFor="division" className="text-gray-300">Division</Label>
                 <Select value={newEmployee.division} onValueChange={(value) => setNewEmployee({...newEmployee, division: value})}>
-                  <SelectTrigger className="bg-gray-800 border-gray-700 text-white">
+                  <SelectTrigger className="bg-blue-700 border-blue-600 text-white">
                     <SelectValue placeholder="Select division" />
                   </SelectTrigger>
-                  <SelectContent className="bg-gray-800 border-gray-700">
+                  <SelectContent className="bg-blue-700 border-blue-600">
                     {analytics.divisions.map(div => (
-                      <SelectItem key={div} value={div} className="text-white hover:bg-gray-700">{div}</SelectItem>
+                      <SelectItem key={div} value={div} className="text-white hover:bg-blue-600">{div}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
@@ -1120,12 +1120,12 @@ export default function EmployeeManagement() {
               <div className="space-y-2">
                 <Label htmlFor="location" className="text-gray-300">Location</Label>
                 <Select value={newEmployee.location} onValueChange={(value) => setNewEmployee({...newEmployee, location: value})}>
-                  <SelectTrigger className="bg-gray-800 border-gray-700 text-white">
+                  <SelectTrigger className="bg-blue-700 border-blue-600 text-white">
                     <SelectValue placeholder="Select location" />
                   </SelectTrigger>
-                  <SelectContent className="bg-gray-800 border-gray-700">
+                  <SelectContent className="bg-blue-700 border-blue-600">
                     {analytics.locations.map(loc => (
-                      <SelectItem key={loc} value={loc} className="text-white hover:bg-gray-700">{loc}</SelectItem>
+                      <SelectItem key={loc} value={loc} className="text-white hover:bg-blue-600">{loc}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
@@ -1135,7 +1135,7 @@ export default function EmployeeManagement() {
               <Button 
                 variant="outline" 
                 onClick={() => setShowAddDialog(false)}
-                className="bg-gray-800 hover:bg-gray-700 border-gray-700 text-white"
+                className="bg-blue-700 hover:bg-blue-600 border-blue-600 text-white"
               >
                 Cancel
               </Button>
@@ -1153,7 +1153,7 @@ export default function EmployeeManagement() {
 
       {/* Edit Employee Dialog */}
       <Dialog open={showEditDialog} onOpenChange={setShowEditDialog}>
-        <DialogContent className="max-w-4xl bg-gray-900/95 border-gray-800 text-white">
+        <DialogContent className="max-w-4xl bg-blue-800/95 border-blue-700 text-white">
           <DialogHeader>
             <DialogTitle className="text-white">
               Employee Details: {selectedEmployee?.firstName} {selectedEmployee?.lastName}
@@ -1162,23 +1162,23 @@ export default function EmployeeManagement() {
           
           {selectedEmployee && (
             <Tabs defaultValue="details" className="w-full">
-              <TabsList className="grid w-full grid-cols-3 bg-gray-800 border-gray-700">
-                <TabsTrigger value="details" className="text-gray-300 data-[state=active]:bg-gray-700 data-[state=active]:text-white">Details</TabsTrigger>
-                <TabsTrigger value="certificates" className="text-gray-300 data-[state=active]:bg-gray-700 data-[state=active]:text-white">Certificates</TabsTrigger>
-                <TabsTrigger value="training" className="text-gray-300 data-[state=active]:bg-gray-700 data-[state=active]:text-white">Training</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-3 bg-blue-700 border-blue-600">
+                <TabsTrigger value="details" className="text-gray-300 data-[state=active]:bg-blue-600 data-[state=active]:text-white">Details</TabsTrigger>
+                <TabsTrigger value="certificates" className="text-gray-300 data-[state=active]:bg-blue-600 data-[state=active]:text-white">Certificates</TabsTrigger>
+                <TabsTrigger value="training" className="text-gray-300 data-[state=active]:bg-blue-600 data-[state=active]:text-white">Training</TabsTrigger>
               </TabsList>
               
               <TabsContent value="details" className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label className="text-gray-300">Employee ID</Label>
-                    <Input value={selectedEmployee.employeeId} readOnly className="bg-gray-800 border-gray-700 text-white" />
+                    <Input value={selectedEmployee.employeeId} readOnly className="bg-blue-700 border-blue-600 text-white" />
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
                         <Checkbox
                           checked={selectedEmployee.employeeIdVerified || false}
                           disabled
-                          className="border-gray-600 data-[state=checked]:bg-emerald-600 data-[state=checked]:border-emerald-600"
+                          className="border-blue-500 data-[state=checked]:bg-emerald-600 data-[state=checked]:border-emerald-600"
                         />
                         <Label className="text-gray-300 text-sm">Employee ID Verified</Label>
                       </div>
@@ -1187,31 +1187,31 @@ export default function EmployeeManagement() {
                   </div>
                   <div className="space-y-2">
                     <Label className="text-gray-300">Email</Label>
-                    <Input value={selectedEmployee.email} readOnly className="bg-gray-800 border-gray-700 text-white" />
+                    <Input value={selectedEmployee.email} readOnly className="bg-blue-700 border-blue-600 text-white" />
                   </div>
                   <div className="space-y-2">
                     <Label className="text-gray-300">Phone</Label>
-                    <Input value={selectedEmployee.phone || ''} readOnly className="bg-gray-800 border-gray-700 text-white" />
+                    <Input value={selectedEmployee.phone || ''} readOnly className="bg-blue-700 border-blue-600 text-white" />
                   </div>
                   <div className="space-y-2">
                     <Label className="text-gray-300">Position</Label>
-                    <Input value={selectedEmployee.position || ''} readOnly className="bg-gray-800 border-gray-700 text-white" />
+                    <Input value={selectedEmployee.position || ''} readOnly className="bg-blue-700 border-blue-600 text-white" />
                   </div>
                   <div className="space-y-2">
                     <Label className="text-gray-300">Department</Label>
-                    <Input value={selectedEmployee.department || ''} readOnly className="bg-gray-800 border-gray-700 text-white" />
+                    <Input value={selectedEmployee.department || ''} readOnly className="bg-blue-700 border-blue-600 text-white" />
                   </div>
                   <div className="space-y-2">
                     <Label className="text-gray-300">Division</Label>
-                    <Input value={selectedEmployee.division || ''} readOnly className="bg-gray-800 border-gray-700 text-white" />
+                    <Input value={selectedEmployee.division || ''} readOnly className="bg-blue-700 border-blue-600 text-white" />
                   </div>
                   <div className="space-y-2">
                     <Label className="text-gray-300">Location</Label>
-                    <Input value={selectedEmployee.location || ''} readOnly className="bg-gray-800 border-gray-700 text-white" />
+                    <Input value={selectedEmployee.location || ''} readOnly className="bg-blue-700 border-blue-600 text-white" />
                   </div>
                   <div className="space-y-2">
                     <Label className="text-gray-300">Hire Date</Label>
-                    <Input value={new Date(selectedEmployee.hireDate).toLocaleDateString()} readOnly className="bg-gray-800 border-gray-700 text-white" />
+                    <Input value={new Date(selectedEmployee.hireDate).toLocaleDateString()} readOnly className="bg-blue-700 border-blue-600 text-white" />
                   </div>
                   <div className="space-y-2">
                     <Label className="text-gray-300">Status</Label>
@@ -1225,7 +1225,7 @@ export default function EmployeeManagement() {
               <TabsContent value="certificates" className="space-y-4">
                 <div className="space-y-2">
                   {getEmployeeCertificates(selectedEmployee.id).map((cert) => (
-                    <Card key={cert.id} className="bg-gray-800 border-gray-700">
+                    <Card key={cert.id} className="bg-blue-700 border-blue-600">
                       <CardContent className="p-4">
                         <div className="flex items-center justify-between">
                           <div>
@@ -1249,8 +1249,8 @@ export default function EmployeeManagement() {
                   
                   {getEmployeeCertificates(selectedEmployee.id).length === 0 && (
                     <div className="text-center py-8">
-                      <Award className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                      <p className="text-gray-400">No certificates found for this employee</p>
+                      <Award className="w-12 h-12 text-blue-300 mx-auto mb-4" />
+                      <p className="text-blue-300">No certificates found for this employee</p>
                     </div>
                   )}
                 </div>
@@ -1259,7 +1259,7 @@ export default function EmployeeManagement() {
               <TabsContent value="training" className="space-y-4">
                 <div className="space-y-2">
                   {getEmployeeTraining(selectedEmployee.id).map((training) => (
-                    <Card key={training.id} className="bg-gray-800 border-gray-700">
+                    <Card key={training.id} className="bg-blue-700 border-blue-600">
                       <CardContent className="p-4">
                         <div className="flex items-center justify-between">
                           <div>
@@ -1283,8 +1283,8 @@ export default function EmployeeManagement() {
                   
                   {getEmployeeTraining(selectedEmployee.id).length === 0 && (
                     <div className="text-center py-8">
-                      <Calendar className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                      <p className="text-gray-400">No training sessions found for this employee</p>
+                      <Calendar className="w-12 h-12 text-blue-300 mx-auto mb-4" />
+                      <p className="text-blue-300">No training sessions found for this employee</p>
                     </div>
                   )}
                 </div>

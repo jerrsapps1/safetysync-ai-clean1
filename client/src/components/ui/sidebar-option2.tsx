@@ -53,7 +53,7 @@ export function SidebarOption2({}: SidebarOption2Props) {
           <Link href="/">
             <div className="flex flex-col items-center cursor-pointer">
               <SafetySyncIcon size={40} />
-              <h1 className="text-xl font-bold text-gray-900 mt-2">SafetySync.AI</h1>
+              <h1 className="text-xl font-bold text-blue-800 mt-2">SafetySync.AI</h1>
               <p className="text-xs text-emerald-600 font-medium">OSHA Compliance Platform</p>
             </div>
           </Link>
@@ -67,15 +67,15 @@ export function SidebarOption2({}: SidebarOption2Props) {
               return (
                 <Link key={item.name} href={item.href}>
                   <a 
-                    className="flex items-start px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-white hover:shadow-md transition-all duration-200 group"
+                    className="flex items-start px-4 py-3 text-sm font-medium text-blue-600 rounded-xl hover:bg-white hover:shadow-md transition-all duration-200 group"
                     onClick={() => setIsOpen(false)}
                   >
                     <IconComponent className="w-5 h-5 mt-0.5 mr-3 text-emerald-600" />
                     <div className="flex-1">
-                      <div className="font-medium text-gray-900 group-hover:text-emerald-700">
+                      <div className="font-medium text-blue-800 group-hover:text-emerald-700">
                         {item.name}
                       </div>
-                      <div className="text-xs text-gray-500 mt-0.5">
+                      <div className="text-xs text-blue-400 mt-0.5">
                         {item.description}
                       </div>
                     </div>
@@ -90,7 +90,7 @@ export function SidebarOption2({}: SidebarOption2Props) {
         {/* Client Login Section */}
         <div className="absolute bottom-6 left-4 right-4">
           <div className="bg-white rounded-xl p-4 border border-emerald-200 shadow-sm">
-            <p className="text-xs text-gray-600 mb-3 text-center">
+            <p className="text-xs text-blue-500 mb-3 text-center">
               Already have an account?
             </p>
             <Link href="/client-portal">

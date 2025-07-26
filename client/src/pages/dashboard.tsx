@@ -240,7 +240,7 @@ export default function Dashboard() {
       case 'completed': return 'bg-green-100 text-green-800';
       case 'pending': return 'bg-yellow-100 text-yellow-800';
       case 'expired': return 'bg-red-100 text-red-800';
-      default: return 'bg-gray-100 text-gray-800';
+      default: return 'bg-gray-100 text-blue-700';
     }
   };
 
@@ -469,7 +469,7 @@ export default function Dashboard() {
                 {stats.complianceScore}%
               </div>
             </div>
-            <p className="text-sm text-gray-600 mt-2">
+            <p className="text-sm text-blue-500 mt-2">
               Excellent compliance! You're above industry average.
             </p>
           </CardContent>
@@ -544,14 +544,14 @@ export default function Dashboard() {
                     </div>
                     <div>
                       <p className="font-medium">Mike Chen's Hazard Communication training due in 15 days</p>
-                      <p className="text-sm text-gray-600">Yesterday</p>
+                      <p className="text-sm text-blue-500">Yesterday</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 p-3 bg-red-50 rounded-lg">
                     <AlertTriangle className="w-5 h-5 text-red-600" />
                     <div>
                       <p className="font-medium">Lisa Rodriguez's Fall Protection certification expired</p>
-                      <p className="text-sm text-gray-600">3 days ago</p>
+                      <p className="text-sm text-blue-500">3 days ago</p>
                     </div>
                   </div>
                 </div>
@@ -602,11 +602,11 @@ export default function Dashboard() {
                   <div className="border-t pt-3">
                     <h4 className="text-sm font-medium mb-2">AI Recommendations</h4>
                     <div className="space-y-2 text-xs">
-                      <p className="text-gray-600">• Upload missing practical evaluations for 3 forklift operators</p>
-                      <p className="text-gray-600">• Schedule annual evaluation uploads for respiratory protection training</p>
-                      <p className="text-gray-600">• Prioritize renewal for 3 expired fall protection certifications</p>
-                      <p className="text-gray-600">• Schedule mandatory safety meeting for Manufacturing team</p>
-                      <p className="text-gray-600">• Review incident reports from Q4 2024</p>
+                      <p className="text-blue-500">• Upload missing practical evaluations for 3 forklift operators</p>
+                      <p className="text-blue-500">• Schedule annual evaluation uploads for respiratory protection training</p>
+                      <p className="text-blue-500">• Prioritize renewal for 3 expired fall protection certifications</p>
+                      <p className="text-blue-500">• Schedule mandatory safety meeting for Manufacturing team</p>
+                      <p className="text-blue-500">• Review incident reports from Q4 2024</p>
                     </div>
                   </div>
                 </div>
@@ -627,7 +627,7 @@ export default function Dashboard() {
                     <div key={record.id} className="flex items-center justify-between p-3 border rounded-lg">
                       <div>
                         <p className="font-medium">{record.employeeName}</p>
-                        <p className="text-sm text-gray-600">{record.training}</p>
+                        <p className="text-sm text-blue-500">{record.training}</p>
                       </div>
                       <div className="text-right">
                         <p className="text-sm font-medium">{record.dueDate}</p>
@@ -741,7 +741,7 @@ export default function Dashboard() {
                         </div>
                         <div>
                           <p className="font-medium">{record.employeeName}</p>
-                          <p className="text-sm text-gray-600">{record.training}</p>
+                          <p className="text-sm text-blue-500">{record.training}</p>
                           <div className="flex items-center space-x-2 mt-1">
                             <Badge variant="outline" className="text-xs">OSHA 10</Badge>
                             <Badge variant="outline" className="text-xs">Safety Training</Badge>
@@ -750,7 +750,7 @@ export default function Dashboard() {
                       </div>
                       <div className="flex items-center gap-4">
                         <div className="text-center">
-                          <p className="text-xs text-gray-500">Documents</p>
+                          <p className="text-xs text-blue-400">Documents</p>
                           <div className="flex space-x-1 mt-1">
                             <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
                               <FileText className="w-3 h-3 text-blue-600" />
@@ -1046,7 +1046,7 @@ export default function Dashboard() {
                         <div className="flex items-start justify-between mb-4">
                           <div className="flex-1">
                             <h3 className="font-medium text-lg mb-2">{training.name}</h3>
-                            <div className="flex flex-wrap gap-4 text-sm text-gray-600 mb-3">
+                            <div className="flex flex-wrap gap-4 text-sm text-blue-500 mb-3">
                               <span className="flex items-center gap-1">
                                 <Clock className="w-3 h-3" />
                                 {training.duration}
@@ -1069,7 +1069,7 @@ export default function Dashboard() {
                             <div className="text-2xl font-bold text-blue-600 mb-1">
                               {training.completed}/{training.enrolled}
                             </div>
-                            <div className="text-sm text-gray-600">Completed</div>
+                            <div className="text-sm text-blue-500">Completed</div>
                           </div>
                         </div>
                         
@@ -1086,7 +1086,7 @@ export default function Dashboard() {
                             {training.syllabus.map((item, idx) => (
                               <div key={idx} className="flex items-start gap-2 text-sm">
                                 <CheckCircle className="w-3 h-3 text-green-600 mt-0.5 flex-shrink-0" />
-                                <span className="text-gray-700">{item}</span>
+                                <span className="text-blue-600">{item}</span>
                               </div>
                             ))}
                           </div>
@@ -1148,10 +1148,10 @@ export default function Dashboard() {
                             {item.type}
                           </Badge>
                         </div>
-                        <h5 className="font-medium text-sm mb-2 text-gray-900">
+                        <h5 className="font-medium text-sm mb-2 text-blue-800">
                           {item.training}
                         </h5>
-                        <div className="space-y-1 text-xs text-gray-600">
+                        <div className="space-y-1 text-xs text-blue-500">
                           <div className="flex items-center gap-1">
                             <Users className="w-3 h-3" />
                             <span>{item.audience}</span>
@@ -1261,13 +1261,13 @@ export default function Dashboard() {
                         <div className="flex items-start justify-between mb-4">
                           <div>
                             <h3 className="font-medium text-lg">{location.name}</h3>
-                            <div className="flex items-center text-sm text-gray-600 mt-1">
+                            <div className="flex items-center text-sm text-blue-500 mt-1">
                               <MapPin className="w-3 h-3 mr-1" />
                               {location.address}
                             </div>
                           </div>
                           <Badge 
-                            className={location.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}
+                            className={location.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-blue-700'}
                           >
                             {location.status}
                           </Badge>
@@ -1275,20 +1275,20 @@ export default function Dashboard() {
                         
                         <div className="space-y-3">
                           <div className="flex justify-between">
-                            <span className="text-sm text-gray-600">Employees</span>
+                            <span className="text-sm text-blue-500">Employees</span>
                             <span className="font-medium">{location.employees}</span>
                           </div>
                           
                           <div className="space-y-1">
                             <div className="flex justify-between">
-                              <span className="text-sm text-gray-600">Compliance Score</span>
+                              <span className="text-sm text-blue-500">Compliance Score</span>
                               <span className="font-medium">{location.compliance}%</span>
                             </div>
                             <Progress value={location.compliance} className="h-2" />
                           </div>
                           
                           <div className="flex justify-between">
-                            <span className="text-sm text-gray-600">Manager</span>
+                            <span className="text-sm text-blue-500">Manager</span>
                             <span className="font-medium">{location.manager}</span>
                           </div>
                         </div>
@@ -1316,19 +1316,19 @@ export default function Dashboard() {
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                       <div className="text-center p-4 bg-blue-50 rounded-lg">
                         <p className="text-2xl font-bold text-blue-600">3</p>
-                        <p className="text-sm text-gray-600">Total Locations</p>
+                        <p className="text-sm text-blue-500">Total Locations</p>
                       </div>
                       <div className="text-center p-4 bg-green-50 rounded-lg">
                         <p className="text-2xl font-bold text-green-600">205</p>
-                        <p className="text-sm text-gray-600">Total Employees</p>
+                        <p className="text-sm text-blue-500">Total Employees</p>
                       </div>
                       <div className="text-center p-4 bg-orange-50 rounded-lg">
                         <p className="text-2xl font-bold text-orange-600">91%</p>
-                        <p className="text-sm text-gray-600">Avg Compliance</p>
+                        <p className="text-sm text-blue-500">Avg Compliance</p>
                       </div>
                       <div className="text-center p-4 bg-purple-50 rounded-lg">
                         <p className="text-2xl font-bold text-purple-600">12</p>
-                        <p className="text-sm text-gray-600">Pending Items</p>
+                        <p className="text-sm text-blue-500">Pending Items</p>
                       </div>
                     </div>
                   </CardContent>
@@ -1353,7 +1353,7 @@ export default function Dashboard() {
                   <Card>
                     <CardContent className="p-4">
                       <h3 className="font-medium mb-2">Monthly Compliance Report</h3>
-                      <p className="text-sm text-gray-600 mb-4">
+                      <p className="text-sm text-blue-500 mb-4">
                         Comprehensive overview of all training and certifications
                       </p>
                       <Button className="w-full">
@@ -1366,7 +1366,7 @@ export default function Dashboard() {
                   <Card>
                     <CardContent className="p-4">
                       <h3 className="font-medium mb-2">Employee Training Summary</h3>
-                      <p className="text-sm text-gray-600 mb-4">
+                      <p className="text-sm text-blue-500 mb-4">
                         Individual employee training records and certificates
                       </p>
                       <Button variant="outline" className="w-full">
@@ -1379,7 +1379,7 @@ export default function Dashboard() {
                   <Card>
                     <CardContent className="p-4">
                       <h3 className="font-medium mb-2">Audit Preparation</h3>
-                      <p className="text-sm text-gray-600 mb-4">
+                      <p className="text-sm text-blue-500 mb-4">
                         Complete documentation package for OSHA audits
                       </p>
                       <Button variant="outline" className="w-full">
@@ -1392,7 +1392,7 @@ export default function Dashboard() {
                   <Card>
                     <CardContent className="p-4">
                       <h3 className="font-medium mb-2">Custom Report</h3>
-                      <p className="text-sm text-gray-600 mb-4">
+                      <p className="text-sm text-blue-500 mb-4">
                         Build custom reports with specific criteria
                       </p>
                       <Button variant="outline" className="w-full">
@@ -1482,8 +1482,8 @@ export default function Dashboard() {
                   <div className="flex items-center space-x-4">
                     <div className="w-24 h-24 bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center">
                       <div className="text-center">
-                        <Palette className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                        <p className="text-xs text-gray-500">Current Logo</p>
+                        <Palette className="w-8 h-8 text-blue-300 mx-auto mb-2" />
+                        <p className="text-xs text-blue-400">Current Logo</p>
                       </div>
                     </div>
                     <div className="space-y-2">
@@ -1500,7 +1500,7 @@ export default function Dashboard() {
                         <Upload className="w-4 h-4 mr-2" />
                         Upload Logo
                       </Button>
-                      <p className="text-xs text-gray-500">PNG, JPG, SVG up to 2MB</p>
+                      <p className="text-xs text-blue-400">PNG, JPG, SVG up to 2MB</p>
                     </div>
                   </div>
                 </div>
@@ -1604,10 +1604,10 @@ export default function Dashboard() {
                         </div>
                         <div>
                           <h4 className="font-medium">Your Company</h4>
-                          <p className="text-sm text-gray-600">SafetySync.AI Platform</p>
+                          <p className="text-sm text-blue-500">SafetySync.AI Platform</p>
                         </div>
                       </div>
-                      <p className="text-sm text-gray-700">This is how your branded interface will look to users.</p>
+                      <p className="text-sm text-blue-600">This is how your branded interface will look to users.</p>
                     </div>
                   </div>
                 </div>
@@ -1794,7 +1794,7 @@ export default function Dashboard() {
                             value="ACME Corp"
                             readOnly
                           />
-                          <p className="text-xs text-gray-500">Auto-filled from company profile</p>
+                          <p className="text-xs text-blue-400">Auto-filled from company profile</p>
                         </div>
                         
                         <div className="flex gap-2">
@@ -1806,7 +1806,7 @@ export default function Dashboard() {
                             <Eye className="w-4 h-4" />
                           </Button>
                         </div>
-                        <p className="text-xs text-gray-500 mt-2">
+                        <p className="text-xs text-blue-400 mt-2">
                           *Plan-specific allowances: Essential (15), Professional (50), Enterprise (100), Enterprise Plus (250). Additional certificates: $5.95 each, automatically billed to monthly subscription. Instructors can add EM 385-1-1 references themselves when generating certificates.
                         </p>
                       </div>
@@ -1876,7 +1876,7 @@ export default function Dashboard() {
                             value="ACME Corp"
                             readOnly
                           />
-                          <p className="text-xs text-gray-500">Auto-filled from company profile</p>
+                          <p className="text-xs text-blue-400">Auto-filled from company profile</p>
                         </div>
                         
                         <div className="space-y-2">
@@ -1901,7 +1901,7 @@ export default function Dashboard() {
                             <input type="checkbox" id="multi-card" className="rounded border-gray-300" />
                             <label htmlFor="multi-card" className="text-sm font-medium">Generate additional cards if equipment list exceeds space</label>
                           </div>
-                          <p className="text-xs text-gray-500">
+                          <p className="text-xs text-blue-400">
                             When checked, equipment will automatically continue on additional digital cards if the list is too long for one card. 
                             Each additional card: $5.95.
                           </p>
@@ -1916,7 +1916,7 @@ export default function Dashboard() {
                             <Eye className="w-4 h-4" />
                           </Button>
                         </div>
-                        <p className="text-xs text-gray-500 mt-2">
+                        <p className="text-xs text-blue-400 mt-2">
                           *Plan-specific allowances: Essential (15), Professional (50), Enterprise (100), Enterprise Plus (250). Additional cards: $5.95 each, automatically billed to monthly subscription. Instructors can add EM 385-1-1 references themselves when generating cards.
                         </p>
                       </div>
@@ -1993,7 +1993,7 @@ export default function Dashboard() {
                             </div>
                           </div>
                         </div>
-                        <div className="text-xs text-gray-500 text-center">
+                        <div className="text-xs text-blue-400 text-center">
                           CR80 Format (3.375" x 2.125") - Optimized for 30mil PVC Cards
                         </div>
                       </div>
@@ -2022,12 +2022,12 @@ export default function Dashboard() {
                             <div className={`w-3 h-3 rounded-full ${order.status === 'Completed' ? 'bg-green-500' : 'bg-yellow-500'}`} />
                             <div>
                               <div className="font-medium">{order.type} - {order.employee}</div>
-                              <div className="text-sm text-gray-600">{order.training}</div>
+                              <div className="text-sm text-blue-500">{order.training}</div>
                             </div>
                           </div>
                           <div className="text-right">
                             <div className="font-medium">{order.cost}</div>
-                            <div className="text-sm text-gray-600">{order.date}</div>
+                            <div className="text-sm text-blue-500">{order.date}</div>
                           </div>
                         </div>
                       ))}
@@ -2057,7 +2057,7 @@ export default function Dashboard() {
                       Launch Safety Trends Dashboard
                     </Button>
                   </Link>
-                  <p className="text-sm text-gray-400 mt-3 text-center">
+                  <p className="text-sm text-blue-300 mt-3 text-center">
                     Access comprehensive safety trend analysis, real-time metrics, and AI-powered insights
                   </p>
                 </div>

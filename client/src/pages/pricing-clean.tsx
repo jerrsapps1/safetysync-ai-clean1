@@ -21,10 +21,10 @@ export default function PricingPage() {
               Back to Home
             </Button>
           </Link>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-blue-800 mb-6">
             Simple, Transparent Pricing
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-blue-500 max-w-3xl mx-auto mb-8">
             Choose the perfect plan for your organization. All plans include our core compliance features 
             with a 30-day free trial and no setup fees.
           </p>
@@ -34,8 +34,8 @@ export default function PricingPage() {
         <section className="mb-20">
           <div className="text-center">
             <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-8 max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Professional Certificate & Digital Card Services</h2>
-              <p className="text-xl text-gray-600 mb-6">
+              <h2 className="text-3xl font-bold text-blue-800 mb-4">Professional Certificate & Digital Card Services</h2>
+              <p className="text-xl text-blue-500 mb-6">
                 Generate high-quality OSHA-compliant certificates and digital wallet cards with plan-specific allowances
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -210,15 +210,15 @@ cron.schedule('0 9 1 * *', async () => {
               <Code className="w-8 h-8 text-blue-600" />
             </div>
           </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl font-bold text-blue-800 mb-4">
             SafetySync.AI Developer Portal
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-blue-500 max-w-3xl mx-auto mb-8">
             Build powerful OSHA compliance integrations with our comprehensive API, SDKs, and developer tools.
             Automate safety management across your entire technology stack.
           </p>
           
-          <div className="flex justify-center items-center gap-8 text-sm text-gray-500">
+          <div className="flex justify-center items-center gap-8 text-sm text-blue-400">
             <div className="flex items-center gap-2">
               <Shield className="w-4 h-4 text-green-500" />
               <span>Enterprise Security</span>
@@ -257,7 +257,7 @@ cron.schedule('0 9 1 * *', async () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-gray-600 mb-4">
+                  <p className="text-sm text-blue-500 mb-4">
                     Generate your API key from your dashboard to authenticate requests.
                   </p>
                   <Button className="w-full">
@@ -274,10 +274,10 @@ cron.schedule('0 9 1 * *', async () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-gray-600 mb-4">
+                  <p className="text-sm text-blue-500 mb-4">
                     Choose from our official SDKs for popular programming languages.
                   </p>
-                  <div className="bg-gray-900 text-green-400 p-2 rounded text-xs">
+                  <div className="bg-blue-800 text-green-400 p-2 rounded text-xs">
                     npm install safetysync-api
                   </div>
                 </CardContent>
@@ -291,7 +291,7 @@ cron.schedule('0 9 1 * *', async () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-gray-600 mb-4">
+                  <p className="text-sm text-blue-500 mb-4">
                     Test your integration with a simple API call to list employees.
                   </p>
                   <Button variant="outline" className="w-full">
@@ -352,15 +352,15 @@ cron.schedule('0 9 1 * *', async () => {
                 <CardContent className="space-y-3">
                   <a href="#" className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                     <h4 className="font-medium">API Reference</h4>
-                    <p className="text-sm text-gray-600">Complete endpoint documentation with examples</p>
+                    <p className="text-sm text-blue-500">Complete endpoint documentation with examples</p>
                   </a>
                   <a href="#" className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                     <h4 className="font-medium">Authentication Guide</h4>
-                    <p className="text-sm text-gray-600">Learn about API keys, JWT tokens, and security</p>
+                    <p className="text-sm text-blue-500">Learn about API keys, JWT tokens, and security</p>
                   </a>
                   <a href="#" className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                     <h4 className="font-medium">Webhook Documentation</h4>
-                    <p className="text-sm text-gray-600">Set up real-time event notifications</p>
+                    <p className="text-sm text-blue-500">Set up real-time event notifications</p>
                   </a>
                 </CardContent>
               </Card>
@@ -375,15 +375,15 @@ cron.schedule('0 9 1 * *', async () => {
                 <CardContent className="space-y-3">
                   <a href="#" className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                     <h4 className="font-medium">GitHub Repository</h4>
-                    <p className="text-sm text-gray-600">Sample applications and integration examples</p>
+                    <p className="text-sm text-blue-500">Sample applications and integration examples</p>
                   </a>
                   <a href="#" className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                     <h4 className="font-medium">Postman Collection</h4>
-                    <p className="text-sm text-gray-600">Ready-to-use API calls for testing</p>
+                    <p className="text-sm text-blue-500">Ready-to-use API calls for testing</p>
                   </a>
                   <a href="#" className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                     <h4 className="font-medium">Integration Templates</h4>
-                    <p className="text-sm text-gray-600">Common integration patterns and workflows</p>
+                    <p className="text-sm text-blue-500">Common integration patterns and workflows</p>
                   </a>
                 </CardContent>
               </Card>
@@ -397,7 +397,7 @@ cron.schedule('0 9 1 * *', async () => {
           <TabsContent value="sdks" className="space-y-6">
             <div className="text-center mb-8">
               <h2 className="text-2xl font-bold mb-4">Official SDKs & Libraries</h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
+              <p className="text-blue-500 max-w-2xl mx-auto">
                 Use our official SDKs to integrate SafetySync.AI into your applications with minimal code.
                 All SDKs are open source and actively maintained.
               </p>
@@ -433,7 +433,7 @@ cron.schedule('0 9 1 * *', async () => {
               <CardContent className="space-y-4">
                 <div>
                   <h4 className="font-medium mb-2">Installation</h4>
-                  <div className="bg-gray-900 text-green-400 p-3 rounded-lg">
+                  <div className="bg-blue-800 text-green-400 p-3 rounded-lg">
                     <code>{sdkLibraries.find(lib => lib.id === selectedLibrary)?.install}</code>
                   </div>
                 </div>
@@ -441,7 +441,7 @@ cron.schedule('0 9 1 * *', async () => {
                 <div>
                   <h4 className="font-medium mb-2">Example Usage</h4>
                   <div className="bg-gray-50 p-4 rounded-lg overflow-x-auto">
-                    <pre className="text-sm text-gray-700">
+                    <pre className="text-sm text-blue-600">
                       {sdkLibraries.find(lib => lib.id === selectedLibrary)?.example}
                     </pre>
                   </div>
@@ -464,7 +464,7 @@ cron.schedule('0 9 1 * *', async () => {
           <TabsContent value="integrations" className="space-y-6">
             <div className="text-center mb-8">
               <h2 className="text-2xl font-bold mb-4">Integration Examples</h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
+              <p className="text-blue-500 max-w-2xl mx-auto">
                 Common integration patterns to help you get started quickly with SafetySync.AI.
               </p>
             </div>
@@ -482,7 +482,7 @@ cron.schedule('0 9 1 * *', async () => {
                     <CardDescription>{integration.description}</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                    <div className="flex items-center gap-2 text-sm text-blue-500">
                       <Clock className="w-4 h-4" />
                       <span>{integration.time}</span>
                     </div>
@@ -496,7 +496,7 @@ cron.schedule('0 9 1 * *', async () => {
                     </div>
                     
                     <div className="bg-gray-50 p-3 rounded-lg">
-                      <pre className="text-xs text-gray-700 overflow-x-auto">
+                      <pre className="text-xs text-blue-600 overflow-x-auto">
                         {integration.example}
                       </pre>
                     </div>
@@ -550,7 +550,7 @@ cron.schedule('0 9 1 * *', async () => {
           <TabsContent value="status" className="space-y-6">
             <div className="text-center mb-8">
               <h2 className="text-2xl font-bold mb-4">API Status Dashboard</h2>
-              <p className="text-gray-600">
+              <p className="text-blue-500">
                 Real-time status and performance metrics for SafetySync.AI API services
               </p>
             </div>
@@ -562,7 +562,7 @@ cron.schedule('0 9 1 * *', async () => {
                     <CheckCircle className="w-8 h-8 text-green-500" />
                   </div>
                   <h3 className="font-semibold text-green-700">All Systems Operational</h3>
-                  <p className="text-sm text-gray-600">99.9% Uptime</p>
+                  <p className="text-sm text-blue-500">99.9% Uptime</p>
                 </CardContent>
               </Card>
               
@@ -570,7 +570,7 @@ cron.schedule('0 9 1 * *', async () => {
                 <CardContent className="p-4 text-center">
                   <div className="text-2xl font-bold text-blue-600 mb-1">156ms</div>
                   <h3 className="font-medium">Avg Response Time</h3>
-                  <p className="text-sm text-gray-600">Last 24 hours</p>
+                  <p className="text-sm text-blue-500">Last 24 hours</p>
                 </CardContent>
               </Card>
               
@@ -578,7 +578,7 @@ cron.schedule('0 9 1 * *', async () => {
                 <CardContent className="p-4 text-center">
                   <div className="text-2xl font-bold text-purple-600 mb-1">1.2M</div>
                   <h3 className="font-medium">API Calls Today</h3>
-                  <p className="text-sm text-gray-600">+12% from yesterday</p>
+                  <p className="text-sm text-blue-500">+12% from yesterday</p>
                 </CardContent>
               </Card>
               
@@ -586,7 +586,7 @@ cron.schedule('0 9 1 * *', async () => {
                 <CardContent className="p-4 text-center">
                   <div className="text-2xl font-bold text-orange-600 mb-1">0</div>
                   <h3 className="font-medium">Active Incidents</h3>
-                  <p className="text-sm text-gray-600">Last 30 days</p>
+                  <p className="text-sm text-blue-500">Last 30 days</p>
                 </CardContent>
               </Card>
             </div>
@@ -610,7 +610,7 @@ cron.schedule('0 9 1 * *', async () => {
                         <Badge variant="outline" className="text-green-700 border-green-300">
                           Operational
                         </Badge>
-                        <span className="text-sm text-gray-600">{endpoint.latency}</span>
+                        <span className="text-sm text-blue-500">{endpoint.latency}</span>
                       </div>
                     </div>
                   ))}
@@ -628,24 +628,24 @@ cron.schedule('0 9 1 * *', async () => {
                     <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
                     <div>
                       <p className="font-medium">API v2025.1 Released</p>
-                      <p className="text-sm text-gray-600">New webhook events and improved rate limiting</p>
-                      <p className="text-xs text-gray-500">2 hours ago</p>
+                      <p className="text-sm text-blue-500">New webhook events and improved rate limiting</p>
+                      <p className="text-xs text-blue-400">2 hours ago</p>
                     </div>
                   </div>
                   <div className="flex gap-3">
                     <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
                     <div>
                       <p className="font-medium">Maintenance Window Completed</p>
-                      <p className="text-sm text-gray-600">Database performance optimizations applied</p>
-                      <p className="text-xs text-gray-500">1 day ago</p>
+                      <p className="text-sm text-blue-500">Database performance optimizations applied</p>
+                      <p className="text-xs text-blue-400">1 day ago</p>
                     </div>
                   </div>
                   <div className="flex gap-3">
                     <div className="w-2 h-2 bg-purple-500 rounded-full mt-2"></div>
                     <div>
                       <p className="font-medium">New SDK Released</p>
-                      <p className="text-sm text-gray-600">Python SDK v2.1.0 with async support</p>
-                      <p className="text-xs text-gray-500">3 days ago</p>
+                      <p className="text-sm text-blue-500">Python SDK v2.1.0 with async support</p>
+                      <p className="text-xs text-blue-400">3 days ago</p>
                     </div>
                   </div>
                 </div>

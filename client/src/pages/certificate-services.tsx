@@ -180,11 +180,11 @@ export default function CertificateServicesPage() {
               <div className="p-4">
                 <div className="flex items-center mb-3">
                   <div className="w-8 h-8 bg-gray-200 rounded border mr-3 flex items-center justify-center">
-                    <span className="text-xs text-gray-500">LOGO</span>
+                    <span className="text-xs text-blue-400">LOGO</span>
                   </div>
                   <div>
                     <div className="font-bold text-lg">Michael Torres</div>
-                    <div className="text-sm text-gray-600">Heavy Equipment Operator</div>
+                    <div className="text-sm text-blue-500">Heavy Equipment Operator</div>
                   </div>
                 </div>
                 
@@ -198,7 +198,7 @@ export default function CertificateServicesPage() {
                   </div>
                 </div>
                 
-                <div className="text-xs text-gray-500 border-t pt-2">
+                <div className="text-xs text-blue-400 border-t pt-2">
                   <div>Certified: 07/09/2025 | Expires: 07/09/2028</div>
                   <div>Sarah Mitchell, CSP | SafetySync.AI</div>
                 </div>
@@ -228,7 +228,7 @@ export default function CertificateServicesPage() {
                   </div>
                 </div>
                 
-                <div className="text-xs text-gray-500 border-t pt-2">
+                <div className="text-xs text-blue-400 border-t pt-2">
                   <div>Training compliant with OSHA 29 CFR 1910.178,</div>
                   <div>1926.453, 1926.602, ANSI/ITSDF B56.1,</div>
                   <div>and ANSI A92 standards</div>
@@ -247,11 +247,11 @@ export default function CertificateServicesPage() {
               <div className="p-4">
                 <div className="flex items-center mb-3">
                   <div className="w-8 h-8 bg-gray-200 rounded border mr-3 flex items-center justify-center">
-                    <span className="text-xs text-gray-500">LOGO</span>
+                    <span className="text-xs text-blue-400">LOGO</span>
                   </div>
                   <div>
                     <div className="font-bold text-lg">David Chen</div>
-                    <div className="text-sm text-gray-600">Construction Safety Specialist</div>
+                    <div className="text-sm text-blue-500">Construction Safety Specialist</div>
                   </div>
                 </div>
                 
@@ -266,7 +266,7 @@ export default function CertificateServicesPage() {
                   </div>
                 </div>
                 
-                <div className="text-xs text-gray-500 border-t pt-2">
+                <div className="text-xs text-blue-400 border-t pt-2">
                   <div>Certified: 07/09/2025 | Expires: 07/09/2026</div>
                   <div>Lisa Adams, CSP | SafetySync.AI</div>
                 </div>

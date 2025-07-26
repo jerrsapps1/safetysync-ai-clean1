@@ -212,11 +212,11 @@ export default function EmployeePortal() {
       case 'expiring': return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30';
       case 'completed': return 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30';
       case 'in-progress': return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
-      case 'pending': return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
+      case 'pending': return 'bg-blue-400/20 text-blue-300 border-blue-400/30';
       case 'enrolled': return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
       case 'required': return 'bg-red-500/20 text-red-400 border-red-500/30';
       case 'optional': return 'bg-purple-500/20 text-purple-400 border-purple-500/30';
-      default: return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
+      default: return 'bg-blue-400/20 text-blue-300 border-blue-400/30';
     }
   };
 
@@ -252,7 +252,7 @@ export default function EmployeePortal() {
             <SafetySyncIcon size={32} className="rounded-lg" />
             Employee Portal
           </h2>
-          <p className="text-gray-400">Self-service portal for employees to manage their safety training and certifications</p>
+          <p className="text-blue-300">Self-service portal for employees to manage their safety training and certifications</p>
           <p className="text-blue-300 text-sm mt-1">
             👤 Welcome back, {profile.name} • {profile.department}
           </p>
@@ -262,7 +262,7 @@ export default function EmployeePortal() {
             <Bell className="w-4 h-4 mr-2" />
             Notifications
           </Button>
-          <Button className="bg-gray-500 hover:bg-gray-600 text-white">
+          <Button className="bg-blue-400 hover:bg-blue-500 text-white">
             <Settings className="w-4 h-4 mr-2" />
             Settings
           </Button>
@@ -271,7 +271,7 @@ export default function EmployeePortal() {
 
       {/* Main Content Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="relative z-10">
-        <TabsList className="grid w-full grid-cols-5 bg-black/20 backdrop-blur-sm border-gray-800">
+        <TabsList className="grid w-full grid-cols-5 bg-black/20 backdrop-blur-sm border-blue-700">
           <TabsTrigger 
             value="dashboard" 
             className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
@@ -312,11 +312,11 @@ export default function EmployeePortal() {
         <TabsContent value="dashboard" className="space-y-6">
           {/* Dashboard Overview */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+            <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-gray-400 text-sm">Active Certifications</p>
+                    <p className="text-blue-300 text-sm">Active Certifications</p>
                     <p className="text-2xl font-bold text-white">{activeCertifications}</p>
                     <p className="text-green-400 text-sm">Current & Valid</p>
                   </div>
@@ -325,11 +325,11 @@ export default function EmployeePortal() {
               </CardContent>
             </Card>
 
-            <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+            <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-gray-400 text-sm">Expiring Soon</p>
+                    <p className="text-blue-300 text-sm">Expiring Soon</p>
                     <p className="text-2xl font-bold text-white">{expiringCertifications}</p>
                     <p className="text-yellow-400 text-sm">Next 30 days</p>
                   </div>
@@ -338,11 +338,11 @@ export default function EmployeePortal() {
               </CardContent>
             </Card>
 
-            <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+            <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-gray-400 text-sm">Completed Training</p>
+                    <p className="text-blue-300 text-sm">Completed Training</p>
                     <p className="text-2xl font-bold text-white">{completedTrainings}</p>
                     <p className="text-blue-400 text-sm">Programs</p>
                   </div>
@@ -351,11 +351,11 @@ export default function EmployeePortal() {
               </CardContent>
             </Card>
 
-            <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+            <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-gray-400 text-sm">Training Hours</p>
+                    <p className="text-blue-300 text-sm">Training Hours</p>
                     <p className="text-2xl font-bold text-white">{totalTrainingHours}</p>
                     <p className="text-purple-400 text-sm">Total Hours</p>
                   </div>
@@ -367,19 +367,19 @@ export default function EmployeePortal() {
 
           {/* Recent Activity & Upcoming */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+            <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
               <CardHeader>
                 <CardTitle className="text-white">Recent Activity</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   {trainingRecords.slice(0, 3).map((record) => (
-                    <div key={record.id} className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
+                    <div key={record.id} className="flex items-center justify-between p-3 bg-blue-700/50 rounded-lg">
                       <div className="flex items-center space-x-3">
                         <CheckCircle className="w-5 h-5 text-green-400" />
                         <div>
                           <p className="text-white font-medium">{record.name}</p>
-                          <p className="text-gray-400 text-sm">{record.completionDate}</p>
+                          <p className="text-blue-300 text-sm">{record.completionDate}</p>
                         </div>
                       </div>
                       <Badge className={getStatusColor(record.status)}>
@@ -391,19 +391,19 @@ export default function EmployeePortal() {
               </CardContent>
             </Card>
 
-            <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+            <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
               <CardHeader>
                 <CardTitle className="text-white">Upcoming Training</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   {upcomingTraining.slice(0, 3).map((training) => (
-                    <div key={training.id} className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
+                    <div key={training.id} className="flex items-center justify-between p-3 bg-blue-700/50 rounded-lg">
                       <div className="flex items-center space-x-3">
                         <Calendar className="w-5 h-5 text-blue-400" />
                         <div>
                           <p className="text-white font-medium">{training.name}</p>
-                          <p className="text-gray-400 text-sm">{training.date} at {training.time}</p>
+                          <p className="text-blue-300 text-sm">{training.date} at {training.time}</p>
                         </div>
                       </div>
                       <Badge className={getStatusColor(training.status)}>
@@ -420,12 +420,12 @@ export default function EmployeePortal() {
         <TabsContent value="certifications" className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {certifications.map((cert) => (
-              <Card key={cert.id} className="bg-black/20 backdrop-blur-sm border-gray-800">
+              <Card key={cert.id} className="bg-black/20 backdrop-blur-sm border-blue-700">
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div>
                       <CardTitle className="text-white">{cert.name}</CardTitle>
-                      <CardDescription className="text-gray-400">
+                      <CardDescription className="text-blue-300">
                         {cert.certificateNumber} • {cert.instructor}
                       </CardDescription>
                     </div>
@@ -465,12 +465,12 @@ export default function EmployeePortal() {
         <TabsContent value="training" className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {trainingRecords.map((record) => (
-              <Card key={record.id} className="bg-black/20 backdrop-blur-sm border-gray-800">
+              <Card key={record.id} className="bg-black/20 backdrop-blur-sm border-blue-700">
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div>
                       <CardTitle className="text-white">{record.name}</CardTitle>
-                      <CardDescription className="text-gray-400">
+                      <CardDescription className="text-blue-300">
                         {record.instructor} • {record.hours} hours
                       </CardDescription>
                     </div>
@@ -496,7 +496,7 @@ export default function EmployeePortal() {
                   {record.score && (
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="text-gray-400 text-sm">Performance</span>
+                        <span className="text-blue-300 text-sm">Performance</span>
                         <span className="text-white font-medium">{record.score}%</span>
                       </div>
                       <Progress value={record.score} className="h-2" />
@@ -511,12 +511,12 @@ export default function EmployeePortal() {
         <TabsContent value="schedule" className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {upcomingTraining.map((training) => (
-              <Card key={training.id} className="bg-black/20 backdrop-blur-sm border-gray-800">
+              <Card key={training.id} className="bg-black/20 backdrop-blur-sm border-blue-700">
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div>
                       <CardTitle className="text-white">{training.name}</CardTitle>
-                      <CardDescription className="text-gray-400">
+                      <CardDescription className="text-blue-300">
                         {training.instructor} • {training.duration} hours
                       </CardDescription>
                     </div>
@@ -560,10 +560,10 @@ export default function EmployeePortal() {
         </TabsContent>
 
         <TabsContent value="profile" className="space-y-6">
-          <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+          <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
             <CardHeader>
               <CardTitle className="text-white">Employee Profile</CardTitle>
-              <CardDescription className="text-gray-400">
+              <CardDescription className="text-blue-300">
                 View and update your personal information
               </CardDescription>
             </CardHeader>
@@ -576,7 +576,7 @@ export default function EmployeePortal() {
                     </div>
                     <div>
                       <h3 className="text-white font-semibold text-lg">{profile.name}</h3>
-                      <p className="text-gray-400">{profile.position}</p>
+                      <p className="text-blue-300">{profile.position}</p>
                     </div>
                   </div>
                   

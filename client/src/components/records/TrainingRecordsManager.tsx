@@ -62,7 +62,7 @@ export default function TrainingRecordsManager() {
             <SafetySyncIcon size={32} className="rounded-lg" />
             Training Records
           </h2>
-          <p className="text-gray-400">Comprehensive training session documentation and tracking</p>
+          <p className="text-blue-300">Comprehensive training session documentation and tracking</p>
           <p className="text-blue-300 text-sm mt-1">
             📋 Complete audit trail for compliance documentation and certificate tracking
           </p>
@@ -71,9 +71,9 @@ export default function TrainingRecordsManager() {
 
       {/* Content area - empty for now */}
       <div className="relative z-10">
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-8 text-center">
-            <div className="text-gray-400">
+            <div className="text-blue-300">
               <p className="text-lg">Training Records page content removed.</p>
               <p className="text-sm mt-2">Ready for new implementation.</p>
             </div>

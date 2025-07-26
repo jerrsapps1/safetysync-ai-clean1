@@ -1107,7 +1107,7 @@ This document serves as an official attendance record for the training session.`
                     Create File
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="max-w-2xl bg-gray-800 border-gray-700" aria-describedby="create-file-description">
+                <DialogContent className="max-w-2xl bg-blue-700 border-blue-600" aria-describedby="create-file-description">
                   <DialogHeader>
                     <DialogTitle className="text-white">Create Training File</DialogTitle>
                   </DialogHeader>
@@ -1121,7 +1121,7 @@ This document serves as an official attendance record for the training session.`
                           type="date"
                           value={uploadData.trainingDate}
                           onChange={(e) => setUploadData(prev => ({ ...prev, trainingDate: e.target.value }))}
-                          className="bg-gray-700 border-gray-600 text-white"
+                          className="bg-blue-600 border-blue-500 text-white"
                         />
                       </div>
                       <div>
@@ -1131,7 +1131,7 @@ This document serves as an official attendance record for the training session.`
                           value={uploadData.description}
                           onChange={(e) => setUploadData(prev => ({ ...prev, description: e.target.value }))}
                           placeholder="e.g., Forklift Safety Training, Fire Drill Session"
-                          className="bg-gray-700 border-gray-600 text-white"
+                          className="bg-blue-600 border-blue-500 text-white"
                         />
                       </div>
                     </div>
@@ -1162,16 +1162,16 @@ This document serves as an official attendance record for the training session.`
                         <Label className="text-white">File Previews ({previewFiles.length} files selected)</Label>
                         <div className="max-h-64 overflow-y-auto space-y-2">
                           {previewFiles.map((fileData, index) => (
-                            <Card key={index} className="bg-gray-700/50 border-gray-600">
+                            <Card key={index} className="bg-blue-600/50 border-blue-500">
                               <CardContent className="p-4">
                                 <div className="flex items-start justify-between">
                                   <div className="flex-1">
                                     <div className="flex items-center gap-2 mb-2">
                                       <FileText className="w-4 h-4 text-blue-400" />
                                       <span className="text-white font-medium">{fileData.file.name}</span>
-                                      <span className="text-gray-400 text-sm">({formatFileSize(fileData.file.size)})</span>
+                                      <span className="text-blue-300 text-sm">({formatFileSize(fileData.file.size)})</span>
                                     </div>
-                                    <div className="text-gray-300 text-sm bg-gray-800 p-2 rounded max-h-20 overflow-y-auto font-mono">
+                                    <div className="text-gray-300 text-sm bg-blue-700 p-2 rounded max-h-20 overflow-y-auto font-mono">
                                       {fileData.content}
                                     </div>
                                   </div>
@@ -1180,7 +1180,7 @@ This document serves as an official attendance record for the training session.`
                                       size="sm"
                                       variant="outline"
                                       onClick={() => window.open(fileData.blob, '_blank')}
-                                      className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                                      className="border-blue-500 text-gray-300 hover:bg-blue-600"
                                     >
                                       <Download className="w-3 h-3" />
                                     </Button>
@@ -1188,7 +1188,7 @@ This document serves as an official attendance record for the training session.`
                                       size="sm"
                                       variant="outline"
                                       onClick={() => window.print()}
-                                      className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                                      className="border-blue-500 text-gray-300 hover:bg-blue-600"
                                     >
                                       <Printer className="w-3 h-3" />
                                     </Button>
@@ -1211,7 +1211,7 @@ This document serves as an official attendance record for the training session.`
                           setPreviewFiles([]);
                           setUploadData({ trainingDate: '', description: '' });
                         }}
-                        className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                        className="border-blue-500 text-gray-300 hover:bg-blue-600"
                       >
                         Cancel
                       </Button>
@@ -1234,35 +1234,35 @@ This document serves as an official attendance record for the training session.`
 
 
         {/* Search Only */}
-        <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm mb-6">
+        <Card className="bg-blue-700/50 border-blue-600 backdrop-blur-sm mb-6">
           <CardContent className="p-6">
             <div className="flex flex-wrap items-center gap-4">
               <div className="flex items-center space-x-2">
-                <Search className="w-4 h-4 text-gray-400" />
+                <Search className="w-4 h-4 text-blue-300" />
                 <Input
                   placeholder="Search training files..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-64 bg-gray-700 border-gray-600 text-white"
+                  className="w-64 bg-blue-600 border-blue-500 text-white"
                 />
               </div>
               
               <div className="flex items-center space-x-2">
-                <Calendar className="w-4 h-4 text-gray-400" />
+                <Calendar className="w-4 h-4 text-blue-300" />
                 <Input
                   type="date"
                   placeholder="From date"
                   value={dateFilter.from}
                   onChange={(e) => setDateFilter(prev => ({ ...prev, from: e.target.value }))}
-                  className="w-40 bg-gray-700 border-gray-600 text-white"
+                  className="w-40 bg-blue-600 border-blue-500 text-white"
                 />
-                <span className="text-gray-400">to</span>
+                <span className="text-blue-300">to</span>
                 <Input
                   type="date"
                   placeholder="To date"
                   value={dateFilter.to}
                   onChange={(e) => setDateFilter(prev => ({ ...prev, to: e.target.value }))}
-                  className="w-40 bg-gray-700 border-gray-600 text-white"
+                  className="w-40 bg-blue-600 border-blue-500 text-white"
                 />
               </div>
             </div>
@@ -1282,7 +1282,7 @@ This document serves as an official attendance record for the training session.`
                     variant="ghost"
                     size="sm"
                     onClick={() => setSelectedDocuments(new Set())}
-                    className="text-gray-400 hover:text-white"
+                    className="text-blue-300 hover:text-white"
                   >
                     Clear Selection
                   </Button>
@@ -1293,7 +1293,7 @@ This document serves as an official attendance record for the training session.`
                     size="sm"
                     onClick={handleBulkView}
                     disabled={selectedDocuments.size !== 1}
-                    className="border-gray-600 text-gray-300 hover:bg-gray-700 disabled:opacity-50"
+                    className="border-blue-500 text-gray-300 hover:bg-blue-600 disabled:opacity-50"
                   >
                     <Eye className="w-4 h-4 mr-1" />
                     View
@@ -1302,7 +1302,7 @@ This document serves as an official attendance record for the training session.`
                     variant="outline"
                     size="sm"
                     onClick={handleBulkDownload}
-                    className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                    className="border-blue-500 text-gray-300 hover:bg-blue-600"
                   >
                     <Download className="w-4 h-4 mr-1" />
                     Download ({selectedDocuments.size})
@@ -1325,11 +1325,11 @@ This document serves as an official attendance record for the training session.`
         {/* Document List */}
         <div className="space-y-4">
           {filteredDocuments.length === 0 ? (
-            <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
+            <Card className="bg-blue-700/50 border-blue-600 backdrop-blur-sm">
               <CardContent className="p-12 text-center">
-                <FileText className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                <FileText className="w-16 h-16 text-blue-300 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-white mb-2">No Documents Found</h3>
-                <p className="text-gray-400">Try adjusting your filters or upload a new document to get started.</p>
+                <p className="text-blue-300">Try adjusting your filters or upload a new document to get started.</p>
               </CardContent>
             </Card>
           ) : (
@@ -1338,14 +1338,14 @@ This document serves as an official attendance record for the training session.`
               const IconComponent = categoryInfo.icon;
               
               return (
-                <Card key={doc.id} className={`bg-gray-800/50 border-gray-700 backdrop-blur-sm hover:bg-gray-800/70 transition-all duration-200 ${selectedDocuments.has(doc.id) ? 'ring-1 ring-emerald-500 bg-emerald-900/10' : ''}`}>
+                <Card key={doc.id} className={`bg-blue-700/50 border-blue-600 backdrop-blur-sm hover:bg-blue-700/70 transition-all duration-200 ${selectedDocuments.has(doc.id) ? 'ring-1 ring-emerald-500 bg-emerald-900/10' : ''}`}>
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-4">
                         <Checkbox
                           checked={selectedDocuments.has(doc.id)}
                           onCheckedChange={() => toggleDocumentSelection(doc.id)}
-                          className="border-gray-500"
+                          className="border-blue-400"
                         />
                         <div className="flex-shrink-0">
                           <IconComponent className="w-8 h-8 text-emerald-400" />
@@ -1359,26 +1359,26 @@ This document serves as an official attendance record for the training session.`
                           </div>
                           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-300">
                             <div className="flex items-center space-x-1">
-                              <BookOpen className="w-4 h-4 text-gray-400" />
+                              <BookOpen className="w-4 h-4 text-blue-300" />
                               <span>{doc.trainingSubject}</span>
                             </div>
                             <div className="flex items-center space-x-1">
-                              <User className="w-4 h-4 text-gray-400" />
+                              <User className="w-4 h-4 text-blue-300" />
                               <span>{doc.instructorName}</span>
                             </div>
                             <div className="flex items-center space-x-1">
-                              <Calendar className="w-4 h-4 text-gray-400" />
+                              <Calendar className="w-4 h-4 text-blue-300" />
                               <span>{format(doc.trainingDate, 'MMM dd, yyyy')}</span>
                             </div>
                             <div className="flex items-center space-x-1">
-                              <Users className="w-4 h-4 text-gray-400" />
+                              <Users className="w-4 h-4 text-blue-300" />
                               <span>{doc.studentCount} students</span>
                             </div>
                           </div>
                           {doc.description && (
-                            <p className="mt-2 text-sm text-gray-400">{doc.description}</p>
+                            <p className="mt-2 text-sm text-blue-300">{doc.description}</p>
                           )}
-                          <div className="flex items-center space-x-4 mt-2 text-xs text-gray-500">
+                          <div className="flex items-center space-x-4 mt-2 text-xs text-blue-400">
                             <span>Size: {formatFileSize(doc.fileSize)}</span>
                             <span>Uploaded: {format(doc.uploadDate, 'MMM dd, yyyy HH:mm')}</span>
                             {doc.expirationDate && (
@@ -1400,7 +1400,7 @@ This document serves as an official attendance record for the training session.`
 
       {/* View Document Dialog */}
       <Dialog open={isViewDialogOpen} onOpenChange={setIsViewDialogOpen}>
-        <DialogContent className="max-w-3xl bg-gray-800 border-gray-700" aria-describedby="document-preview-description">
+        <DialogContent className="max-w-3xl bg-blue-700 border-blue-600" aria-describedby="document-preview-description">
           <DialogHeader>
             <DialogTitle className="text-white">Document Details</DialogTitle>
           </DialogHeader>
@@ -1455,7 +1455,7 @@ This document serves as an official attendance record for the training session.`
               {viewingDocument.description && (
                 <div>
                   <Label className="text-gray-300">Description</Label>
-                  <p className="text-white font-medium bg-gray-700/50 p-3 rounded-lg">{viewingDocument.description}</p>
+                  <p className="text-white font-medium bg-blue-600/50 p-3 rounded-lg">{viewingDocument.description}</p>
                 </div>
               )}
 
@@ -1468,10 +1468,10 @@ This document serves as an official attendance record for the training session.`
                 </div>
               )}
 
-              <div className="border-t border-gray-700 pt-4">
-                <div className="bg-gray-700/50 rounded-lg p-4">
+              <div className="border-t border-blue-600 pt-4">
+                <div className="bg-blue-600/50 rounded-lg p-4">
                   <h4 className="text-white font-medium mb-2">Document Preview</h4>
-                  <div className="bg-gray-600 rounded-lg p-4 max-h-64 overflow-y-auto">
+                  <div className="bg-blue-500 rounded-lg p-4 max-h-64 overflow-y-auto">
                     <pre className="text-sm text-gray-200 whitespace-pre-wrap font-mono leading-relaxed">
                       {generatePreviewContent(viewingDocument)}
                     </pre>
@@ -1483,7 +1483,7 @@ This document serves as an official attendance record for the training session.`
                 <Button
                   variant="outline"
                   onClick={() => setIsViewDialogOpen(false)}
-                  className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                  className="border-blue-500 text-gray-300 hover:bg-blue-600"
                 >
                   Close
                 </Button>

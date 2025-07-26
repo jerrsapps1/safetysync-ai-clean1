@@ -95,7 +95,7 @@ export default function VerifyEmailPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center px-4">
-      <Card className="w-full max-w-md bg-gray-800/50 border-gray-700/50 backdrop-blur-sm">
+      <Card className="w-full max-w-md bg-blue-700/50 border-blue-600/50 backdrop-blur-sm">
         <CardHeader className="text-center">
           <div className="flex justify-center mb-4">
             {verificationStatus === 'loading' && (
@@ -160,7 +160,7 @@ export default function VerifyEmailPage() {
               <Button 
                 onClick={() => navigate('/')}
                 variant="outline"
-                className="w-full border-gray-600 text-gray-300 hover:bg-gray-700"
+                className="w-full border-blue-500 text-gray-300 hover:bg-blue-600"
               >
                 Return to Homepage
               </Button>

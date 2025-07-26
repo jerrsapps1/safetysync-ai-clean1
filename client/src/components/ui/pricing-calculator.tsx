@@ -358,7 +358,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
           <Calculator className="w-8 h-8 text-blue-600" />
           <h2 className="text-3xl font-bold">Pricing Calculator</h2>
         </div>
-        <p className="text-gray-600 max-w-2xl mx-auto">
+        <p className="text-blue-500 max-w-2xl mx-auto">
           Calculate the exact cost for your organization and see the ROI of implementing SafetySync
         </p>
       </div>
@@ -408,7 +408,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
               placeholder="Enter number of employees"
               className="w-full"
             />
-            <div className="flex justify-between text-xs text-gray-500">
+            <div className="flex justify-between text-xs text-blue-400">
               <span>Minimum: 0</span>
               <span>Maximum: 10,000</span>
             </div>
@@ -478,12 +478,12 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
           <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
             <div>
               <div className="font-medium">Annual Billing</div>
-              <div className="text-sm text-gray-600">Save 15% with annual payments</div>
+              <div className="text-sm text-blue-500">Save 15% with annual payments</div>
             </div>
             <div className="flex items-center gap-2">
-              <span className={`text-sm ${!isAnnual ? 'font-medium' : 'text-gray-500'}`}>Monthly</span>
+              <span className={`text-sm ${!isAnnual ? 'font-medium' : 'text-blue-400'}`}>Monthly</span>
               <Switch checked={isAnnual} onCheckedChange={setIsAnnual} />
-              <span className={`text-sm ${isAnnual ? 'font-medium' : 'text-gray-500'}`}>Annual</span>
+              <span className={`text-sm ${isAnnual ? 'font-medium' : 'text-blue-400'}`}>Annual</span>
               {isAnnual && <Badge variant="default" className="ml-2">Save 15%</Badge>}
             </div>
           </div>
@@ -567,7 +567,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
                   />
                   <div className="flex-1">
                     <div className="font-medium">{addon.name}</div>
-                    <div className="text-sm text-gray-600">{addon.description}</div>
+                    <div className="text-sm text-blue-500">{addon.description}</div>
                   </div>
                   <div className="font-medium">${addon.price}/mo</div>
                 </div>
@@ -606,14 +606,14 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
                 <div className="space-y-2">
                   {/* Show original price if promo is applied */}
                   {pricing.promoDiscount > 0 && (
-                    <div className="text-lg text-gray-400 line-through">
+                    <div className="text-lg text-blue-300 line-through">
                       ${Math.round(isAnnual ? pricing.monthly : pricing.monthly)}
                     </div>
                   )}
                   
                   <div className="text-3xl font-bold">
                     ${(isAnnual ? pricing.annual : pricing.monthlyWithPromo).toFixed(2)}
-                    <span className="text-sm font-normal text-gray-500">/{isAnnual ? 'year' : 'month'}</span>
+                    <span className="text-sm font-normal text-blue-400">/{isAnnual ? 'year' : 'month'}</span>
                   </div>
                   
                   {/* Show billing cycle info */}
@@ -623,28 +623,28 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
                         <div className="text-green-600 font-medium">
                           Billed annually (Save 15%)
                         </div>
-                        <div className="text-xs text-gray-500">One payment per year</div>
+                        <div className="text-xs text-blue-400">One payment per year</div>
                       </div>
                     ) : (
                       <div className="space-y-1">
                         <div className="text-blue-600 font-medium">
                           Billed monthly
                         </div>
-                        <div className="text-xs text-gray-500">Switch to annual and save 15%</div>
+                        <div className="text-xs text-blue-400">Switch to annual and save 15%</div>
                       </div>
                     )}
                   </div>
                   
                   {/* Show after promo pricing for billing transparency */}
                   {pricing.promoDiscount > 0 && (
-                    <div className="text-sm text-gray-600">
+                    <div className="text-sm text-blue-500">
                       After promo: ${Math.round(pricing.monthly)}/month
                     </div>
                   )}
                   
                   {/* Show free months billing info */}
                   {appliedPromo && appliedPromo.type === 'months' && (
-                    <div className="text-sm text-gray-600">
+                    <div className="text-sm text-blue-500">
                       Regular billing: ${Math.round(pricing.monthly)}/month
                     </div>
                   )}
@@ -676,7 +676,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
                     </div>
                   )}
                   
-                  <div className="text-sm text-gray-500">
+                  <div className="text-sm text-blue-400">
                     Up to {tier.maxEmployees} employees
                   </div>
                 </div>
@@ -730,20 +730,20 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
                 <div className="text-center p-4 bg-green-50 rounded-lg">
                   <DollarSign className="w-8 h-8 mx-auto mb-2 text-green-600" />
                   <div className="text-2xl font-bold text-green-600">${roi.costSavings.toLocaleString()}</div>
-                  <div className="text-sm text-gray-600">Annual Cost Savings</div>
+                  <div className="text-sm text-blue-500">Annual Cost Savings</div>
                 </div>
                 <div className="text-center p-4 bg-blue-50 rounded-lg">
                   <Percent className="w-8 h-8 mx-auto mb-2 text-blue-600" />
                   <div className="text-2xl font-bold text-blue-600">{roi.timeReduction}%</div>
-                  <div className="text-sm text-gray-600">Time Reduction</div>
+                  <div className="text-sm text-blue-500">Time Reduction</div>
                 </div>
                 <div className="text-center p-4 bg-purple-50 rounded-lg">
                   <Clock className="w-8 h-8 mx-auto mb-2 text-purple-600" />
                   <div className="text-2xl font-bold text-purple-600">6 months</div>
-                  <div className="text-sm text-gray-600">Payback Period</div>
+                  <div className="text-sm text-blue-500">Payback Period</div>
                 </div>
               </div>
-              <div className="text-sm text-gray-600">
+              <div className="text-sm text-blue-500">
                 Based on average customer data: reduced administrative time, fewer compliance violations, 
                 and streamlined audit processes.
               </div>
@@ -830,25 +830,25 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
                       <div className="text-green-600 font-medium">
                         Billed annually (Save 15%)
                       </div>
-                      <div className="text-xs text-gray-500">One payment per year</div>
+                      <div className="text-xs text-blue-400">One payment per year</div>
                     </div>
                   ) : (
                     <div className="space-y-1">
                       <div className="text-blue-600 font-medium">
                         Billed monthly
                       </div>
-                      <div className="text-xs text-gray-500">Switch to annual and save 15%</div>
+                      <div className="text-xs text-blue-400">Switch to annual and save 15%</div>
                     </div>
                   )}
                   {pricing.promoDiscount > 0 && (
-                    <div className="text-gray-600">
+                    <div className="text-blue-500">
                       After promo: ${pricing.monthly.toFixed(2)}/{isAnnual ? 'year' : 'month'}
                     </div>
                   )}
                 </div>
               );
             })()}
-            <p className="text-gray-600">
+            <p className="text-blue-500">
               Based on {employeeCount} employees with {selectedAddons.length} add-ons
             </p>
             <div className="flex justify-center gap-4">

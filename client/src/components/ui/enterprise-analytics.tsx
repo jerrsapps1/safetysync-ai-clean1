@@ -150,8 +150,8 @@ export function EnterpriseAnalytics({ userTier = 'enterprise', companySize = 'la
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Enterprise Analytics Dashboard</h1>
-          <p className="text-gray-600 mt-2">Comprehensive safety and compliance intelligence for enterprise operations</p>
+          <h1 className="text-3xl font-bold text-blue-800">Enterprise Analytics Dashboard</h1>
+          <p className="text-blue-500 mt-2">Comprehensive safety and compliance intelligence for enterprise operations</p>
         </div>
         <div className="flex items-center gap-4">
           <Select value={selectedPeriod} onValueChange={setSelectedPeriod}>
@@ -178,7 +178,7 @@ export function EnterpriseAnalytics({ userTier = 'enterprise', companySize = 'la
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Overall Compliance Score</p>
+                <p className="text-sm font-medium text-blue-500">Overall Compliance Score</p>
                 <p className="text-3xl font-bold text-green-600">{complianceOverview.overallScore}%</p>
                 <div className="flex items-center mt-2">
                   <TrendingUp className="w-4 h-4 text-green-500 mr-1" />
@@ -194,11 +194,11 @@ export function EnterpriseAnalytics({ userTier = 'enterprise', companySize = 'la
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Total Employees</p>
+                <p className="text-sm font-medium text-blue-500">Total Employees</p>
                 <p className="text-3xl font-bold text-blue-600">{complianceOverview.totalEmployees.toLocaleString()}</p>
                 <div className="flex items-center mt-2">
                   <CheckCircle className="w-4 h-4 text-green-500 mr-1" />
-                  <span className="text-sm text-gray-600">{complianceOverview.compliantEmployees} compliant</span>
+                  <span className="text-sm text-blue-500">{complianceOverview.compliantEmployees} compliant</span>
                 </div>
               </div>
               <Users className="w-8 h-8 text-blue-500" />
@@ -210,7 +210,7 @@ export function EnterpriseAnalytics({ userTier = 'enterprise', companySize = 'la
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Pending Training</p>
+                <p className="text-sm font-medium text-blue-500">Pending Training</p>
                 <p className="text-3xl font-bold text-orange-600">{complianceOverview.pendingTraining}</p>
                 <div className="flex items-center mt-2">
                   <TrendingDown className="w-4 h-4 text-green-500 mr-1" />
@@ -226,11 +226,11 @@ export function EnterpriseAnalytics({ userTier = 'enterprise', companySize = 'la
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Risk Level</p>
+                <p className="text-sm font-medium text-blue-500">Risk Level</p>
                 <p className="text-3xl font-bold text-green-600">LOW</p>
                 <div className="flex items-center mt-2">
                   <AlertTriangle className="w-4 h-4 text-red-500 mr-1" />
-                  <span className="text-sm text-gray-600">{complianceOverview.expiredCertifications} expired certs</span>
+                  <span className="text-sm text-blue-500">{complianceOverview.expiredCertifications} expired certs</span>
                 </div>
               </div>
               <Target className="w-8 h-8 text-green-500" />
@@ -379,19 +379,19 @@ export function EnterpriseAnalytics({ userTier = 'enterprise', companySize = 'la
                 <div className="grid grid-cols-2 gap-4">
                   <div className="text-center p-4 bg-green-50 rounded-lg">
                     <div className="text-2xl font-bold text-green-600">92.3%</div>
-                    <div className="text-sm text-gray-600">Completion Rate</div>
+                    <div className="text-sm text-blue-500">Completion Rate</div>
                   </div>
                   <div className="text-center p-4 bg-blue-50 rounded-lg">
                     <div className="text-2xl font-bold text-blue-600">4.8</div>
-                    <div className="text-sm text-gray-600">Avg. Score (5.0)</div>
+                    <div className="text-sm text-blue-500">Avg. Score (5.0)</div>
                   </div>
                   <div className="text-center p-4 bg-purple-50 rounded-lg">
                     <div className="text-2xl font-bold text-purple-600">2.1</div>
-                    <div className="text-sm text-gray-600">Days Avg. Time</div>
+                    <div className="text-sm text-blue-500">Days Avg. Time</div>
                   </div>
                   <div className="text-center p-4 bg-orange-50 rounded-lg">
                     <div className="text-2xl font-bold text-orange-600">96%</div>
-                    <div className="text-sm text-gray-600">First-time Pass</div>
+                    <div className="text-sm text-blue-500">First-time Pass</div>
                   </div>
                 </div>
 
@@ -448,7 +448,7 @@ export function EnterpriseAnalytics({ userTier = 'enterprise', companySize = 'la
               <CardContent className="p-6 text-center">
                 <AlertTriangle className="w-8 h-8 text-red-500 mx-auto mb-3" />
                 <div className="text-3xl font-bold text-red-600">1</div>
-                <div className="text-sm text-gray-600">Incidents This Month</div>
+                <div className="text-sm text-blue-500">Incidents This Month</div>
                 <div className="text-xs text-green-600 mt-1">-67% vs last month</div>
               </CardContent>
             </Card>
@@ -457,7 +457,7 @@ export function EnterpriseAnalytics({ userTier = 'enterprise', companySize = 'la
               <CardContent className="p-6 text-center">
                 <Zap className="w-8 h-8 text-yellow-500 mx-auto mb-3" />
                 <div className="text-3xl font-bold text-yellow-600">18</div>
-                <div className="text-sm text-gray-600">Near Misses</div>
+                <div className="text-sm text-blue-500">Near Misses</div>
                 <div className="text-xs text-green-600 mt-1">-28% vs last month</div>
               </CardContent>
             </Card>
@@ -466,7 +466,7 @@ export function EnterpriseAnalytics({ userTier = 'enterprise', companySize = 'la
               <CardContent className="p-6 text-center">
                 <FileText className="w-8 h-8 text-blue-500 mx-auto mb-3" />
                 <div className="text-3xl font-bold text-blue-600">15</div>
-                <div className="text-sm text-gray-600">Hazards Reported</div>
+                <div className="text-sm text-blue-500">Hazards Reported</div>
                 <div className="text-xs text-green-600 mt-1">-21% vs last month</div>
               </CardContent>
             </Card>
@@ -485,7 +485,7 @@ export function EnterpriseAnalytics({ userTier = 'enterprise', companySize = 'la
                   <div key={index} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
                     <div>
                       <h4 className="font-medium">{item.category}</h4>
-                      <div className="flex items-center gap-4 text-sm text-gray-600">
+                      <div className="flex items-center gap-4 text-sm text-blue-500">
                         <span>Current: {formatCurrency(item.current)}</span>
                         <span>Previous: {formatCurrency(item.previous)}</span>
                       </div>
@@ -528,11 +528,11 @@ export function EnterpriseAnalytics({ userTier = 'enterprise', companySize = 'la
                     <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
                       <div>
                         <h4 className="font-medium">{area.area}</h4>
-                        <p className="text-sm text-gray-600">{area.employees} employees • {area.incidents} incidents</p>
+                        <p className="text-sm text-blue-500">{area.employees} employees • {area.incidents} incidents</p>
                       </div>
                       <div className="text-right space-y-1">
                         {getRiskBadge(area.riskLevel.toLowerCase())}
-                        <div className={`text-xs ${area.trend === 'improving' ? 'text-green-600' : 'text-gray-600'}`}>
+                        <div className={`text-xs ${area.trend === 'improving' ? 'text-green-600' : 'text-blue-500'}`}>
                           {area.trend}
                         </div>
                       </div>
@@ -551,25 +551,25 @@ export function EnterpriseAnalytics({ userTier = 'enterprise', companySize = 'la
                 <div className="grid grid-cols-2 gap-4">
                   <div className="text-center p-4 bg-blue-50 rounded-lg">
                     <div className="text-2xl font-bold text-blue-600">{riskMetrics.auditResults.score}</div>
-                    <div className="text-sm text-gray-600">Audit Score</div>
+                    <div className="text-sm text-blue-500">Audit Score</div>
                   </div>
                   <div className="text-center p-4 bg-orange-50 rounded-lg">
                     <div className="text-2xl font-bold text-orange-600">{riskMetrics.auditResults.findings}</div>
-                    <div className="text-sm text-gray-600">Total Findings</div>
+                    <div className="text-sm text-blue-500">Total Findings</div>
                   </div>
                 </div>
 
                 <div className="space-y-3">
                   <div className="flex justify-between">
-                    <span className="text-sm text-gray-600">Last Audit:</span>
+                    <span className="text-sm text-blue-500">Last Audit:</span>
                     <span className="text-sm font-medium">{riskMetrics.auditResults.lastAudit}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-sm text-gray-600">Critical Findings:</span>
+                    <span className="text-sm text-blue-500">Critical Findings:</span>
                     <span className="text-sm font-medium text-green-600">{riskMetrics.auditResults.criticalFindings}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-sm text-gray-600">Next Audit:</span>
+                    <span className="text-sm text-blue-500">Next Audit:</span>
                     <span className="text-sm font-medium">{riskMetrics.auditResults.nextAudit}</span>
                   </div>
                 </div>

@@ -28,7 +28,7 @@ export default function SidebarDemoPage() {
       {/* Main Content */}
       <div className="md:ml-64 p-8">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl font-bold text-gray-900 mb-8">
+          <h1 className="text-3xl font-bold text-blue-800 mb-8">
             Sidebar Navigation Options
           </h1>
           
@@ -38,7 +38,7 @@ export default function SidebarDemoPage() {
                 <CardTitle className="text-lg">Option 1: Clean & Simple</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-gray-600 mb-4">
+                <p className="text-sm text-blue-500 mb-4">
                   Clean white sidebar with simple navigation items and chevron arrows. 
                   Professional and minimalist design.
                 </p>
@@ -58,7 +58,7 @@ export default function SidebarDemoPage() {
                 <CardTitle className="text-lg">Option 2: Branded & Rich</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-gray-600 mb-4">
+                <p className="text-sm text-blue-500 mb-4">
                   Emerald gradient background with rich navigation items including descriptions. 
                   More visual and branded approach.
                 </p>
@@ -78,7 +78,7 @@ export default function SidebarDemoPage() {
                 <CardTitle className="text-lg">Option 3: Dark & Collapsible</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-gray-600 mb-4">
+                <p className="text-sm text-blue-500 mb-4">
                   Dark theme sidebar with collapsible functionality. 
                   Modern dashboard-style with tooltips and space-saving design.
                 </p>

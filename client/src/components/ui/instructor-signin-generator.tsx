@@ -991,7 +991,7 @@ export function InstructorSignInGenerator() {
       case 'pending': return 'text-yellow-600';
       case 'in_progress': return 'text-blue-600';
       case 'completed': return 'text-green-600';
-      default: return 'text-gray-600';
+      default: return 'text-blue-500';
     }
   };
 
@@ -1799,7 +1799,7 @@ END:VCALENDAR`;
               <SafetySyncIcon size={32} className="rounded-lg" />
               Instructor Sign-In Sheet Generator
             </h1>
-            <p className="text-gray-400 mt-2">
+            <p className="text-blue-300 mt-2">
               Create OSHA-compliant attendance records for safety training classes
             </p>
             <p className="text-blue-300 text-sm mt-1">
@@ -1814,13 +1814,13 @@ END:VCALENDAR`;
       {activeTab === 'create' ? (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="space-y-6">
-            <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+            <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-white">
                   <Shield className="w-5 h-5 text-emerald-400" />
                   Training Information
                 </CardTitle>
-                <CardDescription className="text-gray-400">
+                <CardDescription className="text-blue-300">
                   Basic details about the safety training session
                 </CardDescription>
               </CardHeader>
@@ -1880,7 +1880,7 @@ END:VCALENDAR`;
                             setFormData(prev => ({ ...prev, classTitle: e.target.value }));
                           }}
                           placeholder="Enter your custom class name"
-                          className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+                          className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300"
                         />
                       </div>
                       
@@ -1894,7 +1894,7 @@ END:VCALENDAR`;
                             setFormData(prev => ({ ...prev, oshaStandard: e.target.value }));
                           }}
                           placeholder="e.g., 29 CFR 1926.95, ANSI Z359.1, or custom standard"
-                          className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+                          className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300"
                         />
                       </div>
                     </div>
@@ -1910,7 +1910,7 @@ END:VCALENDAR`;
                           onChange={(e) => setFormData(prev => ({ ...prev, classTitle: e.target.value }))}
                           placeholder="Enter class title"
                           disabled={!isCustomTraining}
-                          className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400 disabled:opacity-50"
+                          className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300 disabled:opacity-50"
                         />
                       </div>
                       
@@ -1922,7 +1922,7 @@ END:VCALENDAR`;
                           onChange={(e) => setFormData(prev => ({ ...prev, oshaStandard: e.target.value }))}
                           placeholder="Auto-filled based on training type"
                           disabled={!isCustomTraining}
-                          className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400 disabled:opacity-50"
+                          className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300 disabled:opacity-50"
                         />
                       </div>
                     </>
@@ -1931,13 +1931,13 @@ END:VCALENDAR`;
               </CardContent>
             </Card>
 
-            <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+            <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-white">
                   <Users className="w-5 h-5 text-blue-400" />
                   Instructor Information
                 </CardTitle>
-                <CardDescription className="text-gray-400">
+                <CardDescription className="text-blue-300">
                   Details about the certified instructor
                 </CardDescription>
               </CardHeader>
@@ -1946,7 +1946,7 @@ END:VCALENDAR`;
                   <Label>Instructor Type *</Label>
                   <div className="flex flex-col gap-2 mt-2 w-full">
                     <Select value={selectedInstructor} onValueChange={handleInstructorSelection}>
-                      <SelectTrigger className="bg-gray-800/50 border-gray-700 text-white">
+                      <SelectTrigger className="bg-blue-700/50 border-blue-600 text-white">
                         <SelectValue placeholder="Choose from client instructors" />
                       </SelectTrigger>
                       <SelectContent>
@@ -1956,7 +1956,7 @@ END:VCALENDAR`;
                           </SelectItem>
                         ))}
                         <SelectItem value="clear">
-                          <div className="flex items-center text-gray-500">
+                          <div className="flex items-center text-blue-400">
                             <X className="w-4 h-4 mr-2" />
                             Clear Selection
                           </div>
@@ -1970,7 +1970,7 @@ END:VCALENDAR`;
                       className={`w-full h-10 flex items-center justify-center ${
                         instructorType === 'visiting' 
                           ? 'bg-emerald-500 hover:bg-emerald-600 text-white' 
-                          : 'bg-black/20 backdrop-blur-sm border-gray-700 text-white hover:bg-black/30'
+                          : 'bg-black/20 backdrop-blur-sm border-blue-600 text-white hover:bg-black/30'
                       }`}
                     >
                       <UserPlus className="w-4 h-4 mr-2" />
@@ -1981,8 +1981,8 @@ END:VCALENDAR`;
 
                 {instructorType === 'existing' && selectedInstructor && selectedInstructor !== 'clear' && (
                   <div className="p-3 bg-gray-50 rounded-lg border">
-                    <div className="text-sm font-medium text-gray-700">Selected Instructor:</div>
-                    <div className="text-sm text-gray-600 mt-1">
+                    <div className="text-sm font-medium text-blue-600">Selected Instructor:</div>
+                    <div className="text-sm text-blue-500 mt-1">
                       {clientInstructors.find(i => i.id === selectedInstructor)?.name} - {clientInstructors.find(i => i.id === selectedInstructor)?.credentials}
                     </div>
                   </div>
@@ -2002,7 +2002,7 @@ END:VCALENDAR`;
                         value={formData.instructorName}
                         onChange={(e) => setFormData(prev => ({ ...prev, instructorName: e.target.value }))}
                         placeholder="Full name of visiting instructor"
-                        className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+                        className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300"
                       />
                     </div>
                     
@@ -2013,7 +2013,7 @@ END:VCALENDAR`;
                         value={formData.instructorCredentials}
                         onChange={(e) => setFormData(prev => ({ ...prev, instructorCredentials: e.target.value }))}
                         placeholder="e.g., OSHA Authorized, CSP, CIH"
-                        className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+                        className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300"
                       />
                     </div>
                     
@@ -2024,7 +2024,7 @@ END:VCALENDAR`;
                         value={formData.instructorCompany}
                         onChange={(e) => setFormData(prev => ({ ...prev, instructorCompany: e.target.value }))}
                         placeholder="Visiting instructor's company name"
-                        className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+                        className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300"
                       />
                     </div>
                   </div>
@@ -2033,7 +2033,7 @@ END:VCALENDAR`;
                 {instructorType === 'existing' && selectedInstructor && (
                   <div className="space-y-4 p-4 bg-gray-50 rounded-lg border">
                     <div className="flex items-center justify-between">
-                      <div className="text-sm text-gray-600">
+                      <div className="text-sm text-blue-500">
                         <strong>Selected Instructor:</strong>
                       </div>
                       <Button
@@ -2133,13 +2133,13 @@ END:VCALENDAR`;
                         </div>
 
                         {getCurrentInstructorDocuments().length === 0 ? (
-                          <div className="text-sm text-gray-500 text-center py-4">
+                          <div className="text-sm text-blue-400 text-center py-4">
                             No documents uploaded yet. Click "Upload" to add certificates, resumes, or credentials.
                           </div>
                         ) : (
                           <div className="space-y-2 max-h-48 overflow-y-auto">
                             {getCurrentInstructorDocuments().map(doc => (
-                              <div key={doc.id} className="flex items-center space-x-3 p-2 bg-gray-800/50 rounded border-gray-700">
+                              <div key={doc.id} className="flex items-center space-x-3 p-2 bg-blue-700/50 rounded border-blue-600">
                                 <input
                                   type="checkbox"
                                   checked={selectedDocuments.includes(doc.id)}
@@ -2148,7 +2148,7 @@ END:VCALENDAR`;
                                 />
                                 <div className="flex-1 min-w-0">
                                   <div className="text-sm font-medium truncate">{doc.fileName}</div>
-                                  <div className="text-xs text-gray-500">
+                                  <div className="text-xs text-blue-400">
                                     {doc.documentType} • {formatFileSize(doc.fileSize)} • {new Date(doc.uploadDate).toLocaleDateString()}
                                   </div>
                                 </div>
@@ -2187,13 +2187,13 @@ END:VCALENDAR`;
               </CardContent>
             </Card>
 
-            <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+            <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-white">
                   <Calendar className="w-5 h-5 text-orange-400" />
                   Session Details
                 </CardTitle>
-                <CardDescription className="text-gray-400">
+                <CardDescription className="text-blue-300">
                   When and where the training will take place
                 </CardDescription>
               </CardHeader>
@@ -2206,7 +2206,7 @@ END:VCALENDAR`;
                       type="date"
                       value={formData.date}
                       onChange={(e) => setFormData(prev => ({ ...prev, date: e.target.value }))}
-                      className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+                      className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300"
                     />
                   </div>
                   
@@ -2217,7 +2217,7 @@ END:VCALENDAR`;
                       value={formData.location}
                       onChange={(e) => setFormData(prev => ({ ...prev, location: e.target.value }))}
                       placeholder="Training location"
-                      className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+                      className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300"
                     />
                   </div>
                 </div>
@@ -2230,7 +2230,7 @@ END:VCALENDAR`;
                       type="time"
                       value={formData.startTime}
                       onChange={(e) => setFormData(prev => ({ ...prev, startTime: e.target.value }))}
-                      className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+                      className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300"
                     />
                   </div>
                   
@@ -2241,7 +2241,7 @@ END:VCALENDAR`;
                       type="time"
                       value={formData.endTime}
                       onChange={(e) => setFormData(prev => ({ ...prev, endTime: e.target.value }))}
-                      className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+                      className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300"
                     />
                   </div>
                 </div>
@@ -2270,9 +2270,9 @@ END:VCALENDAR`;
                     value={formData.customReference}
                     onChange={(e) => setFormData(prev => ({ ...prev, customReference: e.target.value }))}
                     placeholder="Enter your own reference (e.g., Company SOP, Internal Training ID, etc.)"
-                    className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+                    className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300"
                   />
-                  <div className="text-xs text-gray-500 mt-1">
+                  <div className="text-xs text-blue-400 mt-1">
                     Add your own reference number, SOP citation, or internal training identifier
                   </div>
                 </div>
@@ -2281,28 +2281,28 @@ END:VCALENDAR`;
           </div>
 
           <div className="space-y-6">
-            <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+            <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-white">
                   <Users className="w-5 h-5 text-purple-400" />
                   Training Attendees ({formData.employees?.length || 0})
                 </CardTitle>
-                <CardDescription className="text-gray-400">
+                <CardDescription className="text-blue-300">
                   Add employees and external students who will attend this training session
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <Tabs defaultValue="search" className="w-full">
                   <TabsList className="flex flex-col w-full space-y-2 bg-transparent p-0 h-auto">
-                    <TabsTrigger value="search" className="flex items-center justify-start gap-2 text-sm w-full bg-gray-800/50 border border-gray-700 text-white hover:bg-gray-700/50 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
+                    <TabsTrigger value="search" className="flex items-center justify-start gap-2 text-sm w-full bg-blue-700/50 border border-blue-600 text-white hover:bg-blue-600/50 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
                       <Search className="w-4 h-4" />
                       Quick Search
                     </TabsTrigger>
-                    <TabsTrigger value="manual" className="flex items-center justify-start gap-2 text-sm w-full bg-gray-800/50 border border-gray-700 text-white hover:bg-gray-700/50 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
+                    <TabsTrigger value="manual" className="flex items-center justify-start gap-2 text-sm w-full bg-blue-700/50 border border-blue-600 text-white hover:bg-blue-600/50 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
                       <UserPlus className="w-4 h-4" />
                       Manual Entry
                     </TabsTrigger>
-                    <TabsTrigger value="manage" className="flex items-center justify-start gap-2 text-sm w-full bg-gray-800/50 border border-gray-700 text-white hover:bg-gray-700/50 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
+                    <TabsTrigger value="manage" className="flex items-center justify-start gap-2 text-sm w-full bg-blue-700/50 border border-blue-600 text-white hover:bg-blue-600/50 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
                       <Settings className="w-4 h-4" />
                       Manage Students
                     </TabsTrigger>
@@ -2317,7 +2317,7 @@ END:VCALENDAR`;
                         placeholder="Student Search"
                         className="w-full"
                       />
-                      <div className="text-sm text-gray-500">
+                      <div className="text-sm text-blue-400">
                         Search across internal employees and external students. Results will show matches from both sources.
                       </div>
                     </div>
@@ -2332,7 +2332,7 @@ END:VCALENDAR`;
                           value={newEmployee.name}
                           onChange={(e) => setNewEmployee(prev => ({ ...prev, name: e.target.value }))}
                           placeholder="Full name"
-                          className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+                          className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300"
                         />
                       </div>
                       
@@ -2343,7 +2343,7 @@ END:VCALENDAR`;
                           value={newEmployee.employeeId}
                           onChange={(e) => setNewEmployee(prev => ({ ...prev, employeeId: e.target.value }))}
                           placeholder="Employee ID or badge number"
-                          className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+                          className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300"
                         />
                       </div>
                       
@@ -2354,7 +2354,7 @@ END:VCALENDAR`;
                           value={newEmployee.company}
                           onChange={(e) => setNewEmployee(prev => ({ ...prev, company: e.target.value }))}
                           placeholder="Company name (if different from instructor)"
-                          className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+                          className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300"
                         />
                       </div>
                       
@@ -2374,10 +2374,10 @@ END:VCALENDAR`;
                 
                 <div className="space-y-2 max-h-60 overflow-y-auto">
                   {formData.employees?.map((employee, index) => (
-                    <div key={employee.id} className="flex items-center justify-between p-3 bg-gray-800/50 border border-gray-700 rounded-lg backdrop-blur-sm">
+                    <div key={employee.id} className="flex items-center justify-between p-3 bg-blue-700/50 border border-blue-600 rounded-lg backdrop-blur-sm">
                       <div className="flex-1">
                         <div className="font-medium text-white">{employee.name}</div>
-                        <div className="text-sm text-gray-400">
+                        <div className="text-sm text-blue-300">
                           ID: {employee.employeeId} • {employee.company}
                           {employee.type && (
                             <Badge variant={employee.type === 'internal' ? 'default' : 'secondary'} className="ml-2">
@@ -2397,7 +2397,7 @@ END:VCALENDAR`;
                   ))}
                   
                   {(!formData.employees || formData.employees.length === 0) && (
-                    <div className="text-center py-8 text-gray-400">
+                    <div className="text-center py-8 text-blue-300">
                       No attendees added yet. Use the search tab to find employees and students, or manually add them.
                     </div>
                   )}
@@ -2406,7 +2406,7 @@ END:VCALENDAR`;
             </Card>
 
             <div className="flex gap-3">
-              <Button onClick={saveAsDraft} variant="outline" className="flex-1 bg-black/20 backdrop-blur-sm border-gray-700 text-white hover:bg-black/30">
+              <Button onClick={saveAsDraft} variant="outline" className="flex-1 bg-black/20 backdrop-blur-sm border-blue-600 text-white hover:bg-black/30">
                 <Save className="w-4 h-4 mr-2" />
                 Save Draft
               </Button>
@@ -2418,10 +2418,10 @@ END:VCALENDAR`;
           </div>
         </div>
       ) : (
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardHeader>
             <CardTitle className="text-white">Saved Sign-In Sheets</CardTitle>
-            <CardDescription className="text-gray-400">
+            <CardDescription className="text-blue-300">
               Manage your drafted and generated training attendance records
             </CardDescription>
           </CardHeader>
@@ -2436,14 +2436,14 @@ END:VCALENDAR`;
                     placeholder="Search by title, instructor, or location..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+                    className="w-full bg-blue-700/50 border-blue-600 text-white placeholder-blue-300"
                   />
                 </div>
                 
                 <div className="space-y-2">
                   <Label htmlFor="filterStatus">Filter by Status</Label>
                   <Select value={filterStatus} onValueChange={setFilterStatus}>
-                    <SelectTrigger className="bg-gray-800/50 border-gray-700 text-white">
+                    <SelectTrigger className="bg-blue-700/50 border-blue-600 text-white">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -2458,7 +2458,7 @@ END:VCALENDAR`;
                 <div className="space-y-2">
                   <Label htmlFor="filterInstructor">Filter by Instructor</Label>
                   <Select value={filterInstructor} onValueChange={setFilterInstructor}>
-                    <SelectTrigger className="bg-gray-800/50 border-gray-700 text-white">
+                    <SelectTrigger className="bg-blue-700/50 border-blue-600 text-white">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -2558,14 +2558,14 @@ END:VCALENDAR`;
                     
                     <div className="flex-1">
                       <h3 className="font-semibold">{sheet.classTitle}</h3>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-blue-500">
                         Instructor: {sheet.instructorName} • {sheet.date} • {sheet.employees.length} employees
                       </p>
                       <div className="flex items-center gap-2 mt-2">
                         <Badge variant={sheet.status === 'draft' ? 'secondary' : 'default'}>
                           {sheet.status}
                         </Badge>
-                        <span className="text-xs text-gray-500">
+                        <span className="text-xs text-blue-400">
                           Created: {new Date(sheet.createdAt).toLocaleDateString()}
                         </span>
                         {sheet.signatureWorkflow && (
@@ -2598,7 +2598,7 @@ END:VCALENDAR`;
                     <div className="mt-4 p-3 bg-gray-50 rounded-lg">
                       <div className="flex items-center justify-between mb-3">
                         <h4 className="font-medium text-sm">Signature Workflow</h4>
-                        <div className="text-xs text-gray-500">
+                        <div className="text-xs text-blue-400">
                           {sheet.signatureWorkflow.receivedSignatures} / {sheet.signatureWorkflow.totalSignatures} signatures
                         </div>
                       </div>
@@ -2634,7 +2634,7 @@ END:VCALENDAR`;
                         {/* Progress Bar */}
                         <div className="space-y-2">
                           <Label className="text-sm font-medium">Completion Progress</Label>
-                          <div className="w-full bg-gray-700 rounded-full h-2">
+                          <div className="w-full bg-blue-600 rounded-full h-2">
                             <div 
                               className="bg-blue-600 h-2 rounded-full transition-all duration-300"
                               style={{ 
@@ -2642,7 +2642,7 @@ END:VCALENDAR`;
                               }}
                             />
                           </div>
-                          <div className="text-xs text-gray-500">
+                          <div className="text-xs text-blue-400">
                             {Math.round((sheet.signatureWorkflow.receivedSignatures / sheet.signatureWorkflow.totalSignatures) * 100)}% complete
                           </div>
                         </div>
@@ -2654,12 +2654,12 @@ END:VCALENDAR`;
                           <Label className="text-sm font-medium mb-2 block">Signed Documents</Label>
                           <div className="space-y-2">
                             {sheet.signedDocuments.map(doc => (
-                              <div key={doc.id} className="flex items-center justify-between p-2 bg-gray-800/50 rounded border-gray-700">
+                              <div key={doc.id} className="flex items-center justify-between p-2 bg-blue-700/50 rounded border-blue-600">
                                 <div className="flex items-center gap-3">
                                   <FileCheck className="w-4 h-4 text-green-600" />
                                   <div>
                                     <div className="text-sm font-medium">{doc.fileName}</div>
-                                    <div className="text-xs text-gray-500">
+                                    <div className="text-xs text-blue-400">
                                       {new Date(doc.uploadDate).toLocaleDateString()} • {Math.round(doc.fileSize / 1024)}KB
                                     </div>
                                   </div>
@@ -2702,7 +2702,7 @@ END:VCALENDAR`;
                                   {notification.type === 'reminder' && <Clock className="w-3 h-3" />}
                                   <span>{notification.message}</span>
                                 </div>
-                                <div className="text-gray-500 mt-1">
+                                <div className="text-blue-400 mt-1">
                                   {new Date(notification.timestamp).toLocaleString()}
                                 </div>
                               </div>
@@ -2716,7 +2716,7 @@ END:VCALENDAR`;
               ))}
               
               {savedSheets.length === 0 && (
-                <div className="text-center py-8 text-gray-500">
+                <div className="text-center py-8 text-blue-400">
                   No saved sign-in sheets yet. Create your first one to get started.
                 </div>
               )}
@@ -2754,7 +2754,7 @@ END:VCALENDAR`;
                     {notification.type === 'upload' && <Upload className="w-4 h-4 text-blue-500" />}
                     <div>
                       <p className="text-sm font-medium">{notification.message}</p>
-                      <p className="text-xs text-gray-500 mt-1">
+                      <p className="text-xs text-blue-400 mt-1">
                         {new Date(notification.timestamp).toLocaleString()}
                       </p>
                     </div>
@@ -2772,7 +2772,7 @@ END:VCALENDAR`;
               </div>
             ))}
             {notifications.length === 0 && (
-              <p className="text-center text-gray-500 py-8">No notifications</p>
+              <p className="text-center text-blue-400 py-8">No notifications</p>
             )}
           </div>
           <div className="flex justify-between pt-4 border-t">
@@ -2804,7 +2804,7 @@ END:VCALENDAR`;
                 <CardContent className="p-4 text-center" onClick={() => setReportType('summary')}>
                   <FileText className="w-8 h-8 mx-auto mb-2 text-blue-600" />
                   <h3 className="font-medium">Summary Report</h3>
-                  <p className="text-sm text-gray-600">Basic overview and statistics</p>
+                  <p className="text-sm text-blue-500">Basic overview and statistics</p>
                 </CardContent>
               </Card>
               
@@ -2812,7 +2812,7 @@ END:VCALENDAR`;
                 <CardContent className="p-4 text-center" onClick={() => setReportType('detailed')}>
                   <FileSpreadsheet className="w-8 h-8 mx-auto mb-2 text-green-600" />
                   <h3 className="font-medium">Detailed Report</h3>
-                  <p className="text-sm text-gray-600">Excel format with all data</p>
+                  <p className="text-sm text-blue-500">Excel format with all data</p>
                 </CardContent>
               </Card>
               
@@ -2820,7 +2820,7 @@ END:VCALENDAR`;
                 <CardContent className="p-4 text-center" onClick={() => setReportType('analytics')}>
                   <BarChart3 className="w-8 h-8 mx-auto mb-2 text-purple-600" />
                   <h3 className="font-medium">Analytics Report</h3>
-                  <p className="text-sm text-gray-600">Charts and insights</p>
+                  <p className="text-sm text-blue-500">Charts and insights</p>
                 </CardContent>
               </Card>
             </div>
@@ -2943,7 +2943,7 @@ END:VCALENDAR`;
               variant="outline"
               size="sm"
               onClick={action.action}
-              className="w-full justify-start bg-black/20 backdrop-blur-sm border-gray-700 text-white hover:bg-black/30"
+              className="w-full justify-start bg-black/20 backdrop-blur-sm border-blue-600 text-white hover:bg-black/30"
             >
               {action.icon}
               <span className="ml-2">{action.label}</span>

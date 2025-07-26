@@ -50,11 +50,11 @@ const statusColors = {
   open: 'bg-blue-100 text-blue-800',
   in_progress: 'bg-yellow-100 text-yellow-800',
   resolved: 'bg-green-100 text-green-800',
-  closed: 'bg-gray-100 text-gray-800'
+  closed: 'bg-gray-100 text-blue-700'
 };
 
 const priorityColors = {
-  low: 'bg-gray-100 text-gray-800',
+  low: 'bg-gray-100 text-blue-700',
   medium: 'bg-blue-100 text-blue-800',
   high: 'bg-orange-100 text-orange-800',
   urgent: 'bg-red-100 text-red-800'
@@ -213,7 +213,7 @@ export default function Helpdesk() {
                 {selectedTicketData.responses.map((response: TicketResponse) => (
                   <div key={response.id} className={`flex gap-3 ${response.isStaff ? 'flex-row-reverse' : ''}`}>
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                      response.isStaff ? 'bg-blue-500' : 'bg-gray-500'
+                      response.isStaff ? 'bg-blue-500' : 'bg-blue-400'
                     }`}>
                       <User className="w-4 h-4 text-white" />
                     </div>
@@ -225,7 +225,7 @@ export default function Helpdesk() {
                       }`}>
                         <p className="whitespace-pre-wrap">{response.message}</p>
                       </div>
-                      <p className="text-xs text-gray-400 mt-1">
+                      <p className="text-xs text-blue-300 mt-1">
                         {response.author} • {new Date(response.createdAt).toLocaleString()}
                       </p>
                     </div>
@@ -241,7 +241,7 @@ export default function Helpdesk() {
                   placeholder="Type your message here..."
                   value={newResponse}
                   onChange={(e) => setNewResponse(e.target.value)}
-                  className="bg-white/10 border-white/20 text-white placeholder-gray-400 mb-3"
+                  className="bg-white/10 border-white/20 text-white placeholder-blue-300 mb-3"
                   rows={3}
                 />
                 <Button 
@@ -293,12 +293,12 @@ export default function Helpdesk() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <div className="flex-1">
                     <div className="relative">
-                      <Search className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
+                      <Search className="absolute left-3 top-3 w-4 h-4 text-blue-300" />
                       <Input
                         placeholder="Search tickets..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="pl-10 bg-white/10 border-white/20 text-white placeholder-gray-400"
+                        className="pl-10 bg-white/10 border-white/20 text-white placeholder-blue-300"
                       />
                     </div>
                   </div>
@@ -359,7 +359,7 @@ export default function Helpdesk() {
                     <CardContent className="p-6">
                       <div className="flex items-start justify-between mb-3">
                         <h3 className="font-semibold text-white truncate pr-2">{ticket.title}</h3>
-                        <Ticket className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                        <Ticket className="w-5 h-5 text-blue-300 flex-shrink-0" />
                       </div>
                       <p className="text-gray-300 text-sm mb-4 line-clamp-2">{ticket.description}</p>
                       <div className="flex items-center gap-2 mb-3">
@@ -370,7 +370,7 @@ export default function Helpdesk() {
                           {ticket.priority}
                         </Badge>
                       </div>
-                      <div className="flex items-center justify-between text-xs text-gray-400">
+                      <div className="flex items-center justify-between text-xs text-blue-300">
                         <span>#{ticket.id}</span>
                         <span>{new Date(ticket.createdAt).toLocaleDateString()}</span>
                       </div>
@@ -383,7 +383,7 @@ export default function Helpdesk() {
             {filteredTickets.length === 0 && !isLoading && (
               <Card className="bg-white/10 backdrop-blur-sm border-white/20">
                 <CardContent className="p-12 text-center">
-                  <Ticket className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                  <Ticket className="w-16 h-16 text-blue-300 mx-auto mb-4" />
                   <h3 className="text-xl font-semibold text-white mb-2">No tickets found</h3>
                   <p className="text-gray-300 mb-4">You haven't created any support tickets yet.</p>
                   <Button
@@ -414,7 +414,7 @@ export default function Helpdesk() {
                     placeholder="Brief description of your issue"
                     value={newTicket.title}
                     onChange={(e) => setNewTicket({ ...newTicket, title: e.target.value })}
-                    className="bg-white/10 border-white/20 text-white placeholder-gray-400"
+                    className="bg-white/10 border-white/20 text-white placeholder-blue-300"
                   />
                 </div>
 
@@ -457,7 +457,7 @@ export default function Helpdesk() {
                     placeholder="Provide detailed information about your issue..."
                     value={newTicket.description}
                     onChange={(e) => setNewTicket({ ...newTicket, description: e.target.value })}
-                    className="bg-white/10 border-white/20 text-white placeholder-gray-400"
+                    className="bg-white/10 border-white/20 text-white placeholder-blue-300"
                     rows={6}
                   />
                 </div>

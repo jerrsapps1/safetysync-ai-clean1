@@ -31,7 +31,7 @@ export default function SecurityDashboard() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">Security Dashboard</h1>
-          <p className="text-gray-600">Monitor and manage your platform security</p>
+          <p className="text-blue-500">Monitor and manage your platform security</p>
         </div>
         <Button variant="outline" className="flex items-center gap-2">
           <RefreshCw className="w-4 h-4" />
@@ -55,7 +55,7 @@ export default function SecurityDashboard() {
               <Badge variant="secondary" className="bg-green-100 text-green-800">
                 {securityStatus.overall}
               </Badge>
-              <p className="text-sm text-gray-600 mt-1">Last checked: {securityStatus.lastCheck}</p>
+              <p className="text-sm text-blue-500 mt-1">Last checked: {securityStatus.lastCheck}</p>
             </div>
           </div>
         </CardContent>
@@ -79,7 +79,7 @@ export default function SecurityDashboard() {
                       {feature.status}
                     </Badge>
                   </div>
-                  <p className="text-sm text-gray-600 mt-1">{feature.description}</p>
+                  <p className="text-sm text-blue-500 mt-1">{feature.description}</p>
                 </div>
               </div>
             ))}
@@ -122,7 +122,7 @@ export default function SecurityDashboard() {
                       </Badge>
                     )}
                   </div>
-                  <p className="text-sm text-gray-600">{event.time}</p>
+                  <p className="text-sm text-blue-500">{event.time}</p>
                 </div>
                 <Badge 
                   variant={event.severity === 'warning' ? 'destructive' : 'secondary'}

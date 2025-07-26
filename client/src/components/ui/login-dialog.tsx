@@ -176,7 +176,7 @@ export function LoginDialog({ isOpen, onClose, onSuccess, onSignupClick }: Login
         </form>
         
         <div className="text-center pt-4 border-t">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-blue-500">
             Don't have an account?{" "}
             <button
               onClick={handleSignupClick}

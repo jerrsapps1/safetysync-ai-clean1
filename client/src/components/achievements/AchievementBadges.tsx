@@ -62,7 +62,7 @@ const achievementCategories = [
 
 const tierColors = {
   bronze: 'bg-gradient-to-r from-amber-600 to-amber-700',
-  silver: 'bg-gradient-to-r from-gray-400 to-gray-500',
+  silver: 'bg-gradient-to-r from-blue-300 to-blue-400',
   gold: 'bg-gradient-to-r from-yellow-400 to-yellow-500',
   platinum: 'bg-gradient-to-r from-purple-400 to-purple-500'
 };
@@ -276,11 +276,11 @@ export default function AchievementBadges() {
     <div className="space-y-6">
       {/* Header Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-400">Total Points</p>
+                <p className="text-sm text-blue-300">Total Points</p>
                 <p className="text-2xl font-bold text-white">{userStats.totalPoints.toLocaleString()}</p>
               </div>
               <Star className="w-8 h-8 text-yellow-500" />
@@ -288,11 +288,11 @@ export default function AchievementBadges() {
           </CardContent>
         </Card>
         
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-400">Badges Earned</p>
+                <p className="text-sm text-blue-300">Badges Earned</p>
                 <p className="text-2xl font-bold text-white">{userStats.unlockedBadges}</p>
               </div>
               <Award className="w-8 h-8 text-emerald-500" />
@@ -300,11 +300,11 @@ export default function AchievementBadges() {
           </CardContent>
         </Card>
         
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-400">Compliance Streak</p>
+                <p className="text-sm text-blue-300">Compliance Streak</p>
                 <p className="text-2xl font-bold text-white">{userStats.complianceStreak} days</p>
               </div>
               <Shield className="w-8 h-8 text-green-500" />
@@ -312,11 +312,11 @@ export default function AchievementBadges() {
           </CardContent>
         </Card>
         
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-400">Safety Score</p>
+                <p className="text-sm text-blue-300">Safety Score</p>
                 <p className="text-2xl font-bold text-white">{userStats.safetyScore}%</p>
               </div>
               <Target className="w-8 h-8 text-blue-500" />
@@ -327,7 +327,7 @@ export default function AchievementBadges() {
 
       {/* Next Achievement Progress */}
       {getNextAchievement() && (
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2">
               <Zap className="w-5 h-5 text-yellow-500" />
@@ -341,10 +341,10 @@ export default function AchievementBadges() {
               </div>
               <div className="flex-1">
                 <h3 className="text-white font-medium">{getNextAchievement()!.title}</h3>
-                <p className="text-gray-400 text-sm">{getNextAchievement()!.description}</p>
+                <p className="text-blue-300 text-sm">{getNextAchievement()!.description}</p>
                 <div className="mt-2">
                   <div className="flex items-center justify-between text-sm mb-1">
-                    <span className="text-gray-400">Progress</span>
+                    <span className="text-blue-300">Progress</span>
                     <span className="text-white">
                       {getNextAchievement()!.progress} / {getNextAchievement()!.maxProgress}
                     </span>
@@ -361,7 +361,7 @@ export default function AchievementBadges() {
       )}
 
       {/* Category Filters */}
-      <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+      <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
         <CardHeader>
           <CardTitle className="text-white">Achievement Categories</CardTitle>
         </CardHeader>
@@ -370,7 +370,7 @@ export default function AchievementBadges() {
             <Button
               variant={selectedCategory === 'all' ? 'default' : 'outline'}
               onClick={() => setSelectedCategory('all')}
-              className={selectedCategory === 'all' ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-800'}
+              className={selectedCategory === 'all' ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-700'}
             >
               All Categories
             </Button>
@@ -381,11 +381,11 @@ export default function AchievementBadges() {
                   key={category.id}
                   variant={selectedCategory === category.id ? 'default' : 'outline'}
                   onClick={() => setSelectedCategory(category.id)}
-                  className={selectedCategory === category.id ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-800'}
+                  className={selectedCategory === category.id ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-700'}
                 >
                   {category.icon}
                   <span className="ml-2">{category.name}</span>
-                  <Badge className="ml-2 bg-gray-700 text-white">
+                  <Badge className="ml-2 bg-blue-600 text-white">
                     {stats.unlocked}/{stats.total}
                   </Badge>
                 </Button>
@@ -400,8 +400,8 @@ export default function AchievementBadges() {
         {filteredAchievements.map(achievement => (
           <Card 
             key={achievement.id} 
-            className={`bg-black/20 backdrop-blur-sm border-gray-800 cursor-pointer transition-all duration-200 hover:scale-105 ${
-              achievement.isUnlocked ? 'border-emerald-500/50' : 'border-gray-700'
+            className={`bg-black/20 backdrop-blur-sm border-blue-700 cursor-pointer transition-all duration-200 hover:scale-105 ${
+              achievement.isUnlocked ? 'border-emerald-500/50' : 'border-blue-600'
             }`}
             onClick={() => setSelectedAchievement(achievement)}
           >
@@ -410,18 +410,18 @@ export default function AchievementBadges() {
                 <div className={`p-2 rounded-full ${
                   achievement.isUnlocked 
                     ? tierColors[achievement.tier]
-                    : 'bg-gray-700'
+                    : 'bg-blue-600'
                 } ${!achievement.isUnlocked && 'opacity-50'}`}>
                   {achievement.isUnlocked ? achievement.icon : <Lock className="w-6 h-6" />}
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
-                    <h3 className={`font-medium ${achievement.isUnlocked ? 'text-white' : 'text-gray-400'}`}>
+                    <h3 className={`font-medium ${achievement.isUnlocked ? 'text-white' : 'text-blue-300'}`}>
                       {achievement.title}
                     </h3>
                     {tierIcons[achievement.tier]}
                   </div>
-                  <p className="text-gray-400 text-sm mb-2">{achievement.description}</p>
+                  <p className="text-blue-300 text-sm mb-2">{achievement.description}</p>
                   
                   {achievement.isUnlocked ? (
                     <div className="flex items-center gap-2">
@@ -433,7 +433,7 @@ export default function AchievementBadges() {
                   ) : (
                     <div className="space-y-2">
                       <div className="flex items-center justify-between text-sm">
-                        <span className="text-gray-400">Progress</span>
+                        <span className="text-blue-300">Progress</span>
                         <span className="text-white">{achievement.progress} / {achievement.maxProgress}</span>
                       </div>
                       <Progress 
@@ -451,7 +451,7 @@ export default function AchievementBadges() {
 
       {/* Achievement Details Dialog */}
       <Dialog open={!!selectedAchievement} onOpenChange={() => setSelectedAchievement(null)}>
-        <DialogContent className="bg-gray-900 border-gray-800 text-white max-w-md">
+        <DialogContent className="bg-blue-800 border-blue-700 text-white max-w-md">
           <DialogHeader>
             <DialogTitle className="text-white">Achievement Details</DialogTitle>
           </DialogHeader>
@@ -461,25 +461,25 @@ export default function AchievementBadges() {
                 <div className={`p-4 rounded-full ${
                   selectedAchievement.isUnlocked 
                     ? tierColors[selectedAchievement.tier]
-                    : 'bg-gray-700'
+                    : 'bg-blue-600'
                 }`}>
                   {selectedAchievement.isUnlocked ? selectedAchievement.icon : <Lock className="w-8 h-8" />}
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-white">{selectedAchievement.title}</h3>
-                  <p className="text-gray-400">{selectedAchievement.description}</p>
+                  <p className="text-blue-300">{selectedAchievement.description}</p>
                 </div>
               </div>
               
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-sm text-gray-400">Category</p>
-                  <Badge className="bg-gray-700 text-white capitalize">
+                  <p className="text-sm text-blue-300">Category</p>
+                  <Badge className="bg-blue-600 text-white capitalize">
                     {selectedAchievement.category}
                   </Badge>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-400">Tier</p>
+                  <p className="text-sm text-blue-300">Tier</p>
                   <Badge className={`${tierColors[selectedAchievement.tier]} text-white capitalize`}>
                     {selectedAchievement.tier}
                   </Badge>
@@ -487,7 +487,7 @@ export default function AchievementBadges() {
               </div>
               
               <div>
-                <p className="text-sm text-gray-400 mb-2">Points Reward</p>
+                <p className="text-sm text-blue-300 mb-2">Points Reward</p>
                 <div className="flex items-center gap-2">
                   <Star className="w-5 h-5 text-yellow-500" />
                   <span className="text-white font-medium">+{selectedAchievement.points} points</span>
@@ -495,7 +495,7 @@ export default function AchievementBadges() {
               </div>
               
               <div>
-                <p className="text-sm text-gray-400 mb-2">Requirements</p>
+                <p className="text-sm text-blue-300 mb-2">Requirements</p>
                 <ul className="space-y-1">
                   {selectedAchievement.requirements.map((req, index) => (
                     <li key={index} className="text-sm text-gray-300 flex items-start gap-2">
@@ -508,7 +508,7 @@ export default function AchievementBadges() {
               
               {selectedAchievement.isUnlocked && selectedAchievement.unlockedAt && (
                 <div>
-                  <p className="text-sm text-gray-400 mb-1">Unlocked On</p>
+                  <p className="text-sm text-blue-300 mb-1">Unlocked On</p>
                   <p className="text-emerald-400 font-medium">
                     {formatDate(selectedAchievement.unlockedAt)}
                   </p>
@@ -517,13 +517,13 @@ export default function AchievementBadges() {
               
               {!selectedAchievement.isUnlocked && (
                 <div>
-                  <p className="text-sm text-gray-400 mb-2">Progress</p>
+                  <p className="text-sm text-blue-300 mb-2">Progress</p>
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="text-white">
                         {selectedAchievement.progress} / {selectedAchievement.maxProgress}
                       </span>
-                      <span className="text-gray-400">
+                      <span className="text-blue-300">
                         {Math.round((selectedAchievement.progress / selectedAchievement.maxProgress) * 100)}%
                       </span>
                     </div>

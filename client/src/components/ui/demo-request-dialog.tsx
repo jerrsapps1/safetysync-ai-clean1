@@ -259,8 +259,8 @@ export function DemoRequestDialog({ isOpen, onClose, onSubmit }: DemoRequestDial
                       </div>
                     </CardHeader>
                     <CardContent className="pt-0">
-                      <p className="text-sm text-gray-600 mb-2">{promo.description}</p>
-                      <div className="text-xs text-gray-500">
+                      <p className="text-sm text-blue-500 mb-2">{promo.description}</p>
+                      <div className="text-xs text-blue-400">
                         Valid until: {new Date(promo.validUntil).toLocaleDateString()}
                       </div>
                       {promo.allowedTiers && (
@@ -286,8 +286,8 @@ export function DemoRequestDialog({ isOpen, onClose, onSubmit }: DemoRequestDial
             
             {/* Next Steps */}
             <div className="bg-gray-50 p-4 rounded-lg">
-              <h4 className="font-semibold text-gray-900 mb-2">What happens next?</h4>
-              <ul className="text-sm text-gray-600 space-y-1">
+              <h4 className="font-semibold text-blue-800 mb-2">What happens next?</h4>
+              <ul className="text-sm text-blue-500 space-y-1">
                 <li>• You'll receive a confirmation email with demo details</li>
                 <li>• Our compliance expert will contact you within 24 hours</li>
                 <li>• We'll schedule a personalized demo at your convenience</li>

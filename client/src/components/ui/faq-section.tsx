@@ -171,7 +171,7 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
           <HelpCircle className="w-8 h-8 text-blue-600" />
           <h2 className="text-3xl font-bold">Frequently Asked Questions</h2>
         </div>
-        <p className="text-gray-600 max-w-2xl mx-auto">
+        <p className="text-blue-500 max-w-2xl mx-auto">
           Find answers to common questions about SafetySync, OSHA compliance, and our platform features.
         </p>
       </div>
@@ -180,7 +180,7 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
       <Card>
         <CardContent className="p-6">
           <div className="relative">
-            <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+            <Search className="absolute left-3 top-3 h-4 w-4 text-blue-300" />
             <Input
               placeholder="Search FAQs..."
               value={searchQuery}
@@ -231,12 +231,12 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
                           </div>
                         </div>
                         {openItems.includes(faq.id) ? 
-                          <ChevronUp className="w-4 h-4 text-gray-400" /> : 
-                          <ChevronDown className="w-4 h-4 text-gray-400" />
+                          <ChevronUp className="w-4 h-4 text-blue-300" /> : 
+                          <ChevronDown className="w-4 h-4 text-blue-300" />
                         }
                       </div>
                       {openItems.includes(faq.id) && (
-                        <div className="mt-3 pt-3 border-t text-sm text-gray-600">
+                        <div className="mt-3 pt-3 border-t text-sm text-blue-500">
                           {faq.answer}
                         </div>
                       )}
@@ -254,7 +254,7 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
                 <CardContent className="p-8 text-center">
                   <HelpCircle className="w-12 h-12 mx-auto mb-4 text-gray-300" />
                   <h3 className="text-lg font-medium mb-2">No questions found</h3>
-                  <p className="text-gray-600 mb-4">
+                  <p className="text-blue-500 mb-4">
                     Try adjusting your search terms or browse different categories.
                   </p>
                   <Button variant="outline" onClick={() => setSearchQuery("")}>
@@ -283,15 +283,15 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
                             </div>
                           </div>
                           {openItems.includes(faq.id) ? 
-                            <ChevronUp className="w-5 h-5 text-gray-400" /> : 
-                            <ChevronDown className="w-5 h-5 text-gray-400" />
+                            <ChevronUp className="w-5 h-5 text-blue-300" /> : 
+                            <ChevronDown className="w-5 h-5 text-blue-300" />
                           }
                         </div>
                       </CardHeader>
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <CardContent>
-                        <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
+                        <p className="text-blue-600 leading-relaxed">{faq.answer}</p>
                       </CardContent>
                     </CollapsibleContent>
                   </Card>
@@ -308,7 +308,7 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
           <div className="text-center space-y-4">
             <MessageCircle className="w-12 h-12 mx-auto text-blue-600" />
             <h3 className="text-xl font-bold">Still have questions?</h3>
-            <p className="text-gray-600 max-w-md mx-auto">
+            <p className="text-blue-500 max-w-md mx-auto">
               Our support team is here to help you with any questions about SafetySync
               or OSHA compliance requirements.
             </p>
@@ -316,7 +316,7 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
               <div className="text-center p-4">
                 <MessageCircle className="w-6 h-6 mx-auto mb-2 text-blue-600" />
                 <div className="font-medium">Live Chat</div>
-                <div className="text-sm text-gray-600">Available 24/7</div>
+                <div className="text-sm text-blue-500">Available 24/7</div>
                 <Button variant="outline" size="sm" className="mt-2" onClick={onContactSupport}>
                   Start Chat
                 </Button>
@@ -324,7 +324,7 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
               <div className="text-center p-4">
                 <Mail className="w-6 h-6 mx-auto mb-2 text-green-600" />
                 <div className="font-medium">Email Support</div>
-                <div className="text-sm text-gray-600">Response within 2 hours</div>
+                <div className="text-sm text-blue-500">Response within 2 hours</div>
                 <Button variant="outline" size="sm" className="mt-2">
                   Send Email
                 </Button>
@@ -332,7 +332,7 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
               <div className="text-center p-4">
                 <Mail className="w-6 h-6 mx-auto mb-2 text-purple-600" />
                 <div className="font-medium">Premium Support</div>
-                <div className="text-sm text-gray-600">Available to paying customers</div>
+                <div className="text-sm text-blue-500">Available to paying customers</div>
                 <Button variant="outline" size="sm" className="mt-2">
                   Get Support
                 </Button>

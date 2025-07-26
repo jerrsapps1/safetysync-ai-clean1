@@ -18,7 +18,7 @@ const tierIcons = {
 
 const tierColors = {
   bronze: 'from-amber-600 to-amber-700',
-  silver: 'from-gray-400 to-gray-500',
+  silver: 'from-blue-300 to-blue-400',
   gold: 'from-yellow-400 to-yellow-500',
   platinum: 'from-purple-400 to-purple-500'
 };

@@ -54,8 +54,8 @@ export function SidebarOption1({}: SidebarOption1Props) {
             <div className="flex items-center space-x-3 cursor-pointer">
               <SafetySyncIcon size={32} />
               <div>
-                <h1 className="text-lg font-bold text-gray-900">SafetySync.AI</h1>
-                <p className="text-xs text-gray-600 -mt-1">OSHA Compliance</p>
+                <h1 className="text-lg font-bold text-blue-800">SafetySync.AI</h1>
+                <p className="text-xs text-blue-500 -mt-1">OSHA Compliance</p>
               </div>
             </div>
           </Link>
@@ -69,12 +69,12 @@ export function SidebarOption1({}: SidebarOption1Props) {
               return (
                 <Link key={item.name} href={item.href}>
                   <a 
-                    className="flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-emerald-50 hover:text-emerald-600 transition-colors group"
+                    className="flex items-center px-3 py-2 text-sm font-medium text-blue-600 rounded-lg hover:bg-emerald-50 hover:text-emerald-600 transition-colors group"
                     onClick={() => setIsOpen(false)}
                   >
-                    <IconComponent className="w-5 h-5 mr-3 text-gray-500 group-hover:text-emerald-600" />
+                    <IconComponent className="w-5 h-5 mr-3 text-blue-400 group-hover:text-emerald-600" />
                     {item.name}
-                    <ChevronRight className="w-4 h-4 ml-auto text-gray-400 group-hover:text-emerald-600" />
+                    <ChevronRight className="w-4 h-4 ml-auto text-blue-300 group-hover:text-emerald-600" />
                   </a>
                 </Link>
               );

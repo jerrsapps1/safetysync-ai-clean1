@@ -110,8 +110,8 @@ export default function ClientOnboardingTutorial({
     switch (importance) {
       case "critical": return "bg-red-500/20 text-red-300 border-red-500/30";
       case "recommended": return "bg-blue-500/20 text-blue-300 border-blue-500/30";
-      case "optional": return "bg-gray-500/20 text-gray-300 border-gray-500/30";
-      default: return "bg-gray-500/20 text-gray-300 border-gray-500/30";
+      case "optional": return "bg-blue-400/20 text-gray-300 border-blue-400/30";
+      default: return "bg-blue-400/20 text-gray-300 border-blue-400/30";
     }
   };
 
@@ -143,7 +143,7 @@ export default function ClientOnboardingTutorial({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl bg-gray-900 border-gray-700 text-white">
+      <DialogContent className="max-w-2xl bg-blue-800 border-blue-600 text-white">
         <DialogHeader className="pb-4">
           <div className="flex items-center justify-between">
             <DialogTitle className="text-xl font-semibold text-white flex items-center gap-2">
@@ -154,7 +154,7 @@ export default function ClientOnboardingTutorial({
               variant="ghost"
               size="sm"
               onClick={onClose}
-              className="text-gray-400 hover:text-white"
+              className="text-blue-300 hover:text-white"
             >
               <X className="w-4 h-4" />
             </Button>
@@ -166,12 +166,12 @@ export default function ClientOnboardingTutorial({
               <span className="text-gray-300">
                 Step {currentStep} of {onboardingSteps.length}
               </span>
-              <span className="text-gray-400">
+              <span className="text-blue-300">
                 Total time: {totalEstimatedTime}
               </span>
             </div>
-            <Progress value={progress} className="h-2 bg-gray-800" />
-            <div className="text-xs text-gray-400">
+            <Progress value={progress} className="h-2 bg-blue-700" />
+            <div className="text-xs text-blue-300">
               {completedSteps.length} of {onboardingSteps.length} steps completed ({Math.round(progress)}%)
             </div>
           </div>
@@ -197,21 +197,21 @@ export default function ClientOnboardingTutorial({
                 )}
               </div>
               <p className="text-gray-300 text-sm">{currentStepData.description}</p>
-              <div className="text-xs text-gray-400">
+              <div className="text-xs text-blue-300">
                 Estimated time: {currentStepData.estimatedTime}
               </div>
             </div>
           </div>
 
           {/* Step Content */}
-          <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-700">
+          <div className="bg-blue-700/50 rounded-lg p-4 border border-blue-600">
             <p className="text-gray-200 leading-relaxed">
               {currentStepData.content}
             </p>
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-gray-700">
+          <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-blue-600">
             <Button
               onClick={handleStepAction}
               className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white"
@@ -225,7 +225,7 @@ export default function ClientOnboardingTutorial({
                 variant="outline"
                 onClick={handlePrevious}
                 disabled={currentStep === 1}
-                className="border-gray-600 text-gray-300 hover:bg-gray-800"
+                className="border-blue-500 text-gray-300 hover:bg-blue-700"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Previous
@@ -235,7 +235,7 @@ export default function ClientOnboardingTutorial({
                 variant="outline"
                 onClick={handleNext}
                 disabled={currentStep === onboardingSteps.length}
-                className="border-gray-600 text-gray-300 hover:bg-gray-800"
+                className="border-blue-500 text-gray-300 hover:bg-blue-700"
               >
                 Next
                 <ArrowRight className="w-4 h-4 ml-2" />
@@ -248,7 +248,7 @@ export default function ClientOnboardingTutorial({
             <Button
               variant="ghost"
               onClick={handleSkipForNow}
-              className="text-gray-400 hover:text-white text-sm"
+              className="text-blue-300 hover:text-white text-sm"
             >
               Skip for now (return anytime from Settings)
             </Button>

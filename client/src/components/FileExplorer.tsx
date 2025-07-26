@@ -340,9 +340,9 @@ const FileExplorer: React.FC<FileExplorerProps> = ({ className }) => {
   }, [navigationHistory.length]);
 
   return (
-    <div className={`bg-gray-900 text-white rounded-lg border border-gray-800 overflow-hidden ${className}`}>
+    <div className={`bg-blue-800 text-white rounded-lg border border-blue-700 overflow-hidden ${className}`}>
       {/* Toolbar */}
-      <div className="flex items-center justify-between p-4 bg-gray-800 border-b border-gray-700">
+      <div className="flex items-center justify-between p-4 bg-blue-700 border-b border-blue-600">
         <div className="flex items-center space-x-2">
           <Button
             variant="ghost"
@@ -381,12 +381,12 @@ const FileExplorer: React.FC<FileExplorerProps> = ({ className }) => {
 
         <div className="flex items-center space-x-2">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-blue-300" />
             <Input
               placeholder="Search files and folders..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 w-64 bg-gray-700 border-gray-600 text-white"
+              className="pl-10 w-64 bg-blue-600 border-blue-500 text-white"
             />
           </div>
           <Button
@@ -400,7 +400,7 @@ const FileExplorer: React.FC<FileExplorerProps> = ({ className }) => {
       </div>
 
       {/* Action Bar */}
-      <div className="flex items-center justify-between p-3 bg-gray-800/50 border-b border-gray-700">
+      <div className="flex items-center justify-between p-3 bg-blue-700/50 border-b border-blue-600">
         <div className="flex items-center space-x-2">
           <Button
             variant="ghost"
@@ -461,7 +461,7 @@ const FileExplorer: React.FC<FileExplorerProps> = ({ className }) => {
           )}
         </div>
 
-        <div className="flex items-center space-x-2 text-sm text-gray-400">
+        <div className="flex items-center space-x-2 text-sm text-blue-300">
           {selectedItems.size > 0 && (
             <span>{selectedItems.size} item(s) selected</span>
           )}
@@ -470,12 +470,12 @@ const FileExplorer: React.FC<FileExplorerProps> = ({ className }) => {
       </div>
 
       {/* Breadcrumbs */}
-      <div className="flex items-center p-3 bg-gray-800/30 border-b border-gray-700">
+      <div className="flex items-center p-3 bg-blue-700/30 border-b border-blue-600">
         <div className="flex items-center space-x-1 text-sm">
           <Home className="w-4 h-4" />
           {breadcrumbs.map((crumb, index) => (
             <React.Fragment key={crumb.id}>
-              <ChevronRight className="w-4 h-4 text-gray-500" />
+              <ChevronRight className="w-4 h-4 text-blue-400" />
               <Button
                 variant="ghost"
                 size="sm"
@@ -491,7 +491,7 @@ const FileExplorer: React.FC<FileExplorerProps> = ({ className }) => {
 
       {/* Upload Progress */}
       {uploadProgress.length > 0 && (
-        <div className="p-3 bg-gray-800/50 border-b border-gray-700">
+        <div className="p-3 bg-blue-700/50 border-b border-blue-600">
           <div className="space-y-2">
             {uploadProgress.map((upload, index) => (
               <div key={index} className="flex items-center justify-between">
@@ -533,7 +533,7 @@ const FileExplorer: React.FC<FileExplorerProps> = ({ className }) => {
                       relative p-3 rounded-lg border cursor-pointer transition-all
                       ${selectedItems.has(item.id) 
                         ? 'bg-blue-600/20 border-blue-500' 
-                        : 'bg-gray-800/50 border-gray-700 hover:bg-gray-700/50'
+                        : 'bg-blue-700/50 border-blue-600 hover:bg-blue-600/50'
                       }
                       ${viewMode === 'list' ? 'flex items-center space-x-3' : 'text-center'}
                     `}
@@ -572,12 +572,12 @@ const FileExplorer: React.FC<FileExplorerProps> = ({ className }) => {
                     <div className={`${viewMode === 'grid' ? 'space-y-1' : 'flex-1'}`}>
                       <div className="text-sm font-medium truncate">{item.name}</div>
                       {viewMode === 'grid' && (
-                        <div className="text-xs text-gray-400">
+                        <div className="text-xs text-blue-300">
                           {formatDate(item.lastModified)}
                         </div>
                       )}
                       {viewMode === 'list' && (
-                        <div className="flex items-center space-x-4 text-sm text-gray-400">
+                        <div className="flex items-center space-x-4 text-sm text-blue-300">
                           <span>{formatDate(item.lastModified)}</span>
                           {item.size && <span>{formatFileSize(item.size)}</span>}
                         </div>
@@ -614,7 +614,7 @@ const FileExplorer: React.FC<FileExplorerProps> = ({ className }) => {
         )}
 
         {filteredItems.length === 0 && !foldersLoading && !filesLoading && (
-          <div className="flex flex-col items-center justify-center h-64 text-gray-400">
+          <div className="flex flex-col items-center justify-center h-64 text-blue-300">
             <Folder className="w-16 h-16 mb-4" />
             <p>This folder is empty</p>
             <p className="text-sm">Drop files here or click "Upload" to add files</p>

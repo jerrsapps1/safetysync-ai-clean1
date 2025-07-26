@@ -176,7 +176,7 @@ export function AICloneDetector({ onScanComplete }: AICloneDetectorProps) {
       case 'high_risk': return 'bg-orange-500';
       case 'medium_risk': return 'bg-yellow-500';
       case 'low_risk': return 'bg-green-500';
-      default: return 'bg-gray-500';
+      default: return 'bg-blue-400';
     }
   };
 
@@ -220,7 +220,7 @@ export function AICloneDetector({ onScanComplete }: AICloneDetectorProps) {
             <Shield className="w-8 h-8 text-blue-600" />
             AI Clone Detector
           </h2>
-          <p className="text-gray-600 mt-2">
+          <p className="text-blue-500 mt-2">
             Protect your website with AI-powered clone detection and monitoring
           </p>
         </div>
@@ -318,8 +318,8 @@ export function AICloneDetector({ onScanComplete }: AICloneDetectorProps) {
           {results.length === 0 ? (
             <Card>
               <CardContent className="py-8 text-center">
-                <Search className="w-12 h-12 mx-auto text-gray-400 mb-4" />
-                <p className="text-gray-500">No scan results yet. Start a new scan to detect potential clones.</p>
+                <Search className="w-12 h-12 mx-auto text-blue-300 mb-4" />
+                <p className="text-blue-400">No scan results yet. Start a new scan to detect potential clones.</p>
               </CardContent>
             </Card>
           ) : (
@@ -330,7 +330,7 @@ export function AICloneDetector({ onScanComplete }: AICloneDetectorProps) {
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-2">
-                          <Globe className="w-4 h-4 text-gray-500" />
+                          <Globe className="w-4 h-4 text-blue-400" />
                           <span className="font-medium text-sm">{result.url}</span>
                         </div>
                         <Badge className={`${getRiskColor(result.recommendation)} text-white`}>
@@ -341,26 +341,26 @@ export function AICloneDetector({ onScanComplete }: AICloneDetectorProps) {
                         <div className="text-2xl font-bold text-blue-600">
                           {(result.similarityScore * 100).toFixed(1)}%
                         </div>
-                        <div className="text-sm text-gray-500">Similarity</div>
+                        <div className="text-sm text-blue-400">Similarity</div>
                       </div>
                     </div>
 
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
                       <div className="text-center">
                         <div className="text-lg font-semibold">{(result.analysis.contentSimilarity * 100).toFixed(0)}%</div>
-                        <div className="text-xs text-gray-500">Content</div>
+                        <div className="text-xs text-blue-400">Content</div>
                       </div>
                       <div className="text-center">
                         <div className="text-lg font-semibold">{(result.analysis.structureSimilarity * 100).toFixed(0)}%</div>
-                        <div className="text-xs text-gray-500">Structure</div>
+                        <div className="text-xs text-blue-400">Structure</div>
                       </div>
                       <div className="text-center">
                         <div className="text-lg font-semibold">{(result.analysis.designSimilarity * 100).toFixed(0)}%</div>
-                        <div className="text-xs text-gray-500">Design</div>
+                        <div className="text-xs text-blue-400">Design</div>
                       </div>
                       <div className="text-center">
                         <div className="text-lg font-semibold">{(result.analysis.brandingSimilarity * 100).toFixed(0)}%</div>
-                        <div className="text-xs text-gray-500">Branding</div>
+                        <div className="text-xs text-blue-400">Branding</div>
                       </div>
                     </div>
 
@@ -420,8 +420,8 @@ export function AICloneDetector({ onScanComplete }: AICloneDetectorProps) {
           {scanHistory.length === 0 ? (
             <Card>
               <CardContent className="py-8 text-center">
-                <Clock className="w-12 h-12 mx-auto text-gray-400 mb-4" />
-                <p className="text-gray-500">No scan history yet. Your completed scans will appear here.</p>
+                <Clock className="w-12 h-12 mx-auto text-blue-300 mb-4" />
+                <p className="text-blue-400">No scan history yet. Your completed scans will appear here.</p>
               </CardContent>
             </Card>
           ) : (
@@ -433,11 +433,11 @@ export function AICloneDetector({ onScanComplete }: AICloneDetectorProps) {
                       <div>
                         <div className="flex items-center gap-2 mb-2">
                           <Badge variant="outline">{scan.scanType}</Badge>
-                          <span className="text-sm text-gray-500">
+                          <span className="text-sm text-blue-400">
                             {new Date(scan.createdAt).toLocaleString()}
                           </span>
                         </div>
-                        <div className="text-sm text-gray-600">
+                        <div className="text-sm text-blue-500">
                           {scan.totalSites} sites scanned
                         </div>
                       </div>
@@ -445,7 +445,7 @@ export function AICloneDetector({ onScanComplete }: AICloneDetectorProps) {
                         <div className="text-lg font-bold text-red-600">
                           {scan.clonesDetected}
                         </div>
-                        <div className="text-sm text-gray-500">Clones Detected</div>
+                        <div className="text-sm text-blue-400">Clones Detected</div>
                       </div>
                     </div>
 

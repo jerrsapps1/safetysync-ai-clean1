@@ -224,7 +224,7 @@ export default function NotificationSystem() {
       case 'error': return 'bg-red-500/20 text-red-400 border-red-500/30';
       case 'success': return 'bg-green-500/20 text-green-400 border-green-500/30';
       case 'info': return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
-      default: return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
+      default: return 'bg-blue-400/20 text-blue-300 border-blue-400/30';
     }
   };
 
@@ -234,7 +234,7 @@ export default function NotificationSystem() {
       case 'high': return 'bg-orange-500/20 text-orange-400 border-orange-500/30';
       case 'medium': return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30';
       case 'low': return 'bg-green-500/20 text-green-400 border-green-500/30';
-      default: return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
+      default: return 'bg-blue-400/20 text-blue-300 border-blue-400/30';
     }
   };
 
@@ -302,7 +302,7 @@ export default function NotificationSystem() {
             <SafetySyncIcon size={32} className="rounded-lg" />
             Notifications & Alerts
           </h2>
-          <p className="text-gray-400">Manage notifications, alerts, and communication preferences</p>
+          <p className="text-blue-300">Manage notifications, alerts, and communication preferences</p>
           <p className="text-blue-300 text-sm mt-1">
             🔔 AI-powered smart notifications • {unreadCount} unread alerts
           </p>
@@ -321,11 +321,11 @@ export default function NotificationSystem() {
 
       {/* Statistics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative z-10">
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm">Unread Notifications</p>
+                <p className="text-blue-300 text-sm">Unread Notifications</p>
                 <p className="text-2xl font-bold text-white">{unreadCount}</p>
                 <p className="text-blue-400 text-sm">🤖 AI-Prioritized</p>
               </div>
@@ -334,11 +334,11 @@ export default function NotificationSystem() {
           </CardContent>
         </Card>
 
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm">High Priority</p>
+                <p className="text-blue-300 text-sm">High Priority</p>
                 <p className="text-2xl font-bold text-white">{highPriorityCount}</p>
                 <p className="text-yellow-400 text-sm">Urgent Action</p>
               </div>
@@ -347,11 +347,11 @@ export default function NotificationSystem() {
           </CardContent>
         </Card>
 
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm">Today's Alerts</p>
+                <p className="text-blue-300 text-sm">Today's Alerts</p>
                 <p className="text-2xl font-bold text-white">{todayCount}</p>
                 <p className="text-green-400 text-sm">New Today</p>
               </div>
@@ -360,11 +360,11 @@ export default function NotificationSystem() {
           </CardContent>
         </Card>
 
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm">Active Rules</p>
+                <p className="text-blue-300 text-sm">Active Rules</p>
                 <p className="text-2xl font-bold text-white">{alertRules.filter(r => r.isActive).length}</p>
                 <p className="text-purple-400 text-sm">Monitoring</p>
               </div>
@@ -377,20 +377,20 @@ export default function NotificationSystem() {
       {/* Search and Filter */}
       <div className="flex items-center gap-4 relative z-10">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-blue-300" />
           <Input
             placeholder="Search notifications..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-10 bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+            className="pl-10 bg-blue-700/50 border-blue-600 text-white placeholder-blue-300"
           />
         </div>
         <div className="flex items-center gap-2">
-          <Filter className="w-4 h-4 text-gray-400" />
+          <Filter className="w-4 h-4 text-blue-300" />
           <select
             value={selectedType}
             onChange={(e) => setSelectedType(e.target.value)}
-            className="bg-gray-800/50 border-gray-700 text-white rounded-md px-3 py-2"
+            className="bg-blue-700/50 border-blue-600 text-white rounded-md px-3 py-2"
           >
             <option value="all">All Types</option>
             <option value="warning">Warning</option>
@@ -403,7 +403,7 @@ export default function NotificationSystem() {
 
       {/* Main Content Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="relative z-10">
-        <TabsList className="grid w-full grid-cols-3 bg-black/20 backdrop-blur-sm border-gray-800">
+        <TabsList className="grid w-full grid-cols-3 bg-black/20 backdrop-blur-sm border-blue-700">
           <TabsTrigger 
             value="notifications" 
             className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
@@ -429,7 +429,7 @@ export default function NotificationSystem() {
 
         <TabsContent value="notifications" className="space-y-4">
           {filteredNotifications.map((notification) => (
-            <Card key={notification.id} className={`bg-black/20 backdrop-blur-sm border-gray-800 ${!notification.isRead ? 'ring-1 ring-blue-500/30' : ''}`}>
+            <Card key={notification.id} className={`bg-black/20 backdrop-blur-sm border-blue-700 ${!notification.isRead ? 'ring-1 ring-blue-500/30' : ''}`}>
               <CardContent className="p-6">
                 <div className="flex items-start justify-between">
                   <div className="flex items-start space-x-4 flex-1">
@@ -451,16 +451,16 @@ export default function NotificationSystem() {
                         <Badge className={getPriorityColor(notification.priority)}>
                           {notification.priority}
                         </Badge>
-                        <Badge variant="outline" className="text-gray-400 border-gray-600">
+                        <Badge variant="outline" className="text-blue-300 border-blue-500">
                           {notification.category}
                         </Badge>
                       </div>
-                      <div className="flex items-center gap-2 text-sm text-gray-400">
+                      <div className="flex items-center gap-2 text-sm text-blue-300">
                         <Clock className="w-4 h-4" />
                         {new Date(notification.timestamp).toLocaleString()}
                       </div>
                       {notification.affectedUsers && (
-                        <div className="flex items-center gap-2 text-sm text-gray-400 mt-2">
+                        <div className="flex items-center gap-2 text-sm text-blue-300 mt-2">
                           <User className="w-4 h-4" />
                           Affects: {notification.affectedUsers.join(', ')}
                         </div>
@@ -468,14 +468,14 @@ export default function NotificationSystem() {
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Button size="sm" variant="outline" className="border-gray-600 text-gray-300">
+                    <Button size="sm" variant="outline" className="border-blue-500 text-gray-300">
                       <Eye className="w-3 h-3 mr-1" />
                       View
                     </Button>
                   </div>
                 </div>
                 {notification.actions && (
-                  <div className="flex items-center gap-2 mt-4 pt-4 border-t border-gray-700">
+                  <div className="flex items-center gap-2 mt-4 pt-4 border-t border-blue-600">
                     {notification.actions.map((action, index) => (
                       <Button
                         key={index}
@@ -493,21 +493,21 @@ export default function NotificationSystem() {
         </TabsContent>
 
         <TabsContent value="preferences" className="space-y-6">
-          <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+          <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
             <CardHeader>
               <CardTitle className="text-white">Notification Preferences</CardTitle>
-              <CardDescription className="text-gray-400">
+              <CardDescription className="text-blue-300">
                 Configure how you want to receive notifications
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-6">
                 {preferences.map((pref) => (
-                  <div key={pref.id} className="border border-gray-700 rounded-lg p-4">
+                  <div key={pref.id} className="border border-blue-600 rounded-lg p-4">
                     <div className="flex items-start justify-between mb-3">
                       <div>
                         <h4 className="text-white font-medium">{pref.label}</h4>
-                        <p className="text-gray-400 text-sm">{pref.description}</p>
+                        <p className="text-blue-300 text-sm">{pref.description}</p>
                       </div>
                       <Badge className={getPriorityColor(pref.priority)}>
                         {pref.priority}
@@ -557,33 +557,33 @@ export default function NotificationSystem() {
 
         <TabsContent value="alerts" className="space-y-4">
           {alertRules.map((rule) => (
-            <Card key={rule.id} className="bg-black/20 backdrop-blur-sm border-gray-800">
+            <Card key={rule.id} className="bg-black/20 backdrop-blur-sm border-blue-700">
               <CardContent className="p-6">
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
                       <h3 className="text-white font-semibold">{rule.name}</h3>
-                      <Badge className={rule.isActive ? 'bg-green-500/20 text-green-400' : 'bg-gray-500/20 text-gray-400'}>
+                      <Badge className={rule.isActive ? 'bg-green-500/20 text-green-400' : 'bg-blue-400/20 text-blue-300'}>
                         {rule.isActive ? 'Active' : 'Inactive'}
                       </Badge>
                     </div>
                     <p className="text-gray-300 mb-3">{rule.condition}</p>
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       <div>
-                        <p className="text-gray-400">Trigger:</p>
+                        <p className="text-blue-300">Trigger:</p>
                         <p className="text-white">{rule.trigger}</p>
                       </div>
                       <div>
-                        <p className="text-gray-400">Recipients:</p>
+                        <p className="text-blue-300">Recipients:</p>
                         <p className="text-white">{rule.recipients.join(', ')}</p>
                       </div>
                       <div>
-                        <p className="text-gray-400">Channels:</p>
+                        <p className="text-blue-300">Channels:</p>
                         <p className="text-white">{rule.channels.join(', ')}</p>
                       </div>
                       {rule.lastTriggered && (
                         <div>
-                          <p className="text-gray-400">Last Triggered:</p>
+                          <p className="text-blue-300">Last Triggered:</p>
                           <p className="text-white">{new Date(rule.lastTriggered).toLocaleString()}</p>
                         </div>
                       )}
@@ -594,7 +594,7 @@ export default function NotificationSystem() {
                       checked={rule.isActive}
                       onCheckedChange={() => toggleAlertRule(rule.id)}
                     />
-                    <Button size="sm" variant="outline" className="border-gray-600 text-gray-300">
+                    <Button size="sm" variant="outline" className="border-blue-500 text-gray-300">
                       <Edit className="w-3 h-3 mr-1" />
                       Edit
                     </Button>

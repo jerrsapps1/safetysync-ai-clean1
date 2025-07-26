@@ -84,8 +84,8 @@ export default function EmployeeProfile({ employeeId, onClose }: EmployeeProfile
     switch (status) {
       case 'active': return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
       case 'expired': return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';
-      case 'revoked': return 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200';
-      default: return 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200';
+      case 'revoked': return 'bg-gray-100 text-blue-700 dark:bg-blue-800 dark:text-gray-200';
+      default: return 'bg-gray-100 text-blue-700 dark:bg-blue-800 dark:text-gray-200';
     }
   };
 
@@ -174,7 +174,7 @@ export default function EmployeeProfile({ employeeId, onClose }: EmployeeProfile
           </div>
           <div>
             <h1 className="text-2xl font-bold">{employee.firstName} {employee.lastName}</h1>
-            <p className="text-gray-600 dark:text-gray-400">{employee.position} • {employee.department}</p>
+            <p className="text-blue-500 dark:text-blue-300">{employee.position} • {employee.department}</p>
           </div>
         </div>
         
@@ -200,7 +200,7 @@ export default function EmployeeProfile({ employeeId, onClose }: EmployeeProfile
                         className="w-48 h-48"
                       />
                     </div>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-blue-500">
                       Safety personnel can scan this code to view all certificates
                     </p>
                     <Button onClick={() => window.open(qrCode.qrCodeImagePath, '_blank')}>
@@ -211,7 +211,7 @@ export default function EmployeeProfile({ employeeId, onClose }: EmployeeProfile
                 ) : (
                   <div className="space-y-4">
                     <QrCode className="h-24 w-24 text-gray-300 mx-auto" />
-                    <p className="text-gray-600">No QR code generated yet</p>
+                    <p className="text-blue-500">No QR code generated yet</p>
                     <Button onClick={handleGenerateQrCode}>
                       Generate QR Code
                     </Button>
@@ -236,7 +236,7 @@ export default function EmployeeProfile({ employeeId, onClose }: EmployeeProfile
             <div className="flex items-center space-x-2">
               <ShieldCheck className="h-4 w-4 text-green-500" />
               <div>
-                <p className="text-sm text-gray-600">Active Certificates</p>
+                <p className="text-sm text-blue-500">Active Certificates</p>
                 <p className="text-xl font-bold">{certificateList.filter(c => c.status === 'active').length}</p>
               </div>
             </div>
@@ -248,7 +248,7 @@ export default function EmployeeProfile({ employeeId, onClose }: EmployeeProfile
             <div className="flex items-center space-x-2">
               <Clock className="h-4 w-4 text-yellow-500" />
               <div>
-                <p className="text-sm text-gray-600">Expiring Soon</p>
+                <p className="text-sm text-blue-500">Expiring Soon</p>
                 <p className="text-xl font-bold">{certificateList.filter(c => isExpiringSoon(c.expirationDate)).length}</p>
               </div>
             </div>
@@ -260,7 +260,7 @@ export default function EmployeeProfile({ employeeId, onClose }: EmployeeProfile
             <div className="flex items-center space-x-2">
               <AlertTriangle className="h-4 w-4 text-red-500" />
               <div>
-                <p className="text-sm text-gray-600">Expired</p>
+                <p className="text-sm text-blue-500">Expired</p>
                 <p className="text-xl font-bold">{certificateList.filter(c => isExpired(c.expirationDate)).length}</p>
               </div>
             </div>
@@ -272,7 +272,7 @@ export default function EmployeeProfile({ employeeId, onClose }: EmployeeProfile
             <div className="flex items-center space-x-2">
               <ExternalLink className="h-4 w-4 text-blue-500" />
               <div>
-                <p className="text-sm text-gray-600">External Certs</p>
+                <p className="text-sm text-blue-500">External Certs</p>
                 <p className="text-xl font-bold">{certificateList.filter(c => c.uploadedFromExternal).length}</p>
               </div>
             </div>
@@ -304,29 +304,29 @@ export default function EmployeeProfile({ employeeId, onClose }: EmployeeProfile
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <p className="text-sm text-gray-600">Employee ID</p>
+                    <p className="text-sm text-blue-500">Employee ID</p>
                     <p className="font-medium">{employee.employeeId}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">Status</p>
+                    <p className="text-sm text-blue-500">Status</p>
                     <Badge className={getStatusColor(employee.status)}>
                       {employee.status}
                     </Badge>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">Department</p>
+                    <p className="text-sm text-blue-500">Department</p>
                     <p className="font-medium">{employee.department || 'N/A'}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">Position</p>
+                    <p className="text-sm text-blue-500">Position</p>
                     <p className="font-medium">{employee.position || 'N/A'}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">Location</p>
+                    <p className="text-sm text-blue-500">Location</p>
                     <p className="font-medium">{employee.location || 'N/A'}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">Hire Date</p>
+                    <p className="text-sm text-blue-500">Hire Date</p>
                     <p className="font-medium">
                       {employee.hireDate 
                         ? new Date(employee.hireDate).toLocaleDateString() 
@@ -339,12 +339,12 @@ export default function EmployeeProfile({ employeeId, onClose }: EmployeeProfile
                 <div className="pt-4 border-t">
                   <div className="space-y-2">
                     <div className="flex items-center space-x-2">
-                      <Mail className="h-4 w-4 text-gray-400" />
+                      <Mail className="h-4 w-4 text-blue-300" />
                       <span className="text-sm">{employee.email}</span>
                     </div>
                     {employee.phone && (
                       <div className="flex items-center space-x-2">
-                        <Phone className="h-4 w-4 text-gray-400" />
+                        <Phone className="h-4 w-4 text-blue-300" />
                         <span className="text-sm">{employee.phone}</span>
                       </div>
                     )}
@@ -363,14 +363,14 @@ export default function EmployeeProfile({ employeeId, onClose }: EmployeeProfile
               </CardHeader>
               <CardContent>
                 {certificateList.length === 0 ? (
-                  <p className="text-gray-600 text-center py-6">No certificates on file</p>
+                  <p className="text-blue-500 text-center py-6">No certificates on file</p>
                 ) : (
                   <div className="space-y-3">
                     {certificateList.slice(0, 5).map((cert) => (
                       <div key={cert.id} className="flex items-center justify-between p-3 border rounded-lg">
                         <div className="flex-1">
                           <p className="font-medium text-sm">{cert.certificateName}</p>
-                          <p className="text-xs text-gray-500">
+                          <p className="text-xs text-blue-400">
                             Expires: {cert.expirationDate 
                               ? new Date(cert.expirationDate).toLocaleDateString() 
                               : 'No expiration'
@@ -423,9 +423,9 @@ export default function EmployeeProfile({ employeeId, onClose }: EmployeeProfile
           ) : certificateList.length === 0 ? (
             <Card>
               <CardContent className="py-12 text-center">
-                <ShieldCheck className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">No Certificates</h3>
-                <p className="text-gray-600 mb-4">
+                <ShieldCheck className="h-12 w-12 text-blue-300 mx-auto mb-4" />
+                <h3 className="text-lg font-medium text-blue-800 mb-2">No Certificates</h3>
+                <p className="text-blue-500 mb-4">
                   This employee doesn't have any certificates on file yet.
                 </p>
                 <Button onClick={() => setIsAddCertificateOpen(true)}>
@@ -441,7 +441,7 @@ export default function EmployeeProfile({ employeeId, onClose }: EmployeeProfile
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <CardTitle className="text-lg">{cert.certificateName}</CardTitle>
-                        <p className="text-sm text-gray-600">{cert.certificationType}</p>
+                        <p className="text-sm text-blue-500">{cert.certificationType}</p>
                       </div>
                       <div className="flex flex-col items-end space-y-2">
                         <Badge className={getStatusColor(cert.status)}>
@@ -464,11 +464,11 @@ export default function EmployeeProfile({ employeeId, onClose }: EmployeeProfile
                   <CardContent className="space-y-4">
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       <div>
-                        <p className="text-gray-600">Issue Date</p>
+                        <p className="text-blue-500">Issue Date</p>
                         <p className="font-medium">{new Date(cert.issueDate).toLocaleDateString()}</p>
                       </div>
                       <div>
-                        <p className="text-gray-600">Expiration</p>
+                        <p className="text-blue-500">Expiration</p>
                         <p className="font-medium">
                           {cert.expirationDate 
                             ? new Date(cert.expirationDate).toLocaleDateString() 
@@ -478,7 +478,7 @@ export default function EmployeeProfile({ employeeId, onClose }: EmployeeProfile
                       </div>
                       {cert.certificateNumber && (
                         <div className="col-span-2">
-                          <p className="text-gray-600">Certificate Number</p>
+                          <p className="text-blue-500">Certificate Number</p>
                           <p className="font-mono text-xs">{cert.certificateNumber}</p>
                         </div>
                       )}
@@ -486,24 +486,24 @@ export default function EmployeeProfile({ employeeId, onClose }: EmployeeProfile
                     
                     {cert.instructorName && (
                       <div>
-                        <p className="text-gray-600 text-sm">Instructor</p>
+                        <p className="text-blue-500 text-sm">Instructor</p>
                         <p className="font-medium text-sm">{cert.instructorName}</p>
                         {cert.instructorCredentials && (
-                          <p className="text-xs text-gray-500">{cert.instructorCredentials}</p>
+                          <p className="text-xs text-blue-400">{cert.instructorCredentials}</p>
                         )}
                       </div>
                     )}
                     
                     {cert.issuingOrganization && (
                       <div>
-                        <p className="text-gray-600 text-sm">Issuing Organization</p>
+                        <p className="text-blue-500 text-sm">Issuing Organization</p>
                         <p className="font-medium text-sm">{cert.issuingOrganization}</p>
                       </div>
                     )}
                     
                     {cert.trainingStandards && cert.trainingStandards.length > 0 && (
                       <div>
-                        <p className="text-gray-600 text-sm">Training Standards</p>
+                        <p className="text-blue-500 text-sm">Training Standards</p>
                         <div className="flex flex-wrap gap-1 mt-1">
                           {cert.trainingStandards.map((standard, index) => (
                             <Badge key={index} variant="outline" className="text-xs">
@@ -516,7 +516,7 @@ export default function EmployeeProfile({ employeeId, onClose }: EmployeeProfile
                     
                     {cert.notes && (
                       <div>
-                        <p className="text-gray-600 text-sm">Notes</p>
+                        <p className="text-blue-500 text-sm">Notes</p>
                         <p className="text-sm">{cert.notes}</p>
                       </div>
                     )}
@@ -564,7 +564,7 @@ export default function EmployeeProfile({ employeeId, onClose }: EmployeeProfile
               <CardTitle>Compliance Status</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-600">Compliance analysis will be displayed here.</p>
+              <p className="text-blue-500">Compliance analysis will be displayed here.</p>
             </CardContent>
           </Card>
         </TabsContent>
@@ -577,7 +577,7 @@ export default function EmployeeProfile({ employeeId, onClose }: EmployeeProfile
             <DialogTitle>Add Certificate</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
-            <p className="text-gray-600">
+            <p className="text-blue-500">
               Certificate upload functionality will be implemented here.
             </p>
             <div className="flex justify-end space-x-2">
@@ -599,7 +599,7 @@ export default function EmployeeProfile({ employeeId, onClose }: EmployeeProfile
                 <DialogTitle>{selectedCertificate.certificateName}</DialogTitle>
               </DialogHeader>
               <div className="space-y-4">
-                <p className="text-gray-600">
+                <p className="text-blue-500">
                   Detailed certificate view will be implemented here.
                 </p>
               </div>

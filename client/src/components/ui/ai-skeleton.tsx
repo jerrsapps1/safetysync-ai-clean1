@@ -35,16 +35,16 @@ const AIPatternSkeleton = ({ className, variant = "card", showIcon = true, anima
           </div>
         )}
         <div className="space-y-2 flex-1">
-          <div className="h-4 bg-gradient-to-r from-slate-600 to-slate-500 rounded animate-shimmer-ai"></div>
-          <div className="h-3 bg-gradient-to-r from-slate-700 to-slate-600 rounded w-3/4 animate-shimmer-ai delay-100"></div>
+          <div className="h-4 bg-gradient-to-r from-blue-500 to-blue-400 rounded animate-shimmer-ai"></div>
+          <div className="h-3 bg-gradient-to-r from-slate-700 to-blue-500 rounded w-3/4 animate-shimmer-ai delay-100"></div>
         </div>
       </div>
       
       {/* Content Lines */}
       <div className="space-y-3 relative z-10">
-        <div className="h-3 bg-gradient-to-r from-slate-600 to-slate-500 rounded animate-shimmer-ai delay-200"></div>
-        <div className="h-3 bg-gradient-to-r from-slate-700 to-slate-600 rounded w-5/6 animate-shimmer-ai delay-300"></div>
-        <div className="h-3 bg-gradient-to-r from-slate-600 to-slate-500 rounded w-4/6 animate-shimmer-ai delay-400"></div>
+        <div className="h-3 bg-gradient-to-r from-blue-500 to-blue-400 rounded animate-shimmer-ai delay-200"></div>
+        <div className="h-3 bg-gradient-to-r from-slate-700 to-blue-500 rounded w-5/6 animate-shimmer-ai delay-300"></div>
+        <div className="h-3 bg-gradient-to-r from-blue-500 to-blue-400 rounded w-4/6 animate-shimmer-ai delay-400"></div>
       </div>
       
       {/* AI Data Nodes */}
@@ -75,7 +75,7 @@ const AIPatternSkeleton = ({ className, variant = "card", showIcon = true, anima
         {[...Array(4)].map((_, i) => (
           <div key={i} className="space-y-2">
             <div className="h-8 bg-gradient-to-r from-blue-500/30 to-purple-500/30 rounded animate-shimmer-ai" style={{ animationDelay: `${i * 100}ms` }}></div>
-            <div className="h-4 bg-gradient-to-r from-slate-600 to-slate-500 rounded animate-shimmer-ai" style={{ animationDelay: `${i * 150}ms` }}></div>
+            <div className="h-4 bg-gradient-to-r from-blue-500 to-blue-400 rounded animate-shimmer-ai" style={{ animationDelay: `${i * 150}ms` }}></div>
           </div>
         ))}
       </div>
@@ -133,7 +133,7 @@ const AIPatternSkeleton = ({ className, variant = "card", showIcon = true, anima
           {[...Array(5)].map((_, colIndex) => (
             <div
               key={colIndex}
-              className="h-3 bg-gradient-to-r from-slate-600 to-slate-500 rounded animate-shimmer-ai"
+              className="h-3 bg-gradient-to-r from-blue-500 to-blue-400 rounded animate-shimmer-ai"
               style={{ animationDelay: `${(rowIndex * 5 + colIndex) * 30}ms` }}
             ></div>
           ))}
@@ -143,7 +143,7 @@ const AIPatternSkeleton = ({ className, variant = "card", showIcon = true, anima
       {/* AI Processing Indicator */}
       <div className="flex items-center justify-center space-x-2 mt-6 relative z-10">
         <Brain className="w-4 h-4 text-blue-400 animate-pulse-glow" />
-        <div className="text-sm text-slate-400">AI Processing Data...</div>
+        <div className="text-sm text-blue-300">AI Processing Data...</div>
       </div>
     </div>
   );
@@ -162,13 +162,13 @@ const AIPatternSkeleton = ({ className, variant = "card", showIcon = true, anima
       
       {/* Stat Label */}
       <div className="relative z-10">
-        <div className="h-4 bg-gradient-to-r from-slate-600 to-slate-500 rounded w-2/3 animate-shimmer-ai delay-200"></div>
+        <div className="h-4 bg-gradient-to-r from-blue-500 to-blue-400 rounded w-2/3 animate-shimmer-ai delay-200"></div>
       </div>
       
       {/* AI Trend Indicator */}
       <div className="flex items-center space-x-2 relative z-10">
         <div className="w-4 h-4 bg-gradient-to-r from-green-400 to-blue-400 rounded animate-pulse-glow"></div>
-        <div className="h-3 bg-gradient-to-r from-slate-700 to-slate-600 rounded w-1/2 animate-shimmer-ai delay-300"></div>
+        <div className="h-3 bg-gradient-to-r from-slate-700 to-blue-500 rounded w-1/2 animate-shimmer-ai delay-300"></div>
       </div>
     </div>
   );
@@ -183,7 +183,7 @@ const AIPatternSkeleton = ({ className, variant = "card", showIcon = true, anima
       {/* Form Fields */}
       {[...Array(4)].map((_, i) => (
         <div key={i} className="space-y-2 relative z-10">
-          <div className="h-4 bg-gradient-to-r from-slate-600 to-slate-500 rounded w-1/4 animate-shimmer-ai" style={{ animationDelay: `${i * 100}ms` }}></div>
+          <div className="h-4 bg-gradient-to-r from-blue-500 to-blue-400 rounded w-1/4 animate-shimmer-ai" style={{ animationDelay: `${i * 100}ms` }}></div>
           <div className="h-10 bg-gradient-to-r from-slate-800 to-slate-700 rounded-lg animate-shimmer-ai" style={{ animationDelay: `${i * 150}ms` }}></div>
         </div>
       ))}
@@ -204,7 +204,7 @@ const AIPatternSkeleton = ({ className, variant = "card", showIcon = true, anima
       
       {/* Chart Title */}
       <div className="relative z-10">
-        <div className="h-5 bg-gradient-to-r from-slate-600 to-slate-500 rounded w-1/3 animate-shimmer-ai"></div>
+        <div className="h-5 bg-gradient-to-r from-blue-500 to-blue-400 rounded w-1/3 animate-shimmer-ai"></div>
       </div>
       
       {/* Chart Area */}
@@ -214,7 +214,7 @@ const AIPatternSkeleton = ({ className, variant = "card", showIcon = true, anima
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="relative w-32 h-32">
               {/* Circular AI Loading */}
-              <div className="absolute inset-0 rounded-full border-4 border-slate-600 animate-pulse"></div>
+              <div className="absolute inset-0 rounded-full border-4 border-blue-500 animate-pulse"></div>
               <div className="absolute inset-0 rounded-full border-4 border-blue-500 border-t-transparent animate-spin"></div>
               <div className="absolute inset-4 rounded-full border-2 border-purple-500 border-r-transparent animate-spin-reverse"></div>
             </div>
@@ -227,7 +227,7 @@ const AIPatternSkeleton = ({ className, variant = "card", showIcon = true, anima
         {[...Array(3)].map((_, i) => (
           <div key={i} className="flex items-center space-x-2">
             <div className="w-3 h-3 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 animate-pulse-glow" style={{ animationDelay: `${i * 100}ms` }}></div>
-            <div className="h-3 bg-gradient-to-r from-slate-600 to-slate-500 rounded w-16 animate-shimmer-ai" style={{ animationDelay: `${i * 150}ms` }}></div>
+            <div className="h-3 bg-gradient-to-r from-blue-500 to-blue-400 rounded w-16 animate-shimmer-ai" style={{ animationDelay: `${i * 150}ms` }}></div>
           </div>
         ))}
       </div>

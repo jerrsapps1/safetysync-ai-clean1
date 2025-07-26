@@ -31,7 +31,7 @@ interface DynamicAchievementWidgetProps {
 
 const tierColors = {
   bronze: 'from-amber-600 to-amber-700',
-  silver: 'from-gray-400 to-gray-500',
+  silver: 'from-blue-300 to-blue-400',
   gold: 'from-yellow-400 to-yellow-500',
   platinum: 'from-purple-400 to-purple-500'
 };
@@ -147,25 +147,25 @@ export default function DynamicAchievementWidget({ isSmall = false }: DynamicAch
         </div>
         
         <div className="grid grid-cols-2 gap-2">
-          <div className="bg-gray-800/30 rounded-lg p-2 text-center">
+          <div className="bg-blue-700/30 rounded-lg p-2 text-center">
             <div className="text-lg font-bold text-yellow-400">{userStats.totalPoints}</div>
-            <div className="text-xs text-gray-400">Points</div>
+            <div className="text-xs text-blue-300">Points</div>
           </div>
-          <div className="bg-gray-800/30 rounded-lg p-2 text-center">
+          <div className="bg-blue-700/30 rounded-lg p-2 text-center">
             <div className="text-lg font-bold text-emerald-400">{userStats.unlockedBadges}</div>
-            <div className="text-xs text-gray-400">Badges</div>
+            <div className="text-xs text-blue-300">Badges</div>
           </div>
         </div>
 
         {nextAchievements.length > 0 && (
-          <div className="bg-gray-800/30 rounded-lg p-2">
+          <div className="bg-blue-700/30 rounded-lg p-2">
             <div className="flex items-center gap-2 mb-1">
               <div className={`p-1 rounded-full bg-gradient-to-r ${tierColors[nextAchievements[0].tier]} opacity-70`}>
                 {nextAchievements[0].icon}
               </div>
               <div className="flex-1 min-w-0">
                 <div className="text-xs text-white font-medium truncate">{nextAchievements[0].title}</div>
-                <div className="text-xs text-gray-400">
+                <div className="text-xs text-blue-300">
                   {nextAchievements[0].progress}/{nextAchievements[0].maxProgress}
                 </div>
               </div>
@@ -216,31 +216,31 @@ export default function DynamicAchievementWidget({ isSmall = false }: DynamicAch
 
       {/* Stats Overview */}
       <div className="grid grid-cols-3 gap-3">
-        <div className="bg-gray-800/30 rounded-lg p-3 text-center">
+        <div className="bg-blue-700/30 rounded-lg p-3 text-center">
           <div className="flex items-center justify-center gap-1 mb-1">
             <Star className="w-4 h-4 text-yellow-500" />
             <div className="text-lg font-bold text-yellow-400">{userStats.totalPoints}</div>
           </div>
-          <div className="text-xs text-gray-400">Total Points</div>
+          <div className="text-xs text-blue-300">Total Points</div>
         </div>
-        <div className="bg-gray-800/30 rounded-lg p-3 text-center">
+        <div className="bg-blue-700/30 rounded-lg p-3 text-center">
           <div className="flex items-center justify-center gap-1 mb-1">
             <Award className="w-4 h-4 text-emerald-500" />
             <div className="text-lg font-bold text-emerald-400">{userStats.unlockedBadges}</div>
           </div>
-          <div className="text-xs text-gray-400">Badges</div>
+          <div className="text-xs text-blue-300">Badges</div>
         </div>
-        <div className="bg-gray-800/30 rounded-lg p-3 text-center">
+        <div className="bg-blue-700/30 rounded-lg p-3 text-center">
           <div className="flex items-center justify-center gap-1 mb-1">
             <Target className="w-4 h-4 text-blue-500" />
             <div className="text-lg font-bold text-blue-400">{userStats.complianceStreak}</div>
           </div>
-          <div className="text-xs text-gray-400">Day Streak</div>
+          <div className="text-xs text-blue-300">Day Streak</div>
         </div>
       </div>
 
       <Tabs defaultValue="recent" className="space-y-4">
-        <TabsList className="grid w-full grid-cols-3 bg-gray-800/30">
+        <TabsList className="grid w-full grid-cols-3 bg-blue-700/30">
           <TabsTrigger value="recent" className="text-xs">Recent</TabsTrigger>
           <TabsTrigger value="progress" className="text-xs">Progress</TabsTrigger>
           <TabsTrigger value="unlocked" className="text-xs">Unlocked</TabsTrigger>
@@ -251,7 +251,7 @@ export default function DynamicAchievementWidget({ isSmall = false }: DynamicAch
           <div className="space-y-2 max-h-32 overflow-y-auto">
             {recentUnlocks.length > 0 ? (
               recentUnlocks.map((achievement) => (
-                <div key={achievement.id} className="flex items-center gap-3 p-2 bg-gray-800/30 rounded-lg">
+                <div key={achievement.id} className="flex items-center gap-3 p-2 bg-blue-700/30 rounded-lg">
                   <div className={`p-1.5 rounded-full bg-gradient-to-r ${tierColors[achievement.tier]}`}>
                     {achievement.icon}
                   </div>
@@ -265,7 +265,7 @@ export default function DynamicAchievementWidget({ isSmall = false }: DynamicAch
                 </div>
               ))
             ) : (
-              <div className="text-center text-gray-400 text-sm py-4">
+              <div className="text-center text-blue-300 text-sm py-4">
                 No recent unlocks. Start using the platform to earn achievements!
               </div>
             )}
@@ -277,14 +277,14 @@ export default function DynamicAchievementWidget({ isSmall = false }: DynamicAch
           <div className="space-y-2 max-h-32 overflow-y-auto">
             {nextAchievements.length > 0 ? (
               nextAchievements.slice(0, 3).map((achievement) => (
-                <div key={achievement.id} className="bg-gray-800/30 rounded-lg p-2">
+                <div key={achievement.id} className="bg-blue-700/30 rounded-lg p-2">
                   <div className="flex items-center gap-2 mb-1">
                     <div className={`p-1 rounded-full bg-gradient-to-r ${tierColors[achievement.tier]} opacity-70`}>
                       {achievement.icon}
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="text-xs text-white font-medium truncate">{achievement.title}</div>
-                      <div className="text-xs text-gray-400">
+                      <div className="text-xs text-blue-300">
                         {achievement.progress}/{achievement.maxProgress}
                       </div>
                     </div>
@@ -296,7 +296,7 @@ export default function DynamicAchievementWidget({ isSmall = false }: DynamicAch
                 </div>
               ))
             ) : (
-              <div className="text-center text-gray-400 text-sm py-4">
+              <div className="text-center text-blue-300 text-sm py-4">
                 All achievements completed! 🎉
               </div>
             )}
@@ -307,7 +307,7 @@ export default function DynamicAchievementWidget({ isSmall = false }: DynamicAch
           <h4 className="text-sm font-medium text-white">Unlocked ({unlockedAchievements.length})</h4>
           <div className="space-y-2 max-h-32 overflow-y-auto">
             {unlockedAchievements.map((achievement) => (
-              <div key={achievement.id} className="flex items-center gap-3 p-2 bg-gray-800/30 rounded-lg">
+              <div key={achievement.id} className="flex items-center gap-3 p-2 bg-blue-700/30 rounded-lg">
                 <div className={`p-1.5 rounded-full bg-gradient-to-r ${tierColors[achievement.tier]}`}>
                   {achievement.icon}
                 </div>

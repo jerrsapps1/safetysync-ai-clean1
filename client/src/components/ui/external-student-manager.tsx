@@ -324,7 +324,7 @@ export function ExternalStudentManager({
         <CardContent>
           <div className="space-y-4">
             <div className="relative">
-              <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+              <Search className="absolute left-3 top-3 h-4 w-4 text-blue-300" />
               <Input
                 placeholder="Search external students..."
                 value={searchQuery}
@@ -349,7 +349,7 @@ export function ExternalStudentManager({
                           {student.company}
                         </Badge>
                       </div>
-                      <div className="text-sm text-gray-500 mt-1">
+                      <div className="text-sm text-blue-400 mt-1">
                         <span className="flex items-center gap-1">
                           <Mail className="w-3 h-3" />
                           {student.email}
@@ -397,7 +397,7 @@ export function ExternalStudentManager({
                   </div>
                 ))}
                 {displayStudents.length === 0 && (
-                  <div className="text-center py-8 text-gray-500">
+                  <div className="text-center py-8 text-blue-400">
                     {searchQuery.trim() ? 'No external students found matching your search' : 'No external students added yet'}
                   </div>
                 )}

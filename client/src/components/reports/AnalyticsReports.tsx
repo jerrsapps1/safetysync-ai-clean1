@@ -252,7 +252,7 @@ export default function AnalyticsReports() {
     switch (trend) {
       case 'up': return <TrendingUp className="w-4 h-4 text-green-400" />;
       case 'down': return <TrendingDown className="w-4 h-4 text-red-400" />;
-      default: return <TrendingUp className="w-4 h-4 text-gray-400" />;
+      default: return <TrendingUp className="w-4 h-4 text-blue-300" />;
     }
   };
 
@@ -283,14 +283,14 @@ export default function AnalyticsReports() {
             <SafetySyncIcon size={32} className="rounded-lg" />
             Analytics & Reports
           </h2>
-          <p className="text-gray-400">Comprehensive analytics, reporting, and compliance insights</p>
+          <p className="text-blue-300">Comprehensive analytics, reporting, and compliance insights</p>
           <p className="text-blue-300 text-sm mt-1">
             📊 AI-powered insights • {mockMetrics.complianceRate}% compliance rate • {mockMetrics.totalCertificates} active certificates
           </p>
         </div>
         <div className="flex items-center space-x-2">
           <Select value={selectedPeriod} onValueChange={setSelectedPeriod}>
-            <SelectTrigger className="bg-gray-800/50 border-gray-700 text-white">
+            <SelectTrigger className="bg-blue-700/50 border-blue-600 text-white">
               <SelectValue placeholder="Time Period" />
             </SelectTrigger>
             <SelectContent>
@@ -327,11 +327,11 @@ export default function AnalyticsReports() {
 
       {/* Key Metrics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm">Compliance Rate</p>
+                <p className="text-blue-300 text-sm">Compliance Rate</p>
                 <p className="text-2xl font-bold text-white">{mockMetrics.complianceRate}%</p>
                 <p className="text-green-400 text-sm flex items-center gap-1">
                   {getTrendIcon(mockMetrics.trend)}
@@ -343,11 +343,11 @@ export default function AnalyticsReports() {
           </CardContent>
         </Card>
 
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm">Total Employees</p>
+                <p className="text-blue-300 text-sm">Total Employees</p>
                 <p className="text-2xl font-bold text-white">{mockMetrics.totalEmployees}</p>
                 <p className="text-blue-400 text-sm">{mockMetrics.compliantEmployees} compliant</p>
               </div>
@@ -356,11 +356,11 @@ export default function AnalyticsReports() {
           </CardContent>
         </Card>
 
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm">Training Hours</p>
+                <p className="text-blue-300 text-sm">Training Hours</p>
                 <p className="text-2xl font-bold text-white">{mockMetrics.trainingHours.toLocaleString()}</p>
                 <p className="text-purple-400 text-sm">This period</p>
               </div>
@@ -369,11 +369,11 @@ export default function AnalyticsReports() {
           </CardContent>
         </Card>
 
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm">Certificates</p>
+                <p className="text-blue-300 text-sm">Certificates</p>
                 <p className="text-2xl font-bold text-white">{mockMetrics.totalCertificates}</p>
                 <p className="text-orange-400 text-sm">{mockMetrics.expiringCertificates} expiring</p>
               </div>
@@ -385,7 +385,7 @@ export default function AnalyticsReports() {
 
       {/* Main Content Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="relative z-10">
-        <TabsList className="grid w-full grid-cols-4 bg-black/20 backdrop-blur-sm border-gray-800">
+        <TabsList className="grid w-full grid-cols-4 bg-black/20 backdrop-blur-sm border-blue-700">
           <TabsTrigger 
             value="overview" 
             className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
@@ -418,47 +418,47 @@ export default function AnalyticsReports() {
 
         <TabsContent value="overview" className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+            <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
               <CardHeader>
                 <CardTitle className="text-white">Compliance Trend</CardTitle>
-                <CardDescription className="text-gray-400">
+                <CardDescription className="text-blue-300">
                   Overall compliance rate over time
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="h-64 flex items-center justify-center border border-gray-700 rounded-lg">
+                <div className="h-64 flex items-center justify-center border border-blue-600 rounded-lg">
                   <div className="text-center">
                     <TrendingUp className="w-12 h-12 text-blue-400 mx-auto mb-2" />
-                    <p className="text-gray-400">Compliance trend chart</p>
-                    <p className="text-gray-500 text-sm">87.8% current rate, trending up</p>
+                    <p className="text-blue-300">Compliance trend chart</p>
+                    <p className="text-blue-400 text-sm">87.8% current rate, trending up</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+            <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
               <CardHeader>
                 <CardTitle className="text-white">Training Progress</CardTitle>
-                <CardDescription className="text-gray-400">
+                <CardDescription className="text-blue-300">
                   Training completion and performance metrics
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="h-64 flex items-center justify-center border border-gray-700 rounded-lg">
+                <div className="h-64 flex items-center justify-center border border-blue-600 rounded-lg">
                   <div className="text-center">
                     <Target className="w-12 h-12 text-green-400 mx-auto mb-2" />
-                    <p className="text-gray-400">Training analytics chart</p>
-                    <p className="text-gray-500 text-sm">Average score: {mockMetrics.averageScore}%</p>
+                    <p className="text-blue-300">Training analytics chart</p>
+                    <p className="text-blue-400 text-sm">Average score: {mockMetrics.averageScore}%</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
           </div>
 
-          <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+          <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
             <CardHeader>
               <CardTitle className="text-white">Key Performance Indicators</CardTitle>
-              <CardDescription className="text-gray-400">
+              <CardDescription className="text-blue-300">
                 Critical metrics for safety and compliance management
               </CardDescription>
             </CardHeader>
@@ -493,7 +493,7 @@ export default function AnalyticsReports() {
         <TabsContent value="departments" className="space-y-6">
           <div className="grid grid-cols-1 gap-4">
             {mockDepartments.map((dept) => (
-              <Card key={dept.name} className="bg-black/20 backdrop-blur-sm border-gray-800">
+              <Card key={dept.name} className="bg-black/20 backdrop-blur-sm border-blue-700">
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-white">{dept.name}</CardTitle>
@@ -511,23 +511,23 @@ export default function AnalyticsReports() {
                   <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                     <div className="text-center">
                       <div className="text-2xl font-bold text-white">{dept.employees}</div>
-                      <p className="text-gray-400 text-sm">Employees</p>
+                      <p className="text-blue-300 text-sm">Employees</p>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-green-400">{dept.compliantEmployees}</div>
-                      <p className="text-gray-400 text-sm">Compliant</p>
+                      <p className="text-blue-300 text-sm">Compliant</p>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-blue-400">{dept.trainingHours}</div>
-                      <p className="text-gray-400 text-sm">Training Hours</p>
+                      <p className="text-blue-300 text-sm">Training Hours</p>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-purple-400">{dept.certificates}</div>
-                      <p className="text-gray-400 text-sm">Certificates</p>
+                      <p className="text-blue-300 text-sm">Certificates</p>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-orange-400">{dept.riskScore}</div>
-                      <p className="text-gray-400 text-sm">Risk Score</p>
+                      <p className="text-blue-300 text-sm">Risk Score</p>
                     </div>
                   </div>
                 </CardContent>
@@ -539,7 +539,7 @@ export default function AnalyticsReports() {
         <TabsContent value="training" className="space-y-6">
           <div className="grid grid-cols-1 gap-4">
             {mockTraining.map((training) => (
-              <Card key={training.courseName} className="bg-black/20 backdrop-blur-sm border-gray-800">
+              <Card key={training.courseName} className="bg-black/20 backdrop-blur-sm border-blue-700">
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-white">{training.courseName}</CardTitle>
@@ -552,23 +552,23 @@ export default function AnalyticsReports() {
                   <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                     <div className="text-center">
                       <div className="text-2xl font-bold text-white">{training.totalEnrolled}</div>
-                      <p className="text-gray-400 text-sm">Total Enrolled</p>
+                      <p className="text-blue-300 text-sm">Total Enrolled</p>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-green-400">{training.completed}</div>
-                      <p className="text-gray-400 text-sm">Completed</p>
+                      <p className="text-blue-300 text-sm">Completed</p>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-blue-400">{training.averageScore}%</div>
-                      <p className="text-gray-400 text-sm">Average Score</p>
+                      <p className="text-blue-300 text-sm">Average Score</p>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-purple-400">{training.averageTime}h</div>
-                      <p className="text-gray-400 text-sm">Average Time</p>
+                      <p className="text-blue-300 text-sm">Average Time</p>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-orange-400">{training.lastUpdated}</div>
-                      <p className="text-gray-400 text-sm">Last Updated</p>
+                      <p className="text-blue-300 text-sm">Last Updated</p>
                     </div>
                   </div>
                 </CardContent>
@@ -580,14 +580,14 @@ export default function AnalyticsReports() {
         <TabsContent value="reports" className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {mockReportTemplates.map((template) => (
-              <Card key={template.id} className="bg-black/20 backdrop-blur-sm border-gray-800">
+              <Card key={template.id} className="bg-black/20 backdrop-blur-sm border-blue-700">
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       {template.icon}
                       <div>
                         <CardTitle className="text-white">{template.name}</CardTitle>
-                        <CardDescription className="text-gray-400">
+                        <CardDescription className="text-blue-300">
                           {template.description}
                         </CardDescription>
                       </div>
@@ -599,7 +599,7 @@ export default function AnalyticsReports() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-400">Last Generated</span>
+                    <span className="text-blue-300">Last Generated</span>
                     <span className="text-white">{template.lastGenerated}</span>
                   </div>
                   <div className="flex items-center gap-2">

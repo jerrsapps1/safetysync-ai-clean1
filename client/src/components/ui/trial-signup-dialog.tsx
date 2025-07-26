@@ -227,7 +227,7 @@ export function TrialSignupDialog({ isOpen, onClose, onSubmit }: TrialSignupDial
               className={errors.username ? "border-red-500" : ""}
               maxLength={30}
             />
-            <p className="text-xs text-gray-500">3-30 characters. Letters, numbers, hyphens, and underscores only.</p>
+            <p className="text-xs text-blue-400">3-30 characters. Letters, numbers, hyphens, and underscores only.</p>
             {errors.username && <p className="text-sm text-red-500">{errors.username}</p>}
           </div>
 

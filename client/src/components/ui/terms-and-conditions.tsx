@@ -36,21 +36,21 @@ export function TermsAndConditions({
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl max-h-[90vh] bg-white">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-gray-900">
+          <DialogTitle className="text-2xl font-bold text-blue-800">
             Service Agreement & Terms of Use
           </DialogTitle>
           <div className="flex items-center gap-2 mt-2">
             <Badge variant="outline" className="text-blue-600">
               {planName || 'Professional Plan'}
             </Badge>
-            <Badge variant="outline" className="text-gray-600">
+            <Badge variant="outline" className="text-blue-500">
               {userEmail || 'Client Agreement'}
             </Badge>
           </div>
         </DialogHeader>
 
         <ScrollArea className="max-h-[60vh] pr-4">
-          <div className="space-y-6 text-sm text-gray-700">
+          <div className="space-y-6 text-sm text-blue-600">
             
             {/* Service Agreement Overview */}
             <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
@@ -116,11 +116,11 @@ export function TermsAndConditions({
             <Separator />
             
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-gray-900">TERMS AND CONDITIONS OF SERVICE</h3>
+              <h3 className="text-lg font-semibold text-blue-800">TERMS AND CONDITIONS OF SERVICE</h3>
               
               <div className="space-y-3">
                 <div>
-                  <h4 className="font-semibold text-gray-900">1. SERVICE DESCRIPTION</h4>
+                  <h4 className="font-semibold text-blue-800">1. SERVICE DESCRIPTION</h4>
                   <p className="mt-1">
                     SafetySync.AI provides comprehensive AI-powered OSHA compliance management software as a service (SaaS). 
                     Our platform includes: compliance tracking, automated reporting, training management, regulatory updates, 
@@ -131,7 +131,7 @@ export function TermsAndConditions({
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900">2. SUBSCRIPTION AND BILLING</h4>
+                  <h4 className="font-semibold text-blue-800">2. SUBSCRIPTION AND BILLING</h4>
                   <p className="mt-1">
                     <strong>Monthly Billing:</strong> Services are billed monthly in advance based on your selected plan and employee count.
                     <br />
@@ -148,7 +148,7 @@ export function TermsAndConditions({
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900">3. CERTIFICATE AND DIGITAL WALLET CARD PRICING</h4>
+                  <h4 className="font-semibold text-blue-800">3. CERTIFICATE AND DIGITAL WALLET CARD PRICING</h4>
                   <p className="mt-1">
                     <strong>Plan-Specific Allowances:</strong> Each subscription plan includes different certificate and digital wallet card allowances for the first month: Essential (15), Professional (50), Enterprise (100), Enterprise Plus (250).
                     <br />
@@ -163,7 +163,7 @@ export function TermsAndConditions({
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900">4. AI SERVICES AND DATA PROCESSING</h4>
+                  <h4 className="font-semibold text-blue-800">4. AI SERVICES AND DATA PROCESSING</h4>
                   <p className="mt-1">
                     <strong>AI Features:</strong> Our platform uses artificial intelligence for clone detection, compliance analysis, risk assessment, and chat assistance.
                     <br />
@@ -176,7 +176,7 @@ export function TermsAndConditions({
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900">5. API ACCESS AND DEVELOPER SERVICES</h4>
+                  <h4 className="font-semibold text-blue-800">5. API ACCESS AND DEVELOPER SERVICES</h4>
                   <p className="mt-1">
                     <strong>API Usage:</strong> API access is governed by rate limits and fair use policies outlined in our developer portal.
                     <br />
@@ -189,7 +189,7 @@ export function TermsAndConditions({
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900">5. CUSTOM BRANDING AND WHITE-LABEL SERVICES</h4>
+                  <h4 className="font-semibold text-blue-800">5. CUSTOM BRANDING AND WHITE-LABEL SERVICES</h4>
                   <p className="mt-1">
                     <strong>Branding Rights:</strong> Essential, Professional, and Enterprise plans include custom branding capabilities.
                     <br />
@@ -202,7 +202,7 @@ export function TermsAndConditions({
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900">7. COLLABORATION AND MULTI-LOCATION FEATURES</h4>
+                  <h4 className="font-semibold text-blue-800">7. COLLABORATION AND MULTI-LOCATION FEATURES</h4>
                   <p className="mt-1">
                     <strong>Team Collaboration:</strong> Real-time collaboration tools enable secure team communication within your organization.
                     <br />
@@ -215,7 +215,7 @@ export function TermsAndConditions({
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900">8. CANCELLATION AND REFUND POLICY</h4>
+                  <h4 className="font-semibold text-blue-800">8. CANCELLATION AND REFUND POLICY</h4>
                   <p className="mt-1">
                     <strong>Cancellation:</strong> You may cancel your subscription at any time with 30 days written notice.
                     <br />
@@ -228,7 +228,7 @@ export function TermsAndConditions({
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900">4. DATA OWNERSHIP AND PRIVACY</h4>
+                  <h4 className="font-semibold text-blue-800">4. DATA OWNERSHIP AND PRIVACY</h4>
                   <p className="mt-1">
                     <strong>Your Data:</strong> You retain ownership of all data uploaded to our platform.
                     <br />
@@ -241,7 +241,7 @@ export function TermsAndConditions({
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900">6. SERVICE AVAILABILITY</h4>
+                  <h4 className="font-semibold text-blue-800">6. SERVICE AVAILABILITY</h4>
                   <p className="mt-1">
                     <strong>Uptime:</strong> We strive for 99.9% uptime but do not guarantee uninterrupted service.
                     <br />
@@ -252,7 +252,7 @@ export function TermsAndConditions({
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900">8. AUTOMATED AUDIT REVIEW SERVICES</h4>
+                  <h4 className="font-semibold text-blue-800">8. AUTOMATED AUDIT REVIEW SERVICES</h4>
                   <p className="mt-1">
                     <strong>Service Description:</strong> Optional automated monthly compliance gap analysis available for $99/month.
                     <br />
@@ -265,7 +265,7 @@ export function TermsAndConditions({
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900">9. TIER-BASED FEATURES AND LIMITATIONS</h4>
+                  <h4 className="font-semibold text-blue-800">9. TIER-BASED FEATURES AND LIMITATIONS</h4>
                   <p className="mt-1">
                     <strong>Essential Plan:</strong> Up to 50 employees, basic features, custom branding, email support.
                     <br />
@@ -278,7 +278,7 @@ export function TermsAndConditions({
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900">10. COMPLIANCE AND LIABILITY</h4>
+                  <h4 className="font-semibold text-blue-800">10. COMPLIANCE AND LIABILITY</h4>
                   <p className="mt-1">
                     <strong>Compliance Tool:</strong> Our platform is a tool to assist with OSHA compliance but does not guarantee compliance.
                     <br />
@@ -291,7 +291,7 @@ export function TermsAndConditions({
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900">11. ACCEPTABLE USE</h4>
+                  <h4 className="font-semibold text-blue-800">11. ACCEPTABLE USE</h4>
                   <p className="mt-1">
                     You agree not to: (a) violate any laws, (b) infringe intellectual property rights, 
                     (c) transmit malicious code, (d) attempt to gain unauthorized access, (e) use the service 
@@ -301,7 +301,7 @@ export function TermsAndConditions({
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900">12. DATA SECURITY AND PRIVACY</h4>
+                  <h4 className="font-semibold text-blue-800">12. DATA SECURITY AND PRIVACY</h4>
                   <p className="mt-1">
                     <strong>Encryption:</strong> All data is encrypted in transit and at rest using industry-standard protocols.
                     <br />
@@ -314,7 +314,7 @@ export function TermsAndConditions({
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900">13. MODIFICATIONS</h4>
+                  <h4 className="font-semibold text-blue-800">13. MODIFICATIONS</h4>
                   <p className="mt-1">
                     We reserve the right to modify these terms with 30 days notice. Continued use of the service 
                     constitutes acceptance of modified terms. Material changes affecting pricing or core functionality 
@@ -323,7 +323,7 @@ export function TermsAndConditions({
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900">14. GOVERNING LAW</h4>
+                  <h4 className="font-semibold text-blue-800">14. GOVERNING LAW</h4>
                   <p className="mt-1">
                     This agreement is governed by the laws of the jurisdiction where SafetySync.AI is incorporated. 
                     Any disputes will be resolved through binding arbitration. Class action lawsuits are waived except 
@@ -336,12 +336,12 @@ export function TermsAndConditions({
             <Separator />
 
             <div className="bg-gray-50 p-4 rounded-lg">
-              <h4 className="font-semibold text-gray-900 mb-2">Contact Information</h4>
-              <p className="text-gray-700">
+              <h4 className="font-semibold text-blue-800 mb-2">Contact Information</h4>
+              <p className="text-blue-600">
                 For questions about these terms or your account, contact our support team at{' '}
                 <span className="font-medium">support@safetysync.ai</span>
               </p>
-              <p className="text-xs text-gray-500 mt-2">
+              <p className="text-xs text-blue-400 mt-2">
                 Last updated: {new Date().toLocaleDateString()}
               </p>
             </div>

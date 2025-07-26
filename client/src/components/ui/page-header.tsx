@@ -36,10 +36,10 @@ export function PageHeader({}: PageHeaderProps) {
       <Button
         variant="ghost"
         size="sm"
-        className="fixed top-4 left-4 z-50 md:hidden bg-gray-800/80 border border-gray-600 text-gray-900 hover:bg-gray-700/80 shadow-md"
+        className="fixed top-4 left-4 z-50 md:hidden bg-blue-700/80 border border-blue-500 text-blue-800 hover:bg-blue-600/80 shadow-md"
         onClick={() => setIsMobileOpen(!isMobileOpen)}
       >
-        {isMobileOpen ? <X className="h-5 w-5 text-gray-900" /> : <Menu className="h-5 w-5 text-gray-900" />}
+        {isMobileOpen ? <X className="h-5 w-5 text-blue-800" /> : <Menu className="h-5 w-5 text-blue-800" />}
       </Button>
 
       {/* Hover-Based Icon Sidebar - Always Visible on Desktop */}
@@ -101,7 +101,7 @@ export function PageHeader({}: PageHeaderProps) {
                     onClick={() => setIsMobileOpen(false)}
                     title={!isHovered ? item.name : undefined}
                   >
-                    <IconComponent className="w-5 h-5 text-gray-400 group-hover:text-emerald-400 flex-shrink-0" />
+                    <IconComponent className="w-5 h-5 text-blue-300 group-hover:text-emerald-400 flex-shrink-0" />
                     {isHovered && (
                       <span className="ml-3">{item.name}</span>
                     )}

@@ -65,13 +65,13 @@ export default function AnalyticsDashboard() {
   const getTrendIcon = (trend: 'up' | 'down' | 'neutral') => {
     if (trend === 'up') return <TrendingUp className="w-4 h-4 text-green-500" />;
     if (trend === 'down') return <TrendingUp className="w-4 h-4 text-red-500 rotate-180" />;
-    return <Activity className="w-4 h-4 text-gray-500" />;
+    return <Activity className="w-4 h-4 text-blue-400" />;
   };
 
   const getTrendColor = (trend: 'up' | 'down' | 'neutral') => {
     if (trend === 'up') return 'text-green-600';
     if (trend === 'down') return 'text-red-600';
-    return 'text-gray-600';
+    return 'text-blue-500';
   };
 
   return (
@@ -81,8 +81,8 @@ export default function AnalyticsDashboard() {
         <div className="mb-8">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Analytics Dashboard</h1>
-              <p className="text-gray-600 mt-2">Customer acquisition and conversion tracking</p>
+              <h1 className="text-3xl font-bold text-blue-800">Analytics Dashboard</h1>
+              <p className="text-blue-500 mt-2">Customer acquisition and conversion tracking</p>
             </div>
             <div className="flex items-center gap-4">
               <select 
@@ -110,8 +110,8 @@ export default function AnalyticsDashboard() {
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-600">{metric.name}</p>
-                    <p className="text-2xl font-bold text-gray-900">
+                    <p className="text-sm font-medium text-blue-500">{metric.name}</p>
+                    <p className="text-2xl font-bold text-blue-800">
                       {metric.name.includes('Rate') ? `${metric.value}%` : formatNumber(metric.value)}
                     </p>
                   </div>
@@ -123,7 +123,7 @@ export default function AnalyticsDashboard() {
                   <span className={`font-medium ${getTrendColor(metric.trend)}`}>
                     {metric.change > 0 ? '+' : ''}{metric.change}%
                   </span>
-                  <span className="text-gray-500 ml-1">vs previous period</span>
+                  <span className="text-blue-400 ml-1">vs previous period</span>
                 </div>
               </CardContent>
             </Card>
@@ -156,7 +156,7 @@ export default function AnalyticsDashboard() {
                     </div>
                     <div className="text-right">
                       <p className="text-2xl font-bold text-blue-600">1,247</p>
-                      <p className="text-sm text-gray-600">100%</p>
+                      <p className="text-sm text-blue-500">100%</p>
                     </div>
                   </div>
                   
@@ -167,7 +167,7 @@ export default function AnalyticsDashboard() {
                     </div>
                     <div className="text-right">
                       <p className="text-2xl font-bold text-green-600">234</p>
-                      <p className="text-sm text-gray-600">18.8%</p>
+                      <p className="text-sm text-blue-500">18.8%</p>
                     </div>
                   </div>
                   
@@ -178,7 +178,7 @@ export default function AnalyticsDashboard() {
                     </div>
                     <div className="text-right">
                       <p className="text-2xl font-bold text-purple-600">121</p>
-                      <p className="text-sm text-gray-600">9.7%</p>
+                      <p className="text-sm text-blue-500">9.7%</p>
                     </div>
                   </div>
                   
@@ -189,7 +189,7 @@ export default function AnalyticsDashboard() {
                     </div>
                     <div className="text-right">
                       <p className="text-2xl font-bold text-orange-600">87</p>
-                      <p className="text-sm text-gray-600">7.0%</p>
+                      <p className="text-sm text-blue-500">7.0%</p>
                     </div>
                   </div>
                 </div>
@@ -210,11 +210,11 @@ export default function AnalyticsDashboard() {
                   {trafficSources.map((source, index) => (
                     <div key={index} className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
                       <div>
-                        <p className="font-medium text-gray-900">{source.source}</p>
-                        <p className="text-sm text-gray-600">{formatNumber(source.visitors)} visitors</p>
+                        <p className="font-medium text-blue-800">{source.source}</p>
+                        <p className="text-sm text-blue-500">{formatNumber(source.visitors)} visitors</p>
                       </div>
                       <div className="text-right">
-                        <p className="font-bold text-gray-900">{source.conversions} conversions</p>
+                        <p className="font-bold text-blue-800">{source.conversions} conversions</p>
                         <Badge variant={source.rate > 9 ? "default" : "secondary"}>
                           {source.rate}% rate
                         </Badge>
@@ -237,27 +237,27 @@ export default function AnalyticsDashboard() {
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="p-4 border border-gray-200 rounded-lg">
-                    <h4 className="font-medium text-gray-900 mb-2">Hero CTA Clicks</h4>
+                    <h4 className="font-medium text-blue-800 mb-2">Hero CTA Clicks</h4>
                     <p className="text-2xl font-bold text-blue-600">156</p>
-                    <p className="text-sm text-gray-600">Trial: 89, Demo: 67</p>
+                    <p className="text-sm text-blue-500">Trial: 89, Demo: 67</p>
                   </div>
                   
                   <div className="p-4 border border-gray-200 rounded-lg">
-                    <h4 className="font-medium text-gray-900 mb-2">Product Tour Starts</h4>
+                    <h4 className="font-medium text-blue-800 mb-2">Product Tour Starts</h4>
                     <p className="text-2xl font-bold text-green-600">43</p>
-                    <p className="text-sm text-gray-600">27.6% completion rate</p>
+                    <p className="text-sm text-blue-500">27.6% completion rate</p>
                   </div>
                   
                   <div className="p-4 border border-gray-200 rounded-lg">
-                    <h4 className="font-medium text-gray-900 mb-2">Live Chat Opens</h4>
+                    <h4 className="font-medium text-blue-800 mb-2">Live Chat Opens</h4>
                     <p className="text-2xl font-bold text-purple-600">28</p>
-                    <p className="text-sm text-gray-600">Average session: 4.2 min</p>
+                    <p className="text-sm text-blue-500">Average session: 4.2 min</p>
                   </div>
                   
                   <div className="p-4 border border-gray-200 rounded-lg">
-                    <h4 className="font-medium text-gray-900 mb-2">Pricing Page Views</h4>
+                    <h4 className="font-medium text-blue-800 mb-2">Pricing Page Views</h4>
                     <p className="text-2xl font-bold text-orange-600">187</p>
-                    <p className="text-sm text-gray-600">15.0% of total traffic</p>
+                    <p className="text-sm text-blue-500">15.0% of total traffic</p>
                   </div>
                 </div>
               </CardContent>

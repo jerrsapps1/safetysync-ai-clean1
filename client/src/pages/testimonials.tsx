@@ -173,19 +173,19 @@ export default function TestimonialsPage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
             <div className="text-center">
               <div className="text-3xl font-bold text-blue-600">1,200+</div>
-              <div className="text-sm text-gray-600">Companies Trust Us</div>
+              <div className="text-sm text-blue-500">Companies Trust Us</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-green-600">95%</div>
-              <div className="text-sm text-gray-600">Average Compliance Score</div>
+              <div className="text-sm text-blue-500">Average Compliance Score</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-purple-600">82%</div>
-              <div className="text-sm text-gray-600">Time Reduction</div>
+              <div className="text-sm text-blue-500">Time Reduction</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-orange-600">$68K</div>
-              <div className="text-sm text-gray-600">Average Annual Savings</div>
+              <div className="text-sm text-blue-500">Average Annual Savings</div>
             </div>
           </div>
         </div>
@@ -193,7 +193,7 @@ export default function TestimonialsPage() {
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
           {researchScenarios.map((scenario) => (
-            <Card key={scenario.id} className="p-6 hover:shadow-xl transition-all duration-300 bg-gray-800/50 border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/70">
+            <Card key={scenario.id} className="p-6 hover:shadow-xl transition-all duration-300 bg-blue-700/50 border-blue-600/50 backdrop-blur-sm hover:bg-blue-700/70">
               <CardContent className="p-0">
                 {/* Header */}
                 <div className="flex items-start justify-between mb-4">
@@ -216,7 +216,7 @@ export default function TestimonialsPage() {
                     <div className="flex gap-1">
                       {renderStars(scenario.rating)}
                     </div>
-                    <span className="text-sm text-gray-600">({scenario.rating}/5)</span>
+                    <span className="text-sm text-blue-500">({scenario.rating}/5)</span>
                   </div>
                 )}
 
@@ -226,7 +226,7 @@ export default function TestimonialsPage() {
                 </blockquote>
 
                 {/* Company Info */}
-                <div className="flex items-center gap-6 text-sm text-gray-600 mb-6">
+                <div className="flex items-center gap-6 text-sm text-blue-500 mb-6">
                   <div className="flex items-center gap-1">
                     <Building className="w-4 h-4" />
                     {scenario.industry}
@@ -239,22 +239,22 @@ export default function TestimonialsPage() {
 
                 {/* Results */}
                 <div className="bg-gray-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <h4 className="font-semibold text-blue-800 mb-3 flex items-center gap-2">
                     <TrendingUp className="w-4 h-4" />
                     Measurable Results
                   </h4>
                   <div className="grid grid-cols-3 gap-4 text-center">
                     <div>
                       <div className="text-lg font-bold text-green-600">{scenario.results.timeReduction}</div>
-                      <div className="text-xs text-gray-600">Time Reduction</div>
+                      <div className="text-xs text-blue-500">Time Reduction</div>
                     </div>
                     <div>
                       <div className="text-lg font-bold text-blue-600">{scenario.results.complianceImprovement}</div>
-                      <div className="text-xs text-gray-600">Compliance Score</div>
+                      <div className="text-xs text-blue-500">Compliance Score</div>
                     </div>
                     <div>
                       <div className="text-lg font-bold text-purple-600">{scenario.results.costSavings}</div>
-                      <div className="text-xs text-gray-600">Annual Savings</div>
+                      <div className="text-xs text-blue-500">Annual Savings</div>
                     </div>
                   </div>
                 </div>
@@ -266,17 +266,17 @@ export default function TestimonialsPage() {
         {/* Industry Breakdown */}
         <Card className="mb-16">
           <CardContent className="p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+            <h2 className="text-2xl font-bold text-blue-800 mb-6 text-center">
               Success Across Industries
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {industryStats.map((stat, index) => (
                 <div key={index} className="text-center p-4 bg-gray-50 rounded-lg">
-                  <h3 className="font-semibold text-gray-900 mb-2">{stat.industry}</h3>
+                  <h3 className="font-semibold text-blue-800 mb-2">{stat.industry}</h3>
                   <div className="text-2xl font-bold text-blue-600 mb-1">{stat.companies}</div>
-                  <div className="text-sm text-gray-600 mb-2">Companies</div>
+                  <div className="text-sm text-blue-500 mb-2">Companies</div>
                   <div className="text-lg font-semibold text-green-600">{stat.avgImprovement}</div>
-                  <div className="text-xs text-gray-600">Avg. Compliance Score</div>
+                  <div className="text-xs text-blue-500">Avg. Compliance Score</div>
                 </div>
               ))}
             </div>

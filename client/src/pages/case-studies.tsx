@@ -190,7 +190,7 @@ export default function CaseStudiesPage() {
           <h2 className="text-2xl font-bold text-white mb-8">Featured Success Stories</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {featuredStudies.map((study) => (
-              <Card key={study.id} className="hover:shadow-xl transition-all duration-300 bg-gray-800/50 border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/70">
+              <Card key={study.id} className="hover:shadow-xl transition-all duration-300 bg-blue-700/50 border-blue-600/50 backdrop-blur-sm hover:bg-blue-700/70">
                 <CardHeader>
                   <div className="flex items-center justify-between mb-2">
                     <Badge variant="outline" className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30">
@@ -237,7 +237,7 @@ export default function CaseStudiesPage() {
                   </div>
 
                   {/* Results Grid */}
-                  <div className="bg-gray-700/50 rounded-lg p-4 backdrop-blur-sm">
+                  <div className="bg-blue-600/50 rounded-lg p-4 backdrop-blur-sm">
                     <h4 className="font-semibold text-white mb-3 flex items-center gap-2">
                       <BarChart3 className="w-4 h-4" />
                       Measurable Results
@@ -265,7 +265,7 @@ export default function CaseStudiesPage() {
                   {/* Quote */}
                   <blockquote className="border-l-4 border-emerald-500/50 pl-4 italic text-gray-300">
                     "{study.quote}"
-                    <footer className="mt-2 text-sm text-gray-400">
+                    <footer className="mt-2 text-sm text-blue-300">
                       — {study.author}, {study.authorTitle}
                     </footer>
                   </blockquote>
@@ -280,7 +280,7 @@ export default function CaseStudiesPage() {
           <h2 className="text-2xl font-bold text-white mb-8">More Success Stories</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {allStudies.map((study) => (
-              <Card key={study.id} className="hover:shadow-lg transition-shadow bg-gray-800/50 border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/70">
+              <Card key={study.id} className="hover:shadow-lg transition-shadow bg-blue-700/50 border-blue-600/50 backdrop-blur-sm hover:bg-blue-700/70">
                 <CardHeader>
                   <div className="flex items-center justify-between mb-2">
                     <CardTitle className="text-lg text-white">{study.company}</CardTitle>
@@ -303,7 +303,7 @@ export default function CaseStudiesPage() {
                   </p>
                   
                   {/* Results Summary */}
-                  <div className="bg-gray-700/50 rounded-lg p-3 backdrop-blur-sm">
+                  <div className="bg-blue-600/50 rounded-lg p-3 backdrop-blur-sm">
                     <div className="grid grid-cols-2 gap-3 text-center">
                       <div>
                         <div className="text-lg font-bold text-emerald-400">{study.results.timeReduction}</div>
@@ -327,7 +327,7 @@ export default function CaseStudiesPage() {
 
         {/* Industry Impact */}
         <section className="mb-16">
-          <Card className="bg-gray-800/50 border-gray-700/50 backdrop-blur-sm">
+          <Card className="bg-blue-700/50 border-blue-600/50 backdrop-blur-sm">
             <CardContent className="p-8">
               <h2 className="text-2xl font-bold text-white mb-6 text-center">
                 Industry-Wide Impact

@@ -211,7 +211,7 @@ export function DNSManagement() {
       case "TXT": return "bg-purple-100 text-purple-800";
       case "MX": return "bg-orange-100 text-orange-800";
       case "CAA": return "bg-red-100 text-red-800";
-      default: return "bg-gray-100 text-gray-800";
+      default: return "bg-gray-100 text-blue-700";
     }
   };
 
@@ -219,8 +219,8 @@ export function DNSManagement() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">DNS Management</h2>
-          <p className="text-gray-600">Configure and monitor DNS records for SafetySync.AI</p>
+          <h2 className="text-2xl font-bold text-blue-800">DNS Management</h2>
+          <p className="text-blue-500">Configure and monitor DNS records for SafetySync.AI</p>
         </div>
         <div className="flex space-x-2">
           <Button 
@@ -267,7 +267,7 @@ export function DNSManagement() {
                   Uptime: {dnsStatus.uptime}%
                 </span>
               </div>
-              <div className="text-sm text-gray-500">
+              <div className="text-sm text-blue-400">
                 Last checked: {new Date(dnsStatus.last_checked).toLocaleString()}
               </div>
             </div>
@@ -287,7 +287,7 @@ export function DNSManagement() {
           <Card>
             <CardHeader>
               <CardTitle>Current DNS Records</CardTitle>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-blue-500">
                 Configure these records with your DNS provider
               </p>
             </CardHeader>
@@ -310,7 +310,7 @@ export function DNSManagement() {
                       <div className="font-mono text-sm break-all">
                         {record.value}
                       </div>
-                      <div className="text-sm text-gray-500">
+                      <div className="text-sm text-blue-400">
                         TTL: {record.ttl}
                       </div>
                       <div>
@@ -405,21 +405,21 @@ export function DNSManagement() {
                 <div className="flex items-center justify-between p-4 border rounded-lg">
                   <div>
                     <h4 className="font-medium">Wildcard Certificate</h4>
-                    <p className="text-sm text-gray-600">*.safetysync.ai</p>
+                    <p className="text-sm text-blue-500">*.safetysync.ai</p>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Badge variant="default" className="bg-green-500">Valid</Badge>
-                    <span className="text-sm text-gray-500">Expires: 2025-10-06</span>
+                    <span className="text-sm text-blue-400">Expires: 2025-10-06</span>
                   </div>
                 </div>
                 <div className="flex items-center justify-between p-4 border rounded-lg">
                   <div>
                     <h4 className="font-medium">Primary Certificate</h4>
-                    <p className="text-sm text-gray-600">safetysync.ai</p>
+                    <p className="text-sm text-blue-500">safetysync.ai</p>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Badge variant="default" className="bg-green-500">Valid</Badge>
-                    <span className="text-sm text-gray-500">Expires: 2025-10-06</span>
+                    <span className="text-sm text-blue-400">Expires: 2025-10-06</span>
                   </div>
                 </div>
               </div>

@@ -106,16 +106,16 @@ export default function WorkspaceBasic() {
 
       <div className="flex min-h-screen relative z-10">
         {/* Sidebar */}
-        <div className={`${sidebarOpen ? 'w-64' : 'w-16'} bg-slate-600/50 backdrop-blur-sm border-r border-slate-500 flex flex-col transition-all duration-300`}>
+        <div className={`${sidebarOpen ? 'w-64' : 'w-16'} bg-blue-500/50 backdrop-blur-sm border-r border-blue-400 flex flex-col transition-all duration-300`}>
           {/* Header */}
-          <div className="p-4 border-b border-gray-800">
+          <div className="p-4 border-b border-blue-700">
             <div className="flex items-center justify-between">
               {sidebarOpen ? (
                 <div className="flex items-center space-x-3">
                   <SafetySyncIcon size={40} className="rounded-lg" />
                   <div>
                     <h2 className="text-white font-semibold text-base">SafetySync.AI</h2>
-                    <p className="text-gray-400 text-sm">Training Records</p>
+                    <p className="text-blue-300 text-sm">Training Records</p>
                   </div>
                 </div>
               ) : (
@@ -125,7 +125,7 @@ export default function WorkspaceBasic() {
                 variant="ghost"
                 size="sm"
                 onClick={() => setSidebarOpen(!sidebarOpen)}
-                className="text-gray-400 hover:text-white"
+                className="text-blue-300 hover:text-white"
               >
                 {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </Button>
@@ -137,8 +137,8 @@ export default function WorkspaceBasic() {
             {/* Dashboard */}
             <Button
               variant="ghost"
-              className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                activeTab === "dashboard" ? "text-white bg-gray-700/30" : ""
+              className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                activeTab === "dashboard" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("dashboard")}
               title="Dashboard"
@@ -150,8 +150,8 @@ export default function WorkspaceBasic() {
             {/* Instructor Sign-In Generator */}
             <Button
               variant="ghost"
-              className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                activeTab === "instructor-signin" ? "text-white bg-gray-700/30" : ""
+              className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                activeTab === "instructor-signin" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("instructor-signin")}
               title="Instructor Sign-In Generator"
@@ -163,8 +163,8 @@ export default function WorkspaceBasic() {
             {/* Training Records */}
             <Button
               variant="ghost"
-              className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                activeTab === "training-records" ? "text-white bg-gray-700/30" : ""
+              className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                activeTab === "training-records" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("training-records")}
               title="Training Records Manager"
@@ -176,8 +176,8 @@ export default function WorkspaceBasic() {
             {/* Document Hub */}
             <Button
               variant="ghost"
-              className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                activeTab === "document-hub" ? "text-white bg-gray-700/30" : ""
+              className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                activeTab === "document-hub" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("document-hub")}
               title="Training Document Hub"
@@ -189,8 +189,8 @@ export default function WorkspaceBasic() {
             {/* Employee Management */}
             <Button
               variant="ghost"
-              className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                activeTab === "employees" ? "text-white bg-gray-700/30" : ""
+              className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                activeTab === "employees" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("employees")}
               title="Employee Management"
@@ -201,7 +201,7 @@ export default function WorkspaceBasic() {
           </nav>
 
           {/* User Menu */}
-          <div className="p-4 border-t border-gray-800">
+          <div className="p-4 border-t border-blue-700">
             {sidebarOpen && (
               <div className="mb-4">
                 <div className="flex items-center space-x-3 mb-2">
@@ -210,14 +210,14 @@ export default function WorkspaceBasic() {
                   </div>
                   <div>
                     <p className="text-white text-sm font-medium">{user?.name || "User"}</p>
-                    <p className="text-gray-400 text-xs">Training Manager</p>
+                    <p className="text-blue-300 text-xs">Training Manager</p>
                   </div>
                 </div>
               </div>
             )}
             <Button
               variant="ghost"
-              className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50"
+              className="w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50"
               onClick={handleLogout}
             >
               <LogOut className="w-5 h-5 mr-3" />
@@ -229,7 +229,7 @@ export default function WorkspaceBasic() {
         {/* Main Content */}
         <div className="flex-1 flex flex-col min-h-0">
           {/* Top Bar */}
-          <div className="bg-black/20 backdrop-blur-sm border-b border-gray-800 p-4">
+          <div className="bg-black/20 backdrop-blur-sm border-b border-blue-700 p-4">
             <div className="flex items-center justify-between">
               <div className="flex-1 min-w-0">
                 <h1 className="text-2xl font-bold text-white truncate">
@@ -239,7 +239,7 @@ export default function WorkspaceBasic() {
                   {activeTab === "document-hub" && "Training Document Hub"}
                   {activeTab === "employees" && "Employee Management"}
                 </h1>
-                <p className="text-gray-400 text-sm mt-1">
+                <p className="text-blue-300 text-sm mt-1">
                   {activeTab === "dashboard" && "Overview of training records and activities"}
                   {activeTab === "instructor-signin" && "Create sign-in sheets for training sessions"}
                   {activeTab === "training-records" && "Manage and organize training records"}
@@ -332,21 +332,21 @@ export default function WorkspaceBasic() {
                           <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
                           <div className="flex-1">
                             <p className="text-sm font-medium">Fall Protection Training - Sign-in sheet created</p>
-                            <p className="text-xs text-gray-500">2 hours ago</p>
+                            <p className="text-xs text-blue-400">2 hours ago</p>
                           </div>
                         </div>
                         <div className="flex items-center gap-3">
                           <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                           <div className="flex-1">
                             <p className="text-sm font-medium">OSHA 30 Training - Records uploaded</p>
-                            <p className="text-xs text-gray-500">4 hours ago</p>
+                            <p className="text-xs text-blue-400">4 hours ago</p>
                           </div>
                         </div>
                         <div className="flex items-center gap-3">
                           <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
                           <div className="flex-1">
                             <p className="text-sm font-medium">New employee added to system</p>
-                            <p className="text-xs text-gray-500">1 day ago</p>
+                            <p className="text-xs text-blue-400">1 day ago</p>
                           </div>
                         </div>
                       </div>
@@ -361,8 +361,8 @@ export default function WorkspaceBasic() {
                   <div className="text-center">
                     <div className="text-6xl mb-4">🚧</div>
                     <h2 className="text-xl font-semibold text-white mb-2">Coming Soon</h2>
-                    <p className="text-gray-400">This section is being built for your training documentation needs.</p>
-                    <p className="text-gray-400 mt-2">Dashboard is fully functional - try the other tabs once components are loaded.</p>
+                    <p className="text-blue-300">This section is being built for your training documentation needs.</p>
+                    <p className="text-blue-300 mt-2">Dashboard is fully functional - try the other tabs once components are loaded.</p>
                   </div>
                 </div>
               )}

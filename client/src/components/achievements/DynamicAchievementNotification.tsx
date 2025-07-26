@@ -13,7 +13,7 @@ interface DynamicAchievementNotificationProps {
 
 const tierColors = {
   bronze: 'bg-gradient-to-r from-amber-600 to-amber-700',
-  silver: 'bg-gradient-to-r from-gray-400 to-gray-500',
+  silver: 'bg-gradient-to-r from-blue-300 to-blue-400',
   gold: 'bg-gradient-to-r from-yellow-400 to-yellow-500',
   platinum: 'bg-gradient-to-r from-purple-400 to-purple-500'
 };
@@ -70,7 +70,7 @@ export function DynamicAchievementNotification({ achievement, onClose }: Dynamic
               variant="ghost"
               size="sm"
               onClick={handleClose}
-              className="p-1 h-auto text-gray-400 hover:text-white hover:bg-gray-800/50"
+              className="p-1 h-auto text-blue-300 hover:text-white hover:bg-blue-700/50"
             >
               <X className="w-4 h-4" />
             </Button>
@@ -96,7 +96,7 @@ export function DynamicAchievementNotification({ achievement, onClose }: Dynamic
               </Badge>
               <span className="text-yellow-400 font-medium">+{achievement.points} pts</span>
             </div>
-            <div className="text-xs text-gray-400">
+            <div className="text-xs text-blue-300">
               {achievement.unlockedAt ? new Date(achievement.unlockedAt).toLocaleTimeString() : 'Just now'}
             </div>
           </div>

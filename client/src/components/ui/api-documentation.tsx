@@ -275,11 +275,11 @@ export function ApiDocumentation({ userTier = 'free_trial' }: ApiDocumentationPr
   return (
     <div className="w-full max-w-6xl mx-auto p-6 space-y-6">
       <div className="text-center space-y-4">
-        <h1 className="text-3xl font-bold text-gray-900">SafetySync.AI API Documentation</h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        <h1 className="text-3xl font-bold text-blue-800">SafetySync.AI API Documentation</h1>
+        <p className="text-lg text-blue-500 max-w-2xl mx-auto">
           Integrate OSHA compliance tracking directly into your existing workflows with our comprehensive REST API.
         </p>
-        <div className="flex justify-center items-center gap-4 text-sm text-gray-500">
+        <div className="flex justify-center items-center gap-4 text-sm text-blue-400">
           <div className="flex items-center gap-2">
             <Shield className="w-4 h-4" />
             <span>Enterprise Security</span>
@@ -318,7 +318,7 @@ export function ApiDocumentation({ userTier = 'free_trial' }: ApiDocumentationPr
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-3">
                   <h4 className="font-semibold">1. Get Your API Key</h4>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-blue-500">
                     Generate an API key from your SafetySync.AI dashboard under Account Settings → API Access.
                   </p>
                   <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
@@ -333,7 +333,7 @@ export function ApiDocumentation({ userTier = 'free_trial' }: ApiDocumentationPr
                   <div className="bg-gray-50 p-3 rounded-lg border">
                     <code className="text-sm">https://api.safetysync.ai</code>
                   </div>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-blue-500">
                     All API requests should be made to this base URL with HTTPS.
                   </p>
                 </div>
@@ -354,7 +354,7 @@ X-API-Version: 2025-01`}
 
               <div className="space-y-3">
                 <h4 className="font-semibold">4. Example Request</h4>
-                <div className="bg-gray-900 text-green-400 p-4 rounded-lg">
+                <div className="bg-blue-800 text-green-400 p-4 rounded-lg">
                   <pre className="text-sm">
 {`curl -X GET "https://api.safetysync.ai/employees" \\
   -H "Authorization: Bearer YOUR_API_KEY" \\
@@ -381,7 +381,7 @@ X-API-Version: 2025-01`}
                     <Key className="w-4 h-4" />
                     API Key Authentication
                   </h4>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-blue-500">
                     Use API keys for server-to-server integrations and automated scripts.
                   </p>
                   <div className="bg-gray-50 p-3 rounded-lg">
@@ -394,7 +394,7 @@ X-API-Version: 2025-01`}
                     <Shield className="w-4 h-4" />
                     JWT Token Authentication
                   </h4>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-blue-500">
                     Use JWT tokens for user session management in web applications.
                   </p>
                   <div className="bg-gray-50 p-3 rounded-lg">
@@ -460,7 +460,7 @@ X-API-Version: 2025-01`}
                       </Button>
                     </div>
                     
-                    <p className="text-sm text-gray-600">{method.description}</p>
+                    <p className="text-sm text-blue-500">{method.description}</p>
                     
                     {!canAccessTier(method.tier) && (
                       <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
@@ -473,7 +473,7 @@ X-API-Version: 2025-01`}
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                       <div>
                         <h5 className="font-medium mb-2">Example Request</h5>
-                        <div className="bg-gray-900 text-green-400 p-3 rounded-lg overflow-x-auto">
+                        <div className="bg-blue-800 text-green-400 p-3 rounded-lg overflow-x-auto">
                           <pre className="text-xs">{method.example}</pre>
                         </div>
                       </div>
@@ -481,7 +481,7 @@ X-API-Version: 2025-01`}
                       <div>
                         <h5 className="font-medium mb-2">Example Response</h5>
                         <div className="bg-gray-50 p-3 rounded-lg overflow-x-auto">
-                          <pre className="text-xs text-gray-700">{method.response}</pre>
+                          <pre className="text-xs text-blue-600">{method.response}</pre>
                         </div>
                       </div>
                     </div>
@@ -516,7 +516,7 @@ X-API-Version: 2025-01`}
                     ].map((item, index) => (
                       <div key={index} className="bg-gray-50 p-3 rounded-lg">
                         <code className="text-sm font-medium">{item.event}</code>
-                        <p className="text-xs text-gray-600 mt-1">{item.description}</p>
+                        <p className="text-xs text-blue-500 mt-1">{item.description}</p>
                       </div>
                     ))}
                   </div>
@@ -524,7 +524,7 @@ X-API-Version: 2025-01`}
 
                 <div className="space-y-4">
                   <h4 className="font-semibold">Webhook Payload Example</h4>
-                  <div className="bg-gray-900 text-green-400 p-4 rounded-lg">
+                  <div className="bg-blue-800 text-green-400 p-4 rounded-lg">
                     <pre className="text-xs">
 {`{
   "event": "certification.expired",
@@ -554,8 +554,8 @@ X-API-Version: 2025-01`}
       <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-6">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-lg font-semibold text-gray-900">Need Help Getting Started?</h3>
-            <p className="text-gray-600">Our integration team can help you get up and running quickly.</p>
+            <h3 className="text-lg font-semibold text-blue-800">Need Help Getting Started?</h3>
+            <p className="text-blue-500">Our integration team can help you get up and running quickly.</p>
           </div>
           <Button variant="outline" className="flex items-center gap-2">
             <ExternalLink className="w-4 h-4" />

@@ -270,15 +270,15 @@ export function EmployeeInsightsDashboard() {
       <div className="p-8 space-y-6">
         <div className="flex items-center justify-between">
           <h2 className="text-2xl font-bold text-white">Employee Insights Dashboard</h2>
-          <RefreshCw className="h-6 w-6 text-gray-400 animate-spin" />
+          <RefreshCw className="h-6 w-6 text-blue-300 animate-spin" />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[1, 2, 3, 4].map(i => (
-            <Card key={i} className="bg-gray-800/50 border-gray-700/50">
+            <Card key={i} className="bg-blue-700/50 border-blue-600/50">
               <CardContent className="p-6">
                 <div className="animate-pulse">
-                  <div className="h-4 bg-gray-700 rounded w-3/4 mb-2"></div>
-                  <div className="h-8 bg-gray-700 rounded w-1/2"></div>
+                  <div className="h-4 bg-blue-600 rounded w-3/4 mb-2"></div>
+                  <div className="h-8 bg-blue-600 rounded w-1/2"></div>
                 </div>
               </CardContent>
             </Card>
@@ -291,9 +291,9 @@ export function EmployeeInsightsDashboard() {
   if (!insights) {
     return (
       <div className="p-8 text-center">
-        <Users className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+        <Users className="h-12 w-12 text-blue-300 mx-auto mb-4" />
         <h3 className="text-lg font-semibold text-white mb-2">No Employee Data</h3>
-        <p className="text-gray-400">Add employees to see insights and analytics</p>
+        <p className="text-blue-300">Add employees to see insights and analytics</p>
       </div>
     );
   }
@@ -308,7 +308,7 @@ export function EmployeeInsightsDashboard() {
         </div>
         <div className="flex items-center gap-4">
           <Select value={selectedDepartment} onValueChange={setSelectedDepartment}>
-            <SelectTrigger className="w-48 bg-gray-800/50 border-gray-700/50 text-white">
+            <SelectTrigger className="w-48 bg-blue-700/50 border-blue-600/50 text-white">
               <SelectValue placeholder="Select Department" />
             </SelectTrigger>
             <SelectContent>
@@ -321,7 +321,7 @@ export function EmployeeInsightsDashboard() {
             </SelectContent>
           </Select>
           <Select value={selectedTimeRange} onValueChange={setSelectedTimeRange}>
-            <SelectTrigger className="w-32 bg-gray-800/50 border-gray-700/50 text-white">
+            <SelectTrigger className="w-32 bg-blue-700/50 border-blue-600/50 text-white">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -331,7 +331,7 @@ export function EmployeeInsightsDashboard() {
               <SelectItem value="1y">1 Year</SelectItem>
             </SelectContent>
           </Select>
-          <Button variant="outline" className="border-gray-700 text-white hover:bg-gray-800/50">
+          <Button variant="outline" className="border-blue-600 text-white hover:bg-blue-700/50">
             <Download className="h-4 w-4 mr-2" />
             Export
           </Button>
@@ -340,11 +340,11 @@ export function EmployeeInsightsDashboard() {
 
       {/* Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <Card className="bg-gray-800/50 border-gray-700/50 backdrop-blur-sm">
+        <Card className="bg-blue-700/50 border-blue-600/50 backdrop-blur-sm">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-400">Total Employees</p>
+                <p className="text-sm text-blue-300">Total Employees</p>
                 <p className="text-2xl font-bold text-white">{insights.totalEmployees}</p>
                 <p className="text-xs text-emerald-400 flex items-center gap-1">
                   <TrendingUp className="h-3 w-3" />
@@ -356,11 +356,11 @@ export function EmployeeInsightsDashboard() {
           </CardContent>
         </Card>
 
-        <Card className="bg-gray-800/50 border-gray-700/50 backdrop-blur-sm">
+        <Card className="bg-blue-700/50 border-blue-600/50 backdrop-blur-sm">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-400">ID Verified</p>
+                <p className="text-sm text-blue-300">ID Verified</p>
                 <p className="text-2xl font-bold text-white">{insights.verifiedEmployees}</p>
                 <p className="text-xs text-emerald-400 flex items-center gap-1">
                   <ShieldCheck className="h-3 w-3" />
@@ -372,11 +372,11 @@ export function EmployeeInsightsDashboard() {
           </CardContent>
         </Card>
 
-        <Card className="bg-gray-800/50 border-gray-700/50 backdrop-blur-sm">
+        <Card className="bg-blue-700/50 border-blue-600/50 backdrop-blur-sm">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-400">Active Certificates</p>
+                <p className="text-sm text-blue-300">Active Certificates</p>
                 <p className="text-2xl font-bold text-white">{insights.activeCertificates}</p>
                 <p className="text-xs text-yellow-400 flex items-center gap-1">
                   <AlertTriangle className="h-3 w-3" />
@@ -388,11 +388,11 @@ export function EmployeeInsightsDashboard() {
           </CardContent>
         </Card>
 
-        <Card className="bg-gray-800/50 border-gray-700/50 backdrop-blur-sm">
+        <Card className="bg-blue-700/50 border-blue-600/50 backdrop-blur-sm">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-400">Compliance Score</p>
+                <p className="text-sm text-blue-300">Compliance Score</p>
                 <p className="text-2xl font-bold text-white">{insights.complianceScore.toFixed(1)}%</p>
                 <p className="text-xs text-purple-400 flex items-center gap-1">
                   <Target className="h-3 w-3" />
@@ -407,7 +407,7 @@ export function EmployeeInsightsDashboard() {
 
       {/* Main Content Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-        <TabsList className="grid w-full grid-cols-4 bg-gray-800/50 border-gray-700/50">
+        <TabsList className="grid w-full grid-cols-4 bg-blue-700/50 border-blue-600/50">
           <TabsTrigger value="overview">Overview</TabsTrigger>
           <TabsTrigger value="departments">Departments</TabsTrigger>
           <TabsTrigger value="trends">Trends</TabsTrigger>
@@ -417,7 +417,7 @@ export function EmployeeInsightsDashboard() {
         <TabsContent value="overview" className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Department Distribution */}
-            <Card className="bg-gray-800/50 border-gray-700/50 backdrop-blur-sm">
+            <Card className="bg-blue-700/50 border-blue-600/50 backdrop-blur-sm">
               <CardHeader>
                 <CardTitle className="text-white flex items-center gap-2">
                   <Building className="h-5 w-5" />
@@ -448,7 +448,7 @@ export function EmployeeInsightsDashboard() {
             </Card>
 
             {/* Location Distribution */}
-            <Card className="bg-gray-800/50 border-gray-700/50 backdrop-blur-sm">
+            <Card className="bg-blue-700/50 border-blue-600/50 backdrop-blur-sm">
               <CardHeader>
                 <CardTitle className="text-white flex items-center gap-2">
                   <MapPin className="h-5 w-5" />
@@ -477,7 +477,7 @@ export function EmployeeInsightsDashboard() {
           </div>
 
           {/* Hiring Trends */}
-          <Card className="bg-gray-800/50 border-gray-700/50 backdrop-blur-sm">
+          <Card className="bg-blue-700/50 border-blue-600/50 backdrop-blur-sm">
             <CardHeader>
               <CardTitle className="text-white flex items-center gap-2">
                 <TrendingUp className="h-5 w-5" />
@@ -513,32 +513,32 @@ export function EmployeeInsightsDashboard() {
         <TabsContent value="departments" className="space-y-6">
           <div className="grid grid-cols-1 gap-6">
             {insights.departmentStats.map((dept, index) => (
-              <Card key={dept.name} className="bg-gray-800/50 border-gray-700/50 backdrop-blur-sm">
+              <Card key={dept.name} className="bg-blue-700/50 border-blue-600/50 backdrop-blur-sm">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-lg font-semibold text-white">{dept.name}</h3>
-                    <Badge variant="outline" className="text-white border-gray-600">
+                    <Badge variant="outline" className="text-white border-blue-500">
                       {dept.count} employees
                     </Badge>
                   </div>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div className="text-center">
                       <p className="text-2xl font-bold text-blue-400">{dept.count}</p>
-                      <p className="text-sm text-gray-400">Total</p>
+                      <p className="text-sm text-blue-300">Total</p>
                     </div>
                     <div className="text-center">
                       <p className="text-2xl font-bold text-emerald-400">{dept.activeCount}</p>
-                      <p className="text-sm text-gray-400">Active</p>
+                      <p className="text-sm text-blue-300">Active</p>
                     </div>
                     <div className="text-center">
                       <p className="text-2xl font-bold text-purple-400">{dept.verifiedCount}</p>
-                      <p className="text-sm text-gray-400">Verified</p>
+                      <p className="text-sm text-blue-300">Verified</p>
                     </div>
                     <div className="text-center">
                       <p className="text-2xl font-bold text-yellow-400">
                         {dept.count > 0 ? ((dept.activeCount / dept.count) * 100).toFixed(1) : 0}%
                       </p>
-                      <p className="text-sm text-gray-400">Active Rate</p>
+                      <p className="text-sm text-blue-300">Active Rate</p>
                     </div>
                   </div>
                 </CardContent>
@@ -548,7 +548,7 @@ export function EmployeeInsightsDashboard() {
         </TabsContent>
 
         <TabsContent value="trends" className="space-y-6">
-          <Card className="bg-gray-800/50 border-gray-700/50 backdrop-blur-sm">
+          <Card className="bg-blue-700/50 border-blue-600/50 backdrop-blur-sm">
             <CardHeader>
               <CardTitle className="text-white flex items-center gap-2">
                 <LineChartIcon className="h-5 w-5" />
@@ -584,7 +584,7 @@ export function EmployeeInsightsDashboard() {
         <TabsContent value="ai-insights" className="space-y-6">
           <div className="grid grid-cols-1 gap-6">
             {insights.aiInsights.map((insight, index) => (
-              <Card key={index} className="bg-gray-800/50 border-gray-700/50 backdrop-blur-sm">
+              <Card key={index} className="bg-blue-700/50 border-blue-600/50 backdrop-blur-sm">
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
                     <div className={`p-2 rounded-full ${
