@@ -2428,17 +2428,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                       {sidebarOpen && <span className="truncate">Platform Dashboard</span>}
                     </Button>
                   )}
-                  <Button
-                    variant="ghost"
-                    className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
-                      activeTab === "user-guide" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
-                    }`}
-                    onClick={() => handleTabSwitch("user-guide")}
-                    title="User Guide"
-                  >
-                    <BookOpen className="w-4 h-4 mr-3 flex-shrink-0" />
-                    {sidebarOpen && <span className="truncate">User Guide</span>}
-                  </Button>
+
                 </div>
               )}
             </div>
