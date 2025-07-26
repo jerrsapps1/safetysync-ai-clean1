@@ -46,6 +46,7 @@ import {
   Zap
 } from "lucide-react";
 import { SafetySyncIcon } from "@/components/ui/safetysync-icon";
+import SignupGraph from "@/components/SignupGraph";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -786,6 +787,9 @@ export default function AdminDashboard() {
               </CardContent>
             </Card>
           )}
+
+          {/* Signup Analytics Graph */}
+          <SignupGraph />
 
           {/* Admin Dashboard Grid */}
           <div className="dashboard-container" style={{ minHeight: '800px' }}>
