@@ -2991,6 +2991,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Register instructor training session routes
   instructorTrainingSessionRoutes(app);
 
+  // Serve platform documentation files
+  app.use('/platform-documentation', express.static('platform-documentation'));
+
   const httpServer = createServer(app);
 
   return httpServer;
