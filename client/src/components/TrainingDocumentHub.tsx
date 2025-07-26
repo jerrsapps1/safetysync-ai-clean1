@@ -1082,7 +1082,7 @@ This document serves as an official attendance record for the training session.`
   }));
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 p-6">
       {/* Floating tech icons background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-8 h-8 bg-blue-500/10 rounded-full animate-pulse" />

@@ -299,7 +299,7 @@ export function EmployeeInsightsDashboard() {
   }
 
   return (
-    <div className="p-8 space-y-6 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 min-h-screen">
+    <div className="p-8 space-y-6 bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 min-h-screen">
       {/* Header */}
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div className="flex items-center gap-3">
