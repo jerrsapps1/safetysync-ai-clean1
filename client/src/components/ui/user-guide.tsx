@@ -64,351 +64,206 @@ export function UserGuide({ userPlan = 'professional' }: UserGuideProps) {
 
   const guideSections: GuideSection[] = [
     {
-      id: 'initial-setup',
-      title: 'Initial Platform Setup',
-      description: 'Get your SafetySync.AI account configured and ready for compliance tracking',
+      id: 'getting-started',
+      title: 'Getting Started with SafetySync.AI',
+      description: 'Your complete onboarding guide to AI-powered OSHA compliance management',
       icon: <Settings className="w-5 h-5" />,
       planLevel: 'all',
       category: 'getting-started',
       steps: [
         {
           step: 1,
-          title: 'Complete Account Creation',
-          description: 'Sign up and verify your email address to activate your account',
-          action: 'Navigate to the signup page and complete registration',
-          tips: ['Use your business email address', 'Choose a strong password', 'Save your login credentials securely']
+          title: 'Access Your Workspace',
+          description: 'Start by logging into your SafetySync.AI workspace using your username and password',
+          action: 'Visit the Client Portal and enter your credentials',
+          tips: ['Bookmark the workspace URL for quick access', 'Use the "Remember Me" option for convenience', 'Your workspace is your central hub for all compliance activities']
         },
         {
           step: 2,
-          title: 'Add Your Company Information',
-          description: 'Set up your organization profile with accurate business details',
-          action: 'Go to Dashboard → Settings → Company Profile',
-          tips: ['Include all business locations', 'Add your industry classification', 'Upload your company logo']
+          title: 'Navigate the User Guide (First Tab)',
+          description: 'The User Guide is your primary entry point - review platform capabilities and features',
+          action: 'Click "User Guide" tab in workspace sidebar - this comprehensive guide explains all features',
+          tips: ['Start here for complete platform understanding', 'Use the search function to find specific topics', 'Bookmark important sections for quick reference']
         },
         {
           step: 3,
-          title: 'Import Your Employee Data',
-          description: 'Upload your employee roster or add team members manually',
-          action: 'Dashboard → Employees → Add Employees',
-          tips: ['Use the CSV import for bulk uploads', 'Include employee roles and departments', 'Set up manager relationships']
+          title: 'Explore Workspace View (Dashboard)',
+          description: 'The Workspace View provides your main compliance dashboard with customizable widgets',
+          action: 'Click "Workspace View" tab to see your compliance overview with real-time statistics',
+          tips: ['Customize widget layout by dragging and dropping', 'Focus on red alerts for urgent items', 'Use the Widget Manager to show/hide components']
         },
         {
           step: 4,
-          title: 'Configure Compliance Requirements',
-          description: 'Set up the specific OSHA requirements for your industry and roles',
-          action: 'Dashboard → Training → Configure Requirements',
-          tips: ['Research your industry-specific requirements', 'Set appropriate renewal schedules', 'Consider employee-specific needs']
-        }
-      ]
-    },
-    {
-      id: 'daily-compliance-monitoring',
-      title: 'Daily Compliance Monitoring',
-      description: 'Your daily routine for staying on top of compliance status and upcoming deadlines',
-      icon: <Eye className="w-5 h-5" />,
-      planLevel: 'all',
-      category: 'daily-tasks',
-      steps: [
-        {
-          step: 1,
-          title: 'Review Dashboard Overview',
-          description: 'Check your compliance score and any urgent alerts',
-          action: 'Start each day by reviewing the main dashboard',
-          tips: ['Pay attention to red alerts first', 'Note any score changes from yesterday', 'Check the activity feed for updates']
-        },
-        {
-          step: 2,
-          title: 'Process Pending Training',
-          description: 'Assign any overdue or upcoming training requirements',
-          action: 'Dashboard → Training → Pending Items',
-          tips: ['Prioritize expiring certifications', 'Batch similar training types', 'Send reminders to employees']
-        },
-        {
-          step: 3,
-          title: 'Use AI Quick Actions',
-          description: 'Let AI suggest the most important tasks for today',
-          action: 'Click the AI Assistant sidebar on the right',
-          tips: ['Review AI recommendations daily', 'Use automated training assignments', 'Check compliance gap analysis']
-        },
-        {
-          step: 4,
-          title: 'Update Documentation',
-          description: 'Upload any new certificates or training completions',
-          action: 'Dashboard → Employees → Upload Certificates',
-          tips: ['Scan certificates clearly', 'Include expiration dates', 'Tag by department or role']
+          title: 'Set Up Company Profile',
+          description: 'Configure your organization profile with business details and industry information',
+          action: 'Go to "Company Profile" tab and enter your business information',
+          tips: ['Select your industry for relevant OSHA guidance', 'Add multiple locations if applicable', 'Upload your company logo for branding']
         },
         {
           step: 5,
-          title: 'Store Training Evaluations',
-          description: 'Upload training evaluations with certificates, especially for OSHA-required evaluations',
-          action: 'Dashboard → Employees → Upload → Include Evaluations',
-          tips: ['Required for Power Industrial Trucks, Fall Protection, Earth-moving Equipment', 'Best practice: Upload yearly evaluations even when not required', 'Store evaluations with corresponding certificates for audit access']
+          title: 'Enable AI Contextual Help',
+          description: 'Use the AI-powered help system for instant guidance on any page',
+          action: 'Click the help button in the workspace header for contextual assistance',
+          tips: ['Ask natural language questions about compliance', 'Get page-specific recommendations', 'Access quick actions for common tasks']
         }
       ]
     },
     {
-      id: 'team-collaboration',
-      title: 'Team Collaboration Setup',
-      description: 'Enable your team to work together on compliance reviews and documentation',
-      icon: <MessageSquare className="w-5 h-5" />,
-      planLevel: 'professional',
-      category: 'getting-started',
+      id: 'employee-management',
+      title: 'Employee Management System',
+      description: 'Comprehensive employee database with certificate tracking and compliance monitoring',
+      icon: <Users className="w-5 h-5" />,
+      planLevel: 'all',
+      category: 'daily-tasks',
       steps: [
         {
           step: 1,
-          title: 'Invite Team Members',
-          description: 'Add colleagues who need access to compliance management',
-          action: 'Dashboard → Team → Invite Members',
-          tips: ['Assign appropriate roles (Viewer, Editor, Admin)', 'Include safety managers and HR staff', 'Set up department-specific access']
+          title: 'Access Employee Management',
+          description: 'Navigate to the Employee Management section with 200+ employee database',
+          action: 'Click "Employee Management" under the Employee Management section in sidebar',
+          tips: ['Use advanced search and filtering', 'Export employee data to CSV', 'View department analytics']
         },
         {
           step: 2,
-          title: 'Set Up Collaboration Workspace',
-          description: 'Configure the team review canvas for document annotations',
-          action: 'Dashboard → Team Review → Set Up Workspace',
-          tips: ['Upload documents for review', 'Set review deadlines', 'Assign reviewers by expertise']
+          title: 'Add New Employees',
+          description: 'Create employee profiles with complete information and ID verification',
+          action: 'Click "Add Employee" button and fill in employee details',
+          tips: ['Mark "Employee ID Verified" when confirming identity', 'Assign correct department and status', 'Include contact information for training notifications']
         },
         {
           step: 3,
-          title: 'Train Team on Annotation Tools',
-          description: 'Show your team how to add comments, issues, and approvals',
-          action: 'Dashboard → Team Review → Add Annotation',
-          tips: ['Use different annotation types appropriately', 'Reply to discussions promptly', 'Resolve issues when completed']
+          title: 'Employee Insights Dashboard',
+          description: 'Access AI-powered analytics showing department performance and compliance trends',
+          action: 'Click "Employee Insights" for comprehensive analytics with charts and AI insights',
+          tips: ['Monitor hiring trends and department distribution', 'Track ID verification rates', 'Use AI recommendations for improvement']
         },
         {
           step: 4,
-          title: 'Establish Review Workflows',
-          description: 'Create standard processes for document reviews and approvals',
-          action: 'Set up regular review meetings and deadlines',
-          tips: ['Weekly safety document reviews', 'Monthly compliance check-ins', 'Quarterly policy updates']
+          title: 'Employee Portal Access',
+          description: 'Individual employee portals with personal certificates and training records',
+          action: 'Click "Employee Portal" to access individual employee profiles',
+          tips: ['Each employee has a unique QR code for certificate access', 'Digital wallet cards replace physical certification cards', 'Mobile-friendly for field access']
+        },
+        {
+          step: 5,
+          title: 'Bulk Operations',
+          description: 'Manage multiple employees efficiently with bulk selection and actions',
+          action: 'Use checkboxes to select multiple employees, then use bulk action buttons',
+          tips: ['Activate/deactivate multiple employees at once', 'Download filtered results', 'Apply training assignments to groups']
         }
       ]
     },
     {
-      id: 'multi-location-management',
-      title: 'Multi-Location Management',
-      description: 'Manage compliance across multiple facilities and worksites',
-      icon: <Building className="w-5 h-5" />,
-      planLevel: 'enterprise',
-      category: 'advanced',
-      steps: [
-        {
-          step: 1,
-          title: 'Add All Business Locations',
-          description: 'Register each facility, warehouse, or worksite in your system',
-          action: 'Dashboard → Locations → Add Location',
-          tips: ['Include full addresses and contact info', 'Assign location managers', 'Set location-specific requirements']
-        },
-        {
-          step: 2,
-          title: 'Configure Location-Specific Requirements',
-          description: 'Set up different compliance needs for each facility type',
-          action: 'Dashboard → Locations → [Location] → Requirements',
-          tips: ['Manufacturing vs office requirements differ', 'Consider local regulations', 'Account for equipment differences']
-        },
-        {
-          step: 3,
-          title: 'Assign Employees to Locations',
-          description: 'Link each employee to their primary and secondary work locations',
-          action: 'Dashboard → Employees → Edit → Location Assignment',
-          tips: ['Some employees may work multiple locations', 'Update when employees transfer', 'Consider travel workers separately']
-        },
-        {
-          step: 4,
-          title: 'Monitor Cross-Location Analytics',
-          description: 'Use centralized reporting to compare location performance',
-          action: 'Dashboard → Locations → Analytics',
-          tips: ['Identify best-performing locations', 'Share successful practices', 'Address low-performing sites quickly']
-        }
-      ]
-    },
-    {
-      id: 'custom-branding',
-      title: 'Custom Branding Setup',
-      description: 'Customize the platform with your company branding and colors',
-      icon: <Palette className="w-5 h-5" />,
-      planLevel: 'essential',
-      category: 'getting-started',
-      steps: [
-        {
-          step: 1,
-          title: 'Upload Company Logo',
-          description: 'Add your logo to appear throughout the platform',
-          action: 'Dashboard → Branding → Upload Logo',
-          tips: ['Use PNG or SVG format', 'Recommended size: 200x80 pixels', 'Ensure good contrast on white backgrounds']
-        },
-        {
-          step: 2,
-          title: 'Customize Color Scheme',
-          description: 'Set primary and secondary colors to match your brand',
-          action: 'Dashboard → Branding → Color Scheme',
-          tips: ['Use your brand guidelines', 'Test readability with chosen colors', 'Preview changes before saving']
-        },
-        {
-          step: 3,
-          title: 'Configure Email Branding',
-          description: 'Ensure platform emails match your company branding',
-          action: 'Dashboard → Branding → Email Settings',
-          tips: ['Include your logo in emails', 'Use custom email signatures', 'Test with team members first']
-        },
-        {
-          step: 4,
-          title: 'Set Up Report Branding',
-          description: 'Add your company header and footer to compliance reports',
-          action: 'Dashboard → Branding → Report Customization',
-          tips: ['Include company contact information', 'Add compliance certifications if applicable', 'Use professional formatting']
-        }
-      ]
-    },
-    {
-      id: 'ai-assistant-usage',
-      title: 'AI Assistant & Quick Actions',
-      description: 'Leverage AI to automate compliance tasks and get intelligent recommendations',
+      id: 'ai-document-processing',
+      title: 'AI-Powered Document Processing',
+      description: 'Revolutionary AI system that extracts training data from PDFs and generates certificates',
       icon: <Brain className="w-5 h-5" />,
-      planLevel: 'all',
-      category: 'daily-tasks',
-      steps: [
-        {
-          step: 1,
-          title: 'Access the AI Assistant',
-          description: 'Open the AI sidebar to see available quick actions and insights',
-          action: 'Click the AI brain icon on the right side of any page',
-          tips: ['Available on all pages', 'Collapses when not needed', 'Updates based on current context']
-        },
-        {
-          step: 2,
-          title: 'Use Quick Actions',
-          description: 'Execute common tasks with one-click AI automation',
-          action: 'AI Assistant → Actions Tab → Select Action',
-          tips: ['Start with compliance gap analysis', 'Use bulk certification checking', 'Try automated training assignment']
-        },
-        {
-          step: 3,
-          title: 'Review AI Insights',
-          description: 'Check AI-generated recommendations and trends',
-          action: 'AI Assistant → Insights Tab',
-          tips: ['Act on high-confidence recommendations', 'Verify insights independently', 'Track which suggestions help most']
-        },
-        {
-          step: 4,
-          title: 'Chat with AI for Guidance',
-          description: 'Ask specific questions about compliance requirements and best practices',
-          action: 'AI Assistant → Chat Tab → Type your question',
-          tips: ['Ask about specific regulations', 'Get training schedule suggestions', 'Request report recommendations']
-        }
-      ]
-    },
-    {
-      id: 'automated-reporting',
-      title: 'Automated Report Generation',
-      description: 'Create professional compliance reports with AI assistance',
-      icon: <FileText className="w-5 h-5" />,
-      planLevel: 'all',
-      category: 'daily-tasks',
-      steps: [
-        {
-          step: 1,
-          title: 'Choose Report Type',
-          description: 'Select the appropriate report for your needs',
-          action: 'Dashboard → Report Generator → Select Type',
-          tips: ['Full reports for audits', 'Summary for management', 'Department-specific for supervisors', 'Risk assessment for safety teams']
-        },
-        {
-          step: 2,
-          title: 'Configure Report Parameters',
-          description: 'Set date ranges, departments, and specific criteria',
-          action: 'Set filters and date ranges in the report generator',
-          tips: ['Include relevant time periods only', 'Filter by department if needed', 'Consider audience when selecting data']
-        },
-        {
-          step: 3,
-          title: 'Generate and Review',
-          description: 'Create the report and review for accuracy before sharing',
-          action: 'Click Generate → Review Content → Make Adjustments',
-          tips: ['Check all data for accuracy', 'Add contextual notes if needed', 'Verify calculations manually']
-        },
-        {
-          step: 4,
-          title: 'Export and Distribute',
-          description: 'Download in your preferred format and share with stakeholders',
-          action: 'Download as PDF, Excel, or CSV as needed',
-          tips: ['PDF for formal presentations', 'Excel for further analysis', 'CSV for data imports']
-        }
-      ]
-    },
-    {
-      id: 'api-integration',
-      title: 'API Integration Setup',
-      description: 'Connect SafetySync.AI with your existing business systems',
-      icon: <Zap className="w-5 h-5" />,
       planLevel: 'professional',
       category: 'advanced',
       steps: [
         {
           step: 1,
-          title: 'Access Developer Portal',
-          description: 'Navigate to the API documentation and tools',
-          action: 'Dashboard → Developer Portal',
-          tips: ['Review rate limits first', 'Understand authentication requirements', 'Test with sandbox data initially']
+          title: 'Access Training Document Hub',
+          description: 'Navigate to the comprehensive document management system',
+          action: 'Click "Training Document Hub" in the Training & Documents section',
+          tips: ['Upload training sign-in sheets, certificates, and instructor materials', 'Use AI to extract employee data automatically', 'Generate professional certificates instantly']
         },
         {
           step: 2,
-          title: 'Generate API Keys',
-          description: 'Create secure authentication credentials for your integrations',
-          action: 'Developer Portal → API Keys → Generate New Key',
-          tips: ['Store keys securely', 'Use different keys for dev/production', 'Rotate keys regularly for security']
+          title: 'Upload Training Documents',
+          description: 'Upload PDF training documents for AI extraction and processing',
+          action: 'Click "Upload Document" and select your training files',
+          tips: ['AI works best with clear, high-quality PDFs', 'Supports sign-in sheets, training records, and certificates', 'Multiple file formats supported']
         },
         {
           step: 3,
-          title: 'Test Basic Endpoints',
-          description: 'Verify connectivity with simple API calls',
-          action: 'Use the built-in API testing tools',
-          tips: ['Start with GET requests', 'Verify data format matches expectations', 'Test error handling scenarios']
+          title: 'AI Document Processor',
+          description: 'Use OpenAI GPT-4o integration for intelligent document analysis',
+          action: 'Click "AI Document Processor" for advanced document extraction capabilities',
+          tips: ['AI extracts employee names, training details, and instructor information', 'Automatically detects OSHA standards and compliance requirements', 'Creates structured data from unstructured documents']
         },
         {
           step: 4,
-          title: 'Implement Full Integration',
-          description: 'Build your custom integration using our SDKs',
-          action: 'Download SDKs and follow integration guides',
-          tips: ['Use official SDKs when available', 'Implement proper error handling', 'Monitor API usage regularly']
+          title: 'Instructor Sign-In Generator',
+          description: 'Generate professional training sign-in sheets with customizable classes',
+          action: 'Click "Instructor Sign-In Generator" to create training documentation',
+          tips: ['Create custom training classes with OSHA/ANSI references', 'Add instructor credentials and contact information', 'Export as PDF for printing and record-keeping']
+        },
+        {
+          step: 5,
+          title: 'Automated Certificate Generation',
+          description: 'AI automatically creates employee certificates from processed training documents',
+          action: 'Processed documents automatically generate certificates in employee profiles',
+          tips: ['Certificates include QR codes for mobile verification', 'Digital wallet cards replace physical certification cards', 'Automatic integration with employee profiles']
         }
       ]
     },
     {
-      id: 'troubleshooting-common-issues',
-      title: 'Troubleshooting Common Issues',
-      description: 'Solutions for frequent problems and how to get help',
+      id: 'compliance-reporting',
+      title: 'Compliance Reporting & Analytics',
+      description: 'Generate comprehensive reports and monitor compliance performance',
+      icon: <BarChart3 className="w-5 h-5" />,
+      planLevel: 'all',
+      category: 'daily-tasks',
+      steps: [
+        {
+          step: 1,
+          title: 'Access Compliance Reports',
+          description: 'Navigate to the comprehensive reporting dashboard',
+          action: 'Click "Compliance Reports" in the Compliance & Reporting section',
+          tips: ['Generate OSHA audit-ready reports', 'Export data in multiple formats', 'Schedule automated report delivery']
+        },
+        {
+          step: 2,
+          title: 'Monitor Training Compliance',
+          description: 'Track employee training status and upcoming deadlines',
+          action: 'Click "Training Compliance" to view training matrix and status',
+          tips: ['Identify training gaps before they become violations', 'Track completion rates by department', 'Set automated renewal reminders']
+        },
+        {
+          step: 3,
+          title: 'Generate Audit Documentation',
+          description: 'Create comprehensive audit packages for OSHA inspections',
+          action: 'Click "Audit Reports" to compile inspection-ready documentation',
+          tips: ['Include all required training records', 'Add instructor qualifications', 'Document competency evaluations']
+        },
+        {
+          step: 4,
+          title: 'Use Analytics Dashboard',
+          description: 'Monitor compliance trends and identify improvement areas',
+          action: 'Click "Analytics Dashboard" for data visualization and insights',
+          tips: ['Track compliance scores over time', 'Identify top-performing departments', 'Use AI insights for improvement recommendations']
+        }
+      ]
+    },
+    {
+      id: 'troubleshooting',
+      title: 'Common Issues & Troubleshooting',
+      description: 'Resolve common platform issues and optimize your SafetySync.AI experience',
       icon: <HelpCircle className="w-5 h-5" />,
       planLevel: 'all',
       category: 'troubleshooting',
       steps: [
         {
           step: 1,
-          title: 'Login and Access Issues',
-          description: 'Resolve problems with account access and authentication',
-          action: 'Check credentials, clear browser cache, try incognito mode',
-          tips: ['Verify caps lock is off', 'Try password reset if needed', 'Check for browser compatibility issues']
+          title: 'AI Document Processing Issues',
+          description: 'Troubleshoot PDF extraction and certificate generation problems',
+          action: 'Check document quality and file format compatibility',
+          tips: ['Use high-quality PDF scans', 'Ensure text is readable and not skewed', 'Try re-uploading if extraction fails']
         },
         {
           step: 2,
-          title: 'Data Import Problems',
-          description: 'Fix issues with CSV uploads and employee data import',
-          action: 'Verify CSV format matches template requirements',
-          tips: ['Download and use our CSV template', 'Check for special characters', 'Ensure all required fields are filled']
+          title: 'Login and Authentication Problems',
+          description: 'Resolve workspace access and password issues',
+          action: 'Verify username and password, check browser settings',
+          tips: ['Try different browser or incognito mode', 'Clear browser cache and cookies', 'Contact support if persistent']
         },
         {
           step: 3,
-          title: 'Report Generation Errors',
-          description: 'Resolve problems with report creation and downloads',
-          action: 'Check date ranges and filter settings',
-          tips: ['Ensure date ranges include data', 'Try smaller date ranges for large reports', 'Check your browser popup settings']
-        },
-        {
-          step: 4,
-          title: 'AI Features Not Working',
-          description: 'Troubleshoot AI assistant and automation features',
-          action: 'Verify your plan includes AI features and try refreshing',
-          tips: ['AI features require internet connectivity', 'Some features limited by plan level', 'Clear browser cache if needed']
+          title: 'Performance Optimization',
+          description: 'Improve platform speed and responsiveness',
+          action: 'Optimize browser settings and clear unnecessary data',
+          tips: ['Close unused browser tabs', 'Use latest browser version', 'Check internet connection speed']
         }
       ]
     }
@@ -417,16 +272,20 @@ export function UserGuide({ userPlan = 'professional' }: UserGuideProps) {
   const filteredSections = guideSections.filter(section => {
     const matchesSearch = searchQuery === '' || 
       section.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      section.description.toLowerCase().includes(searchQuery.toLowerCase());
+      section.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      section.steps.some(step => 
+        step.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        step.description.toLowerCase().includes(searchQuery.toLowerCase())
+      );
     
     const matchesCategory = selectedCategory === 'all' || section.category === selectedCategory;
     
-    const matchesPlan = section.planLevel === 'all' || 
-      section.planLevel === userPlan ||
-      (userPlan === 'enterprise-plus' && ['essential', 'professional', 'enterprise'].includes(section.planLevel)) ||
-      (userPlan === 'enterprise' && ['essential', 'professional'].includes(section.planLevel)) ||
-      (userPlan === 'professional' && section.planLevel === 'essential');
-    
+    const matchesPlan = 
+      userPlan === 'essential' && ['all', 'essential'].includes(section.planLevel) ||
+      userPlan === 'professional' && ['all', 'essential', 'professional'].includes(section.planLevel) ||
+      userPlan === 'enterprise' && ['all', 'essential', 'professional', 'enterprise'].includes(section.planLevel) ||
+      userPlan === 'enterprise-plus' && ['all', 'essential', 'professional', 'enterprise', 'enterprise-plus'].includes(section.planLevel);
+
     return matchesSearch && matchesCategory && matchesPlan;
   });
 
