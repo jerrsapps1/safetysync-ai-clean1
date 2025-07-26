@@ -200,20 +200,20 @@ export default function CompanyProfile() {
               <SafetySyncIcon size={32} className="rounded-lg" />
               Company Profile
             </h2>
-            <p className="text-gray-400">Manage your company information and settings</p>
+            <p className="text-blue-300">Manage your company information and settings</p>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {[1, 2, 3, 4].map((i) => (
-            <Card key={i} className="bg-black/20 backdrop-blur-sm border-gray-800 animate-pulse">
+            <Card key={i} className="bg-black/20 backdrop-blur-sm border-blue-700 animate-pulse">
               <CardHeader>
-                <div className="h-6 bg-gray-700 rounded w-3/4"></div>
-                <div className="h-4 bg-gray-700 rounded w-1/2"></div>
+                <div className="h-6 bg-blue-600 rounded w-3/4"></div>
+                <div className="h-4 bg-blue-600 rounded w-1/2"></div>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  <div className="h-4 bg-gray-700 rounded"></div>
-                  <div className="h-4 bg-gray-700 rounded w-2/3"></div>
+                  <div className="h-4 bg-blue-600 rounded"></div>
+                  <div className="h-4 bg-blue-600 rounded w-2/3"></div>
                 </div>
               </CardContent>
             </Card>
@@ -250,7 +250,7 @@ export default function CompanyProfile() {
             <SafetySyncIcon size={32} className="rounded-lg" />
             Company Profile
           </h2>
-          <p className="text-gray-400">Manage your company information and settings</p>
+          <p className="text-blue-300">Manage your company information and settings</p>
           <p className="text-blue-300 text-sm mt-1">
             💡 This information will be used for billing, invoices, and official documentation
           </p>
@@ -298,7 +298,7 @@ export default function CompanyProfile() {
       <Form {...form}>
         <form id="company-profile-form" onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 relative z-10">
           <Tabs value={activeTab} onValueChange={setActiveTab}>
-            <TabsList className="grid w-full grid-cols-4 bg-black/20 backdrop-blur-sm border-gray-800">
+            <TabsList className="grid w-full grid-cols-4 bg-black/20 backdrop-blur-sm border-blue-700">
               <TabsTrigger 
                 value="business" 
                 className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
@@ -330,13 +330,13 @@ export default function CompanyProfile() {
             </TabsList>
 
             <TabsContent value="business" className="space-y-6">
-              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+              <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-white">
                     <Building2 className="h-5 w-5 text-blue-400" />
                     Company Information
                   </CardTitle>
-                  <CardDescription className="text-gray-400">
+                  <CardDescription className="text-blue-300">
                     Basic information about your organization (editable anytime)
                   </CardDescription>
                 </CardHeader>
@@ -349,7 +349,7 @@ export default function CompanyProfile() {
                         <FormItem>
                           <FormLabel className="text-gray-300">Company Name</FormLabel>
                           <FormControl>
-                            <Input placeholder="Enter company name" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
+                            <Input placeholder="Enter company name" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -363,11 +363,11 @@ export default function CompanyProfile() {
                           <FormLabel className="text-gray-300">Industry</FormLabel>
                           <Select onValueChange={field.onChange} value={field.value}>
                             <FormControl>
-                              <SelectTrigger className="bg-gray-800/50 border-gray-700 text-white">
+                              <SelectTrigger className="bg-blue-700/50 border-blue-600 text-white">
                                 <SelectValue placeholder="Select industry" />
                               </SelectTrigger>
                             </FormControl>
-                            <SelectContent className="bg-gray-800 border-gray-700 text-white">
+                            <SelectContent className="bg-blue-700 border-blue-600 text-white">
                               <SelectItem value="construction">Construction</SelectItem>
                               <SelectItem value="manufacturing">Manufacturing</SelectItem>
                               <SelectItem value="healthcare">Healthcare</SelectItem>
@@ -391,11 +391,11 @@ export default function CompanyProfile() {
                           <FormLabel className="text-gray-300">Company Size</FormLabel>
                           <Select onValueChange={field.onChange} value={field.value}>
                             <FormControl>
-                              <SelectTrigger className="bg-gray-800/50 border-gray-700 text-white">
+                              <SelectTrigger className="bg-blue-700/50 border-blue-600 text-white">
                                 <SelectValue placeholder="Select company size" />
                               </SelectTrigger>
                             </FormControl>
-                            <SelectContent className="bg-gray-800 border-gray-700 text-white">
+                            <SelectContent className="bg-blue-700 border-blue-600 text-white">
                               <SelectItem value="1-10">1-10 employees</SelectItem>
                               <SelectItem value="11-50">11-50 employees</SelectItem>
                               <SelectItem value="51-200">51-200 employees</SelectItem>
@@ -417,7 +417,7 @@ export default function CompanyProfile() {
                         <FormItem>
                           <FormLabel className="text-gray-300">Website</FormLabel>
                           <FormControl>
-                            <Input placeholder="https://www.example.com" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
+                            <Input placeholder="https://www.example.com" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -433,7 +433,7 @@ export default function CompanyProfile() {
                         <FormControl>
                           <Textarea 
                             placeholder="Brief description of your company and operations"
-                            className="min-h-[100px] bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+                            className="min-h-[100px] bg-blue-700/50 border-blue-600 text-white placeholder-blue-300"
                             {...field} 
                           />
                         </FormControl>
@@ -444,13 +444,13 @@ export default function CompanyProfile() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+              <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-white">
                     <MapPin className="h-5 w-5 text-green-400" />
                     Business Address
                   </CardTitle>
-                  <CardDescription className="text-gray-400">
+                  <CardDescription className="text-blue-300">
                     Primary business location (used for billing address)
                   </CardDescription>
                 </CardHeader>
@@ -462,7 +462,7 @@ export default function CompanyProfile() {
                       <FormItem>
                         <FormLabel className="text-gray-300">Street Address</FormLabel>
                         <FormControl>
-                          <Input placeholder="123 Main Street" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
+                          <Input placeholder="123 Main Street" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -476,7 +476,7 @@ export default function CompanyProfile() {
                         <FormItem>
                           <FormLabel className="text-gray-300">City</FormLabel>
                           <FormControl>
-                            <Input placeholder="City" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
+                            <Input placeholder="City" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -489,7 +489,7 @@ export default function CompanyProfile() {
                         <FormItem>
                           <FormLabel className="text-gray-300">State</FormLabel>
                           <FormControl>
-                            <Input placeholder="State" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
+                            <Input placeholder="State" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -502,7 +502,7 @@ export default function CompanyProfile() {
                         <FormItem>
                           <FormLabel className="text-gray-300">ZIP Code</FormLabel>
                           <FormControl>
-                            <Input placeholder="12345" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
+                            <Input placeholder="12345" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -516,7 +516,7 @@ export default function CompanyProfile() {
                       <FormItem>
                         <FormLabel className="text-gray-300">Country</FormLabel>
                         <FormControl>
-                          <Input placeholder="United States" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
+                          <Input placeholder="United States" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -525,13 +525,13 @@ export default function CompanyProfile() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+              <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-white">
                     <Phone className="h-5 w-5 text-purple-400" />
                     Contact Information
                   </CardTitle>
-                  <CardDescription className="text-gray-400">
+                  <CardDescription className="text-blue-300">
                     Primary contact details (used for billing and invoices)
                   </CardDescription>
                 </CardHeader>
@@ -544,7 +544,7 @@ export default function CompanyProfile() {
                         <FormItem>
                           <FormLabel className="text-gray-300">Phone Number</FormLabel>
                           <FormControl>
-                            <Input placeholder="(555) 123-4567" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
+                            <Input placeholder="(555) 123-4567" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -557,7 +557,7 @@ export default function CompanyProfile() {
                         <FormItem>
                           <FormLabel className="text-gray-300">Email Address</FormLabel>
                           <FormControl>
-                            <Input placeholder="contact@company.com" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
+                            <Input placeholder="contact@company.com" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -569,13 +569,13 @@ export default function CompanyProfile() {
             </TabsContent>
 
             <TabsContent value="contacts" className="space-y-6">
-              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+              <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-white">
                     <Shield className="h-5 w-5 text-emerald-400" />
                     Safety Officer
                   </CardTitle>
-                  <CardDescription className="text-gray-400">
+                  <CardDescription className="text-blue-300">
                     Primary safety officer information
                   </CardDescription>
                 </CardHeader>
@@ -588,7 +588,7 @@ export default function CompanyProfile() {
                         <FormItem>
                           <FormLabel className="text-gray-300">Full Name</FormLabel>
                           <FormControl>
-                            <Input placeholder="John Doe" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
+                            <Input placeholder="John Doe" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -601,7 +601,7 @@ export default function CompanyProfile() {
                         <FormItem>
                           <FormLabel className="text-gray-300">Phone Number</FormLabel>
                           <FormControl>
-                            <Input placeholder="(555) 123-4567" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
+                            <Input placeholder="(555) 123-4567" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -615,7 +615,7 @@ export default function CompanyProfile() {
                       <FormItem>
                         <FormLabel className="text-gray-300">Email Address</FormLabel>
                         <FormControl>
-                          <Input placeholder="safety@company.com" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
+                          <Input placeholder="safety@company.com" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -624,13 +624,13 @@ export default function CompanyProfile() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+              <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-white">
                     <Users className="h-5 w-5 text-blue-400" />
                     Compliance Manager
                   </CardTitle>
-                  <CardDescription className="text-gray-400">
+                  <CardDescription className="text-blue-300">
                     Primary compliance manager information
                   </CardDescription>
                 </CardHeader>
@@ -643,7 +643,7 @@ export default function CompanyProfile() {
                         <FormItem>
                           <FormLabel className="text-gray-300">Full Name</FormLabel>
                           <FormControl>
-                            <Input placeholder="Jane Smith" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
+                            <Input placeholder="Jane Smith" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -656,7 +656,7 @@ export default function CompanyProfile() {
                         <FormItem>
                           <FormLabel className="text-gray-300">Email Address</FormLabel>
                           <FormControl>
-                            <Input placeholder="compliance@company.com" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
+                            <Input placeholder="compliance@company.com" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -668,13 +668,13 @@ export default function CompanyProfile() {
             </TabsContent>
 
             <TabsContent value="branding" className="space-y-6">
-              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+              <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-white">
                     <Palette className="h-5 w-5 text-pink-400" />
                     Brand Customization
                   </CardTitle>
-                  <CardDescription className="text-gray-400">
+                  <CardDescription className="text-blue-300">
                     Customize your company's brand appearance
                   </CardDescription>
                 </CardHeader>
@@ -688,8 +688,8 @@ export default function CompanyProfile() {
                           <FormLabel className="text-gray-300">Primary Color</FormLabel>
                           <FormControl>
                             <div className="flex items-center space-x-2">
-                              <Input type="color" className="w-20 h-10 bg-gray-800/50 border-gray-700" {...field} />
-                              <Input placeholder="#10b981" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
+                              <Input type="color" className="w-20 h-10 bg-blue-700/50 border-blue-600" {...field} />
+                              <Input placeholder="#10b981" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                             </div>
                           </FormControl>
                           <FormMessage />
@@ -704,8 +704,8 @@ export default function CompanyProfile() {
                           <FormLabel className="text-gray-300">Secondary Color</FormLabel>
                           <FormControl>
                             <div className="flex items-center space-x-2">
-                              <Input type="color" className="w-20 h-10 bg-gray-800/50 border-gray-700" {...field} />
-                              <Input placeholder="#1e40af" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
+                              <Input type="color" className="w-20 h-10 bg-blue-700/50 border-blue-600" {...field} />
+                              <Input placeholder="#1e40af" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                             </div>
                           </FormControl>
                           <FormMessage />
@@ -720,7 +720,7 @@ export default function CompanyProfile() {
                       <FormItem>
                         <FormLabel className="text-gray-300">Logo URL</FormLabel>
                         <FormControl>
-                          <Input placeholder="https://example.com/logo.png" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
+                          <Input placeholder="https://example.com/logo.png" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -729,7 +729,7 @@ export default function CompanyProfile() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label className="text-gray-300 text-base">Show Company Branding</Label>
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-blue-400">
                         Display your company branding on reports and certificates
                       </p>
                     </div>
@@ -753,13 +753,13 @@ export default function CompanyProfile() {
             </TabsContent>
 
             <TabsContent value="settings" className="space-y-6">
-              <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+              <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-white">
                     <Globe className="h-5 w-5 text-cyan-400" />
                     Domain Settings
                   </CardTitle>
-                  <CardDescription className="text-gray-400">
+                  <CardDescription className="text-blue-300">
                     Configure custom domain settings
                   </CardDescription>
                 </CardHeader>
@@ -771,7 +771,7 @@ export default function CompanyProfile() {
                       <FormItem>
                         <FormLabel className="text-gray-300">Custom Domain</FormLabel>
                         <FormControl>
-                          <Input placeholder="safety.yourcompany.com" className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400" {...field} />
+                          <Input placeholder="safety.yourcompany.com" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>

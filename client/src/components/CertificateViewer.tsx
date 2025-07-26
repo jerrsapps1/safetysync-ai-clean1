@@ -57,8 +57,8 @@ export default function CertificateViewer() {
     switch (status) {
       case 'active': return 'bg-green-100 text-green-800';
       case 'expired': return 'bg-red-100 text-red-800';
-      case 'revoked': return 'bg-gray-100 text-gray-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'revoked': return 'bg-gray-100 text-blue-700';
+      default: return 'bg-gray-100 text-blue-700';
     }
   };
 
@@ -163,7 +163,7 @@ export default function CertificateViewer() {
             <div className="flex items-center space-x-2">
               <Shield className="h-4 w-4 text-green-500" />
               <div>
-                <p className="text-sm text-gray-600">Active</p>
+                <p className="text-sm text-blue-500">Active</p>
                 <p className="text-xl font-bold">{certificateList.filter(c => c.status === 'active').length}</p>
               </div>
             </div>
@@ -175,7 +175,7 @@ export default function CertificateViewer() {
             <div className="flex items-center space-x-2">
               <Clock className="h-4 w-4 text-yellow-500" />
               <div>
-                <p className="text-sm text-gray-600">Expiring Soon</p>
+                <p className="text-sm text-blue-500">Expiring Soon</p>
                 <p className="text-xl font-bold">{certificateList.filter(c => isExpiringSoon(c.expirationDate)).length}</p>
               </div>
             </div>
@@ -187,7 +187,7 @@ export default function CertificateViewer() {
             <div className="flex items-center space-x-2">
               <Calendar className="h-4 w-4 text-red-500" />
               <div>
-                <p className="text-sm text-gray-600">Expired</p>
+                <p className="text-sm text-blue-500">Expired</p>
                 <p className="text-xl font-bold">{certificateList.filter(c => c.status === 'expired' || new Date(c.expirationDate) < new Date()).length}</p>
               </div>
             </div>
@@ -199,7 +199,7 @@ export default function CertificateViewer() {
             <div className="flex items-center space-x-2">
               <User className="h-4 w-4 text-blue-500" />
               <div>
-                <p className="text-sm text-gray-600">Employees</p>
+                <p className="text-sm text-blue-500">Employees</p>
                 <p className="text-xl font-bold">{new Set(certificateList.map(c => c.employeeName)).size}</p>
               </div>
             </div>
@@ -213,7 +213,7 @@ export default function CertificateViewer() {
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1">
               <div className="relative">
-                <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-500" />
+                <Search className="absolute left-2 top-2.5 h-4 w-4 text-blue-400" />
                 <Input
                   placeholder="Search by employee name, certificate type, or certificate number..."
                   value={searchTerm}
@@ -254,9 +254,9 @@ export default function CertificateViewer() {
       {filteredCertificates.length === 0 ? (
         <Card>
           <CardContent className="py-12 text-center">
-            <Shield className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No Certificates Found</h3>
-            <p className="text-gray-600">
+            <Shield className="h-12 w-12 text-blue-300 mx-auto mb-4" />
+            <h3 className="text-lg font-medium text-blue-800 mb-2">No Certificates Found</h3>
+            <p className="text-blue-500">
               {certificateList.length === 0 
                 ? "No certificates have been generated yet. Use the AI Document Processor to generate certificates from training sign-in sheets."
                 : "No certificates match your current filters. Try adjusting your search criteria."
@@ -272,7 +272,7 @@ export default function CertificateViewer() {
                 <div className="flex items-start justify-between">
                   <div>
                     <CardTitle className="text-lg">{certificate.employeeName}</CardTitle>
-                    <p className="text-sm text-gray-600">{certificate.certificationType}</p>
+                    <p className="text-sm text-blue-500">{certificate.certificationType}</p>
                   </div>
                   <div className="flex flex-col items-end space-y-2">
                     <Badge className={getStatusColor(certificate.status)}>
@@ -290,32 +290,32 @@ export default function CertificateViewer() {
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div>
-                    <p className="text-gray-600">Certificate Number</p>
+                    <p className="text-blue-500">Certificate Number</p>
                     <p className="font-mono text-xs">{certificate.certificateNumber}</p>
                   </div>
                   <div>
-                    <p className="text-gray-600">Employee ID</p>
+                    <p className="text-blue-500">Employee ID</p>
                     <p className="font-medium">{certificate.employeeId || 'N/A'}</p>
                   </div>
                   <div>
-                    <p className="text-gray-600">Issue Date</p>
+                    <p className="text-blue-500">Issue Date</p>
                     <p className="font-medium">{new Date(certificate.issueDate).toLocaleDateString()}</p>
                   </div>
                   <div>
-                    <p className="text-gray-600">Expiration Date</p>
+                    <p className="text-blue-500">Expiration Date</p>
                     <p className="font-medium">{new Date(certificate.expirationDate).toLocaleDateString()}</p>
                   </div>
                 </div>
                 
                 <div>
-                  <p className="text-gray-600 text-sm">Instructor</p>
+                  <p className="text-blue-500 text-sm">Instructor</p>
                   <p className="font-medium">{certificate.instructorName}</p>
-                  <p className="text-xs text-gray-500">{certificate.instructorCredentials}</p>
+                  <p className="text-xs text-blue-400">{certificate.instructorCredentials}</p>
                 </div>
                 
                 {certificate.trainingStandards.length > 0 && (
                   <div>
-                    <p className="text-gray-600 text-sm">OSHA Standards</p>
+                    <p className="text-blue-500 text-sm">OSHA Standards</p>
                     <div className="flex flex-wrap gap-1 mt-1">
                       {certificate.trainingStandards.map((standard, index) => (
                         <Badge key={index} variant="outline" className="text-xs">

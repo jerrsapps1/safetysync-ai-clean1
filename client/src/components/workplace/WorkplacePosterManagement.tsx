@@ -188,7 +188,7 @@ export default function WorkplacePosterManagement() {
       case 'compliant': return 'bg-green-500/20 text-green-400 border-green-500/30';
       case 'non-compliant': return 'bg-red-500/20 text-red-400 border-red-500/30';
       case 'pending': return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30';
-      default: return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
+      default: return 'bg-blue-400/20 text-blue-300 border-blue-400/30';
     }
   };
 
@@ -197,7 +197,7 @@ export default function WorkplacePosterManagement() {
       case 'federal': return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
       case 'state': return 'bg-purple-500/20 text-purple-400 border-purple-500/30';
       case 'local': return 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30';
-      default: return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
+      default: return 'bg-blue-400/20 text-blue-300 border-blue-400/30';
     }
   };
 
@@ -241,7 +241,7 @@ export default function WorkplacePosterManagement() {
             <SafetySyncIcon size={32} className="rounded-lg" />
             Workplace Poster Management
           </h2>
-          <p className="text-gray-400">Track and manage mandatory workplace safety and compliance posters</p>
+          <p className="text-blue-300">Track and manage mandatory workplace safety and compliance posters</p>
           <p className="text-blue-300 text-sm mt-1">
             📋 OSHA & DOL compliant posters • {averageCompliance.toFixed(1)}% location compliance
           </p>
@@ -260,11 +260,11 @@ export default function WorkplacePosterManagement() {
 
       {/* Statistics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative z-10">
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm">Total Posters</p>
+                <p className="text-blue-300 text-sm">Total Posters</p>
                 <p className="text-2xl font-bold text-white">{totalPosters}</p>
                 <p className="text-blue-400 text-sm">🤖 AI-Tracked</p>
               </div>
@@ -273,11 +273,11 @@ export default function WorkplacePosterManagement() {
           </CardContent>
         </Card>
 
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm">Required Posters</p>
+                <p className="text-blue-300 text-sm">Required Posters</p>
                 <p className="text-2xl font-bold text-white">{requiredPosters}</p>
                 <p className="text-green-400 text-sm">Mandatory</p>
               </div>
@@ -286,11 +286,11 @@ export default function WorkplacePosterManagement() {
           </CardContent>
         </Card>
 
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm">Expired/Updated</p>
+                <p className="text-blue-300 text-sm">Expired/Updated</p>
                 <p className="text-2xl font-bold text-white">{expiredPosters}</p>
                 <p className="text-yellow-400 text-sm">Needs Attention</p>
               </div>
@@ -299,11 +299,11 @@ export default function WorkplacePosterManagement() {
           </CardContent>
         </Card>
 
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm">Avg Compliance</p>
+                <p className="text-blue-300 text-sm">Avg Compliance</p>
                 <p className="text-2xl font-bold text-white">{averageCompliance.toFixed(1)}%</p>
                 <p className="text-purple-400 text-sm">All Locations</p>
               </div>
@@ -316,18 +316,18 @@ export default function WorkplacePosterManagement() {
       {/* Search and Filter */}
       <div className="flex items-center gap-4 relative z-10">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-blue-300" />
           <Input
             placeholder="Search posters by title or regulation..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-10 bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+            className="pl-10 bg-blue-700/50 border-blue-600 text-white placeholder-blue-300"
           />
         </div>
         <div className="flex items-center gap-2">
-          <Filter className="w-4 h-4 text-gray-400" />
+          <Filter className="w-4 h-4 text-blue-300" />
           <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-            <SelectTrigger className="bg-gray-800/50 border-gray-700 text-white">
+            <SelectTrigger className="bg-blue-700/50 border-blue-600 text-white">
               <SelectValue placeholder="Category" />
             </SelectTrigger>
             <SelectContent>
@@ -338,7 +338,7 @@ export default function WorkplacePosterManagement() {
             </SelectContent>
           </Select>
           <Select value={selectedLocation} onValueChange={setSelectedLocation}>
-            <SelectTrigger className="bg-gray-800/50 border-gray-700 text-white">
+            <SelectTrigger className="bg-blue-700/50 border-blue-600 text-white">
               <SelectValue placeholder="Location" />
             </SelectTrigger>
             <SelectContent>
@@ -353,7 +353,7 @@ export default function WorkplacePosterManagement() {
 
       {/* Main Content Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="relative z-10">
-        <TabsList className="grid w-full grid-cols-3 bg-black/20 backdrop-blur-sm border-gray-800">
+        <TabsList className="grid w-full grid-cols-3 bg-black/20 backdrop-blur-sm border-blue-700">
           <TabsTrigger 
             value="posters" 
             className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
@@ -380,12 +380,12 @@ export default function WorkplacePosterManagement() {
         <TabsContent value="posters" className="space-y-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {filteredPosters.map((poster) => (
-              <Card key={poster.id} className="bg-black/20 backdrop-blur-sm border-gray-800">
+              <Card key={poster.id} className="bg-black/20 backdrop-blur-sm border-blue-700">
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div>
                       <CardTitle className="text-white">{poster.title}</CardTitle>
-                      <CardDescription className="text-gray-400">
+                      <CardDescription className="text-blue-300">
                         {poster.regulation} • {poster.size}
                       </CardDescription>
                     </div>
@@ -414,7 +414,7 @@ export default function WorkplacePosterManagement() {
                   </div>
 
                   <div className="space-y-2">
-                    <p className="text-gray-400 text-sm font-medium">Industries:</p>
+                    <p className="text-blue-300 text-sm font-medium">Industries:</p>
                     <div className="flex flex-wrap gap-1">
                       {poster.industry.map((ind, index) => (
                         <Badge key={index} variant="outline" className="text-xs text-emerald-300 border-emerald-500/30">
@@ -425,7 +425,7 @@ export default function WorkplacePosterManagement() {
                   </div>
 
                   <div className="space-y-2">
-                    <p className="text-gray-400 text-sm font-medium">Posted At:</p>
+                    <p className="text-blue-300 text-sm font-medium">Posted At:</p>
                     <div className="flex flex-wrap gap-1">
                       {poster.locations.map((loc, index) => (
                         <Badge key={index} variant="outline" className="text-xs text-blue-300 border-blue-500/30">
@@ -444,7 +444,7 @@ export default function WorkplacePosterManagement() {
                       <Download className="w-3 h-3 mr-1" />
                       Download
                     </Button>
-                    <Button size="sm" variant="outline" className="border-gray-600 text-gray-300">
+                    <Button size="sm" variant="outline" className="border-blue-500 text-gray-300">
                       <Edit className="w-3 h-3 mr-1" />
                       Edit
                     </Button>
@@ -458,12 +458,12 @@ export default function WorkplacePosterManagement() {
         <TabsContent value="compliance" className="space-y-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {mockCompliance.map((comp) => (
-              <Card key={comp.id} className="bg-black/20 backdrop-blur-sm border-gray-800">
+              <Card key={comp.id} className="bg-black/20 backdrop-blur-sm border-blue-700">
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div>
                       <CardTitle className="text-white">{comp.location}</CardTitle>
-                      <CardDescription className="text-gray-400">
+                      <CardDescription className="text-blue-300">
                         {comp.currentPosters} of {comp.requiredPosters} posters displayed
                       </CardDescription>
                     </div>
@@ -475,10 +475,10 @@ export default function WorkplacePosterManagement() {
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="text-gray-400">Compliance Score</span>
+                      <span className="text-blue-300">Compliance Score</span>
                       <span className="text-white font-bold">{comp.complianceScore}%</span>
                     </div>
-                    <div className="w-full bg-gray-700 rounded-full h-2">
+                    <div className="w-full bg-blue-600 rounded-full h-2">
                       <div 
                         className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-300"
                         style={{ width: `${comp.complianceScore}%` }}
@@ -499,7 +499,7 @@ export default function WorkplacePosterManagement() {
 
                   {comp.missingPosters.length > 0 && (
                     <div className="space-y-2">
-                      <p className="text-gray-400 text-sm font-medium">Missing Posters:</p>
+                      <p className="text-blue-300 text-sm font-medium">Missing Posters:</p>
                       <div className="flex flex-wrap gap-1">
                         {comp.missingPosters.map((missing, index) => (
                           <Badge key={index} className="bg-red-500/20 text-red-400 border-red-500/30">
@@ -527,21 +527,21 @@ export default function WorkplacePosterManagement() {
         </TabsContent>
 
         <TabsContent value="locations" className="space-y-6">
-          <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+          <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
             <CardHeader>
               <CardTitle className="text-white">Location Management</CardTitle>
-              <CardDescription className="text-gray-400">
+              <CardDescription className="text-blue-300">
                 Manage poster requirements and compliance by location
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 {mockCompliance.map((comp) => (
-                  <div key={comp.id} className="border border-gray-700 rounded-lg p-4">
+                  <div key={comp.id} className="border border-blue-600 rounded-lg p-4">
                     <div className="flex items-start justify-between mb-3">
                       <div>
                         <h4 className="text-white font-medium">{comp.location}</h4>
-                        <p className="text-gray-400 text-sm">
+                        <p className="text-blue-300 text-sm">
                           {comp.currentPosters} of {comp.requiredPosters} posters displayed
                         </p>
                       </div>
@@ -552,15 +552,15 @@ export default function WorkplacePosterManagement() {
                     <div className="grid grid-cols-3 gap-4">
                       <div className="text-center">
                         <p className="text-2xl font-bold text-white">{comp.requiredPosters}</p>
-                        <p className="text-gray-400 text-sm">Required</p>
+                        <p className="text-blue-300 text-sm">Required</p>
                       </div>
                       <div className="text-center">
                         <p className="text-2xl font-bold text-green-400">{comp.currentPosters}</p>
-                        <p className="text-gray-400 text-sm">Current</p>
+                        <p className="text-blue-300 text-sm">Current</p>
                       </div>
                       <div className="text-center">
                         <p className="text-2xl font-bold text-red-400">{comp.missingPosters.length}</p>
-                        <p className="text-gray-400 text-sm">Missing</p>
+                        <p className="text-blue-300 text-sm">Missing</p>
                       </div>
                     </div>
                   </div>

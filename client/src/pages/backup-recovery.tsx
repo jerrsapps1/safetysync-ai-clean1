@@ -292,19 +292,19 @@ export default function BackupRecovery() {
                   <CardContent className="space-y-2">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                       <div>
-                        <p className="text-gray-400">Last Run</p>
+                        <p className="text-blue-300">Last Run</p>
                         <p className="text-white">{schedule.lastRun}</p>
                       </div>
                       <div>
-                        <p className="text-gray-400">Next Run</p>
+                        <p className="text-blue-300">Next Run</p>
                         <p className="text-white">{schedule.nextRun}</p>
                       </div>
                       <div>
-                        <p className="text-gray-400">Backup Size</p>
+                        <p className="text-blue-300">Backup Size</p>
                         <p className="text-white">{schedule.size}</p>
                       </div>
                       <div>
-                        <p className="text-gray-400">Retention</p>
+                        <p className="text-blue-300">Retention</p>
                         <p className="text-white">{schedule.retention}</p>
                       </div>
                     </div>
@@ -343,19 +343,19 @@ export default function BackupRecovery() {
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-2 text-sm">
                           <div>
-                            <p className="text-gray-400">Date</p>
+                            <p className="text-blue-300">Date</p>
                             <p className="text-white">{backup.date}</p>
                           </div>
                           <div>
-                            <p className="text-gray-400">Size</p>
+                            <p className="text-blue-300">Size</p>
                             <p className="text-white">{backup.size}</p>
                           </div>
                           <div>
-                            <p className="text-gray-400">Duration</p>
+                            <p className="text-blue-300">Duration</p>
                             <p className="text-white">{backup.duration}</p>
                           </div>
                           <div>
-                            <p className="text-gray-400">Location</p>
+                            <p className="text-blue-300">Location</p>
                             <p className="text-white">{backup.location}</p>
                           </div>
                         </div>
@@ -409,19 +409,19 @@ export default function BackupRecovery() {
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-2 text-sm">
                           <div>
-                            <p className="text-gray-400">Date</p>
+                            <p className="text-blue-300">Date</p>
                             <p className="text-white">{point.date}</p>
                           </div>
                           <div>
-                            <p className="text-gray-400">Size</p>
+                            <p className="text-blue-300">Size</p>
                             <p className="text-white">{point.size}</p>
                           </div>
                           <div>
-                            <p className="text-gray-400">RTO</p>
+                            <p className="text-blue-300">RTO</p>
                             <p className="text-white">{point.rto}</p>
                           </div>
                           <div>
-                            <p className="text-gray-400">RPO</p>
+                            <p className="text-blue-300">RPO</p>
                             <p className="text-white">{point.rpo}</p>
                           </div>
                         </div>

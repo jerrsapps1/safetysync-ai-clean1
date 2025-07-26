@@ -47,14 +47,14 @@ ${urls.map(url => `  <url>
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900 mb-6">XML Sitemap Generated</h1>
-        <p className="text-gray-600 mb-4">
+        <h1 className="text-3xl font-bold text-blue-800 mb-6">XML Sitemap Generated</h1>
+        <p className="text-blue-500 mb-4">
           Your sitemap.xml has been automatically generated and downloaded. Upload this file to your website's root directory for optimal SEO performance.
         </p>
         
         <div className="bg-white p-6 rounded-lg shadow-sm border">
           <h2 className="text-xl font-semibold mb-4">Sitemap URLs Included:</h2>
-          <ul className="space-y-2 text-sm text-gray-600">
+          <ul className="space-y-2 text-sm text-blue-500">
             <li>• Homepage (Priority: 1.0)</li>
             <li>• Pricing Page (Priority: 0.9)</li>
             <li>• Testimonials (Priority: 0.8)</li>

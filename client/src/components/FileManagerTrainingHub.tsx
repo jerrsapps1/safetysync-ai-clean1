@@ -547,7 +547,7 @@ This training file was created using the Create File system.`
       {/* File Manager Header */}
       <div className="bg-white border-b border-gray-200">
         <div className="flex items-center justify-between p-4">
-          <div className="flex items-center space-x-2 text-gray-600 text-sm">
+          <div className="flex items-center space-x-2 text-blue-500 text-sm">
             <button 
               onClick={() => setCurrentPath([])}
               className="flex items-center space-x-1 hover:text-blue-600 cursor-pointer"
@@ -589,7 +589,7 @@ This training file was created using the Create File system.`
             >
               + New
             </Button>
-            <div className="flex items-center space-x-2 text-sm text-gray-600">
+            <div className="flex items-center space-x-2 text-sm text-blue-500">
               <Button size="sm" variant="ghost" className="text-xs">
                 Type
               </Button>
@@ -607,7 +607,7 @@ This training file was created using the Create File system.`
           
           <div className="flex items-center space-x-3">
             <div className="flex items-center bg-gray-100 rounded-lg px-3 py-2">
-              <Search className="w-4 h-4 text-gray-400 mr-2" />
+              <Search className="w-4 h-4 text-blue-300 mr-2" />
               <input
                 type="text"
                 placeholder="Search in Drive"
@@ -629,7 +629,7 @@ This training file was created using the Create File system.`
       {/* File List */}
       <div className="bg-white">
         {/* Table Header */}
-        <div className="grid grid-cols-12 gap-4 p-4 border-b border-gray-200 bg-gray-50 text-sm font-medium text-gray-600">
+        <div className="grid grid-cols-12 gap-4 p-4 border-b border-gray-200 bg-gray-50 text-sm font-medium text-blue-500">
           <div className="col-span-1">
             <input type="checkbox" className="rounded" />
           </div>
@@ -647,12 +647,12 @@ This training file was created using the Create File system.`
               <input type="checkbox" className="rounded opacity-50" disabled />
             </div>
             <div className="col-span-5 flex items-center">
-              <FolderIcon className="w-5 h-5 text-gray-400 mr-3" />
-              <span className="text-sm text-gray-600">.. (Back to parent folder)</span>
+              <FolderIcon className="w-5 h-5 text-blue-300 mr-3" />
+              <span className="text-sm text-blue-500">.. (Back to parent folder)</span>
             </div>
-            <div className="col-span-3 text-sm text-gray-500">-</div>
-            <div className="col-span-2 text-sm text-gray-500">-</div>
-            <div className="col-span-1 text-sm text-gray-500">-</div>
+            <div className="col-span-3 text-sm text-blue-400">-</div>
+            <div className="col-span-2 text-sm text-blue-400">-</div>
+            <div className="col-span-1 text-sm text-blue-400">-</div>
           </div>
         )}
         
@@ -677,12 +677,12 @@ This training file was created using the Create File system.`
             
             <div className="col-span-5 flex items-center">
               <FolderIcon className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
-              <span className="text-sm text-gray-900 truncate">
+              <span className="text-sm text-blue-800 truncate">
                 {doc.fileName.replace(/_/g, ' ')}
               </span>
             </div>
             
-            <div className="col-span-3 text-sm text-gray-600">
+            <div className="col-span-3 text-sm text-blue-500">
               Created • {formatDate(doc.trainingDate)}
             </div>
             
@@ -690,11 +690,11 @@ This training file was created using the Create File system.`
               <div className="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center text-white text-xs font-medium mr-2">
                 {doc.instructorName.charAt(0)}
               </div>
-              <span className="text-sm text-gray-600 truncate">me</span>
+              <span className="text-sm text-blue-500 truncate">me</span>
             </div>
             
             <div className="col-span-1">
-              <div className="flex items-center text-sm text-gray-600">
+              <div className="flex items-center text-sm text-blue-500">
                 <FolderIcon className="w-4 h-4 mr-1" />
                 <span className="text-xs">{doc.location.split(' ')[0]}</span>
               </div>
@@ -711,7 +711,7 @@ This training file was created using the Create File system.`
           </DialogHeader>
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-blue-600 mb-1">
                 Training Date
               </label>
               <input
@@ -722,7 +722,7 @@ This training file was created using the Create File system.`
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-blue-600 mb-1">
                 File Description
               </label>
               <input
@@ -775,7 +775,7 @@ This training file was created using the Create File system.`
               </div>
               <div>
                 <strong>Description:</strong>
-                <p className="mt-1 text-gray-700">{viewingDocument.description}</p>
+                <p className="mt-1 text-blue-600">{viewingDocument.description}</p>
               </div>
               {viewingDocument.fileContent && (
                 <div>

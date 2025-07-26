@@ -106,11 +106,11 @@ export default function SubscriptionBilling() {
     switch (status) {
       case 'active': return 'bg-green-500/20 text-green-400 border-green-500/30';
       case 'past_due': return 'bg-red-500/20 text-red-400 border-red-500/30';
-      case 'cancelled': return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
+      case 'cancelled': return 'bg-blue-400/20 text-blue-300 border-blue-400/30';
       case 'paid': return 'bg-green-500/20 text-green-400 border-green-500/30';
       case 'pending': return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30';
       case 'overdue': return 'bg-red-500/20 text-red-400 border-red-500/30';
-      default: return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
+      default: return 'bg-blue-400/20 text-blue-300 border-blue-400/30';
     }
   };
 
@@ -145,7 +145,7 @@ export default function SubscriptionBilling() {
             <SafetySyncIcon size={32} className="rounded-lg" />
             Subscription & Billing
           </h2>
-          <p className="text-gray-400">Manage your subscription, billing, and usage analytics</p>
+          <p className="text-blue-300">Manage your subscription, billing, and usage analytics</p>
           <p className="text-blue-300 text-sm mt-1">
             💳 {mockBillingInfo.plan} Plan • Next billing: {mockBillingInfo.nextBilling} • {mockBillingInfo.status}
           </p>
@@ -163,12 +163,12 @@ export default function SubscriptionBilling() {
       </div>
 
       {/* Current Plan Overview */}
-      <Card className="bg-black/20 backdrop-blur-sm border-gray-800 relative z-10">
+      <Card className="bg-black/20 backdrop-blur-sm border-blue-700 relative z-10">
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>
               <CardTitle className="text-white">Current Plan</CardTitle>
-              <CardDescription className="text-gray-400">
+              <CardDescription className="text-blue-300">
                 Active since {mockBillingInfo.planStarted}
               </CardDescription>
             </div>
@@ -182,25 +182,25 @@ export default function SubscriptionBilling() {
             <div className="text-center p-6 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-lg border border-blue-500/20">
               <h3 className="text-3xl font-bold text-white mb-2">{mockBillingInfo.plan}</h3>
               <p className="text-2xl font-semibold text-blue-400">${mockBillingInfo.planPrice.toFixed(2)}</p>
-              <p className="text-gray-400">per month</p>
+              <p className="text-blue-300">per month</p>
             </div>
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-gray-400">Next Billing Date</span>
+                <span className="text-blue-300">Next Billing Date</span>
                 <span className="text-white font-medium">{mockBillingInfo.nextBilling}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-gray-400">Payment Method</span>
+                <span className="text-blue-300">Payment Method</span>
                 <span className="text-white font-medium">{mockBillingInfo.paymentMethod}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-gray-400">Billing Cycle</span>
+                <span className="text-blue-300">Billing Cycle</span>
                 <span className="text-white font-medium capitalize">{mockBillingInfo.billingCycle}</span>
               </div>
             </div>
             <div className="space-y-4">
               <div className="text-center">
-                <p className="text-gray-400 text-sm mb-2">This Month's Total</p>
+                <p className="text-blue-300 text-sm mb-2">This Month's Total</p>
                 <p className="text-2xl font-bold text-white">${(mockBillingInfo.planPrice + mockUsage.additionalCharges).toFixed(2)}</p>
                 <p className="text-green-400 text-sm">
                   ${mockUsage.additionalCharges.toFixed(2)} in additional charges
@@ -213,7 +213,7 @@ export default function SubscriptionBilling() {
 
       {/* Main Content Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="relative z-10">
-        <TabsList className="grid w-full grid-cols-4 bg-black/20 backdrop-blur-sm border-gray-800">
+        <TabsList className="grid w-full grid-cols-4 bg-black/20 backdrop-blur-sm border-blue-700">
           <TabsTrigger 
             value="overview" 
             className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
@@ -246,24 +246,24 @@ export default function SubscriptionBilling() {
 
         <TabsContent value="overview" className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+            <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
               <CardHeader>
                 <CardTitle className="text-white">Monthly Usage Summary</CardTitle>
-                <CardDescription className="text-gray-400">
+                <CardDescription className="text-blue-300">
                   Current billing period usage
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-2">
                   <div className="flex justify-between">
-                    <span className="text-gray-400">Plan Base Cost</span>
+                    <span className="text-blue-300">Plan Base Cost</span>
                     <span className="text-white font-medium">${mockBillingInfo.planPrice.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-400">Additional Certificates</span>
+                    <span className="text-blue-300">Additional Certificates</span>
                     <span className="text-white font-medium">${mockUsage.additionalCharges.toFixed(2)}</span>
                   </div>
-                  <div className="border-t border-gray-700 pt-2">
+                  <div className="border-t border-blue-600 pt-2">
                     <div className="flex justify-between">
                       <span className="text-white font-medium">Total This Month</span>
                       <span className="text-white font-bold">${(mockBillingInfo.planPrice + mockUsage.additionalCharges).toFixed(2)}</span>
@@ -273,10 +273,10 @@ export default function SubscriptionBilling() {
               </CardContent>
             </Card>
 
-            <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+            <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
               <CardHeader>
                 <CardTitle className="text-white">Plan Benefits</CardTitle>
-                <CardDescription className="text-gray-400">
+                <CardDescription className="text-blue-300">
                   What's included in your {mockBillingInfo.plan} plan
                 </CardDescription>
               </CardHeader>
@@ -308,68 +308,68 @@ export default function SubscriptionBilling() {
 
         <TabsContent value="usage" className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+            <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
               <CardHeader>
                 <CardTitle className="text-white">Certificate Generation</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-gray-400">Used this month</span>
+                  <span className="text-blue-300">Used this month</span>
                   <span className="text-white font-bold">{mockUsage.certificatesGenerated} / {mockUsage.certificatesLimit}</span>
                 </div>
                 <Progress value={certificateUsage} className="h-2" />
-                <p className="text-sm text-gray-400">
+                <p className="text-sm text-blue-300">
                   {certificateUsage.toFixed(1)}% of monthly allowance used
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+            <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
               <CardHeader>
                 <CardTitle className="text-white">Digital Wallet Cards</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-gray-400">Used this month</span>
+                  <span className="text-blue-300">Used this month</span>
                   <span className="text-white font-bold">{mockUsage.digitalCards} / {mockUsage.digitalCardsLimit}</span>
                 </div>
                 <Progress value={cardUsage} className="h-2" />
-                <p className="text-sm text-gray-400">
+                <p className="text-sm text-blue-300">
                   {cardUsage.toFixed(1)}% of monthly allowance used
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+            <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
               <CardHeader>
                 <CardTitle className="text-white">Employee Count</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-gray-400">Active employees</span>
+                  <span className="text-blue-300">Active employees</span>
                   <span className="text-white font-bold">{mockUsage.employees} / {mockUsage.employeesLimit}</span>
                 </div>
                 <Progress value={employeeUsage} className="h-2" />
-                <p className="text-sm text-gray-400">
+                <p className="text-sm text-blue-300">
                   {employeeUsage.toFixed(1)}% of plan limit used
                 </p>
               </CardContent>
             </Card>
           </div>
 
-          <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+          <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
             <CardHeader>
               <CardTitle className="text-white">Usage Trends</CardTitle>
-              <CardDescription className="text-gray-400">
+              <CardDescription className="text-blue-300">
                 Track your usage patterns over time
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="h-64 flex items-center justify-center border border-gray-700 rounded-lg">
+              <div className="h-64 flex items-center justify-center border border-blue-600 rounded-lg">
                 <div className="text-center">
-                  <TrendingUp className="w-12 h-12 text-gray-400 mx-auto mb-2" />
-                  <p className="text-gray-400">Usage analytics chart would display here</p>
-                  <p className="text-gray-500 text-sm">Showing monthly usage patterns and trends</p>
+                  <TrendingUp className="w-12 h-12 text-blue-300 mx-auto mb-2" />
+                  <p className="text-blue-300">Usage analytics chart would display here</p>
+                  <p className="text-blue-400 text-sm">Showing monthly usage patterns and trends</p>
                 </div>
               </div>
             </CardContent>
@@ -379,7 +379,7 @@ export default function SubscriptionBilling() {
         <TabsContent value="invoices" className="space-y-6">
           <div className="space-y-4">
             {mockInvoices.map((invoice) => (
-              <Card key={invoice.id} className="bg-black/20 backdrop-blur-sm border-gray-800">
+              <Card key={invoice.id} className="bg-black/20 backdrop-blur-sm border-blue-700">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
@@ -388,8 +388,8 @@ export default function SubscriptionBilling() {
                       </div>
                       <div>
                         <h3 className="text-white font-medium">{invoice.id}</h3>
-                        <p className="text-gray-400">{invoice.description}</p>
-                        <p className="text-gray-500 text-sm">{invoice.date}</p>
+                        <p className="text-blue-300">{invoice.description}</p>
+                        <p className="text-blue-400 text-sm">{invoice.date}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-4">
@@ -420,7 +420,7 @@ export default function SubscriptionBilling() {
               const isCurrent = plan === mockBillingInfo.plan;
               
               return (
-                <Card key={plan} className={`bg-black/20 backdrop-blur-sm border-gray-800 ${isCurrent ? 'ring-2 ring-blue-500' : ''}`}>
+                <Card key={plan} className={`bg-black/20 backdrop-blur-sm border-blue-700 ${isCurrent ? 'ring-2 ring-blue-500' : ''}`}>
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <CardTitle className="text-white">{plan}</CardTitle>
@@ -430,7 +430,7 @@ export default function SubscriptionBilling() {
                     </div>
                     <div className="text-center">
                       <p className="text-3xl font-bold text-white">${prices[index]}</p>
-                      <p className="text-gray-400">per month</p>
+                      <p className="text-blue-300">per month</p>
                     </div>
                   </CardHeader>
                   <CardContent className="space-y-4">
@@ -453,7 +453,7 @@ export default function SubscriptionBilling() {
                       </div>
                     </div>
                     <Button 
-                      className={`w-full ${isCurrent ? 'bg-gray-600' : 'bg-blue-500 hover:bg-blue-600'}`}
+                      className={`w-full ${isCurrent ? 'bg-blue-500' : 'bg-blue-500 hover:bg-blue-600'}`}
                       disabled={isCurrent}
                     >
                       {isCurrent ? 'Current Plan' : 'Upgrade'}

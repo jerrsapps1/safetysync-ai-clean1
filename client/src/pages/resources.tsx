@@ -126,8 +126,8 @@ const getTypeColor = (type: string) => {
     case 'video': return 'bg-purple-100 text-purple-800';
     case 'webinar': return 'bg-orange-100 text-orange-800';
     case 'checklist': return 'bg-emerald-100 text-emerald-800';
-    case 'whitepaper': return 'bg-gray-100 text-gray-800';
-    default: return 'bg-gray-100 text-gray-800';
+    case 'whitepaper': return 'bg-gray-100 text-blue-700';
+    default: return 'bg-gray-100 text-blue-700';
   }
 };
 
@@ -651,7 +651,7 @@ startxref
 
         {/* Featured Resources */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+          <h2 className="text-2xl font-bold text-blue-800 mb-6 flex items-center">
             <Star className="w-6 h-6 mr-2 text-yellow-500" />
             Featured Resources
           </h2>
@@ -668,7 +668,7 @@ startxref
                         {resource.type.charAt(0).toUpperCase() + resource.type.slice(1)}
                       </Badge>
                       {resource.duration && (
-                        <div className="flex items-center text-sm text-gray-500">
+                        <div className="flex items-center text-sm text-blue-400">
                           <Clock className="w-4 h-4 mr-1" />
                           {resource.duration}
                         </div>
@@ -679,19 +679,19 @@ startxref
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-600 mb-4">
+                    <p className="text-blue-500 mb-4">
                       {resource.description}
                     </p>
                     
                     <div className="flex items-center justify-between mb-4">
                       {resource.rating && (
-                        <div className="flex items-center text-sm text-gray-500">
+                        <div className="flex items-center text-sm text-blue-400">
                           <Star className="w-4 h-4 mr-1 text-yellow-400 fill-current" />
                           {resource.rating} rating
                         </div>
                       )}
                       {resource.downloads && (
-                        <div className="text-sm text-gray-500">
+                        <div className="text-sm text-blue-400">
                           {resource.downloads.toLocaleString()} downloads
                         </div>
                       )}
@@ -710,7 +710,7 @@ startxref
 
         {/* All Resources */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+          <h2 className="text-2xl font-bold text-blue-800 mb-6">
             All Resources
           </h2>
           
@@ -731,12 +731,12 @@ startxref
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="pt-0">
-                    <p className="text-gray-600 text-sm mb-4">
+                    <p className="text-blue-500 text-sm mb-4">
                       {resource.description}
                     </p>
                     
                     {resource.downloads && (
-                      <div className="text-xs text-gray-500 mb-3">
+                      <div className="text-xs text-blue-400 mb-3">
                         {resource.downloads.toLocaleString()} downloads
                       </div>
                     )}

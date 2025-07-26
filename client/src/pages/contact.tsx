@@ -124,7 +124,7 @@ export default function ContactPage() {
         {/* Contact Options */}
         <div className="flex justify-center mb-16">
           {contactOptions.map((option) => (
-            <Card key={option.title} className="text-center hover:shadow-xl transition-all duration-300 max-w-md bg-gray-800/50 border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/70">
+            <Card key={option.title} className="text-center hover:shadow-xl transition-all duration-300 max-w-md bg-blue-700/50 border-blue-600/50 backdrop-blur-sm hover:bg-blue-700/70">
               <CardHeader className="pb-4">
                 <div className={`w-12 h-12 ${option.color} rounded-lg flex items-center justify-center mx-auto mb-4`}>
                   <option.icon className="w-6 h-6 text-white" />
@@ -147,7 +147,7 @@ export default function ContactPage() {
         {/* Main Contact Form */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           {/* Contact Form */}
-          <Card className="bg-gray-800/50 border-gray-700/50 backdrop-blur-sm">
+          <Card className="bg-blue-700/50 border-blue-600/50 backdrop-blur-sm">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-white">
                 <MessageCircle className="w-5 h-5" />
@@ -278,10 +278,10 @@ export default function ContactPage() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-gray-500 mt-0.5" />
+                  <MapPin className="w-5 h-5 text-blue-400 mt-0.5" />
                   <div>
                     <p className="font-medium">Headquarters</p>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-blue-500">
                       Remote-First Company<br />
                       Serving clients nationwide
                     </p>
@@ -289,18 +289,18 @@ export default function ContactPage() {
                 </div>
                 
                 <div className="flex items-start gap-3">
-                  <Mail className="w-5 h-5 text-gray-500 mt-0.5" />
+                  <Mail className="w-5 h-5 text-blue-400 mt-0.5" />
                   <div>
                     <p className="font-medium">General Inquiries</p>
-                    <p className="text-sm text-gray-600">hello@safetysync.ai</p>
+                    <p className="text-sm text-blue-500">hello@safetysync.ai</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <Clock className="w-5 h-5 text-gray-500 mt-0.5" />
+                  <Clock className="w-5 h-5 text-blue-400 mt-0.5" />
                   <div>
                     <p className="font-medium">Support Hours</p>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-blue-500">
                       Mon-Fri: 7AM-7PM CT<br />
                       Weekend: Limited availability
                     </p>
@@ -356,8 +356,8 @@ export default function ContactPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {faqs.map((faq, index) => (
                 <div key={index} className="border-l-4 border-blue-500 pl-4">
-                  <h3 className="font-semibold text-gray-900 mb-2">{faq.question}</h3>
-                  <p className="text-sm text-gray-600">{faq.answer}</p>
+                  <h3 className="font-semibold text-blue-800 mb-2">{faq.question}</h3>
+                  <p className="text-sm text-blue-500">{faq.answer}</p>
                 </div>
               ))}
             </div>

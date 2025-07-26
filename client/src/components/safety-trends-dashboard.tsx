@@ -199,7 +199,7 @@ const SafetyTrendsDashboard: React.FC = () => {
                 <select 
                   value={animationSpeed} 
                   onChange={(e) => setAnimationSpeed(Number(e.target.value))}
-                  className="bg-slate-800 text-white border border-blue-400 rounded px-2 py-1 text-sm"
+                  className="bg-blue-700 text-white border border-blue-400 rounded px-2 py-1 text-sm"
                 >
                   <option value={0.5}>0.5x</option>
                   <option value={1}>1x</option>
@@ -216,7 +216,7 @@ const SafetyTrendsDashboard: React.FC = () => {
           {safetyMetrics.map((metric) => (
             <Card 
               key={metric.id} 
-              className={`bg-slate-800/50 backdrop-blur-sm border-slate-700 cursor-pointer transition-all duration-300 hover:scale-105 ${
+              className={`bg-blue-700/50 backdrop-blur-sm border-slate-700 cursor-pointer transition-all duration-300 hover:scale-105 ${
                 selectedMetric === metric.id ? 'ring-2 ring-blue-400' : ''
               }`}
               onClick={() => setSelectedMetric(metric.id)}
@@ -247,7 +247,7 @@ const SafetyTrendsDashboard: React.FC = () => {
                   className="h-2" 
                   style={{ backgroundColor: `${metric.color}20` }}
                 />
-                <p className="text-xs text-gray-400 mt-2">
+                <p className="text-xs text-blue-300 mt-2">
                   Target: {metric.target}{metric.id === 'compliance' || metric.id === 'training' ? '%' : ''}
                 </p>
               </CardContent>
@@ -258,7 +258,7 @@ const SafetyTrendsDashboard: React.FC = () => {
         {/* Main Charts Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           {/* Trend Analysis Chart */}
-          <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700">
+          <Card className="bg-blue-700/50 backdrop-blur-sm border-slate-700">
             <CardHeader>
               <CardTitle className="text-white flex items-center">
                 <Activity className="w-5 h-5 mr-2 text-blue-400" />
@@ -301,7 +301,7 @@ const SafetyTrendsDashboard: React.FC = () => {
           </Card>
 
           {/* Risk Distribution */}
-          <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700">
+          <Card className="bg-blue-700/50 backdrop-blur-sm border-slate-700">
             <CardHeader>
               <CardTitle className="text-white flex items-center">
                 <Target className="w-5 h-5 mr-2 text-blue-400" />
@@ -352,7 +352,7 @@ const SafetyTrendsDashboard: React.FC = () => {
 
         {/* Department Performance */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700">
+          <Card className="bg-blue-700/50 backdrop-blur-sm border-slate-700">
             <CardHeader>
               <CardTitle className="text-white flex items-center">
                 <Users className="w-5 h-5 mr-2 text-blue-400" />
@@ -381,7 +381,7 @@ const SafetyTrendsDashboard: React.FC = () => {
           </Card>
 
           {/* AI Insights */}
-          <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700">
+          <Card className="bg-blue-700/50 backdrop-blur-sm border-slate-700">
             <CardHeader>
               <CardTitle className="text-white flex items-center">
                 <Zap className="w-5 h-5 mr-2 text-blue-400" />
@@ -396,7 +396,7 @@ const SafetyTrendsDashboard: React.FC = () => {
                   </div>
                   <div>
                     <p className="text-white font-medium">Compliance Improving</p>
-                    <p className="text-sm text-gray-400">8% increase in overall compliance rates this quarter</p>
+                    <p className="text-sm text-blue-300">8% increase in overall compliance rates this quarter</p>
                   </div>
                 </div>
                 
@@ -406,7 +406,7 @@ const SafetyTrendsDashboard: React.FC = () => {
                   </div>
                   <div>
                     <p className="text-white font-medium">Training Gap Identified</p>
-                    <p className="text-sm text-gray-400">Maintenance department needs additional fall protection training</p>
+                    <p className="text-sm text-blue-300">Maintenance department needs additional fall protection training</p>
                   </div>
                 </div>
                 
@@ -416,7 +416,7 @@ const SafetyTrendsDashboard: React.FC = () => {
                   </div>
                   <div>
                     <p className="text-white font-medium">Predictive Alert</p>
-                    <p className="text-sm text-gray-400">AI predicts 23% risk reduction with proposed safety measures</p>
+                    <p className="text-sm text-blue-300">AI predicts 23% risk reduction with proposed safety measures</p>
                   </div>
                 </div>
                 
@@ -426,7 +426,7 @@ const SafetyTrendsDashboard: React.FC = () => {
                   </div>
                   <div>
                     <p className="text-white font-medium">Critical Action Required</p>
-                    <p className="text-sm text-gray-400">3 overdue safety inspections in Manufacturing</p>
+                    <p className="text-sm text-blue-300">3 overdue safety inspections in Manufacturing</p>
                   </div>
                 </div>
               </div>

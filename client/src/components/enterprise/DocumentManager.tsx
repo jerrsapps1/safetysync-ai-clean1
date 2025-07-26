@@ -191,8 +191,8 @@ const DocumentManager: React.FC = () => {
       case 'active': return 'bg-green-100 text-green-800';
       case 'expired': return 'bg-red-100 text-red-800';
       case 'pending_review': return 'bg-yellow-100 text-yellow-800';
-      case 'archived': return 'bg-gray-100 text-gray-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'archived': return 'bg-gray-100 text-blue-700';
+      default: return 'bg-gray-100 text-blue-700';
     }
   };
 
@@ -214,7 +214,7 @@ const DocumentManager: React.FC = () => {
       case 'public': return 'bg-blue-100 text-blue-800';
       case 'restricted': return 'bg-orange-100 text-orange-800';
       case 'confidential': return 'bg-red-100 text-red-800';
-      default: return 'bg-gray-100 text-gray-800';
+      default: return 'bg-gray-100 text-blue-700';
     }
   };
 
@@ -338,12 +338,12 @@ const DocumentManager: React.FC = () => {
           <div className="flex flex-col lg:flex-row gap-4">
             <div className="flex-1">
               <div className="relative">
-                <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                <Search className="absolute left-3 top-3 h-4 w-4 text-blue-300" />
                 <Input
                   placeholder="Search documents by title, description, or tags..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 bg-white/5 border-white/10 text-white placeholder-gray-400"
+                  className="pl-10 bg-white/5 border-white/10 text-white placeholder-blue-300"
                 />
               </div>
             </div>
@@ -400,7 +400,7 @@ const DocumentManager: React.FC = () => {
                     Upload
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[600px] bg-gray-900 border-gray-700">
+                <DialogContent className="sm:max-w-[600px] bg-blue-800 border-blue-600">
                   <DialogHeader>
                     <DialogTitle className="text-white">Upload Document</DialogTitle>
                   </DialogHeader>
@@ -408,12 +408,12 @@ const DocumentManager: React.FC = () => {
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <Label htmlFor="title" className="text-white">Title</Label>
-                        <Input id="title" placeholder="Document title" className="bg-gray-800 border-gray-700 text-white" />
+                        <Input id="title" placeholder="Document title" className="bg-blue-700 border-blue-600 text-white" />
                       </div>
                       <div>
                         <Label htmlFor="type" className="text-white">Type</Label>
                         <Select>
-                          <SelectTrigger className="bg-gray-800 border-gray-700 text-white">
+                          <SelectTrigger className="bg-blue-700 border-blue-600 text-white">
                             <SelectValue placeholder="Select type" />
                           </SelectTrigger>
                           <SelectContent>
@@ -432,14 +432,14 @@ const DocumentManager: React.FC = () => {
                     
                     <div>
                       <Label htmlFor="description" className="text-white">Description</Label>
-                      <Textarea id="description" placeholder="Document description" className="bg-gray-800 border-gray-700 text-white" />
+                      <Textarea id="description" placeholder="Document description" className="bg-blue-700 border-blue-600 text-white" />
                     </div>
                     
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <Label htmlFor="department" className="text-white">Department</Label>
                         <Select>
-                          <SelectTrigger className="bg-gray-800 border-gray-700 text-white">
+                          <SelectTrigger className="bg-blue-700 border-blue-600 text-white">
                             <SelectValue placeholder="Select department" />
                           </SelectTrigger>
                           <SelectContent>
@@ -454,7 +454,7 @@ const DocumentManager: React.FC = () => {
                       <div>
                         <Label htmlFor="access" className="text-white">Access Level</Label>
                         <Select>
-                          <SelectTrigger className="bg-gray-800 border-gray-700 text-white">
+                          <SelectTrigger className="bg-blue-700 border-blue-600 text-white">
                             <SelectValue placeholder="Select access level" />
                           </SelectTrigger>
                           <SelectContent>
@@ -468,10 +468,10 @@ const DocumentManager: React.FC = () => {
                     
                     <div>
                       <Label htmlFor="file" className="text-white">File</Label>
-                      <div className="border-2 border-dashed border-gray-700 rounded-lg p-6 text-center">
-                        <Upload className="w-12 h-12 mx-auto text-gray-400 mb-4" />
-                        <p className="text-gray-400">Click to upload or drag and drop</p>
-                        <p className="text-sm text-gray-500">PDF, DOC, DOCX, XLS, XLSX (max 25MB)</p>
+                      <div className="border-2 border-dashed border-blue-600 rounded-lg p-6 text-center">
+                        <Upload className="w-12 h-12 mx-auto text-blue-300 mb-4" />
+                        <p className="text-blue-300">Click to upload or drag and drop</p>
+                        <p className="text-sm text-blue-400">PDF, DOC, DOCX, XLS, XLSX (max 25MB)</p>
                       </div>
                     </div>
                     
@@ -534,7 +534,7 @@ const DocumentManager: React.FC = () => {
                         ))}
                       </div>
                       
-                      <div className="flex items-center gap-4 text-xs text-gray-400">
+                      <div className="flex items-center gap-4 text-xs text-blue-300">
                         <span className="flex items-center gap-1">
                           <Building className="w-3 h-3" />
                           {doc.department}
@@ -558,7 +558,7 @@ const DocumentManager: React.FC = () => {
                       size="sm"
                       variant="ghost"
                       onClick={() => handleViewDocument(doc)}
-                      className="text-gray-400 hover:text-white"
+                      className="text-blue-300 hover:text-white"
                     >
                       <Eye className="w-4 h-4" />
                     </Button>
@@ -566,14 +566,14 @@ const DocumentManager: React.FC = () => {
                       size="sm"
                       variant="ghost"
                       onClick={() => handleDownload(doc)}
-                      className="text-gray-400 hover:text-white"
+                      className="text-blue-300 hover:text-white"
                     >
                       <Download className="w-4 h-4" />
                     </Button>
                     <Button
                       size="sm"
                       variant="ghost"
-                      className="text-gray-400 hover:text-white"
+                      className="text-blue-300 hover:text-white"
                     >
                       <Edit className="w-4 h-4" />
                     </Button>
@@ -585,9 +585,9 @@ const DocumentManager: React.FC = () => {
           
           {filteredDocuments.length === 0 && (
             <div className="text-center py-12">
-              <FileText className="w-16 h-16 mx-auto text-gray-400 mb-4" />
-              <p className="text-gray-400 text-lg">No documents found</p>
-              <p className="text-gray-500 text-sm">Try adjusting your search criteria or upload a new document</p>
+              <FileText className="w-16 h-16 mx-auto text-blue-300 mb-4" />
+              <p className="text-blue-300 text-lg">No documents found</p>
+              <p className="text-blue-400 text-sm">Try adjusting your search criteria or upload a new document</p>
             </div>
           )}
         </CardContent>
@@ -595,7 +595,7 @@ const DocumentManager: React.FC = () => {
 
       {/* Document View Dialog */}
       <Dialog open={isViewDialogOpen} onOpenChange={setIsViewDialogOpen}>
-        <DialogContent className="sm:max-w-[800px] bg-gray-900 border-gray-700">
+        <DialogContent className="sm:max-w-[800px] bg-blue-800 border-blue-600">
           <DialogHeader>
             <DialogTitle className="text-white">Document Details</DialogTitle>
           </DialogHeader>

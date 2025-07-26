@@ -12,7 +12,7 @@ export default function UserGuidePage() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <Link href="/">
-                <Button variant="ghost" size="sm" className="text-gray-600 hover:text-gray-900">
+                <Button variant="ghost" size="sm" className="text-blue-500 hover:text-blue-800">
                   <Home className="w-4 h-4 mr-2" />
                   Home
                 </Button>

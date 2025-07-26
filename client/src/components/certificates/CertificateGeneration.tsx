@@ -156,8 +156,8 @@ export default function CertificateGeneration() {
       case 'active': return 'bg-green-500/20 text-green-400 border-green-500/30';
       case 'expired': return 'bg-red-500/20 text-red-400 border-red-500/30';
       case 'pending': return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30';
-      case 'draft': return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
-      default: return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
+      case 'draft': return 'bg-blue-400/20 text-blue-300 border-blue-400/30';
+      default: return 'bg-blue-400/20 text-blue-300 border-blue-400/30';
     }
   };
 
@@ -165,7 +165,7 @@ export default function CertificateGeneration() {
     switch (type) {
       case 'certificate': return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
       case 'wallet-card': return 'bg-purple-500/20 text-purple-400 border-purple-500/30';
-      default: return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
+      default: return 'bg-blue-400/20 text-blue-300 border-blue-400/30';
     }
   };
 
@@ -216,7 +216,7 @@ export default function CertificateGeneration() {
             <SafetySyncIcon size={32} className="rounded-lg" />
             Certificate Generation
           </h2>
-          <p className="text-gray-400">Generate professional certificates and digital wallet cards</p>
+          <p className="text-blue-300">Generate professional certificates and digital wallet cards</p>
           <p className="text-blue-300 text-sm mt-1">
             🎓 OSHA-compliant certificates with automated generation • First 15 FREE monthly
           </p>
@@ -238,11 +238,11 @@ export default function CertificateGeneration() {
 
       {/* Statistics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative z-10">
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm">Total Generated</p>
+                <p className="text-blue-300 text-sm">Total Generated</p>
                 <p className="text-2xl font-bold text-white">{totalGenerated}</p>
                 <p className="text-blue-400 text-sm">🤖 AI-Generated</p>
               </div>
@@ -251,11 +251,11 @@ export default function CertificateGeneration() {
           </CardContent>
         </Card>
 
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm">Active Certificates</p>
+                <p className="text-blue-300 text-sm">Active Certificates</p>
                 <p className="text-2xl font-bold text-white">{activeCertificates}</p>
                 <p className="text-green-400 text-sm">Valid & Current</p>
               </div>
@@ -264,11 +264,11 @@ export default function CertificateGeneration() {
           </CardContent>
         </Card>
 
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm">Expiring Soon</p>
+                <p className="text-blue-300 text-sm">Expiring Soon</p>
                 <p className="text-2xl font-bold text-white">{expiredCertificates}</p>
                 <p className="text-yellow-400 text-sm">Next 30 days</p>
               </div>
@@ -277,11 +277,11 @@ export default function CertificateGeneration() {
           </CardContent>
         </Card>
 
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm">Monthly Usage</p>
+                <p className="text-blue-300 text-sm">Monthly Usage</p>
                 <p className="text-2xl font-bold text-white">12/15</p>
                 <p className="text-emerald-400 text-sm">3 remaining free</p>
               </div>
@@ -294,20 +294,20 @@ export default function CertificateGeneration() {
       {/* Search and Filter */}
       <div className="flex items-center gap-4 relative z-10">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-blue-300" />
           <Input
             placeholder="Search certificates, employees, or training..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-10 bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+            className="pl-10 bg-blue-700/50 border-blue-600 text-white placeholder-blue-300"
           />
         </div>
         <div className="flex items-center gap-2">
-          <Filter className="w-4 h-4 text-gray-400" />
+          <Filter className="w-4 h-4 text-blue-300" />
           <select
             value={selectedStatus}
             onChange={(e) => setSelectedStatus(e.target.value)}
-            className="bg-gray-800/50 border-gray-700 text-white rounded-md px-3 py-2"
+            className="bg-blue-700/50 border-blue-600 text-white rounded-md px-3 py-2"
           >
             <option value="all">All Status</option>
             <option value="active">Active</option>
@@ -320,7 +320,7 @@ export default function CertificateGeneration() {
 
       {/* Main Content Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="relative z-10">
-        <TabsList className="grid w-full grid-cols-3 bg-black/20 backdrop-blur-sm border-gray-800">
+        <TabsList className="grid w-full grid-cols-3 bg-black/20 backdrop-blur-sm border-blue-700">
           <TabsTrigger 
             value="certificates" 
             className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
@@ -347,12 +347,12 @@ export default function CertificateGeneration() {
         <TabsContent value="certificates" className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {filteredCertificates.map((certificate) => (
-              <Card key={certificate.id} className="bg-black/20 backdrop-blur-sm border-gray-800">
+              <Card key={certificate.id} className="bg-black/20 backdrop-blur-sm border-blue-700">
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div>
                       <CardTitle className="text-white">{certificate.training}</CardTitle>
-                      <CardDescription className="text-gray-400">
+                      <CardDescription className="text-blue-300">
                         {certificate.employeeName} • {certificate.certificateNumber}
                       </CardDescription>
                     </div>
@@ -387,7 +387,7 @@ export default function CertificateGeneration() {
                   </div>
                   
                   <div className="space-y-2">
-                    <p className="text-gray-400 text-sm font-medium">Compliance Standards:</p>
+                    <p className="text-blue-300 text-sm font-medium">Compliance Standards:</p>
                     <div className="flex flex-wrap gap-1">
                       {certificate.compliance.map((comp, index) => (
                         <Badge key={index} variant="outline" className="text-xs text-blue-300 border-blue-500/30">
@@ -399,7 +399,7 @@ export default function CertificateGeneration() {
 
                   {certificate.equipment && (
                     <div className="space-y-2">
-                      <p className="text-gray-400 text-sm font-medium">Authorized Equipment:</p>
+                      <p className="text-blue-300 text-sm font-medium">Authorized Equipment:</p>
                       <div className="flex flex-wrap gap-1">
                         {certificate.equipment.map((eq, index) => (
                           <Badge key={index} variant="outline" className="text-xs text-emerald-300 border-emerald-500/30">
@@ -419,7 +419,7 @@ export default function CertificateGeneration() {
                       <Download className="w-3 h-3 mr-1" />
                       Download PDF
                     </Button>
-                    <Button size="sm" variant="outline" className="border-gray-600 text-gray-300">
+                    <Button size="sm" variant="outline" className="border-blue-500 text-gray-300">
                       <Edit className="w-3 h-3 mr-1" />
                       Edit
                     </Button>
@@ -433,12 +433,12 @@ export default function CertificateGeneration() {
         <TabsContent value="templates" className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {filteredTemplates.map((template) => (
-              <Card key={template.id} className="bg-black/20 backdrop-blur-sm border-gray-800">
+              <Card key={template.id} className="bg-black/20 backdrop-blur-sm border-blue-700">
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div>
                       <CardTitle className="text-white">{template.name}</CardTitle>
-                      <CardDescription className="text-gray-400">
+                      <CardDescription className="text-blue-300">
                         {template.category} • {template.defaultHours} hours
                       </CardDescription>
                     </div>
@@ -456,7 +456,7 @@ export default function CertificateGeneration() {
                   <p className="text-gray-300 text-sm">{template.description}</p>
                   
                   <div className="space-y-2">
-                    <p className="text-gray-400 text-sm font-medium">Compliance Standards:</p>
+                    <p className="text-blue-300 text-sm font-medium">Compliance Standards:</p>
                     <div className="flex flex-wrap gap-1">
                       {template.compliance.map((comp, index) => (
                         <Badge key={index} variant="outline" className="text-xs text-emerald-300 border-emerald-500/30">
@@ -478,7 +478,7 @@ export default function CertificateGeneration() {
                       <Plus className="w-3 h-3 mr-1" />
                       Use Template
                     </Button>
-                    <Button size="sm" variant="outline" className="border-gray-600 text-gray-300">
+                    <Button size="sm" variant="outline" className="border-blue-500 text-gray-300">
                       <Edit className="w-3 h-3 mr-1" />
                       Edit
                     </Button>
@@ -490,10 +490,10 @@ export default function CertificateGeneration() {
         </TabsContent>
 
         <TabsContent value="generation" className="space-y-6">
-          <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+          <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
             <CardHeader>
               <CardTitle className="text-white">Generate New Certificate</CardTitle>
-              <CardDescription className="text-gray-400">
+              <CardDescription className="text-blue-300">
                 Create professional certificates and digital wallet cards
               </CardDescription>
             </CardHeader>
@@ -503,14 +503,14 @@ export default function CertificateGeneration() {
                   <div>
                     <Label className="text-white">Employee Name</Label>
                     <Input 
-                      className="bg-gray-800/50 border-gray-700 text-white"
+                      className="bg-blue-700/50 border-blue-600 text-white"
                       placeholder="John Smith"
                     />
                   </div>
                   <div>
                     <Label className="text-white">Training Program</Label>
                     <Select>
-                      <SelectTrigger className="bg-gray-800/50 border-gray-700 text-white">
+                      <SelectTrigger className="bg-blue-700/50 border-blue-600 text-white">
                         <SelectValue placeholder="Select training program" />
                       </SelectTrigger>
                       <SelectContent>
@@ -524,7 +524,7 @@ export default function CertificateGeneration() {
                   <div>
                     <Label className="text-white">Certificate Type</Label>
                     <Select>
-                      <SelectTrigger className="bg-gray-800/50 border-gray-700 text-white">
+                      <SelectTrigger className="bg-blue-700/50 border-blue-600 text-white">
                         <SelectValue placeholder="Select type" />
                       </SelectTrigger>
                       <SelectContent>
@@ -539,7 +539,7 @@ export default function CertificateGeneration() {
                   <div>
                     <Label className="text-white">Instructor</Label>
                     <Input 
-                      className="bg-gray-800/50 border-gray-700 text-white"
+                      className="bg-blue-700/50 border-blue-600 text-white"
                       placeholder="Sarah Johnson"
                     />
                   </div>
@@ -547,7 +547,7 @@ export default function CertificateGeneration() {
                     <Label className="text-white">Training Hours</Label>
                     <Input 
                       type="number"
-                      className="bg-gray-800/50 border-gray-700 text-white"
+                      className="bg-blue-700/50 border-blue-600 text-white"
                       placeholder="8"
                     />
                   </div>
@@ -555,7 +555,7 @@ export default function CertificateGeneration() {
                     <Label className="text-white">Issue Date</Label>
                     <Input 
                       type="date"
-                      className="bg-gray-800/50 border-gray-700 text-white"
+                      className="bg-blue-700/50 border-blue-600 text-white"
                     />
                   </div>
                 </div>
@@ -565,14 +565,14 @@ export default function CertificateGeneration() {
                 <div>
                   <Label className="text-white">Equipment Authorization (for wallet cards)</Label>
                   <Textarea 
-                    className="bg-gray-800/50 border-gray-700 text-white"
+                    className="bg-blue-700/50 border-blue-600 text-white"
                     placeholder="JLG 40 AJ, Genie Z62/40, CAT 315 FL"
                   />
                 </div>
                 <div>
                   <Label className="text-white">Additional Notes</Label>
                   <Textarea 
-                    className="bg-gray-800/50 border-gray-700 text-white"
+                    className="bg-blue-700/50 border-blue-600 text-white"
                     placeholder="Any special requirements or notes..."
                   />
                 </div>

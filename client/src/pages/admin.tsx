@@ -261,7 +261,7 @@ export default function AdminPanel() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <Link href="/">
-                <Button variant="ghost" size="sm" className="text-gray-600 hover:text-gray-900 hover:bg-gray-100/50">
+                <Button variant="ghost" size="sm" className="text-blue-500 hover:text-blue-800 hover:bg-gray-100/50">
                   <Home className="w-4 h-4 mr-2" />
                   Home
                 </Button>
@@ -305,10 +305,10 @@ export default function AdminPanel() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="text-3xl font-bold text-blue-800 mb-2">
             Admin Dashboard
           </h1>
-          <p className="text-gray-600">
+          <p className="text-blue-500">
             Manage leads, users, and platform analytics
           </p>
         </div>
@@ -319,8 +319,8 @@ export default function AdminPanel() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Total Leads</p>
-                  <p className="text-3xl font-bold text-gray-900">{stats.totalLeads}</p>
+                  <p className="text-sm font-medium text-blue-500">Total Leads</p>
+                  <p className="text-3xl font-bold text-blue-800">{stats.totalLeads}</p>
                 </div>
                 <TrendingUp className="w-8 h-8 text-blue-500" />
               </div>
@@ -331,7 +331,7 @@ export default function AdminPanel() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Trial Signups</p>
+                  <p className="text-sm font-medium text-blue-500">Trial Signups</p>
                   <p className="text-3xl font-bold text-blue-600">{stats.trialSignups}</p>
                 </div>
                 <UserPlus className="w-8 h-8 text-blue-500" />
@@ -343,7 +343,7 @@ export default function AdminPanel() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Demo Requests</p>
+                  <p className="text-sm font-medium text-blue-500">Demo Requests</p>
                   <p className="text-3xl font-bold text-green-600">{stats.demoRequests}</p>
                 </div>
                 <Eye className="w-8 h-8 text-green-500" />
@@ -355,7 +355,7 @@ export default function AdminPanel() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Total Users</p>
+                  <p className="text-sm font-medium text-blue-500">Total Users</p>
                   <p className="text-3xl font-bold text-purple-600">{stats.totalUsers}</p>
                 </div>
                 <Users className="w-8 h-8 text-purple-500" />
@@ -367,7 +367,7 @@ export default function AdminPanel() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Active Users</p>
+                  <p className="text-sm font-medium text-blue-500">Active Users</p>
                   <p className="text-3xl font-bold text-green-600">{stats.activeUsers}</p>
                 </div>
                 <CheckCircle className="w-8 h-8 text-green-500" />
@@ -379,7 +379,7 @@ export default function AdminPanel() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Conversion Rate</p>
+                  <p className="text-sm font-medium text-blue-500">Conversion Rate</p>
                   <p className="text-3xl font-bold text-orange-600">{stats.conversionRate.toFixed(1)}%</p>
                 </div>
                 <BarChart3 className="w-8 h-8 text-orange-500" />
@@ -421,7 +421,7 @@ export default function AdminPanel() {
                   <div className="flex-1">
                     <Label htmlFor="search">Search Leads</Label>
                     <div className="relative">
-                      <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                      <Search className="absolute left-3 top-3 h-4 w-4 text-blue-300" />
                       <Input
                         id="search"
                         placeholder="Search by name, email, or company..."
@@ -451,7 +451,7 @@ export default function AdminPanel() {
                   {leadsLoading ? (
                     <div className="text-center py-8">Loading leads...</div>
                   ) : filteredLeads.length === 0 ? (
-                    <div className="text-center py-8 text-gray-500">No leads found</div>
+                    <div className="text-center py-8 text-blue-400">No leads found</div>
                   ) : (
                     filteredLeads.map((lead: Lead) => (
                       <Card key={lead.id} className="p-4">
@@ -465,8 +465,8 @@ export default function AdminPanel() {
                               )}
                             </div>
                             <div>
-                              <h3 className="font-medium text-gray-900">{lead.name}</h3>
-                              <div className="flex items-center gap-4 text-sm text-gray-600">
+                              <h3 className="font-medium text-blue-800">{lead.name}</h3>
+                              <div className="flex items-center gap-4 text-sm text-blue-500">
                                 <span className="flex items-center gap-1">
                                   <Mail className="w-3 h-3" />
                                   {lead.email}
@@ -485,7 +485,7 @@ export default function AdminPanel() {
                                 )}
                               </div>
                               {lead.message && (
-                                <p className="text-sm text-gray-600 mt-1 max-w-md truncate">
+                                <p className="text-sm text-blue-500 mt-1 max-w-md truncate">
                                   {lead.message}
                                 </p>
                               )}
@@ -553,7 +553,7 @@ export default function AdminPanel() {
                 {usersLoading ? (
                   <div className="text-center py-8">Loading users...</div>
                 ) : filteredUsers.length === 0 ? (
-                  <div className="text-center py-8 text-gray-500">No users found</div>
+                  <div className="text-center py-8 text-blue-400">No users found</div>
                 ) : (
                   <div className="space-y-4">
                     {filteredUsers.map((user: User) => (
@@ -564,8 +564,8 @@ export default function AdminPanel() {
                               <Users className="w-5 h-5 text-purple-600" />
                             </div>
                             <div>
-                              <h3 className="font-medium text-gray-900">{user.name || 'No name'}</h3>
-                              <div className="flex items-center gap-4 text-sm text-gray-600">
+                              <h3 className="font-medium text-blue-800">{user.name || 'No name'}</h3>
+                              <div className="flex items-center gap-4 text-sm text-blue-500">
                                 <span className="flex items-center gap-1">
                                   <Mail className="w-3 h-3" />
                                   {user.email}
@@ -591,7 +591,7 @@ export default function AdminPanel() {
                               user.userTier === 'enterprise' ? 'bg-purple-100 text-purple-800' :
                               user.userTier === 'professional' ? 'bg-blue-100 text-blue-800' :
                               user.userTier === 'basic' ? 'bg-green-100 text-green-800' :
-                              'bg-gray-100 text-gray-800'
+                              'bg-gray-100 text-blue-700'
                             }>
                               {user.userTier?.replace('_', ' ').toUpperCase() || 'FREE TRIAL'}
                             </Badge>
@@ -607,7 +607,7 @@ export default function AdminPanel() {
                             </Badge>
 
                             {/* Active Status Badge */}
-                            <Badge className={user.isActive ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}>
+                            <Badge className={user.isActive ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-blue-700'}>
                               {user.isActive ? 'Active' : 'Inactive'}
                             </Badge>
 
@@ -657,7 +657,7 @@ export default function AdminPanel() {
                             <div className="text-right">
                               <p className="text-sm font-medium">Joined {formatDate(user.createdAt)}</p>
                               {user.subscriptionExpiresAt && (
-                                <p className="text-xs text-gray-500">
+                                <p className="text-xs text-blue-400">
                                   Expires: {formatDate(user.subscriptionExpiresAt)}
                                 </p>
                               )}
@@ -679,7 +679,7 @@ export default function AdminPanel() {
                   <Ticket className="w-5 h-5 text-blue-600" />
                   Help Desk Management
                 </h3>
-                <p className="text-gray-600">Manage SYNC AI escalations and customer support tickets</p>
+                <p className="text-blue-500">Manage SYNC AI escalations and customer support tickets</p>
               </div>
             </div>
             <HelpDeskManagement />
@@ -736,21 +736,21 @@ export default function AdminPanel() {
                       <UserPlus className="w-4 h-4 text-blue-600" />
                       <div className="text-sm">
                         <p className="font-medium">New trial signup</p>
-                        <p className="text-gray-600">2 hours ago</p>
+                        <p className="text-blue-500">2 hours ago</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3 p-3 bg-green-50 rounded-lg">
                       <Eye className="w-4 h-4 text-green-600" />
                       <div className="text-sm">
                         <p className="font-medium">Demo request submitted</p>
-                        <p className="text-gray-600">5 hours ago</p>
+                        <p className="text-blue-500">5 hours ago</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3 p-3 bg-purple-50 rounded-lg">
                       <Users className="w-4 h-4 text-purple-600" />
                       <div className="text-sm">
                         <p className="font-medium">User account created</p>
-                        <p className="text-gray-600">1 day ago</p>
+                        <p className="text-blue-500">1 day ago</p>
                       </div>
                     </div>
                   </div>
@@ -767,7 +767,7 @@ export default function AdminPanel() {
                   <Shield className="w-5 h-5 text-blue-600" />
                   Platform Security
                 </h3>
-                <p className="text-gray-600">Monitor website clone detection and platform security threats</p>
+                <p className="text-blue-500">Monitor website clone detection and platform security threats</p>
               </div>
             </div>
             <AICloneDetector 

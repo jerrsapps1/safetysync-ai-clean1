@@ -436,7 +436,7 @@ export function UserGuide({ userPlan = 'professional' }: UserGuideProps) {
       case 'professional': return 'bg-blue-100 text-blue-800';
       case 'enterprise': return 'bg-purple-100 text-purple-800';
       case 'enterprise-plus': return 'bg-orange-100 text-orange-800';
-      default: return 'bg-gray-100 text-gray-800';
+      default: return 'bg-gray-100 text-blue-700';
     }
   };
 
@@ -453,7 +453,7 @@ export function UserGuide({ userPlan = 'professional' }: UserGuideProps) {
             <Badge className={getPlanBadgeColor(userPlan)}>
               {userPlan?.replace('-', ' ').toUpperCase()} PLAN
             </Badge>
-            <span className="text-sm text-gray-600">
+            <span className="text-sm text-blue-500">
               Complete step-by-step guidance for all platform features
             </span>
           </div>
@@ -463,7 +463,7 @@ export function UserGuide({ userPlan = 'professional' }: UserGuideProps) {
           <div className="flex flex-col md:flex-row gap-4 mb-6">
             <div className="flex-1">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-300 w-4 h-4" />
                 <Input
                   placeholder="Search guides and procedures..."
                   value={searchQuery}
@@ -529,7 +529,7 @@ export function UserGuide({ userPlan = 'professional' }: UserGuideProps) {
                   {section.icon}
                   <div>
                     <CardTitle className="text-lg">{section.title}</CardTitle>
-                    <p className="text-sm text-gray-600 mt-1">{section.description}</p>
+                    <p className="text-sm text-blue-500 mt-1">{section.description}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
@@ -564,16 +564,16 @@ export function UserGuide({ userPlan = 'professional' }: UserGuideProps) {
                           {step.step}
                         </div>
                         <div className="flex-1">
-                          <h4 className="font-semibold text-gray-900 mb-2">{step.title}</h4>
-                          <p className="text-gray-700 mb-2">{step.description}</p>
+                          <h4 className="font-semibold text-blue-800 mb-2">{step.title}</h4>
+                          <p className="text-blue-600 mb-2">{step.description}</p>
                           
                           {step.action && (
                             <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 mb-3">
-                              <div className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1">
+                              <div className="flex items-center gap-2 text-sm font-medium text-blue-600 mb-1">
                                 <Target className="w-4 h-4" />
                                 Action Required:
                               </div>
-                              <p className="text-sm text-gray-600">{step.action}</p>
+                              <p className="text-sm text-blue-500">{step.action}</p>
                             </div>
                           )}
 
@@ -601,7 +601,7 @@ export function UserGuide({ userPlan = 'professional' }: UserGuideProps) {
                 <Separator className="my-6" />
                 
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
+                  <div className="flex items-center gap-2 text-sm text-blue-500">
                     <Clock className="w-4 h-4" />
                     Estimated completion time: {section.steps.length * 3-5} minutes
                   </div>
@@ -620,8 +620,8 @@ export function UserGuide({ userPlan = 'professional' }: UserGuideProps) {
       <Card>
         <CardContent className="p-6">
           <div className="text-center">
-            <h3 className="font-semibold text-gray-900 mb-2">Need Additional Help?</h3>
-            <p className="text-gray-600 mb-4">
+            <h3 className="font-semibold text-blue-800 mb-2">Need Additional Help?</h3>
+            <p className="text-blue-500 mb-4">
               Can't find what you're looking for? Our support team is here to help.
             </p>
             <div className="flex justify-center gap-3">

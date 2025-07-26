@@ -50,11 +50,11 @@ export default function AchievementLeaderboard({ period = 'month' }: Leaderboard
       case 1:
         return <Trophy className="w-5 h-5 text-yellow-500" />;
       case 2:
-        return <Medal className="w-5 h-5 text-gray-400" />;
+        return <Medal className="w-5 h-5 text-blue-300" />;
       case 3:
         return <Award className="w-5 h-5 text-amber-600" />;
       default:
-        return <span className="w-5 h-5 flex items-center justify-center text-gray-400 font-medium">{rank}</span>;
+        return <span className="w-5 h-5 flex items-center justify-center text-blue-300 font-medium">{rank}</span>;
     }
   };
 
@@ -63,11 +63,11 @@ export default function AchievementLeaderboard({ period = 'month' }: Leaderboard
       case 1:
         return 'bg-gradient-to-r from-yellow-400 to-yellow-500';
       case 2:
-        return 'bg-gradient-to-r from-gray-400 to-gray-500';
+        return 'bg-gradient-to-r from-blue-300 to-blue-400';
       case 3:
         return 'bg-gradient-to-r from-amber-600 to-amber-700';
       default:
-        return 'bg-gray-700';
+        return 'bg-blue-600';
     }
   };
 
@@ -89,7 +89,7 @@ export default function AchievementLeaderboard({ period = 'month' }: Leaderboard
               variant={selectedPeriod === p ? 'default' : 'outline'}
               size="sm"
               onClick={() => setSelectedPeriod(p as typeof selectedPeriod)}
-              className={selectedPeriod === p ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-800'}
+              className={selectedPeriod === p ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-700'}
             >
               {p === 'all' ? 'All Time' : `This ${p.charAt(0).toUpperCase() + p.slice(1)}`}
             </Button>
@@ -98,7 +98,7 @@ export default function AchievementLeaderboard({ period = 'month' }: Leaderboard
       </div>
 
       {/* Top 3 Podium */}
-      <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+      <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
         <CardHeader>
           <CardTitle className="text-white flex items-center gap-2">
             <Crown className="w-5 h-5 text-yellow-500" />
@@ -112,7 +112,7 @@ export default function AchievementLeaderboard({ period = 'month' }: Leaderboard
                 <div className={`p-4 rounded-lg mb-3 ${getRankColor(entry.rank)}`}>
                   <Avatar className="w-16 h-16 mx-auto mb-2">
                     <AvatarImage src={entry.avatar} alt={entry.name} />
-                    <AvatarFallback className="bg-gray-700 text-white">
+                    <AvatarFallback className="bg-blue-600 text-white">
                       {getInitials(entry.name)}
                     </AvatarFallback>
                   </Avatar>
@@ -123,11 +123,11 @@ export default function AchievementLeaderboard({ period = 'month' }: Leaderboard
                 <h3 className={`font-medium ${entry.isCurrentUser ? 'text-emerald-400' : 'text-white'}`}>
                   {entry.name}
                 </h3>
-                <div className="flex items-center justify-center gap-1 text-sm text-gray-400 mt-1">
+                <div className="flex items-center justify-center gap-1 text-sm text-blue-300 mt-1">
                   <Star className="w-4 h-4 text-yellow-500" />
                   <span>{entry.points.toLocaleString()}</span>
                 </div>
-                <div className="flex items-center justify-center gap-1 text-sm text-gray-400">
+                <div className="flex items-center justify-center gap-1 text-sm text-blue-300">
                   <Award className="w-4 h-4 text-emerald-500" />
                   <span>{entry.badges} badges</span>
                 </div>
@@ -138,7 +138,7 @@ export default function AchievementLeaderboard({ period = 'month' }: Leaderboard
       </Card>
 
       {/* Full Leaderboard */}
-      <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+      <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
         <CardHeader>
           <CardTitle className="text-white flex items-center gap-2">
             <TrendingUp className="w-5 h-5 text-blue-500" />
@@ -153,7 +153,7 @@ export default function AchievementLeaderboard({ period = 'month' }: Leaderboard
                 className={`flex items-center gap-3 p-3 rounded-lg transition-colors ${
                   entry.isCurrentUser
                     ? 'bg-emerald-900/30 border border-emerald-700'
-                    : 'bg-gray-800/30 hover:bg-gray-700/30'
+                    : 'bg-blue-700/30 hover:bg-blue-600/30'
                 }`}
               >
                 <div className="flex items-center justify-center w-8 h-8">
@@ -162,7 +162,7 @@ export default function AchievementLeaderboard({ period = 'month' }: Leaderboard
                 
                 <Avatar className="w-10 h-10">
                   <AvatarImage src={entry.avatar} alt={entry.name} />
-                  <AvatarFallback className="bg-gray-700 text-white">
+                  <AvatarFallback className="bg-blue-600 text-white">
                     {getInitials(entry.name)}
                   </AvatarFallback>
                 </Avatar>
@@ -178,7 +178,7 @@ export default function AchievementLeaderboard({ period = 'month' }: Leaderboard
                       </Badge>
                     )}
                   </div>
-                  <div className="flex items-center gap-4 text-sm text-gray-400">
+                  <div className="flex items-center gap-4 text-sm text-blue-300">
                     <div className="flex items-center gap-1">
                       <Star className="w-3 h-3 text-yellow-500" />
                       <span>{entry.points.toLocaleString()} points</span>
@@ -214,21 +214,21 @@ export default function AchievementLeaderboard({ period = 'month' }: Leaderboard
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="text-center">
                 <div className="text-2xl font-bold text-emerald-400">#{currentUser.rank}</div>
-                <div className="text-sm text-gray-400">Current Rank</div>
+                <div className="text-sm text-blue-300">Current Rank</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-yellow-400">{currentUser.points.toLocaleString()}</div>
-                <div className="text-sm text-gray-400">Total Points</div>
+                <div className="text-sm text-blue-300">Total Points</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-blue-400">{currentUser.badges}</div>
-                <div className="text-sm text-gray-400">Badges Earned</div>
+                <div className="text-sm text-blue-300">Badges Earned</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-purple-400">
                   {currentUser.rank <= 3 ? 'Top 3' : 'Top 10'}
                 </div>
-                <div className="text-sm text-gray-400">Percentile</div>
+                <div className="text-sm text-blue-300">Percentile</div>
               </div>
             </div>
           </CardContent>

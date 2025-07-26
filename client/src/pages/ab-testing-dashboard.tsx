@@ -32,7 +32,7 @@ export default function ABTestingDashboard() {
       case 'running': return 'bg-green-100 text-green-800';
       case 'paused': return 'bg-yellow-100 text-yellow-800';
       case 'completed': return 'bg-blue-100 text-blue-800';
-      default: return 'bg-gray-100 text-gray-800';
+      default: return 'bg-gray-100 text-blue-700';
     }
   };
 
@@ -52,8 +52,8 @@ export default function ABTestingDashboard() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">A/B Testing Dashboard</h1>
-          <p className="text-gray-600 mt-2">Optimize conversion rates through data-driven testing</p>
+          <h1 className="text-3xl font-bold text-blue-800">A/B Testing Dashboard</h1>
+          <p className="text-blue-500 mt-2">Optimize conversion rates through data-driven testing</p>
         </div>
 
         {/* Overview Metrics */}
@@ -63,8 +63,8 @@ export default function ABTestingDashboard() {
               <div className="flex items-center">
                 <BarChart3 className="h-8 w-8 text-blue-600" />
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Active Tests</p>
-                  <p className="text-2xl font-bold text-gray-900">
+                  <p className="text-sm font-medium text-blue-500">Active Tests</p>
+                  <p className="text-2xl font-bold text-blue-800">
                     {tests.filter(t => t.status === 'running').length}
                   </p>
                 </div>
@@ -77,8 +77,8 @@ export default function ABTestingDashboard() {
               <div className="flex items-center">
                 <Users className="h-8 w-8 text-green-600" />
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Total Visitors</p>
-                  <p className="text-2xl font-bold text-gray-900">
+                  <p className="text-sm font-medium text-blue-500">Total Visitors</p>
+                  <p className="text-2xl font-bold text-blue-800">
                     {tests.reduce((sum, test) => sum + test.metrics.totalVisitors, 0).toLocaleString()}
                   </p>
                 </div>
@@ -91,8 +91,8 @@ export default function ABTestingDashboard() {
               <div className="flex items-center">
                 <Target className="h-8 w-8 text-purple-600" />
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Avg Conversion Rate</p>
-                  <p className="text-2xl font-bold text-gray-900">
+                  <p className="text-sm font-medium text-blue-500">Avg Conversion Rate</p>
+                  <p className="text-2xl font-bold text-blue-800">
                     {(tests.reduce((sum, test) => sum + test.metrics.conversionRate, 0) / tests.length).toFixed(2)}%
                   </p>
                 </div>
@@ -105,8 +105,8 @@ export default function ABTestingDashboard() {
               <div className="flex items-center">
                 <TrendingUp className="h-8 w-8 text-orange-600" />
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Significant Wins</p>
-                  <p className="text-2xl font-bold text-gray-900">
+                  <p className="text-sm font-medium text-blue-500">Significant Wins</p>
+                  <p className="text-2xl font-bold text-blue-800">
                     {tests.filter(t => t.metrics.significance <= 0.05).length}
                   </p>
                 </div>
@@ -150,21 +150,21 @@ export default function ABTestingDashboard() {
                         </Badge>
                       </div>
                       
-                      <p className="text-xs text-gray-600 mb-3 line-clamp-2">
+                      <p className="text-xs text-blue-500 mb-3 line-clamp-2">
                         {test.description}
                       </p>
                       
                       <div className="grid grid-cols-2 gap-3 text-xs">
                         <div>
-                          <span className="text-gray-500">Visitors:</span>
+                          <span className="text-blue-400">Visitors:</span>
                           <div className="font-medium">{test.metrics.totalVisitors.toLocaleString()}</div>
                         </div>
                         <div>
-                          <span className="text-gray-500">Conv. Rate:</span>
+                          <span className="text-blue-400">Conv. Rate:</span>
                           <div className="font-medium">{test.metrics.conversionRate.toFixed(2)}%</div>
                         </div>
                         <div>
-                          <span className="text-gray-500">Confidence:</span>
+                          <span className="text-blue-400">Confidence:</span>
                           <div className="font-medium">{test.metrics.confidence.toFixed(1)}%</div>
                         </div>
                         <div className="flex items-center">
@@ -210,24 +210,24 @@ export default function ABTestingDashboard() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="bg-gray-50 p-4 rounded-lg">
                         <div className="flex items-center mb-2">
-                          <Eye className="w-4 h-4 text-gray-600 mr-2" />
-                          <span className="text-sm font-medium text-gray-600">Total Visitors</span>
+                          <Eye className="w-4 h-4 text-blue-500 mr-2" />
+                          <span className="text-sm font-medium text-blue-500">Total Visitors</span>
                         </div>
                         <p className="text-2xl font-bold">{selectedTestData.metrics.totalVisitors.toLocaleString()}</p>
                       </div>
                       
                       <div className="bg-gray-50 p-4 rounded-lg">
                         <div className="flex items-center mb-2">
-                          <MousePointer className="w-4 h-4 text-gray-600 mr-2" />
-                          <span className="text-sm font-medium text-gray-600">Conversions</span>
+                          <MousePointer className="w-4 h-4 text-blue-500 mr-2" />
+                          <span className="text-sm font-medium text-blue-500">Conversions</span>
                         </div>
                         <p className="text-2xl font-bold">{selectedTestData.metrics.conversions}</p>
                       </div>
                       
                       <div className="bg-gray-50 p-4 rounded-lg">
                         <div className="flex items-center mb-2">
-                          <Target className="w-4 h-4 text-gray-600 mr-2" />
-                          <span className="text-sm font-medium text-gray-600">Conversion Rate</span>
+                          <Target className="w-4 h-4 text-blue-500 mr-2" />
+                          <span className="text-sm font-medium text-blue-500">Conversion Rate</span>
                         </div>
                         <p className="text-2xl font-bold">{selectedTestData.metrics.conversionRate.toFixed(2)}%</p>
                       </div>
@@ -253,7 +253,7 @@ export default function ABTestingDashboard() {
                                   {variantInfo?.isControl && <Badge variant="outline">Control</Badge>}
                                   {isWinner && !variantInfo?.isControl && <Badge className="bg-green-100 text-green-800">Winner</Badge>}
                                 </h5>
-                                <p className="text-sm text-gray-600">{variantInfo?.description}</p>
+                                <p className="text-sm text-blue-500">{variantInfo?.description}</p>
                               </div>
                               <div className="text-right">
                                 <p className="text-lg font-bold">{variant.conversionRate.toFixed(2)}%</p>
@@ -267,25 +267,25 @@ export default function ABTestingDashboard() {
                             
                             <div className="grid grid-cols-4 gap-4 text-sm">
                               <div>
-                                <span className="text-gray-500">Visitors</span>
+                                <span className="text-blue-400">Visitors</span>
                                 <p className="font-medium">{variant.visitors.toLocaleString()}</p>
                               </div>
                               <div>
-                                <span className="text-gray-500">Conversions</span>
+                                <span className="text-blue-400">Conversions</span>
                                 <p className="font-medium">{variant.conversions}</p>
                               </div>
                               <div>
-                                <span className="text-gray-500">Revenue</span>
+                                <span className="text-blue-400">Revenue</span>
                                 <p className="font-medium">${variant.revenue.toLocaleString()}</p>
                               </div>
                               <div>
-                                <span className="text-gray-500">Confidence</span>
+                                <span className="text-blue-400">Confidence</span>
                                 <p className="font-medium">{variant.confidence.toFixed(1)}%</p>
                               </div>
                             </div>
                             
                             <div className="mt-3">
-                              <div className="flex justify-between text-xs text-gray-600 mb-1">
+                              <div className="flex justify-between text-xs text-blue-500 mb-1">
                                 <span>Conversion Progress</span>
                                 <span>{variant.conversions} / {Math.round(variant.visitors * 0.1)} target</span>
                               </div>
@@ -304,11 +304,11 @@ export default function ABTestingDashboard() {
                       </h4>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                         <div>
-                          <span className="text-gray-600">Confidence Level:</span>
+                          <span className="text-blue-500">Confidence Level:</span>
                           <p className="font-bold text-lg">{selectedTestData.metrics.confidence.toFixed(1)}%</p>
                         </div>
                         <div>
-                          <span className="text-gray-600">P-value:</span>
+                          <span className="text-blue-500">P-value:</span>
                           <p className="font-bold text-lg">{selectedTestData.metrics.significance.toFixed(3)}</p>
                         </div>
                       </div>
@@ -336,7 +336,7 @@ export default function ABTestingDashboard() {
                               {variant.name}
                               {variant.isControl && <Badge variant="outline">Control</Badge>}
                             </h5>
-                            <p className="text-sm text-gray-600">{variant.description}</p>
+                            <p className="text-sm text-blue-500">{variant.description}</p>
                           </div>
                           <Badge variant="outline">{variant.trafficWeight}% traffic</Badge>
                         </div>
@@ -360,15 +360,15 @@ export default function ABTestingDashboard() {
                         <h5 className="font-medium mb-3">Test Configuration</h5>
                         <div className="space-y-3 text-sm">
                           <div>
-                            <span className="text-gray-600">Test ID:</span>
+                            <span className="text-blue-500">Test ID:</span>
                             <p className="font-medium">{selectedTestData.id}</p>
                           </div>
                           <div>
-                            <span className="text-gray-600">Start Date:</span>
+                            <span className="text-blue-500">Start Date:</span>
                             <p className="font-medium">{selectedTestData.startDate}</p>
                           </div>
                           <div>
-                            <span className="text-gray-600">Traffic Allocation:</span>
+                            <span className="text-blue-500">Traffic Allocation:</span>
                             <p className="font-medium">{selectedTestData.trafficAllocation}%</p>
                           </div>
                         </div>

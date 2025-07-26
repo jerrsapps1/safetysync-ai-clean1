@@ -420,17 +420,17 @@ Date: January 21, 2025`
               <div className="space-y-2">
                 <FileText className="h-12 w-12 text-green-500 mx-auto" />
                 <p className="font-medium">{selectedFile.name}</p>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-blue-400">
                   {(selectedFile.size / 1024 / 1024).toFixed(2)} MB
                 </p>
               </div>
             ) : (
               <div className="space-y-2">
-                <Upload className="h-12 w-12 text-gray-400 mx-auto" />
-                <p className="text-gray-600">
+                <Upload className="h-12 w-12 text-blue-300 mx-auto" />
+                <p className="text-blue-500">
                   Upload instructor sign-in sheets, training rosters, or attendance documents
                 </p>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-blue-400">
                   Supports PDF, Images, Word documents
                 </p>
               </div>
@@ -465,7 +465,7 @@ Date: January 21, 2025`
 
           {/* Sample Document Testing */}
           <div className="border-t pt-4">
-            <p className="text-sm text-gray-600 mb-3">Or try with sample documents:</p>
+            <p className="text-sm text-blue-500 mb-3">Or try with sample documents:</p>
             <div className="flex flex-wrap gap-2">
               <Button
                 onClick={() => processSampleDocument('fall-protection')}
@@ -629,7 +629,7 @@ Date: January 21, 2025`
                           Will Generate
                         </Badge>
                       ) : (
-                        <Badge variant="secondary" className="text-gray-500">
+                        <Badge variant="secondary" className="text-blue-400">
                           No Certificate
                         </Badge>
                       )}
@@ -722,7 +722,7 @@ Date: January 21, 2025`
                 <div key={doc.id} className="flex items-center justify-between p-3 border rounded-lg">
                   <div className="space-y-1">
                     <p className="font-medium">{doc.originalFileName}</p>
-                    <div className="flex items-center space-x-4 text-sm text-gray-500">
+                    <div className="flex items-center space-x-4 text-sm text-blue-400">
                       <span className="flex items-center">
                         <Calendar className="h-3 w-3 mr-1" />
                         {new Date(doc.processingDate).toLocaleDateString()}
@@ -757,7 +757,7 @@ Date: January 21, 2025`
                     <Badge variant="outline">{cert.status}</Badge>
                   </div>
                   
-                  <div className="space-y-1 text-sm text-gray-600">
+                  <div className="space-y-1 text-sm text-blue-500">
                     <p className="flex items-center">
                       <Shield className="h-3 w-3 mr-1" />
                       {cert.certificationType}

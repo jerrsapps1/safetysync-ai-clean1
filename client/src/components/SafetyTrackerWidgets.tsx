@@ -90,7 +90,7 @@ const safetyTrackerWidgets: SafetyTrackerWidget[] = [
     title: 'Organization Structure',
     description: 'Manage company divisions and departments',
     icon: <Sitemap className="w-6 h-6" />,
-    color: 'bg-gray-100 text-gray-700',
+    color: 'bg-gray-100 text-blue-600',
     category: 'management',
     features: ['Department hierarchy', 'Division management', 'Reporting structure', 'Role assignments']
   },
@@ -190,12 +190,12 @@ const SafetyTrackerWidgetCard: React.FC<SafetyTrackerWidgetProps> = ({ widget, o
           <div className={`p-3 rounded-lg ${widget.color}`}>
             {widget.icon}
           </div>
-          <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-gray-600 transition-colors" />
+          <ChevronRight className="w-5 h-5 text-blue-300 group-hover:text-blue-500 transition-colors" />
         </div>
         <CardTitle className="text-lg font-semibold">{widget.title}</CardTitle>
       </CardHeader>
       <CardContent>
-        <p className="text-sm text-gray-600 mb-3">{widget.description}</p>
+        <p className="text-sm text-blue-500 mb-3">{widget.description}</p>
         <div className="flex flex-wrap gap-1">
           {widget.features.slice(0, 2).map((feature, index) => (
             <Badge key={index} variant="secondary" className="text-xs">

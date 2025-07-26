@@ -162,9 +162,9 @@ export default function TrainingManagement() {
       case 'completed': return 'bg-green-500/20 text-green-400 border-green-500/30';
       case 'cancelled': return 'bg-red-500/20 text-red-400 border-red-500/30';
       case 'active': return 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30';
-      case 'draft': return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
+      case 'draft': return 'bg-blue-400/20 text-blue-300 border-blue-400/30';
       case 'archived': return 'bg-orange-500/20 text-orange-400 border-orange-500/30';
-      default: return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
+      default: return 'bg-blue-400/20 text-blue-300 border-blue-400/30';
     }
   };
 
@@ -209,7 +209,7 @@ export default function TrainingManagement() {
             <SafetySyncIcon size={32} className="rounded-lg" />
             Training Management
           </h2>
-          <p className="text-gray-400">Schedule, track, and manage safety training programs</p>
+          <p className="text-blue-300">Schedule, track, and manage safety training programs</p>
           <p className="text-blue-300 text-sm mt-1">
             🎓 OSHA-compliant training modules with automated scheduling and compliance tracking
           </p>
@@ -240,11 +240,11 @@ export default function TrainingManagement() {
 
       {/* Statistics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative z-10">
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm">Scheduled Sessions</p>
+                <p className="text-blue-300 text-sm">Scheduled Sessions</p>
                 <p className="text-2xl font-bold text-white">12</p>
                 <p className="text-green-400 text-sm">🤖 AI-Scheduled</p>
               </div>
@@ -253,11 +253,11 @@ export default function TrainingManagement() {
           </CardContent>
         </Card>
 
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm">Active Modules</p>
+                <p className="text-blue-300 text-sm">Active Modules</p>
                 <p className="text-2xl font-bold text-white">25</p>
                 <p className="text-emerald-400 text-sm">OSHA Compliant</p>
               </div>
@@ -266,11 +266,11 @@ export default function TrainingManagement() {
           </CardContent>
         </Card>
 
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm">Total Enrolled</p>
+                <p className="text-blue-300 text-sm">Total Enrolled</p>
                 <p className="text-2xl font-bold text-white">156</p>
                 <p className="text-blue-400 text-sm">Employees</p>
               </div>
@@ -279,11 +279,11 @@ export default function TrainingManagement() {
           </CardContent>
         </Card>
 
-        <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm">Completion Rate</p>
+                <p className="text-blue-300 text-sm">Completion Rate</p>
                 <p className="text-2xl font-bold text-white">89%</p>
                 <p className="text-green-400 text-sm">⬆ +5% this month</p>
               </div>
@@ -296,20 +296,20 @@ export default function TrainingManagement() {
       {/* Search and Filter */}
       <div className="flex items-center gap-4 relative z-10">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-blue-300" />
           <Input
             placeholder="Search training sessions or modules..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-10 bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+            className="pl-10 bg-blue-700/50 border-blue-600 text-white placeholder-blue-300"
           />
         </div>
         <div className="flex items-center gap-2">
-          <Filter className="w-4 h-4 text-gray-400" />
+          <Filter className="w-4 h-4 text-blue-300" />
           <select
             value={selectedStatus}
             onChange={(e) => setSelectedStatus(e.target.value)}
-            className="bg-gray-800/50 border-gray-700 text-white rounded-md px-3 py-2"
+            className="bg-blue-700/50 border-blue-600 text-white rounded-md px-3 py-2"
           >
             <option value="all">All Status</option>
             <option value="scheduled">Scheduled</option>
@@ -325,7 +325,7 @@ export default function TrainingManagement() {
 
       {/* Main Content Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="relative z-10">
-        <TabsList className="grid w-full grid-cols-3 bg-black/20 backdrop-blur-sm border-gray-800">
+        <TabsList className="grid w-full grid-cols-3 bg-black/20 backdrop-blur-sm border-blue-700">
           <TabsTrigger 
             value="sessions" 
             className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
@@ -360,12 +360,12 @@ export default function TrainingManagement() {
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 content-fade-in">
               {filteredSessions.map((session) => (
-                <Card key={session.id} className="bg-black/20 backdrop-blur-sm border-gray-800">
+                <Card key={session.id} className="bg-black/20 backdrop-blur-sm border-blue-700">
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div>
                       <CardTitle className="text-white">{session.title}</CardTitle>
-                      <CardDescription className="text-gray-400">
+                      <CardDescription className="text-blue-300">
                         {session.instructor} • {session.location}
                       </CardDescription>
                     </div>
@@ -410,7 +410,7 @@ export default function TrainingManagement() {
                       <Eye className="w-3 h-3 mr-1" />
                       View Details
                     </Button>
-                    <Button size="sm" variant="outline" className="border-gray-600 text-gray-300">
+                    <Button size="sm" variant="outline" className="border-blue-500 text-gray-300">
                       <Edit className="w-3 h-3 mr-1" />
                       Edit
                     </Button>
@@ -433,12 +433,12 @@ export default function TrainingManagement() {
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 content-fade-in">
               {filteredModules.map((module) => (
-              <Card key={module.id} className="bg-black/20 backdrop-blur-sm border-gray-800">
+              <Card key={module.id} className="bg-black/20 backdrop-blur-sm border-blue-700">
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div>
                       <CardTitle className="text-white">{module.title}</CardTitle>
-                      <CardDescription className="text-gray-400">
+                      <CardDescription className="text-blue-300">
                         {module.category} • {module.duration} hours
                       </CardDescription>
                     </div>
@@ -452,10 +452,10 @@ export default function TrainingManagement() {
                   
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="text-gray-400 text-sm">Completion Rate</span>
+                      <span className="text-blue-300 text-sm">Completion Rate</span>
                       <span className="text-white font-medium">{module.completionRate}%</span>
                     </div>
-                    <div className="w-full bg-gray-700 rounded-full h-2">
+                    <div className="w-full bg-blue-600 rounded-full h-2">
                       <div 
                         className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-500"
                         style={{ width: `${module.completionRate}%` }}
@@ -475,7 +475,7 @@ export default function TrainingManagement() {
                   </div>
 
                   <div className="space-y-2">
-                    <p className="text-gray-400 text-sm font-medium">Compliance Standards:</p>
+                    <p className="text-blue-300 text-sm font-medium">Compliance Standards:</p>
                     <div className="flex flex-wrap gap-1">
                       {module.compliance.map((comp, index) => (
                         <Badge key={index} variant="outline" className="text-xs text-emerald-300 border-emerald-500/30">
@@ -490,7 +490,7 @@ export default function TrainingManagement() {
                       <BookOpen className="w-3 h-3 mr-1" />
                       View Module
                     </Button>
-                    <Button size="sm" variant="outline" className="border-gray-600 text-gray-300">
+                    <Button size="sm" variant="outline" className="border-blue-500 text-gray-300">
                       <Edit className="w-3 h-3 mr-1" />
                       Edit
                     </Button>
@@ -505,7 +505,7 @@ export default function TrainingManagement() {
         <TabsContent value="compliance" className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Compliance Overview */}
-            <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+            <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
               <CardHeader>
                 <CardTitle className="text-white flex items-center gap-2">
                   <Shield className="w-5 h-5 text-emerald-400" />
@@ -535,7 +535,7 @@ export default function TrainingManagement() {
             </Card>
 
             {/* Upcoming Renewals */}
-            <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+            <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
               <CardHeader>
                 <CardTitle className="text-white flex items-center gap-2">
                   <AlertCircle className="w-5 h-5 text-yellow-400" />
@@ -547,21 +547,21 @@ export default function TrainingManagement() {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-white font-medium">Fall Protection</p>
-                      <p className="text-gray-400 text-sm">15 employees</p>
+                      <p className="text-blue-300 text-sm">15 employees</p>
                     </div>
                     <Badge className="bg-yellow-500/20 text-yellow-400">30 days</Badge>
                   </div>
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-white font-medium">First Aid/CPR</p>
-                      <p className="text-gray-400 text-sm">8 employees</p>
+                      <p className="text-blue-300 text-sm">8 employees</p>
                     </div>
                     <Badge className="bg-red-500/20 text-red-400">7 days</Badge>
                   </div>
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-white font-medium">Forklift Certification</p>
-                      <p className="text-gray-400 text-sm">12 employees</p>
+                      <p className="text-blue-300 text-sm">12 employees</p>
                     </div>
                     <Badge className="bg-yellow-500/20 text-yellow-400">45 days</Badge>
                   </div>

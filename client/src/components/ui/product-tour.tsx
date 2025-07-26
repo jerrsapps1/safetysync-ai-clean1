@@ -51,7 +51,7 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
           <div className="text-center flex-1">
             <Shield className="w-16 h-16 mx-auto mb-3 text-blue-600" />
             <h2 className="text-xl font-bold mb-2">Welcome to SafetySync.ai</h2>
-            <p className="text-gray-700 mb-3">
+            <p className="text-blue-600 mb-3">
               The revolutionary AI-powered training documentation platform designed to become the largest 
               collection of training documents for companies. Built with enterprise-grade security and streamlined signup.
             </p>
@@ -66,17 +66,17 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
             <div className="p-3 bg-gradient-to-b from-blue-50 to-blue-100 rounded-lg">
               <Users className="w-8 h-8 mx-auto mb-2 text-blue-600" />
               <div className="text-sm font-semibold">Enterprise Authentication</div>
-              <div className="text-xs text-gray-600">Professional validation for all users</div>
+              <div className="text-xs text-blue-500">Professional validation for all users</div>
             </div>
             <div className="p-3 bg-gradient-to-b from-green-50 to-green-100 rounded-lg">
               <FileText className="w-8 h-8 mx-auto mb-2 text-green-600" />
               <div className="text-sm font-semibold">AI Document Processing</div>
-              <div className="text-xs text-gray-600">Revolutionary training doc extraction</div>
+              <div className="text-xs text-blue-500">Revolutionary training doc extraction</div>
             </div>
             <div className="p-3 bg-gradient-to-b from-purple-50 to-purple-100 rounded-lg">
               <BarChart3 className="w-8 h-8 mx-auto mb-2 text-purple-600" />
               <div className="text-sm font-semibold">Employee-Centric QR</div>
-              <div className="text-xs text-gray-600">Mobile verification system</div>
+              <div className="text-xs text-blue-500">Mobile verification system</div>
             </div>
           </div>
         </div>
@@ -96,10 +96,10 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
               <div className="text-3xl font-bold text-green-600">97%</div>
               <div className="flex-1">
                 <Progress value={97} className="mb-1" />
-                <div className="text-xs text-gray-600">Accuracy rate for training document extraction</div>
+                <div className="text-xs text-blue-500">Accuracy rate for training document extraction</div>
               </div>
             </div>
-            <p className="text-sm text-gray-700 mb-3">
+            <p className="text-sm text-blue-600 mb-3">
               Upload training sign-in sheets or certification documents and watch our AI 
               instantly extract employee names, training details, instructor credentials, and compliance standards.
             </p>
@@ -112,17 +112,17 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
             <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
               <CheckCircle className="w-6 h-6 mx-auto text-green-600 mb-1" />
               <div className="text-sm font-bold">PDF Processing</div>
-              <div className="text-xs text-gray-600">Multi-layer extraction</div>
+              <div className="text-xs text-blue-500">Multi-layer extraction</div>
             </div>
             <div className="text-center p-3 bg-yellow-50 rounded-lg border border-yellow-200">
               <Bell className="w-6 h-6 mx-auto text-yellow-600 mb-1" />
               <div className="text-sm font-bold">Auto Detection</div>
-              <div className="text-xs text-gray-600">Smart data recognition</div>
+              <div className="text-xs text-blue-500">Smart data recognition</div>
             </div>
             <div className="text-center p-3 bg-blue-50 rounded-lg border border-blue-200">
               <BarChart3 className="w-6 h-6 mx-auto text-blue-600 mb-1" />
               <div className="text-sm font-bold">Instant Certs</div>
-              <div className="text-xs text-gray-600">Generated automatically</div>
+              <div className="text-xs text-blue-500">Generated automatically</div>
             </div>
           </div>
         </div>
@@ -138,7 +138,7 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
         <div className="h-96 flex flex-col space-y-4">
           <div className="bg-gradient-to-r from-green-50 to-blue-50 p-4 rounded-lg border border-green-200">
             <h3 className="font-bold mb-3 text-lg text-green-800">Smart Employee Compliance</h3>
-            <p className="text-sm text-gray-700 mb-3">
+            <p className="text-sm text-blue-600 mb-3">
               Employee-centric approach with QR code verification. Each employee has their own 
               profile with digital wallet cards that replace physical certification cards for easy verification.
             </p>
@@ -159,9 +159,9 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
             ].map((emp, idx) => (
               <div key={idx} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200">
                 <div className="flex-1">
-                  <div className="font-semibold text-gray-800">{emp.name}</div>
-                  <div className="text-sm text-gray-600">{emp.dept} • {emp.training}</div>
-                  <div className="text-xs text-gray-500 mt-1">{emp.certCount} active certifications</div>
+                  <div className="font-semibold text-blue-700">{emp.name}</div>
+                  <div className="text-sm text-blue-500">{emp.dept} • {emp.training}</div>
+                  <div className="text-xs text-blue-400 mt-1">{emp.certCount} active certifications</div>
                 </div>
                 <div className="text-right">
                   <div className="flex items-center gap-2 mb-1">
@@ -170,7 +170,7 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
                       {emp.status}
                     </Badge>
                   </div>
-                  <div className="text-xs text-gray-500">{emp.date}</div>
+                  <div className="text-xs text-blue-400">{emp.date}</div>
                 </div>
               </div>
             ))}
@@ -191,10 +191,10 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
               <FileText className="w-10 h-10 text-blue-600" />
               <div>
                 <h3 className="font-bold text-lg text-green-800">AI-Powered Report Generation</h3>
-                <p className="text-sm text-gray-600">Audit-ready reports in seconds, not hours</p>
+                <p className="text-sm text-blue-500">Audit-ready reports in seconds, not hours</p>
               </div>
             </div>
-            <p className="text-sm text-gray-700 mb-3">
+            <p className="text-sm text-blue-600 mb-3">
               Revolutionary AI document processing extracts training data from PDFs and generates 
               inspector-ready documentation. Ensures companies pass OSHA inspections without training-related citations.
             </p>
@@ -214,7 +214,7 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
           </div>
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h4 className="font-semibold text-blue-800 mb-2">Sample Report Features:</h4>
-            <div className="grid grid-cols-2 gap-2 text-xs text-gray-700">
+            <div className="grid grid-cols-2 gap-2 text-xs text-blue-600">
               <div>✓ Executive compliance summary</div>
               <div>✓ Department-by-department analysis</div>
               <div>✓ Employee certification matrix</div>
@@ -241,10 +241,10 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
               <Settings className="w-10 h-10 text-purple-600" />
               <div>
                 <h3 className="font-bold text-lg text-purple-800">24/7 AI Automation</h3>
-                <p className="text-sm text-gray-600">Never miss deadlines, prevent violations automatically</p>
+                <p className="text-sm text-blue-500">Never miss deadlines, prevent violations automatically</p>
               </div>
             </div>
-            <p className="text-sm text-gray-700 mb-3">
+            <p className="text-sm text-blue-600 mb-3">
               AI monitors your workforce, schedules training, sends reminders, and predicts compliance needs automatically.
             </p>
             <div className="grid grid-cols-3 gap-2 text-xs">
@@ -264,14 +264,14 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
               <Bell className="w-5 h-5 text-yellow-600" />
               <div className="flex-1">
                 <div className="font-semibold text-yellow-800 text-sm">AI Prediction</div>
-                <div className="text-xs text-gray-700">8 renewals needed Q2</div>
+                <div className="text-xs text-blue-600">8 renewals needed Q2</div>
               </div>
             </div>
             <div className="flex items-center gap-2 p-3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg border-l-4 border-green-400">
               <CheckCircle className="w-5 h-5 text-green-600" />
               <div className="flex-1">
                 <div className="font-semibold text-green-800 text-sm">Auto-Complete</div>
-                <div className="text-xs text-gray-700">Cert generated instantly</div>
+                <div className="text-xs text-blue-600">Cert generated instantly</div>
               </div>
             </div>
           </div>
@@ -298,7 +298,7 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
             Welcome to the Future of Safety
           </h2>
           <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-4 rounded-lg border border-blue-200 max-w-xl mx-auto flex-1">
-            <p className="text-gray-700 mb-3">
+            <p className="text-blue-600 mb-3">
               SafetySync.ai doesn't just track compliance—it predicts it, automates it, and perfects it.
             </p>
             <div className="grid grid-cols-2 gap-3 text-sm mb-3">
@@ -315,7 +315,7 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
                 <strong className="text-orange-700">📊 Enterprise Ready:</strong> Unlimited scale
               </div>
             </div>
-            <div className="bg-white/70 rounded-lg p-3 text-sm text-gray-700">
+            <div className="bg-white/70 rounded-lg p-3 text-sm text-blue-600">
               <strong>What Makes Us Different:</strong> Intelligent automation and predictive analytics that transform safety compliance.
             </div>
           </div>
@@ -407,7 +407,7 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
           
           {/* Progress Bar */}
           <div className="space-y-2">
-            <div className="flex justify-between text-sm text-gray-500">
+            <div className="flex justify-between text-sm text-blue-400">
               <span>Progress</span>
               <span>{Math.round(calculateProgress())}%</span>
             </div>

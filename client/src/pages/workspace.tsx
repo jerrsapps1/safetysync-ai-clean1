@@ -1425,11 +1425,11 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 <div className="flex items-center space-x-4 text-xs">
                   <div className="flex items-center space-x-2">
                     <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse flex-shrink-0" />
-                    <span className="text-gray-400">System Online</span>
+                    <span className="text-blue-300">System Online</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Calendar className="w-3 h-3 text-blue-400 flex-shrink-0" />
-                    <span className="text-gray-400 hidden sm:inline">
+                    <span className="text-blue-300 hidden sm:inline">
                       {new Date().toLocaleDateString('en-US', { 
                         weekday: 'short', 
                         month: 'short', 
@@ -1442,7 +1442,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               <div className="flex items-center space-x-3 flex-shrink-0">
                 <div className="text-right">
                   <p className="text-xl font-bold text-white">{stats.complianceScore}%</p>
-                  <p className="text-gray-400 text-xs">Compliance</p>
+                  <p className="text-blue-300 text-xs">Compliance</p>
                 </div>
                 <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-full flex items-center justify-center">
                   <Shield className="w-6 h-6 text-white" />
@@ -1455,7 +1455,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         return (
           <div className="flex items-center justify-between h-full">
             <div className="flex-1 min-w-0">
-              <p className={`text-gray-400 ${labelSize} truncate`}>Total Employees</p>
+              <p className={`text-blue-300 ${labelSize} truncate`}>Total Employees</p>
               <p className={`${textSize} font-bold text-white truncate`}>{stats.totalEmployees}</p>
             </div>
             <Users className={`${iconSize} text-blue-400 flex-shrink-0 ml-2`} />
@@ -1465,7 +1465,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         return (
           <div className="flex items-center justify-between h-full">
             <div className="flex-1 min-w-0">
-              <p className={`text-gray-400 ${labelSize} truncate`}>Compliant</p>
+              <p className={`text-blue-300 ${labelSize} truncate`}>Compliant</p>
               <p className={`${textSize} font-bold text-emerald-400 truncate`}>{stats.compliantEmployees}</p>
             </div>
             <CheckCircle className={`${iconSize} text-emerald-400 flex-shrink-0 ml-2`} />
@@ -1475,7 +1475,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         return (
           <div className="flex items-center justify-between h-full">
             <div className="flex-1 min-w-0">
-              <p className={`text-gray-400 ${labelSize} truncate`}>Pending Training</p>
+              <p className={`text-blue-300 ${labelSize} truncate`}>Pending Training</p>
               <p className={`${textSize} font-bold text-yellow-400 truncate`}>{stats.pendingTraining}</p>
             </div>
             <Clock className={`${iconSize} text-yellow-400 flex-shrink-0 ml-2`} />
@@ -1485,7 +1485,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         return (
           <div className="flex items-center justify-between h-full">
             <div className="flex-1 min-w-0">
-              <p className={`text-gray-400 ${labelSize} truncate`}>Compliance Score</p>
+              <p className={`text-blue-300 ${labelSize} truncate`}>Compliance Score</p>
               <p className={`${textSize} font-bold text-white truncate`}>{stats.complianceScore}%</p>
             </div>
             <TrendingUp className={`${iconSize} text-blue-400 flex-shrink-0 ml-2`} />
@@ -1497,14 +1497,14 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             <h3 className={`${isSmall ? 'text-sm' : 'text-lg'} font-semibold text-white mb-2`}>Recent Activity</h3>
             <div className="space-y-2 overflow-y-auto" style={{ maxHeight: 'calc(100% - 2rem)' }}>
               {complianceRecords.slice(0, isSmall ? 2 : 3).map((record) => (
-                <div key={record.id} className="flex items-center justify-between p-2 bg-gray-800/50 rounded-lg">
+                <div key={record.id} className="flex items-center justify-between p-2 bg-blue-700/50 rounded-lg">
                   <div className="flex items-center space-x-2 flex-1 min-w-0">
                     <div className={`${isSmall ? 'w-6 h-6' : 'w-8 h-8'} bg-emerald-500 rounded-full flex items-center justify-center flex-shrink-0`}>
                       <User className={`${isSmall ? 'w-3 h-3' : 'w-4 h-4'} text-white`} />
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className={`text-white ${isSmall ? 'text-xs' : 'text-sm'} font-medium truncate`}>{record.employeeName}</p>
-                      <p className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-xs'} truncate`}>{record.training}</p>
+                      <p className={`text-blue-300 ${isSmall ? 'text-xs' : 'text-xs'} truncate`}>{record.training}</p>
                     </div>
                   </div>
                   <Badge 
@@ -1528,14 +1528,14 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 <AlertTriangle className={`${isSmall ? 'w-4 h-4' : 'w-5 h-5'} text-red-400 flex-shrink-0`} />
                 <div className="min-w-0 flex-1">
                   <p className={`text-white ${isSmall ? 'text-xs' : 'text-sm'} font-medium truncate`}>3 Expired Certifications</p>
-                  <p className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-xs'} truncate`}>Immediate action required</p>
+                  <p className={`text-blue-300 ${isSmall ? 'text-xs' : 'text-xs'} truncate`}>Immediate action required</p>
                 </div>
               </div>
               <div className="flex items-center space-x-2 p-2 bg-yellow-900/20 rounded-lg border border-yellow-500/20">
                 <Clock className={`${isSmall ? 'w-4 h-4' : 'w-5 h-5'} text-yellow-400 flex-shrink-0`} />
                 <div className="min-w-0 flex-1">
                   <p className={`text-white ${isSmall ? 'text-xs' : 'text-sm'} font-medium truncate`}>8 Certifications Expiring Soon</p>
-                  <p className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-xs'} truncate`}>Within 30 days</p>
+                  <p className={`text-blue-300 ${isSmall ? 'text-xs' : 'text-xs'} truncate`}>Within 30 days</p>
                 </div>
               </div>
             </div>
@@ -1548,14 +1548,14 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             <div className="space-y-3 overflow-y-auto" style={{ maxHeight: 'calc(100% - 2rem)' }}>
               <div>
                 <div className="flex justify-between mb-1">
-                  <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-gray-400 truncate`}>Fall Protection</span>
+                  <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-blue-300 truncate`}>Fall Protection</span>
                   <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-white flex-shrink-0`}>87%</span>
                 </div>
                 <Progress value={87} className="h-2" />
               </div>
               <div>
                 <div className="flex justify-between mb-1">
-                  <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-gray-400 truncate`}>OSHA 10</span>
+                  <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-blue-300 truncate`}>OSHA 10</span>
                   <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-white flex-shrink-0`}>92%</span>
                 </div>
                 <Progress value={92} className="h-2" />
@@ -1563,7 +1563,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               {!isSmall && (
                 <div>
                   <div className="flex justify-between mb-1">
-                    <span className="text-sm text-gray-400 truncate">First Aid</span>
+                    <span className="text-sm text-blue-300 truncate">First Aid</span>
                     <span className="text-sm text-white flex-shrink-0">76%</span>
                   </div>
                   <Progress value={76} className="h-2" />
@@ -1578,14 +1578,14 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             <h3 className={`${isSmall ? 'text-sm' : 'text-lg'} font-semibold text-white mb-2`}>Compliance Trends</h3>
             <div className="space-y-2 overflow-y-auto" style={{ maxHeight: 'calc(100% - 2rem)' }}>
               <div className="flex items-center justify-between">
-                <span className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-sm'} truncate`}>This Month</span>
+                <span className={`text-blue-300 ${isSmall ? 'text-xs' : 'text-sm'} truncate`}>This Month</span>
                 <div className="flex items-center space-x-1 flex-shrink-0">
                   <TrendingUp className={`${isSmall ? 'w-3 h-3' : 'w-4 h-4'} text-green-400`} />
                   <span className={`text-green-400 ${isSmall ? 'text-xs' : 'text-sm'}`}>+5%</span>
                 </div>
               </div>
               <div className="flex items-center justify-between">
-                <span className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-sm'} truncate`}>Last Quarter</span>
+                <span className={`text-blue-300 ${isSmall ? 'text-xs' : 'text-sm'} truncate`}>Last Quarter</span>
                 <div className="flex items-center space-x-1 flex-shrink-0">
                   <TrendingUp className={`${isSmall ? 'w-3 h-3' : 'w-4 h-4'} text-green-400`} />
                   <span className={`text-green-400 ${isSmall ? 'text-xs' : 'text-sm'}`}>+12%</span>
@@ -1593,7 +1593,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </div>
               {!isSmall && (
                 <div className="flex items-center justify-between">
-                  <span className="text-gray-400 text-sm truncate">YTD</span>
+                  <span className="text-blue-300 text-sm truncate">YTD</span>
                   <div className="flex items-center space-x-1 flex-shrink-0">
                     <TrendingUp className="w-4 h-4 text-green-400" />
                     <span className="text-green-400 text-sm">+18%</span>
@@ -1636,17 +1636,17 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <div className="h-full overflow-hidden">
             <h3 className={`${isSmall ? 'text-sm' : 'text-lg'} font-semibold text-white mb-2`}>Analytics Overview</h3>
             <div className="space-y-2 overflow-y-auto" style={{ maxHeight: 'calc(100% - 2rem)' }}>
-              <div className="flex items-center justify-between p-2 bg-gray-800/50 rounded-lg">
-                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-gray-400`}>Monthly Progress</span>
+              <div className="flex items-center justify-between p-2 bg-blue-700/50 rounded-lg">
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-blue-300`}>Monthly Progress</span>
                 <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-emerald-400 font-semibold`}>+12%</span>
               </div>
-              <div className="flex items-center justify-between p-2 bg-gray-800/50 rounded-lg">
-                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-gray-400`}>Compliance Rate</span>
+              <div className="flex items-center justify-between p-2 bg-blue-700/50 rounded-lg">
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-blue-300`}>Compliance Rate</span>
                 <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-blue-400 font-semibold`}>94.2%</span>
               </div>
               {!isSmall && (
-                <div className="flex items-center justify-between p-2 bg-gray-800/50 rounded-lg">
-                  <span className="text-sm text-gray-400">Training Hours</span>
+                <div className="flex items-center justify-between p-2 bg-blue-700/50 rounded-lg">
+                  <span className="text-sm text-blue-300">Training Hours</span>
                   <span className="text-sm text-yellow-400 font-semibold">2,847</span>
                 </div>
               )}
@@ -1696,18 +1696,18 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             <h3 className={`${isSmall ? 'text-sm' : 'text-lg'} font-semibold text-white mb-2`}>Training Completion</h3>
             <div className="space-y-3 overflow-y-auto" style={{ maxHeight: 'calc(100% - 2rem)' }}>
               <div className="flex items-center justify-between">
-                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-gray-400 truncate`}>Overall Progress</span>
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-blue-300 truncate`}>Overall Progress</span>
                 <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-white flex-shrink-0`}>87%</span>
               </div>
               <Progress value={87} className="h-2" />
               <div className="grid grid-cols-2 gap-2">
-                <div className="text-center p-2 bg-gray-800/30 rounded">
+                <div className="text-center p-2 bg-blue-700/30 rounded">
                   <div className={`${isSmall ? 'text-sm' : 'text-lg'} font-bold text-emerald-400`}>42</div>
-                  <div className={`${isSmall ? 'text-xs' : 'text-xs'} text-gray-400`}>Completed</div>
+                  <div className={`${isSmall ? 'text-xs' : 'text-xs'} text-blue-300`}>Completed</div>
                 </div>
-                <div className="text-center p-2 bg-gray-800/30 rounded">
+                <div className="text-center p-2 bg-blue-700/30 rounded">
                   <div className={`${isSmall ? 'text-sm' : 'text-lg'} font-bold text-yellow-400`}>8</div>
-                  <div className={`${isSmall ? 'text-xs' : 'text-xs'} text-gray-400`}>Pending</div>
+                  <div className={`${isSmall ? 'text-xs' : 'text-xs'} text-blue-300`}>Pending</div>
                 </div>
               </div>
             </div>
@@ -1722,7 +1722,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 <Brain className={`${isSmall ? 'w-4 h-4' : 'w-5 h-5'} text-blue-400 flex-shrink-0 mt-0.5`} />
                 <div className="min-w-0 flex-1">
                   <p className={`text-white ${isSmall ? 'text-xs' : 'text-sm'} font-medium`}>Schedule fall protection training for Construction department</p>
-                  <p className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-xs'} mt-1`}>High confidence recommendation</p>
+                  <p className={`text-blue-300 ${isSmall ? 'text-xs' : 'text-xs'} mt-1`}>High confidence recommendation</p>
                 </div>
               </div>
               {!isSmall && (
@@ -1730,7 +1730,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <Brain className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
                   <div className="min-w-0 flex-1">
                     <p className="text-white text-sm font-medium">Compliance rate improved by 12% this quarter</p>
-                    <p className="text-gray-400 text-xs mt-1">Trend analysis</p>
+                    <p className="text-blue-300 text-xs mt-1">Trend analysis</p>
                   </div>
                 </div>
               )}
@@ -1741,9 +1741,9 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         return (
           <div className="flex items-center justify-between h-full">
             <div className="flex-1 min-w-0">
-              <p className={`text-gray-400 ${labelSize} truncate`}>Safety Score</p>
+              <p className={`text-blue-300 ${labelSize} truncate`}>Safety Score</p>
               <p className={`${textSize} font-bold text-emerald-400 truncate`}>A+</p>
-              <p className={`text-gray-400 ${isSmall ? 'text-xs' : 'text-sm'} truncate`}>88% Overall</p>
+              <p className={`text-blue-300 ${isSmall ? 'text-xs' : 'text-sm'} truncate`}>88% Overall</p>
             </div>
             <div className="flex flex-col items-center flex-shrink-0 ml-2">
               <CheckCircle className={`${iconSize} text-emerald-400`} />
@@ -1756,23 +1756,23 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <div className="h-full overflow-hidden">
             <h3 className={`${isSmall ? 'text-sm' : 'text-lg'} font-semibold text-white mb-2`}>Safety Trends</h3>
             <div className="space-y-2 overflow-y-auto" style={{ maxHeight: 'calc(100% - 2rem)' }}>
-              <div className="flex items-center justify-between p-2 bg-gray-800/30 rounded-lg">
-                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-gray-400`}>Incident Rate</span>
+              <div className="flex items-center justify-between p-2 bg-blue-700/30 rounded-lg">
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-blue-300`}>Incident Rate</span>
                 <div className="flex items-center space-x-1">
                   <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-emerald-400`}>↓ 15%</span>
                   <TrendingDown className={`${isSmall ? 'w-3 h-3' : 'w-4 h-4'} text-emerald-400`} />
                 </div>
               </div>
-              <div className="flex items-center justify-between p-2 bg-gray-800/30 rounded-lg">
-                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-gray-400`}>Near Misses</span>
+              <div className="flex items-center justify-between p-2 bg-blue-700/30 rounded-lg">
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-blue-300`}>Near Misses</span>
                 <div className="flex items-center space-x-1">
                   <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-yellow-400`}>↑ 8%</span>
                   <TrendingUp className={`${isSmall ? 'w-3 h-3' : 'w-4 h-4'} text-yellow-400`} />
                 </div>
               </div>
               {!isSmall && (
-                <div className="flex items-center justify-between p-2 bg-gray-800/30 rounded-lg">
-                  <span className="text-sm text-gray-400">Training Hours</span>
+                <div className="flex items-center justify-between p-2 bg-blue-700/30 rounded-lg">
+                  <span className="text-sm text-blue-300">Training Hours</span>
                   <div className="flex items-center space-x-1">
                     <span className="text-sm text-emerald-400">↑ 22%</span>
                     <TrendingUp className="w-4 h-4 text-emerald-400" />
@@ -1788,18 +1788,18 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             <h3 className={`${isSmall ? 'text-sm' : 'text-lg'} font-semibold text-white mb-2`}>Compliance Metrics</h3>
             <div className="space-y-3 overflow-y-auto" style={{ maxHeight: 'calc(100% - 2rem)' }}>
               <div className="flex items-center justify-between">
-                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-gray-400`}>OSHA Compliance</span>
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-blue-300`}>OSHA Compliance</span>
                 <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-emerald-400 font-semibold`}>94%</span>
               </div>
               <Progress value={94} className="h-2" />
               <div className="grid grid-cols-2 gap-2">
-                <div className="text-center p-2 bg-gray-800/30 rounded">
+                <div className="text-center p-2 bg-blue-700/30 rounded">
                   <div className={`${isSmall ? 'text-sm' : 'text-lg'} font-bold text-white`}>147</div>
-                  <div className={`${isSmall ? 'text-xs' : 'text-xs'} text-gray-400`}>Total Audits</div>
+                  <div className={`${isSmall ? 'text-xs' : 'text-xs'} text-blue-300`}>Total Audits</div>
                 </div>
-                <div className="text-center p-2 bg-gray-800/30 rounded">
+                <div className="text-center p-2 bg-blue-700/30 rounded">
                   <div className={`${isSmall ? 'text-sm' : 'text-lg'} font-bold text-green-400`}>138</div>
-                  <div className={`${isSmall ? 'text-xs' : 'text-xs'} text-gray-400`}>Passed</div>
+                  <div className={`${isSmall ? 'text-xs' : 'text-xs'} text-blue-300`}>Passed</div>
                 </div>
               </div>
             </div>
@@ -1810,14 +1810,14 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <div className="h-full overflow-hidden">
             <h3 className={`${isSmall ? 'text-sm' : 'text-lg'} font-semibold text-white mb-2`}>Department Performance</h3>
             <div className="space-y-2 overflow-y-auto" style={{ maxHeight: 'calc(100% - 2rem)' }}>
-              <div className="flex items-center justify-between p-2 bg-gray-800/30 rounded-lg">
+              <div className="flex items-center justify-between p-2 bg-blue-700/30 rounded-lg">
                 <div className="flex items-center space-x-2">
                   <Building className={`${isSmall ? 'w-4 h-4' : 'w-5 h-5'} text-blue-400`} />
                   <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-white`}>Construction</span>
                 </div>
                 <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-emerald-400`}>93%</span>
               </div>
-              <div className="flex items-center justify-between p-2 bg-gray-800/30 rounded-lg">
+              <div className="flex items-center justify-between p-2 bg-blue-700/30 rounded-lg">
                 <div className="flex items-center space-x-2">
                   <Building className={`${isSmall ? 'w-4 h-4' : 'w-5 h-5'} text-purple-400`} />
                   <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-white`}>Manufacturing</span>
@@ -1825,7 +1825,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-yellow-400`}>84%</span>
               </div>
               {!isSmall && (
-                <div className="flex items-center justify-between p-2 bg-gray-800/30 rounded-lg">
+                <div className="flex items-center justify-between p-2 bg-blue-700/30 rounded-lg">
                   <div className="flex items-center space-x-2">
                     <Building className="w-5 h-5 text-green-400" />
                     <span className="text-sm text-white">Safety</span>
@@ -1868,7 +1868,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           </div>
         );
       default:
-        return <div className="h-full flex items-center justify-center text-gray-400">Widget content</div>;
+        return <div className="h-full flex items-center justify-center text-blue-300">Widget content</div>;
     }
   };
 
@@ -1968,16 +1968,16 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-600 via-blue-500 to-purple-600 flex flex-col md:flex-row">
+    <div className="min-h-screen bg-gradient-to-br from-blue-500 via-blue-500 to-purple-600 flex flex-col md:flex-row">
       {/* Sidebar */}
       <motion.div 
-        className={`${sidebarOpen ? 'w-full md:w-64' : 'w-full md:w-16'} ${sidebarOpen ? 'h-auto' : 'h-16'} md:h-auto bg-slate-600/50 backdrop-blur-sm border-r border-slate-500 flex flex-col md:border-r md:border-b-0 border-b`}
+        className={`${sidebarOpen ? 'w-full md:w-64' : 'w-full md:w-16'} ${sidebarOpen ? 'h-auto' : 'h-16'} md:h-auto bg-blue-500/50 backdrop-blur-sm border-r border-blue-400 flex flex-col md:border-r md:border-b-0 border-b`}
         variants={sidebarVariants}
         animate={sidebarOpen ? "open" : "closed"}
         initial={sidebarOpen ? "open" : "closed"}
       >
         {/* Header */}
-        <div className="p-4 border-b border-slate-500">
+        <div className="p-4 border-b border-blue-400">
           <div className="flex items-center justify-between">
             {sidebarOpen ? (
               <div className="flex items-center space-x-3">
@@ -1986,7 +1986,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <h2 className="text-white font-semibold text-sm md:text-base">
                     {workspaceSettings.showBranding ? workspaceSettings.companyName : "SafetySync.AI"}
                   </h2>
-                  <p className="text-gray-400 text-xs md:text-sm">Workspace</p>
+                  <p className="text-blue-300 text-xs md:text-sm">Workspace</p>
                 </div>
               </div>
             ) : (
@@ -2015,8 +2015,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           >
             <Button
               variant="ghost"
-              className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                activeTab === "company-profile" ? "text-white bg-gray-700/30" : ""
+              className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                activeTab === "company-profile" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("company-profile")}
               title="Company Profile Setup"
@@ -2030,7 +2030,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <div className="space-y-1">
             <Button
               variant="ghost"
-              className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3"
+              className="w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3"
               onClick={() => toggleSection('employee-management')}
               title="Employee Management"
             >
@@ -2046,8 +2046,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               <div className="ml-6 space-y-1">
                 <Button
                   variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                    activeTab === "employees" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
+                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                    activeTab === "employees" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("employees")}
                   title="Employee Management"
@@ -2057,8 +2057,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </Button>
                 <Button
                   variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                    activeTab === "employee-insights" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
+                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                    activeTab === "employee-insights" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("employee-insights")}
                   title="Employee Insights"
@@ -2068,8 +2068,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </Button>
                 <Button
                   variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                    activeTab === "employee-profile" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
+                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                    activeTab === "employee-profile" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("employee-profile")}
                   title="Employee Profile"
@@ -2079,8 +2079,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </Button>
                 <Button
                   variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                    activeTab === "employee-portal" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
+                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                    activeTab === "employee-portal" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("employee-portal")}
                   title="Employee Portal"
@@ -2096,7 +2096,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <div className="space-y-1">
             <Button
               variant="ghost"
-              className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3"
+              className="w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3"
               onClick={() => toggleSection('training-features')}
               title="Training Documents"
             >
@@ -2112,8 +2112,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               <div className="ml-6 space-y-1">
               <Button
                 variant="ghost"
-                className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                  activeTab === "ai-document-processor" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
+                className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                  activeTab === "ai-document-processor" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                 }`}
                 onClick={() => handleTabSwitch("ai-document-processor")}
                 title="AI Document Processor"
@@ -2123,8 +2123,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </Button>
               <Button
                 variant="ghost"
-                className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                  activeTab === "certificates" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
+                className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                  activeTab === "certificates" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                 }`}
                 onClick={() => handleTabSwitch("certificates")}
                 title="Certificate Generation"
@@ -2134,8 +2134,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </Button>
               <Button
                 variant="ghost"
-                className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                  activeTab === "instructor-signin" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
+                className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                  activeTab === "instructor-signin" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                 }`}
                 onClick={() => handleTabSwitch("instructor-signin")}
                 title="Instructor Sign-In Sheets"
@@ -2145,8 +2145,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </Button>
               <Button
                 variant="ghost"
-                className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                  activeTab === "training-records" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
+                className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                  activeTab === "training-records" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                 }`}
                 onClick={() => handleTabSwitch("training-records")}
                 title="Training Records"
@@ -2156,8 +2156,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </Button>
               <Button
                 variant="ghost"
-                className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                  activeTab === "training-document-hub" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
+                className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                  activeTab === "training-document-hub" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                 }`}
                 onClick={() => handleTabSwitch("training-document-hub")}
                 title="Training Document Hub"
@@ -2167,8 +2167,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </Button>
               <Button
                 variant="ghost"
-                className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                  activeTab === "training" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
+                className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                  activeTab === "training" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                 }`}
                 onClick={() => handleTabSwitch("training")}
                 title="Training Management"
@@ -2189,7 +2189,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             >
               <Button
                 variant="ghost"
-                className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3"
+                className="w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3"
                 onClick={() => toggleSection('compliance-reporting')}
                 title="Compliance & Reporting"
               >
@@ -2218,8 +2218,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <motion.div variants={subItemVariants}>
                     <Button
                       variant="ghost"
-                      className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                        activeTab === "analytics-reports" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
+                      className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                        activeTab === "analytics-reports" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("analytics-reports")}
                       title="Analytics & Reports"
@@ -2231,8 +2231,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <motion.div variants={subItemVariants}>
                     <Button
                       variant="ghost"
-                      className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                        activeTab === "reports" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
+                      className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                        activeTab === "reports" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("reports")}
                       title="Compliance Reports"
@@ -2244,8 +2244,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <motion.div variants={subItemVariants}>
                     <Button
                       variant="ghost"
-                      className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                        activeTab === "osha-compliance" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
+                      className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                        activeTab === "osha-compliance" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("osha-compliance")}
                       title="OSHA Compliance Manager"
@@ -2257,8 +2257,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <motion.div variants={subItemVariants}>
                     <Button
                       variant="ghost"
-                      className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                        activeTab === "document-manager" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
+                      className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                        activeTab === "document-manager" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("document-manager")}
                       title="Document Management"
@@ -2270,8 +2270,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <motion.div variants={subItemVariants}>
                     <Button
                       variant="ghost"
-                      className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                        activeTab === "trends" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
+                      className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                        activeTab === "trends" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("trends")}
                       title="Safety Trends"
@@ -2288,7 +2288,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <div className="space-y-1">
             <Button
               variant="ghost"
-              className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3"
+              className="w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3"
               onClick={() => toggleSection('system-tools')}
               title="System Tools"
             >
@@ -2304,8 +2304,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 <div className="ml-6 space-y-1">
                   <Button
                     variant="ghost"
-                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                      activeTab === "achievements" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
+                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                      activeTab === "achievements" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                     }`}
                     onClick={() => handleTabSwitch("achievements")}
                     title="Achievements & Milestones"
@@ -2315,8 +2315,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   </Button>
                   <Button
                     variant="ghost"
-                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                      activeTab === "notifications" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
+                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                      activeTab === "notifications" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                     }`}
                     onClick={() => handleTabSwitch("notifications")}
                     title="Notifications & Alerts"
@@ -2326,8 +2326,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   </Button>
                   <Button
                     variant="ghost"
-                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                      activeTab === "settings" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
+                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                      activeTab === "settings" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                     }`}
                     onClick={() => handleTabSwitch("settings")}
                     title="Workspace Settings"
@@ -2337,8 +2337,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   </Button>
                   <Button
                     variant="ghost"
-                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                      activeTab === "subscription-billing" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
+                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                      activeTab === "subscription-billing" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                     }`}
                     onClick={() => handleTabSwitch("subscription-billing")}
                     title="Subscription & Billing"
@@ -2348,8 +2348,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   </Button>
                   <Button
                     variant="ghost"
-                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                      activeTab === "instructors" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
+                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                      activeTab === "instructors" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                     }`}
                     onClick={() => handleTabSwitch("instructors")}
                     title="Instructor Management"
@@ -2359,8 +2359,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   </Button>
                   <Button
                     variant="ghost"
-                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                      activeTab === "document-manager" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
+                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                      activeTab === "document-manager" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                     }`}
                     onClick={() => handleTabSwitch("document-manager")}
                     title="Document Management"
@@ -2377,7 +2377,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         </nav>
 
         {/* User Menu */}
-        <div className={`${sidebarOpen ? 'block' : 'hidden'} md:block p-4 border-t border-gray-800`}>
+        <div className={`${sidebarOpen ? 'block' : 'hidden'} md:block p-4 border-t border-blue-700`}>
           {sidebarOpen && (
             <div className="mb-4">
               <div className="flex items-center space-x-3 mb-2">
@@ -2386,14 +2386,14 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </div>
                 <div>
                   <p className="text-white text-sm font-medium">{user?.name || "User"}</p>
-                  <p className="text-gray-400 text-xs">Safety Manager</p>
+                  <p className="text-blue-300 text-xs">Safety Manager</p>
                 </div>
               </div>
             </div>
           )}
           <Button
             variant="ghost"
-            className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50"
+            className="w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50"
             onClick={handleLogout}
           >
             <LogOut className="w-5 h-5 mr-3" />
@@ -2405,7 +2405,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-h-0">
         {/* Top Bar */}
-        <div className="bg-black/20 backdrop-blur-sm border-b border-gray-800 p-2 md:p-4">
+        <div className="bg-black/20 backdrop-blur-sm border-b border-blue-700 p-2 md:p-4">
           <div className="flex items-center justify-between">
             <div className="flex-1 min-w-0">
               <h1 className="text-lg md:text-2xl font-bold text-white truncate">
@@ -2437,11 +2437,11 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 {activeTab === "company-profile" && "Company Profile"}
                 {activeTab === "settings" && "Workspace Settings"}
               </h1>
-              <p className="text-gray-400 text-sm md:text-base">
+              <p className="text-blue-300 text-sm md:text-base">
                 {activeTab === "unified-dashboard" && (
                   <span>
                     Final step: Review your complete compliance dashboard with all integrated data
-                    <span className="hidden lg:inline text-gray-500 text-sm ml-4">• Drag widgets to reposition • Drag corners to resize • Click manage to show/hide</span>
+                    <span className="hidden lg:inline text-blue-400 text-sm ml-4">• Drag widgets to reposition • Drag corners to resize • Click manage to show/hide</span>
                   </span>
                 )}
                 {activeTab === "company-profile" && "Step 1: Set up your company profile and industry-specific compliance requirements"}
@@ -2473,7 +2473,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </p>
             </div>
             <div className="flex items-center space-x-2 md:space-x-4">
-              <Button variant="secondary" className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50 p-2 md:px-4 md:py-2">
+              <Button variant="secondary" className="bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-600/50 p-2 md:px-4 md:py-2">
                 <Bell className="w-4 h-4 md:mr-2" />
                 <span className="hidden md:inline">Notifications</span>
               </Button>
@@ -2488,7 +2488,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 <LogOut className="w-4 h-4 md:mr-2" />
                 <span className="hidden md:inline">Logout</span>
               </Button>
-              <a href="/" className="hidden md:inline text-gray-400 hover:text-white hover:bg-gray-700/50 px-2 py-1 rounded text-sm">
+              <a href="/" className="hidden md:inline text-blue-300 hover:text-white hover:bg-blue-600/50 px-2 py-1 rounded text-sm">
                 ← Back to SafetySync.AI
               </a>
             </div>
@@ -2505,7 +2505,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <Button
                     variant="secondary"
                     onClick={() => setShowWidgetManager(!showWidgetManager)}
-                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50 text-sm"
+                    className="bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-600/50 text-sm"
                   >
                     <Settings className="w-4 h-4 mr-2" />
                     Manage Widgets
@@ -2513,7 +2513,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <Button
                     variant="secondary"
                     onClick={saveAsDefault}
-                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50 text-sm"
+                    className="bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-600/50 text-sm"
                   >
                     <Save className="w-4 h-4 mr-2" />
                     <span className="hidden sm:inline">Save as Default</span>
@@ -2523,7 +2523,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     <Button
                       variant="secondary"
                       onClick={loadCustomDefaults}
-                      className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50 text-sm"
+                      className="bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-600/50 text-sm"
                     >
                       <Upload className="w-4 h-4 mr-2" />
                       <span className="hidden sm:inline">Load My Default</span>
@@ -2533,7 +2533,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <Button
                     variant="secondary"
                     onClick={resetWidgetLayout}
-                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50 text-sm"
+                    className="bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-600/50 text-sm"
                   >
                     <RotateCcw className="w-4 h-4 mr-2" />
                     <span className="hidden sm:inline">Reset to Original</span>
@@ -2544,23 +2544,23 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
               {/* Widget Manager Panel */}
               {showWidgetManager && (
-                <Card className="bg-black/20 backdrop-blur-sm border-gray-800 mb-6">
+                <Card className="bg-black/20 backdrop-blur-sm border-blue-700 mb-6">
                   <CardHeader>
                     <CardTitle className="text-white">Widget Manager</CardTitle>
-                    <CardDescription className="text-gray-400">
+                    <CardDescription className="text-blue-300">
                       Toggle widgets on/off and drag to resize them on your dashboard
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-6">
                       {/* Group Selection Controls */}
-                      <div className="bg-gray-800/50 rounded-lg p-4">
+                      <div className="bg-blue-700/50 rounded-lg p-4">
                         <h3 className="text-white font-medium mb-3">Group Widget Selection</h3>
                         <div className="flex flex-wrap gap-2">
                           <Button
                             variant={isGroupSelectionMode ? "default" : "outline"}
                             onClick={toggleGroupSelectionMode}
-                            className={`${isGroupSelectionMode ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50'}`}
+                            className={`${isGroupSelectionMode ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-600/50'}`}
                           >
                             <MousePointer className="w-4 h-4 mr-2" />
                             {isGroupSelectionMode ? 'Exit Selection Mode' : 'Select Multiple'}
@@ -2570,7 +2570,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                               <Button
                                 variant="outline"
                                 onClick={selectAllWidgets}
-                                className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50"
+                                className="bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-600/50"
                               >
                                 <CheckSquare className="w-4 h-4 mr-2" />
                                 Select All
@@ -2578,41 +2578,41 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                               <Button
                                 variant="outline"
                                 onClick={clearSelection}
-                                className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50"
+                                className="bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-600/50"
                               >
                                 <Square className="w-4 h-4 mr-2" />
                                 Clear Selection
                               </Button>
                               {selectedWidgets.size > 0 && (
                                 <div className="flex items-center space-x-2">
-                                  <span className="text-gray-400 text-sm">
+                                  <span className="text-blue-300 text-sm">
                                     {selectedWidgets.size} selected
                                   </span>
                                   <Button
                                     variant="outline"
                                     onClick={() => moveSelectedWidgets(-1, 0)}
-                                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50 p-2"
+                                    className="bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-600/50 p-2"
                                   >
                                     <ArrowLeft className="w-4 h-4" />
                                   </Button>
                                   <Button
                                     variant="outline"
                                     onClick={() => moveSelectedWidgets(1, 0)}
-                                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50 p-2"
+                                    className="bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-600/50 p-2"
                                   >
                                     <ArrowRight className="w-4 h-4" />
                                   </Button>
                                   <Button
                                     variant="outline"
                                     onClick={() => moveSelectedWidgets(0, -1)}
-                                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50 p-2"
+                                    className="bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-600/50 p-2"
                                   >
                                     <ArrowUp className="w-4 h-4" />
                                   </Button>
                                   <Button
                                     variant="outline"
                                     onClick={() => moveSelectedWidgets(0, 1)}
-                                    className="bg-gray-800/50 text-gray-300 border-gray-600 hover:bg-gray-700/50 p-2"
+                                    className="bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-600/50 p-2"
                                   >
                                     <ArrowDown className="w-4 h-4" />
                                   </Button>
@@ -2622,7 +2622,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                           )}
                         </div>
                         {isGroupSelectionMode && (
-                          <div className="text-sm text-gray-400 mt-2">
+                          <div className="text-sm text-blue-300 mt-2">
                             Click widgets to select them, then use arrow buttons or drag to move selected widgets together
                           </div>
                         )}
@@ -2635,7 +2635,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                           {widgets.map((widget) => (
                             <div
                               key={widget.id}
-                              className="flex items-center justify-between p-4 bg-gray-800/50 rounded-lg"
+                              className="flex items-center justify-between p-4 bg-blue-700/50 rounded-lg"
                             >
                               <div className="flex items-center space-x-3">
                                 <Switch
@@ -2647,7 +2647,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                                   <span className="text-white text-sm">{widget.title}</span>
                                 </div>
                               </div>
-                              <div className="text-gray-400 text-xs">
+                              <div className="text-blue-300 text-xs">
                                 Drag to resize
                               </div>
                             </div>
@@ -2695,9 +2695,9 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                           className="widget-container"
                           onClick={isGroupSelectionMode ? (e) => toggleWidgetSelection(widget.id, e) : undefined}
                         >
-                          <Card className={`bg-black/20 backdrop-blur-sm border-gray-800 h-full group relative transition-all duration-200 ${
+                          <Card className={`bg-black/20 backdrop-blur-sm border-blue-700 h-full group relative transition-all duration-200 ${
                             selectedWidgets.has(widget.id) ? 'ring-2 ring-emerald-500 bg-emerald-500/10' : ''
-                          } ${isGroupSelectionMode ? 'cursor-pointer hover:bg-gray-800/30' : ''}`}>
+                          } ${isGroupSelectionMode ? 'cursor-pointer hover:bg-blue-700/30' : ''}`}>
                             <CardContent className="p-4 h-full">
                               {/* Selection Indicator */}
                               {isGroupSelectionMode && (
@@ -2705,7 +2705,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                                   <div className={`w-5 h-5 rounded border-2 flex items-center justify-center ${
                                     selectedWidgets.has(widget.id) 
                                       ? 'bg-emerald-500 border-emerald-500' 
-                                      : 'border-gray-400 bg-gray-800/50'
+                                      : 'border-blue-300 bg-blue-700/50'
                                   }`}>
                                     {selectedWidgets.has(widget.id) && (
                                       <CheckSquare className="w-3 h-3 text-white" />
@@ -2716,7 +2716,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                               
                               {/* Drag Handle */}
                               <div className="drag-handle absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity cursor-move">
-                                <GripVertical className="w-4 h-4 text-gray-400" />
+                                <GripVertical className="w-4 h-4 text-blue-300" />
                               </div>
                               
                               {/* Widget Content */}
@@ -2770,12 +2770,12 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 <div className="space-y-6">
                   <div className="text-center">
                     <h2 className="text-2xl font-bold text-white mb-2">Select Employee Profile</h2>
-                    <p className="text-gray-400">Choose an employee to view and manage their certificate profile</p>
+                    <p className="text-blue-300">Choose an employee to view and manage their certificate profile</p>
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {employees.map((employee) => (
-                      <Card key={employee.id} className="bg-black/20 backdrop-blur-sm border-gray-800 hover:border-gray-600 transition-colors cursor-pointer"
+                      <Card key={employee.id} className="bg-black/20 backdrop-blur-sm border-blue-700 hover:border-blue-500 transition-colors cursor-pointer"
                         onClick={() => setSelectedEmployeeForProfile(employee.id)}>
                         <CardContent className="p-4">
                           <div className="flex items-center space-x-3">
@@ -2784,17 +2784,17 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                             </div>
                             <div>
                               <h3 className="text-white font-semibold">{employee.name}</h3>
-                              <p className="text-gray-400 text-sm">{employee.department}</p>
-                              <p className="text-gray-500 text-xs">{employee.position}</p>
+                              <p className="text-blue-300 text-sm">{employee.department}</p>
+                              <p className="text-blue-400 text-xs">{employee.position}</p>
                             </div>
                           </div>
-                          <div className="mt-3 pt-3 border-t border-gray-700">
+                          <div className="mt-3 pt-3 border-t border-blue-600">
                             <div className="flex justify-between text-sm">
-                              <span className="text-gray-400">Certificates:</span>
+                              <span className="text-blue-300">Certificates:</span>
                               <span className="text-emerald-400">{employee.certifications?.length || 0}</span>
                             </div>
                             <div className="flex justify-between text-sm mt-1">
-                              <span className="text-gray-400">Status:</span>
+                              <span className="text-blue-300">Status:</span>
                               <span className={employee.status === 'Active' ? 'text-green-400' : 'text-red-400'}>
                                 {employee.status}
                               </span>
@@ -2849,7 +2849,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                 {/* Safety Trends Chart */}
-                <Card className="bg-slate-600/50 backdrop-blur-sm border-slate-500">
+                <Card className="bg-blue-500/50 backdrop-blur-sm border-blue-400">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-white text-sm flex items-center">
                       <TrendingUp className="w-4 h-4 mr-2 text-blue-400" />
@@ -2859,21 +2859,21 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <CardContent>
                     <div className="space-y-3">
                       <div className="flex items-center justify-between">
-                        <span className="text-gray-400 text-sm">Compliance Rate</span>
+                        <span className="text-blue-300 text-sm">Compliance Rate</span>
                         <div className="flex items-center space-x-1">
                           <TrendingUp className="w-3 h-3 text-green-400" />
                           <span className="text-green-400 text-sm">96%</span>
                         </div>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-gray-400 text-sm">Training Completion</span>
+                        <span className="text-blue-300 text-sm">Training Completion</span>
                         <div className="flex items-center space-x-1">
                           <TrendingUp className="w-3 h-3 text-blue-400" />
                           <span className="text-blue-400 text-sm">89%</span>
                         </div>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-gray-400 text-sm">Safety Score</span>
+                        <span className="text-blue-300 text-sm">Safety Score</span>
                         <div className="flex items-center space-x-1">
                           <TrendingUp className="w-3 h-3 text-yellow-400" />
                           <span className="text-yellow-400 text-sm">92%</span>
@@ -2884,7 +2884,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </Card>
 
                 {/* Compliance Metrics */}
-                <Card className="bg-slate-600/50 backdrop-blur-sm border-slate-500">
+                <Card className="bg-blue-500/50 backdrop-blur-sm border-blue-400">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-white text-sm flex items-center">
                       <BarChart3 className="w-4 h-4 mr-2 text-blue-400" />
@@ -2895,21 +2895,21 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     <div className="space-y-3">
                       <div>
                         <div className="flex justify-between mb-1">
-                          <span className="text-gray-400 text-sm">Overall Compliance</span>
+                          <span className="text-blue-300 text-sm">Overall Compliance</span>
                           <span className="text-green-400 text-sm">96%</span>
                         </div>
                         <Progress value={96} className="h-2" />
                       </div>
                       <div>
                         <div className="flex justify-between mb-1">
-                          <span className="text-gray-400 text-sm">Training Progress</span>
+                          <span className="text-blue-300 text-sm">Training Progress</span>
                           <span className="text-blue-400 text-sm">89%</span>
                         </div>
                         <Progress value={89} className="h-2" />
                       </div>
                       <div>
                         <div className="flex justify-between mb-1">
-                          <span className="text-gray-400 text-sm">Safety Score</span>
+                          <span className="text-blue-300 text-sm">Safety Score</span>
                           <span className="text-yellow-400 text-sm">92%</span>
                         </div>
                         <Progress value={92} className="h-2" />
@@ -2919,7 +2919,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </Card>
 
                 {/* Department Performance */}
-                <Card className="bg-slate-600/50 backdrop-blur-sm border-slate-500">
+                <Card className="bg-blue-500/50 backdrop-blur-sm border-blue-400">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-white text-sm flex items-center">
                       <Users className="w-4 h-4 mr-2 text-blue-400" />
@@ -2928,15 +2928,15 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-2">
-                      <div className="flex items-center justify-between p-2 bg-gray-800/50 rounded-lg">
+                      <div className="flex items-center justify-between p-2 bg-blue-700/50 rounded-lg">
                         <span className="text-gray-300 text-sm">Construction</span>
                         <span className="text-green-400 text-sm">96%</span>
                       </div>
-                      <div className="flex items-center justify-between p-2 bg-gray-800/50 rounded-lg">
+                      <div className="flex items-center justify-between p-2 bg-blue-700/50 rounded-lg">
                         <span className="text-gray-300 text-sm">Manufacturing</span>
                         <span className="text-green-400 text-sm">98%</span>
                       </div>
-                      <div className="flex items-center justify-between p-2 bg-gray-800/50 rounded-lg">
+                      <div className="flex items-center justify-between p-2 bg-blue-700/50 rounded-lg">
                         <span className="text-gray-300 text-sm">Maintenance</span>
                         <span className="text-yellow-400 text-sm">94%</span>
                       </div>
@@ -2945,7 +2945,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </Card>
 
                 {/* Risk Analysis */}
-                <Card className="bg-slate-600/50 backdrop-blur-sm border-slate-500">
+                <Card className="bg-blue-500/50 backdrop-blur-sm border-blue-400">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-white text-sm flex items-center">
                       <AlertTriangle className="w-4 h-4 mr-2 text-blue-400" />
@@ -2958,21 +2958,21 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                         <CheckCircle className="w-4 h-4 text-green-400" />
                         <div className="flex-1">
                           <p className="text-white text-sm font-medium">Low Risk</p>
-                          <p className="text-gray-400 text-xs">65% of operations</p>
+                          <p className="text-blue-300 text-xs">65% of operations</p>
                         </div>
                       </div>
                       <div className="flex items-center space-x-2 p-2 bg-yellow-900/20 rounded-lg border border-yellow-500/20">
                         <AlertTriangle className="w-4 h-4 text-yellow-400" />
                         <div className="flex-1">
                           <p className="text-white text-sm font-medium">Medium Risk</p>
-                          <p className="text-gray-400 text-xs">25% of operations</p>
+                          <p className="text-blue-300 text-xs">25% of operations</p>
                         </div>
                       </div>
                       <div className="flex items-center space-x-2 p-2 bg-red-900/20 rounded-lg border border-red-500/20">
                         <AlertTriangle className="w-4 h-4 text-red-400" />
                         <div className="flex-1">
                           <p className="text-white text-sm font-medium">High Risk</p>
-                          <p className="text-gray-400 text-xs">10% of operations</p>
+                          <p className="text-blue-300 text-xs">10% of operations</p>
                         </div>
                       </div>
                     </div>
@@ -2980,7 +2980,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </Card>
 
                 {/* Training Completion */}
-                <Card className="bg-slate-600/50 backdrop-blur-sm border-slate-500">
+                <Card className="bg-blue-500/50 backdrop-blur-sm border-blue-400">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-white text-sm flex items-center">
                       <BookOpen className="w-4 h-4 mr-2 text-blue-400" />
@@ -2991,21 +2991,21 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     <div className="space-y-3">
                       <div>
                         <div className="flex justify-between mb-1">
-                          <span className="text-gray-400 text-sm">Fall Protection</span>
+                          <span className="text-blue-300 text-sm">Fall Protection</span>
                           <span className="text-white text-sm">87%</span>
                         </div>
                         <Progress value={87} className="h-2" />
                       </div>
                       <div>
                         <div className="flex justify-between mb-1">
-                          <span className="text-gray-400 text-sm">OSHA 10</span>
+                          <span className="text-blue-300 text-sm">OSHA 10</span>
                           <span className="text-white text-sm">92%</span>
                         </div>
                         <Progress value={92} className="h-2" />
                       </div>
                       <div>
                         <div className="flex justify-between mb-1">
-                          <span className="text-gray-400 text-sm">First Aid</span>
+                          <span className="text-blue-300 text-sm">First Aid</span>
                           <span className="text-white text-sm">76%</span>
                         </div>
                         <Progress value={76} className="h-2" />
@@ -3015,7 +3015,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </Card>
 
                 {/* Safety Score */}
-                <Card className="bg-slate-600/50 backdrop-blur-sm border-slate-500">
+                <Card className="bg-blue-500/50 backdrop-blur-sm border-blue-400">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-white text-sm flex items-center">
                       <Shield className="w-4 h-4 mr-2 text-blue-400" />
@@ -3025,7 +3025,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <CardContent>
                     <div className="flex flex-col items-center justify-center h-24">
                       <div className="text-3xl font-bold text-green-400 mb-2">92%</div>
-                      <p className="text-gray-400 text-sm text-center">Overall Safety Score</p>
+                      <p className="text-blue-300 text-sm text-center">Overall Safety Score</p>
                       <div className="w-full mt-3">
                         <Progress value={92} className="h-2" />
                       </div>
@@ -3045,10 +3045,10 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   Add Instructor
                 </Button>
               </div>
-              <Card className="bg-slate-600/50 backdrop-blur-sm border-slate-500">
+              <Card className="bg-blue-500/50 backdrop-blur-sm border-blue-400">
                 <CardContent className="p-2 md:p-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                    <Card className="bg-slate-600/50 border-slate-500">
+                    <Card className="bg-blue-500/50 border-blue-400">
                       <CardContent className="p-4">
                         <div className="flex items-center space-x-3 mb-3">
                           <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
@@ -3056,26 +3056,26 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                           </div>
                           <div>
                             <h3 className="text-white font-semibold">John Smith</h3>
-                            <p className="text-gray-400 text-sm">Senior Safety Instructor</p>
+                            <p className="text-blue-300 text-sm">Senior Safety Instructor</p>
                           </div>
                         </div>
                         <div className="space-y-2">
                           <div className="flex items-center justify-between">
-                            <span className="text-gray-400 text-sm">Certifications</span>
+                            <span className="text-blue-300 text-sm">Certifications</span>
                             <Badge className="bg-green-100 text-green-700">5 Active</Badge>
                           </div>
                           <div className="flex items-center justify-between">
-                            <span className="text-gray-400 text-sm">Students Trained</span>
+                            <span className="text-blue-300 text-sm">Students Trained</span>
                             <span className="text-white">247</span>
                           </div>
                           <div className="flex items-center justify-between">
-                            <span className="text-gray-400 text-sm">Specialization</span>
+                            <span className="text-blue-300 text-sm">Specialization</span>
                             <span className="text-white">Fall Protection</span>
                           </div>
                         </div>
                       </CardContent>
                     </Card>
-                    <Card className="bg-gray-800/50 border-gray-700">
+                    <Card className="bg-blue-700/50 border-blue-600">
                       <CardContent className="p-4">
                         <div className="flex items-center space-x-3 mb-3">
                           <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center">
@@ -3083,26 +3083,26 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                           </div>
                           <div>
                             <h3 className="text-white font-semibold">Sarah Johnson</h3>
-                            <p className="text-gray-400 text-sm">Equipment Training Specialist</p>
+                            <p className="text-blue-300 text-sm">Equipment Training Specialist</p>
                           </div>
                         </div>
                         <div className="space-y-2">
                           <div className="flex items-center justify-between">
-                            <span className="text-gray-400 text-sm">Certifications</span>
+                            <span className="text-blue-300 text-sm">Certifications</span>
                             <Badge className="bg-green-100 text-green-700">7 Active</Badge>
                           </div>
                           <div className="flex items-center justify-between">
-                            <span className="text-gray-400 text-sm">Students Trained</span>
+                            <span className="text-blue-300 text-sm">Students Trained</span>
                             <span className="text-white">189</span>
                           </div>
                           <div className="flex items-center justify-between">
-                            <span className="text-gray-400 text-sm">Specialization</span>
+                            <span className="text-blue-300 text-sm">Specialization</span>
                             <span className="text-white">Forklift Operation</span>
                           </div>
                         </div>
                       </CardContent>
                     </Card>
-                    <Card className="bg-slate-600/50 border-slate-500">
+                    <Card className="bg-blue-500/50 border-blue-400">
                       <CardContent className="p-4">
                         <div className="flex items-center space-x-3 mb-3">
                           <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center">
@@ -3110,20 +3110,20 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                           </div>
                           <div>
                             <h3 className="text-white font-semibold">Mike Rodriguez</h3>
-                            <p className="text-gray-400 text-sm">OSHA Training Coordinator</p>
+                            <p className="text-blue-300 text-sm">OSHA Training Coordinator</p>
                           </div>
                         </div>
                         <div className="space-y-2">
                           <div className="flex items-center justify-between">
-                            <span className="text-gray-400 text-sm">Certifications</span>
+                            <span className="text-blue-300 text-sm">Certifications</span>
                             <Badge className="bg-green-100 text-green-700">4 Active</Badge>
                           </div>
                           <div className="flex items-center justify-between">
-                            <span className="text-gray-400 text-sm">Students Trained</span>
+                            <span className="text-blue-300 text-sm">Students Trained</span>
                             <span className="text-white">312</span>
                           </div>
                           <div className="flex items-center justify-between">
-                            <span className="text-gray-400 text-sm">Specialization</span>
+                            <span className="text-blue-300 text-sm">Specialization</span>
                             <span className="text-white">OSHA 30 Hour</span>
                           </div>
                         </div>
@@ -3151,20 +3151,20 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </div>
               </div>
               <div className="grid grid-cols-1 gap-6">
-                <Card className="bg-black/20 backdrop-blur-sm border-gray-800">
+                <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
                   <CardHeader>
                     <CardTitle className="text-white">Division & Department Structure</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-6">
                       {organizationalStructure.divisions.map((division, divisionIndex) => (
-                        <div key={division} className="border border-gray-700 rounded-lg p-4 bg-gray-800/30">
+                        <div key={division} className="border border-blue-600 rounded-lg p-4 bg-blue-700/30">
                           <div className="flex items-center justify-between mb-4">
                             <div className="flex items-center space-x-3">
                               <Building className="w-6 h-6 text-blue-400" />
                               <div>
                                 <p className="text-white font-semibold text-lg">{division}</p>
-                                <p className="text-gray-400 text-sm">
+                                <p className="text-blue-300 text-sm">
                                   {employees.filter(emp => emp.division === division).length} employees
                                 </p>
                               </div>
@@ -3185,18 +3185,18 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                           </div>
                           <div className="pl-6 space-y-2">
                             {organizationalStructure.departmentsByDivision[division]?.map((department, deptIndex) => (
-                              <div key={department} className="flex items-center justify-between p-2 bg-gray-700/50 rounded-lg">
+                              <div key={department} className="flex items-center justify-between p-2 bg-blue-600/50 rounded-lg">
                                 <div className="flex items-center space-x-2">
-                                  <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                                  <div className="w-2 h-2 bg-blue-300 rounded-full"></div>
                                   <div>
                                     <p className="text-white font-medium">{department}</p>
-                                    <p className="text-gray-400 text-sm">
+                                    <p className="text-blue-300 text-sm">
                                       {employees.filter(emp => emp.department === department).length} employees
                                     </p>
                                   </div>
                                 </div>
                                 <div className="flex items-center space-x-2">
-                                  <Badge variant="secondary" className="bg-gray-800/50 text-gray-300 border-gray-600">
+                                  <Badge variant="secondary" className="bg-blue-700/50 text-gray-300 border-blue-500">
                                     {Math.round((employees.filter(emp => emp.department === department && emp.status === 'Active').length / Math.max(employees.filter(emp => emp.department === department).length, 1)) * 100)}% Active
                                   </Badge>
                                   <Button
@@ -3211,7 +3211,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                               </div>
                             ))}
                             {(!organizationalStructure.departmentsByDivision[division] || organizationalStructure.departmentsByDivision[division].length === 0) && (
-                              <p className="text-gray-500 text-sm italic pl-4">No departments yet</p>
+                              <p className="text-blue-400 text-sm italic pl-4">No departments yet</p>
                             )}
                           </div>
                         </div>
@@ -3293,10 +3293,10 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
           {activeTab === "settings" && (
             <div className="space-y-6">
-              <Card className="bg-slate-600/50 backdrop-blur-sm border-slate-500">
+              <Card className="bg-blue-500/50 backdrop-blur-sm border-blue-400">
                 <CardHeader>
                   <CardTitle className="text-white">Workspace Settings</CardTitle>
-                  <CardDescription className="text-gray-400">
+                  <CardDescription className="text-blue-300">
                     Configure your white-label workspace appearance and branding
                   </CardDescription>
                 </CardHeader>
@@ -3308,7 +3308,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                         id="companyName"
                         value={workspaceSettings.companyName}
                         onChange={(e) => setWorkspaceSettings({...workspaceSettings, companyName: e.target.value})}
-                        className="bg-slate-600/50 border-slate-500 text-white"
+                        className="bg-blue-500/50 border-blue-400 text-white"
                         placeholder="Your Company Name"
                       />
                     </div>
@@ -3320,7 +3320,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                         type="color"
                         value={workspaceSettings.primaryColor}
                         onChange={(e) => setWorkspaceSettings({...workspaceSettings, primaryColor: e.target.value})}
-                        className="bg-gray-800/50 border-gray-700 h-12 w-20"
+                        className="bg-blue-700/50 border-blue-600 h-12 w-20"
                       />
                     </div>
 
@@ -3330,7 +3330,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                         id="customDomain"
                         value={workspaceSettings.customDomain}
                         onChange={(e) => setWorkspaceSettings({...workspaceSettings, customDomain: e.target.value})}
-                        className="bg-slate-600/50 border-slate-500 text-white"
+                        className="bg-blue-500/50 border-blue-400 text-white"
                         placeholder="safety.yourcompany.com"
                       />
                     </div>
@@ -3357,10 +3357,10 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
       {/* Add Employee Dialog */}
       <Dialog open={showAddEmployee} onOpenChange={setShowAddEmployee}>
-        <DialogContent className="bg-gray-900 border-gray-800 text-white max-w-2xl">
+        <DialogContent className="bg-blue-800 border-blue-700 text-white max-w-2xl">
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold text-white">Add New Employee</DialogTitle>
-            <DialogDescription className="text-gray-400">
+            <DialogDescription className="text-blue-300">
               Enter employee information to add them to your SafetySync.AI workspace
             </DialogDescription>
           </DialogHeader>
@@ -3372,7 +3372,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   id="name"
                   value={newEmployee.name}
                   onChange={(e) => setNewEmployee({...newEmployee, name: e.target.value})}
-                  className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+                  className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300"
                   placeholder="John Smith"
                   required
                 />
@@ -3384,7 +3384,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   type="email"
                   value={newEmployee.email}
                   onChange={(e) => setNewEmployee({...newEmployee, email: e.target.value})}
-                  className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+                  className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300"
                   placeholder="john.smith@company.com"
                   required
                 />
@@ -3399,17 +3399,17 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   type="tel"
                   value={newEmployee.phone}
                   onChange={(e) => setNewEmployee({...newEmployee, phone: e.target.value})}
-                  className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+                  className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300"
                   placeholder="(555) 123-4567"
                 />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="division" className="text-white">Division *</Label>
                 <Select value={newEmployee.division} onValueChange={(value) => setNewEmployee({...newEmployee, division: value, department: ""})}>
-                  <SelectTrigger className="bg-gray-800/50 border-gray-700 text-white">
+                  <SelectTrigger className="bg-blue-700/50 border-blue-600 text-white">
                     <SelectValue placeholder="Select Division" />
                   </SelectTrigger>
-                  <SelectContent className="bg-gray-800 border-gray-700 text-white">
+                  <SelectContent className="bg-blue-700 border-blue-600 text-white">
                     {organizationalStructure.divisions.map(division => (
                       <SelectItem key={division} value={division}>{division}</SelectItem>
                     ))}
@@ -3426,10 +3426,10 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   onValueChange={(value) => setNewEmployee({...newEmployee, department: value})}
                   disabled={!newEmployee.division}
                 >
-                  <SelectTrigger className="bg-gray-800/50 border-gray-700 text-white">
+                  <SelectTrigger className="bg-blue-700/50 border-blue-600 text-white">
                     <SelectValue placeholder={newEmployee.division ? "Select Department" : "Select Division First"} />
                   </SelectTrigger>
-                  <SelectContent className="bg-gray-800 border-gray-700 text-white">
+                  <SelectContent className="bg-blue-700 border-blue-600 text-white">
                     {newEmployee.division && organizationalStructure.departmentsByDivision[newEmployee.division]?.map(dept => (
                       <SelectItem key={dept} value={dept}>{dept}</SelectItem>
                     ))}
@@ -3442,7 +3442,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   id="position"
                   value={newEmployee.position}
                   onChange={(e) => setNewEmployee({...newEmployee, position: e.target.value})}
-                  className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+                  className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300"
                   placeholder="Site Manager"
                 />
               </div>
@@ -3456,16 +3456,16 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   type="date"
                   value={newEmployee.hireDate}
                   onChange={(e) => setNewEmployee({...newEmployee, hireDate: e.target.value})}
-                  className="bg-gray-800/50 border-gray-700 text-white"
+                  className="bg-blue-700/50 border-blue-600 text-white"
                 />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="status" className="text-white">Employment Status</Label>
                 <Select value={newEmployee.status} onValueChange={(value) => setNewEmployee({...newEmployee, status: value})}>
-                  <SelectTrigger className="bg-gray-800/50 border-gray-700 text-white">
+                  <SelectTrigger className="bg-blue-700/50 border-blue-600 text-white">
                     <SelectValue placeholder="Select Status" />
                   </SelectTrigger>
-                  <SelectContent className="bg-gray-800 border-gray-700 text-white">
+                  <SelectContent className="bg-blue-700 border-blue-600 text-white">
                     <SelectItem value="Active">Active</SelectItem>
                     <SelectItem value="Inactive">Inactive</SelectItem>
                     <SelectItem value="On Leave">On Leave</SelectItem>
@@ -3480,7 +3480,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 type="button"
                 variant="outline"
                 onClick={() => setShowAddEmployee(false)}
-                className="border-gray-700 text-gray-300 hover:bg-gray-700/50"
+                className="border-blue-600 text-gray-300 hover:bg-blue-600/50"
               >
                 Cancel
               </Button>
@@ -3498,7 +3498,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
       {/* Add Division Dialog */}
       <Dialog open={showAddDivision} onOpenChange={setShowAddDivision}>
-        <DialogContent className="bg-gray-900 border-gray-800 text-white">
+        <DialogContent className="bg-blue-800 border-blue-700 text-white">
           <DialogHeader>
             <DialogTitle className="text-white">Add New Division</DialogTitle>
           </DialogHeader>
@@ -3509,7 +3509,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 value={newDivisionName}
                 onChange={(e) => setNewDivisionName(e.target.value)}
                 placeholder="Enter division name"
-                className="bg-gray-800/50 border-gray-700 text-white mt-1"
+                className="bg-blue-700/50 border-blue-600 text-white mt-1"
               />
             </div>
             <div className="flex justify-end space-x-2">
@@ -3519,7 +3519,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   setShowAddDivision(false);
                   setNewDivisionName("");
                 }}
-                className="border-gray-600 text-gray-300 hover:bg-gray-700/50"
+                className="border-blue-500 text-gray-300 hover:bg-blue-600/50"
               >
                 Cancel
               </Button>
@@ -3536,7 +3536,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
       {/* Add Department Dialog */}
       <Dialog open={showAddDepartment} onOpenChange={setShowAddDepartment}>
-        <DialogContent className="bg-gray-900 border-gray-800 text-white">
+        <DialogContent className="bg-blue-800 border-blue-700 text-white">
           <DialogHeader>
             <DialogTitle className="text-white">Add New Department</DialogTitle>
           </DialogHeader>
@@ -3544,10 +3544,10 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             <div>
               <Label className="text-gray-300">Select Division</Label>
               <Select value={selectedDivisionForDepartment} onValueChange={setSelectedDivisionForDepartment}>
-                <SelectTrigger className="bg-gray-800/50 border-gray-700 text-white mt-1">
+                <SelectTrigger className="bg-blue-700/50 border-blue-600 text-white mt-1">
                   <SelectValue placeholder="Select a division" />
                 </SelectTrigger>
-                <SelectContent className="bg-gray-800 border-gray-700 text-white">
+                <SelectContent className="bg-blue-700 border-blue-600 text-white">
                   {organizationalStructure.divisions.map(division => (
                     <SelectItem key={division} value={division}>{division}</SelectItem>
                   ))}
@@ -3560,7 +3560,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 value={newDepartmentName}
                 onChange={(e) => setNewDepartmentName(e.target.value)}
                 placeholder="Enter department name"
-                className="bg-gray-800/50 border-gray-700 text-white mt-1"
+                className="bg-blue-700/50 border-blue-600 text-white mt-1"
               />
             </div>
             <div className="flex justify-end space-x-2">
@@ -3571,7 +3571,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   setNewDepartmentName("");
                   setSelectedDivisionForDepartment("");
                 }}
-                className="border-gray-600 text-gray-300 hover:bg-gray-700/50"
+                className="border-blue-500 text-gray-300 hover:bg-blue-600/50"
               >
                 Cancel
               </Button>

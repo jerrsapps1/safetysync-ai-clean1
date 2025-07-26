@@ -168,7 +168,7 @@ export default function IncidentResponse() {
       case "high": return "bg-orange-500";
       case "medium": return "bg-yellow-500";
       case "low": return "bg-blue-500";
-      default: return "bg-gray-500";
+      default: return "bg-blue-400";
     }
   };
 
@@ -178,7 +178,7 @@ export default function IncidentResponse() {
       case "investigating": return "bg-blue-500";
       case "monitoring": return "bg-yellow-500";
       case "escalated": return "bg-red-500";
-      default: return "bg-gray-500";
+      default: return "bg-blue-400";
     }
   };
 
@@ -187,7 +187,7 @@ export default function IncidentResponse() {
       case "available": return <CheckCircle className="w-4 h-4 text-green-400" />;
       case "on-call": return <Clock className="w-4 h-4 text-yellow-400" />;
       case "busy": return <AlertCircle className="w-4 h-4 text-red-400" />;
-      default: return <Clock className="w-4 h-4 text-gray-400" />;
+      default: return <Clock className="w-4 h-4 text-blue-300" />;
     }
   };
 
@@ -309,19 +309,19 @@ export default function IncidentResponse() {
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                           <div>
-                            <p className="text-gray-400">ID</p>
+                            <p className="text-blue-300">ID</p>
                             <p className="text-white">{incident.id}</p>
                           </div>
                           <div>
-                            <p className="text-gray-400">Assignee</p>
+                            <p className="text-blue-300">Assignee</p>
                             <p className="text-white">{incident.assignee}</p>
                           </div>
                           <div>
-                            <p className="text-gray-400">Affected Users</p>
+                            <p className="text-blue-300">Affected Users</p>
                             <p className="text-white">{incident.affectedUsers}</p>
                           </div>
                           <div>
-                            <p className="text-gray-400">Created</p>
+                            <p className="text-blue-300">Created</p>
                             <p className="text-white">{incident.created}</p>
                           </div>
                         </div>
@@ -362,19 +362,19 @@ export default function IncidentResponse() {
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                           <div>
-                            <p className="text-gray-400">ID</p>
+                            <p className="text-blue-300">ID</p>
                             <p className="text-white">{incident.id}</p>
                           </div>
                           <div>
-                            <p className="text-gray-400">Assignee</p>
+                            <p className="text-blue-300">Assignee</p>
                             <p className="text-white">{incident.assignee}</p>
                           </div>
                           <div>
-                            <p className="text-gray-400">Affected Users</p>
+                            <p className="text-blue-300">Affected Users</p>
                             <p className="text-white">{incident.affectedUsers}</p>
                           </div>
                           <div>
-                            <p className="text-gray-400">Resolution Time</p>
+                            <p className="text-blue-300">Resolution Time</p>
                             <p className="text-white">{Math.floor((new Date(incident.resolved!) - new Date(incident.created)) / 1000 / 60)}m</p>
                           </div>
                         </div>
@@ -449,19 +449,19 @@ export default function IncidentResponse() {
                     </div>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                       <div>
-                        <p className="text-gray-400">Response Time</p>
+                        <p className="text-blue-300">Response Time</p>
                         <p className="text-white">{level.responseTime}</p>
                       </div>
                       <div>
-                        <p className="text-gray-400">Escalation Time</p>
+                        <p className="text-blue-300">Escalation Time</p>
                         <p className="text-white">{level.escalation}</p>
                       </div>
                       <div>
-                        <p className="text-gray-400">Contacts</p>
+                        <p className="text-blue-300">Contacts</p>
                         <p className="text-white">{level.contacts.join(", ")}</p>
                       </div>
                       <div>
-                        <p className="text-gray-400">Approval Required</p>
+                        <p className="text-blue-300">Approval Required</p>
                         <p className="text-white">{level.approval}</p>
                       </div>
                     </div>

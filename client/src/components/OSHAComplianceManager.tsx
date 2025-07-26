@@ -373,11 +373,11 @@ export default function OSHAComplianceManager() {
   };
 
   return (
-    <div className="p-6 space-y-6 bg-gray-900 min-h-screen text-white">
+    <div className="p-6 space-y-6 bg-blue-800 min-h-screen text-white">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-white">OSHA Compliance Manager</h1>
-          <p className="text-gray-400 mt-2">
+          <p className="text-blue-300 mt-2">
             General OSHA and ANSI compliance guidance for training documentation and management
           </p>
         </div>
@@ -408,7 +408,7 @@ export default function OSHAComplianceManager() {
         </TabsList>
 
         <TabsContent value="matrix" className="space-y-6">
-          <Card className="bg-gray-800 border-gray-700">
+          <Card className="bg-blue-700 border-blue-600">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-white">
                 <Shield className="w-5 h-5" />
@@ -418,12 +418,12 @@ export default function OSHAComplianceManager() {
             <CardContent>
               <div className="space-y-4">
                 {trainingMatrix.map((matrix) => (
-                  <div key={matrix.id} className="border border-gray-600 rounded-lg p-4">
+                  <div key={matrix.id} className="border border-blue-500 rounded-lg p-4">
                     <div className="flex justify-between items-start mb-3">
                       <div>
                         <h3 className="text-lg font-semibold text-white">{matrix.jobTitle}</h3>
-                        <p className="text-gray-400">Department: {matrix.department}</p>
-                        <p className="text-gray-400">Responsible Party: {matrix.responsibleParty}</p>
+                        <p className="text-blue-300">Department: {matrix.department}</p>
+                        <p className="text-blue-300">Responsible Party: {matrix.responsibleParty}</p>
                       </div>
                       <Badge variant="outline">{matrix.requiredTraining.length} Standards</Badge>
                     </div>
@@ -438,7 +438,7 @@ export default function OSHAComplianceManager() {
                               <div key={standard} className="text-sm">
                                 <div className="text-blue-400">{standard}</div>
                                 <div className="text-gray-300">{standardInfo?.title}</div>
-                                <div className="text-gray-500">
+                                <div className="text-blue-400">
                                   Frequency: {matrix.frequency[standard]} | Duration: {standardInfo?.duration}
                                 </div>
                               </div>
@@ -464,7 +464,7 @@ export default function OSHAComplianceManager() {
         </TabsContent>
 
         <TabsContent value="records" className="space-y-6">
-          <Card className="bg-gray-800 border-gray-700">
+          <Card className="bg-blue-700 border-blue-600">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-white">
                 <FileText className="w-5 h-5" />
@@ -474,11 +474,11 @@ export default function OSHAComplianceManager() {
             <CardContent>
               <div className="space-y-4">
                 {trainingRecords.map((record) => (
-                  <div key={record.id} className="border border-gray-600 rounded-lg p-4">
+                  <div key={record.id} className="border border-blue-500 rounded-lg p-4">
                     <div className="flex justify-between items-start mb-3">
                       <div>
                         <h3 className="text-lg font-semibold text-white">{record.employeeName}</h3>
-                        <p className="text-gray-400">Employee ID: {record.employeeId}</p>
+                        <p className="text-blue-300">Employee ID: {record.employeeId}</p>
                       </div>
                       <Badge 
                         variant={record.status === 'current' ? 'default' : 
@@ -530,7 +530,7 @@ export default function OSHAComplianceManager() {
         </TabsContent>
 
         <TabsContent value="gaps" className="space-y-6">
-          <Card className="bg-gray-800 border-gray-700">
+          <Card className="bg-blue-700 border-blue-600">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-white">
                 <AlertCircle className="w-5 h-5 text-red-500" />
@@ -540,12 +540,12 @@ export default function OSHAComplianceManager() {
             <CardContent>
               <div className="space-y-4">
                 {complianceGaps.map((gap) => (
-                  <div key={gap.id} className="border border-gray-600 rounded-lg p-4">
+                  <div key={gap.id} className="border border-blue-500 rounded-lg p-4">
                     <div className="flex justify-between items-start mb-3">
                       <div>
                         <h3 className="text-lg font-semibold text-white">{gap.description}</h3>
-                        <p className="text-gray-400">OSHA Standard: {gap.oshaStandard}</p>
-                        <p className="text-gray-400">Due Date: {gap.dueDate}</p>
+                        <p className="text-blue-300">OSHA Standard: {gap.oshaStandard}</p>
+                        <p className="text-blue-300">Due Date: {gap.dueDate}</p>
                       </div>
                       <Badge 
                         variant={gap.severity === 'critical' ? 'destructive' : 
@@ -594,7 +594,7 @@ export default function OSHAComplianceManager() {
         </TabsContent>
 
         <TabsContent value="retraining" className="space-y-6">
-          <Card className="bg-gray-800 border-gray-700">
+          <Card className="bg-blue-700 border-blue-600">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-white">
                 <Clock className="w-5 h-5" />
@@ -603,7 +603,7 @@ export default function OSHAComplianceManager() {
             </CardHeader>
             <CardContent>
               <div className="space-y-6">
-                <div className="border border-gray-600 rounded-lg p-4">
+                <div className="border border-blue-500 rounded-lg p-4">
                   <h3 className="text-lg font-semibold text-white mb-3">Automatic Retraining Triggers</h3>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
@@ -627,13 +627,13 @@ export default function OSHAComplianceManager() {
                   </div>
                 </div>
 
-                <div className="border border-gray-600 rounded-lg p-4">
+                <div className="border border-blue-500 rounded-lg p-4">
                   <h3 className="text-lg font-semibold text-white mb-3">Upcoming Retraining Schedule</h3>
                   <div className="space-y-2">
                     <div className="flex justify-between items-center p-3 bg-yellow-900/30 rounded">
                       <div>
                         <div className="font-medium text-white">Respiratory Protection - Maria Garcia</div>
-                        <div className="text-sm text-gray-400">Due: January 20, 2025 (Expired)</div>
+                        <div className="text-sm text-blue-300">Due: January 20, 2025 (Expired)</div>
                       </div>
                       <Button size="sm" className="bg-red-600 hover:bg-red-700">
                         Schedule Immediately
@@ -643,7 +643,7 @@ export default function OSHAComplianceManager() {
                     <div className="flex justify-between items-center p-3 bg-blue-900/30 rounded">
                       <div>
                         <div className="font-medium text-white">Fall Protection - Construction Team</div>
-                        <div className="text-sm text-gray-400">Due: March 15, 2025</div>
+                        <div className="text-sm text-blue-300">Due: March 15, 2025</div>
                       </div>
                       <Button size="sm" variant="outline">
                         Schedule Training
@@ -657,7 +657,7 @@ export default function OSHAComplianceManager() {
         </TabsContent>
 
         <TabsContent value="competency" className="space-y-6">
-          <Card className="bg-gray-800 border-gray-700">
+          <Card className="bg-blue-700 border-blue-600">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-white">
                 <Users className="w-5 h-5" />
@@ -666,7 +666,7 @@ export default function OSHAComplianceManager() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                <div className="border border-gray-600 rounded-lg p-4">
+                <div className="border border-blue-500 rounded-lg p-4">
                   <h3 className="text-lg font-semibold text-white mb-3">Competency Assessment Methods</h3>
                   <div className="grid md:grid-cols-3 gap-4">
                     <div>
@@ -699,7 +699,7 @@ export default function OSHAComplianceManager() {
                   </div>
                 </div>
 
-                <div className="border border-gray-600 rounded-lg p-4">
+                <div className="border border-blue-500 rounded-lg p-4">
                   <h3 className="text-lg font-semibold text-white mb-3">Employee Knowledge Verification</h3>
                   <p className="text-gray-300 mb-3">
                     Compliance verification may include employee interviews. Ensure employees can answer:
@@ -731,7 +731,7 @@ export default function OSHAComplianceManager() {
         </TabsContent>
 
         <TabsContent value="audit" className="space-y-6">
-          <Card className="bg-gray-800 border-gray-700">
+          <Card className="bg-blue-700 border-blue-600">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-white">
                 <CheckCircle2 className="w-5 h-5 text-green-500" />
@@ -780,7 +780,7 @@ export default function OSHAComplianceManager() {
                   </div>
                 </div>
 
-                <div className="border border-gray-600 rounded-lg p-4">
+                <div className="border border-blue-500 rounded-lg p-4">
                   <h3 className="text-lg font-semibold text-white mb-3">Documentation Access System</h3>
                   <p className="text-gray-300 mb-4">
                     All records organized and accessible for compliance verification:

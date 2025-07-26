@@ -109,7 +109,7 @@ export default function DashboardRecordsPage() {
         {/* Actions Bar */}
         <div className="flex justify-between items-center mb-6">
           <div className="flex items-center space-x-4">
-            <Badge variant="outline" className="text-white border-gray-400">
+            <Badge variant="outline" className="text-white border-blue-300">
               {records.length} Records
             </Badge>
             {error && (
@@ -124,7 +124,7 @@ export default function DashboardRecordsPage() {
               onClick={fetchRecords}
               disabled={isLoading}
               variant="outline"
-              className="border-gray-400 text-gray-300 hover:bg-gray-700"
+              className="border-blue-300 text-gray-300 hover:bg-blue-600"
             >
               <RefreshCw className={`w-4 h-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
               Refresh
@@ -142,7 +142,7 @@ export default function DashboardRecordsPage() {
         </div>
 
         {/* Records Table - equivalent to your Python template table */}
-        <Card className="bg-black/20 border-gray-700/50 backdrop-blur-sm">
+        <Card className="bg-black/20 border-blue-600/50 backdrop-blur-sm">
           <CardHeader>
             <CardTitle className="text-white flex items-center">
               <FileText className="w-5 h-5 mr-2" />
@@ -164,7 +164,7 @@ export default function DashboardRecordsPage() {
                 </Button>
               </div>
             ) : records.length === 0 ? (
-              <div className="text-center py-12 text-gray-400">
+              <div className="text-center py-12 text-blue-300">
                 No training records found. Upload some documents to get started.
               </div>
             ) : (
@@ -173,7 +173,7 @@ export default function DashboardRecordsPage() {
               <div className="overflow-x-auto">
                 <Table>
                   <TableHeader>
-                    <TableRow className="border-gray-600">
+                    <TableRow className="border-blue-500">
                       <TableHead className="text-gray-300 font-bold">ID</TableHead>
                       <TableHead className="text-gray-300 font-bold">Employee Name</TableHead>
                       <TableHead className="text-gray-300 font-bold">Course</TableHead>
@@ -183,7 +183,7 @@ export default function DashboardRecordsPage() {
                   </TableHeader>
                   <TableBody>
                     {records.map((record) => (
-                      <TableRow key={record.id} className="border-gray-700 hover:bg-gray-800/50">
+                      <TableRow key={record.id} className="border-blue-600 hover:bg-blue-700/50">
                         <TableCell className="text-white font-mono text-sm">
                           {record.id}
                         </TableCell>
@@ -213,7 +213,7 @@ export default function DashboardRecordsPage() {
         </Card>
 
         {/* Python Equivalent Note */}
-        <Card className="mt-8 bg-gray-900/50 border-gray-700/50">
+        <Card className="mt-8 bg-blue-800/50 border-blue-600/50">
           <CardContent className="p-4">
             <div className="flex items-center text-yellow-400 mb-2">
               <Brain className="w-4 h-4 mr-2" />
@@ -221,7 +221,7 @@ export default function DashboardRecordsPage() {
             </div>
             <p className="text-gray-300 text-sm">
               This TypeScript React component provides the same functionality as your Python Flask 
-              <code className="bg-gray-800 px-1 rounded mx-1">dashboard.html</code> template
+              <code className="bg-blue-700 px-1 rounded mx-1">dashboard.html</code> template
               with modern UI components, real-time data loading, and CSV export capabilities.
             </p>
           </CardContent>

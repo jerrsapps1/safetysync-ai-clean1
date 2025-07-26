@@ -124,7 +124,7 @@ export default function HelpDeskManagement() {
       case 'high': return 'bg-orange-100 text-orange-800 border-orange-300';
       case 'medium': return 'bg-yellow-100 text-yellow-800 border-yellow-300';
       case 'low': return 'bg-green-100 text-green-800 border-green-300';
-      default: return 'bg-gray-100 text-gray-800 border-gray-300';
+      default: return 'bg-gray-100 text-blue-700 border-gray-300';
     }
   };
 
@@ -133,8 +133,8 @@ export default function HelpDeskManagement() {
       case 'open': return 'bg-blue-100 text-blue-800 border-blue-300';
       case 'in_progress': return 'bg-purple-100 text-purple-800 border-purple-300';
       case 'resolved': return 'bg-green-100 text-green-800 border-green-300';
-      case 'closed': return 'bg-gray-100 text-gray-800 border-gray-300';
-      default: return 'bg-gray-100 text-gray-800 border-gray-300';
+      case 'closed': return 'bg-gray-100 text-blue-700 border-gray-300';
+      default: return 'bg-gray-100 text-blue-700 border-gray-300';
     }
   };
 
@@ -169,7 +169,7 @@ export default function HelpDeskManagement() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Open Tickets</p>
+                <p className="text-sm font-medium text-blue-500">Open Tickets</p>
                 <p className="text-2xl font-bold text-blue-600">{openTickets.length}</p>
               </div>
               <AlertCircle className="w-8 h-8 text-blue-600" />
@@ -181,7 +181,7 @@ export default function HelpDeskManagement() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">In Progress</p>
+                <p className="text-sm font-medium text-blue-500">In Progress</p>
                 <p className="text-2xl font-bold text-purple-600">{inProgressTickets.length}</p>
               </div>
               <Clock className="w-8 h-8 text-purple-600" />
@@ -193,7 +193,7 @@ export default function HelpDeskManagement() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Resolved</p>
+                <p className="text-sm font-medium text-blue-500">Resolved</p>
                 <p className="text-2xl font-bold text-green-600">{resolvedTickets.length}</p>
               </div>
               <CheckCircle className="w-8 h-8 text-green-600" />
@@ -205,7 +205,7 @@ export default function HelpDeskManagement() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">SYNC Escalations</p>
+                <p className="text-sm font-medium text-blue-500">SYNC Escalations</p>
                 <p className="text-2xl font-bold text-orange-600">{syncEscalations.length}</p>
               </div>
               <Brain className="w-8 h-8 text-orange-600" />
@@ -225,7 +225,7 @@ export default function HelpDeskManagement() {
         <CardContent>
           <div className="space-y-4">
             {tickets.length === 0 ? (
-              <div className="text-center py-8 text-gray-500">
+              <div className="text-center py-8 text-blue-400">
                 No help desk tickets found
               </div>
             ) : (
@@ -252,9 +252,9 @@ export default function HelpDeskManagement() {
                           </Badge>
                         )}
                       </div>
-                      <h3 className="font-medium text-gray-900 mb-1">{ticket.title}</h3>
-                      <p className="text-sm text-gray-600 mb-2">{ticket.description}</p>
-                      <div className="flex items-center gap-4 text-xs text-gray-500">
+                      <h3 className="font-medium text-blue-800 mb-1">{ticket.title}</h3>
+                      <p className="text-sm text-blue-500 mb-2">{ticket.description}</p>
+                      <div className="flex items-center gap-4 text-xs text-blue-400">
                         <span>Created: {new Date(ticket.createdAt).toLocaleDateString()}</span>
                         {ticket.assignedTo && (
                           <span className="flex items-center gap-1">

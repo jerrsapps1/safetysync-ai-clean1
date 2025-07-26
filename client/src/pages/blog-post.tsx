@@ -311,8 +311,8 @@ export default function BlogPostPage() {
       <div className="min-h-screen bg-gray-50 py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">Article Not Found</h1>
-            <p className="text-gray-600 mb-8">The requested blog post could not be found.</p>
+            <h1 className="text-4xl font-bold text-blue-800 mb-4">Article Not Found</h1>
+            <p className="text-blue-500 mb-8">The requested blog post could not be found.</p>
             <Link href="/blog">
               <Button>
                 <ArrowLeft className="w-4 h-4 mr-2" />
@@ -339,12 +339,12 @@ export default function BlogPostPage() {
           
           <div className="mb-4">
             <Badge className="mb-4">{post.category}</Badge>
-            <h1 className="text-4xl font-bold text-gray-900 mb-4 leading-tight">
+            <h1 className="text-4xl font-bold text-blue-800 mb-4 leading-tight">
               {post.title}
             </h1>
           </div>
           
-          <div className="flex items-center justify-between text-sm text-gray-600 mb-6">
+          <div className="flex items-center justify-between text-sm text-blue-500 mb-6">
             <div className="flex items-center space-x-4">
               <div className="flex items-center">
                 <User className="w-4 h-4 mr-1" />
@@ -414,7 +414,7 @@ export default function BlogPostPage() {
         <Card className="bg-blue-50 border-blue-200">
           <CardContent className="p-6 text-center">
             <h3 className="text-xl font-semibold mb-2">Ready to Transform Your Safety Management?</h3>
-            <p className="text-gray-600 mb-4">
+            <p className="text-blue-500 mb-4">
               Discover how SafetySync.AI can help automate your compliance processes and improve safety outcomes.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">

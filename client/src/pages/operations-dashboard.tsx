@@ -193,7 +193,7 @@ export default function OperationsDashboard() {
       case "error":
         return "bg-red-500";
       default:
-        return "bg-gray-500";
+        return "bg-blue-400";
     }
   };
 
@@ -206,7 +206,7 @@ export default function OperationsDashboard() {
       case "info":
         return <Info className="w-4 h-4 text-blue-400" />;
       default:
-        return <Bell className="w-4 h-4 text-gray-400" />;
+        return <Bell className="w-4 h-4 text-blue-300" />;
     }
   };
 
@@ -321,7 +321,7 @@ export default function OperationsDashboard() {
                           {action.status}
                         </Badge>
                       </div>
-                      <ExternalLink className="w-4 h-4 text-gray-400" />
+                      <ExternalLink className="w-4 h-4 text-blue-300" />
                     </div>
                   </CardContent>
                 </Card>
@@ -394,7 +394,7 @@ export default function OperationsDashboard() {
                             </Badge>
                           </div>
                           <div className="mt-2">
-                            <p className="text-xs text-gray-400">Target: {metric.target}</p>
+                            <p className="text-xs text-blue-300">Target: {metric.target}</p>
                           </div>
                         </CardContent>
                       </Card>

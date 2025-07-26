@@ -53,7 +53,7 @@ export function EmployeeBadge({ isVerified, variant = 'default', className = '' 
       className={`inline-flex items-center gap-1 ${
         isVerified 
           ? 'bg-emerald-600 hover:bg-emerald-700 text-white' 
-          : 'bg-gray-600 hover:bg-gray-700 text-white'
+          : 'bg-blue-500 hover:bg-blue-600 text-white'
       } ${className}`}
     >
       {isVerified ? (

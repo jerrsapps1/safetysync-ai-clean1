@@ -283,7 +283,7 @@ export default function LeadMagnetsPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Industry Filter */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+          <h2 className="text-2xl font-bold text-blue-800 mb-6 text-center">
             Choose Your Industry
           </h2>
           <div className="flex flex-wrap justify-center gap-4">
@@ -306,7 +306,7 @@ export default function LeadMagnetsPage() {
 
         {/* Featured Resources */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+          <h2 className="text-3xl font-bold text-blue-800 mb-8 text-center">
             Most Popular Downloads
           </h2>
           
@@ -330,7 +330,7 @@ export default function LeadMagnetsPage() {
                         <Badge variant="outline" className="mb-2">
                           {magnet.type.charAt(0).toUpperCase() + magnet.type.slice(1)}
                         </Badge>
-                        <div className="text-sm text-gray-500">
+                        <div className="text-sm text-blue-400">
                           {magnet.downloadCount.toLocaleString()} downloads
                         </div>
                       </div>
@@ -339,7 +339,7 @@ export default function LeadMagnetsPage() {
                     <CardTitle className="text-xl leading-tight mb-3">
                       {magnet.title}
                     </CardTitle>
-                    <p className="text-gray-600 text-sm mb-4">
+                    <p className="text-blue-500 text-sm mb-4">
                       {magnet.description}
                     </p>
                   </CardHeader>
@@ -347,7 +347,7 @@ export default function LeadMagnetsPage() {
                   <CardContent>
                     <div className="mb-4">
                       <h4 className="font-semibold text-sm mb-2">What's Included:</h4>
-                      <ul className="space-y-1 text-sm text-gray-600">
+                      <ul className="space-y-1 text-sm text-blue-500">
                         {magnet.preview.slice(0, 3).map((item, index) => (
                           <li key={index} className="flex items-start">
                             <span className="mr-2">{item}</span>
@@ -356,7 +356,7 @@ export default function LeadMagnetsPage() {
                       </ul>
                     </div>
                     
-                    <div className="flex items-center justify-between mb-4 text-sm text-gray-500">
+                    <div className="flex items-center justify-between mb-4 text-sm text-blue-400">
                       <span>{magnet.pages} pages</span>
                       <span className="font-semibold text-green-600">Value: {magnet.value}</span>
                     </div>
@@ -406,7 +406,7 @@ export default function LeadMagnetsPage() {
 
         {/* All Resources */}
         <section>
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+          <h2 className="text-3xl font-bold text-blue-800 mb-8 text-center">
             All Compliance Resources
           </h2>
           
@@ -419,13 +419,13 @@ export default function LeadMagnetsPage() {
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center">
                         <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mr-3">
-                          <IconComponent className="w-5 h-5 text-gray-600" />
+                          <IconComponent className="w-5 h-5 text-blue-500" />
                         </div>
                         <Badge variant="outline" className="text-xs">
                           {magnet.type.charAt(0).toUpperCase() + magnet.type.slice(1)}
                         </Badge>
                       </div>
-                      <div className="text-xs text-gray-500">
+                      <div className="text-xs text-blue-400">
                         {magnet.downloadCount.toLocaleString()} downloads
                       </div>
                     </div>
@@ -433,13 +433,13 @@ export default function LeadMagnetsPage() {
                     <CardTitle className="text-lg leading-tight mb-2">
                       {magnet.title}
                     </CardTitle>
-                    <p className="text-gray-600 text-sm">
+                    <p className="text-blue-500 text-sm">
                       {magnet.description}
                     </p>
                   </CardHeader>
                   
                   <CardContent className="pt-0">
-                    <div className="flex items-center justify-between mb-3 text-sm text-gray-500">
+                    <div className="flex items-center justify-between mb-3 text-sm text-blue-400">
                       <span>{magnet.pages} pages</span>
                       <span className="font-semibold text-green-600">{magnet.value}</span>
                     </div>

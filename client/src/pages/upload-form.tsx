@@ -94,7 +94,7 @@ export default function UploadFormPage() {
         </div>
 
         {/* Upload Form - Equivalent to your Python Flask upload_form.html */}
-        <Card className="bg-black/20 border-gray-700/50 backdrop-blur-sm">
+        <Card className="bg-black/20 border-blue-600/50 backdrop-blur-sm">
           <CardHeader>
             <CardTitle className="text-white flex items-center">
               <Upload className="w-5 h-5 mr-2" />
@@ -116,7 +116,7 @@ export default function UploadFormPage() {
                 type="file"
                 accept=".pdf"
                 onChange={handleFileSelect}
-                className="bg-gray-800 border-gray-600 text-white file:bg-emerald-600 file:text-white file:border-0"
+                className="bg-blue-700 border-blue-500 text-white file:bg-emerald-600 file:text-white file:border-0"
               />
               {selectedFile && (
                 <div className="flex items-center text-emerald-400 text-sm">
@@ -147,7 +147,7 @@ export default function UploadFormPage() {
 
             {/* Results Display */}
             {uploadResult && (
-              <Card className="bg-gray-800/50 border-gray-600">
+              <Card className="bg-blue-700/50 border-blue-500">
                 <CardHeader>
                   <CardTitle className="text-emerald-400 flex items-center">
                     <CheckCircle className="w-5 h-5 mr-2" />
@@ -157,21 +157,21 @@ export default function UploadFormPage() {
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
-                      <span className="text-gray-400">Record ID:</span>
+                      <span className="text-blue-300">Record ID:</span>
                       <p className="text-white font-mono">{uploadResult.id}</p>
                     </div>
                     <div>
-                      <span className="text-gray-400">Confidence:</span>
+                      <span className="text-blue-300">Confidence:</span>
                       <p className="text-emerald-400">{uploadResult.confidence}%</p>
                     </div>
                   </div>
                   
                   {uploadResult.data?.employees && (
                     <div>
-                      <span className="text-gray-400">Extracted Employees:</span>
+                      <span className="text-blue-300">Extracted Employees:</span>
                       <div className="mt-2 space-y-1">
                         {uploadResult.data.employees.map((emp: any, idx: number) => (
-                          <div key={idx} className="text-white text-sm bg-gray-700/50 p-2 rounded">
+                          <div key={idx} className="text-white text-sm bg-blue-600/50 p-2 rounded">
                             {emp.name} {emp.id && `(${emp.id})`}
                           </div>
                         ))}
@@ -181,7 +181,7 @@ export default function UploadFormPage() {
 
                   {uploadResult.data?.trainingTitle && (
                     <div>
-                      <span className="text-gray-400">Training:</span>
+                      <span className="text-blue-300">Training:</span>
                       <p className="text-white">{uploadResult.data.trainingTitle}</p>
                     </div>
                   )}
@@ -194,14 +194,14 @@ export default function UploadFormPage() {
               <Button
                 onClick={() => window.location.href = '/api/records'}
                 variant="outline"
-                className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                className="border-blue-500 text-gray-300 hover:bg-blue-600"
               >
                 View All Records
               </Button>
               <Button
                 onClick={() => window.location.href = '/api/dashboard'}
                 variant="outline"
-                className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                className="border-blue-500 text-gray-300 hover:bg-blue-600"
               >
                 Dashboard
               </Button>
@@ -211,7 +211,7 @@ export default function UploadFormPage() {
         </Card>
 
         {/* Python Equivalent Note */}
-        <Card className="mt-8 bg-gray-900/50 border-gray-700/50">
+        <Card className="mt-8 bg-blue-800/50 border-blue-600/50">
           <CardContent className="p-4">
             <div className="flex items-center text-yellow-400 mb-2">
               <AlertCircle className="w-4 h-4 mr-2" />
@@ -219,7 +219,7 @@ export default function UploadFormPage() {
             </div>
             <p className="text-gray-300 text-sm">
               This TypeScript React page provides the same functionality as your Python Flask 
-              <code className="bg-gray-800 px-1 rounded mx-1">render_template("upload_form.html")</code>
+              <code className="bg-blue-700 px-1 rounded mx-1">render_template("upload_form.html")</code>
               with modern UI components and real-time processing feedback.
             </p>
           </CardContent>

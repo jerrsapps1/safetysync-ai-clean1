@@ -101,9 +101,9 @@ const EmployeeManagementWidget: React.FC = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'active': return 'bg-green-100 text-green-700';
-      case 'inactive': return 'bg-gray-100 text-gray-700';
+      case 'inactive': return 'bg-gray-100 text-blue-600';
       case 'on-leave': return 'bg-yellow-100 text-yellow-700';
-      default: return 'bg-gray-100 text-gray-700';
+      default: return 'bg-gray-100 text-blue-600';
     }
   };
 
@@ -112,7 +112,7 @@ const EmployeeManagementWidget: React.FC = () => {
       case 'current': return 'bg-green-100 text-green-700';
       case 'expired': return 'bg-red-100 text-red-700';
       case 'expiring': return 'bg-yellow-100 text-yellow-700';
-      default: return 'bg-gray-100 text-gray-700';
+      default: return 'bg-gray-100 text-blue-600';
     }
   };
 
@@ -192,14 +192,14 @@ const EmployeeManagementWidget: React.FC = () => {
                         </div>
                         <div>
                           <h4 className="font-semibold">{employee.name}</h4>
-                          <p className="text-sm text-gray-600">{employee.position} • {employee.department}</p>
-                          <p className="text-sm text-gray-500">{employee.email}</p>
+                          <p className="text-sm text-blue-500">{employee.position} • {employee.department}</p>
+                          <p className="text-sm text-blue-400">{employee.email}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-3">
                         <div className="text-center">
                           <div className="text-lg font-semibold">{getComplianceScore(employee)}%</div>
-                          <div className="text-xs text-gray-500">Compliance</div>
+                          <div className="text-xs text-blue-400">Compliance</div>
                         </div>
                         <Badge className={getStatusColor(employee.status)}>
                           {employee.status.charAt(0).toUpperCase() + employee.status.slice(1)}
@@ -235,7 +235,7 @@ const EmployeeManagementWidget: React.FC = () => {
                       <div className="flex justify-between items-center">
                         <div>
                           <h4 className="font-semibold">{employee.name}</h4>
-                          <p className="text-sm text-gray-600">{employee.department}</p>
+                          <p className="text-sm text-blue-500">{employee.department}</p>
                         </div>
                         <Badge className={getComplianceScore(employee) >= 90 ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'}>
                           {employee.certifications.filter(cert => cert.status === 'current').length}/{employee.certifications.length} Current
@@ -280,13 +280,13 @@ const EmployeeManagementWidget: React.FC = () => {
                       <div className="flex items-center justify-between mb-3">
                         <div>
                           <h4 className="font-semibold">{employee.name}</h4>
-                          <p className="text-sm text-gray-600">{employee.department}</p>
+                          <p className="text-sm text-blue-500">{employee.department}</p>
                         </div>
                         <div className="text-right">
                           <div className="text-lg font-semibold">
                             {employee.trainingCompleted}/{employee.trainingRequired}
                           </div>
-                          <div className="text-sm text-gray-500">Training Complete</div>
+                          <div className="text-sm text-blue-400">Training Complete</div>
                         </div>
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
@@ -330,15 +330,15 @@ const EmployeeManagementWidget: React.FC = () => {
                   <CardContent>
                     <div className="space-y-3">
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Total Employees</span>
+                        <span className="text-blue-500">Total Employees</span>
                         <span className="font-semibold">{employees.length}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Active</span>
+                        <span className="text-blue-500">Active</span>
                         <span className="font-semibold">{employees.filter(e => e.status === 'active').length}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Avg. Compliance</span>
+                        <span className="text-blue-500">Avg. Compliance</span>
                         <span className="font-semibold">
                           {Math.round(employees.reduce((acc, emp) => acc + getComplianceScore(emp), 0) / employees.length)}%
                         </span>

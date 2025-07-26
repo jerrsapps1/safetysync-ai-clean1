@@ -248,7 +248,7 @@ export default function DNSManagement() {
               </Alert>
               
               <div className="space-y-2">
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-blue-500">
                   Your email service is already configured with Microsoft 365 through GoDaddy. 
                   Make sure to add the MX and SPF records shown in the DNS Records tab.
                 </p>
@@ -286,11 +286,11 @@ export default function DNSManagement() {
                         </code>
                         {getStatusBadge(record.status || "pending")}
                       </div>
-                      <div className="text-sm text-gray-600 mb-1">
+                      <div className="text-sm text-blue-500 mb-1">
                         <strong>Value:</strong> {record.value}
                         {record.priority && <span> (Priority: {record.priority})</span>}
                       </div>
-                      <div className="text-xs text-gray-500">{record.comment}</div>
+                      <div className="text-xs text-blue-400">{record.comment}</div>
                     </div>
                     <Button
                       variant="ghost"
@@ -328,7 +328,7 @@ export default function DNSManagement() {
                       <service.icon className="w-5 h-5" />
                       <h3 className="font-medium">{service.name}</h3>
                     </div>
-                    <p className="text-sm text-gray-600 mb-3">{service.description}</p>
+                    <p className="text-sm text-blue-500 mb-3">{service.description}</p>
                     <div className="flex items-center gap-2">
                       <Input
                         placeholder={`Enter ${service.name} verification code`}
@@ -386,7 +386,7 @@ export default function DNSManagement() {
                   </Button>
                 </div>
                 
-                <div className="text-sm text-gray-600">
+                <div className="text-sm text-blue-500">
                   <h4 className="font-medium mb-2">Testing Commands:</h4>
                   <code className="block bg-gray-100 p-2 rounded text-xs">
                     dig safetysync.ai<br/>
@@ -406,7 +406,7 @@ export default function DNSManagement() {
               <Mail className="w-5 h-5" />
               Email Testing
             </h3>
-            <p className="text-gray-600 mb-6">
+            <p className="text-blue-500 mb-6">
               Test your Microsoft 365 email setup after DNS records have propagated (usually 15-30 minutes).
             </p>
             
@@ -456,7 +456,7 @@ function EmailTestForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label htmlFor="to" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="to" className="block text-sm font-medium text-blue-600 mb-1">
           Send To Email
         </label>
         <input
@@ -471,7 +471,7 @@ function EmailTestForm() {
       </div>
 
       <div>
-        <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="subject" className="block text-sm font-medium text-blue-600 mb-1">
           Subject
         </label>
         <input
@@ -484,7 +484,7 @@ function EmailTestForm() {
       </div>
 
       <div>
-        <label htmlFor="testType" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="testType" className="block text-sm font-medium text-blue-600 mb-1">
           Email Template
         </label>
         <select
