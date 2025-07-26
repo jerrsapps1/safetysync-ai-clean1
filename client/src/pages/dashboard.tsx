@@ -366,7 +366,7 @@ export default function Dashboard() {
                 </div>
                 <div>
                   <h3 className="font-medium text-white">AI-Powered Setup Guide</h3>
-                  <p className="text-sm text-blue-200">Follow the intelligent workflow: Employees → Training → Branding → Reports for optimal setup</p>
+                  <p className="text-sm text-white/80">Follow the intelligent workflow: Employees → Training → Branding → Reports for optimal setup</p>
                 </div>
               </div>
               <Link href="/user-guide">
@@ -469,7 +469,7 @@ export default function Dashboard() {
                 {stats.complianceScore}%
               </div>
             </div>
-            <p className="text-sm text-blue-500 mt-2">
+            <p className="text-sm text-white/70 mt-2">
               Excellent compliance! You're above industry average.
             </p>
           </CardContent>
@@ -544,14 +544,14 @@ export default function Dashboard() {
                     </div>
                     <div>
                       <p className="font-medium">Mike Chen's Hazard Communication training due in 15 days</p>
-                      <p className="text-sm text-blue-500">Yesterday</p>
+                      <p className="text-sm text-white/60">Yesterday</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 p-3 bg-red-50 rounded-lg">
                     <AlertTriangle className="w-5 h-5 text-red-600" />
                     <div>
                       <p className="font-medium">Lisa Rodriguez's Fall Protection certification expired</p>
-                      <p className="text-sm text-blue-500">3 days ago</p>
+                      <p className="text-sm text-white/60">3 days ago</p>
                     </div>
                   </div>
                 </div>
@@ -602,11 +602,11 @@ export default function Dashboard() {
                   <div className="border-t pt-3">
                     <h4 className="text-sm font-medium mb-2">AI Recommendations</h4>
                     <div className="space-y-2 text-xs">
-                      <p className="text-blue-500">• Upload missing practical evaluations for 3 forklift operators</p>
-                      <p className="text-blue-500">• Schedule annual evaluation uploads for respiratory protection training</p>
-                      <p className="text-blue-500">• Prioritize renewal for 3 expired fall protection certifications</p>
-                      <p className="text-blue-500">• Schedule mandatory safety meeting for Manufacturing team</p>
-                      <p className="text-blue-500">• Review incident reports from Q4 2024</p>
+                      <p className="text-white/80">• Upload missing practical evaluations for 3 forklift operators</p>
+                      <p className="text-white/80">• Schedule annual evaluation uploads for respiratory protection training</p>
+                      <p className="text-white/80">• Prioritize renewal for 3 expired fall protection certifications</p>
+                      <p className="text-white/80">• Schedule mandatory safety meeting for Manufacturing team</p>
+                      <p className="text-white/80">• Review incident reports from Q4 2024</p>
                     </div>
                   </div>
                 </div>
@@ -627,7 +627,7 @@ export default function Dashboard() {
                     <div key={record.id} className="flex items-center justify-between p-3 border rounded-lg">
                       <div>
                         <p className="font-medium">{record.employeeName}</p>
-                        <p className="text-sm text-blue-500">{record.training}</p>
+                        <p className="text-sm text-white/70">{record.training}</p>
                       </div>
                       <div className="text-right">
                         <p className="text-sm font-medium">{record.dueDate}</p>
@@ -734,14 +734,14 @@ export default function Dashboard() {
                   {records.map(record => (
                     <div key={record.id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-blue-50">
                       <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                          <span className="text-sm font-medium text-blue-600">
+                        <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                          <span className="text-sm font-medium text-white">
                             {record.employeeName.split(' ').map(n => n[0]).join('')}
                           </span>
                         </div>
                         <div>
-                          <p className="font-medium">{record.employeeName}</p>
-                          <p className="text-sm text-blue-500">{record.training}</p>
+                          <p className="font-medium text-white">{record.employeeName}</p>
+                          <p className="text-sm text-white/70">{record.training}</p>
                           <div className="flex items-center space-x-2 mt-1">
                             <Badge variant="outline" className="text-xs">OSHA 10</Badge>
                             <Badge variant="outline" className="text-xs">Safety Training</Badge>
@@ -750,7 +750,7 @@ export default function Dashboard() {
                       </div>
                       <div className="flex items-center gap-4">
                         <div className="text-center">
-                          <p className="text-xs text-blue-400">Documents</p>
+                          <p className="text-xs text-white/60">Documents</p>
                           <div className="flex space-x-1 mt-1">
                             <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
                               <FileText className="w-3 h-3 text-blue-600" />
@@ -1046,7 +1046,7 @@ export default function Dashboard() {
                         <div className="flex items-start justify-between mb-4">
                           <div className="flex-1">
                             <h3 className="font-medium text-lg mb-2">{training.name}</h3>
-                            <div className="flex flex-wrap gap-4 text-sm text-blue-500 mb-3">
+                            <div className="flex flex-wrap gap-4 text-sm text-white/70 mb-3">
                               <span className="flex items-center gap-1">
                                 <Clock className="w-3 h-3" />
                                 {training.duration}
@@ -1066,10 +1066,10 @@ export default function Dashboard() {
                             </div>
                           </div>
                           <div className="text-right">
-                            <div className="text-2xl font-bold text-blue-600 mb-1">
+                            <div className="text-2xl font-bold text-white mb-1">
                               {training.completed}/{training.enrolled}
                             </div>
-                            <div className="text-sm text-blue-500">Completed</div>
+                            <div className="text-sm text-white/70">Completed</div>
                           </div>
                         </div>
                         
@@ -1086,7 +1086,7 @@ export default function Dashboard() {
                             {training.syllabus.map((item, idx) => (
                               <div key={idx} className="flex items-start gap-2 text-sm">
                                 <CheckCircle className="w-3 h-3 text-green-600 mt-0.5 flex-shrink-0" />
-                                <span className="text-blue-600">{item}</span>
+                                <span className="text-white/80">{item}</span>
                               </div>
                             ))}
                           </div>
