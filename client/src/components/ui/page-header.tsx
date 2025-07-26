@@ -12,7 +12,7 @@ import {
   X,
   ArrowRight
 } from "lucide-react";
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 
 interface PageHeaderProps {
   // No props needed - this will be the same navigation for all pages
@@ -23,11 +23,11 @@ export function PageHeader({}: PageHeaderProps) {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   const navigationItems = [
-    { name: "Home", href: "/", icon: Home },
-    { name: "Case Studies", href: "/case-studies", icon: FileText },
-    { name: "For HR Teams", href: "/hr", icon: Users },
-    { name: "Pricing", href: "/pricing", icon: DollarSign },
-    { name: "Contact", href: "/contact", icon: Phone },
+    { name: "Home", to: "/", icon: Home },
+    { name: "Case Studies", to: "/case-studies", icon: FileText },
+    { name: "For HR Teams", to: "/hr", icon: Users },
+    { name: "Pricing", to: "/pricing", icon: DollarSign },
+    { name: "Contact", to: "/contact", icon: Phone },
   ];
 
   return (
@@ -56,7 +56,7 @@ export function PageHeader({}: PageHeaderProps) {
       >
         {/* Header */}
         <div className="flex items-center justify-between h-16 px-4 border-b border-white/10">
-          <Link href="/">
+          <Link to="/">
             <div className="flex items-center space-x-3 cursor-pointer">
               <SafetySyncIcon size={32} />
               {isHovered && (
@@ -73,7 +73,7 @@ export function PageHeader({}: PageHeaderProps) {
 
         {/* Client Login Button - At Top */}
         <div className="mt-6 px-2">
-          <Link href="/client-portal">
+          <Link to="/client-portal">
             <Button 
               className={`
                 ${!isHovered ? 'w-12 h-12 p-0 justify-center' : 'w-full justify-start px-3'} 
@@ -95,7 +95,7 @@ export function PageHeader({}: PageHeaderProps) {
             {navigationItems.map((item) => {
               const IconComponent = item.icon;
               return (
-                <Link key={item.name} href={item.href}>
+                <Link key={item.name} to={item.to}>
                   <div 
                     className="flex items-center px-3 py-3 text-sm font-medium text-white rounded-lg tech-surface hover:text-violet-400 group relative cursor-pointer"
                     onClick={() => setIsMobileOpen(false)}
