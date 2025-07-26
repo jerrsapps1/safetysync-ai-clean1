@@ -390,7 +390,7 @@ export default function ClientPortal() {
   // Show loading state
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-sky-400 via-sky-300 to-blue-300 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
         <div className="text-center">
           <SafetySyncIcon size={64} className="mx-auto mb-4 animate-pulse" />
           <p className="text-white text-lg">Loading...</p>
@@ -402,7 +402,7 @@ export default function ClientPortal() {
   // Show client portal with sign-in form in top right corner
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-400 via-sky-300 to-blue-300 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(120,119,198,0.3),transparent_50%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(59,130,246,0.2),transparent_50%)]" />
@@ -439,7 +439,7 @@ export default function ClientPortal() {
                     placeholder="Username"
                     value={loginUsername}
                     onChange={(e) => setLoginUsername(e.target.value)}
-                    className="w-24 h-8 text-xs bg-blue-900/60 border-violet-500/30 text-white placeholder-blue-300 focus:border-sky-300 focus:ring-blue-400/50"
+                    className="w-24 h-8 text-xs bg-blue-900/60 border-violet-500/30 text-white placeholder-blue-300 focus:border-blue-400 focus:ring-blue-400/50"
                     disabled={isAuthenticating}
                     autoComplete="username"
                   />
@@ -449,7 +449,7 @@ export default function ClientPortal() {
                       placeholder="Password"
                       value={loginPassword}
                       onChange={(e) => setLoginPassword(e.target.value)}
-                      className="w-24 h-8 text-xs bg-blue-900/60 border-violet-500/30 text-white placeholder-blue-300 pr-6 focus:border-sky-300 focus:ring-blue-400/50"
+                      className="w-24 h-8 text-xs bg-blue-900/60 border-violet-500/30 text-white placeholder-blue-300 pr-6 focus:border-blue-400 focus:ring-blue-400/50"
                       disabled={isAuthenticating}
                       autoComplete="current-password"
                     />
@@ -515,7 +515,7 @@ export default function ClientPortal() {
                       placeholder="Username"
                       value={loginUsername}
                       onChange={(e) => setLoginUsername(e.target.value)}
-                      className="w-28 md:w-40 h-8 text-sm bg-blue-900/60 border-violet-500/30 text-white placeholder-blue-300 focus:border-sky-300 focus:ring-blue-400/50"
+                      className="w-28 md:w-40 h-8 text-sm bg-blue-900/60 border-violet-500/30 text-white placeholder-blue-300 focus:border-blue-400 focus:ring-blue-400/50"
                       disabled={isAuthenticating}
                       autoComplete="username"
                     />
@@ -525,7 +525,7 @@ export default function ClientPortal() {
                         placeholder="Password"
                         value={loginPassword}
                         onChange={(e) => setLoginPassword(e.target.value)}
-                        className="w-28 md:w-40 h-8 text-sm bg-blue-900/60 border-violet-500/30 text-white placeholder-blue-300 pr-8 focus:border-sky-300 focus:ring-blue-400/50"
+                        className="w-28 md:w-40 h-8 text-sm bg-blue-900/60 border-violet-500/30 text-white placeholder-blue-300 pr-8 focus:border-blue-400 focus:ring-blue-400/50"
                         disabled={isAuthenticating}
                         autoComplete="current-password"
                       />

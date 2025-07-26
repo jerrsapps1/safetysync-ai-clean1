@@ -5,11 +5,11 @@ import { Award, CreditCard, Download, Eye, Shield, Star } from "lucide-react";
 
 export default function CertificateServicesPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-400 via-sky-300 to-blue-300 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 text-white">
       {/* Hero Section */}
       <section className="relative py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-blue-600/20 backdrop-blur-sm border border-sky-300/30 rounded-full px-4 py-2 mb-6">
+          <div className="inline-flex items-center gap-2 bg-blue-600/20 backdrop-blur-sm border border-blue-400/30 rounded-full px-4 py-2 mb-6">
             <Award className="w-5 h-5 text-blue-400" />
             <span className="text-white font-medium">Professional Certificate Generation</span>
           </div>
@@ -99,7 +99,7 @@ export default function CertificateServicesPage() {
           </div>
 
           <div className="grid md:grid-cols-4 gap-6 mb-12">
-            <Card className="bg-gradient-to-br from-blue-600/20 to-purple-600/20 backdrop-blur-sm border-sky-300/30 text-white">
+            <Card className="bg-gradient-to-br from-blue-600/20 to-purple-600/20 backdrop-blur-sm border-blue-400/30 text-white">
               <CardHeader className="text-center">
                 <CardTitle className="text-white">Essential</CardTitle>
                 <div className="text-2xl font-bold">$49/month</div>
@@ -148,7 +148,7 @@ export default function CertificateServicesPage() {
             </Card>
           </div>
 
-          <div className="bg-blue-900/30 backdrop-blur-sm border border-sky-300/30 rounded-lg p-6 text-center">
+          <div className="bg-blue-900/30 backdrop-blur-sm border border-blue-400/30 rounded-lg p-6 text-center">
             <h3 className="text-xl font-semibold mb-2">Billing Information</h3>
             <p className="text-white">
               Additional certificates and digital cards are automatically billed to your monthly subscription at $5.95 each. 
