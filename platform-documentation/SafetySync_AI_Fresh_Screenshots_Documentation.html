@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,373 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SafetySync.AI Platform Documentation - Fresh Screenshots</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(to bottom right, #2563eb, #3b82f6, #60a5fa);
             min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            color: white;
         }
-
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
         }
-
         .header {
             text-align: center;
-            margin-bottom: 3rem;
-            background: rgba(255, 255, 255, 0.1);
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
             backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-
-        .header h1 {
-            color: white;
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .header .subtitle {
-            color: #e0f2fe;
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .header .timestamp {
-            color: #bbdefb;
-            font-size: 0.9rem;
-        }
-
-        .fresh-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-top: 1rem;
-            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
-        }
-
-        .overview {
-            background: rgba(255, 255, 255, 0.95);
+        .section {
+            margin-bottom: 40px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            padding: 30px;
             backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 3rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
-
-        .overview h2 {
-            color: #1e40af;
-            margin-bottom: 1rem;
-            font-size: 1.8rem;
+        .section h2 {
+            color: white;
+            border-bottom: 2px solid #60a5fa;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
         }
-
-        .overview p {
-            margin-bottom: 1rem;
-            color: #475569;
-        }
-
-        .features-grid {
+        .screenshot-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
+            gap: 20px;
         }
-
-        .feature-item {
-            background: rgba(37, 99, 235, 0.1);
-            padding: 1rem;
-            border-radius: 8px;
-            border-left: 4px solid #2563eb;
-        }
-
-        .documentation-section {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-
-        .section-title {
-            color: #1e40af;
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 3px solid #3b82f6;
-        }
-
-        .pages-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 2rem;
-        }
-
-        .page-card {
-            background: white;
+        .screenshot-item {
+            background: rgba(0, 0, 0, 0.3);
             border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 20px;
+            text-align: center;
         }
-
-        .page-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .page-header {
-            background: linear-gradient(135deg, #1e40af, #3b82f6);
+        .screenshot-item h3 {
             color: white;
-            padding: 1.5rem;
+            margin-bottom: 15px;
+            font-size: 16px;
         }
-
-        .page-title {
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .page-url {
-            font-family: 'Courier New', monospace;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 0.3rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.9rem;
-        }
-
-        .page-screenshot {
-            position: relative;
-            background: #f8fafc;
-            cursor: pointer;
-        }
-
-        .page-screenshot img {
+        .screenshot-item img {
             width: 100%;
-            height: 350px;
-            object-fit: cover;
-            object-position: top;
-            border-bottom: 1px solid #e2e8f0;
+            height: auto;
+            border-radius: 8px;
+            border: 2px solid #60a5fa;
+            cursor: pointer;
             transition: transform 0.3s ease;
         }
-
-        .page-screenshot:hover img {
-            transform: scale(1.02);
+        .screenshot-item img:hover {
+            transform: scale(1.05);
         }
-
-        .screenshot-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .page-screenshot:hover .screenshot-overlay {
-            opacity: 1;
-        }
-
-        .view-full {
-            color: white;
-            background: rgba(37, 99, 235, 0.9);
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .page-screenshot.no-image {
-            height: 350px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .no-image-content {
-            text-align: center;
-            color: #64748b;
-        }
-
-        .no-image-icon {
-            width: 48px;
-            height: 48px;
-            margin: 0 auto 0.5rem;
-            opacity: 0.5;
-        }
-
-        .page-description {
-            padding: 1.5rem;
-        }
-
-        .page-description p {
-            color: #475569;
-            line-height: 1.6;
-        }
-
-        .tech-stack {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-top: 2rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-
-        .tech-stack h2 {
-            color: #1e40af;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-        }
-
-        .tech-categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .tech-category {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .tech-category h3 {
-            color: #3b82f6;
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .tech-category ul {
-            list-style: none;
-        }
-
-        .tech-category li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-            color: #475569;
-        }
-
-        .tech-category li::before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: #3b82f6;
-            font-weight: bold;
-        }
-
-        .screenshot-modal {
+        .modal {
             display: none;
             position: fixed;
-            top: 0;
+            z-index: 1000;
             left: 0;
+            top: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-            padding: 2rem;
+            background-color: rgba(0, 0, 0, 0.9);
         }
-
-        .screenshot-modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 90%;
+            max-width: 1200px;
+            max-height: 90%;
+            margin-top: 2%;
         }
-
-        .screenshot-modal img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            border-radius: 8px;
-        }
-
-        .close-modal {
+        .close {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
-            color: white;
-            font-size: 2rem;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
             cursor: pointer;
-            background: rgba(0, 0, 0, 0.5);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-            
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .pages-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .tech-categories {
-                grid-template-columns: 1fr;
-            }
-
-            .page-screenshot img {
-                height: 250px;
-            }
-
-            .page-screenshot.no-image {
-                height: 250px;
-            }
-        }
-
         @media print {
-            body {
-                background: white;
-            }
-            
-            .container {
-                max-width: none;
-                padding: 1rem;
-            }
-            
-            .page-card {
-                break-inside: avoid;
-                margin-bottom: 1rem;
-            }
-            
-            .documentation-section {
-                break-inside: avoid;
-            }
-
-            .screenshot-overlay {
-                display: none;
-            }
+            body { background: white; color: black; }
+            .section { background: #f8f9fa; border: 1px solid #dee2e6; }
         }
     </style>
 </head>
@@ -380,461 +102,100 @@
     <div class="container">
         <div class="header">
             <h1>SafetySync.AI Platform Documentation</h1>
-            <p class="subtitle">Complete Visual Guide with Fresh Screenshots</p>
-            <p class="timestamp">Generated on: 7/26/2025, 2:21:31 PM</p>
-            <div class="fresh-badge">✨ Fresh Screenshots Captured Live</div>
-        </div>
-
-        <div class="overview">
-            <h2>Platform Overview</h2>
-            <p>SafetySync.AI is an advanced AI-powered enterprise safety management platform that transforms workforce document processing and OSHA compliance through intelligent extraction, verification, and proactive risk management.</p>
-            
-            <p><strong>This documentation features fresh screenshots captured directly from the live platform, providing the most accurate and up-to-date visual representation of all features and interfaces.</strong></p>
-            
-            <h3>Key Features</h3>
-            <div class="features-grid">
-                <div class="feature-item">AI-Powered Document Processing with OpenAI GPT-4o integration</div>
-                <div class="feature-item">Real-time Compliance Tracking and Monitoring</div>
-                <div class="feature-item">Employee Certificate Management with QR Code verification</div>
-                <div class="feature-item">Training Matrix and OSHA Standards Alignment</div>
-                <div class="feature-item">Mobile-Responsive Design with Adaptive UI Components</div>
-                <div class="feature-item">Advanced Security with Authentication and Rate Limiting</div>
-                <div class="feature-item">Customizable Dashboard Widgets with Drag-and-Drop Layout</div>
-                <div class="feature-item">Bulk Employee Operations and CSV Export</div>
-                <div class="feature-item">Department Analytics and Performance Tracking</div>
-                <div class="feature-item">AI-Powered Contextual Help System</div>
-                <div class="feature-item">Professional Blue Gradient Theme Consistency</div>
-                <div class="feature-item">Comprehensive Audit Trail and Reporting</div>
-            </div>
+            <p>Fresh Screenshots - Captured 7/26/2025</p>
+            <p>Complete visual guide with current platform screenshots</p>
         </div>
 
         
-        <div class="documentation-section">
-          <h2 class="section-title">Landing & Public Pages</h2>
-          <div class="pages-grid">
-      
-          <div class="page-card">
-            <div class="page-header">
-              <h3 class="page-title">Landing Page</h3>
-              <span class="page-url">/</span>
-            </div>
-            <div class="page-screenshot no-image">
-             <div class="no-image-content">
-               <svg class="no-image-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 002 2v12a2 2 0 002 2z"></path>
-               </svg>
-               <p>Screenshot Capture Failed</p>
-             </div>
-           </div>
-            <div class="page-description">
-              <p>Hero section with SafetySync.AI branding, features showcase, call-to-action buttons for trial signup and demo requests</p>
-            </div>
-          </div>
-        
-          <div class="page-card">
-            <div class="page-header">
-              <h3 class="page-title">Contact Page</h3>
-              <span class="page-url">/contact</span>
-            </div>
-            <div class="page-screenshot no-image">
-             <div class="no-image-content">
-               <svg class="no-image-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 002 2v12a2 2 0 002 2z"></path>
-               </svg>
-               <p>Screenshot Capture Failed</p>
-             </div>
-           </div>
-            <div class="page-description">
-              <p>Professional contact form, company information, support channels</p>
-            </div>
-          </div>
-        
-          <div class="page-card">
-            <div class="page-header">
-              <h3 class="page-title">Case Studies</h3>
-              <span class="page-url">/case-studies</span>
-            </div>
-            <div class="page-screenshot no-image">
-             <div class="no-image-content">
-               <svg class="no-image-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 002 2v12a2 2 0 002 2z"></path>
-               </svg>
-               <p>Screenshot Capture Failed</p>
-             </div>
-           </div>
-            <div class="page-description">
-              <p>Customer success stories demonstrating OSHA compliance improvements</p>
-            </div>
-          </div>
-        
-          <div class="page-card">
-            <div class="page-header">
-              <h3 class="page-title">Pricing Plans</h3>
-              <span class="page-url">/pricing</span>
-            </div>
-            <div class="page-screenshot no-image">
-             <div class="no-image-content">
-               <svg class="no-image-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 002 2v12a2 2 0 002 2z"></path>
-               </svg>
-               <p>Screenshot Capture Failed</p>
-             </div>
-           </div>
-            <div class="page-description">
-              <p>Subscription tiers, feature comparisons, ROI calculator</p>
-            </div>
-          </div>
-        
-          <div class="page-card">
-            <div class="page-header">
-              <h3 class="page-title">HR Teams Page</h3>
-              <span class="page-url">/hr</span>
-            </div>
-            <div class="page-screenshot no-image">
-             <div class="no-image-content">
-               <svg class="no-image-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 002 2v12a2 2 0 002 2z"></path>
-               </svg>
-               <p>Screenshot Capture Failed</p>
-             </div>
-           </div>
-            <div class="page-description">
-              <p>HR-specific features including employee training management, compliance documentation, digital certificates</p>
-            </div>
-          </div>
-        
-          <div class="page-card">
-            <div class="page-header">
-              <h3 class="page-title">Testimonials</h3>
-              <span class="page-url">/testimonials</span>
-            </div>
-            <div class="page-screenshot no-image">
-             <div class="no-image-content">
-               <svg class="no-image-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 002 2v12a2 2 0 002 2z"></path>
-               </svg>
-               <p>Screenshot Capture Failed</p>
-             </div>
-           </div>
-            <div class="page-description">
-              <p>Customer reviews and testimonials showcasing platform success</p>
-            </div>
-          </div>
-        
-          </div>
-        </div>
-      
-        <div class="documentation-section">
-          <h2 class="section-title">Authentication System</h2>
-          <div class="pages-grid">
-      
-          <div class="page-card">
-            <div class="page-header">
-              <h3 class="page-title">Client Portal</h3>
-              <span class="page-url">/client-portal</span>
-            </div>
-            <div class="page-screenshot no-image">
-             <div class="no-image-content">
-               <svg class="no-image-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 002 2v12a2 2 0 002 2z"></path>
-               </svg>
-               <p>Screenshot Capture Failed</p>
-             </div>
-           </div>
-            <div class="page-description">
-              <p>Secure login interface with username/password authentication, remember me option, password strength validation</p>
-            </div>
-          </div>
-        
-          <div class="page-card">
-            <div class="page-header">
-              <h3 class="page-title">Download Documentation</h3>
-              <span class="page-url">/download-docs</span>
-            </div>
-            <div class="page-screenshot no-image">
-             <div class="no-image-content">
-               <svg class="no-image-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 002 2v12a2 2 0 002 2z"></path>
-               </svg>
-               <p>Screenshot Capture Failed</p>
-             </div>
-           </div>
-            <div class="page-description">
-              <p>Documentation download center with multiple format options and preview capabilities</p>
-            </div>
-          </div>
-        
-          </div>
-        </div>
-      
-        <div class="documentation-section">
-          <h2 class="section-title">Main Workspace Platform</h2>
-          <div class="pages-grid">
-      
-          <div class="page-card">
-            <div class="page-header">
-              <h3 class="page-title">User Guide</h3>
-              <span class="page-url">/workspace?tab=user-guide</span>
-            </div>
-            <div class="page-screenshot no-image">
-             <div class="no-image-content">
-               <svg class="no-image-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 002 2v12a2 2 0 002 2z"></path>
-               </svg>
-               <p>Screenshot Capture Failed</p>
-             </div>
-           </div>
-            <div class="page-description">
-              <p>Comprehensive platform documentation, feature explanations, tutorial content (First Tab)</p>
-            </div>
-          </div>
-        
-          <div class="page-card">
-            <div class="page-header">
-              <h3 class="page-title">Workspace View</h3>
-              <span class="page-url">/workspace?tab=unified-dashboard</span>
-            </div>
-            <div class="page-screenshot no-image">
-             <div class="no-image-content">
-               <svg class="no-image-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 002 2v12a2 2 0 002 2z"></path>
-               </svg>
-               <p>Screenshot Capture Failed</p>
-             </div>
-           </div>
-            <div class="page-description">
-              <p>Main compliance dashboard with customizable widgets, employee statistics, safety alerts, training progress (Second Tab)</p>
-            </div>
-          </div>
-        
-          <div class="page-card">
-            <div class="page-header">
-              <h3 class="page-title">Company Profile</h3>
-              <span class="page-url">/workspace?tab=company-profile</span>
-            </div>
-            <div class="page-screenshot no-image">
-             <div class="no-image-content">
-               <svg class="no-image-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 002 2v12a2 2 0 002 2z"></path>
-               </svg>
-               <p>Screenshot Capture Failed</p>
-             </div>
-           </div>
-            <div class="page-description">
-              <p>Company setup and configuration, industry selection, contact information management</p>
-            </div>
-          </div>
-        
-          <div class="page-card">
-            <div class="page-header">
-              <h3 class="page-title">Employee Management</h3>
-              <span class="page-url">/workspace?tab=employee-management</span>
-            </div>
-            <div class="page-screenshot no-image">
-             <div class="no-image-content">
-               <svg class="no-image-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 002 2v12a2 2 0 002 2z"></path>
-               </svg>
-               <p>Screenshot Capture Failed</p>
-             </div>
-           </div>
-            <div class="page-description">
-              <p>Employee database with 200+ records, department analytics, bulk operations, CSV export, certificate tracking</p>
-            </div>
-          </div>
-        
-          </div>
-        </div>
-      
-        <div class="documentation-section">
-          <h2 class="section-title">Training & Compliance Features</h2>
-          <div class="pages-grid">
-      
-          <div class="page-card">
-            <div class="page-header">
-              <h3 class="page-title">Training Document Hub</h3>
-              <span class="page-url">/workspace?tab=training-document-hub</span>
-            </div>
-            <div class="page-screenshot no-image">
-             <div class="no-image-content">
-               <svg class="no-image-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 002 2v12a2 2 0 002 2z"></path>
-               </svg>
-               <p>Screenshot Capture Failed</p>
-             </div>
-           </div>
-            <div class="page-description">
-              <p>AI-powered document upload and processing, training record management, certificate generation</p>
-            </div>
-          </div>
-        
-          <div class="page-card">
-            <div class="page-header">
-              <h3 class="page-title">OSHA Compliance Manager</h3>
-              <span class="page-url">/workspace?tab=osha-compliance-manager</span>
-            </div>
-            <div class="page-screenshot no-image">
-             <div class="no-image-content">
-               <svg class="no-image-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 002 2v12a2 2 0 002 2z"></path>
-               </svg>
-               <p>Screenshot Capture Failed</p>
-             </div>
-           </div>
-            <div class="page-description">
-              <p>Comprehensive OSHA compliance tracking, training matrix, certification monitoring, audit readiness</p>
-            </div>
-          </div>
-        
-          <div class="page-card">
-            <div class="page-header">
-              <h3 class="page-title">Employee Insights</h3>
-              <span class="page-url">/workspace?tab=employee-insights</span>
-            </div>
-            <div class="page-screenshot no-image">
-             <div class="no-image-content">
-               <svg class="no-image-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 002 2v12a2 2 0 002 2z"></path>
-               </svg>
-               <p>Screenshot Capture Failed</p>
-             </div>
-           </div>
-            <div class="page-description">
-              <p>Analytics dashboard with department performance, hiring trends, compliance scores, AI-powered insights</p>
-            </div>
-          </div>
-        
-          </div>
-        </div>
-      
-        <div class="documentation-section">
-          <h2 class="section-title">Advanced Features</h2>
-          <div class="pages-grid">
-      
-          <div class="page-card">
-            <div class="page-header">
-              <h3 class="page-title">AI Document Processing</h3>
-              <span class="page-url">/workspace?tab=ai-document-processor</span>
-            </div>
-            <div class="page-screenshot no-image">
-             <div class="no-image-content">
-               <svg class="no-image-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 002 2v12a2 2 0 002 2z"></path>
-               </svg>
-               <p>Screenshot Capture Failed</p>
-             </div>
-           </div>
-            <div class="page-description">
-              <p>Revolutionary AI-powered document extraction and processing with OpenAI GPT-4o integration</p>
-            </div>
-          </div>
-        
-          <div class="page-card">
-            <div class="page-header">
-              <h3 class="page-title">Training Session Generator</h3>
-              <span class="page-url">/workspace?tab=instructor-sign-in-generator</span>
-            </div>
-            <div class="page-screenshot no-image">
-             <div class="no-image-content">
-               <svg class="no-image-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 002 2v12a2 2 0 002 2z"></path>
-               </svg>
-               <p>Screenshot Capture Failed</p>
-             </div>
-           </div>
-            <div class="page-description">
-              <p>Instructor sign-in sheet generation with customizable training classes and employee management</p>
-            </div>
-          </div>
-        
-          </div>
-        </div>
-      
-
-        <div class="tech-stack">
-            <h2>Technical Architecture</h2>
-            <div class="tech-categories">
-                <div class="tech-category">
-                    <h3>Frontend Technologies</h3>
-                    <ul>
-                        <li>React.js with TypeScript for type safety</li>
-                        <li>Vite for fast development and optimized builds</li>
-                        <li>Tailwind CSS with custom blue gradient theming</li>
-                        <li>Shadcn/UI components for consistent design</li>
-                        <li>Wouter for lightweight client-side routing</li>
-                        <li>TanStack Query for server state management</li>
-                        <li>React Hook Form with Zod validation</li>
-                    </ul>
+        <div class="section">
+            <h2>Public Pages</h2>
+            <div class="screenshot-grid">
+                
+                <div class="screenshot-item">
+                    <h3>Landing Page</h3>
+                    <img src="../platform-screenshots/landing-page.png" 
+                         alt="Landing Page" 
+                         onclick="openModal('../platform-screenshots/landing-page.png', 'Landing Page')">
                 </div>
-                <div class="tech-category">
-                    <h3>Backend Technologies</h3>
-                    <ul>
-                        <li>Node.js with Express.js framework</li>
-                        <li>TypeScript for type safety across the stack</li>
-                        <li>PostgreSQL with Drizzle ORM</li>
-                        <li>Neon Database serverless PostgreSQL</li>
-                        <li>JWT authentication with session management</li>
-                        <li>Comprehensive API with RESTful endpoints</li>
-                    </ul>
+                
+                <div class="screenshot-item">
+                    <h3>Contact Page</h3>
+                    <img src="../platform-screenshots/contact-page.png" 
+                         alt="Contact Page" 
+                         onclick="openModal('../platform-screenshots/contact-page.png', 'Contact Page')">
                 </div>
-                <div class="tech-category">
-                    <h3>AI & Integration</h3>
-                    <ul>
-                        <li>OpenAI GPT-4o for document analysis</li>
-                        <li>Google Cloud Document AI integration</li>
-                        <li>Intelligent PDF processing with multiple extraction layers</li>
-                        <li>AI-powered contextual help system</li>
-                        <li>Smart compliance recommendations</li>
-                    </ul>
+                
+                <div class="screenshot-item">
+                    <h3>Case Studies</h3>
+                    <img src="../platform-screenshots/case-studies.png" 
+                         alt="Case Studies" 
+                         onclick="openModal('../platform-screenshots/case-studies.png', 'Case Studies')">
                 </div>
-                <div class="tech-category">
-                    <h3>Security & Performance</h3>
-                    <ul>
-                        <li>Helmet.js for security headers</li>
-                        <li>Rate limiting and authentication protection</li>
-                        <li>Input sanitization and XSS prevention</li>
-                        <li>Secure session management</li>
-                        <li>Comprehensive audit logging</li>
-                    </ul>
+                
+                <div class="screenshot-item">
+                    <h3>Pricing Plans</h3>
+                    <img src="../platform-screenshots/pricing-plans.png" 
+                         alt="Pricing Plans" 
+                         onclick="openModal('../platform-screenshots/pricing-plans.png', 'Pricing Plans')">
                 </div>
+                
+                <div class="screenshot-item">
+                    <h3>HR Teams Page</h3>
+                    <img src="../platform-screenshots/hr-teams.png" 
+                         alt="HR Teams Page" 
+                         onclick="openModal('../platform-screenshots/hr-teams.png', 'HR Teams Page')">
+                </div>
+                
+                <div class="screenshot-item">
+                    <h3>Testimonials</h3>
+                    <img src="../platform-screenshots/testimonials.png" 
+                         alt="Testimonials" 
+                         onclick="openModal('../platform-screenshots/testimonials.png', 'Testimonials')">
+                </div>
+                
+                <div class="screenshot-item">
+                    <h3>Client Portal</h3>
+                    <img src="../platform-screenshots/client-portal.png" 
+                         alt="Client Portal" 
+                         onclick="openModal('../platform-screenshots/client-portal.png', 'Client Portal')">
+                </div>
+                
+                <div class="screenshot-item">
+                    <h3>Download Documentation</h3>
+                    <img src="../platform-screenshots/download-docs.png" 
+                         alt="Download Documentation" 
+                         onclick="openModal('../platform-screenshots/download-docs.png', 'Download Documentation')">
+                </div>
+                
             </div>
         </div>
+        
     </div>
 
-    <!-- Screenshot Modal -->
-    <div class="screenshot-modal" id="screenshotModal">
-        <span class="close-modal" onclick="closeModal()">&times;</span>
-        <img id="modalImage" src="" alt="Full size screenshot">
+    <!-- Modal for full-size images -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
     </div>
 
     <script>
-        // Add click handlers for screenshots
-        document.querySelectorAll('.page-screenshot img').forEach(img => {
-            img.addEventListener('click', function() {
-                const modal = document.getElementById('screenshotModal');
-                const modalImg = document.getElementById('modalImage');
-                modalImg.src = this.src;
-                modal.classList.add('active');
-            });
-        });
-
-        function closeModal() {
-            document.getElementById('screenshotModal').classList.remove('active');
+        function openModal(src, alt) {
+            document.getElementById('imageModal').style.display = 'block';
+            document.getElementById('modalImage').src = src;
+            document.getElementById('modalImage').alt = alt;
         }
 
-        // Close modal on outside click
-        document.getElementById('screenshotModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
 
-        // Close modal on escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
+        // Close modal when clicking outside the image
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target === modal) {
                 closeModal();
             }
-        });
+        }
     </script>
 </body>
 </html>
