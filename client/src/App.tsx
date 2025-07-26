@@ -8,6 +8,7 @@ import { CartProvider } from "@/contexts/CartContext";
 
 import NotFound from "@/pages/not-found";
 import LandingPage from "@/pages/landing";
+import LandingPageSimple from "@/pages/landing-simple";
 import Dashboard from "@/pages/dashboard";
 
 import WorkspacePage from "@/pages/workspace";
@@ -53,6 +54,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={LandingPage} />
+      <Route path="/landing-simple" component={LandingPageSimple} />
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/workspace" component={WorkspacePage} />
       <Route path="/workspace-basic" component={WorkspaceBasic} />
