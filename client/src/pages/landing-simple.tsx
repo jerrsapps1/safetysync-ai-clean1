@@ -27,7 +27,7 @@ export default function LandingPageSimple() {
         <div className="mt-6">
           <button
             onClick={() => setShowModal(true)}
-            className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl shadow-md transition duration-200"
           >
             See Competitor Comparison
           </button>

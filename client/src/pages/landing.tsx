@@ -324,13 +324,13 @@ export default function LandingPage() {
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 md:mb-12 px-4">
             <Button 
               onClick={handleDemoClick}
-              className="bg-black/20 backdrop-blur-sm border border-blue-700 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-2xl hover:bg-blue-700/30 hover:scale-105 transform transition-all duration-300"
+              className="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-xl shadow-md transition duration-200 border border-blue-700"
             >
               Book a Demo
             </Button>
             <Button 
               onClick={handleTrialClick}
-              className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-2xl hover:scale-105 transform transition-all duration-300"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-xl shadow-md transition duration-200"
             >
               Get Started Free
             </Button>
@@ -674,7 +674,7 @@ export default function LandingPage() {
           <div className="text-center mt-16">
             <Button 
               onClick={handleTrialClick}
-              className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-lg text-lg font-semibold"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl shadow-md transition duration-200 text-lg font-semibold"
             >
               Try It for Free – No Credit Card Required
             </Button>
@@ -701,13 +701,13 @@ export default function LandingPage() {
         <div className="flex justify-center gap-4">
           <Button 
             onClick={handleDemoClick}
-            className="bg-blue-700/60 border border-blue-500 text-white font-semibold px-6 py-3 rounded-2xl hover:bg-blue-600/60 transition-all duration-200 hover:scale-105 hover:shadow-lg transform"
+            className="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-xl shadow-md transition duration-200 border border-blue-500"
           >
             Book a Demo
           </Button>
           <Button 
             onClick={handleTrialClick}
-            className="bg-violet-500 text-white font-semibold px-6 py-3 rounded-2xl hover:bg-emerald-600 transition-all duration-200 hover:scale-105 hover:shadow-lg transform"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl shadow-md transition duration-200"
           >
             Start Free — No Credit Card Required
           </Button>
@@ -726,13 +726,13 @@ export default function LandingPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               onClick={handleTrialClick}
-              className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-200 hover:scale-105 hover:shadow-lg transform"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl shadow-md transition duration-200 text-lg font-semibold"
             >
               Start Your Free Trial
             </Button>
             <Button 
               onClick={handleDemoClick}
-              className="bg-blue-700/60 border border-blue-500 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-600/60 transition-all duration-200 hover:scale-105 hover:shadow-lg transform"
+              className="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-xl shadow-md transition duration-200 text-lg font-semibold border border-blue-500"
             >
               Book a Demo
             </Button>
