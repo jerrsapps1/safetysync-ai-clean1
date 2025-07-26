@@ -100,7 +100,7 @@ function LoginForm() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-400 via-sky-300 to-blue-300 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="bg-blue-900/60 backdrop-blur-sm border border-violet-500/30 rounded-lg p-6 shadow-2xl">
           <div className="text-center mb-6">
@@ -256,7 +256,7 @@ export default function Dashboard() {
   // Show loading state while checking authentication
   if (authLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-sky-400 via-sky-300 to-blue-300 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
         <div className="text-white">Loading...</div>
       </div>
     );
@@ -268,7 +268,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-400 via-sky-300 to-blue-300 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 relative overflow-hidden">
       {/* Tech Grid Background */}
       <div className="absolute inset-0 tech-grid opacity-20"></div>
       
@@ -370,7 +370,7 @@ export default function Dashboard() {
                 </div>
               </div>
               <Link href="/user-guide">
-                <Button variant="outline" size="sm" className="border-sky-300/50 text-white hover:bg-blue-400/20 hover:border-sky-300 transition-all duration-300">
+                <Button variant="outline" size="sm" className="border-blue-400/50 text-white hover:bg-blue-400/20 hover:border-blue-400 transition-all duration-300">
                   <BookOpen className="w-4 h-4 mr-2" />
                   Full Guide
                 </Button>

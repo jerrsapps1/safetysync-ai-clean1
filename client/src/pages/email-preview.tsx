@@ -151,7 +151,7 @@ export default function EmailPreview() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-400 via-sky-300 to-blue-300 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 p-6">
       <div className="max-w-6xl mx-auto">
         <div className="mb-6">
           <Link href="/admin">
@@ -188,7 +188,7 @@ export default function EmailPreview() {
                     onClick={() => setSelectedTemplate(key)}
                     className={`w-full p-4 rounded-lg border-2 transition-all text-left ${
                       selectedTemplate === key
-                        ? 'border-sky-300 bg-blue-500/20 text-white'
+                        ? 'border-blue-400 bg-blue-500/20 text-white'
                         : 'border-blue-500/20 bg-blue-900/5 text-blue-200 hover:bg-blue-900/60'
                     }`}
                   >
