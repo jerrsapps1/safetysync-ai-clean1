@@ -136,6 +136,21 @@ User satisfied with comprehensive platform features including dashboard, admin p
 
 ## Recent Changes
 
+- **July 26, 2025** - SIDEBAR USER PROFILE SECTION REMOVAL:
+  - **USER PROFILE CLEANUP**: Removed user profile section displaying "Test User" and "Safety Manager" from workspace sidebar
+  - **SIGN OUT BUTTON REMOVAL**: Removed "Sign Out" button from sidebar bottom section for cleaner interface
+  - **SIMPLIFIED SIDEBAR**: Streamlined sidebar navigation by removing user menu section completely
+  - **VISUAL CLEANUP**: Eliminated border-top section that contained user profile and logout functionality
+  - Sidebar now provides clean navigation experience without user profile display elements
+
+- **July 26, 2025** - TRAINING DOCUMENT HUB COLOR THEME UPDATE:
+  - **THEME CONSISTENCY**: Updated Training Document Hub page to match landing page blue gradient theme
+  - **BACKGROUND UPDATE**: Changed main background from darker blue (from-blue-700 via-blue-800 to-blue-900) to lighter blue gradient (from-blue-600 via-blue-500 to-blue-400)
+  - **GLASS MORPHISM CARDS**: Updated all card components to use dark transparent styling (bg-black/20 backdrop-blur-sm)
+  - **DIALOG THEMING**: Applied consistent theme to create file and document preview dialogs
+  - **BORDER CONSISTENCY**: Updated border colors to blue-700 for platform-wide visual harmony
+  - Training Document Hub now matches the exact color scheme used throughout the rest of the platform
+
 - **July 26, 2025** - LANDING PAGE COLOR SCHEME APPLIED PLATFORM-WIDE:
   - **UNIFIED COLOR THEME**: Applied landing page blue gradient theme (from-blue-600 via-blue-500 to-blue-400) across entire platform
   - **WORKSPACE BACKGROUND**: Changed workspace content area from white to blue gradient matching landing page design

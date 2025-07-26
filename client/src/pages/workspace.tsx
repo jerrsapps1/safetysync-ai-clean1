@@ -2376,30 +2376,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
         </nav>
 
-        {/* User Menu */}
-        <div className={`${sidebarOpen ? 'block' : 'hidden'} md:block p-4 border-t border-blue-700`}>
-          {sidebarOpen && (
-            <div className="mb-4">
-              <div className="flex items-center space-x-3 mb-2">
-                <div className="w-8 h-8 bg-violet-500 rounded-full flex items-center justify-center">
-                  <User className="w-4 h-4 text-white" />
-                </div>
-                <div>
-                  <p className="text-white text-sm font-medium">{user?.name || "User"}</p>
-                  <p className="text-white text-xs">Safety Manager</p>
-                </div>
-              </div>
-            </div>
-          )}
-          <Button
-            variant="ghost"
-            className="w-full justify-start text-white hover:text-white hover:bg-blue-600/50"
-            onClick={handleLogout}
-          >
-            <LogOut className="w-5 h-5 mr-3" />
-            {sidebarOpen && "Sign Out"}
-          </Button>
-        </div>
+
       </motion.div>
 
       {/* Main Content */}
