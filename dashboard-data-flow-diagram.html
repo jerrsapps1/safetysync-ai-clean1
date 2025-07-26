@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafetySync.AI Dashboard Data Flow Diagram</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1e40af, #3b82f6, #60a5fa);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: auto;
+        }
+        
+        .container {
+            max-width: 2400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .diagram {
+            width: 100%;
+            min-width: 2200px;
+            overflow-x: auto;
+            position: relative;
+            height: 1400px;
+        }
+        
+        .data-node {
+            position: absolute;
+            border-radius: 12px;
+            padding: 15px 20px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            min-width: 160px;
+            border: 2px solid;
+        }
+        
+        .data-node:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+        
+        .source {
+            background: linear-gradient(135deg, #059669, #10b981);
+            border-color: #34d399;
+        }
+        
+        .api {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            border-color: #f87171;
+        }
+        
+        .process {
+            background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+            border-color: #a78bfa;
+        }
+        
+        .storage {
+            background: linear-gradient(135deg, #ea580c, #f97316);
+            border-color: #fb923c;
+        }
+        
+        .display {
+            background: linear-gradient(135deg, #0891b2, #06b6d4);
+            border-color: #22d3ee;
+        }
+        
+        .user-action {
+            background: linear-gradient(135deg, #be185d, #ec4899);
+            border-color: #f472b6;
+        }
+        
+        .auth {
+            background: linear-gradient(135deg, #4338ca, #6366f1);
+            border-color: #818cf8;
+        }
+        
+        .flow-arrow {
+            position: absolute;
+            background: #60a5fa;
+            z-index: 1;
+        }
+        
+        .arrow-horizontal {
+            height: 3px;
+        }
+        
+        .arrow-vertical {
+            width: 3px;
+        }
+        
+        .arrow-head {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+        
+        .arrow-right {
+            border-left: 10px solid #60a5fa;
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+        }
+        
+        .arrow-down {
+            border-top: 10px solid #60a5fa;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+        }
+        
+        .arrow-up {
+            border-bottom: 10px solid #60a5fa;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+        }
+        
+        .flow-label {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            z-index: 2;
+        }
+        
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 0.9rem;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 10px;
+            }
+            
+            .container {
+                background: white;
+                box-shadow: none;
+                border: 1px solid #ccc;
+            }
+            
+            h1, .data-node, .flow-label {
+                color: black;
+            }
+            
+            .data-node {
+                border-color: #333;
+                background: white;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+            
+            .flow-arrow {
+                background: #333;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SafetySync.AI Dashboard Data Flow Diagram</h1>
+        
+        <div class="diagram">
+            <!-- User Authentication Flow -->
+            <div class="data-node user-action" style="top: 50px; left: 100px;">
+                User Login
+                <div style="font-size: 0.8rem;">Email/Password</div>
+            </div>
+            
+            <div class="flow-arrow arrow-horizontal" style="top: 70px; left: 280px; width: 120px;"></div>
+            <div class="arrow-head arrow-right" style="top: 64px; left: 400px;"></div>
+            <div class="flow-label" style="top: 45px; left: 320px;">Credentials</div>
+            
+            <div class="data-node auth" style="top: 50px; left: 420px;">
+                useAuth() Hook
+                <div style="font-size: 0.8rem;">JWT Validation</div>
+            </div>
+            
+            <div class="flow-arrow arrow-horizontal" style="top: 70px; left: 600px; width: 120px;"></div>
+            <div class="arrow-head arrow-right" style="top: 64px; left: 720px;"></div>
+            <div class="flow-label" style="top: 45px; left: 640px;">Auth Status</div>
+            
+            <!-- Authentication Decision -->
+            <div class="data-node process" style="top: 50px; left: 740px;">
+                Authentication Check
+                <div style="font-size: 0.8rem;">Success/Failure</div>
+            </div>
+            
+            <!-- Failed Auth Path -->
+            <div class="flow-arrow arrow-vertical" style="top: 120px; left: 820px; height: 80px;"></div>
+            <div class="arrow-head arrow-down" style="top: 200px; left: 814px;"></div>
+            <div class="flow-label" style="top: 150px; left: 830px;">Failed</div>
+            
+            <div class="data-node display" style="top: 220px; left: 740px;">
+                LoginForm Component
+                <div style="font-size: 0.8rem;">Show Login UI</div>
+            </div>
+            
+            <!-- Successful Auth Path -->
+            <div class="flow-arrow arrow-horizontal" style="top: 70px; left: 920px; width: 120px;"></div>
+            <div class="arrow-head arrow-right" style="top: 64px; left: 1040px;"></div>
+            <div class="flow-label" style="top: 45px; left: 960px;">Success</div>
+            
+            <!-- Dashboard Data Loading -->
+            <div class="data-node process" style="top: 50px; left: 1060px;">
+                Dashboard Component
+                <div style="font-size: 0.8rem;">Initialize Data</div>
+            </div>
+            
+            <div class="flow-arrow arrow-vertical" style="top: 120px; left: 1140px; height: 80px;"></div>
+            <div class="arrow-head arrow-down" style="top: 200px; left: 1134px;"></div>
+            <div class="flow-label" style="top: 150px; left: 1150px;">Fetch Data</div>
+            
+            <!-- API Layer -->
+            <div class="data-node api" style="top: 220px; left: 900px;">
+                /api/dashboard/data
+                <div style="font-size: 0.8rem;">Main Stats</div>
+            </div>
+            
+            <div class="data-node api" style="top: 220px; left: 1100px;">
+                /api/dashboard/stats
+                <div style="font-size: 0.8rem;">Analytics</div>
+            </div>
+            
+            <div class="data-node api" style="top: 220px; left: 1300px;">
+                /api/auth/me
+                <div style="font-size: 0.8rem;">User Info</div>
+            </div>
+            
+            <div class="data-node api" style="top: 220px; left: 1500px;">
+                /api/employees
+                <div style="font-size: 0.8rem;">Employee Data</div>
+            </div>
+            
+            <!-- Database Queries -->
+            <div class="flow-arrow arrow-vertical" style="top: 290px; left: 980px; height: 80px;"></div>
+            <div class="arrow-head arrow-down" style="top: 370px; left: 974px;"></div>
+            
+            <div class="flow-arrow arrow-vertical" style="top: 290px; left: 1180px; height: 80px;"></div>
+            <div class="arrow-head arrow-down" style="top: 370px; left: 1174px;"></div>
+            
+            <div class="flow-arrow arrow-vertical" style="top: 290px; left: 1380px; height: 80px;"></div>
+            <div class="arrow-head arrow-down" style="top: 370px; left: 1374px;"></div>
+            
+            <div class="flow-arrow arrow-vertical" style="top: 290px; left: 1580px; height: 80px;"></div>
+            <div class="arrow-head arrow-down" style="top: 370px; left: 1574px;"></div>
+            
+            <!-- Database Layer -->
+            <div class="data-node storage" style="top: 390px; left: 900px;">
+                Users Table
+                <div style="font-size: 0.8rem;">User Records</div>
+            </div>
+            
+            <div class="data-node storage" style="top: 390px; left: 1100px;">
+                Employees Table
+                <div style="font-size: 0.8rem;">Employee Data</div>
+            </div>
+            
+            <div class="data-node storage" style="top: 390px; left: 1300px;">
+                Training Table
+                <div style="font-size: 0.8rem;">Training Records</div>
+            </div>
+            
+            <div class="data-node storage" style="top: 390px; left: 1500px;">
+                Certificates Table
+                <div style="font-size: 0.8rem;">Cert Status</div>
+            </div>
+            
+            <!-- Data Processing -->
+            <div class="flow-arrow arrow-vertical" style="top: 460px; left: 980px; height: 80px;"></div>
+            <div class="arrow-head arrow-up" style="top: 460px; left: 974px;"></div>
+            
+            <div class="flow-arrow arrow-vertical" style="top: 460px; left: 1180px; height: 80px;"></div>
+            <div class="arrow-head arrow-up" style="top: 460px; left: 1174px;"></div>
+            
+            <div class="flow-arrow arrow-vertical" style="top: 460px; left: 1380px; height: 80px;"></div>
+            <div class="arrow-head arrow-up" style="top: 460px; left: 1374px;"></div>
+            
+            <div class="flow-arrow arrow-vertical" style="top: 460px; left: 1580px; height: 80px;"></div>
+            <div class="arrow-head arrow-up" style="top: 460px; left: 1574px;"></div>
+            
+            <div class="flow-label" style="top: 510px; left: 1200px;">Query Results</div>
+            
+            <!-- Data Aggregation -->
+            <div class="data-node process" style="top: 560px; left: 1200px;">
+                Data Aggregation
+                <div style="font-size: 0.8rem;">Calculate Stats</div>
+            </div>
+            
+            <div class="flow-arrow arrow-vertical" style="top: 630px; left: 1280px; height: 80px;"></div>
+            <div class="arrow-head arrow-down" style="top: 710px; left: 1274px;"></div>
+            <div class="flow-label" style="top: 660px; left: 1290px;">Processed Data</div>
+            
+            <!-- UI Rendering -->
+            <div class="data-node display" style="top: 730px; left: 100px;">
+                AI Setup Guide
+                <div style="font-size: 0.8rem;">OpenAI Integration</div>
+            </div>
+            
+            <div class="data-node display" style="top: 730px; left: 320px;">
+                Stats Cards
+                <div style="font-size: 0.8rem;">4 Metric Cards</div>
+            </div>
+            
+            <div class="data-node display" style="top: 730px; left: 540px;">
+                Compliance Score
+                <div style="font-size: 0.8rem;">Progress Bar</div>
+            </div>
+            
+            <div class="data-node display" style="top: 730px; left: 760px;">
+                Overview Tab
+                <div style="font-size: 0.8rem;">Activity Feed</div>
+            </div>
+            
+            <div class="data-node display" style="top: 730px; left: 980px;">
+                Employees Tab
+                <div style="font-size: 0.8rem;">Employee List</div>
+            </div>
+            
+            <div class="data-node display" style="top: 730px; left: 1200px;">
+                Training Tab
+                <div style="font-size: 0.8rem;">OSHA Programs</div>
+            </div>
+            
+            <div class="data-node display" style="top: 730px; left: 1420px;">
+                Reports Tab
+                <div style="font-size: 0.8rem;">Analytics</div>
+            </div>
+            
+            <div class="data-node display" style="top: 730px; left: 1640px;">
+                Locations Tab
+                <div style="font-size: 0.8rem;">Multi-Site</div>
+            </div>
+            
+            <!-- User Interactions -->
+            <div class="flow-arrow arrow-vertical" style="top: 800px; left: 1280px; height: 80px;"></div>
+            <div class="arrow-head arrow-down" style="top: 880px; left: 1274px;"></div>
+            <div class="flow-label" style="top: 830px; left: 1290px;">User Clicks</div>
+            
+            <div class="data-node user-action" style="top: 900px; left: 200px;">
+                Tab Selection
+                <div style="font-size: 0.8rem;">Change View</div>
+            </div>
+            
+            <div class="data-node user-action" style="top: 900px; left: 400px;">
+                Add Employee
+                <div style="font-size: 0.8rem;">Create Action</div>
+            </div>
+            
+            <div class="data-node user-action" style="top: 900px; left: 600px;">
+                Upload Document
+                <div style="font-size: 0.8rem;">File Process</div>
+            </div>
+            
+            <div class="data-node user-action" style="top: 900px; left: 800px;">
+                Generate Report
+                <div style="font-size: 0.8rem;">Export Data</div>
+            </div>
+            
+            <div class="data-node user-action" style="top: 900px; left: 1000px;">
+                View Certificate
+                <div style="font-size: 0.8rem;">Display Cert</div>
+            </div>
+            
+            <div class="data-node user-action" style="top: 900px; left: 1200px;">
+                Filter Employees
+                <div style="font-size: 0.8rem;">Search/Filter</div>
+            </div>
+            
+            <div class="data-node user-action" style="top: 900px; left: 1400px;">
+                Update Training
+                <div style="font-size: 0.8rem;">Modify Record</div>
+            </div>
+            
+            <!-- Real-time Updates -->
+            <div class="flow-arrow arrow-vertical" style="top: 970px; left: 800px; height: 80px;"></div>
+            <div class="arrow-head arrow-down" style="top: 1050px; left: 794px;"></div>
+            <div class="flow-label" style="top: 1000px; left: 810px;">Real-time Updates</div>
+            
+            <div class="data-node process" style="top: 1070px; left: 700px;">
+                State Management
+                <div style="font-size: 0.8rem;">React State</div>
+            </div>
+            
+            <div class="flow-arrow arrow-horizontal" style="top: 1090px; left: 880px; width: 200px;"></div>
+            <div class="arrow-head arrow-right" style="top: 1084px; left: 1080px;"></div>
+            <div class="flow-label" style="top: 1065px; left: 950px;">UI Re-render</div>
+            
+            <div class="data-node display" style="top: 1070px; left: 1100px;">
+                Updated Dashboard
+                <div style="font-size: 0.8rem;">Live Changes</div>
+            </div>
+            
+            <!-- AI Processing Flow -->
+            <div class="data-node source" style="top: 900px; left: 1600px;">
+                OpenAI API
+                <div style="font-size: 0.8rem;">AI Processing</div>
+            </div>
+            
+            <div class="flow-arrow arrow-vertical" style="top: 970px; left: 1680px; height: 80px;"></div>
+            <div class="arrow-head arrow-down" style="top: 1050px; left: 1674px;"></div>
+            <div class="flow-label" style="top: 1000px; left: 1690px;">AI Insights</div>
+            
+            <div class="data-node process" style="top: 1070px; left: 1600px;">
+                AI Recommendations
+                <div style="font-size: 0.8rem;">Smart Suggestions</div>
+            </div>
+            
+            <!-- Data Flow Back to User -->
+            <div class="flow-arrow arrow-horizontal" style="top: 1090px; left: 1380px; width: 200px;"></div>
+            <div class="arrow-head arrow-right" style="top: 1084px; left: 1380px;"></div>
+            <div class="flow-label" style="top: 1065px; left: 1450px;">AI Data</div>
+        </div>
+        
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #059669, #10b981);"></div>
+                <span>External Data Sources</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #dc2626, #ef4444);"></div>
+                <span>API Endpoints</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #7c3aed, #8b5cf6);"></div>
+                <span>Data Processing</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #ea580c, #f97316);"></div>
+                <span>Database Storage</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #0891b2, #06b6d4);"></div>
+                <span>UI Display Components</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #be185d, #ec4899);"></div>
+                <span>User Actions</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #4338ca, #6366f1);"></div>
+                <span>Authentication</span>
+            </div>
+        </div>
+        
+        <!-- Data Flow Analysis -->
+        <div style="margin-top: 40px; padding: 20px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; color: white;">
+            <h2 style="margin-bottom: 20px; color: white;">Dashboard Data Flow Analysis</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div>
+                    <h3 style="color: #10b981; margin-bottom: 10px;">Authentication Flow</h3>
+                    <ol style="padding-left: 20px;">
+                        <li>User submits login credentials</li>
+                        <li>useAuth() hook validates JWT token</li>
+                        <li>Success: Load dashboard / Failure: Show login form</li>
+                        <li>Authentication state persists across sessions</li>
+                    </ol>
+                </div>
+                <div>
+                    <h3 style="color: #ef4444; margin-bottom: 10px;">Data Retrieval</h3>
+                    <ol style="padding-left: 20px;">
+                        <li>Dashboard component triggers API calls</li>
+                        <li>Multiple endpoints fetch different data types</li>
+                        <li>Database queries executed for each request</li>
+                        <li>Results aggregated and processed</li>
+                    </ol>
+                </div>
+                <div>
+                    <h3 style="color: #8b5cf6; margin-bottom: 10px;">Real-time Updates</h3>
+                    <ol style="padding-left: 20px;">
+                        <li>User actions trigger state changes</li>
+                        <li>React state management updates UI</li>
+                        <li>New API calls fetch updated data</li>
+                        <li>Dashboard re-renders with fresh information</li>
+                    </ol>
+                </div>
+                <div>
+                    <h3 style="color: #06b6d4; margin-bottom: 10px;">AI Integration</h3>
+                    <ol style="padding-left: 20px;">
+                        <li>AI processing occurs on document uploads</li>
+                        <li>OpenAI API generates recommendations</li>
+                        <li>AI insights displayed in dashboard</li>
+                        <li>Smart suggestions enhance user experience</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
