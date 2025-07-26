@@ -2374,17 +2374,20 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     <Database className="w-4 h-4 mr-3 flex-shrink-0" />
                     {sidebarOpen && <span className="truncate">Document Management</span>}
                   </Button>
-                  <Button
-                    variant="ghost"
-                    className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
-                      activeTab === "platform-dashboard" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
-                    }`}
-                    onClick={() => handleTabSwitch("platform-dashboard")}
-                    title="Platform Dashboard"
-                  >
-                    <Monitor className="w-4 h-4 mr-3 flex-shrink-0" />
-                    {sidebarOpen && <span className="truncate">Platform Dashboard</span>}
-                  </Button>
+                  {/* Platform Dashboard - Only visible to platform owner */}
+                  {user?.isAdmin && (
+                    <Button
+                      variant="ghost"
+                      className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+                        activeTab === "platform-dashboard" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
+                      }`}
+                      onClick={() => handleTabSwitch("platform-dashboard")}
+                      title="Platform Dashboard (Admin Only)"
+                    >
+                      <Monitor className="w-4 h-4 mr-3 flex-shrink-0" />
+                      {sidebarOpen && <span className="truncate">Platform Dashboard</span>}
+                    </Button>
+                  )}
                   <Button
                     variant="ghost"
                     className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
@@ -2441,7 +2444,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 {activeTab === "document-manager" && "Document Management"}
                 {activeTab === "company-profile" && "Company Profile"}
                 {activeTab === "settings" && "Workspace Settings"}
-                {activeTab === "platform-dashboard" && "Platform Dashboard"}
+                {activeTab === "platform-dashboard" && user?.isAdmin && "Platform Dashboard"}
                 {activeTab === "user-guide" && "User Guide"}
               </h1>
               <p className="text-white text-sm md:text-base">
@@ -2477,7 +2480,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 {activeTab === "document-manager" && "Upload, organize, and manage safety documents"}
                 {activeTab === "company-profile" && "Manage your company profile and business information"}
                 {activeTab === "settings" && "Configure your workspace and branding"}
-                {activeTab === "platform-dashboard" && "Access development dashboard and system monitoring tools"}
+                {activeTab === "platform-dashboard" && user?.isAdmin && "Access development dashboard and system monitoring tools"}
                 {activeTab === "user-guide" && "Comprehensive user guide and documentation for the SafetySync.AI platform"}
               </p>
             </div>
@@ -3362,7 +3365,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             </div>
           )}
 
-          {activeTab === "platform-dashboard" && (
+          {activeTab === "platform-dashboard" && user?.isAdmin && (
             <div className="space-y-6">
               <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
                 <CardHeader>

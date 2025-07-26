@@ -146,12 +146,13 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - **REAL-TIME HELP**: Users can ask natural language questions and receive immediate AI-powered assistance
   - Contextual help button positioned prominently in workspace header for easy access to intelligent guidance
 
-- **July 26, 2025** - CUSTOMER NAVIGATION ACCESSIBILITY ENHANCEMENT:
-  - **DASHBOARD ACCESS**: Added "Platform Dashboard" navigation button in System Tools section linking to /.replit.dev/dashboard
-  - **USER GUIDE ACCESS**: Added "User Guide" navigation button in System Tools section linking to /users page
-  - **EXTERNAL LINK INDICATORS**: Added small external link icons to show these open in new tabs
-  - **CUSTOMER RESOURCE VISIBILITY**: Important customer resources now easily discoverable through sidebar navigation
-  - Customers no longer need to manually type URLs to access dashboard and user guide resources
+- **July 26, 2025** - PLATFORM DASHBOARD ACCESS CONTROL IMPLEMENTATION:
+  - **ADMIN-ONLY ACCESS**: Platform Dashboard now restricted to admin users only (user.isAdmin === true)
+  - **CLIENT PRIVACY**: Regular clients cannot see or access Platform Dashboard tab in navigation
+  - **INTERNAL WORKSPACE TABS**: Converted Platform Dashboard and User Guide to internal workspace tabs
+  - **ACCESS PROTECTION**: Added user?.isAdmin checks to both navigation button and content rendering
+  - **USER GUIDE ACCESS**: User Guide remains accessible to all authenticated users for documentation
+  - Platform owner maintains exclusive access to development dashboard and system monitoring tools
 
 - **July 26, 2025** - SIDEBAR USER PROFILE SECTION REMOVAL:
   - **USER PROFILE CLEANUP**: Removed user profile section displaying "Test User" and "Safety Manager" from workspace sidebar
