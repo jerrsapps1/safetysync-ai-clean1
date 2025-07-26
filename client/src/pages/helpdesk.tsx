@@ -152,7 +152,7 @@ export default function Helpdesk() {
               <Button
                 variant="ghost"
                 onClick={() => setSelectedTicket(null)}
-                className="text-white hover:bg-white/10"
+                className="text-white hover:bg-blue-900/60"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to Tickets
@@ -163,14 +163,14 @@ export default function Helpdesk() {
               </div>
             </div>
             <Link href="/" className="text-white hover:text-white">
-              <Button variant="ghost" className="text-white hover:bg-white/10">
+              <Button variant="ghost" className="text-white hover:bg-blue-900/60">
                 Home
               </Button>
             </Link>
           </div>
 
           {/* Ticket Details */}
-          <Card className="bg-white/10 backdrop-blur-sm border-white/20 mb-6">
+          <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30 mb-6">
             <CardHeader>
               <div className="flex items-start justify-between">
                 <div>
@@ -194,14 +194,14 @@ export default function Helpdesk() {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="bg-white/5 p-4 rounded-lg">
+              <div className="bg-blue-900/5 p-4 rounded-lg">
                 <p className="text-blue-200 whitespace-pre-wrap">{selectedTicketData.description}</p>
               </div>
             </CardContent>
           </Card>
 
           {/* Responses */}
-          <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+          <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
             <CardHeader>
               <CardTitle className="text-white flex items-center gap-2">
                 <MessageSquare className="w-5 h-5" />
@@ -221,7 +221,7 @@ export default function Helpdesk() {
                       <div className={`inline-block max-w-[80%] p-3 rounded-lg ${
                         response.isStaff 
                           ? 'bg-blue-500 text-white' 
-                          : 'bg-white/20 text-blue-200'
+                          : 'bg-blue-900/20 text-blue-200'
                       }`}>
                         <p className="whitespace-pre-wrap">{response.message}</p>
                       </div>
@@ -234,14 +234,14 @@ export default function Helpdesk() {
               </div>
 
               {/* Add Response */}
-              <div className="border-t border-white/20 pt-4">
+              <div className="border-t border-violet-500/30 pt-4">
                 <Label htmlFor="response" className="text-white mb-2 block">Add Response</Label>
                 <Textarea
                   id="response"
                   placeholder="Type your message here..."
                   value={newResponse}
                   onChange={(e) => setNewResponse(e.target.value)}
-                  className="bg-white/10 border-white/20 text-white placeholder-blue-300 mb-3"
+                  className="bg-blue-900/60 border-violet-500/30 text-white placeholder-blue-300 mb-3"
                   rows={3}
                 />
                 <Button 
@@ -269,18 +269,18 @@ export default function Helpdesk() {
             <h1 className="text-3xl font-bold text-white">Support Helpdesk</h1>
           </div>
           <Link href="/" className="text-white hover:text-white">
-            <Button variant="ghost" className="text-white hover:bg-white/10">
+            <Button variant="ghost" className="text-white hover:bg-blue-900/60">
               Home
             </Button>
           </Link>
         </div>
 
         <Tabs defaultValue="tickets" className="space-y-6">
-          <TabsList className="bg-white/10 border-white/20">
-            <TabsTrigger value="tickets" className="data-[state=active]:bg-white/20">
+          <TabsList className="bg-blue-900/60 border-violet-500/30">
+            <TabsTrigger value="tickets" className="data-[state=active]:bg-blue-900/20">
               My Tickets
             </TabsTrigger>
-            <TabsTrigger value="create" className="data-[state=active]:bg-white/20">
+            <TabsTrigger value="create" className="data-[state=active]:bg-blue-900/20">
               Create Ticket
             </TabsTrigger>
           </TabsList>
@@ -288,7 +288,7 @@ export default function Helpdesk() {
           {/* Tickets List */}
           <TabsContent value="tickets" className="space-y-6">
             {/* Search and Filters */}
-            <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+            <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
               <CardContent className="p-6">
                 <div className="flex flex-col sm:flex-row gap-4">
                   <div className="flex-1">
@@ -298,12 +298,12 @@ export default function Helpdesk() {
                         placeholder="Search tickets..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="pl-10 bg-white/10 border-white/20 text-white placeholder-blue-300"
+                        className="pl-10 bg-blue-900/60 border-violet-500/30 text-white placeholder-blue-300"
                       />
                     </div>
                   </div>
                   <Select value={statusFilter} onValueChange={setStatusFilter}>
-                    <SelectTrigger className="w-[180px] bg-white/10 border-white/20 text-white">
+                    <SelectTrigger className="w-[180px] bg-blue-900/60 border-violet-500/30 text-white">
                       <SelectValue placeholder="Filter by status" />
                     </SelectTrigger>
                     <SelectContent>
@@ -315,7 +315,7 @@ export default function Helpdesk() {
                     </SelectContent>
                   </Select>
                   <Select value={priorityFilter} onValueChange={setPriorityFilter}>
-                    <SelectTrigger className="w-[180px] bg-white/10 border-white/20 text-white">
+                    <SelectTrigger className="w-[180px] bg-blue-900/60 border-violet-500/30 text-white">
                       <SelectValue placeholder="Filter by priority" />
                     </SelectTrigger>
                     <SelectContent>
@@ -334,14 +334,14 @@ export default function Helpdesk() {
             {isLoading ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[...Array(6)].map((_, i) => (
-                  <Card key={i} className="bg-white/10 backdrop-blur-sm border-white/20">
+                  <Card key={i} className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
                     <CardContent className="p-6">
                       <div className="animate-pulse">
-                        <div className="h-4 bg-white/20 rounded mb-2"></div>
-                        <div className="h-3 bg-white/20 rounded w-3/4 mb-4"></div>
+                        <div className="h-4 bg-blue-900/20 rounded mb-2"></div>
+                        <div className="h-3 bg-blue-900/20 rounded w-3/4 mb-4"></div>
                         <div className="flex gap-2">
-                          <div className="h-6 bg-white/20 rounded w-16"></div>
-                          <div className="h-6 bg-white/20 rounded w-20"></div>
+                          <div className="h-6 bg-blue-900/20 rounded w-16"></div>
+                          <div className="h-6 bg-blue-900/20 rounded w-20"></div>
                         </div>
                       </div>
                     </CardContent>
@@ -353,7 +353,7 @@ export default function Helpdesk() {
                 {filteredTickets.map((ticket: HelpdeskTicket) => (
                   <Card
                     key={ticket.id}
-                    className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-colors cursor-pointer"
+                    className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30 hover:bg-blue-900/20 transition-colors cursor-pointer"
                     onClick={() => setSelectedTicket(ticket.id)}
                   >
                     <CardContent className="p-6">
@@ -381,7 +381,7 @@ export default function Helpdesk() {
             )}
 
             {filteredTickets.length === 0 && !isLoading && (
-              <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+              <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
                 <CardContent className="p-12 text-center">
                   <Ticket className="w-16 h-16 text-white mx-auto mb-4" />
                   <h3 className="text-xl font-semibold text-white mb-2">No tickets found</h3>
@@ -399,7 +399,7 @@ export default function Helpdesk() {
 
           {/* Create Ticket */}
           <TabsContent value="create">
-            <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+            <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
               <CardHeader>
                 <CardTitle className="text-white flex items-center gap-2">
                   <Plus className="w-5 h-5" />
@@ -414,7 +414,7 @@ export default function Helpdesk() {
                     placeholder="Brief description of your issue"
                     value={newTicket.title}
                     onChange={(e) => setNewTicket({ ...newTicket, title: e.target.value })}
-                    className="bg-white/10 border-white/20 text-white placeholder-blue-300"
+                    className="bg-blue-900/60 border-violet-500/30 text-white placeholder-blue-300"
                   />
                 </div>
 
@@ -422,7 +422,7 @@ export default function Helpdesk() {
                   <div className="space-y-2">
                     <Label htmlFor="category" className="text-white">Category</Label>
                     <Select value={newTicket.category} onValueChange={(value) => setNewTicket({ ...newTicket, category: value })}>
-                      <SelectTrigger className="bg-white/10 border-white/20 text-white">
+                      <SelectTrigger className="bg-blue-900/60 border-violet-500/30 text-white">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -437,7 +437,7 @@ export default function Helpdesk() {
                   <div className="space-y-2">
                     <Label htmlFor="priority" className="text-white">Priority</Label>
                     <Select value={newTicket.priority} onValueChange={(value) => setNewTicket({ ...newTicket, priority: value })}>
-                      <SelectTrigger className="bg-white/10 border-white/20 text-white">
+                      <SelectTrigger className="bg-blue-900/60 border-violet-500/30 text-white">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -457,7 +457,7 @@ export default function Helpdesk() {
                     placeholder="Provide detailed information about your issue..."
                     value={newTicket.description}
                     onChange={(e) => setNewTicket({ ...newTicket, description: e.target.value })}
-                    className="bg-white/10 border-white/20 text-white placeholder-blue-300"
+                    className="bg-blue-900/60 border-violet-500/30 text-white placeholder-blue-300"
                     rows={6}
                   />
                 </div>

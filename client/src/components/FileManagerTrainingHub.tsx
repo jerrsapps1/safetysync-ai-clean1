@@ -545,7 +545,7 @@ This training file was created using the Create File system.`
   return (
     <div className="min-h-screen bg-blue-50">
       {/* File Manager Header */}
-      <div className="bg-white border-b border-blue-200">
+      <div className="bg-blue-900 border-b border-blue-200">
         <div className="flex items-center justify-between p-4">
           <div className="flex items-center space-x-2 text-blue-500 text-sm">
             <button 
@@ -627,7 +627,7 @@ This training file was created using the Create File system.`
       </div>
 
       {/* File List */}
-      <div className="bg-white">
+      <div className="bg-blue-900">
         {/* Table Header */}
         <div className="grid grid-cols-12 gap-4 p-4 border-b border-blue-200 bg-blue-50 text-sm font-medium text-blue-500">
           <div className="col-span-1">

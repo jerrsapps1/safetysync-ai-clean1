@@ -196,7 +196,7 @@ function LoginForm() {
           <p className="text-blue-100">Access your safety management workspace</p>
         </div>
 
-        <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+        <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
           <CardHeader>
             <CardTitle className="text-white">Sign in to your workspace</CardTitle>
             <CardDescription className="text-blue-100">
@@ -214,7 +214,7 @@ function LoginForm() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="bg-white/10 border-white/20 text-white placeholder-blue-200"
+                  className="bg-blue-900/60 border-violet-500/30 text-white placeholder-blue-200"
                 />
               </div>
               <div className="space-y-2">
@@ -226,7 +226,7 @@ function LoginForm() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="bg-white/10 border-white/20 text-white placeholder-blue-200"
+                  className="bg-blue-900/60 border-violet-500/30 text-white placeholder-blue-200"
                 />
               </div>
               <Button
@@ -1954,7 +1954,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         <div className="text-center">
           <SafetySyncIcon size={64} className="mx-auto mb-4" />
           <p className="text-white text-lg mb-4">Error loading dashboard data</p>
-          <Button onClick={() => window.location.reload()} variant="outline" className="text-white border-white hover:bg-white hover:text-black">
+          <Button onClick={() => window.location.reload()} variant="outline" className="text-white border-white hover:bg-blue-900 hover:text-black">
             Reload Page
           </Button>
         </div>
@@ -2758,7 +2758,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                         setSelectedEmployeeForProfile(null);
                         setShowEmployeeProfile(false);
                       }}
-                      className="text-white border-white/20 hover:bg-white/10"
+                      className="text-white border-violet-500/30 hover:bg-blue-900/60"
                     >
                       <ArrowLeft className="w-4 h-4 mr-2" />
                       Back to Employee Selection

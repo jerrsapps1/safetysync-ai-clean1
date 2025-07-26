@@ -185,7 +185,7 @@ export default function BackupRecovery() {
 
         {/* Status Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+          <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <Database className="w-5 h-5 text-blue-400" />
@@ -197,7 +197,7 @@ export default function BackupRecovery() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+          <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <CheckCircle className="w-5 h-5 text-green-400" />
@@ -209,7 +209,7 @@ export default function BackupRecovery() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+          <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <Clock className="w-5 h-5 text-yellow-400" />
@@ -221,7 +221,7 @@ export default function BackupRecovery() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+          <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <Download className="w-5 h-5 text-purple-400" />
@@ -236,7 +236,7 @@ export default function BackupRecovery() {
 
         {/* Main Content */}
         <Tabs defaultValue="schedules" className="w-full">
-          <TabsList className="grid w-full grid-cols-4 bg-white/10 backdrop-blur-sm">
+          <TabsList className="grid w-full grid-cols-4 bg-blue-900/60 backdrop-blur-sm">
             <TabsTrigger value="schedules">Backup Schedules</TabsTrigger>
             <TabsTrigger value="history">Backup History</TabsTrigger>
             <TabsTrigger value="recovery">Recovery Points</TabsTrigger>
@@ -277,7 +277,7 @@ export default function BackupRecovery() {
 
             <div className="grid gap-4">
               {backupSchedules.map((schedule) => (
-                <Card key={schedule.id} className="bg-white/10 backdrop-blur-sm border-white/20">
+                <Card key={schedule.id} className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
                   <CardHeader className="pb-3">
                     <div className="flex justify-between items-start">
                       <div>
@@ -328,7 +328,7 @@ export default function BackupRecovery() {
             <h2 className="text-xl font-semibold text-white">Backup History</h2>
             <div className="space-y-3">
               {backupHistory.map((backup) => (
-                <Card key={backup.id} className="bg-white/10 backdrop-blur-sm border-white/20">
+                <Card key={backup.id} className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
                   <CardContent className="p-4">
                     <div className="flex justify-between items-start">
                       <div className="flex-1">
@@ -394,7 +394,7 @@ export default function BackupRecovery() {
             <h2 className="text-xl font-semibold text-white">Recovery Points</h2>
             <div className="space-y-3">
               {recoveryPoints.map((point) => (
-                <Card key={point.id} className="bg-white/10 backdrop-blur-sm border-white/20">
+                <Card key={point.id} className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
                   <CardContent className="p-4">
                     <div className="flex justify-between items-start">
                       <div className="flex-1">
@@ -450,7 +450,7 @@ export default function BackupRecovery() {
           <TabsContent value="settings" className="space-y-4">
             <h2 className="text-xl font-semibold text-white">Backup & Recovery Settings</h2>
             <div className="grid gap-4">
-              <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+              <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
                 <CardHeader>
                   <CardTitle className="text-white">Storage Configuration</CardTitle>
                 </CardHeader>
@@ -478,7 +478,7 @@ export default function BackupRecovery() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+              <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
                 <CardHeader>
                   <CardTitle className="text-white">Retention Policies</CardTitle>
                 </CardHeader>
@@ -500,7 +500,7 @@ export default function BackupRecovery() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+              <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
                 <CardHeader>
                   <CardTitle className="text-white">Notification Settings</CardTitle>
                 </CardHeader>

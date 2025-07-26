@@ -108,7 +108,7 @@ export default function PublicEmployeeCertificates() {
   return (
     <div className="min-h-screen bg-blue-50">
       {/* Header */}
-      <div className="bg-white border-b">
+      <div className="bg-blue-900 border-b">
         <div className="max-w-4xl mx-auto px-4 py-6">
           <div className="flex items-center space-x-4">
             <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center">

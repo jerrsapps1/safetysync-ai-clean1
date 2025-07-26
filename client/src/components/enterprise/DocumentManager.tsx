@@ -271,7 +271,7 @@ const DocumentManager: React.FC = () => {
     <div className="space-y-6">
       {/* Header and Stats */}
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-        <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+        <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -283,7 +283,7 @@ const DocumentManager: React.FC = () => {
           </CardContent>
         </Card>
         
-        <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+        <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -295,7 +295,7 @@ const DocumentManager: React.FC = () => {
           </CardContent>
         </Card>
         
-        <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+        <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -307,7 +307,7 @@ const DocumentManager: React.FC = () => {
           </CardContent>
         </Card>
         
-        <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+        <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -319,7 +319,7 @@ const DocumentManager: React.FC = () => {
           </CardContent>
         </Card>
         
-        <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+        <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -333,7 +333,7 @@ const DocumentManager: React.FC = () => {
       </div>
 
       {/* Search and Filters */}
-      <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+      <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
         <CardContent className="p-6">
           <div className="flex flex-col lg:flex-row gap-4">
             <div className="flex-1">
@@ -343,14 +343,14 @@ const DocumentManager: React.FC = () => {
                   placeholder="Search documents by title, description, or tags..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 bg-white/5 border-white/10 text-white placeholder-blue-300"
+                  className="pl-10 bg-blue-900/5 border-white/10 text-white placeholder-blue-300"
                 />
               </div>
             </div>
             
             <div className="flex gap-2">
               <Select value={selectedType} onValueChange={setSelectedType}>
-                <SelectTrigger className="w-32 bg-white/5 border-white/10 text-white">
+                <SelectTrigger className="w-32 bg-blue-900/5 border-white/10 text-white">
                   <SelectValue placeholder="Type" />
                 </SelectTrigger>
                 <SelectContent>
@@ -367,7 +367,7 @@ const DocumentManager: React.FC = () => {
               </Select>
               
               <Select value={selectedStatus} onValueChange={setSelectedStatus}>
-                <SelectTrigger className="w-32 bg-white/5 border-white/10 text-white">
+                <SelectTrigger className="w-32 bg-blue-900/5 border-white/10 text-white">
                   <SelectValue placeholder="Status" />
                 </SelectTrigger>
                 <SelectContent>
@@ -380,7 +380,7 @@ const DocumentManager: React.FC = () => {
               </Select>
               
               <Select value={selectedDepartment} onValueChange={setSelectedDepartment}>
-                <SelectTrigger className="w-36 bg-white/5 border-white/10 text-white">
+                <SelectTrigger className="w-36 bg-blue-900/5 border-white/10 text-white">
                   <SelectValue placeholder="Department" />
                 </SelectTrigger>
                 <SelectContent>
@@ -492,11 +492,11 @@ const DocumentManager: React.FC = () => {
       </Card>
 
       {/* Document List */}
-      <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+      <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
         <CardContent className="p-6">
           <div className="space-y-4">
             {filteredDocuments.map((doc) => (
-              <div key={doc.id} className="bg-white/5 rounded-lg p-4 border border-white/10">
+              <div key={doc.id} className="bg-blue-900/5 rounded-lg p-4 border border-white/10">
                 <div className="flex items-start justify-between">
                   <div className="flex items-start space-x-4 flex-1">
                     <div className="flex-shrink-0 mt-1">

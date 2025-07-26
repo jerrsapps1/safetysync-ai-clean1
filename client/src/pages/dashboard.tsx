@@ -102,7 +102,7 @@ function LoginForm() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
-        <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-6 shadow-2xl">
+        <div className="bg-blue-900/60 backdrop-blur-sm border border-violet-500/30 rounded-lg p-6 shadow-2xl">
           <div className="text-center mb-6">
             <h1 className="text-2xl font-bold text-white mb-2">SafetySync.AI</h1>
             <p className="text-white/70">Sign in to your workspace</p>
@@ -117,7 +117,7 @@ function LoginForm() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="bg-white/10 border-white/20 text-white placeholder-white/50"
+                className="bg-blue-900/60 border-violet-500/30 text-white placeholder-white/50"
                 placeholder="Enter your email"
               />
             </div>
@@ -130,7 +130,7 @@ function LoginForm() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="bg-white/10 border-white/20 text-white placeholder-white/50"
+                className="bg-blue-900/60 border-violet-500/30 text-white placeholder-white/50"
                 placeholder="Enter your password"
               />
             </div>
@@ -291,12 +291,12 @@ export default function Dashboard() {
 
       
       {/* Navigation Header */}
-      <div className="bg-black/10 backdrop-blur-md border-b border-white/20 relative z-10">
+      <div className="bg-black/10 backdrop-blur-md border-b border-violet-500/30 relative z-10">
         <div className="max-w-7xl mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2 md:space-x-4">
               <Link href="/">
-                <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300">
+                <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-blue-900/60 transition-all duration-300">
                   <Home className="w-4 h-4 mr-1" />
                   <span className="hidden sm:inline">Home</span>
                 </Button>
@@ -312,7 +312,7 @@ export default function Dashboard() {
             </div>
             <div className="flex items-center space-x-1">
               <Link href="/user-guide">
-                <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300">
+                <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-blue-900/60 transition-all duration-300">
                   <span className="hidden sm:inline">Guide</span>
                   <BookOpen className="w-4 h-4 sm:hidden" />
                 </Button>
@@ -321,7 +321,7 @@ export default function Dashboard() {
                 onClick={simulateLoading}
                 variant="ghost" 
                 size="sm" 
-                className="text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300"
+                className="text-white/70 hover:text-white hover:bg-blue-900/60 transition-all duration-300"
                 title="Test Loading"
               >
                 <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
@@ -329,7 +329,7 @@ export default function Dashboard() {
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300"
+                className="text-white/70 hover:text-white hover:bg-blue-900/60 transition-all duration-300"
                 onClick={logout}
               >
                 Sign Out
@@ -477,7 +477,7 @@ export default function Dashboard() {
 
         {/* Main Content Tabs */}
         <Tabs defaultValue="overview" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-11 bg-white/5 border-white/20 backdrop-blur-sm">
+          <TabsList className="grid w-full grid-cols-11 bg-blue-900/5 border-violet-500/30 backdrop-blur-sm">
             <TabsTrigger value="overview" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white hover:text-white transition-all duration-300">
               Overview
             </TabsTrigger>
@@ -515,7 +515,7 @@ export default function Dashboard() {
 
           <TabsContent value="overview" className="space-y-6">
             {/* AI-Enhanced Recent Activity */}
-            <Card className="bg-white/5 border-white/20 backdrop-blur-sm">
+            <Card className="bg-blue-900/5 border-violet-500/30 backdrop-blur-sm">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-white">
                   <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
@@ -1597,7 +1597,7 @@ export default function Dashboard() {
                 <div className="border-t pt-6">
                   <h3 className="font-medium mb-4">Preview</h3>
                   <div className="bg-blue-50 p-4 rounded-lg">
-                    <div className="bg-white border rounded-lg p-4 max-w-md mx-auto">
+                    <div className="bg-blue-900 border rounded-lg p-4 max-w-md mx-auto">
                       <div className="flex items-center space-x-3 mb-4">
                         <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
                           <span className="text-white text-sm font-bold">YC</span>
@@ -1969,7 +1969,7 @@ export default function Dashboard() {
                         <h4 className="font-semibold">Professional Wallet Card Sample</h4>
                         <div className="grid grid-cols-2 gap-3">
                           {/* Front of Card */}
-                          <div className="border rounded-lg p-4 bg-white text-xs aspect-[3.375/2.125]">
+                          <div className="border rounded-lg p-4 bg-blue-900 text-xs aspect-[3.375/2.125]">
                             <div className="font-bold text-lg mb-2">COMPANY LOGO</div>
                             <div className="text-sm mb-1">Safety Training Certification Card</div>
                             <div className="font-bold text-lg mt-3">Mark Anderson</div>
@@ -1979,7 +1979,7 @@ export default function Dashboard() {
                           </div>
                           
                           {/* Back of Card */}
-                          <div className="border rounded-lg p-4 bg-white text-xs aspect-[3.375/2.125]">
+                          <div className="border rounded-lg p-4 bg-blue-900 text-xs aspect-[3.375/2.125]">
                             <div className="text-xs mb-2">Training compliant with OSHA for MEWPs 1926.453, ANSI A92, PIT 1910.178, and MHE 1926.602, and is authorized to operate the following equipment:</div>
                             <div className="space-y-1 text-xs">
                               <div>• Power Industrial Trucks</div>
@@ -2039,7 +2039,7 @@ export default function Dashboard() {
           </TabsContent>
 
           <TabsContent value="safety-trends" className="space-y-6">
-            <Card className="bg-white/5 border-white/20 backdrop-blur-sm">
+            <Card className="bg-blue-900/5 border-violet-500/30 backdrop-blur-sm">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-white">
                   <Activity className="w-5 h-5 text-blue-400" />

@@ -218,7 +218,7 @@ export default function IncidentResponse() {
 
         {/* Status Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+          <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <AlertTriangle className="w-5 h-5 text-red-400" />
@@ -230,7 +230,7 @@ export default function IncidentResponse() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+          <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <Users className="w-5 h-5 text-blue-400" />
@@ -242,7 +242,7 @@ export default function IncidentResponse() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+          <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <Clock className="w-5 h-5 text-yellow-400" />
@@ -254,7 +254,7 @@ export default function IncidentResponse() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+          <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <TrendingUp className="w-5 h-5 text-green-400" />
@@ -269,7 +269,7 @@ export default function IncidentResponse() {
 
         {/* Main Content */}
         <Tabs defaultValue="active" className="w-full">
-          <TabsList className="grid w-full grid-cols-5 bg-white/10 backdrop-blur-sm">
+          <TabsList className="grid w-full grid-cols-5 bg-blue-900/60 backdrop-blur-sm">
             <TabsTrigger value="active">Active Incidents</TabsTrigger>
             <TabsTrigger value="recent">Recent Incidents</TabsTrigger>
             <TabsTrigger value="team">Response Team</TabsTrigger>
@@ -294,7 +294,7 @@ export default function IncidentResponse() {
 
             <div className="space-y-4">
               {activeIncidents.map((incident) => (
-                <Card key={incident.id} className="bg-white/10 backdrop-blur-sm border-white/20">
+                <Card key={incident.id} className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
                   <CardContent className="p-4">
                     <div className="flex justify-between items-start">
                       <div className="flex-1">
@@ -347,7 +347,7 @@ export default function IncidentResponse() {
             <h2 className="text-xl font-semibold text-white">Recent Incidents</h2>
             <div className="space-y-4">
               {recentIncidents.map((incident) => (
-                <Card key={incident.id} className="bg-white/10 backdrop-blur-sm border-white/20">
+                <Card key={incident.id} className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
                   <CardContent className="p-4">
                     <div className="flex justify-between items-start">
                       <div className="flex-1">
@@ -403,7 +403,7 @@ export default function IncidentResponse() {
             <h2 className="text-xl font-semibold text-white">Response Team</h2>
             <div className="grid gap-4">
               {responseTeam.map((member) => (
-                <Card key={member.name} className="bg-white/10 backdrop-blur-sm border-white/20">
+                <Card key={member.name} className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
                   <CardContent className="p-4">
                     <div className="flex justify-between items-start">
                       <div className="flex items-center gap-3">
@@ -439,7 +439,7 @@ export default function IncidentResponse() {
             <h2 className="text-xl font-semibold text-white">Escalation Matrix</h2>
             <div className="space-y-4">
               {escalationMatrix.map((level) => (
-                <Card key={level.severity} className="bg-white/10 backdrop-blur-sm border-white/20">
+                <Card key={level.severity} className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
                   <CardContent className="p-4">
                     <div className="flex items-center gap-3 mb-3">
                       <Badge className={`${getSeverityColor(level.severity.toLowerCase())} text-white`}>
@@ -473,7 +473,7 @@ export default function IncidentResponse() {
 
           <TabsContent value="create" className="space-y-4">
             <h2 className="text-xl font-semibold text-white">Create New Incident</h2>
-            <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+            <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
               <CardContent className="p-6 space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-white mb-2">
@@ -483,7 +483,7 @@ export default function IncidentResponse() {
                     value={newIncident.title}
                     onChange={(e) => setNewIncident({...newIncident, title: e.target.value})}
                     placeholder="Brief description of the incident"
-                    className="bg-white/5 border-white/20 text-white"
+                    className="bg-blue-900/5 border-violet-500/30 text-white"
                   />
                 </div>
                 
@@ -496,7 +496,7 @@ export default function IncidentResponse() {
                     onChange={(e) => setNewIncident({...newIncident, description: e.target.value})}
                     placeholder="Detailed description of the incident, symptoms, and impact"
                     rows={4}
-                    className="bg-white/5 border-white/20 text-white"
+                    className="bg-blue-900/5 border-violet-500/30 text-white"
                   />
                 </div>
 
@@ -508,7 +508,7 @@ export default function IncidentResponse() {
                     <select
                       value={newIncident.severity}
                       onChange={(e) => setNewIncident({...newIncident, severity: e.target.value})}
-                      className="w-full p-2 bg-white/5 border border-white/20 rounded-md text-white"
+                      className="w-full p-2 bg-blue-900/5 border border-violet-500/30 rounded-md text-white"
                     >
                       <option value="low">Low</option>
                       <option value="medium">Medium</option>
@@ -524,7 +524,7 @@ export default function IncidentResponse() {
                     <select
                       value={newIncident.category}
                       onChange={(e) => setNewIncident({...newIncident, category: e.target.value})}
-                      className="w-full p-2 bg-white/5 border border-white/20 rounded-md text-white"
+                      className="w-full p-2 bg-blue-900/5 border border-violet-500/30 rounded-md text-white"
                     >
                       <option value="security">Security</option>
                       <option value="performance">Performance</option>
