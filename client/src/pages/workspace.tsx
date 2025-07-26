@@ -107,7 +107,9 @@ import {
   Square,
   ArrowRight,
   ArrowUp,
-  ArrowDown
+  ArrowDown,
+  ExternalLink,
+  HelpCircle
 } from "lucide-react";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
@@ -2367,6 +2369,26 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   >
                     <Database className="w-4 h-4 mr-3 flex-shrink-0" />
                     {sidebarOpen && <span className="truncate">Document Management</span>}
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3"
+                    onClick={() => window.open('/.replit.dev/dashboard', '_blank')}
+                    title="Platform Dashboard"
+                  >
+                    <Monitor className="w-4 h-4 mr-3 flex-shrink-0" />
+                    {sidebarOpen && <span className="truncate">Platform Dashboard</span>}
+                    <ExternalLink className="w-3 h-3 ml-auto flex-shrink-0 opacity-60" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3"
+                    onClick={() => window.open('/users', '_blank')}
+                    title="User Guide"
+                  >
+                    <HelpCircle className="w-4 h-4 mr-3 flex-shrink-0" />
+                    {sidebarOpen && <span className="truncate">User Guide</span>}
+                    <ExternalLink className="w-3 h-3 ml-auto flex-shrink-0 opacity-60" />
                   </Button>
                 </div>
               )}
