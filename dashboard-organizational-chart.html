@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafetySync.AI Dashboard Organizational Chart</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1e40af, #3b82f6, #60a5fa);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: auto;
+        }
+        
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .chart {
+            width: 100%;
+            min-width: 1600px;
+            overflow-x: auto;
+        }
+        
+        .level {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .level-1 {
+            margin-bottom: 60px;
+        }
+        
+        .node {
+            background: linear-gradient(135deg, #1e293b, #334155);
+            border: 2px solid #60a5fa;
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin: 0 15px;
+            color: white;
+            text-align: center;
+            min-width: 180px;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .node:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border-color: #10b981;
+        }
+        
+        .root-node {
+            background: linear-gradient(135deg, #059669, #10b981);
+            border-color: #34d399;
+            font-size: 1.2rem;
+            font-weight: bold;
+            min-width: 280px;
+            padding: 20px 30px;
+        }
+        
+        .auth-section {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            border-color: #f87171;
+        }
+        
+        .main-content {
+            background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+            border-color: #a78bfa;
+        }
+        
+        .widget-section {
+            background: linear-gradient(135deg, #0891b2, #06b6d4);
+            border-color: #22d3ee;
+            min-width: 160px;
+        }
+        
+        .component-node {
+            background: linear-gradient(135deg, #ea580c, #f97316);
+            border-color: #fb923c;
+            min-width: 140px;
+        }
+        
+        .data-node {
+            background: linear-gradient(135deg, #be185d, #ec4899);
+            border-color: #f472b6;
+            min-width: 130px;
+        }
+        
+        .ui-element {
+            background: linear-gradient(135deg, #4338ca, #6366f1);
+            border-color: #818cf8;
+            min-width: 120px;
+            font-size: 0.9rem;
+        }
+        
+        .connecting-line {
+            position: absolute;
+            background: #60a5fa;
+            z-index: -1;
+        }
+        
+        .vertical-line {
+            width: 2px;
+            height: 50px;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .horizontal-line {
+            height: 2px;
+            top: -25px;
+        }
+        
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 0.9rem;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .print-optimization {
+            display: none;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 10px;
+            }
+            
+            .container {
+                background: white;
+                box-shadow: none;
+                border: 1px solid #ccc;
+            }
+            
+            h1, .node {
+                color: black;
+            }
+            
+            .node {
+                border-color: #333;
+                background: white;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+            
+            .connecting-line {
+                background: #333;
+            }
+            
+            .print-optimization {
+                display: block;
+                page-break-before: always;
+            }
+        }
+
+        .section-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 30px;
+        }
+
+        .section-title {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            border: 2px solid #475569;
+            border-radius: 8px;
+            padding: 8px 16px;
+            margin-bottom: 20px;
+            color: #cbd5e1;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SafetySync.AI Dashboard Organizational Chart</h1>
+        
+        <div class="chart">
+            <!-- Level 1: Root Dashboard -->
+            <div class="level level-1">
+                <div class="node root-node">
+                    /dashboard
+                    <div>Main Dashboard Page</div>
+                </div>
+            </div>
+            
+            <!-- Level 2: Authentication State -->
+            <div class="level">
+                <div class="node auth-section">
+                    Authentication Check
+                    <div>useAuth() Hook</div>
+                </div>
+            </div>
+            
+            <!-- Level 3: Login vs Dashboard Content -->
+            <div class="level">
+                <div class="section-group">
+                    <div class="section-title">Unauthenticated State</div>
+                    <div class="node auth-section">
+                        LoginForm Component
+                        <div>Email/Password Form</div>
+                    </div>
+                </div>
+                
+                <div class="section-group">
+                    <div class="section-title">Authenticated State</div>
+                    <div class="node main-content">
+                        Dashboard Content
+                        <div>Main Interface</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Level 4: Login Form Components -->
+            <div class="level">
+                <div class="node ui-element">
+                    Email Input
+                    <div>User Credential</div>
+                </div>
+                <div class="node ui-element">
+                    Password Input
+                    <div>Authentication</div>
+                </div>
+                <div class="node ui-element">
+                    Login Button
+                    <div>Submit Action</div>
+                </div>
+                
+                <!-- Dashboard Main Sections -->
+                <div class="node main-content">
+                    AI Setup Guide
+                    <div>OpenAI Integration</div>
+                </div>
+                <div class="node main-content">
+                    Quick Stats Cards
+                    <div>Analytics Overview</div>
+                </div>
+                <div class="node main-content">
+                    Tab Navigation
+                    <div>Content Sections</div>
+                </div>
+            </div>
+            
+            <!-- Level 5: Dashboard Tabs -->
+            <div class="level">
+                <div class="node widget-section">
+                    Overview Tab
+                    <div>Dashboard Widgets</div>
+                </div>
+                <div class="node widget-section">
+                    Analytics Tab
+                    <div>Data Visualization</div>
+                </div>
+                <div class="node widget-section">
+                    Compliance Tab
+                    <div>OSHA Tracking</div>
+                </div>
+                <div class="node widget-section">
+                    Training Tab
+                    <div>Education Management</div>
+                </div>
+                <div class="node widget-section">
+                    AI Insights Tab
+                    <div>Machine Learning</div>
+                </div>
+            </div>
+            
+            <!-- Level 6: Widget Components -->
+            <div class="level">
+                <!-- Overview Tab Widgets -->
+                <div class="node component-node">
+                    Welcome Widget
+                    <div>Personalized Greeting</div>
+                </div>
+                <div class="node component-node">
+                    Quick Actions
+                    <div>Primary Functions</div>
+                </div>
+                <div class="node component-node">
+                    System Status
+                    <div>Health Monitoring</div>
+                </div>
+                <div class="node component-node">
+                    Recent Activity
+                    <div>Action Timeline</div>
+                </div>
+                
+                <!-- Analytics Tab Components -->
+                <div class="node component-node">
+                    Compliance Chart
+                    <div>Score Visualization</div>
+                </div>
+                <div class="node component-node">
+                    Training Progress
+                    <div>Progress Tracking</div>
+                </div>
+                <div class="node component-node">
+                    Department Stats
+                    <div>Team Metrics</div>
+                </div>
+            </div>
+            
+            <!-- Level 7: Detailed UI Elements -->
+            <div class="level">
+                <!-- Welcome Widget Elements -->
+                <div class="node ui-element">
+                    Time-based Greeting
+                    <div>Dynamic Text</div>
+                </div>
+                <div class="node ui-element">
+                    User Name Display
+                    <div>Personalization</div>
+                </div>
+                <div class="node ui-element">
+                    Compliance Score
+                    <div>Current Status</div>
+                </div>
+                
+                <!-- Quick Actions Elements -->
+                <div class="node ui-element">
+                    Add Employee
+                    <div>User Management</div>
+                </div>
+                <div class="node ui-element">
+                    Upload Document
+                    <div>File Processing</div>
+                </div>
+                <div class="node ui-element">
+                    Generate Report
+                    <div>Analytics Export</div>
+                </div>
+                
+                <!-- Activity Feed Elements -->
+                <div class="node ui-element">
+                    Activity Cards
+                    <div>Event Display</div>
+                </div>
+                <div class="node ui-element">
+                    Timestamps
+                    <div>Time Information</div>
+                </div>
+                <div class="node ui-element">
+                    Action Icons
+                    <div>Visual Indicators</div>
+                </div>
+            </div>
+            
+            <!-- Level 8: Data Components -->
+            <div class="level">
+                <div class="node data-node">
+                    Employee Records
+                    <div>Database Query</div>
+                </div>
+                <div class="node data-node">
+                    Training Data
+                    <div>Course Information</div>
+                </div>
+                <div class="node data-node">
+                    Compliance Metrics
+                    <div>Score Calculation</div>
+                </div>
+                <div class="node data-node">
+                    Certificate Status
+                    <div>Validation Records</div>
+                </div>
+                <div class="node data-node">
+                    AI Recommendations
+                    <div>Machine Learning</div>
+                </div>
+                <div class="node data-node">
+                    System Logs
+                    <div>Activity Tracking</div>
+                </div>
+            </div>
+            
+            <!-- Level 9: API Endpoints -->
+            <div class="level">
+                <div class="node data-node">
+                    /api/dashboard/data
+                    <div>Main Dashboard API</div>
+                </div>
+                <div class="node data-node">
+                    /api/dashboard/stats
+                    <div>Statistics Endpoint</div>
+                </div>
+                <div class="node data-node">
+                    /api/auth/me
+                    <div>User Authentication</div>
+                </div>
+                <div class="node data-node">
+                    /api/employees
+                    <div>Employee Management</div>
+                </div>
+                <div class="node data-node">
+                    /api/training
+                    <div>Training Records</div>
+                </div>
+                <div class="node data-node">
+                    /api/certificates
+                    <div>Certificate Management</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #059669, #10b981);"></div>
+                <span>Root Dashboard Page</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #dc2626, #ef4444);"></div>
+                <span>Authentication Components</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #7c3aed, #8b5cf6);"></div>
+                <span>Main Content Areas</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #0891b2, #06b6d4);"></div>
+                <span>Widget Sections</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #ea580c, #f97316);"></div>
+                <span>React Components</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #be185d, #ec4899);"></div>
+                <span>Data & API Endpoints</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #4338ca, #6366f1);"></div>
+                <span>UI Elements</span>
+            </div>
+        </div>
+        
+        <!-- Print Optimization -->
+        <div class="print-optimization">
+            <h2>Dashboard Component Breakdown</h2>
+            <ul>
+                <li><strong>Authentication Layer:</strong> useAuth hook, LoginForm component, credential validation</li>
+                <li><strong>Main Dashboard:</strong> Tab navigation, widget system, data visualization</li>
+                <li><strong>Data Management:</strong> API endpoints, database queries, state management</li>
+                <li><strong>User Interface:</strong> React components, UI elements, interactive features</li>
+                <li><strong>AI Integration:</strong> OpenAI setup, recommendations, intelligent insights</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
