@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export interface CartItem {
   id: string;
-  itemType: 'certificate' | 'wallet_card' | 'training_package' | 'ai_credits' | 'branding_package';
+  itemType: 'certificate' | 'wallet_card';
   itemName: string;
   quantity: number;
   unitPrice: number;

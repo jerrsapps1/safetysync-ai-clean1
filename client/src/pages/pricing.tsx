@@ -5,10 +5,27 @@ import { PricingCalculator } from "@/components/ui/pricing-calculator";
 import { FAQSection } from "@/components/ui/faq-section";
 import { LiveChatWidget } from "@/components/ui/live-chat-widget";
 import { PageHeader } from "@/components/ui/page-header";
-import { MessageCircle } from "lucide-react";
+import ShoppingCartButton from "@/components/shopping-cart/ShoppingCartButton";
+import { useCart } from "@/contexts/CartContext";
+import { MessageCircle, Award, IdCard, ShoppingCart, Zap } from "lucide-react";
 
 export default function PricingPage() {
   const [showChat, setShowChat] = useState(false);
+  const { addToCart } = useCart();
+
+  const handleAddToCart = (itemType: 'certificate' | 'wallet_card', quantity: number) => {
+    const itemName = itemType === 'certificate' ? 'OSHA Training Certificate' : 'Digital Wallet Card';
+    addToCart({
+      itemType,
+      itemName,
+      quantity,
+      unitPrice: 5.95,
+      metadata: {
+        source: 'pricing_page',
+        description: `Pre-purchase of ${quantity} ${itemType === 'certificate' ? 'certificates' : 'wallet cards'}`
+      }
+    });
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
@@ -23,37 +40,165 @@ export default function PricingPage() {
             Simple, Transparent Pricing
           </h1>
           <p className="text-xl text-white max-w-3xl mx-auto mb-8">
-            Choose the perfect plan for your organization. All plans include our core compliance features 
-            with a 30-day free trial and no setup fees.
+            Join and realize the savings in time and money through using SafetySync.AI. All plans include our core compliance features 
+            with a 6-hour trial and no setup fees.
           </p>
+          
+          {/* Shopping Cart Button */}
+          <div className="flex justify-center mb-8">
+            <ShoppingCartButton 
+              variant="outline" 
+              size="lg"
+              className="bg-white/10 border-white/30 text-white hover:bg-white/20"
+            />
+          </div>
         </div>
 
-        {/* Certificate & Digital Card Services Link */}
+        {/* Certificate & Digital Card Pre-Purchase */}
         <section className="mb-20">
-          <div className="text-center">
-            <div className="bg-gradient-to-r from-blue-600/30 to-purple-600/30 border border-blue-400/40 rounded-lg p-8 max-w-4xl mx-auto backdrop-blur-sm">
-              <h2 className="text-3xl font-bold text-white mb-4">Professional Certificate & Digital Card Services</h2>
-              <p className="text-xl text-white mb-6">
-                Generate high-quality OSHA-compliant certificates and digital wallet cards with plan-specific allowances
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
-                  size="lg" 
-                  className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-semibold"
-                  onClick={() => window.location.href = '/certificate-services'}
-                >
-                  View Certificate Services
-                </Button>
-                <Button 
-                  size="lg" 
-                  variant="secondary" 
-                  className="bg-blue-100 border-blue-400 text-blue-600 hover:bg-blue-200"
-                  onClick={() => window.location.href = '/certificate-services'}
-                >
-                  See Examples & Pricing
-                </Button>
-              </div>
-            </div>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-4">Pre-Purchase Certificates & Digital Cards</h2>
+            <p className="text-xl text-white mb-8">
+              Buy certificates and wallet cards in advance and save with volume discounts. All items are $5.95 each.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Certificates */}
+            <Card className="bg-blue-900/40 border-white/10 backdrop-blur-sm">
+              <CardHeader className="text-center">
+                <div className="flex justify-center mb-4">
+                  <Award className="w-12 h-12 text-emerald-400" />
+                </div>
+                <CardTitle className="text-white text-2xl">OSHA Training Certificates</CardTitle>
+                <CardDescription className="text-blue-200">
+                  Professional certificates for all OSHA training programs
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="text-center mb-6">
+                  <div className="text-3xl font-bold text-white">$5.95</div>
+                  <div className="text-blue-200">per certificate</div>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-3">
+                  <Button
+                    onClick={() => handleAddToCart('certificate', 10)}
+                    className="bg-emerald-600 hover:bg-emerald-700 text-white"
+                  >
+                    +10 Certificates
+                  </Button>
+                  <Button
+                    onClick={() => handleAddToCart('certificate', 25)}
+                    variant="outline"
+                    className="border-white/30 text-white hover:bg-white/10"
+                  >
+                    +25 Certificates
+                  </Button>
+                  <Button
+                    onClick={() => handleAddToCart('certificate', 50)}
+                    variant="outline"
+                    className="border-white/30 text-white hover:bg-white/10"
+                  >
+                    +50 Certificates
+                  </Button>
+                  <Button
+                    onClick={() => handleAddToCart('certificate', 75)}
+                    className="bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white"
+                  >
+                    +75 Certificates
+                  </Button>
+                </div>
+                
+                <div className="text-center text-sm text-blue-300">
+                  Volume discounts automatically applied at checkout
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Digital Wallet Cards */}
+            <Card className="bg-blue-900/40 border-white/10 backdrop-blur-sm">
+              <CardHeader className="text-center">
+                <div className="flex justify-center mb-4">
+                  <IdCard className="w-12 h-12 text-blue-400" />
+                </div>
+                <CardTitle className="text-white text-2xl">Digital Wallet Cards</CardTitle>
+                <CardDescription className="text-blue-200">
+                  Mobile-ready certification cards with QR verification
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="text-center mb-6">
+                  <div className="text-3xl font-bold text-white">$5.95</div>
+                  <div className="text-blue-200">per wallet card</div>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-3">
+                  <Button
+                    onClick={() => handleAddToCart('wallet_card', 10)}
+                    className="bg-blue-600 hover:bg-blue-700 text-white"
+                  >
+                    +10 Cards
+                  </Button>
+                  <Button
+                    onClick={() => handleAddToCart('wallet_card', 25)}
+                    variant="outline"
+                    className="border-white/30 text-white hover:bg-white/10"
+                  >
+                    +25 Cards
+                  </Button>
+                  <Button
+                    onClick={() => handleAddToCart('wallet_card', 50)}
+                    variant="outline"
+                    className="border-white/30 text-white hover:bg-white/10"
+                  >
+                    +50 Cards
+                  </Button>
+                  <Button
+                    onClick={() => handleAddToCart('wallet_card', 75)}
+                    className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white"
+                  >
+                    +75 Cards
+                  </Button>
+                </div>
+                
+                <div className="text-center text-sm text-blue-300">
+                  Volume discounts automatically applied at checkout
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+          
+          {/* Volume Discount Information */}
+          <div className="mt-12 max-w-2xl mx-auto">
+            <Card className="bg-gradient-to-r from-green-900/40 to-emerald-900/40 border-green-500/30 backdrop-blur-sm">
+              <CardHeader>
+                <CardTitle className="text-white text-center flex items-center justify-center gap-2">
+                  <Zap className="w-5 h-5 text-yellow-400" />
+                  Volume Discount Structure
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                  <div className="text-green-200">
+                    <div className="font-bold text-lg">10% OFF</div>
+                    <div className="text-sm">15-29 items</div>
+                  </div>
+                  <div className="text-green-200">
+                    <div className="font-bold text-lg">15% OFF</div>
+                    <div className="text-sm">30-49 items</div>
+                  </div>
+                  <div className="text-green-200">
+                    <div className="font-bold text-lg">20% OFF</div>
+                    <div className="text-sm">50-74 items</div>
+                  </div>
+                  <div className="text-green-200">
+                    <div className="font-bold text-lg">25% OFF</div>
+                    <div className="text-sm">75+ items</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </section>
 
