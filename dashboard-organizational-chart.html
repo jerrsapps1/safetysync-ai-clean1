@@ -20,7 +20,7 @@
         }
         
         .container {
-            max-width: 1800px;
+            max-width: 2200px;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -39,15 +39,17 @@
         
         .chart {
             width: 100%;
-            min-width: 1600px;
+            min-width: 2000px;
             overflow-x: auto;
         }
         
         .level {
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
             margin-bottom: 40px;
             position: relative;
+            gap: 15px;
         }
         
         .level-1 {
@@ -59,13 +61,13 @@
             border: 2px solid #60a5fa;
             border-radius: 12px;
             padding: 15px 20px;
-            margin: 0 15px;
             color: white;
             text-align: center;
-            min-width: 180px;
+            min-width: 160px;
             position: relative;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
+            font-size: 0.9rem;
         }
         
         .node:hover {
@@ -77,64 +79,64 @@
         .root-node {
             background: linear-gradient(135deg, #059669, #10b981);
             border-color: #34d399;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: bold;
-            min-width: 280px;
-            padding: 20px 30px;
+            min-width: 300px;
+            padding: 25px 40px;
         }
         
-        .auth-section {
+        .auth-node {
             background: linear-gradient(135deg, #dc2626, #ef4444);
             border-color: #f87171;
+            min-width: 200px;
         }
         
-        .main-content {
+        .main-section {
             background: linear-gradient(135deg, #7c3aed, #8b5cf6);
             border-color: #a78bfa;
+            min-width: 180px;
         }
         
-        .widget-section {
+        .tab-node {
             background: linear-gradient(135deg, #0891b2, #06b6d4);
             border-color: #22d3ee;
-            min-width: 160px;
+            min-width: 140px;
         }
         
         .component-node {
             background: linear-gradient(135deg, #ea580c, #f97316);
             border-color: #fb923c;
-            min-width: 140px;
-        }
-        
-        .data-node {
-            background: linear-gradient(135deg, #be185d, #ec4899);
-            border-color: #f472b6;
             min-width: 130px;
         }
         
-        .ui-element {
+        .stats-node {
+            background: linear-gradient(135deg, #be185d, #ec4899);
+            border-color: #f472b6;
+            min-width: 120px;
+        }
+        
+        .api-node {
             background: linear-gradient(135deg, #4338ca, #6366f1);
             border-color: #818cf8;
-            min-width: 120px;
-            font-size: 0.9rem;
+            min-width: 150px;
         }
         
-        .connecting-line {
-            position: absolute;
-            background: #60a5fa;
-            z-index: -1;
+        .section-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 20px;
         }
-        
-        .vertical-line {
-            width: 2px;
-            height: 50px;
-            top: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .horizontal-line {
-            height: 2px;
-            top: -25px;
+
+        .section-title {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            border: 2px solid #475569;
+            border-radius: 8px;
+            padding: 8px 16px;
+            margin-bottom: 20px;
+            color: #cbd5e1;
+            font-weight: bold;
+            font-size: 0.85rem;
         }
         
         .legend {
@@ -163,10 +165,6 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
         
-        .print-optimization {
-            display: none;
-        }
-        
         @media print {
             body {
                 background: white;
@@ -188,263 +186,262 @@
                 background: white;
                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             }
-            
-            .connecting-line {
-                background: #333;
-            }
-            
-            .print-optimization {
-                display: block;
-                page-break-before: always;
-            }
-        }
-
-        .section-group {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 0 30px;
-        }
-
-        .section-title {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            border: 2px solid #475569;
-            border-radius: 8px;
-            padding: 8px 16px;
-            margin-bottom: 20px;
-            color: #cbd5e1;
-            font-weight: bold;
-            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>SafetySync.AI Dashboard Organizational Chart</h1>
+        <h1>SafetySync.AI Dashboard Page Organizational Chart</h1>
         
         <div class="chart">
-            <!-- Level 1: Root Dashboard -->
+            <!-- Level 1: Root Dashboard Component -->
             <div class="level level-1">
                 <div class="node root-node">
                     /dashboard
-                    <div>Main Dashboard Page</div>
+                    <div>Main Dashboard Component</div>
                 </div>
             </div>
             
-            <!-- Level 2: Authentication State -->
-            <div class="level">
-                <div class="node auth-section">
-                    Authentication Check
-                    <div>useAuth() Hook</div>
-                </div>
-            </div>
-            
-            <!-- Level 3: Login vs Dashboard Content -->
+            <!-- Level 2: Authentication Branch -->
             <div class="level">
                 <div class="section-group">
-                    <div class="section-title">Unauthenticated State</div>
-                    <div class="node auth-section">
+                    <div class="section-title">Authentication Flow</div>
+                    <div class="node auth-node">
+                        useAuth() Hook
+                        <div>Authentication State</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Level 3: Authentication States -->
+            <div class="level">
+                <div class="section-group">
+                    <div class="section-title">Unauthenticated</div>
+                    <div class="node auth-node">
                         LoginForm Component
-                        <div>Email/Password Form</div>
+                        <div>Email & Password</div>
                     </div>
                 </div>
                 
                 <div class="section-group">
-                    <div class="section-title">Authenticated State</div>
-                    <div class="node main-content">
+                    <div class="section-title">Authenticated</div>
+                    <div class="node main-section">
                         Dashboard Content
-                        <div>Main Interface</div>
+                        <div>Main UI Interface</div>
                     </div>
                 </div>
             </div>
             
-            <!-- Level 4: Login Form Components -->
+            <!-- Level 4: Main Dashboard Sections -->
             <div class="level">
-                <div class="node ui-element">
-                    Email Input
-                    <div>User Credential</div>
-                </div>
-                <div class="node ui-element">
-                    Password Input
-                    <div>Authentication</div>
-                </div>
-                <div class="node ui-element">
-                    Login Button
-                    <div>Submit Action</div>
-                </div>
-                
-                <!-- Dashboard Main Sections -->
-                <div class="node main-content">
-                    AI Setup Guide
+                <div class="node main-section">
+                    AI Setup Guide Card
                     <div>OpenAI Integration</div>
                 </div>
-                <div class="node main-content">
-                    Quick Stats Cards
-                    <div>Analytics Overview</div>
+                <div class="node main-section">
+                    AI-Enhanced Stats Grid
+                    <div>4 Metric Cards</div>
                 </div>
-                <div class="node main-content">
-                    Tab Navigation
-                    <div>Content Sections</div>
+                <div class="node main-section">
+                    Compliance Score Card
+                    <div>Progress Bar & Score</div>
+                </div>
+                <div class="node main-section">
+                    Main Content Tabs
+                    <div>11 Tab Navigation</div>
                 </div>
             </div>
             
-            <!-- Level 5: Dashboard Tabs -->
+            <!-- Level 5: Stats Grid Breakdown -->
             <div class="level">
-                <div class="node widget-section">
+                <div class="node stats-node">
+                    AI-Verified Compliant
+                    <div>Total Employees</div>
+                </div>
+                <div class="node stats-node">
+                    AI Analysis: Compliant
+                    <div>Compliant Employees</div>
+                </div>
+                <div class="node stats-node">
+                    Smart Training Queue
+                    <div>Pending Training</div>
+                </div>
+                <div class="node stats-node">
+                    AI Alert: Expiring Soon
+                    <div>Expiring Certifications</div>
+                </div>
+            </div>
+            
+            <!-- Level 6: All 11 Dashboard Tabs -->
+            <div class="level">
+                <div class="node tab-node">
                     Overview Tab
-                    <div>Dashboard Widgets</div>
+                    <div>Recent Activity Feed</div>
                 </div>
-                <div class="node widget-section">
-                    Analytics Tab
-                    <div>Data Visualization</div>
+                <div class="node tab-node">
+                    Employees Tab
+                    <div>Employee Records</div>
                 </div>
-                <div class="node widget-section">
-                    Compliance Tab
-                    <div>OSHA Tracking</div>
-                </div>
-                <div class="node widget-section">
+                <div class="node tab-node">
                     Training Tab
-                    <div>Education Management</div>
+                    <div>OSHA Programs</div>
                 </div>
-                <div class="node widget-section">
-                    AI Insights Tab
-                    <div>Machine Learning</div>
+                <div class="node tab-node">
+                    Branding Tab
+                    <div>AI Clone Detector</div>
+                </div>
+                <div class="node tab-node">
+                    Reports Tab
+                    <div>Performance Analytics</div>
+                </div>
+                <div class="node tab-node">
+                    Report Generator Tab
+                    <div>Compliance Generator</div>
+                </div>
+                <div class="node tab-node">
+                    Certificates Tab
+                    <div>Digital Certificates</div>
+                </div>
+                <div class="node tab-node">
+                    Team Review Tab
+                    <div>Collaboration Layer</div>
+                </div>
+                <div class="node tab-node">
+                    Locations Tab
+                    <div>Multi-Location Mgmt</div>
+                </div>
+                <div class="node tab-node">
+                    Safety Trends Tab
+                    <div>Trend Analysis</div>
+                </div>
+                <div class="node tab-node">
+                    Audit Settings Tab
+                    <div>Audit Configuration</div>
                 </div>
             </div>
             
-            <!-- Level 6: Widget Components -->
+            <!-- Level 7: Tab Content Components -->
             <div class="level">
-                <!-- Overview Tab Widgets -->
+                <!-- Overview Tab Content -->
                 <div class="node component-node">
-                    Welcome Widget
-                    <div>Personalized Greeting</div>
-                </div>
-                <div class="node component-node">
-                    Quick Actions
-                    <div>Primary Functions</div>
-                </div>
-                <div class="node component-node">
-                    System Status
-                    <div>Health Monitoring</div>
-                </div>
-                <div class="node component-node">
-                    Recent Activity
-                    <div>Action Timeline</div>
+                    Activity Timeline
+                    <div>Recent Actions</div>
                 </div>
                 
-                <!-- Analytics Tab Components -->
+                <!-- Training Tab Content -->
                 <div class="node component-node">
-                    Compliance Chart
-                    <div>Score Visualization</div>
-                </div>
-                <div class="node component-node">
-                    Training Progress
-                    <div>Progress Tracking</div>
+                    Fall Protection
+                    <div>29 CFR 1910.30</div>
                 </div>
                 <div class="node component-node">
-                    Department Stats
-                    <div>Team Metrics</div>
+                    HAZWOPER Training
+                    <div>29 CFR 1910.120</div>
                 </div>
-            </div>
-            
-            <!-- Level 7: Detailed UI Elements -->
-            <div class="level">
-                <!-- Welcome Widget Elements -->
-                <div class="node ui-element">
-                    Time-based Greeting
-                    <div>Dynamic Text</div>
+                <div class="node component-node">
+                    HazCom Training
+                    <div>29 CFR 1910.1200</div>
                 </div>
-                <div class="node ui-element">
-                    User Name Display
-                    <div>Personalization</div>
+                <div class="node component-node">
+                    Hearing Conservation
+                    <div>29 CFR 1910.95</div>
                 </div>
-                <div class="node ui-element">
-                    Compliance Score
-                    <div>Current Status</div>
+                <div class="node component-node">
+                    PPE Training
+                    <div>29 CFR 1910.132</div>
+                </div>
+                <div class="node component-node">
+                    First Aid & CPR
+                    <div>Certification Program</div>
                 </div>
                 
-                <!-- Quick Actions Elements -->
-                <div class="node ui-element">
-                    Add Employee
-                    <div>User Management</div>
+                <!-- Locations Tab Content -->
+                <div class="node component-node">
+                    Headquarters
+                    <div>NY Location</div>
                 </div>
-                <div class="node ui-element">
-                    Upload Document
-                    <div>File Processing</div>
+                <div class="node component-node">
+                    Manufacturing Plant
+                    <div>MI Location</div>
                 </div>
-                <div class="node ui-element">
-                    Generate Report
-                    <div>Analytics Export</div>
-                </div>
-                
-                <!-- Activity Feed Elements -->
-                <div class="node ui-element">
-                    Activity Cards
-                    <div>Event Display</div>
-                </div>
-                <div class="node ui-element">
-                    Timestamps
-                    <div>Time Information</div>
-                </div>
-                <div class="node ui-element">
-                    Action Icons
-                    <div>Visual Indicators</div>
+                <div class="node component-node">
+                    Warehouse East
+                    <div>GA Location</div>
                 </div>
             </div>
             
-            <!-- Level 8: Data Components -->
+            <!-- Level 8: Training Program Details -->
             <div class="level">
-                <div class="node data-node">
-                    Employee Records
-                    <div>Database Query</div>
+                <div class="node component-node">
+                    Training Syllabus
+                    <div>OSHA Requirements</div>
                 </div>
-                <div class="node data-node">
-                    Training Data
-                    <div>Course Information</div>
+                <div class="node component-node">
+                    Enrollment Tracking
+                    <div>Student Progress</div>
                 </div>
-                <div class="node data-node">
-                    Compliance Metrics
-                    <div>Score Calculation</div>
+                <div class="node component-node">
+                    Completion Status
+                    <div>Certification Status</div>
                 </div>
-                <div class="node data-node">
-                    Certificate Status
-                    <div>Validation Records</div>
+                <div class="node component-node">
+                    Recertification
+                    <div>Annual/Initial</div>
                 </div>
-                <div class="node data-node">
-                    AI Recommendations
-                    <div>Machine Learning</div>
-                </div>
-                <div class="node data-node">
-                    System Logs
-                    <div>Activity Tracking</div>
+                <div class="node component-node">
+                    Target Audience
+                    <div>Job Role Specific</div>
                 </div>
             </div>
             
-            <!-- Level 9: API Endpoints -->
+            <!-- Level 9: API Endpoints & Data Sources -->
             <div class="level">
-                <div class="node data-node">
+                <div class="node api-node">
                     /api/dashboard/data
-                    <div>Main Dashboard API</div>
+                    <div>Main Dashboard Data</div>
                 </div>
-                <div class="node data-node">
+                <div class="node api-node">
                     /api/dashboard/stats
                     <div>Statistics Endpoint</div>
                 </div>
-                <div class="node data-node">
+                <div class="node api-node">
                     /api/auth/me
                     <div>User Authentication</div>
                 </div>
-                <div class="node data-node">
+                <div class="node api-node">
                     /api/employees
                     <div>Employee Management</div>
                 </div>
-                <div class="node data-node">
+                <div class="node api-node">
                     /api/training
                     <div>Training Records</div>
                 </div>
-                <div class="node data-node">
+                <div class="node api-node">
                     /api/certificates
-                    <div>Certificate Management</div>
+                    <div>Certificate API</div>
+                </div>
+            </div>
+            
+            <!-- Level 10: External Components -->
+            <div class="level">
+                <div class="node component-node">
+                    ComplianceReportGenerator
+                    <div>External Component</div>
+                </div>
+                <div class="node component-node">
+                    AICloneDetector
+                    <div>External Component</div>
+                </div>
+                <div class="node component-node">
+                    CollaborationLayer
+                    <div>External Component</div>
+                </div>
+                <div class="node component-node">
+                    AIPatternSkeleton
+                    <div>Loading States</div>
+                </div>
+                <div class="node component-node">
+                    SmoothLoading
+                    <div>Animation Wrapper</div>
                 </div>
             </div>
         </div>
@@ -453,44 +450,86 @@
         <div class="legend">
             <div class="legend-item">
                 <div class="legend-color" style="background: linear-gradient(135deg, #059669, #10b981);"></div>
-                <span>Root Dashboard Page</span>
+                <span>Root Dashboard Component</span>
             </div>
             <div class="legend-item">
                 <div class="legend-color" style="background: linear-gradient(135deg, #dc2626, #ef4444);"></div>
-                <span>Authentication Components</span>
+                <span>Authentication System</span>
             </div>
             <div class="legend-item">
                 <div class="legend-color" style="background: linear-gradient(135deg, #7c3aed, #8b5cf6);"></div>
-                <span>Main Content Areas</span>
+                <span>Main Dashboard Sections</span>
             </div>
             <div class="legend-item">
                 <div class="legend-color" style="background: linear-gradient(135deg, #0891b2, #06b6d4);"></div>
-                <span>Widget Sections</span>
+                <span>Dashboard Tabs (11 total)</span>
             </div>
             <div class="legend-item">
                 <div class="legend-color" style="background: linear-gradient(135deg, #ea580c, #f97316);"></div>
-                <span>React Components</span>
+                <span>Content Components</span>
             </div>
             <div class="legend-item">
                 <div class="legend-color" style="background: linear-gradient(135deg, #be185d, #ec4899);"></div>
-                <span>Data & API Endpoints</span>
+                <span>Statistics Cards</span>
             </div>
             <div class="legend-item">
                 <div class="legend-color" style="background: linear-gradient(135deg, #4338ca, #6366f1);"></div>
-                <span>UI Elements</span>
+                <span>API Endpoints</span>
             </div>
         </div>
         
-        <!-- Print Optimization -->
-        <div class="print-optimization">
-            <h2>Dashboard Component Breakdown</h2>
-            <ul>
-                <li><strong>Authentication Layer:</strong> useAuth hook, LoginForm component, credential validation</li>
-                <li><strong>Main Dashboard:</strong> Tab navigation, widget system, data visualization</li>
-                <li><strong>Data Management:</strong> API endpoints, database queries, state management</li>
-                <li><strong>User Interface:</strong> React components, UI elements, interactive features</li>
-                <li><strong>AI Integration:</strong> OpenAI setup, recommendations, intelligent insights</li>
-            </ul>
+        <!-- Detailed Breakdown -->
+        <div style="margin-top: 40px; padding: 20px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; color: white;">
+            <h2 style="margin-bottom: 20px; color: white;">Dashboard Component Analysis</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div>
+                    <h3 style="color: #10b981; margin-bottom: 10px;">Authentication Flow</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>• useAuth() hook verification</li>
+                        <li>• LoginForm component (unauthenticated)</li>
+                        <li>• Dashboard content (authenticated)</li>
+                        <li>• Email/password input fields</li>
+                        <li>• Authentication state management</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="color: #8b5cf6; margin-bottom: 10px;">Dashboard Main Sections</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>• AI Setup Guide card</li>
+                        <li>• 4-card statistics grid</li>
+                        <li>• Compliance score display</li>
+                        <li>• 11-tab navigation system</li>
+                        <li>• Loading states & animations</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="color: #06b6d4; margin-bottom: 10px;">Complete Tab Structure</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>• Overview (activity feed)</li>
+                        <li>• Employees (records management)</li>
+                        <li>• Training (OSHA programs)</li>
+                        <li>• Branding (AI clone detector)</li>
+                        <li>• Reports (analytics)</li>
+                        <li>• Report Generator (compliance)</li>
+                        <li>• Certificates (digital certs)</li>
+                        <li>• Team Review (collaboration)</li>
+                        <li>• Locations (multi-site)</li>
+                        <li>• Safety Trends (analysis)</li>
+                        <li>• Audit Settings (configuration)</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="color: #f97316; margin-bottom: 10px;">Training Programs</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>• Fall Protection (29 CFR 1910.30)</li>
+                        <li>• HAZWOPER (29 CFR 1910.120)</li>
+                        <li>• HazCom (29 CFR 1910.1200)</li>
+                        <li>• Hearing Conservation (29 CFR 1910.95)</li>
+                        <li>• PPE Training (29 CFR 1910.132)</li>
+                        <li>• First Aid & CPR certification</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </body>
