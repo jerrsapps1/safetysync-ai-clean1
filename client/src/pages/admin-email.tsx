@@ -190,14 +190,14 @@ export default function AdminEmailPage() {
                 <h4 className="text-white font-semibold">Sender Configuration</h4>
                 <div className="bg-blue-900/60 p-3 rounded text-blue-200">
                   SafetySync AI<br />
-                  admin@safetysync.ai
+                  jerry@safetysync.ai
                 </div>
               </div>
               <div className="space-y-2">
                 <h4 className="text-white font-semibold">Default Recipient</h4>
                 <div className="bg-blue-900/60 p-3 rounded text-blue-200">
-                  Admin User<br />
-                  you@yourdomain.com
+                  Jerry<br />
+                  jerry@safetysync.ai
                 </div>
               </div>
             </div>

@@ -857,8 +857,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const response = await axios.post(
         'https://api.brevo.com/v3/smtp/email',
         {
-          sender: { name: 'SafetySync AI', email: 'admin@safetysync.ai' },
-          to: [{ email: 'you@yourdomain.com', name: 'Admin' }],
+          sender: { name: 'SafetySync AI', email: 'jerry@safetysync.ai' },
+          to: [{ email: 'jerry@safetysync.ai', name: 'Jerry' }],
           subject: '📊 Weekly Signup Summary',
           htmlContent: `<p>Hi Admin,</p><pre>${summary}</pre>`
         },
