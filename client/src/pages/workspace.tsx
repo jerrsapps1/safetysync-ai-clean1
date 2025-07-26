@@ -2012,7 +2012,27 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         {/* Navigation - Organized by Tutorial Order */}
         <nav className={`${sidebarOpen ? 'block' : 'hidden'} md:block flex-1 p-4 space-y-2`}>
           <div className="space-y-2">
-          {/* Step 1: Company Profile Setup */}
+          {/* Workspace View - First Tab */}
+          <motion.div
+            variants={navButtonVariants}
+            initial="idle"
+            whileHover="hover"
+            animate={activeTab === "unified-dashboard" ? "active" : "idle"}
+          >
+            <Button
+              variant="ghost"
+              className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+                activeTab === "unified-dashboard" ? "text-white bg-blue-600/30" : ""
+              }`}
+              onClick={() => handleTabSwitch("unified-dashboard")}
+              title="Workspace View"
+            >
+              <BarChart3 className="w-5 h-5 mr-3 flex-shrink-0" />
+              {sidebarOpen && <span className="truncate">Workspace View</span>}
+            </Button>
+          </motion.div>
+
+          {/* Company Profile Setup */}
           <motion.div
             variants={navButtonVariants}
             initial="idle"
@@ -2028,7 +2048,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               title="Company Profile Setup"
             >
               <Building className="w-5 h-5 mr-3 flex-shrink-0" />
-              {sidebarOpen && <span className="truncate">1. Company Profile</span>}
+              {sidebarOpen && <span className="truncate">Company Profile</span>}
             </Button>
           </motion.div>
 
@@ -2041,7 +2061,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               title="Employee Management"
             >
               <Users className="w-5 h-5 mr-3 flex-shrink-0" />
-              {sidebarOpen && <span className="truncate">2. Employee Management</span>}
+              {sidebarOpen && <span className="truncate">Employee Management</span>}
               {sidebarOpen && (
                 expandedSections['employee-management'] ? 
                   <ChevronDown className="w-4 h-4 ml-auto flex-shrink-0" /> : 
@@ -2107,7 +2127,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               title="Training Documents"
             >
               <BookOpen className="w-5 h-5 mr-3 flex-shrink-0" />
-              {sidebarOpen && <span className="truncate">3. Training Documents</span>}
+              {sidebarOpen && <span className="truncate">Training Documents</span>}
               {sidebarOpen && (
                 expandedSections['training-features'] ? 
                   <ChevronDown className="w-4 h-4 ml-auto flex-shrink-0" /> : 
@@ -2417,11 +2437,11 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <div className="flex items-center justify-between">
             <div className="flex-1 min-w-0">
               <h1 className="text-lg md:text-2xl font-bold text-white truncate">
-                {activeTab === "unified-dashboard" && "5. Dashboard Overview"}
-                {activeTab === "company-profile" && "1. Company Profile Setup"}
-                {activeTab === "employees" && "2. Employee Management"}
-                {activeTab === "osha-compliance" && "3. Training Standards Configuration"}
-                {activeTab === "ai-document-processor" && "4. Document Upload & Processing"}
+                {activeTab === "unified-dashboard" && "Workspace View"}
+                {activeTab === "company-profile" && "Company Profile Setup"}
+                {activeTab === "employees" && "Employee Management"}
+                {activeTab === "osha-compliance" && "Training Standards Configuration"}
+                {activeTab === "ai-document-processor" && "Document Upload & Processing"}
                 {activeTab === "employee-insights" && "Employee Insights"}
                 {activeTab === "employee-profile" && "Employee Profile"}
                 {activeTab === "training" && "Training Management"}
@@ -2450,14 +2470,14 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               <p className="text-white text-sm md:text-base">
                 {activeTab === "unified-dashboard" && (
                   <span>
-                    Final step: Review your complete compliance dashboard with all integrated data
+                    Review your complete compliance dashboard with all integrated data
                     <span className="hidden lg:inline text-blue-400 text-sm ml-4">• Drag widgets to reposition • Drag corners to resize • Click manage to show/hide</span>
                   </span>
                 )}
-                {activeTab === "company-profile" && "Step 1: Set up your company profile and industry-specific compliance requirements"}
-                {activeTab === "employees" && "Step 2: Add your employees and their job classifications for training assignments"}
-                {activeTab === "osha-compliance" && "Step 3: Configure your industry-specific training standards and compliance requirements"}
-                {activeTab === "ai-document-processor" && "Step 4: Upload training documents for AI processing and automatic employee certificate generation"}
+                {activeTab === "company-profile" && "Set up your company profile and industry-specific compliance requirements"}
+                {activeTab === "employees" && "Add your employees and their job classifications for training assignments"}
+                {activeTab === "osha-compliance" && "Configure your industry-specific training standards and compliance requirements"}
+                {activeTab === "ai-document-processor" && "Upload training documents for AI processing and automatic employee certificate generation"}
                 {activeTab === "employee-insights" && "AI-powered analytics and insights for employee data"}
                 {activeTab === "employee-profile" && "View and manage individual employee certificate profiles"}
                 {activeTab === "training" && "Schedule and track safety training"}
