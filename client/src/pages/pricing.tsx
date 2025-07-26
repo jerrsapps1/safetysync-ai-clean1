@@ -11,7 +11,7 @@ export default function PricingPage() {
   const [showChat, setShowChat] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700">
+    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
       <PageHeader />
 
       {/* Main Content with Sidebar Margin */}
@@ -31,7 +31,7 @@ export default function PricingPage() {
         {/* Certificate & Digital Card Services Link */}
         <section className="mb-20">
           <div className="text-center">
-            <div className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 border border-blue-500/30 rounded-lg p-8 max-w-4xl mx-auto backdrop-blur-sm">
+            <div className="bg-gradient-to-r from-blue-600/30 to-purple-600/30 border border-blue-400/40 rounded-lg p-8 max-w-4xl mx-auto backdrop-blur-sm">
               <h2 className="text-3xl font-bold text-white mb-4">Professional Certificate & Digital Card Services</h2>
               <p className="text-xl text-gray-300 mb-6">
                 Generate high-quality OSHA-compliant certificates and digital wallet cards with plan-specific allowances
@@ -39,7 +39,7 @@ export default function PricingPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
                   size="lg" 
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold"
+                  className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-semibold"
                   onClick={() => window.location.href = '/certificate-services'}
                 >
                   View Certificate Services
@@ -47,7 +47,7 @@ export default function PricingPage() {
                 <Button 
                   size="lg" 
                   variant="secondary" 
-                  className="bg-blue-50 border-blue-300 text-blue-700 hover:bg-blue-100"
+                  className="bg-blue-100 border-blue-400 text-blue-600 hover:bg-blue-200"
                   onClick={() => window.location.href = '/certificate-services'}
                 >
                   See Examples & Pricing
