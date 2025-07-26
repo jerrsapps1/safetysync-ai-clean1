@@ -48,6 +48,8 @@ import SafetyTrendsDashboard from "@/components/safety-trends-dashboard";
 import QuickSearchWidget from "@/components/safetytracker/QuickSearchWidget";
 import { SafetySyncIcon } from "@/components/ui/safetysync-icon";
 import { ContextualHelpButton } from "@/components/ContextualHelpButton";
+import CertificateBalanceWidget from '@/components/CertificateBalanceWidget';
+import ShoppingCartButton from '@/components/shopping-cart/ShoppingCartButton';
 
 import { Responsive, WidthProvider } from "react-grid-layout";
 import "react-grid-layout/css/styles.css";
@@ -445,6 +447,7 @@ export default function WorkspacePage() {
       "certification-progress": <Award className="w-5 h-5" />,
       "compliance-trends": <BarChart3 className="w-5 h-5" />,
       "quick-search": <Search className="w-5 h-5" />,
+      "certificate-balance": <Award className="w-5 h-5 text-emerald-400" />,
 
       // Trends widget icons
       "safety-trends-chart": <Activity className="w-5 h-5" />,
@@ -513,6 +516,12 @@ export default function WorkspacePage() {
       id: "compliance-trends",
       title: "Compliance Trends",
       defaultProps: { x: 16, y: 9, w: 8, h: 3 },
+      visible: true
+    },
+    {
+      id: "certificate-balance",
+      title: "Certificate Balance",
+      defaultProps: { x: 12, y: 5, w: 12, h: 4 },
       visible: true
     },
     {
@@ -1574,6 +1583,12 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             </div>
           </div>
         );
+      case "certificate-balance":
+        return (
+          <div className="h-full overflow-hidden">
+            <CertificateBalanceWidget />
+          </div>
+        );
       case "quick-search":
         return (
           <div className="h-full overflow-hidden">
@@ -2357,6 +2372,15 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     <CreditCard className="w-4 h-4 mr-3 flex-shrink-0" />
                     {sidebarOpen && <span className="truncate">Subscription & Billing</span>}
                   </Button>
+                  
+                  {/* Shopping Cart Button */}
+                  <div className="px-3 py-2">
+                    <ShoppingCartButton 
+                      variant="outline" 
+                      size="sm"
+                      className="w-full bg-emerald-600/20 border-emerald-500/30 text-white hover:bg-emerald-600/40"
+                    />
+                  </div>
                   <Button
                     variant="ghost"
                     className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
