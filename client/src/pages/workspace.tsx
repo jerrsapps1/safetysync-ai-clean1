@@ -2047,7 +2047,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 <Button
                   variant="ghost"
                   className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                    activeTab === "employees" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                    activeTab === "employees" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("employees")}
                   title="Employee Management"
@@ -2058,7 +2058,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 <Button
                   variant="ghost"
                   className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                    activeTab === "employee-insights" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                    activeTab === "employee-insights" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("employee-insights")}
                   title="Employee Insights"
@@ -2069,7 +2069,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 <Button
                   variant="ghost"
                   className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                    activeTab === "employee-profile" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                    activeTab === "employee-profile" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("employee-profile")}
                   title="Employee Profile"
@@ -2080,7 +2080,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 <Button
                   variant="ghost"
                   className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                    activeTab === "employee-portal" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                    activeTab === "employee-portal" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("employee-portal")}
                   title="Employee Portal"
@@ -2091,6 +2091,94 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </div>
             )}
           </div>
+
+          {/* Step 3: Training Documents Section */}
+          <div className="space-y-1">
+            <Button
+              variant="ghost"
+              className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3"
+              onClick={() => toggleSection('training-features')}
+              title="Training Documents"
+            >
+              <BookOpen className="w-5 h-5 mr-3 flex-shrink-0" />
+              {sidebarOpen && <span className="truncate">3. Training Documents</span>}
+              {sidebarOpen && (
+                expandedSections['training-features'] ? 
+                  <ChevronDown className="w-4 h-4 ml-auto flex-shrink-0" /> : 
+                  <ChevronRight className="w-4 h-4 ml-auto flex-shrink-0" />
+              )}
+            </Button>
+            {expandedSections['training-features'] && (
+              <div className="ml-6 space-y-1">
+              <Button
+                variant="ghost"
+                className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
+                  activeTab === "ai-document-processor" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
+                }`}
+                onClick={() => handleTabSwitch("ai-document-processor")}
+                title="AI Document Processor"
+              >
+                <Brain className="w-4 h-4 mr-3 flex-shrink-0" />
+                {sidebarOpen && <span className="truncate">AI Document Processor</span>}
+              </Button>
+              <Button
+                variant="ghost"
+                className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
+                  activeTab === "certificates" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
+                }`}
+                onClick={() => handleTabSwitch("certificates")}
+                title="Certificate Generation"
+              >
+                <Award className="w-4 h-4 mr-3 flex-shrink-0" />
+                {sidebarOpen && <span className="truncate">Certificate Generation</span>}
+              </Button>
+              <Button
+                variant="ghost"
+                className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
+                  activeTab === "instructor-signin" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
+                }`}
+                onClick={() => handleTabSwitch("instructor-signin")}
+                title="Instructor Sign-In Sheets"
+              >
+                <FileText className="w-4 h-4 mr-3 flex-shrink-0" />
+                {sidebarOpen && <span className="truncate">Instructor Sign-In Sheets</span>}
+              </Button>
+              <Button
+                variant="ghost"
+                className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
+                  activeTab === "training-records" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
+                }`}
+                onClick={() => handleTabSwitch("training-records")}
+                title="Training Records"
+              >
+                <Database className="w-4 h-4 mr-3 flex-shrink-0" />
+                {sidebarOpen && <span className="truncate">Training Records</span>}
+              </Button>
+              <Button
+                variant="ghost"
+                className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
+                  activeTab === "training-document-hub" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
+                }`}
+                onClick={() => handleTabSwitch("training-document-hub")}
+                title="Training Document Hub"
+              >
+                <FileText className="w-4 h-4 mr-3 flex-shrink-0" />
+                {sidebarOpen && <span className="truncate">Training Document Hub</span>}
+              </Button>
+              <Button
+                variant="ghost"
+                className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
+                  activeTab === "training" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
+                }`}
+                onClick={() => handleTabSwitch("training")}
+                title="Training Management"
+              >
+                <BookOpen className="w-4 h-4 mr-3 flex-shrink-0" />
+                {sidebarOpen && <span className="truncate">Training Management</span>}
+              </Button>
+            </div>
+          )}
+        </div>
 
           {/* Compliance & Reporting Section */}
           <div className="space-y-1">
@@ -2131,7 +2219,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     <Button
                       variant="ghost"
                       className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                        activeTab === "analytics-reports" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                        activeTab === "analytics-reports" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("analytics-reports")}
                       title="Analytics & Reports"
@@ -2144,7 +2232,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     <Button
                       variant="ghost"
                       className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                        activeTab === "reports" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                        activeTab === "reports" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("reports")}
                       title="Compliance Reports"
@@ -2157,7 +2245,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     <Button
                       variant="ghost"
                       className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                        activeTab === "osha-compliance" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                        activeTab === "osha-compliance" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("osha-compliance")}
                       title="OSHA Compliance Manager"
@@ -2170,7 +2258,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     <Button
                       variant="ghost"
                       className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                        activeTab === "document-manager" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                        activeTab === "document-manager" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("document-manager")}
                       title="Document Management"
@@ -2183,7 +2271,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     <Button
                       variant="ghost"
                       className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                        activeTab === "trends" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                        activeTab === "trends" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("trends")}
                       title="Safety Trends"
@@ -2196,237 +2284,6 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               )}
             </AnimatePresence>
           </div>
-            {/* Compliance & Reporting Features */}
-            <div className="space-y-1">
-              <Button
-                variant="ghost"
-                className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3"
-                onClick={() => toggleSection('compliance-features')}
-                title="Compliance & Reporting"
-              >
-                <Shield className="w-5 h-5 mr-3 flex-shrink-0" />
-                {sidebarOpen && <span className="truncate">Compliance & Reporting</span>}
-                {sidebarOpen && (
-                  expandedSections['compliance-features'] ? 
-                    <ChevronDown className="w-4 h-4 ml-auto flex-shrink-0" /> : 
-                    <ChevronRight className="w-4 h-4 ml-auto flex-shrink-0" />
-                )}
-              </Button>
-              {expandedSections['compliance-features'] && (
-                <div className="ml-6 space-y-1">
-                  <Button
-                    variant="ghost"
-                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                      activeTab === "reports" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
-                    }`}
-                    onClick={() => handleTabSwitch("reports")}
-                    title="Compliance Reports"
-                  >
-                    <FileText className="w-4 h-4 mr-3 flex-shrink-0" />
-                    {sidebarOpen && <span className="truncate">Compliance Reports</span>}
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                      activeTab === "trends" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
-                    }`}
-                    onClick={() => handleTabSwitch("trends")}
-                    title="Safety Trends"
-                  >
-                    <TrendingUp className="w-4 h-4 mr-3 flex-shrink-0" />
-                    {sidebarOpen && <span className="truncate">Safety Trends</span>}
-                  </Button>
-                </div>
-              )}
-            </div>
-          {/* System & Tools Section */}
-          <div className="space-y-1">
-            <Button
-              variant="ghost"
-              className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3"
-              onClick={() => toggleSection('system-tools')}
-              title="System & Tools"
-            >
-              <Settings className="w-5 h-5 mr-3 flex-shrink-0" />
-              {sidebarOpen && <span className="truncate">System & Tools</span>}
-              {sidebarOpen && (
-                expandedSections['system-tools'] ? 
-                  <ChevronDown className="w-4 h-4 ml-auto flex-shrink-0" /> : 
-                  <ChevronRight className="w-4 h-4 ml-auto flex-shrink-0" />
-              )}
-            </Button>
-            {expandedSections['system-tools'] && (
-              <div className="ml-6 space-y-1">
-                <Button
-                  variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                    activeTab === "achievements" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
-                  }`}
-                  onClick={() => handleTabSwitch("achievements")}
-                  title="Achievements & Milestones"
-                >
-                  <Award className="w-4 h-4 mr-3 flex-shrink-0" />
-                  {sidebarOpen && <span className="truncate">Achievements & Milestones</span>}
-                </Button>
-                <Button
-                  variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                    activeTab === "notifications" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
-                  }`}
-                  onClick={() => handleTabSwitch("notifications")}
-                  title="Notifications & Alerts"
-                >
-                  <Bell className="w-4 h-4 mr-3 flex-shrink-0" />
-                  {sidebarOpen && <span className="truncate">Notifications & Alerts</span>}
-                </Button>
-                <Button
-                  variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                    activeTab === "settings" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
-                  }`}
-                  onClick={() => handleTabSwitch("settings")}
-                  title="Workspace Settings"
-                >
-                  <Settings className="w-4 h-4 mr-3 flex-shrink-0" />
-                  {sidebarOpen && <span className="truncate">Workspace Settings</span>}
-                </Button>
-                <Button
-                  variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                    activeTab === "subscription-billing" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
-                  }`}
-                  onClick={() => handleTabSwitch("subscription-billing")}
-                  title="Subscription & Billing"
-                >
-                  <CreditCard className="w-4 h-4 mr-3 flex-shrink-0" />
-                  {sidebarOpen && <span className="truncate">Subscription & Billing</span>}
-                </Button>
-                <Button
-                  variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                    activeTab === "instructors" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
-                  }`}
-                  onClick={() => handleTabSwitch("instructors")}
-                  title="Instructor Management"
-                >
-                  <GraduationCap className="w-4 h-4 mr-3 flex-shrink-0" />
-                  {sidebarOpen && <span className="truncate">Instructor Management</span>}
-                </Button>
-                <Button
-                  variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                    activeTab === "document-manager" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
-                  }`}
-                  onClick={() => handleTabSwitch("document-manager")}
-                  title="Document Management"
-                >
-                  <Database className="w-4 h-4 mr-3 flex-shrink-0" />
-                  {sidebarOpen && <span className="truncate">Document Management</span>}
-                </Button>
-              </div>
-            )}
-          </div>
-
-            {/* Training & Document Features */}
-            <div className="space-y-1">
-              <Button
-                variant="ghost"
-                className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3"
-                onClick={() => toggleSection('training-features')}
-                title="Training & Documents"
-              >
-                <BookOpen className="w-5 h-5 mr-3 flex-shrink-0" />
-                {sidebarOpen && <span className="truncate">Training & Documents</span>}
-                {sidebarOpen && (
-                  expandedSections['training-features'] ? 
-                    <ChevronDown className="w-4 h-4 ml-auto flex-shrink-0" /> : 
-                    <ChevronRight className="w-4 h-4 ml-auto flex-shrink-0" />
-                )}
-              </Button>
-              {expandedSections['training-features'] && (
-                <div className="ml-6 space-y-1">
-                <Button
-                  variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                    activeTab === "ai-document-processor" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
-                  }`}
-                  onClick={() => handleTabSwitch("ai-document-processor")}
-                  title="AI Document Processor"
-                >
-                  <Brain className="w-4 h-4 mr-3 flex-shrink-0" />
-                  {sidebarOpen && <span className="truncate">AI Document Processor</span>}
-                </Button>
-                <Button
-                  variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                    activeTab === "certificates" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
-                  }`}
-                  onClick={() => handleTabSwitch("certificates")}
-                  title="Certificate Generation"
-                >
-                  <Award className="w-4 h-4 mr-3 flex-shrink-0" />
-                  {sidebarOpen && <span className="truncate">Certificate Generation</span>}
-                </Button>
-                <Button
-                  variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                    activeTab === "instructor-training-completion" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
-                  }`}
-                  onClick={() => handleTabSwitch("instructor-training-completion")}
-                  title="Complete Instructor Training"
-                >
-                  <CheckCircle className="w-4 h-4 mr-3 flex-shrink-0" />
-                  {sidebarOpen && <span className="truncate">Complete Instructor Training</span>}
-                </Button>
-
-                <Button
-                  variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                    activeTab === "instructor-signin" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
-                  }`}
-                  onClick={() => handleTabSwitch("instructor-signin")}
-                  title="Instructor Sign-In Sheets"
-                >
-                  <FileText className="w-4 h-4 mr-3 flex-shrink-0" />
-                  {sidebarOpen && <span className="truncate">Instructor Sign-In Sheets</span>}
-                </Button>
-                <Button
-                  variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                    activeTab === "training-records" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
-                  }`}
-                  onClick={() => handleTabSwitch("training-records")}
-                  title="Training Records"
-                >
-                  <Database className="w-4 h-4 mr-3 flex-shrink-0" />
-                  {sidebarOpen && <span className="truncate">Training Records</span>}
-                </Button>
-                <Button
-                  variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                    activeTab === "training-document-hub" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
-                  }`}
-                  onClick={() => handleTabSwitch("training-document-hub")}
-                  title="Training Document Hub"
-                >
-                  <FileText className="w-4 h-4 mr-3 flex-shrink-0" />
-                  {sidebarOpen && <span className="truncate">Training Document Hub</span>}
-                </Button>
-                <Button
-                  variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                    activeTab === "training" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
-                  }`}
-                  onClick={() => handleTabSwitch("training")}
-                  title="Training Management"
-                >
-                  <BookOpen className="w-4 h-4 mr-3 flex-shrink-0" />
-                  {sidebarOpen && <span className="truncate">Training Management</span>}
-                </Button>
-              </div>
-            )}
-          </div>
-
           {/* System Tools */}
           <div className="space-y-1">
             <Button
@@ -2448,7 +2305,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <Button
                     variant="ghost"
                     className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                      activeTab === "achievements" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                      activeTab === "achievements" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
                     }`}
                     onClick={() => handleTabSwitch("achievements")}
                     title="Achievements & Milestones"
@@ -2459,7 +2316,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <Button
                     variant="ghost"
                     className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                      activeTab === "notifications" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                      activeTab === "notifications" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
                     }`}
                     onClick={() => handleTabSwitch("notifications")}
                     title="Notifications & Alerts"
@@ -2470,7 +2327,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <Button
                     variant="ghost"
                     className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                      activeTab === "settings" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                      activeTab === "settings" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
                     }`}
                     onClick={() => handleTabSwitch("settings")}
                     title="Workspace Settings"
@@ -2481,7 +2338,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <Button
                     variant="ghost"
                     className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                      activeTab === "subscription-billing" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                      activeTab === "subscription-billing" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
                     }`}
                     onClick={() => handleTabSwitch("subscription-billing")}
                     title="Subscription & Billing"
@@ -2492,7 +2349,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <Button
                     variant="ghost"
                     className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                      activeTab === "instructors" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                      activeTab === "instructors" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
                     }`}
                     onClick={() => handleTabSwitch("instructors")}
                     title="Instructor Management"
@@ -2503,7 +2360,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <Button
                     variant="ghost"
                     className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                      activeTab === "document-manager" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                      activeTab === "document-manager" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-gray-700/30" : ""
                     }`}
                     onClick={() => handleTabSwitch("document-manager")}
                     title="Document Management"
