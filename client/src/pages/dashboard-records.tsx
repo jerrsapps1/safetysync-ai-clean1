@@ -92,7 +92,7 @@ export default function DashboardRecordsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-sky-400 via-sky-300 to-blue-300 p-4">
       <div className="max-w-7xl mx-auto pt-20">
         
         {/* Header - matches your Python template styling */}

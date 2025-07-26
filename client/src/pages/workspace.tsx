@@ -186,7 +186,7 @@ function LoginForm() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-sky-400 via-sky-300 to-blue-300 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
@@ -1909,7 +1909,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
   if (authLoading || isDashboardLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-sky-400 via-sky-300 to-blue-300 flex items-center justify-center">
         <div className="max-w-md w-full mx-auto">
           <SmoothLoading 
             variant="ai-skeleton" 
@@ -1923,7 +1923,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
   if (authLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-sky-400 via-sky-300 to-blue-300 flex items-center justify-center">
         <div className="text-center">
           <SafetySyncIcon size={64} className="mx-auto mb-4 animate-pulse" />
           <p className="text-white text-lg">Loading workspace...</p>
@@ -1939,7 +1939,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
       window.location.replace('/client-portal');
     }, 100);
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-sky-400 via-sky-300 to-blue-300 flex items-center justify-center">
         <div className="text-center">
           <SafetySyncIcon size={64} className="mx-auto mb-4 animate-pulse" />
           <p className="text-white text-lg">Redirecting to login...</p>
@@ -1950,7 +1950,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
   if (dashboardError) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-sky-400 via-sky-300 to-blue-300 flex items-center justify-center">
         <div className="text-center">
           <SafetySyncIcon size={64} className="mx-auto mb-4" />
           <p className="text-white text-lg mb-4">Error loading dashboard data</p>
@@ -1968,16 +1968,16 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex flex-col md:flex-row">
+    <div className="min-h-screen bg-gradient-to-br from-sky-400 via-sky-300 to-blue-300 flex flex-col md:flex-row">
       {/* Sidebar */}
       <motion.div 
-        className={`${sidebarOpen ? 'w-full md:w-64' : 'w-full md:w-16'} ${sidebarOpen ? 'h-auto' : 'h-16'} md:h-auto bg-blue-500/50 backdrop-blur-sm border-r border-blue-400 flex flex-col md:border-r md:border-b-0 border-b`}
+        className={`${sidebarOpen ? 'w-full md:w-64' : 'w-full md:w-16'} ${sidebarOpen ? 'h-auto' : 'h-16'} md:h-auto bg-sky-400/50 backdrop-blur-sm border-r border-sky-300 flex flex-col md:border-r md:border-b-0 border-b`}
         variants={sidebarVariants}
         animate={sidebarOpen ? "open" : "closed"}
         initial={sidebarOpen ? "open" : "closed"}
       >
         {/* Header */}
-        <div className="p-4 border-b border-blue-400">
+        <div className="p-4 border-b border-sky-300">
           <div className="flex items-center justify-between">
             {sidebarOpen ? (
               <div className="flex items-center space-x-3">
@@ -2496,7 +2496,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         </div>
 
         {/* Content Area */}
-        <div className="flex-1 p-2 md:p-6 overflow-y-auto min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
+        <div className="flex-1 p-2 md:p-6 overflow-y-auto min-h-screen bg-gradient-to-br from-sky-400 via-sky-300 to-blue-300">
           {activeTab === "unified-dashboard" && (
             <div className="space-y-6">
               {/* Widget Management Controls */}
@@ -2849,7 +2849,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                 {/* Safety Trends Chart */}
-                <Card className="bg-blue-500/50 backdrop-blur-sm border-blue-400">
+                <Card className="bg-sky-400/50 backdrop-blur-sm border-sky-300">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-white text-sm flex items-center">
                       <TrendingUp className="w-4 h-4 mr-2 text-blue-400" />
@@ -2884,7 +2884,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </Card>
 
                 {/* Compliance Metrics */}
-                <Card className="bg-blue-500/50 backdrop-blur-sm border-blue-400">
+                <Card className="bg-sky-400/50 backdrop-blur-sm border-sky-300">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-white text-sm flex items-center">
                       <BarChart3 className="w-4 h-4 mr-2 text-blue-400" />
@@ -2919,7 +2919,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </Card>
 
                 {/* Department Performance */}
-                <Card className="bg-blue-500/50 backdrop-blur-sm border-blue-400">
+                <Card className="bg-sky-400/50 backdrop-blur-sm border-sky-300">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-white text-sm flex items-center">
                       <Users className="w-4 h-4 mr-2 text-blue-400" />
@@ -2945,7 +2945,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </Card>
 
                 {/* Risk Analysis */}
-                <Card className="bg-blue-500/50 backdrop-blur-sm border-blue-400">
+                <Card className="bg-sky-400/50 backdrop-blur-sm border-sky-300">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-white text-sm flex items-center">
                       <AlertTriangle className="w-4 h-4 mr-2 text-blue-400" />
@@ -2980,7 +2980,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </Card>
 
                 {/* Training Completion */}
-                <Card className="bg-blue-500/50 backdrop-blur-sm border-blue-400">
+                <Card className="bg-sky-400/50 backdrop-blur-sm border-sky-300">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-white text-sm flex items-center">
                       <BookOpen className="w-4 h-4 mr-2 text-blue-400" />
@@ -3015,7 +3015,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </Card>
 
                 {/* Safety Score */}
-                <Card className="bg-blue-500/50 backdrop-blur-sm border-blue-400">
+                <Card className="bg-sky-400/50 backdrop-blur-sm border-sky-300">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-white text-sm flex items-center">
                       <Shield className="w-4 h-4 mr-2 text-blue-400" />
@@ -3045,10 +3045,10 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   Add Instructor
                 </Button>
               </div>
-              <Card className="bg-blue-500/50 backdrop-blur-sm border-blue-400">
+              <Card className="bg-sky-400/50 backdrop-blur-sm border-sky-300">
                 <CardContent className="p-2 md:p-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                    <Card className="bg-blue-500/50 border-blue-400">
+                    <Card className="bg-sky-400/50 border-sky-300">
                       <CardContent className="p-4">
                         <div className="flex items-center space-x-3 mb-3">
                           <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
@@ -3102,7 +3102,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                         </div>
                       </CardContent>
                     </Card>
-                    <Card className="bg-blue-500/50 border-blue-400">
+                    <Card className="bg-sky-400/50 border-sky-300">
                       <CardContent className="p-4">
                         <div className="flex items-center space-x-3 mb-3">
                           <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center">
@@ -3293,7 +3293,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
           {activeTab === "settings" && (
             <div className="space-y-6">
-              <Card className="bg-blue-500/50 backdrop-blur-sm border-blue-400">
+              <Card className="bg-sky-400/50 backdrop-blur-sm border-sky-300">
                 <CardHeader>
                   <CardTitle className="text-white">Workspace Settings</CardTitle>
                   <CardDescription className="text-white">
@@ -3308,7 +3308,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                         id="companyName"
                         value={workspaceSettings.companyName}
                         onChange={(e) => setWorkspaceSettings({...workspaceSettings, companyName: e.target.value})}
-                        className="bg-blue-500/50 border-blue-400 text-white"
+                        className="bg-sky-400/50 border-sky-300 text-white"
                         placeholder="Your Company Name"
                       />
                     </div>
@@ -3330,7 +3330,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                         id="customDomain"
                         value={workspaceSettings.customDomain}
                         onChange={(e) => setWorkspaceSettings({...workspaceSettings, customDomain: e.target.value})}
-                        className="bg-blue-500/50 border-blue-400 text-white"
+                        className="bg-sky-400/50 border-sky-300 text-white"
                         placeholder="safety.yourcompany.com"
                       />
                     </div>

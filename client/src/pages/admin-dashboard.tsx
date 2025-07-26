@@ -597,7 +597,7 @@ export default function AdminDashboard() {
     : widgets.filter(widget => widget.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-sky-400 via-sky-300 to-blue-300 text-white">
       {/* Sidebar */}
       <div className={`fixed left-0 top-0 h-full bg-black/40 backdrop-blur-sm border-r border-red-800/50 transition-all duration-300 ${sidebarOpen ? 'w-64' : 'w-16'} z-50`}>
         {/* Header */}

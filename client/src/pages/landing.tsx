@@ -253,7 +253,7 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 text-white font-sans">
+    <div className="min-h-screen bg-gradient-to-br from-sky-400 via-sky-300 to-blue-300 text-white font-sans">
       {/* Navigation */}
       <PageHeader />
       
