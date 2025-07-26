@@ -295,12 +295,12 @@ export default function TestimonialsPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/">
-                <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-100">
+                <Button size="lg" className="bg-blue-900 text-blue-600 hover:bg-blue-100">
                   Start Free Trial
                 </Button>
               </Link>
               <Link href="/">
-                <Button size="lg" variant="secondary" className="bg-white/10 border-white text-white hover:bg-white/20">
+                <Button size="lg" variant="secondary" className="bg-blue-900/60 border-white text-white hover:bg-blue-900/20">
                   Schedule Demo
                 </Button>
               </Link>

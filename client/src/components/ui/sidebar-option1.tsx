@@ -45,7 +45,7 @@ export function SidebarOption1({}: SidebarOption1Props) {
       {/* Sidebar */}
       <aside className={`
         fixed left-0 top-0 z-40 h-full w-64 transform transition-transform duration-200 ease-in-out
-        bg-white border-r border-blue-200 shadow-lg
+        bg-blue-900 border-r border-blue-200 shadow-lg
         ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
       `}>
         {/* Header */}

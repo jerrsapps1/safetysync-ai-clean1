@@ -193,7 +193,7 @@ export default function EmployeeProfile({ employeeId, onClose }: EmployeeProfile
               <div className="text-center py-6">
                 {qrCode ? (
                   <div className="space-y-4">
-                    <div className="bg-white p-4 rounded-lg inline-block">
+                    <div className="bg-blue-900 p-4 rounded-lg inline-block">
                       <img 
                         src={qrCode.qrCodeImagePath} 
                         alt="Employee QR Code" 

@@ -36,7 +36,7 @@ export function SidebarOption2({}: SidebarOption2Props) {
       <Button
         variant="ghost"
         size="sm"
-        className="fixed top-4 left-4 z-50 md:hidden bg-white/80 backdrop-blur-sm border border-blue-200"
+        className="fixed top-4 left-4 z-50 md:hidden bg-blue-900/80 backdrop-blur-sm border border-blue-200"
         onClick={() => setIsOpen(!isOpen)}
       >
         {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -49,7 +49,7 @@ export function SidebarOption2({}: SidebarOption2Props) {
         ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
       `}>
         {/* Header */}
-        <div className="flex flex-col items-center justify-center h-20 px-6 border-b border-emerald-200 bg-white/50">
+        <div className="flex flex-col items-center justify-center h-20 px-6 border-b border-emerald-200 bg-blue-900/50">
           <Link href="/">
             <div className="flex flex-col items-center cursor-pointer">
               <SafetySyncIcon size={40} />
@@ -67,7 +67,7 @@ export function SidebarOption2({}: SidebarOption2Props) {
               return (
                 <Link key={item.name} href={item.href}>
                   <a 
-                    className="flex items-start px-4 py-3 text-sm font-medium text-blue-600 rounded-xl hover:bg-white hover:shadow-md transition-all duration-200 group"
+                    className="flex items-start px-4 py-3 text-sm font-medium text-blue-600 rounded-xl hover:bg-blue-900 hover:shadow-md transition-all duration-200 group"
                     onClick={() => setIsOpen(false)}
                   >
                     <IconComponent className="w-5 h-5 mt-0.5 mr-3 text-emerald-600" />
@@ -89,7 +89,7 @@ export function SidebarOption2({}: SidebarOption2Props) {
 
         {/* Client Login Section */}
         <div className="absolute bottom-6 left-4 right-4">
-          <div className="bg-white rounded-xl p-4 border border-emerald-200 shadow-sm">
+          <div className="bg-blue-900 rounded-xl p-4 border border-emerald-200 shadow-sm">
             <p className="text-xs text-blue-500 mb-3 text-center">
               Already have an account?
             </p>

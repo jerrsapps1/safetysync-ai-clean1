@@ -34,7 +34,7 @@ export function TermsAndConditions({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[90vh] bg-white">
+      <DialogContent className="max-w-4xl max-h-[90vh] bg-blue-900">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-blue-800">
             Service Agreement & Terms of Use

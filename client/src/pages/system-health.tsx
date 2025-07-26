@@ -226,7 +226,7 @@ export default function SystemHealth() {
 
         {/* Real-time System Resources */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+          <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -243,7 +243,7 @@ export default function SystemHealth() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+          <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -260,7 +260,7 @@ export default function SystemHealth() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+          <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -277,7 +277,7 @@ export default function SystemHealth() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+          <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -297,7 +297,7 @@ export default function SystemHealth() {
 
         {/* Main Content */}
         <Tabs defaultValue="services" className="w-full">
-          <TabsList className="grid w-full grid-cols-4 bg-white/10 backdrop-blur-sm">
+          <TabsList className="grid w-full grid-cols-4 bg-blue-900/60 backdrop-blur-sm">
             <TabsTrigger value="services">Services</TabsTrigger>
             <TabsTrigger value="performance">Performance</TabsTrigger>
             <TabsTrigger value="security">Security</TabsTrigger>
@@ -308,7 +308,7 @@ export default function SystemHealth() {
             <h2 className="text-xl font-semibold text-white">System Services Status</h2>
             <div className="grid gap-4">
               {systemServices.map((service) => (
-                <Card key={service.name} className="bg-white/10 backdrop-blur-sm border-white/20">
+                <Card key={service.name} className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
                   <CardContent className="p-4">
                     <div className="flex justify-between items-start">
                       <div className="flex items-center gap-3">
@@ -346,7 +346,7 @@ export default function SystemHealth() {
             <h2 className="text-xl font-semibold text-white">Performance Metrics</h2>
             <div className="grid gap-4">
               {performanceMetrics.map((metric) => (
-                <Card key={metric.metric} className="bg-white/10 backdrop-blur-sm border-white/20">
+                <Card key={metric.metric} className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
                   <CardContent className="p-4">
                     <div className="flex justify-between items-start">
                       <div>
@@ -376,7 +376,7 @@ export default function SystemHealth() {
             <h2 className="text-xl font-semibold text-white">Security Status</h2>
             <div className="grid gap-4">
               {securityStatus.map((item) => (
-                <Card key={item.component} className="bg-white/10 backdrop-blur-sm border-white/20">
+                <Card key={item.component} className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
                   <CardContent className="p-4">
                     <div className="flex justify-between items-start">
                       <div className="flex items-center gap-3">

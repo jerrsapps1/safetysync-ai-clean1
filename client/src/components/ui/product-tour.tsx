@@ -103,7 +103,7 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
               Upload training sign-in sheets or certification documents and watch our AI 
               instantly extract employee names, training details, instructor credentials, and compliance standards.
             </p>
-            <div className="bg-white/70 rounded p-3 text-xs">
+            <div className="bg-blue-900/70 rounded p-3 text-xs">
               <strong>AI Capabilities:</strong> Multi-layer PDF extraction • Intelligent data recognition • 
               Automatic certificate generation • Real-time verification
             </div>
@@ -143,10 +143,10 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
               profile with digital wallet cards that replace physical certification cards for easy verification.
             </p>
             <div className="grid grid-cols-2 gap-3 text-xs">
-              <div className="bg-white/70 p-2 rounded">
+              <div className="bg-blue-900/70 p-2 rounded">
                 <strong>QR Features:</strong> Mobile verification • Digital wallet cards • Real-time access
               </div>
-              <div className="bg-white/70 p-2 rounded">
+              <div className="bg-blue-900/70 p-2 rounded">
                 <strong>Training Focus:</strong> Document processing • Certificate generation • OSHA compliance
               </div>
             </div>
@@ -199,10 +199,10 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
               inspector-ready documentation. Ensures companies pass OSHA inspections without training-related citations.
             </p>
             <div className="grid grid-cols-2 gap-3 mb-3">
-              <div className="bg-white/70 p-2 rounded text-xs">
+              <div className="bg-blue-900/70 p-2 rounded text-xs">
                 <strong>AI Analysis:</strong> Risk assessment • Gap identification • Trend analysis • Predictive insights
               </div>
-              <div className="bg-white/70 p-2 rounded text-xs">
+              <div className="bg-blue-900/70 p-2 rounded text-xs">
                 <strong>Report Types:</strong> Full compliance • Department-specific • Training status • Audit-ready
               </div>
             </div>
@@ -248,13 +248,13 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
               AI monitors your workforce, schedules training, sends reminders, and predicts compliance needs automatically.
             </p>
             <div className="grid grid-cols-3 gap-2 text-xs">
-              <div className="bg-white/70 p-2 rounded text-center">
+              <div className="bg-blue-900/70 p-2 rounded text-center">
                 <strong>Smart Scheduling</strong><br/>Auto-books sessions
               </div>
-              <div className="bg-white/70 p-2 rounded text-center">
+              <div className="bg-blue-900/70 p-2 rounded text-center">
                 <strong>Predictive Alerts</strong><br/>90-day forecasting
               </div>
-              <div className="bg-white/70 p-2 rounded text-center">
+              <div className="bg-blue-900/70 p-2 rounded text-center">
                 <strong>Personal Comms</strong><br/>Custom messages
               </div>
             </div>
@@ -315,7 +315,7 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
                 <strong className="text-orange-700">📊 Enterprise Ready:</strong> Unlimited scale
               </div>
             </div>
-            <div className="bg-white/70 rounded-lg p-3 text-sm text-blue-600">
+            <div className="bg-blue-900/70 rounded-lg p-3 text-sm text-blue-600">
               <strong>What Makes Us Different:</strong> Intelligent automation and predictive analytics that transform safety compliance.
             </div>
           </div>

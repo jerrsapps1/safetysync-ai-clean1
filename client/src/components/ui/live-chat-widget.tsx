@@ -180,7 +180,7 @@ export function LiveChatWidget({ isOpen, onToggle, onClose }: LiveChatWidgetProp
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="relative">
-                <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                <div className="w-8 h-8 bg-blue-900 rounded-full flex items-center justify-center">
                   <MessageCircle className="w-4 h-4 text-blue-600" />
                 </div>
                 <div className={`absolute -bottom-1 -right-1 w-3 h-3 rounded-full ${
@@ -273,7 +273,7 @@ export function LiveChatWidget({ isOpen, onToggle, onClose }: LiveChatWidgetProp
                         key={reply}
                         variant="outline"
                         size="sm"
-                        className="text-xs h-8 px-3 justify-start bg-white hover:bg-blue-50 text-left"
+                        className="text-xs h-8 px-3 justify-start bg-blue-900 hover:bg-blue-50 text-left"
                         onClick={() => handleQuickReply(reply)}
                       >
                         {reply}
@@ -284,14 +284,14 @@ export function LiveChatWidget({ isOpen, onToggle, onClose }: LiveChatWidgetProp
               )}
 
               {/* Input */}
-              <div className="p-4 border-t bg-white">
+              <div className="p-4 border-t bg-blue-900">
                 <div className="flex gap-2">
                   <Input
                     value={newMessage}
                     onChange={(e) => setNewMessage(e.target.value)}
                     placeholder="Type your message..."
                     onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
-                    className="flex-1 bg-white"
+                    className="flex-1 bg-blue-900"
                   />
                   <Button onClick={sendMessage} size="sm" disabled={!newMessage.trim()}>
                     <Send className="w-4 h-4" />

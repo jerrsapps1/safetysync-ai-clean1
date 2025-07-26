@@ -138,7 +138,7 @@ export default function SEOBlogPage() {
                 className="w-full pl-10 pr-4 py-3 rounded-lg border border-blue-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-blue-800"
               />
             </div>
-            <Button className="bg-white text-blue-600 hover:bg-blue-100 px-6 py-3">
+            <Button className="bg-blue-900 text-blue-600 hover:bg-blue-100 px-6 py-3">
               Subscribe to Updates
             </Button>
           </div>
@@ -266,7 +266,7 @@ export default function SEOBlogPage() {
         </section>
 
         {/* SEO Content Section */}
-        <section className="mt-16 bg-white rounded-lg p-8 shadow-sm">
+        <section className="mt-16 bg-blue-900 rounded-lg p-8 shadow-sm">
           <h2 className="text-2xl font-bold text-blue-800 mb-6">
             Why Choose SafetySync.AI for OSHA Compliance Management?
           </h2>

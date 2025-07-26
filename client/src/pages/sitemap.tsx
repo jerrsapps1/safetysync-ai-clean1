@@ -52,7 +52,7 @@ ${urls.map(url => `  <url>
           Your sitemap.xml has been automatically generated and downloaded. Upload this file to your website's root directory for optimal SEO performance.
         </p>
         
-        <div className="bg-white p-6 rounded-lg shadow-sm border">
+        <div className="bg-blue-900 p-6 rounded-lg shadow-sm border">
           <h2 className="text-xl font-semibold mb-4">Sitemap URLs Included:</h2>
           <ul className="space-y-2 text-sm text-blue-500">
             <li>• Homepage (Priority: 1.0)</li>

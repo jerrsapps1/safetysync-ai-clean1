@@ -362,13 +362,13 @@ export default function CaseStudiesPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/">
-                <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-100">
+                <Button size="lg" className="bg-blue-900 text-blue-600 hover:bg-blue-100">
                   Start Your Transformation
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </Link>
               <Link href="/">
-                <Button size="lg" variant="secondary" className="bg-white/10 border-white text-white hover:bg-white/20">
+                <Button size="lg" variant="secondary" className="bg-blue-900/60 border-white text-white hover:bg-blue-900/20">
                   Schedule Strategy Call
                 </Button>
               </Link>

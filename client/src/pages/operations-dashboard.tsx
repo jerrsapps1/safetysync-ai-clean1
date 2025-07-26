@@ -236,7 +236,7 @@ export default function OperationsDashboard() {
 
         {/* System Status Overview */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+          <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -255,7 +255,7 @@ export default function OperationsDashboard() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+          <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -277,7 +277,7 @@ export default function OperationsDashboard() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+          <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -308,7 +308,7 @@ export default function OperationsDashboard() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {quickActions.map((action) => (
               <Link key={action.title} href={action.link}>
-                <Card className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/15 transition-all cursor-pointer">
+                <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30 hover:bg-blue-900/15 transition-all cursor-pointer">
                   <CardContent className="p-4">
                     <div className="flex items-center gap-3">
                       <div className={`p-2 rounded-lg ${action.color}`}>
@@ -332,7 +332,7 @@ export default function OperationsDashboard() {
 
         {/* Main Content */}
         <Tabs defaultValue="services" className="w-full">
-          <TabsList className="grid w-full grid-cols-4 bg-white/10 backdrop-blur-sm">
+          <TabsList className="grid w-full grid-cols-4 bg-blue-900/60 backdrop-blur-sm">
             <TabsTrigger value="services">Services</TabsTrigger>
             <TabsTrigger value="metrics">Metrics</TabsTrigger>
             <TabsTrigger value="alerts">Alerts</TabsTrigger>
@@ -343,7 +343,7 @@ export default function OperationsDashboard() {
             <h2 className="text-xl font-semibold text-white">System Services</h2>
             <div className="grid gap-4">
               {systemServices.map((service) => (
-                <Card key={service.name} className="bg-white/10 backdrop-blur-sm border-white/20">
+                <Card key={service.name} className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
                   <CardContent className="p-4">
                     <div className="flex justify-between items-start">
                       <div className="flex items-center gap-3">
@@ -382,7 +382,7 @@ export default function OperationsDashboard() {
                   <h3 className="text-lg font-semibold text-white mb-3">{category.category}</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     {category.metrics.map((metric) => (
-                      <Card key={metric.name} className="bg-white/10 backdrop-blur-sm border-white/20">
+                      <Card key={metric.name} className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
                         <CardContent className="p-4">
                           <div className="flex justify-between items-start">
                             <div>
@@ -437,7 +437,7 @@ export default function OperationsDashboard() {
           <TabsContent value="settings" className="space-y-4">
             <h2 className="text-xl font-semibold text-white">Operations Settings</h2>
             <div className="grid gap-4">
-              <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+              <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
                 <CardHeader>
                   <CardTitle className="text-white">Alert Configuration</CardTitle>
                 </CardHeader>
@@ -459,7 +459,7 @@ export default function OperationsDashboard() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+              <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30">
                 <CardHeader>
                   <CardTitle className="text-white">Monitoring Thresholds</CardTitle>
                 </CardHeader>
@@ -470,7 +470,7 @@ export default function OperationsDashboard() {
                       <input 
                         type="number" 
                         defaultValue="200"
-                        className="w-full p-2 bg-white/5 border border-white/20 rounded text-white"
+                        className="w-full p-2 bg-blue-900/5 border border-violet-500/30 rounded text-white"
                       />
                     </div>
                     <div>
@@ -479,7 +479,7 @@ export default function OperationsDashboard() {
                         type="number" 
                         defaultValue="0.1"
                         step="0.01"
-                        className="w-full p-2 bg-white/5 border border-white/20 rounded text-white"
+                        className="w-full p-2 bg-blue-900/5 border border-violet-500/30 rounded text-white"
                       />
                     </div>
                   </div>

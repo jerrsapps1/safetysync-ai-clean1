@@ -174,7 +174,7 @@ export default function EmailPreview() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Template Selector */}
           <div className="lg:col-span-1">
-            <Card className="bg-white/10 backdrop-blur-sm border-blue-500/20">
+            <Card className="bg-blue-900/60 backdrop-blur-sm border-blue-500/20">
               <CardHeader>
                 <CardTitle className="text-white flex items-center gap-2">
                   <Mail className="w-5 h-5" />
@@ -189,7 +189,7 @@ export default function EmailPreview() {
                     className={`w-full p-4 rounded-lg border-2 transition-all text-left ${
                       selectedTemplate === key
                         ? 'border-blue-400 bg-blue-500/20 text-white'
-                        : 'border-blue-500/20 bg-white/5 text-blue-200 hover:bg-white/10'
+                        : 'border-blue-500/20 bg-blue-900/5 text-blue-200 hover:bg-blue-900/60'
                     }`}
                   >
                     <div className="font-semibold mb-1">{template.title}</div>
@@ -200,7 +200,7 @@ export default function EmailPreview() {
             </Card>
 
             {/* Status Card */}
-            <Card className="bg-white/10 backdrop-blur-sm border-green-500/20 mt-6">
+            <Card className="bg-blue-900/60 backdrop-blur-sm border-green-500/20 mt-6">
               <CardHeader>
                 <CardTitle className="text-white flex items-center gap-2">
                   <Check className="w-5 h-5 text-green-400" />
@@ -235,7 +235,7 @@ export default function EmailPreview() {
 
           {/* Template Preview */}
           <div className="lg:col-span-2">
-            <Card className="bg-white/10 backdrop-blur-sm border-blue-500/20">
+            <Card className="bg-blue-900/60 backdrop-blur-sm border-blue-500/20">
               <CardHeader>
                 <CardTitle className="text-white flex items-center gap-2">
                   <Eye className="w-5 h-5" />
@@ -247,7 +247,7 @@ export default function EmailPreview() {
               </CardHeader>
               <CardContent>
                 <div 
-                  className="bg-white rounded-lg p-4 max-h-96 overflow-y-auto"
+                  className="bg-blue-900 rounded-lg p-4 max-h-96 overflow-y-auto"
                   dangerouslySetInnerHTML={{ 
                     __html: templates[selectedTemplate as keyof typeof templates].html 
                   }}
@@ -256,7 +256,7 @@ export default function EmailPreview() {
             </Card>
 
             {/* Test Button */}
-            <Card className="bg-white/10 backdrop-blur-sm border-purple-500/20 mt-6">
+            <Card className="bg-blue-900/60 backdrop-blur-sm border-purple-500/20 mt-6">
               <CardHeader>
                 <CardTitle className="text-white flex items-center gap-2">
                   <Send className="w-5 h-5" />

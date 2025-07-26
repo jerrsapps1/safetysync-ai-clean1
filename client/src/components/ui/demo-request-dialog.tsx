@@ -239,7 +239,7 @@ export function DemoRequestDialog({ isOpen, onClose, onSubmit }: DemoRequestDial
               
               <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2">
                 {relevantPromoCodes.map(([code, promo]) => (
-                  <Card key={code} className="bg-white/80 backdrop-blur-sm border-blue-200 hover:border-blue-300 transition-colors">
+                  <Card key={code} className="bg-blue-900/80 backdrop-blur-sm border-blue-200 hover:border-blue-300 transition-colors">
                     <CardHeader className="pb-3">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">

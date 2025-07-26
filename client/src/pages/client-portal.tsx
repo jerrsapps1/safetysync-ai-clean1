@@ -411,7 +411,7 @@ export default function ClientPortal() {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]" />
 
       {/* Header */}
-      <header className="relative z-10 bg-black/40 backdrop-blur-sm border-b border-white/20">
+      <header className="relative z-10 bg-black/40 backdrop-blur-sm border-b border-violet-500/30">
         <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
           {/* Mobile Header - Stack vertically */}
           <div className="md:hidden">
@@ -439,7 +439,7 @@ export default function ClientPortal() {
                     placeholder="Username"
                     value={loginUsername}
                     onChange={(e) => setLoginUsername(e.target.value)}
-                    className="w-24 h-8 text-xs bg-white/10 border-white/20 text-white placeholder-blue-300 focus:border-blue-400 focus:ring-blue-400/50"
+                    className="w-24 h-8 text-xs bg-blue-900/60 border-violet-500/30 text-white placeholder-blue-300 focus:border-blue-400 focus:ring-blue-400/50"
                     disabled={isAuthenticating}
                     autoComplete="username"
                   />
@@ -449,7 +449,7 @@ export default function ClientPortal() {
                       placeholder="Password"
                       value={loginPassword}
                       onChange={(e) => setLoginPassword(e.target.value)}
-                      className="w-24 h-8 text-xs bg-white/10 border-white/20 text-white placeholder-blue-300 pr-6 focus:border-blue-400 focus:ring-blue-400/50"
+                      className="w-24 h-8 text-xs bg-blue-900/60 border-violet-500/30 text-white placeholder-blue-300 pr-6 focus:border-blue-400 focus:ring-blue-400/50"
                       disabled={isAuthenticating}
                       autoComplete="current-password"
                     />
@@ -481,7 +481,7 @@ export default function ClientPortal() {
                     type="checkbox"
                     checked={rememberMe}
                     onChange={(e) => setRememberMe(e.target.checked)}
-                    className="h-3 w-3 rounded border-white/20 bg-white/10 text-blue-600 focus:ring-blue-500"
+                    className="h-3 w-3 rounded border-violet-500/30 bg-blue-900/60 text-blue-600 focus:ring-blue-500"
                   />
                   <label htmlFor="remember-me-mobile" className="text-white cursor-pointer">
                     Remember me
@@ -515,7 +515,7 @@ export default function ClientPortal() {
                       placeholder="Username"
                       value={loginUsername}
                       onChange={(e) => setLoginUsername(e.target.value)}
-                      className="w-28 md:w-40 h-8 text-sm bg-white/10 border-white/20 text-white placeholder-blue-300 focus:border-blue-400 focus:ring-blue-400/50"
+                      className="w-28 md:w-40 h-8 text-sm bg-blue-900/60 border-violet-500/30 text-white placeholder-blue-300 focus:border-blue-400 focus:ring-blue-400/50"
                       disabled={isAuthenticating}
                       autoComplete="username"
                     />
@@ -525,7 +525,7 @@ export default function ClientPortal() {
                         placeholder="Password"
                         value={loginPassword}
                         onChange={(e) => setLoginPassword(e.target.value)}
-                        className="w-28 md:w-40 h-8 text-sm bg-white/10 border-white/20 text-white placeholder-blue-300 pr-8 focus:border-blue-400 focus:ring-blue-400/50"
+                        className="w-28 md:w-40 h-8 text-sm bg-blue-900/60 border-violet-500/30 text-white placeholder-blue-300 pr-8 focus:border-blue-400 focus:ring-blue-400/50"
                         disabled={isAuthenticating}
                         autoComplete="current-password"
                       />
@@ -559,7 +559,7 @@ export default function ClientPortal() {
                       type="checkbox"
                       checked={rememberMe}
                       onChange={(e) => setRememberMe(e.target.checked)}
-                      className="h-3 w-3 rounded border-white/20 bg-white/10 text-blue-600 focus:ring-blue-500"
+                      className="h-3 w-3 rounded border-violet-500/30 bg-blue-900/60 text-blue-600 focus:ring-blue-500"
                     />
                     <label htmlFor="remember-me" className="text-white cursor-pointer">
                       Remember me
@@ -675,7 +675,7 @@ export default function ClientPortal() {
               className={`${
                 activeTab === key 
                   ? 'bg-emerald-600 text-white hover:bg-emerald-700' 
-                  : 'bg-white/10 text-white border-white/20 hover:bg-white/20'
+                  : 'bg-blue-900/60 text-white border-violet-500/30 hover:bg-blue-900/20'
               }`}
             >
               <Icon className="w-4 h-4 mr-2" />
@@ -737,7 +737,7 @@ export default function ClientPortal() {
                     <p className="text-white mb-4">{update.description}</p>
                     <Button 
                       variant="outline" 
-                      className="border-white/20 text-white hover:bg-white/10"
+                      className="border-violet-500/30 text-white hover:bg-blue-900/60"
                     >
                       <Eye className="w-4 h-4 mr-2" />
                       View Details
@@ -901,7 +901,7 @@ export default function ClientPortal() {
                   required
                   value={loginUsername}
                   onChange={(e) => setLoginUsername(e.target.value)}
-                  className="bg-white/10 border-white/20 text-white placeholder-blue-300"
+                  className="bg-blue-900/60 border-violet-500/30 text-white placeholder-blue-300"
                   placeholder="Enter your username"
                 />
               </div>
@@ -917,7 +917,7 @@ export default function ClientPortal() {
                     required
                     value={loginPassword}
                     onChange={(e) => setLoginPassword(e.target.value)}
-                    className="bg-white/10 border-white/20 text-white placeholder-blue-300 pr-10"
+                    className="bg-blue-900/60 border-violet-500/30 text-white placeholder-blue-300 pr-10"
                     placeholder="Enter your password"
                   />
                   <Button
@@ -944,7 +944,7 @@ export default function ClientPortal() {
                   type="button"
                   onClick={() => setShowAuthPopup(false)}
                   variant="secondary"
-                  className="flex-1 bg-white/10 border-white/20 text-white hover:bg-white/20"
+                  className="flex-1 bg-blue-900/60 border-violet-500/30 text-white hover:bg-blue-900/20"
                 >
                   Cancel
                 </Button>

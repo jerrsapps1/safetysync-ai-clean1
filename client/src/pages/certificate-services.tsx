@@ -30,7 +30,7 @@ export default function CertificateServicesPage() {
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-8 mb-16">
             {/* Certificate Generation */}
-            <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white">
+            <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30 text-white">
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
                   <Award className="w-6 h-6 text-yellow-400" />
@@ -60,7 +60,7 @@ export default function CertificateServicesPage() {
             </Card>
 
             {/* Digital Wallet Cards */}
-            <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white">
+            <Card className="bg-blue-900/60 backdrop-blur-sm border-violet-500/30 text-white">
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
                   <CreditCard className="w-6 h-6 text-blue-400" />
@@ -170,7 +170,7 @@ export default function CertificateServicesPage() {
 
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             {/* Heavy Equipment Operator Card - FRONT */}
-            <div className="bg-white border-2 border-blue-300 rounded-lg shadow-lg overflow-hidden" style={{ aspectRatio: '1.586/1' }}>
+            <div className="bg-blue-900 border-2 border-blue-300 rounded-lg shadow-lg overflow-hidden" style={{ aspectRatio: '1.586/1' }}>
               <div className="bg-blue-600 text-white p-3">
                 <div className="flex justify-between items-center">
                   <span className="font-bold text-sm">EQUIPMENT OPERATOR</span>
@@ -206,7 +206,7 @@ export default function CertificateServicesPage() {
             </div>
 
             {/* Equipment Operator Card - BACK */}
-            <div className="bg-white border-2 border-blue-300 rounded-lg shadow-lg overflow-hidden" style={{ aspectRatio: '1.586/1' }}>
+            <div className="bg-blue-900 border-2 border-blue-300 rounded-lg shadow-lg overflow-hidden" style={{ aspectRatio: '1.586/1' }}>
               <div className="bg-blue-600 text-white p-3">
                 <div className="flex justify-between items-center">
                   <span className="font-bold text-sm">EQUIPMENT OPERATOR</span>
@@ -237,7 +237,7 @@ export default function CertificateServicesPage() {
             </div>
 
             {/* Fall Protection Card - FRONT */}
-            <div className="bg-white border-2 border-blue-300 rounded-lg shadow-lg overflow-hidden" style={{ aspectRatio: '1.586/1' }}>
+            <div className="bg-blue-900 border-2 border-blue-300 rounded-lg shadow-lg overflow-hidden" style={{ aspectRatio: '1.586/1' }}>
               <div className="bg-red-600 text-white p-3">
                 <div className="flex justify-between items-center">
                   <span className="font-bold text-sm">FALL PROTECTION</span>
@@ -305,7 +305,7 @@ export default function CertificateServicesPage() {
             <Button 
               size="lg" 
               variant="outline" 
-              className="border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3"
+              className="border-white/30 text-white hover:bg-blue-900/60 font-semibold px-8 py-3"
               onClick={() => window.location.href = '/'}
             >
               Start Free Trial
