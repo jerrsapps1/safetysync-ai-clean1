@@ -69,7 +69,7 @@ export default function WorkspaceSimplified() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900">
+    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
       {/* Tech Grid Background */}
       <div className="fixed inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
       

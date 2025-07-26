@@ -100,7 +100,7 @@ function LoginForm() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="bg-blue-900/60 backdrop-blur-sm border border-violet-500/30 rounded-lg p-6 shadow-2xl">
           <div className="text-center mb-6">
@@ -256,7 +256,7 @@ export default function Dashboard() {
   // Show loading state while checking authentication
   if (authLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
         <div className="text-white">Loading...</div>
       </div>
     );
@@ -268,7 +268,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 relative overflow-hidden">
       {/* Tech Grid Background */}
       <div className="absolute inset-0 tech-grid opacity-20"></div>
       

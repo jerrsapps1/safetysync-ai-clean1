@@ -104,7 +104,7 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900">
+    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
       <PageHeader />
 
       {/* Main Content with Sidebar Margin */}

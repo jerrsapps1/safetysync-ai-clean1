@@ -5,7 +5,7 @@ import { Award, CreditCard, Download, Eye, Shield, Star } from "lucide-react";
 
 export default function CertificateServicesPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 text-white">
       {/* Hero Section */}
       <section className="relative py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
