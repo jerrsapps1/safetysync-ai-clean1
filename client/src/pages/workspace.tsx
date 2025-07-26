@@ -365,10 +365,10 @@ export default function WorkspacePage() {
     location 
   });
   
-  // Extract tab from URL or default to overview
+  // Extract tab from URL or default to workspace view
   const getActiveTabFromUrl = () => {
     const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('tab') || 'user-guide';
+    return urlParams.get('tab') || 'unified-dashboard';
   };
   
   const [activeTab, setActiveTab] = useState(getActiveTabFromUrl());
