@@ -1,10 +1,11 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import SummaryEmailSender from '@/components/SummaryEmailSender';
+import SignupGraph from '@/components/SignupGraph';
 import { Badge } from '@/components/ui/badge';
 import { Mail, Settings, Database, CheckCircle, AlertCircle } from 'lucide-react';
 
 export default function AdminEmailPage() {
-  const isBrevoConfigured = !!import.meta.env.VITE_BREVO_API_KEY || process.env.BREVO_API_KEY;
+  const isBrevoConfigured = !!import.meta.env.VITE_BREVO_API_KEY;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 p-6">
@@ -156,6 +157,9 @@ export default function AdminEmailPage() {
             </CardContent>
           </Card>
         )}
+
+        {/* Signup Analytics Graph */}
+        <SignupGraph />
 
         {/* Main Email Sender */}
         <SummaryEmailSender />
