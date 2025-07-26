@@ -1,0 +1,819 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafetySync.AI Platform Documentation with Screenshots</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header .subtitle {
+            color: #e0f2fe;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .header .timestamp {
+            color: #bbdefb;
+            font-size: 0.9rem;
+        }
+
+        .overview {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .overview h2 {
+            color: #1e40af;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .overview p {
+            margin-bottom: 1rem;
+            color: #475569;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .feature-item {
+            background: rgba(37, 99, 235, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #2563eb;
+        }
+
+        .documentation-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            color: #1e40af;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #3b82f6;
+        }
+
+        .pages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 2rem;
+        }
+
+        .page-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .page-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: white;
+            padding: 1.5rem;
+        }
+
+        .page-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-url {
+            font-family: 'Courier New', monospace;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .page-screenshot {
+            position: relative;
+            background: #f8fafc;
+            cursor: pointer;
+        }
+
+        .page-screenshot img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            object-position: top;
+            border-bottom: 1px solid #e2e8f0;
+            transition: transform 0.3s ease;
+        }
+
+        .page-screenshot:hover img {
+            transform: scale(1.02);
+        }
+
+        .screenshot-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .page-screenshot:hover .screenshot-overlay {
+            opacity: 1;
+        }
+
+        .view-full {
+            color: white;
+            background: rgba(37, 99, 235, 0.9);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .page-screenshot.no-image {
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .no-image-content {
+            text-align: center;
+            color: #64748b;
+        }
+
+        .no-image-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 0.5rem;
+            opacity: 0.5;
+        }
+
+        .page-description {
+            padding: 1.5rem;
+        }
+
+        .page-description p {
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .tech-stack {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .tech-stack h2 {
+            color: #1e40af;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .tech-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .tech-category {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .tech-category h3 {
+            color: #3b82f6;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .tech-category ul {
+            list-style: none;
+        }
+
+        .tech-category li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #475569;
+        }
+
+        .tech-category li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+        }
+
+        .download-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .download-section h2 {
+            color: #1e40af;
+            margin-bottom: 1rem;
+        }
+
+        .download-section p {
+            color: #475569;
+            margin-bottom: 1.5rem;
+        }
+
+        .download-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .download-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .pages-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tech-categories {
+                grid-template-columns: 1fr;
+            }
+
+            .page-screenshot img {
+                height: 250px;
+            }
+
+            .page-screenshot.no-image {
+                height: 250px;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .container {
+                max-width: none;
+                padding: 1rem;
+            }
+            
+            .page-card {
+                break-inside: avoid;
+                margin-bottom: 1rem;
+            }
+            
+            .documentation-section {
+                break-inside: avoid;
+            }
+
+            .screenshot-overlay,
+            .download-section {
+                display: none;
+            }
+        }
+
+        /* Modal for full-size screenshots */
+        .screenshot-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            padding: 2rem;
+        }
+
+        .screenshot-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .screenshot-modal img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>SafetySync.AI Platform Documentation</h1>
+            <p class="subtitle">Comprehensive Visual Guide with Screenshots</p>
+            <p class="timestamp">Generated on: 7/26/2025, 2:07:04 PM</p>
+        </div>
+
+        <div class="overview">
+            <h2>Platform Overview</h2>
+            <p>SafetySync.AI is an advanced AI-powered enterprise safety management platform that transforms workforce document processing and OSHA compliance through intelligent extraction, verification, and proactive risk management.</p>
+            
+            <h3>Key Features</h3>
+            <div class="features-grid">
+                <div class="feature-item">AI-Powered Document Processing with OpenAI GPT-4o integration</div>
+                <div class="feature-item">Real-time Compliance Tracking and Monitoring</div>
+                <div class="feature-item">Employee Certificate Management with QR Code verification</div>
+                <div class="feature-item">Training Matrix and OSHA Standards Alignment</div>
+                <div class="feature-item">Mobile-Responsive Design with Adaptive UI Components</div>
+                <div class="feature-item">Advanced Security with Authentication and Rate Limiting</div>
+                <div class="feature-item">Customizable Dashboard Widgets with Drag-and-Drop Layout</div>
+                <div class="feature-item">Bulk Employee Operations and CSV Export</div>
+                <div class="feature-item">Department Analytics and Performance Tracking</div>
+                <div class="feature-item">AI-Powered Contextual Help System</div>
+                <div class="feature-item">Professional Blue Gradient Theme Consistency</div>
+                <div class="feature-item">Comprehensive Audit Trail and Reporting</div>
+            </div>
+        </div>
+
+        
+        <div class="documentation-section">
+          <h2 class="section-title">Landing & Public Pages</h2>
+          <div class="pages-grid">
+      
+          <div class="page-card">
+            <div class="page-header">
+              <h3 class="page-title">Landing Page</h3>
+              <span class="page-url">/</span>
+            </div>
+            <div class="page-screenshot">
+             <img src="screenshots/Screenshot 2025-07-25 221420_1753500157476.png" alt="Landing Page Screenshot" loading="lazy" />
+             <div class="screenshot-overlay">
+               <span class="view-full">Click to view full size</span>
+             </div>
+           </div>
+            <div class="page-description">
+              <p>Hero section with SafetySync.AI branding, features showcase, call-to-action buttons for trial signup and demo requests</p>
+            </div>
+          </div>
+        
+          <div class="page-card">
+            <div class="page-header">
+              <h3 class="page-title">Contact Page</h3>
+              <span class="page-url">/contact</span>
+            </div>
+            <div class="page-screenshot">
+             <img src="screenshots/Screenshot 2025-07-15 225304_1752637993217.png" alt="Contact Page Screenshot" loading="lazy" />
+             <div class="screenshot-overlay">
+               <span class="view-full">Click to view full size</span>
+             </div>
+           </div>
+            <div class="page-description">
+              <p>Professional contact form, company information, support channels</p>
+            </div>
+          </div>
+        
+          <div class="page-card">
+            <div class="page-header">
+              <h3 class="page-title">Case Studies</h3>
+              <span class="page-url">/case-studies</span>
+            </div>
+            <div class="page-screenshot">
+             <img src="screenshots/Screenshot 2025-07-15 223137_1752636729131.png" alt="Case Studies Screenshot" loading="lazy" />
+             <div class="screenshot-overlay">
+               <span class="view-full">Click to view full size</span>
+             </div>
+           </div>
+            <div class="page-description">
+              <p>Customer success stories demonstrating OSHA compliance improvements</p>
+            </div>
+          </div>
+        
+          <div class="page-card">
+            <div class="page-header">
+              <h3 class="page-title">Pricing Plans</h3>
+              <span class="page-url">/pricing</span>
+            </div>
+            <div class="page-screenshot">
+             <img src="screenshots/Screenshot 2025-07-15 220230_1752634966423.png" alt="Pricing Plans Screenshot" loading="lazy" />
+             <div class="screenshot-overlay">
+               <span class="view-full">Click to view full size</span>
+             </div>
+           </div>
+            <div class="page-description">
+              <p>Subscription tiers, feature comparisons, ROI calculator</p>
+            </div>
+          </div>
+        
+          <div class="page-card">
+            <div class="page-header">
+              <h3 class="page-title">HR Teams Page</h3>
+              <span class="page-url">/hr</span>
+            </div>
+            <div class="page-screenshot">
+             <img src="screenshots/Screenshot 2025-07-15 213658_1752633429123.png" alt="HR Teams Page Screenshot" loading="lazy" />
+             <div class="screenshot-overlay">
+               <span class="view-full">Click to view full size</span>
+             </div>
+           </div>
+            <div class="page-description">
+              <p>HR-specific features including employee training management, compliance documentation, digital certificates</p>
+            </div>
+          </div>
+        
+          </div>
+        </div>
+      
+        <div class="documentation-section">
+          <h2 class="section-title">Authentication System</h2>
+          <div class="pages-grid">
+      
+          <div class="page-card">
+            <div class="page-header">
+              <h3 class="page-title">Client Portal</h3>
+              <span class="page-url">/client-portal</span>
+            </div>
+            <div class="page-screenshot">
+             <img src="screenshots/Screenshot 2025-07-16 085106_1752673957529.png" alt="Client Portal Screenshot" loading="lazy" />
+             <div class="screenshot-overlay">
+               <span class="view-full">Click to view full size</span>
+             </div>
+           </div>
+            <div class="page-description">
+              <p>Secure login interface with username/password authentication, remember me option, password strength validation</p>
+            </div>
+          </div>
+        
+          <div class="page-card">
+            <div class="page-header">
+              <h3 class="page-title">Standalone Dashboard</h3>
+              <span class="page-url">/dashboard</span>
+            </div>
+            <div class="page-screenshot">
+             <img src="screenshots/Screenshot 2025-07-20 225635_1753070214600.png" alt="Standalone Dashboard Screenshot" loading="lazy" />
+             <div class="screenshot-overlay">
+               <span class="view-full">Click to view full size</span>
+             </div>
+           </div>
+            <div class="page-description">
+              <p>Authentication-protected comprehensive dashboard with compliance tracking, AI clone detection, collaboration tools</p>
+            </div>
+          </div>
+        
+          </div>
+        </div>
+      
+        <div class="documentation-section">
+          <h2 class="section-title">Main Workspace Platform</h2>
+          <div class="pages-grid">
+      
+          <div class="page-card">
+            <div class="page-header">
+              <h3 class="page-title">User Guide</h3>
+              <span class="page-url">/workspace?tab=user-guide</span>
+            </div>
+            <div class="page-screenshot">
+             <img src="screenshots/Screenshot 2025-07-25 223743_1753501222029.png" alt="User Guide Screenshot" loading="lazy" />
+             <div class="screenshot-overlay">
+               <span class="view-full">Click to view full size</span>
+             </div>
+           </div>
+            <div class="page-description">
+              <p>Comprehensive platform documentation, feature explanations, tutorial content (First Tab)</p>
+            </div>
+          </div>
+        
+          <div class="page-card">
+            <div class="page-header">
+              <h3 class="page-title">Workspace View</h3>
+              <span class="page-url">/workspace?tab=unified-dashboard</span>
+            </div>
+            <div class="page-screenshot">
+             <img src="screenshots/Screenshot 2025-07-16 222058_1752722476226.png" alt="Workspace View Screenshot" loading="lazy" />
+             <div class="screenshot-overlay">
+               <span class="view-full">Click to view full size</span>
+             </div>
+           </div>
+            <div class="page-description">
+              <p>Main compliance dashboard with customizable widgets, employee statistics, safety alerts, training progress (Second Tab)</p>
+            </div>
+          </div>
+        
+          <div class="page-card">
+            <div class="page-header">
+              <h3 class="page-title">Company Profile</h3>
+              <span class="page-url">/workspace?tab=company-profile</span>
+            </div>
+            <div class="page-screenshot">
+             <img src="screenshots/Screenshot 2025-07-15 201426_1752628477015.png" alt="Company Profile Screenshot" loading="lazy" />
+             <div class="screenshot-overlay">
+               <span class="view-full">Click to view full size</span>
+             </div>
+           </div>
+            <div class="page-description">
+              <p>Company setup and configuration, industry selection, contact information management</p>
+            </div>
+          </div>
+        
+          <div class="page-card">
+            <div class="page-header">
+              <h3 class="page-title">Employee Management</h3>
+              <span class="page-url">/workspace?tab=employee-management</span>
+            </div>
+            <div class="page-screenshot">
+             <img src="screenshots/Screenshot 2025-07-15 200707_1752628193165.png" alt="Employee Management Screenshot" loading="lazy" />
+             <div class="screenshot-overlay">
+               <span class="view-full">Click to view full size</span>
+             </div>
+           </div>
+            <div class="page-description">
+              <p>Employee database with 200+ records, department analytics, bulk operations, CSV export, certificate tracking</p>
+            </div>
+          </div>
+        
+          </div>
+        </div>
+      
+        <div class="documentation-section">
+          <h2 class="section-title">Training & Compliance Features</h2>
+          <div class="pages-grid">
+      
+          <div class="page-card">
+            <div class="page-header">
+              <h3 class="page-title">Training Document Hub</h3>
+              <span class="page-url">/workspace?tab=training-document-hub</span>
+            </div>
+            <div class="page-screenshot">
+             <img src="screenshots/Screenshot 2025-07-13 182107_1752449011646.png" alt="Training Document Hub Screenshot" loading="lazy" />
+             <div class="screenshot-overlay">
+               <span class="view-full">Click to view full size</span>
+             </div>
+           </div>
+            <div class="page-description">
+              <p>AI-powered document upload and processing, training record management, certificate generation</p>
+            </div>
+          </div>
+        
+          <div class="page-card">
+            <div class="page-header">
+              <h3 class="page-title">OSHA Compliance Manager</h3>
+              <span class="page-url">/workspace?tab=osha-compliance-manager</span>
+            </div>
+            <div class="page-screenshot">
+             <img src="screenshots/Screenshot 2025-07-09 172958_1752100298849.png" alt="OSHA Compliance Manager Screenshot" loading="lazy" />
+             <div class="screenshot-overlay">
+               <span class="view-full">Click to view full size</span>
+             </div>
+           </div>
+            <div class="page-description">
+              <p>Comprehensive OSHA compliance tracking, training matrix, certification monitoring, audit readiness</p>
+            </div>
+          </div>
+        
+          <div class="page-card">
+            <div class="page-header">
+              <h3 class="page-title">Employee Insights</h3>
+              <span class="page-url">/workspace?tab=employee-insights</span>
+            </div>
+            <div class="page-screenshot">
+             <img src="screenshots/Screenshot 2025-07-19 145515_1752954930185.png" alt="Employee Insights Screenshot" loading="lazy" />
+             <div class="screenshot-overlay">
+               <span class="view-full">Click to view full size</span>
+             </div>
+           </div>
+            <div class="page-description">
+              <p>Analytics dashboard with department performance, hiring trends, compliance scores, AI-powered insights</p>
+            </div>
+          </div>
+        
+          </div>
+        </div>
+      
+        <div class="documentation-section">
+          <h2 class="section-title">Advanced Features</h2>
+          <div class="pages-grid">
+      
+          <div class="page-card">
+            <div class="page-header">
+              <h3 class="page-title">AI Document Processing</h3>
+              <span class="page-url">/workspace?tab=ai-document-processor</span>
+            </div>
+            <div class="page-screenshot">
+             <img src="screenshots/Screenshot 2025-07-09 190948_1752106504115.png" alt="AI Document Processing Screenshot" loading="lazy" />
+             <div class="screenshot-overlay">
+               <span class="view-full">Click to view full size</span>
+             </div>
+           </div>
+            <div class="page-description">
+              <p>Revolutionary AI-powered document extraction and processing with OpenAI GPT-4o integration</p>
+            </div>
+          </div>
+        
+          <div class="page-card">
+            <div class="page-header">
+              <h3 class="page-title">Training Session Generator</h3>
+              <span class="page-url">/workspace?tab=instructor-sign-in-generator</span>
+            </div>
+            <div class="page-screenshot">
+             <img src="screenshots/Screenshot 2025-07-11 221026_1752289838464.png" alt="Training Session Generator Screenshot" loading="lazy" />
+             <div class="screenshot-overlay">
+               <span class="view-full">Click to view full size</span>
+             </div>
+           </div>
+            <div class="page-description">
+              <p>Instructor sign-in sheet generation with customizable training classes and employee management</p>
+            </div>
+          </div>
+        
+          </div>
+        </div>
+      
+
+        <div class="tech-stack">
+            <h2>Technical Architecture</h2>
+            <div class="tech-categories">
+                <div class="tech-category">
+                    <h3>Frontend Technologies</h3>
+                    <ul>
+                        <li>React.js with TypeScript for type safety</li>
+                        <li>Vite for fast development and optimized builds</li>
+                        <li>Tailwind CSS with custom blue gradient theming</li>
+                        <li>Shadcn/UI components for consistent design</li>
+                        <li>Wouter for lightweight client-side routing</li>
+                        <li>TanStack Query for server state management</li>
+                        <li>React Hook Form with Zod validation</li>
+                    </ul>
+                </div>
+                <div class="tech-category">
+                    <h3>Backend Technologies</h3>
+                    <ul>
+                        <li>Node.js with Express.js framework</li>
+                        <li>TypeScript for type safety across the stack</li>
+                        <li>PostgreSQL with Drizzle ORM</li>
+                        <li>Neon Database serverless PostgreSQL</li>
+                        <li>JWT authentication with session management</li>
+                        <li>Comprehensive API with RESTful endpoints</li>
+                    </ul>
+                </div>
+                <div class="tech-category">
+                    <h3>AI & Integration</h3>
+                    <ul>
+                        <li>OpenAI GPT-4o for document analysis</li>
+                        <li>Google Cloud Document AI integration</li>
+                        <li>Intelligent PDF processing with multiple extraction layers</li>
+                        <li>AI-powered contextual help system</li>
+                        <li>Smart compliance recommendations</li>
+                    </ul>
+                </div>
+                <div class="tech-category">
+                    <h3>Security & Performance</h3>
+                    <ul>
+                        <li>Helmet.js for security headers</li>
+                        <li>Rate limiting and authentication protection</li>
+                        <li>Input sanitization and XSS prevention</li>
+                        <li>Secure session management</li>
+                        <li>Comprehensive audit logging</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="download-section">
+            <h2>Documentation Access</h2>
+            <p>This comprehensive documentation provides visual insight into all SafetySync.AI platform features and capabilities.</p>
+            <a href="/download-docs" class="download-button">Access Additional Documentation Formats</a>
+        </div>
+    </div>
+
+    <!-- Screenshot Modal -->
+    <div class="screenshot-modal" id="screenshotModal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <img id="modalImage" src="" alt="Full size screenshot">
+    </div>
+
+    <script>
+        // Add click handlers for screenshots
+        document.querySelectorAll('.page-screenshot img').forEach(img => {
+            img.addEventListener('click', function() {
+                const modal = document.getElementById('screenshotModal');
+                const modalImg = document.getElementById('modalImage');
+                modalImg.src = this.src;
+                modal.classList.add('active');
+            });
+        });
+
+        function closeModal() {
+            document.getElementById('screenshotModal').classList.remove('active');
+        }
+
+        // Close modal on outside click
+        document.getElementById('screenshotModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
