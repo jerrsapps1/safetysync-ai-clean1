@@ -136,6 +136,13 @@ User satisfied with comprehensive platform features including dashboard, admin p
 
 ## Recent Changes
 
+- **July 26, 2025** - CUSTOMER NAVIGATION ACCESSIBILITY ENHANCEMENT:
+  - **DASHBOARD ACCESS**: Added "Platform Dashboard" navigation button in System Tools section linking to /.replit.dev/dashboard
+  - **USER GUIDE ACCESS**: Added "User Guide" navigation button in System Tools section linking to /users page
+  - **EXTERNAL LINK INDICATORS**: Added small external link icons to show these open in new tabs
+  - **CUSTOMER RESOURCE VISIBILITY**: Important customer resources now easily discoverable through sidebar navigation
+  - Customers no longer need to manually type URLs to access dashboard and user guide resources
+
 - **July 26, 2025** - SIDEBAR USER PROFILE SECTION REMOVAL:
   - **USER PROFILE CLEANUP**: Removed user profile section displaying "Test User" and "Safety Manager" from workspace sidebar
   - **SIGN OUT BUTTON REMOVAL**: Removed "Sign Out" button from sidebar bottom section for cleaner interface
