@@ -539,13 +539,13 @@ export default function EmployeeManagement() {
     return (
       <div className="space-y-6">
         <div className="animate-pulse">
-          <div className="h-8 bg-gray-200 rounded w-1/4 mb-4"></div>
+          <div className="h-8 bg-blue-200 rounded w-1/4 mb-4"></div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
             {[...Array(4)].map((_, i) => (
-              <div key={i} className="h-24 bg-gray-200 rounded"></div>
+              <div key={i} className="h-24 bg-blue-200 rounded"></div>
             ))}
           </div>
-          <div className="h-64 bg-gray-200 rounded"></div>
+          <div className="h-64 bg-blue-200 rounded"></div>
         </div>
       </div>
     );
@@ -610,7 +610,7 @@ export default function EmployeeManagement() {
           <Button 
             variant="outline"
             onClick={() => setShowBulkActions(!showBulkActions)}
-            className="bg-blue-400/20 hover:bg-blue-400/30 border-blue-400/30 text-gray-300 hover:text-gray-200"
+            className="bg-blue-400/20 hover:bg-blue-400/30 border-blue-400/30 text-blue-300 hover:text-blue-200"
           >
             <CheckSquare className="w-4 h-4 mr-2" />
             Bulk Actions
@@ -700,7 +700,7 @@ export default function EmployeeManagement() {
                   variant="outline" 
                   size="sm"
                   onClick={handleSelectAll}
-                  className="bg-blue-400/20 hover:bg-blue-400/30 border-blue-400/30 text-gray-300 hover:text-gray-200"
+                  className="bg-blue-400/20 hover:bg-blue-400/30 border-blue-400/30 text-blue-300 hover:text-blue-200"
                 >
                   {selectedEmployees.length === filteredAndSortedEmployees.length ? (
                     <>
@@ -714,7 +714,7 @@ export default function EmployeeManagement() {
                     </>
                   )}
                 </Button>
-                <span className="text-sm text-gray-300">
+                <span className="text-sm text-blue-300">
                   {selectedEmployees.length} selected
                 </span>
               </div>
@@ -867,7 +867,7 @@ export default function EmployeeManagement() {
             <table className="w-full">
               <thead className="bg-blue-700/50 border-b border-blue-600">
                 <tr>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-300">
+                  <th className="px-4 py-3 text-left text-sm font-medium text-blue-300">
                     <div className="flex items-center gap-2">
                       <input
                         type="checkbox"
@@ -878,12 +878,12 @@ export default function EmployeeManagement() {
                       Employee
                     </div>
                   </th>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-300">Position</th>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-300">Department</th>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-300">Location</th>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-300">Status</th>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-300">Hire Date</th>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-300">Actions</th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-blue-300">Position</th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-blue-300">Department</th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-blue-300">Location</th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-blue-300">Status</th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-blue-300">Hire Date</th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-blue-300">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-blue-600">
@@ -912,9 +912,9 @@ export default function EmployeeManagement() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-4 py-3 text-sm text-gray-300">{employee.position}</td>
-                    <td className="px-4 py-3 text-sm text-gray-300">{employee.department}</td>
-                    <td className="px-4 py-3 text-sm text-gray-300">{employee.location}</td>
+                    <td className="px-4 py-3 text-sm text-blue-300">{employee.position}</td>
+                    <td className="px-4 py-3 text-sm text-blue-300">{employee.department}</td>
+                    <td className="px-4 py-3 text-sm text-blue-300">{employee.location}</td>
                     <td className="px-4 py-3">
                       <Badge 
                         variant={employee.status === 'active' ? 'default' : 
@@ -923,7 +923,7 @@ export default function EmployeeManagement() {
                         {employee.status}
                       </Badge>
                     </td>
-                    <td className="px-4 py-3 text-sm text-gray-300">
+                    <td className="px-4 py-3 text-sm text-blue-300">
                       {new Date(employee.hireDate).toLocaleDateString()}
                     </td>
                     <td className="px-4 py-3">
@@ -935,7 +935,7 @@ export default function EmployeeManagement() {
                             setSelectedEmployee(employee);
                             setShowEditDialog(true);
                           }}
-                          className="bg-blue-400/20 hover:bg-blue-400/30 border-blue-400/30 text-gray-300 hover:text-gray-200"
+                          className="bg-blue-400/20 hover:bg-blue-400/30 border-blue-400/30 text-blue-300 hover:text-blue-200"
                         >
                           <Eye className="w-4 h-4" />
                         </Button>
@@ -997,7 +997,7 @@ export default function EmployeeManagement() {
               <div key={dept.name} className="flex items-center justify-between">
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-sm font-medium text-gray-300">{dept.name}</span>
+                    <span className="text-sm font-medium text-blue-300">{dept.name}</span>
                     <span className="text-sm text-blue-300">{dept.activeCount}/{dept.count}</span>
                   </div>
                   <Progress 
@@ -1020,7 +1020,7 @@ export default function EmployeeManagement() {
           <div className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="employeeId" className="text-gray-300">Employee ID</Label>
+                <Label htmlFor="employeeId" className="text-blue-300">Employee ID</Label>
                 <Input
                   id="employeeId"
                   value={newEmployee.employeeId}
@@ -1035,13 +1035,13 @@ export default function EmployeeManagement() {
                     onCheckedChange={(checked) => setNewEmployee({...newEmployee, employeeIdVerified: !!checked})}
                     className="border-blue-500 data-[state=checked]:bg-emerald-600 data-[state=checked]:border-emerald-600"
                   />
-                  <Label htmlFor="employeeIdVerified" className="text-gray-300 text-sm">
+                  <Label htmlFor="employeeIdVerified" className="text-blue-300 text-sm">
                     Employee ID Verified
                   </Label>
                 </div>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="firstName" className="text-gray-300">First Name</Label>
+                <Label htmlFor="firstName" className="text-blue-300">First Name</Label>
                 <Input
                   id="firstName"
                   value={newEmployee.firstName}
@@ -1051,7 +1051,7 @@ export default function EmployeeManagement() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="lastName" className="text-gray-300">Last Name</Label>
+                <Label htmlFor="lastName" className="text-blue-300">Last Name</Label>
                 <Input
                   id="lastName"
                   value={newEmployee.lastName}
@@ -1061,7 +1061,7 @@ export default function EmployeeManagement() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-gray-300">Email</Label>
+                <Label htmlFor="email" className="text-blue-300">Email</Label>
                 <Input
                   id="email"
                   type="email"
@@ -1072,7 +1072,7 @@ export default function EmployeeManagement() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="phone" className="text-gray-300">Phone</Label>
+                <Label htmlFor="phone" className="text-blue-300">Phone</Label>
                 <Input
                   id="phone"
                   value={newEmployee.phone}
@@ -1082,7 +1082,7 @@ export default function EmployeeManagement() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="position" className="text-gray-300">Position</Label>
+                <Label htmlFor="position" className="text-blue-300">Position</Label>
                 <Input
                   id="position"
                   value={newEmployee.position}
@@ -1092,7 +1092,7 @@ export default function EmployeeManagement() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="department" className="text-gray-300">Department</Label>
+                <Label htmlFor="department" className="text-blue-300">Department</Label>
                 <Select value={newEmployee.department} onValueChange={(value) => setNewEmployee({...newEmployee, department: value})}>
                   <SelectTrigger className="bg-blue-700 border-blue-600 text-white">
                     <SelectValue placeholder="Select department" />
@@ -1105,7 +1105,7 @@ export default function EmployeeManagement() {
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="division" className="text-gray-300">Division</Label>
+                <Label htmlFor="division" className="text-blue-300">Division</Label>
                 <Select value={newEmployee.division} onValueChange={(value) => setNewEmployee({...newEmployee, division: value})}>
                   <SelectTrigger className="bg-blue-700 border-blue-600 text-white">
                     <SelectValue placeholder="Select division" />
@@ -1118,7 +1118,7 @@ export default function EmployeeManagement() {
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="location" className="text-gray-300">Location</Label>
+                <Label htmlFor="location" className="text-blue-300">Location</Label>
                 <Select value={newEmployee.location} onValueChange={(value) => setNewEmployee({...newEmployee, location: value})}>
                   <SelectTrigger className="bg-blue-700 border-blue-600 text-white">
                     <SelectValue placeholder="Select location" />
@@ -1163,15 +1163,15 @@ export default function EmployeeManagement() {
           {selectedEmployee && (
             <Tabs defaultValue="details" className="w-full">
               <TabsList className="grid w-full grid-cols-3 bg-blue-700 border-blue-600">
-                <TabsTrigger value="details" className="text-gray-300 data-[state=active]:bg-blue-600 data-[state=active]:text-white">Details</TabsTrigger>
-                <TabsTrigger value="certificates" className="text-gray-300 data-[state=active]:bg-blue-600 data-[state=active]:text-white">Certificates</TabsTrigger>
-                <TabsTrigger value="training" className="text-gray-300 data-[state=active]:bg-blue-600 data-[state=active]:text-white">Training</TabsTrigger>
+                <TabsTrigger value="details" className="text-blue-300 data-[state=active]:bg-blue-600 data-[state=active]:text-white">Details</TabsTrigger>
+                <TabsTrigger value="certificates" className="text-blue-300 data-[state=active]:bg-blue-600 data-[state=active]:text-white">Certificates</TabsTrigger>
+                <TabsTrigger value="training" className="text-blue-300 data-[state=active]:bg-blue-600 data-[state=active]:text-white">Training</TabsTrigger>
               </TabsList>
               
               <TabsContent value="details" className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label className="text-gray-300">Employee ID</Label>
+                    <Label className="text-blue-300">Employee ID</Label>
                     <Input value={selectedEmployee.employeeId} readOnly className="bg-blue-700 border-blue-600 text-white" />
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
@@ -1180,41 +1180,41 @@ export default function EmployeeManagement() {
                           disabled
                           className="border-blue-500 data-[state=checked]:bg-emerald-600 data-[state=checked]:border-emerald-600"
                         />
-                        <Label className="text-gray-300 text-sm">Employee ID Verified</Label>
+                        <Label className="text-blue-300 text-sm">Employee ID Verified</Label>
                       </div>
                       <EmployeeBadge isVerified={selectedEmployee.employeeIdVerified || false} variant="detailed" />
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label className="text-gray-300">Email</Label>
+                    <Label className="text-blue-300">Email</Label>
                     <Input value={selectedEmployee.email} readOnly className="bg-blue-700 border-blue-600 text-white" />
                   </div>
                   <div className="space-y-2">
-                    <Label className="text-gray-300">Phone</Label>
+                    <Label className="text-blue-300">Phone</Label>
                     <Input value={selectedEmployee.phone || ''} readOnly className="bg-blue-700 border-blue-600 text-white" />
                   </div>
                   <div className="space-y-2">
-                    <Label className="text-gray-300">Position</Label>
+                    <Label className="text-blue-300">Position</Label>
                     <Input value={selectedEmployee.position || ''} readOnly className="bg-blue-700 border-blue-600 text-white" />
                   </div>
                   <div className="space-y-2">
-                    <Label className="text-gray-300">Department</Label>
+                    <Label className="text-blue-300">Department</Label>
                     <Input value={selectedEmployee.department || ''} readOnly className="bg-blue-700 border-blue-600 text-white" />
                   </div>
                   <div className="space-y-2">
-                    <Label className="text-gray-300">Division</Label>
+                    <Label className="text-blue-300">Division</Label>
                     <Input value={selectedEmployee.division || ''} readOnly className="bg-blue-700 border-blue-600 text-white" />
                   </div>
                   <div className="space-y-2">
-                    <Label className="text-gray-300">Location</Label>
+                    <Label className="text-blue-300">Location</Label>
                     <Input value={selectedEmployee.location || ''} readOnly className="bg-blue-700 border-blue-600 text-white" />
                   </div>
                   <div className="space-y-2">
-                    <Label className="text-gray-300">Hire Date</Label>
+                    <Label className="text-blue-300">Hire Date</Label>
                     <Input value={new Date(selectedEmployee.hireDate).toLocaleDateString()} readOnly className="bg-blue-700 border-blue-600 text-white" />
                   </div>
                   <div className="space-y-2">
-                    <Label className="text-gray-300">Status</Label>
+                    <Label className="text-blue-300">Status</Label>
                     <Badge variant={selectedEmployee.status === 'active' ? 'default' : 'secondary'} className="bg-emerald-600 text-white">
                       {selectedEmployee.status}
                     </Badge>
@@ -1230,10 +1230,10 @@ export default function EmployeeManagement() {
                         <div className="flex items-center justify-between">
                           <div>
                             <h4 className="font-medium text-white">{cert.certificateName}</h4>
-                            <p className="text-sm text-gray-300">
+                            <p className="text-sm text-blue-300">
                               Certificate #{cert.certificateNumber}
                             </p>
-                            <p className="text-sm text-gray-300">
+                            <p className="text-sm text-blue-300">
                               Expires: {new Date(cert.expirationDate).toLocaleDateString()}
                             </p>
                           </div>
@@ -1264,11 +1264,11 @@ export default function EmployeeManagement() {
                         <div className="flex items-center justify-between">
                           <div>
                             <h4 className="font-medium text-white">{training.sessionName}</h4>
-                            <p className="text-sm text-gray-300">{training.description}</p>
-                            <p className="text-sm text-gray-300">
+                            <p className="text-sm text-blue-300">{training.description}</p>
+                            <p className="text-sm text-blue-300">
                               {new Date(training.startDate).toLocaleDateString()} - {new Date(training.endDate).toLocaleDateString()}
                             </p>
-                            <p className="text-sm text-gray-300">
+                            <p className="text-sm text-blue-300">
                               Location: {training.location}
                             </p>
                           </div>

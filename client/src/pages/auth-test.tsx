@@ -86,7 +86,7 @@ export default function AuthTest() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
+    <div className="min-h-screen bg-blue-50 p-8">
       <div className="max-w-4xl mx-auto space-y-6">
         <Card>
           <CardHeader>
@@ -96,7 +96,7 @@ export default function AuthTest() {
           <CardContent className="space-y-4">
             
             {/* Current Auth State */}
-            <div className="bg-gray-100 p-4 rounded">
+            <div className="bg-blue-100 p-4 rounded">
               <h3 className="font-semibold mb-2">Current Authentication State</h3>
               <div className="space-y-1 text-sm">
                 <p>Loading: {isLoading.toString()}</p>
@@ -143,14 +143,14 @@ export default function AuthTest() {
 
             {/* API Response */}
             {apiTest && (
-              <div className="bg-gray-100 p-4 rounded">
+              <div className="bg-blue-100 p-4 rounded">
                 <h3 className="font-semibold mb-2">Direct API Response</h3>
                 <pre className="text-xs overflow-auto">{apiTest}</pre>
               </div>
             )}
 
             {/* Environment Info */}
-            <div className="bg-gray-100 p-4 rounded">
+            <div className="bg-blue-100 p-4 rounded">
               <h3 className="font-semibold mb-2">Environment Information</h3>
               <div className="space-y-1 text-sm">
                 <p>Location: {window.location.href}</p>

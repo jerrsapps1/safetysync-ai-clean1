@@ -126,8 +126,8 @@ const getTypeColor = (type: string) => {
     case 'video': return 'bg-purple-100 text-purple-800';
     case 'webinar': return 'bg-orange-100 text-orange-800';
     case 'checklist': return 'bg-emerald-100 text-emerald-800';
-    case 'whitepaper': return 'bg-gray-100 text-blue-700';
-    default: return 'bg-gray-100 text-blue-700';
+    case 'whitepaper': return 'bg-blue-100 text-blue-700';
+    default: return 'bg-blue-100 text-blue-700';
   }
 };
 
@@ -604,7 +604,7 @@ startxref
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-blue-50">
       <PageHeader />
 
       {/* Header */}

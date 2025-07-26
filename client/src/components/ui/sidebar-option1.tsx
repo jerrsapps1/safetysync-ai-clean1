@@ -45,11 +45,11 @@ export function SidebarOption1({}: SidebarOption1Props) {
       {/* Sidebar */}
       <aside className={`
         fixed left-0 top-0 z-40 h-full w-64 transform transition-transform duration-200 ease-in-out
-        bg-white border-r border-gray-200 shadow-lg
+        bg-white border-r border-blue-200 shadow-lg
         ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
       `}>
         {/* Header */}
-        <div className="flex items-center justify-center h-16 px-6 border-b border-gray-200">
+        <div className="flex items-center justify-center h-16 px-6 border-b border-blue-200">
           <Link href="/">
             <div className="flex items-center space-x-3 cursor-pointer">
               <SafetySyncIcon size={32} />

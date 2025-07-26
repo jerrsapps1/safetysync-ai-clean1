@@ -217,7 +217,7 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {popularFAQs.slice(0, 4).map((faq) => (
-                    <div key={faq.id} className="p-4 border rounded-lg hover:bg-gray-50 cursor-pointer"
+                    <div key={faq.id} className="p-4 border rounded-lg hover:bg-blue-50 cursor-pointer"
                          onClick={() => toggleItem(faq.id)}>
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
@@ -252,7 +252,7 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
             {filteredFAQs.length === 0 ? (
               <Card>
                 <CardContent className="p-8 text-center">
-                  <HelpCircle className="w-12 h-12 mx-auto mb-4 text-gray-300" />
+                  <HelpCircle className="w-12 h-12 mx-auto mb-4 text-blue-300" />
                   <h3 className="text-lg font-medium mb-2">No questions found</h3>
                   <p className="text-blue-500 mb-4">
                     Try adjusting your search terms or browse different categories.
@@ -267,7 +267,7 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
                 <Collapsible key={faq.id} open={openItems.includes(faq.id)} onOpenChange={() => toggleItem(faq.id)}>
                   <Card>
                     <CollapsibleTrigger asChild>
-                      <CardHeader className="cursor-pointer hover:bg-gray-50 transition-colors">
+                      <CardHeader className="cursor-pointer hover:bg-blue-50 transition-colors">
                         <div className="flex items-center justify-between">
                           <div className="flex-1">
                             <CardTitle className="text-left text-lg flex items-center gap-2">

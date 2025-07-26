@@ -32,7 +32,7 @@ export default function ABTestingDashboard() {
       case 'running': return 'bg-green-100 text-green-800';
       case 'paused': return 'bg-yellow-100 text-yellow-800';
       case 'completed': return 'bg-blue-100 text-blue-800';
-      default: return 'bg-gray-100 text-blue-700';
+      default: return 'bg-blue-100 text-blue-700';
     }
   };
 
@@ -48,7 +48,7 @@ export default function ABTestingDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-blue-50 p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -139,7 +139,7 @@ export default function ABTestingDashboard() {
                       className={`p-4 border rounded-lg cursor-pointer transition-colors ${
                         selectedTest === test.id 
                           ? 'border-blue-500 bg-blue-50' 
-                          : 'border-gray-200 hover:border-gray-300'
+                          : 'border-blue-200 hover:border-blue-300'
                       }`}
                       onClick={() => setSelectedTest(test.id)}
                     >
@@ -208,7 +208,7 @@ export default function ABTestingDashboard() {
                   <TabsContent value="results" className="space-y-6">
                     {/* Overall Test Performance */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <div className="bg-gray-50 p-4 rounded-lg">
+                      <div className="bg-blue-50 p-4 rounded-lg">
                         <div className="flex items-center mb-2">
                           <Eye className="w-4 h-4 text-blue-500 mr-2" />
                           <span className="text-sm font-medium text-blue-500">Total Visitors</span>
@@ -216,7 +216,7 @@ export default function ABTestingDashboard() {
                         <p className="text-2xl font-bold">{selectedTestData.metrics.totalVisitors.toLocaleString()}</p>
                       </div>
                       
-                      <div className="bg-gray-50 p-4 rounded-lg">
+                      <div className="bg-blue-50 p-4 rounded-lg">
                         <div className="flex items-center mb-2">
                           <MousePointer className="w-4 h-4 text-blue-500 mr-2" />
                           <span className="text-sm font-medium text-blue-500">Conversions</span>
@@ -224,7 +224,7 @@ export default function ABTestingDashboard() {
                         <p className="text-2xl font-bold">{selectedTestData.metrics.conversions}</p>
                       </div>
                       
-                      <div className="bg-gray-50 p-4 rounded-lg">
+                      <div className="bg-blue-50 p-4 rounded-lg">
                         <div className="flex items-center mb-2">
                           <Target className="w-4 h-4 text-blue-500 mr-2" />
                           <span className="text-sm font-medium text-blue-500">Conversion Rate</span>
@@ -344,7 +344,7 @@ export default function ABTestingDashboard() {
                         <div className="space-y-2">
                           <h6 className="text-sm font-medium">Changes:</h6>
                           {variant.changes.map((change, index) => (
-                            <div key={index} className="bg-gray-50 p-2 rounded text-sm">
+                            <div key={index} className="bg-blue-50 p-2 rounded text-sm">
                               <span className="font-medium">{change.element}</span> - {change.property}: 
                               <span className="ml-1 text-blue-600">{change.value}</span>
                             </div>

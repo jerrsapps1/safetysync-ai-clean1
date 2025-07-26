@@ -425,7 +425,7 @@ export default function ClientPortal() {
                 onClick={() => window.location.href = '/'}
                 variant="ghost"
                 size="sm"
-                className="text-gray-300 hover:text-white hover:bg-blue-600/50 px-2"
+                className="text-blue-300 hover:text-white hover:bg-blue-600/50 px-2"
               >
                 <Home className="w-4 h-4" />
               </Button>
@@ -483,7 +483,7 @@ export default function ClientPortal() {
                     onChange={(e) => setRememberMe(e.target.checked)}
                     className="h-3 w-3 rounded border-white/20 bg-white/10 text-blue-600 focus:ring-blue-500"
                   />
-                  <label htmlFor="remember-me-mobile" className="text-gray-300 cursor-pointer">
+                  <label htmlFor="remember-me-mobile" className="text-blue-300 cursor-pointer">
                     Remember me
                   </label>
                 </div>
@@ -502,7 +502,7 @@ export default function ClientPortal() {
                 onClick={() => window.location.href = '/'}
                 variant="ghost"
                 size="sm"
-                className="text-gray-300 hover:text-white hover:bg-blue-600/50 px-2 md:px-3"
+                className="text-blue-300 hover:text-white hover:bg-blue-600/50 px-2 md:px-3"
               >
                 <Home className="w-4 h-4 mr-1 md:mr-2" />
                 <span className="hidden sm:inline">Home</span>
@@ -561,7 +561,7 @@ export default function ClientPortal() {
                       onChange={(e) => setRememberMe(e.target.checked)}
                       className="h-3 w-3 rounded border-white/20 bg-white/10 text-blue-600 focus:ring-blue-500"
                     />
-                    <label htmlFor="remember-me" className="text-gray-300 cursor-pointer">
+                    <label htmlFor="remember-me" className="text-blue-300 cursor-pointer">
                       Remember me
                     </label>
                   </div>
@@ -621,7 +621,7 @@ export default function ClientPortal() {
             <h1 className="text-4xl font-bold text-white mb-4">
               Client Portal
             </h1>
-            <p className="text-xl text-gray-300 mb-6">
+            <p className="text-xl text-blue-300 mb-6">
               {(!isAuthenticated || forceShowLogin)
                 ? "Sign in using the form in the top right corner to access your workspace and manage your safety compliance."
                 : `Welcome back, ${user?.name}! Access your workspace and explore our client features below.`
@@ -654,7 +654,7 @@ export default function ClientPortal() {
               <h2 className="text-3xl font-bold text-white mb-4">
                 Client Portal Features
               </h2>
-              <p className="text-gray-300 mb-6">
+              <p className="text-blue-300 mb-6">
                 Stay updated on the latest features, exclusive offers, and upcoming software. 
                 Your feedback helps us build the safety management tools you need.
               </p>
@@ -704,7 +704,7 @@ export default function ClientPortal() {
                     <CardTitle className="text-white">{special.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-300 mb-4">{special.description}</p>
+                    <p className="text-blue-300 mb-4">{special.description}</p>
                     <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">
                       <Gift className="w-4 h-4 mr-2" />
                       Learn More
@@ -734,7 +734,7 @@ export default function ClientPortal() {
                     <CardTitle className="text-white">{update.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-300 mb-4">{update.description}</p>
+                    <p className="text-blue-300 mb-4">{update.description}</p>
                     <Button 
                       variant="outline" 
                       className="border-white/20 text-white hover:bg-white/10"
@@ -766,7 +766,7 @@ export default function ClientPortal() {
                     <CardTitle className="text-white">{software.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-300 mb-4">{software.description}</p>
+                    <p className="text-blue-300 mb-4">{software.description}</p>
                     <Button 
                       onClick={() => handleVote(software.id)}
                       className={`w-full ${
@@ -794,7 +794,7 @@ export default function ClientPortal() {
                     <MessageCircle className="w-5 h-5 mr-2" />
                     Share Your Ideas
                   </CardTitle>
-                  <CardDescription className="text-gray-300">
+                  <CardDescription className="text-blue-300">
                     Tell us what features you'd like to see in future updates
                   </CardDescription>
                 </CardHeader>
@@ -836,7 +836,7 @@ export default function ClientPortal() {
                         </div>
                         <span className="text-sm text-blue-300">{comment.timestamp}</span>
                       </div>
-                      <p className="text-gray-300 mb-3">{comment.text}</p>
+                      <p className="text-blue-300 mb-3">{comment.text}</p>
                       <div className="flex items-center">
                         <Button
                           variant="ghost"
@@ -845,7 +845,7 @@ export default function ClientPortal() {
                           className={`${
                             comment.userLiked 
                               ? 'text-emerald-400 hover:text-emerald-300' 
-                              : 'text-blue-300 hover:text-gray-300'
+                              : 'text-blue-300 hover:text-blue-300'
                           }`}
                         >
                           <Heart className={`w-4 h-4 mr-1 ${comment.userLiked ? 'fill-current' : ''}`} />
@@ -885,7 +885,7 @@ export default function ClientPortal() {
             <div className="text-center mb-6">
               <SafetySyncIcon size={48} className="mx-auto mb-4" />
               <h2 className="text-2xl font-bold text-white mb-2">Secure Authentication</h2>
-              <p className="text-gray-300">
+              <p className="text-blue-300">
                 Please confirm your credentials to access your workspace
               </p>
             </div>

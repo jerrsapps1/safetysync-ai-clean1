@@ -327,7 +327,7 @@ export function EnterpriseAnalytics({ userTier = 'enterprise', companySize = 'la
                   </thead>
                   <tbody>
                     {departmentCompliance.map((dept, index) => (
-                      <tr key={index} className="border-b hover:bg-gray-50">
+                      <tr key={index} className="border-b hover:bg-blue-50">
                         <td className="py-3 px-4 font-medium">{dept.department}</td>
                         <td className="py-3 px-4 text-right">{dept.score}%</td>
                         <td className="py-3 px-4 text-right">{dept.employees}</td>
@@ -406,7 +406,7 @@ export function EnterpriseAnalytics({ userTier = 'enterprise', companySize = 'la
                     <div key={index} className="flex items-center justify-between">
                       <span className="text-sm">{course.course}</span>
                       <div className="flex items-center gap-2">
-                        <div className="w-20 bg-gray-200 rounded-full h-2">
+                        <div className="w-20 bg-blue-200 rounded-full h-2">
                           <div 
                             className="bg-green-500 h-2 rounded-full" 
                             style={{ width: `${course.completion}%` }}
@@ -482,7 +482,7 @@ export function EnterpriseAnalytics({ userTier = 'enterprise', companySize = 'la
             <CardContent>
               <div className="space-y-4">
                 {costAnalysis.map((item, index) => (
-                  <div key={index} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                  <div key={index} className="flex items-center justify-between p-4 bg-blue-50 rounded-lg">
                     <div>
                       <h4 className="font-medium">{item.category}</h4>
                       <div className="flex items-center gap-4 text-sm text-blue-500">

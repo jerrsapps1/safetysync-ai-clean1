@@ -6,7 +6,7 @@ import { Home, ArrowLeft } from "lucide-react";
 
 export default function DNSManagementPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-blue-50">
       <Navigation 
         onTrialClick={() => {}} 
         onDemoClick={() => {}} 
@@ -19,13 +19,13 @@ export default function DNSManagementPage() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <Link href="/">
-                <Button variant="ghost" size="sm" className="text-blue-500 hover:text-blue-800 hover:bg-gray-100/50">
+                <Button variant="ghost" size="sm" className="text-blue-500 hover:text-blue-800 hover:bg-blue-100/50">
                   <Home className="w-4 h-4 mr-2" />
                   Home
                 </Button>
               </Link>
               <Link href="/admin">
-                <Button variant="ghost" size="sm" className="text-blue-500 hover:text-blue-800 hover:bg-gray-100/50">
+                <Button variant="ghost" size="sm" className="text-blue-500 hover:text-blue-800 hover:bg-blue-100/50">
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   Back to Admin
                 </Button>

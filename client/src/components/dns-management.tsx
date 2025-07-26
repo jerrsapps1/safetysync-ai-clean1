@@ -281,7 +281,7 @@ export default function DNSManagement() {
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
                         <Badge variant="outline">{record.type}</Badge>
-                        <code className="text-sm bg-gray-100 px-2 py-1 rounded">
+                        <code className="text-sm bg-blue-100 px-2 py-1 rounded">
                           {record.name === "@" ? "safetysync.ai" : `${record.name}.safetysync.ai`}
                         </code>
                         {getStatusBadge(record.status || "pending")}
@@ -388,7 +388,7 @@ export default function DNSManagement() {
                 
                 <div className="text-sm text-blue-500">
                   <h4 className="font-medium mb-2">Testing Commands:</h4>
-                  <code className="block bg-gray-100 p-2 rounded text-xs">
+                  <code className="block bg-blue-100 p-2 rounded text-xs">
                     dig safetysync.ai<br/>
                     dig app.safetysync.ai<br/>
                     dig api.safetysync.ai<br/>
@@ -464,7 +464,7 @@ function EmailTestForm() {
           id="to"
           value={formData.to}
           onChange={(e) => setFormData(prev => ({ ...prev, to: e.target.value }))}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="admin@safetysync.ai"
           required
         />
@@ -479,7 +479,7 @@ function EmailTestForm() {
           id="subject"
           value={formData.subject}
           onChange={(e) => setFormData(prev => ({ ...prev, subject: e.target.value }))}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
 
@@ -491,7 +491,7 @@ function EmailTestForm() {
           id="testType"
           value={formData.testType}
           onChange={(e) => setFormData(prev => ({ ...prev, testType: e.target.value }))}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           <option value="basic">Basic Email Test</option>
           <option value="welcome">Welcome Email Template</option>

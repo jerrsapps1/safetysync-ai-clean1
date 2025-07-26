@@ -50,11 +50,11 @@ const statusColors = {
   open: 'bg-blue-100 text-blue-800',
   in_progress: 'bg-yellow-100 text-yellow-800',
   resolved: 'bg-green-100 text-green-800',
-  closed: 'bg-gray-100 text-blue-700'
+  closed: 'bg-blue-100 text-blue-700'
 };
 
 const priorityColors = {
-  low: 'bg-gray-100 text-blue-700',
+  low: 'bg-blue-100 text-blue-700',
   medium: 'bg-blue-100 text-blue-800',
   high: 'bg-orange-100 text-orange-800',
   urgent: 'bg-red-100 text-red-800'
@@ -162,7 +162,7 @@ export default function Helpdesk() {
                 <h1 className="text-2xl font-bold text-white">Support Ticket #{selectedTicketData.id}</h1>
               </div>
             </div>
-            <Link href="/" className="text-white hover:text-gray-300">
+            <Link href="/" className="text-white hover:text-blue-300">
               <Button variant="ghost" className="text-white hover:bg-white/10">
                 Home
               </Button>
@@ -187,7 +187,7 @@ export default function Helpdesk() {
                     </Badge>
                   </div>
                 </div>
-                <div className="text-right text-sm text-gray-300">
+                <div className="text-right text-sm text-blue-300">
                   <p>Created: {new Date(selectedTicketData.createdAt).toLocaleDateString()}</p>
                   <p>Updated: {new Date(selectedTicketData.updatedAt).toLocaleDateString()}</p>
                 </div>
@@ -195,7 +195,7 @@ export default function Helpdesk() {
             </CardHeader>
             <CardContent>
               <div className="bg-white/5 p-4 rounded-lg">
-                <p className="text-gray-200 whitespace-pre-wrap">{selectedTicketData.description}</p>
+                <p className="text-blue-200 whitespace-pre-wrap">{selectedTicketData.description}</p>
               </div>
             </CardContent>
           </Card>
@@ -221,7 +221,7 @@ export default function Helpdesk() {
                       <div className={`inline-block max-w-[80%] p-3 rounded-lg ${
                         response.isStaff 
                           ? 'bg-blue-500 text-white' 
-                          : 'bg-white/20 text-gray-200'
+                          : 'bg-white/20 text-blue-200'
                       }`}>
                         <p className="whitespace-pre-wrap">{response.message}</p>
                       </div>
@@ -268,7 +268,7 @@ export default function Helpdesk() {
             <SafetySyncIcon className="w-8 h-8" />
             <h1 className="text-3xl font-bold text-white">Support Helpdesk</h1>
           </div>
-          <Link href="/" className="text-white hover:text-gray-300">
+          <Link href="/" className="text-white hover:text-blue-300">
             <Button variant="ghost" className="text-white hover:bg-white/10">
               Home
             </Button>
@@ -361,7 +361,7 @@ export default function Helpdesk() {
                         <h3 className="font-semibold text-white truncate pr-2">{ticket.title}</h3>
                         <Ticket className="w-5 h-5 text-blue-300 flex-shrink-0" />
                       </div>
-                      <p className="text-gray-300 text-sm mb-4 line-clamp-2">{ticket.description}</p>
+                      <p className="text-blue-300 text-sm mb-4 line-clamp-2">{ticket.description}</p>
                       <div className="flex items-center gap-2 mb-3">
                         <Badge className={statusColors[ticket.status]}>
                           {ticket.status.replace('_', ' ')}
@@ -385,7 +385,7 @@ export default function Helpdesk() {
                 <CardContent className="p-12 text-center">
                   <Ticket className="w-16 h-16 text-blue-300 mx-auto mb-4" />
                   <h3 className="text-xl font-semibold text-white mb-2">No tickets found</h3>
-                  <p className="text-gray-300 mb-4">You haven't created any support tickets yet.</p>
+                  <p className="text-blue-300 mb-4">You haven't created any support tickets yet.</p>
                   <Button
                     onClick={() => document.querySelector('[data-value="create"]')?.click()}
                     className="bg-blue-600 hover:bg-blue-700"

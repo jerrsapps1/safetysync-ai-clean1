@@ -216,13 +216,13 @@ const SafetyTrendsDashboard: React.FC = () => {
           {safetyMetrics.map((metric) => (
             <Card 
               key={metric.id} 
-              className={`bg-blue-700/50 backdrop-blur-sm border-slate-700 cursor-pointer transition-all duration-300 hover:scale-105 ${
+              className={`bg-blue-700/50 backdrop-blur-sm border-blue-700 cursor-pointer transition-all duration-300 hover:scale-105 ${
                 selectedMetric === metric.id ? 'ring-2 ring-blue-400' : ''
               }`}
               onClick={() => setSelectedMetric(metric.id)}
             >
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-gray-300 flex items-center justify-between">
+                <CardTitle className="text-sm font-medium text-blue-300 flex items-center justify-between">
                   <span className="flex items-center">
                     <div className="p-2 rounded-lg mr-3" style={{ backgroundColor: `${metric.color}20` }}>
                       <div style={{ color: metric.color }}>
@@ -258,7 +258,7 @@ const SafetyTrendsDashboard: React.FC = () => {
         {/* Main Charts Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           {/* Trend Analysis Chart */}
-          <Card className="bg-blue-700/50 backdrop-blur-sm border-slate-700">
+          <Card className="bg-blue-700/50 backdrop-blur-sm border-blue-700">
             <CardHeader>
               <CardTitle className="text-white flex items-center">
                 <Activity className="w-5 h-5 mr-2 text-blue-400" />
@@ -301,7 +301,7 @@ const SafetyTrendsDashboard: React.FC = () => {
           </Card>
 
           {/* Risk Distribution */}
-          <Card className="bg-blue-700/50 backdrop-blur-sm border-slate-700">
+          <Card className="bg-blue-700/50 backdrop-blur-sm border-blue-700">
             <CardHeader>
               <CardTitle className="text-white flex items-center">
                 <Target className="w-5 h-5 mr-2 text-blue-400" />
@@ -342,7 +342,7 @@ const SafetyTrendsDashboard: React.FC = () => {
                       className="w-3 h-3 rounded-full mr-2" 
                       style={{ backgroundColor: item.fill }}
                     />
-                    <span className="text-sm text-gray-300">{item.name}</span>
+                    <span className="text-sm text-blue-300">{item.name}</span>
                   </div>
                 ))}
               </div>
@@ -352,7 +352,7 @@ const SafetyTrendsDashboard: React.FC = () => {
 
         {/* Department Performance */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Card className="bg-blue-700/50 backdrop-blur-sm border-slate-700">
+          <Card className="bg-blue-700/50 backdrop-blur-sm border-blue-700">
             <CardHeader>
               <CardTitle className="text-white flex items-center">
                 <Users className="w-5 h-5 mr-2 text-blue-400" />
@@ -381,7 +381,7 @@ const SafetyTrendsDashboard: React.FC = () => {
           </Card>
 
           {/* AI Insights */}
-          <Card className="bg-blue-700/50 backdrop-blur-sm border-slate-700">
+          <Card className="bg-blue-700/50 backdrop-blur-sm border-blue-700">
             <CardHeader>
               <CardTitle className="text-white flex items-center">
                 <Zap className="w-5 h-5 mr-2 text-blue-400" />

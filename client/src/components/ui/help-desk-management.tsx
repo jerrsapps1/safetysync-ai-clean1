@@ -124,7 +124,7 @@ export default function HelpDeskManagement() {
       case 'high': return 'bg-orange-100 text-orange-800 border-orange-300';
       case 'medium': return 'bg-yellow-100 text-yellow-800 border-yellow-300';
       case 'low': return 'bg-green-100 text-green-800 border-green-300';
-      default: return 'bg-gray-100 text-blue-700 border-gray-300';
+      default: return 'bg-blue-100 text-blue-700 border-blue-300';
     }
   };
 
@@ -133,8 +133,8 @@ export default function HelpDeskManagement() {
       case 'open': return 'bg-blue-100 text-blue-800 border-blue-300';
       case 'in_progress': return 'bg-purple-100 text-purple-800 border-purple-300';
       case 'resolved': return 'bg-green-100 text-green-800 border-green-300';
-      case 'closed': return 'bg-gray-100 text-blue-700 border-gray-300';
-      default: return 'bg-gray-100 text-blue-700 border-gray-300';
+      case 'closed': return 'bg-blue-100 text-blue-700 border-blue-300';
+      default: return 'bg-blue-100 text-blue-700 border-blue-300';
     }
   };
 
@@ -232,7 +232,7 @@ export default function HelpDeskManagement() {
               tickets.map((ticket) => (
                 <div
                   key={ticket.id}
-                  className="border rounded-lg p-4 hover:bg-gray-50"
+                  className="border rounded-lg p-4 hover:bg-blue-50"
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
@@ -287,7 +287,7 @@ export default function HelpDeskManagement() {
                             {ticket.syncContext && (
                               <div>
                                 <h4 className="font-medium mb-2">SYNC Context</h4>
-                                <div className="bg-gray-50 p-3 rounded text-sm">
+                                <div className="bg-blue-50 p-3 rounded text-sm">
                                   <p><strong>User Message:</strong> {ticket.syncContext.userMessage}</p>
                                   <p><strong>Timestamp:</strong> {new Date(ticket.syncContext.timestamp).toLocaleString()}</p>
                                 </div>

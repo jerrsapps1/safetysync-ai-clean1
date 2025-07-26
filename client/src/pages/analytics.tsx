@@ -3,7 +3,7 @@ import { EnterpriseAnalytics } from "@/components/ui/enterprise-analytics";
 
 export default function AnalyticsPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-blue-50">
       <Navigation 
         onTrialClick={() => {}} 
         onDemoClick={() => {}} 

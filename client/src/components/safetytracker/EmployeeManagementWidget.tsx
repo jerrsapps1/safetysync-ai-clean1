@@ -101,9 +101,9 @@ const EmployeeManagementWidget: React.FC = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'active': return 'bg-green-100 text-green-700';
-      case 'inactive': return 'bg-gray-100 text-blue-600';
+      case 'inactive': return 'bg-blue-100 text-blue-600';
       case 'on-leave': return 'bg-yellow-100 text-yellow-700';
-      default: return 'bg-gray-100 text-blue-600';
+      default: return 'bg-blue-100 text-blue-600';
     }
   };
 
@@ -112,7 +112,7 @@ const EmployeeManagementWidget: React.FC = () => {
       case 'current': return 'bg-green-100 text-green-700';
       case 'expired': return 'bg-red-100 text-red-700';
       case 'expiring': return 'bg-yellow-100 text-yellow-700';
-      default: return 'bg-gray-100 text-blue-600';
+      default: return 'bg-blue-100 text-blue-600';
     }
   };
 
@@ -245,7 +245,7 @@ const EmployeeManagementWidget: React.FC = () => {
                     <CardContent>
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                         {employee.certifications.map((cert, index) => (
-                          <div key={index} className="flex items-center justify-between p-2 bg-gray-50 rounded-lg">
+                          <div key={index} className="flex items-center justify-between p-2 bg-blue-50 rounded-lg">
                             <div className="flex items-center gap-2">
                               {cert.status === 'current' && <CheckCircle className="w-4 h-4 text-green-500" />}
                               {cert.status === 'expired' && <AlertTriangle className="w-4 h-4 text-red-500" />}
@@ -289,7 +289,7 @@ const EmployeeManagementWidget: React.FC = () => {
                           <div className="text-sm text-blue-400">Training Complete</div>
                         </div>
                       </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div className="w-full bg-blue-200 rounded-full h-2">
                         <div 
                           className="bg-blue-600 h-2 rounded-full" 
                           style={{ width: `${(employee.trainingCompleted / employee.trainingRequired) * 100}%` }}

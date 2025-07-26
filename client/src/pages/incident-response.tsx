@@ -211,7 +211,7 @@ export default function IncidentResponse() {
             <AlertTriangle className="w-8 h-8 text-red-400" />
             <h1 className="text-3xl font-bold text-white">Incident Response</h1>
           </div>
-          <p className="text-gray-300 max-w-2xl mx-auto">
+          <p className="text-blue-300 max-w-2xl mx-auto">
             Comprehensive incident management and response coordination for SafetySync.AI
           </p>
         </div>
@@ -223,7 +223,7 @@ export default function IncidentResponse() {
               <div className="flex items-center gap-3">
                 <AlertTriangle className="w-5 h-5 text-red-400" />
                 <div>
-                  <p className="text-sm text-gray-300">Active Incidents</p>
+                  <p className="text-sm text-blue-300">Active Incidents</p>
                   <p className="text-xl font-bold text-white">{activeIncidents.length}</p>
                 </div>
               </div>
@@ -235,7 +235,7 @@ export default function IncidentResponse() {
               <div className="flex items-center gap-3">
                 <Users className="w-5 h-5 text-blue-400" />
                 <div>
-                  <p className="text-sm text-gray-300">Affected Users</p>
+                  <p className="text-sm text-blue-300">Affected Users</p>
                   <p className="text-xl font-bold text-white">15</p>
                 </div>
               </div>
@@ -247,7 +247,7 @@ export default function IncidentResponse() {
               <div className="flex items-center gap-3">
                 <Clock className="w-5 h-5 text-yellow-400" />
                 <div>
-                  <p className="text-sm text-gray-300">Avg Response Time</p>
+                  <p className="text-sm text-blue-300">Avg Response Time</p>
                   <p className="text-xl font-bold text-white">23m</p>
                 </div>
               </div>
@@ -259,7 +259,7 @@ export default function IncidentResponse() {
               <div className="flex items-center gap-3">
                 <TrendingUp className="w-5 h-5 text-green-400" />
                 <div>
-                  <p className="text-sm text-gray-300">Resolution Rate</p>
+                  <p className="text-sm text-blue-300">Resolution Rate</p>
                   <p className="text-xl font-bold text-white">98.7%</p>
                 </div>
               </div>
@@ -410,7 +410,7 @@ export default function IncidentResponse() {
                         {getStatusIcon(member.status)}
                         <div>
                           <h3 className="font-semibold text-white">{member.name}</h3>
-                          <p className="text-sm text-gray-300">{member.role}</p>
+                          <p className="text-sm text-blue-300">{member.role}</p>
                           <div className="flex gap-2 mt-1">
                             {member.expertise.map((skill) => (
                               <Badge key={skill} variant="outline" className="text-xs">

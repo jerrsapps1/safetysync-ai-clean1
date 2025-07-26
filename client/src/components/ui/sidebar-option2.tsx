@@ -36,7 +36,7 @@ export function SidebarOption2({}: SidebarOption2Props) {
       <Button
         variant="ghost"
         size="sm"
-        className="fixed top-4 left-4 z-50 md:hidden bg-white/80 backdrop-blur-sm border border-gray-200"
+        className="fixed top-4 left-4 z-50 md:hidden bg-white/80 backdrop-blur-sm border border-blue-200"
         onClick={() => setIsOpen(!isOpen)}
       >
         {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}

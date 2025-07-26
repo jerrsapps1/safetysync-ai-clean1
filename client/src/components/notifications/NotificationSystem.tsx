@@ -406,21 +406,21 @@ export default function NotificationSystem() {
         <TabsList className="grid w-full grid-cols-3 bg-black/20 backdrop-blur-sm border-blue-700">
           <TabsTrigger 
             value="notifications" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
           >
             <Bell className="h-4 w-4" />
             Notifications
           </TabsTrigger>
           <TabsTrigger 
             value="preferences" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
           >
             <Settings className="h-4 w-4" />
             Preferences
           </TabsTrigger>
           <TabsTrigger 
             value="alerts" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
           >
             <AlertTriangle className="h-4 w-4" />
             Alert Rules
@@ -443,7 +443,7 @@ export default function NotificationSystem() {
                           <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                         )}
                       </div>
-                      <p className="text-gray-300 mb-3">{notification.message}</p>
+                      <p className="text-blue-300 mb-3">{notification.message}</p>
                       <div className="flex items-center gap-2 mb-3">
                         <Badge className={getTypeColor(notification.type)}>
                           {notification.type}
@@ -468,7 +468,7 @@ export default function NotificationSystem() {
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Button size="sm" variant="outline" className="border-blue-500 text-gray-300">
+                    <Button size="sm" variant="outline" className="border-blue-500 text-blue-300">
                       <Eye className="w-3 h-3 mr-1" />
                       View
                     </Button>
@@ -567,7 +567,7 @@ export default function NotificationSystem() {
                         {rule.isActive ? 'Active' : 'Inactive'}
                       </Badge>
                     </div>
-                    <p className="text-gray-300 mb-3">{rule.condition}</p>
+                    <p className="text-blue-300 mb-3">{rule.condition}</p>
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       <div>
                         <p className="text-blue-300">Trigger:</p>
@@ -594,7 +594,7 @@ export default function NotificationSystem() {
                       checked={rule.isActive}
                       onCheckedChange={() => toggleAlertRule(rule.id)}
                     />
-                    <Button size="sm" variant="outline" className="border-blue-500 text-gray-300">
+                    <Button size="sm" variant="outline" className="border-blue-500 text-blue-300">
                       <Edit className="w-3 h-3 mr-1" />
                       Edit
                     </Button>

@@ -101,7 +101,7 @@ export default function DashboardRecordsPage() {
             <Brain className="w-8 h-8 mr-3" />
             Extracted Training Records
           </h1>
-          <p className="text-xl text-gray-300">
+          <p className="text-xl text-blue-300">
             AI-processed training documentation and certification data
           </p>
         </div>
@@ -124,7 +124,7 @@ export default function DashboardRecordsPage() {
               onClick={fetchRecords}
               disabled={isLoading}
               variant="outline"
-              className="border-blue-300 text-gray-300 hover:bg-blue-600"
+              className="border-blue-300 text-blue-300 hover:bg-blue-600"
             >
               <RefreshCw className={`w-4 h-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
               Refresh
@@ -174,11 +174,11 @@ export default function DashboardRecordsPage() {
                 <Table>
                   <TableHeader>
                     <TableRow className="border-blue-500">
-                      <TableHead className="text-gray-300 font-bold">ID</TableHead>
-                      <TableHead className="text-gray-300 font-bold">Employee Name</TableHead>
-                      <TableHead className="text-gray-300 font-bold">Course</TableHead>
-                      <TableHead className="text-gray-300 font-bold">Date</TableHead>
-                      <TableHead className="text-gray-300 font-bold">Cert #</TableHead>
+                      <TableHead className="text-blue-300 font-bold">ID</TableHead>
+                      <TableHead className="text-blue-300 font-bold">Employee Name</TableHead>
+                      <TableHead className="text-blue-300 font-bold">Course</TableHead>
+                      <TableHead className="text-blue-300 font-bold">Date</TableHead>
+                      <TableHead className="text-blue-300 font-bold">Cert #</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -219,7 +219,7 @@ export default function DashboardRecordsPage() {
               <Brain className="w-4 h-4 mr-2" />
               <span className="font-semibold">Python Flask Template Equivalent</span>
             </div>
-            <p className="text-gray-300 text-sm">
+            <p className="text-blue-300 text-sm">
               This TypeScript React component provides the same functionality as your Python Flask 
               <code className="bg-blue-700 px-1 rounded mx-1">dashboard.html</code> template
               with modern UI components, real-time data loading, and CSV export capabilities.

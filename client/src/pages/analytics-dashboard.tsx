@@ -75,7 +75,7 @@ export default function AnalyticsDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-blue-50 p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -88,7 +88,7 @@ export default function AnalyticsDashboard() {
               <select 
                 value={timeRange} 
                 onChange={(e) => setTimeRange(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="px-4 py-2 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="1d">Last 24 Hours</option>
                 <option value="7d">Last 7 Days</option>
@@ -208,7 +208,7 @@ export default function AnalyticsDashboard() {
               <CardContent>
                 <div className="space-y-4">
                   {trafficSources.map((source, index) => (
-                    <div key={index} className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                    <div key={index} className="flex items-center justify-between p-4 border border-blue-200 rounded-lg">
                       <div>
                         <p className="font-medium text-blue-800">{source.source}</p>
                         <p className="text-sm text-blue-500">{formatNumber(source.visitors)} visitors</p>
@@ -236,25 +236,25 @@ export default function AnalyticsDashboard() {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="p-4 border border-gray-200 rounded-lg">
+                  <div className="p-4 border border-blue-200 rounded-lg">
                     <h4 className="font-medium text-blue-800 mb-2">Hero CTA Clicks</h4>
                     <p className="text-2xl font-bold text-blue-600">156</p>
                     <p className="text-sm text-blue-500">Trial: 89, Demo: 67</p>
                   </div>
                   
-                  <div className="p-4 border border-gray-200 rounded-lg">
+                  <div className="p-4 border border-blue-200 rounded-lg">
                     <h4 className="font-medium text-blue-800 mb-2">Product Tour Starts</h4>
                     <p className="text-2xl font-bold text-green-600">43</p>
                     <p className="text-sm text-blue-500">27.6% completion rate</p>
                   </div>
                   
-                  <div className="p-4 border border-gray-200 rounded-lg">
+                  <div className="p-4 border border-blue-200 rounded-lg">
                     <h4 className="font-medium text-blue-800 mb-2">Live Chat Opens</h4>
                     <p className="text-2xl font-bold text-purple-600">28</p>
                     <p className="text-sm text-blue-500">Average session: 4.2 min</p>
                   </div>
                   
-                  <div className="p-4 border border-gray-200 rounded-lg">
+                  <div className="p-4 border border-blue-200 rounded-lg">
                     <h4 className="font-medium text-blue-800 mb-2">Pricing Page Views</h4>
                     <p className="text-2xl font-bold text-orange-600">187</p>
                     <p className="text-sm text-blue-500">15.0% of total traffic</p>

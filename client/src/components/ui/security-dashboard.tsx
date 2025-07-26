@@ -372,7 +372,7 @@ export function SecurityDashboard({ isRealTime = true }: SecurityDashboardProps)
           <CardContent>
             <div className="space-y-3">
               {geoThreats.map((threat, index) => (
-                <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                <div key={index} className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
                       <span className="text-xs font-medium text-red-700">{index + 1}</span>

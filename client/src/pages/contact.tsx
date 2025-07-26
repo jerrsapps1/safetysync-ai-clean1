@@ -115,7 +115,7 @@ export default function ContactPage() {
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Get in Touch
           </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-blue-300 max-w-3xl mx-auto">
             Ready to streamline your OSHA compliance? We're here to help you get started, 
             answer questions, and ensure your safety management success.
           </p>
@@ -130,12 +130,12 @@ export default function ContactPage() {
                   <option.icon className="w-6 h-6 text-white" />
                 </div>
                 <CardTitle className="text-lg text-white">{option.title}</CardTitle>
-                <CardDescription className="text-sm text-gray-300">
+                <CardDescription className="text-sm text-blue-300">
                   {option.description}
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex items-center justify-center gap-2 text-sm text-gray-300">
+                <div className="flex items-center justify-center gap-2 text-sm text-blue-300">
                   <Mail className="w-4 h-4" />
                   <span className="font-medium">{option.email}</span>
                 </div>
@@ -153,7 +153,7 @@ export default function ContactPage() {
                 <MessageCircle className="w-5 h-5" />
                 Send us a Message
               </CardTitle>
-              <CardDescription className="text-gray-300">
+              <CardDescription className="text-blue-300">
                 Fill out the form below and we'll get back to you promptly.
               </CardDescription>
             </CardHeader>

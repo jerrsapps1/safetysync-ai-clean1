@@ -240,7 +240,7 @@ export default function Dashboard() {
       case 'completed': return 'bg-green-100 text-green-800';
       case 'pending': return 'bg-yellow-100 text-yellow-800';
       case 'expired': return 'bg-red-100 text-red-800';
-      default: return 'bg-gray-100 text-blue-700';
+      default: return 'bg-blue-100 text-blue-700';
     }
   };
 
@@ -351,7 +351,7 @@ export default function Dashboard() {
               Compliance Dashboard
             </span>
           </h1>
-          <p className="text-gray-300 text-lg">
+          <p className="text-blue-300 text-lg">
             Monitor and manage your OSHA compliance status with intelligent automation
           </p>
         </div>
@@ -523,7 +523,7 @@ export default function Dashboard() {
                   </div>
                   AI-Monitored Recent Activity
                 </CardTitle>
-                <CardDescription className="text-gray-300">
+                <CardDescription className="text-blue-300">
                   Real-time intelligent compliance tracking and notifications
                 </CardDescription>
               </CardHeader>
@@ -575,7 +575,7 @@ export default function Dashboard() {
                       <Badge className="bg-yellow-100 text-yellow-800">MODERATE</Badge>
                     </div>
                     <div className="flex items-center">
-                      <div className="flex-1 bg-gray-200 rounded-full h-2">
+                      <div className="flex-1 bg-blue-200 rounded-full h-2">
                         <div className="bg-yellow-500 h-2 rounded-full" style={{width: '35%'}}></div>
                       </div>
                       <span className="ml-3 text-sm font-medium">35/100</span>
@@ -732,7 +732,7 @@ export default function Dashboard() {
               <CardContent>
                 <div className="space-y-4">
                   {records.map(record => (
-                    <div key={record.id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50">
+                    <div key={record.id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-blue-50">
                       <div className="flex items-center gap-4">
                         <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
                           <span className="text-sm font-medium text-blue-600">
@@ -1267,7 +1267,7 @@ export default function Dashboard() {
                             </div>
                           </div>
                           <Badge 
-                            className={location.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-blue-700'}
+                            className={location.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-700'}
                           >
                             {location.status}
                           </Badge>
@@ -1480,7 +1480,7 @@ export default function Dashboard() {
                 <div className="space-y-4">
                   <h3 className="font-medium">Company Logo</h3>
                   <div className="flex items-center space-x-4">
-                    <div className="w-24 h-24 bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center">
+                    <div className="w-24 h-24 bg-blue-100 border-2 border-dashed border-blue-300 rounded-lg flex items-center justify-center">
                       <div className="text-center">
                         <Palette className="w-8 h-8 text-blue-300 mx-auto mb-2" />
                         <p className="text-xs text-blue-400">Current Logo</p>
@@ -1596,7 +1596,7 @@ export default function Dashboard() {
                 {/* Preview */}
                 <div className="border-t pt-6">
                   <h3 className="font-medium mb-4">Preview</h3>
-                  <div className="bg-gray-50 p-4 rounded-lg">
+                  <div className="bg-blue-50 p-4 rounded-lg">
                     <div className="bg-white border rounded-lg p-4 max-w-md mx-auto">
                       <div className="flex items-center space-x-3 mb-4">
                         <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
@@ -1790,7 +1790,7 @@ export default function Dashboard() {
                           <label className="text-sm font-medium">Company</label>
                           <input 
                             type="text" 
-                            className="w-full p-2 border rounded-md text-sm bg-gray-50" 
+                            className="w-full p-2 border rounded-md text-sm bg-blue-50" 
                             value="ACME Corp"
                             readOnly
                           />
@@ -1872,7 +1872,7 @@ export default function Dashboard() {
                           <label className="text-sm font-medium">Company</label>
                           <input 
                             type="text" 
-                            className="w-full p-2 border rounded-md text-sm bg-gray-50" 
+                            className="w-full p-2 border rounded-md text-sm bg-blue-50" 
                             value="ACME Corp"
                             readOnly
                           />
@@ -1884,7 +1884,7 @@ export default function Dashboard() {
                           <div className="grid grid-cols-2 gap-1 max-h-32 overflow-y-auto border rounded p-2">
                             {['JLG 40 AJ', 'JLG 60 AJ', 'JLG 80 AJ', 'Genie Z62/40', 'Genie GTH-636', 'CAT 315 FL Zero Turn Track Excavator', 'CAT TL 642', 'Volvo Excavator ECR88D', '259D3 CAT Skidsteer', 'Sit-down Forklift', 'Stand-up Forklift', 'Reach Truck'].map((equipment) => (
                               <div key={equipment} className="flex items-center space-x-1">
-                                <input type="checkbox" id={`card-${equipment}`} className="rounded border-gray-300" />
+                                <input type="checkbox" id={`card-${equipment}`} className="rounded border-blue-300" />
                                 <label htmlFor={`card-${equipment}`} className="text-xs leading-tight">{equipment}</label>
                               </div>
                             ))}
@@ -1898,7 +1898,7 @@ export default function Dashboard() {
                         
                         <div className="space-y-2">
                           <div className="flex items-center space-x-2">
-                            <input type="checkbox" id="multi-card" className="rounded border-gray-300" />
+                            <input type="checkbox" id="multi-card" className="rounded border-blue-300" />
                             <label htmlFor="multi-card" className="text-sm font-medium">Generate additional cards if equipment list exceeds space</label>
                           </div>
                           <p className="text-xs text-blue-400">
@@ -1942,7 +1942,7 @@ export default function Dashboard() {
                       {/* Certificate Sample */}
                       <div className="space-y-3">
                         <h4 className="font-semibold">Professional Certificate Sample</h4>
-                        <div className="border rounded-lg p-6 bg-gray-50 text-center text-sm">
+                        <div className="border rounded-lg p-6 bg-blue-50 text-center text-sm">
                           <div className="text-lg font-bold mb-4">CERTIFICATE OF COMPLETION</div>
                           <div className="text-xl font-semibold mb-4">Mark Anderson</div>
                           <div className="mb-2">has successfully achieved the certification</div>
@@ -2045,7 +2045,7 @@ export default function Dashboard() {
                   <Activity className="w-5 h-5 text-blue-400" />
                   Interactive Safety Trends Dashboard
                 </CardTitle>
-                <CardDescription className="text-gray-300">
+                <CardDescription className="text-blue-300">
                   Real-time safety analytics with predictive intelligence and animated trend visualizations
                 </CardDescription>
               </CardHeader>

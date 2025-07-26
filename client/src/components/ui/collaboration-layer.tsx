@@ -290,7 +290,7 @@ export function CollaborationLayer({
           {/* Team Members */}
           <div className="flex flex-wrap gap-2">
             {teamMembers.map((member) => (
-              <div key={member.id} className="flex items-center gap-2 bg-gray-50 px-3 py-1 rounded-full">
+              <div key={member.id} className="flex items-center gap-2 bg-blue-50 px-3 py-1 rounded-full">
                 <Avatar className="w-6 h-6">
                   <AvatarImage src={member.avatar} />
                   <AvatarFallback className="text-xs">
@@ -316,8 +316,8 @@ export function CollaborationLayer({
         <CardContent>
           <div 
             ref={containerRef}
-            className={`relative bg-gray-50 rounded-lg min-h-96 border-2 ${
-              isAddingAnnotation ? 'border-blue-500 border-dashed cursor-crosshair' : 'border-gray-200'
+            className={`relative bg-blue-50 rounded-lg min-h-96 border-2 ${
+              isAddingAnnotation ? 'border-blue-500 border-dashed cursor-crosshair' : 'border-blue-200'
             }`}
             onClick={handleContainerClick}
           >
@@ -531,7 +531,7 @@ export function CollaborationLayer({
                     <ScrollArea className="max-h-64">
                       <div className="space-y-3">
                         {annotation.replies.map((reply) => (
-                          <div key={reply.id} className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
+                          <div key={reply.id} className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg">
                             <Avatar className="w-6 h-6">
                               <AvatarFallback className="text-xs">
                                 {reply.author.split(' ').map(n => n[0]).join('')}
@@ -601,7 +601,7 @@ export function CollaborationLayer({
               </p>
               <p className="text-sm text-blue-500">Approved</p>
             </div>
-            <div className="text-center p-3 bg-gray-50 rounded-lg">
+            <div className="text-center p-3 bg-blue-50 rounded-lg">
               <p className="text-2xl font-bold text-blue-500">
                 {annotations.reduce((sum, a) => sum + a.replies.length, 0)}
               </p>

@@ -67,9 +67,9 @@ const SmoothLoading = ({
   if (variant === "skeleton") {
     return (
       <div className={cn("space-y-3", className)}>
-        <div className="h-4 bg-gray-200 dark:bg-blue-600 rounded smooth-skeleton"></div>
-        <div className="h-4 bg-gray-200 dark:bg-blue-600 rounded w-5/6 smooth-skeleton"></div>
-        <div className="h-4 bg-gray-200 dark:bg-blue-600 rounded w-4/6 smooth-skeleton"></div>
+        <div className="h-4 bg-blue-200 dark:bg-blue-600 rounded smooth-skeleton"></div>
+        <div className="h-4 bg-blue-200 dark:bg-blue-600 rounded w-5/6 smooth-skeleton"></div>
+        <div className="h-4 bg-blue-200 dark:bg-blue-600 rounded w-4/6 smooth-skeleton"></div>
       </div>
     );
   }
@@ -78,7 +78,7 @@ const SmoothLoading = ({
     return (
       <div className={cn(
         "relative overflow-hidden rounded-lg",
-        "bg-gradient-to-br from-slate-900/50 via-blue-900/30 to-purple-900/50",
+        "bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400",
         "backdrop-blur-sm border border-white/10 p-6 space-y-4",
         className
       )}>

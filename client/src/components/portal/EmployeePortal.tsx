@@ -274,35 +274,35 @@ export default function EmployeePortal() {
         <TabsList className="grid w-full grid-cols-5 bg-black/20 backdrop-blur-sm border-blue-700">
           <TabsTrigger 
             value="dashboard" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
           >
             <User className="h-4 w-4" />
             Dashboard
           </TabsTrigger>
           <TabsTrigger 
             value="certifications" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
           >
             <Award className="h-4 w-4" />
             Certifications
           </TabsTrigger>
           <TabsTrigger 
             value="training" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
           >
             <BookOpen className="h-4 w-4" />
             Training
           </TabsTrigger>
           <TabsTrigger 
             value="schedule" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
           >
             <Calendar className="h-4 w-4" />
             Schedule
           </TabsTrigger>
           <TabsTrigger 
             value="profile" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
           >
             <Settings className="h-4 w-4" />
             Profile
@@ -438,11 +438,11 @@ export default function EmployeePortal() {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="flex items-center gap-2">
                       <Calendar className="w-4 h-4 text-blue-400" />
-                      <span className="text-gray-300 text-sm">Issued: {cert.issueDate}</span>
+                      <span className="text-blue-300 text-sm">Issued: {cert.issueDate}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <AlertTriangle className="w-4 h-4 text-yellow-400" />
-                      <span className="text-gray-300 text-sm">Expires: {cert.expirationDate}</span>
+                      <span className="text-blue-300 text-sm">Expires: {cert.expirationDate}</span>
                     </div>
                   </div>
 
@@ -483,12 +483,12 @@ export default function EmployeePortal() {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="flex items-center gap-2">
                       <Calendar className="w-4 h-4 text-blue-400" />
-                      <span className="text-gray-300 text-sm">Completed: {record.completionDate}</span>
+                      <span className="text-blue-300 text-sm">Completed: {record.completionDate}</span>
                     </div>
                     {record.score && (
                       <div className="flex items-center gap-2">
                         <CheckCircle className="w-4 h-4 text-green-400" />
-                        <span className="text-gray-300 text-sm">Score: {record.score}%</span>
+                        <span className="text-blue-300 text-sm">Score: {record.score}%</span>
                       </div>
                     )}
                   </div>
@@ -529,15 +529,15 @@ export default function EmployeePortal() {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="flex items-center gap-2">
                       <Calendar className="w-4 h-4 text-blue-400" />
-                      <span className="text-gray-300 text-sm">{training.date}</span>
+                      <span className="text-blue-300 text-sm">{training.date}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Clock className="w-4 h-4 text-purple-400" />
-                      <span className="text-gray-300 text-sm">{training.time}</span>
+                      <span className="text-blue-300 text-sm">{training.time}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <MapPin className="w-4 h-4 text-green-400" />
-                      <span className="text-gray-300 text-sm">{training.location}</span>
+                      <span className="text-blue-300 text-sm">{training.location}</span>
                     </div>
                   </div>
 
@@ -583,15 +583,15 @@ export default function EmployeePortal() {
                   <div className="space-y-3">
                     <div className="flex items-center gap-2">
                       <Mail className="w-4 h-4 text-blue-400" />
-                      <span className="text-gray-300">{profile.email}</span>
+                      <span className="text-blue-300">{profile.email}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Phone className="w-4 h-4 text-green-400" />
-                      <span className="text-gray-300">{profile.phone}</span>
+                      <span className="text-blue-300">{profile.phone}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Building className="w-4 h-4 text-purple-400" />
-                      <span className="text-gray-300">{profile.department}</span>
+                      <span className="text-blue-300">{profile.department}</span>
                     </div>
                   </div>
                 </div>
@@ -602,15 +602,15 @@ export default function EmployeePortal() {
                     <div className="space-y-2">
                       <div className="flex items-center gap-2">
                         <User className="w-4 h-4 text-blue-400" />
-                        <span className="text-gray-300">{profile.emergencyContact.name}</span>
+                        <span className="text-blue-300">{profile.emergencyContact.name}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <Phone className="w-4 h-4 text-green-400" />
-                        <span className="text-gray-300">{profile.emergencyContact.phone}</span>
+                        <span className="text-blue-300">{profile.emergencyContact.phone}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <User className="w-4 h-4 text-purple-400" />
-                        <span className="text-gray-300">{profile.emergencyContact.relationship}</span>
+                        <span className="text-blue-300">{profile.emergencyContact.relationship}</span>
                       </div>
                     </div>
                   </div>

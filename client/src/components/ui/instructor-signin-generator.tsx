@@ -1980,7 +1980,7 @@ END:VCALENDAR`;
                 </div>
 
                 {instructorType === 'existing' && selectedInstructor && selectedInstructor !== 'clear' && (
-                  <div className="p-3 bg-gray-50 rounded-lg border">
+                  <div className="p-3 bg-blue-50 rounded-lg border">
                     <div className="text-sm font-medium text-blue-600">Selected Instructor:</div>
                     <div className="text-sm text-blue-500 mt-1">
                       {clientInstructors.find(i => i.id === selectedInstructor)?.name} - {clientInstructors.find(i => i.id === selectedInstructor)?.credentials}
@@ -2031,7 +2031,7 @@ END:VCALENDAR`;
                 )}
 
                 {instructorType === 'existing' && selectedInstructor && (
-                  <div className="space-y-4 p-4 bg-gray-50 rounded-lg border">
+                  <div className="space-y-4 p-4 bg-blue-50 rounded-lg border">
                     <div className="flex items-center justify-between">
                       <div className="text-sm text-blue-500">
                         <strong>Selected Instructor:</strong>
@@ -2101,7 +2101,7 @@ END:VCALENDAR`;
 
                     {/* Document viewer */}
                     {showDocumentViewer && (
-                      <div className="space-y-3 p-4 bg-gray-50 rounded-lg border">
+                      <div className="space-y-3 p-4 bg-blue-50 rounded-lg border">
                         <div className="flex items-center justify-between">
                           <div className="text-sm font-medium">
                             Documents ({getCurrentInstructorDocuments().length})
@@ -2595,7 +2595,7 @@ END:VCALENDAR`;
                   
                   {/* Signature Workflow Management */}
                   {sheet.signatureWorkflow && (
-                    <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+                    <div className="mt-4 p-3 bg-blue-50 rounded-lg">
                       <div className="flex items-center justify-between mb-3">
                         <h4 className="font-medium text-sm">Signature Workflow</h4>
                         <div className="text-xs text-blue-400">
@@ -2744,7 +2744,7 @@ END:VCALENDAR`;
               <div
                 key={notification.id}
                 className={`p-3 rounded-lg border ${
-                  notification.read ? 'bg-gray-50' : 'bg-blue-50 border-blue-200'
+                  notification.read ? 'bg-blue-50' : 'bg-blue-50 border-blue-200'
                 }`}
               >
                 <div className="flex items-start justify-between">

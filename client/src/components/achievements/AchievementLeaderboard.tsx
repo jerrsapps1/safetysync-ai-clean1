@@ -89,7 +89,7 @@ export default function AchievementLeaderboard({ period = 'month' }: Leaderboard
               variant={selectedPeriod === p ? 'default' : 'outline'}
               size="sm"
               onClick={() => setSelectedPeriod(p as typeof selectedPeriod)}
-              className={selectedPeriod === p ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-700'}
+              className={selectedPeriod === p ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-blue-700/50 text-blue-300 border-blue-500 hover:bg-blue-700'}
             >
               {p === 'all' ? 'All Time' : `This ${p.charAt(0).toUpperCase() + p.slice(1)}`}
             </Button>

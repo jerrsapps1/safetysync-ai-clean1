@@ -323,21 +323,21 @@ export default function CertificateGeneration() {
         <TabsList className="grid w-full grid-cols-3 bg-black/20 backdrop-blur-sm border-blue-700">
           <TabsTrigger 
             value="certificates" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
           >
             <Award className="h-4 w-4" />
             Certificates
           </TabsTrigger>
           <TabsTrigger 
             value="templates" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
           >
             <FileText className="h-4 w-4" />
             Templates
           </TabsTrigger>
           <TabsTrigger 
             value="generation" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
           >
             <Plus className="h-4 w-4" />
             Generate New
@@ -370,19 +370,19 @@ export default function CertificateGeneration() {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="flex items-center gap-2">
                       <Calendar className="w-4 h-4 text-blue-400" />
-                      <span className="text-gray-300 text-sm">Issued: {certificate.issueDate}</span>
+                      <span className="text-blue-300 text-sm">Issued: {certificate.issueDate}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <AlertCircle className="w-4 h-4 text-yellow-400" />
-                      <span className="text-gray-300 text-sm">Expires: {certificate.expirationDate}</span>
+                      <span className="text-blue-300 text-sm">Expires: {certificate.expirationDate}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <User className="w-4 h-4 text-purple-400" />
-                      <span className="text-gray-300 text-sm">{certificate.instructor}</span>
+                      <span className="text-blue-300 text-sm">{certificate.instructor}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Building className="w-4 h-4 text-emerald-400" />
-                      <span className="text-gray-300 text-sm">{certificate.company}</span>
+                      <span className="text-blue-300 text-sm">{certificate.company}</span>
                     </div>
                   </div>
                   
@@ -419,7 +419,7 @@ export default function CertificateGeneration() {
                       <Download className="w-3 h-3 mr-1" />
                       Download PDF
                     </Button>
-                    <Button size="sm" variant="outline" className="border-blue-500 text-gray-300">
+                    <Button size="sm" variant="outline" className="border-blue-500 text-blue-300">
                       <Edit className="w-3 h-3 mr-1" />
                       Edit
                     </Button>
@@ -453,7 +453,7 @@ export default function CertificateGeneration() {
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <p className="text-gray-300 text-sm">{template.description}</p>
+                  <p className="text-blue-300 text-sm">{template.description}</p>
                   
                   <div className="space-y-2">
                     <p className="text-blue-300 text-sm font-medium">Compliance Standards:</p>
@@ -478,7 +478,7 @@ export default function CertificateGeneration() {
                       <Plus className="w-3 h-3 mr-1" />
                       Use Template
                     </Button>
-                    <Button size="sm" variant="outline" className="border-blue-500 text-gray-300">
+                    <Button size="sm" variant="outline" className="border-blue-500 text-blue-300">
                       <Edit className="w-3 h-3 mr-1" />
                       Edit
                     </Button>

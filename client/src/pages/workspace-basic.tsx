@@ -66,7 +66,7 @@ export default function WorkspaceBasic() {
       <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
         <div className="text-white text-center">
           <h2 className="text-xl font-semibold mb-2">Loading...</h2>
-          <p className="text-gray-200">Please wait while we load your workspace</p>
+          <p className="text-blue-200">Please wait while we load your workspace</p>
         </div>
       </div>
     );
@@ -77,7 +77,7 @@ export default function WorkspaceBasic() {
       <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
         <div className="text-white text-center">
           <h2 className="text-xl font-semibold mb-2">Authentication Required</h2>
-          <p className="text-gray-200">Redirecting to login...</p>
+          <p className="text-blue-200">Redirecting to login...</p>
         </div>
       </div>
     );
@@ -137,7 +137,7 @@ export default function WorkspaceBasic() {
             {/* Dashboard */}
             <Button
               variant="ghost"
-              className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+              className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
                 activeTab === "dashboard" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("dashboard")}
@@ -150,7 +150,7 @@ export default function WorkspaceBasic() {
             {/* Instructor Sign-In Generator */}
             <Button
               variant="ghost"
-              className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+              className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
                 activeTab === "instructor-signin" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("instructor-signin")}
@@ -163,7 +163,7 @@ export default function WorkspaceBasic() {
             {/* Training Records */}
             <Button
               variant="ghost"
-              className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+              className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
                 activeTab === "training-records" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("training-records")}
@@ -176,7 +176,7 @@ export default function WorkspaceBasic() {
             {/* Document Hub */}
             <Button
               variant="ghost"
-              className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+              className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
                 activeTab === "document-hub" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("document-hub")}
@@ -189,7 +189,7 @@ export default function WorkspaceBasic() {
             {/* Employee Management */}
             <Button
               variant="ghost"
-              className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+              className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
                 activeTab === "employees" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("employees")}
@@ -217,7 +217,7 @@ export default function WorkspaceBasic() {
             )}
             <Button
               variant="ghost"
-              className="w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50"
+              className="w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50"
               onClick={handleLogout}
             >
               <LogOut className="w-5 h-5 mr-3" />

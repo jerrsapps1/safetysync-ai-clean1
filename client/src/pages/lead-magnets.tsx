@@ -418,7 +418,7 @@ export default function LeadMagnetsPage() {
                   <CardHeader className="pb-3">
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center">
-                        <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mr-3">
+                        <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
                           <IconComponent className="w-5 h-5 text-blue-500" />
                         </div>
                         <Badge variant="outline" className="text-xs">
@@ -491,7 +491,7 @@ export default function LeadMagnetsPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg" 
-              className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4"
+              className="bg-white text-blue-600 hover:bg-blue-100 px-8 py-4"
               onClick={() => window.location.href = '/'}
             >
               <Shield className="w-5 h-5 mr-2" />

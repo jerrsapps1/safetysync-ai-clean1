@@ -97,7 +97,7 @@ export function PageHeader({}: PageHeaderProps) {
               return (
                 <Link key={item.name} href={item.href}>
                   <div 
-                    className="flex items-center px-3 py-3 text-sm font-medium text-gray-300 rounded-lg tech-surface hover:text-emerald-400 group relative cursor-pointer"
+                    className="flex items-center px-3 py-3 text-sm font-medium text-blue-300 rounded-lg tech-surface hover:text-emerald-400 group relative cursor-pointer"
                     onClick={() => setIsMobileOpen(false)}
                     title={!isHovered ? item.name : undefined}
                   >

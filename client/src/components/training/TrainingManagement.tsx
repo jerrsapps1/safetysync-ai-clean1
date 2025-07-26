@@ -328,21 +328,21 @@ export default function TrainingManagement() {
         <TabsList className="grid w-full grid-cols-3 bg-black/20 backdrop-blur-sm border-blue-700">
           <TabsTrigger 
             value="sessions" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
           >
             <Calendar className="h-4 w-4" />
             Training Sessions
           </TabsTrigger>
           <TabsTrigger 
             value="modules" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
           >
             <BookOpen className="h-4 w-4" />
             Training Modules
           </TabsTrigger>
           <TabsTrigger 
             value="compliance" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
           >
             <Shield className="h-4 w-4" />
             Compliance Tracking
@@ -378,24 +378,24 @@ export default function TrainingManagement() {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="flex items-center gap-2">
                       <Calendar className="w-4 h-4 text-blue-400" />
-                      <span className="text-gray-300 text-sm">{session.date}</span>
+                      <span className="text-blue-300 text-sm">{session.date}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Clock className="w-4 h-4 text-purple-400" />
-                      <span className="text-gray-300 text-sm">{session.time} ({session.duration}h)</span>
+                      <span className="text-blue-300 text-sm">{session.time} ({session.duration}h)</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Users className="w-4 h-4 text-green-400" />
-                      <span className="text-gray-300 text-sm">{session.enrolled}/{session.capacity}</span>
+                      <span className="text-blue-300 text-sm">{session.enrolled}/{session.capacity}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Shield className="w-4 h-4 text-emerald-400" />
-                      <span className="text-gray-300 text-sm">{session.type}</span>
+                      <span className="text-blue-300 text-sm">{session.type}</span>
                     </div>
                   </div>
                   
                   <div className="space-y-2">
-                    <p className="text-gray-300 text-sm">{session.description}</p>
+                    <p className="text-blue-300 text-sm">{session.description}</p>
                     <div className="flex flex-wrap gap-1">
                       {session.compliance.map((comp, index) => (
                         <Badge key={index} variant="outline" className="text-xs text-blue-300 border-blue-500/30">
@@ -410,7 +410,7 @@ export default function TrainingManagement() {
                       <Eye className="w-3 h-3 mr-1" />
                       View Details
                     </Button>
-                    <Button size="sm" variant="outline" className="border-blue-500 text-gray-300">
+                    <Button size="sm" variant="outline" className="border-blue-500 text-blue-300">
                       <Edit className="w-3 h-3 mr-1" />
                       Edit
                     </Button>
@@ -448,7 +448,7 @@ export default function TrainingManagement() {
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <p className="text-gray-300 text-sm">{module.description}</p>
+                  <p className="text-blue-300 text-sm">{module.description}</p>
                   
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
@@ -466,11 +466,11 @@ export default function TrainingManagement() {
                   <div className="space-y-2">
                     <div className="flex items-center gap-2">
                       <Clock className="w-4 h-4 text-blue-400" />
-                      <span className="text-gray-300 text-sm">Frequency: {module.frequency}</span>
+                      <span className="text-blue-300 text-sm">Frequency: {module.frequency}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Calendar className="w-4 h-4 text-purple-400" />
-                      <span className="text-gray-300 text-sm">Updated: {module.lastUpdated}</span>
+                      <span className="text-blue-300 text-sm">Updated: {module.lastUpdated}</span>
                     </div>
                   </div>
 
@@ -490,7 +490,7 @@ export default function TrainingManagement() {
                       <BookOpen className="w-3 h-3 mr-1" />
                       View Module
                     </Button>
-                    <Button size="sm" variant="outline" className="border-blue-500 text-gray-300">
+                    <Button size="sm" variant="outline" className="border-blue-500 text-blue-300">
                       <Edit className="w-3 h-3 mr-1" />
                       Edit
                     </Button>
@@ -515,19 +515,19 @@ export default function TrainingManagement() {
               <CardContent className="space-y-4">
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-300">OSHA 1926.501 (Fall Protection)</span>
+                    <span className="text-blue-300">OSHA 1926.501 (Fall Protection)</span>
                     <Badge className="bg-green-500/20 text-green-400">92% Compliant</Badge>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-300">OSHA 1910.178 (Forklift)</span>
+                    <span className="text-blue-300">OSHA 1910.178 (Forklift)</span>
                     <Badge className="bg-green-500/20 text-green-400">88% Compliant</Badge>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-300">OSHA 1910.120 (HAZWOPER)</span>
+                    <span className="text-blue-300">OSHA 1910.120 (HAZWOPER)</span>
                     <Badge className="bg-yellow-500/20 text-yellow-400">75% Compliant</Badge>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-300">OSHA 1910.134 (Respiratory)</span>
+                    <span className="text-blue-300">OSHA 1910.134 (Respiratory)</span>
                     <Badge className="bg-green-500/20 text-green-400">95% Compliant</Badge>
                   </div>
                 </div>

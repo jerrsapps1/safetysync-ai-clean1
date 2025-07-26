@@ -1097,7 +1097,7 @@ This document serves as an official attendance record for the training session.`
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-4xl font-bold text-white mb-2">Training Document Hub</h1>
-              <p className="text-gray-300 text-lg">Centralized training documentation and record management</p>
+              <p className="text-blue-300 text-lg">Centralized training documentation and record management</p>
             </div>
             <div className="flex items-center space-x-4">
               <Dialog open={isUploadDialogOpen} onOpenChange={setIsUploadDialogOpen}>
@@ -1171,7 +1171,7 @@ This document serves as an official attendance record for the training session.`
                                       <span className="text-white font-medium">{fileData.file.name}</span>
                                       <span className="text-blue-300 text-sm">({formatFileSize(fileData.file.size)})</span>
                                     </div>
-                                    <div className="text-gray-300 text-sm bg-blue-700 p-2 rounded max-h-20 overflow-y-auto font-mono">
+                                    <div className="text-blue-300 text-sm bg-blue-700 p-2 rounded max-h-20 overflow-y-auto font-mono">
                                       {fileData.content}
                                     </div>
                                   </div>
@@ -1180,7 +1180,7 @@ This document serves as an official attendance record for the training session.`
                                       size="sm"
                                       variant="outline"
                                       onClick={() => window.open(fileData.blob, '_blank')}
-                                      className="border-blue-500 text-gray-300 hover:bg-blue-600"
+                                      className="border-blue-500 text-blue-300 hover:bg-blue-600"
                                     >
                                       <Download className="w-3 h-3" />
                                     </Button>
@@ -1188,7 +1188,7 @@ This document serves as an official attendance record for the training session.`
                                       size="sm"
                                       variant="outline"
                                       onClick={() => window.print()}
-                                      className="border-blue-500 text-gray-300 hover:bg-blue-600"
+                                      className="border-blue-500 text-blue-300 hover:bg-blue-600"
                                     >
                                       <Printer className="w-3 h-3" />
                                     </Button>
@@ -1211,7 +1211,7 @@ This document serves as an official attendance record for the training session.`
                           setPreviewFiles([]);
                           setUploadData({ trainingDate: '', description: '' });
                         }}
-                        className="border-blue-500 text-gray-300 hover:bg-blue-600"
+                        className="border-blue-500 text-blue-300 hover:bg-blue-600"
                       >
                         Cancel
                       </Button>
@@ -1293,7 +1293,7 @@ This document serves as an official attendance record for the training session.`
                     size="sm"
                     onClick={handleBulkView}
                     disabled={selectedDocuments.size !== 1}
-                    className="border-blue-500 text-gray-300 hover:bg-blue-600 disabled:opacity-50"
+                    className="border-blue-500 text-blue-300 hover:bg-blue-600 disabled:opacity-50"
                   >
                     <Eye className="w-4 h-4 mr-1" />
                     View
@@ -1302,7 +1302,7 @@ This document serves as an official attendance record for the training session.`
                     variant="outline"
                     size="sm"
                     onClick={handleBulkDownload}
-                    className="border-blue-500 text-gray-300 hover:bg-blue-600"
+                    className="border-blue-500 text-blue-300 hover:bg-blue-600"
                   >
                     <Download className="w-4 h-4 mr-1" />
                     Download ({selectedDocuments.size})
@@ -1357,7 +1357,7 @@ This document serves as an official attendance record for the training session.`
                               {categoryInfo.name}
                             </Badge>
                           </div>
-                          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-300">
+                          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-blue-300">
                             <div className="flex items-center space-x-1">
                               <BookOpen className="w-4 h-4 text-blue-300" />
                               <span>{doc.trainingSubject}</span>
@@ -1413,7 +1413,7 @@ This document serves as an official attendance record for the training session.`
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-white">{viewingDocument.fileName}</h3>
-                    <p className="text-gray-300">{viewingDocument.fileType} • {formatFileSize(viewingDocument.fileSize)}</p>
+                    <p className="text-blue-300">{viewingDocument.fileType} • {formatFileSize(viewingDocument.fileSize)}</p>
                   </div>
                 </div>
                 <Badge className={getCategoryInfo(viewingDocument.category).color}>
@@ -1424,29 +1424,29 @@ This document serves as an official attendance record for the training session.`
               <div className="grid grid-cols-2 gap-6">
                 <div className="space-y-4">
                   <div>
-                    <Label className="text-gray-300">Training Subject</Label>
+                    <Label className="text-blue-300">Training Subject</Label>
                     <p className="text-white font-medium">{viewingDocument.trainingSubject}</p>
                   </div>
                   <div>
-                    <Label className="text-gray-300">Instructor</Label>
+                    <Label className="text-blue-300">Instructor</Label>
                     <p className="text-white font-medium">{viewingDocument.instructorName}</p>
                   </div>
                   <div>
-                    <Label className="text-gray-300">Training Date</Label>
+                    <Label className="text-blue-300">Training Date</Label>
                     <p className="text-white font-medium">{format(viewingDocument.trainingDate, 'MMMM dd, yyyy')}</p>
                   </div>
                 </div>
                 <div className="space-y-4">
                   <div>
-                    <Label className="text-gray-300">Location</Label>
+                    <Label className="text-blue-300">Location</Label>
                     <p className="text-white font-medium">{viewingDocument.location}</p>
                   </div>
                   <div>
-                    <Label className="text-gray-300">Student Count</Label>
+                    <Label className="text-blue-300">Student Count</Label>
                     <p className="text-white font-medium">{viewingDocument.studentCount} students</p>
                   </div>
                   <div>
-                    <Label className="text-gray-300">Upload Date</Label>
+                    <Label className="text-blue-300">Upload Date</Label>
                     <p className="text-white font-medium">{format(viewingDocument.uploadDate, 'MMMM dd, yyyy HH:mm')}</p>
                   </div>
                 </div>
@@ -1454,7 +1454,7 @@ This document serves as an official attendance record for the training session.`
 
               {viewingDocument.description && (
                 <div>
-                  <Label className="text-gray-300">Description</Label>
+                  <Label className="text-blue-300">Description</Label>
                   <p className="text-white font-medium bg-blue-600/50 p-3 rounded-lg">{viewingDocument.description}</p>
                 </div>
               )}
@@ -1472,7 +1472,7 @@ This document serves as an official attendance record for the training session.`
                 <div className="bg-blue-600/50 rounded-lg p-4">
                   <h4 className="text-white font-medium mb-2">Document Preview</h4>
                   <div className="bg-blue-500 rounded-lg p-4 max-h-64 overflow-y-auto">
-                    <pre className="text-sm text-gray-200 whitespace-pre-wrap font-mono leading-relaxed">
+                    <pre className="text-sm text-blue-200 whitespace-pre-wrap font-mono leading-relaxed">
                       {generatePreviewContent(viewingDocument)}
                     </pre>
                   </div>
@@ -1483,7 +1483,7 @@ This document serves as an official attendance record for the training session.`
                 <Button
                   variant="outline"
                   onClick={() => setIsViewDialogOpen(false)}
-                  className="border-blue-500 text-gray-300 hover:bg-blue-600"
+                  className="border-blue-500 text-blue-300 hover:bg-blue-600"
                 >
                   Close
                 </Button>

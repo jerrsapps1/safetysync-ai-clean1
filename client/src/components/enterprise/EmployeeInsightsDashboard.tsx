@@ -612,11 +612,11 @@ export function EmployeeInsightsDashboard() {
                           {insight.priority}
                         </Badge>
                       </div>
-                      <p className="text-gray-300 mb-3">{insight.description}</p>
+                      <p className="text-blue-300 mb-3">{insight.description}</p>
                       <div className="flex items-center gap-2">
                         <Zap className="h-4 w-4 text-purple-400" />
                         <span className="text-sm text-purple-400 font-medium">Recommended Action:</span>
-                        <span className="text-sm text-gray-300">{insight.action}</span>
+                        <span className="text-sm text-blue-300">{insight.action}</span>
                       </div>
                     </div>
                   </div>

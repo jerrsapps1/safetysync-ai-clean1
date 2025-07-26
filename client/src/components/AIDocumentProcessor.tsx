@@ -407,7 +407,7 @@ Date: January 21, 2025`
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="border-2 border-dashed border-gray-200 rounded-lg p-6 text-center">
+          <div className="border-2 border-dashed border-blue-200 rounded-lg p-6 text-center">
             <input
               ref={fileInputRef}
               type="file"
@@ -588,7 +588,7 @@ Date: January 21, 2025`
               </div>
 
               <div className="border rounded-lg overflow-hidden">
-                <div className="bg-gray-50 px-4 py-2 grid grid-cols-5 gap-4 font-medium text-sm">
+                <div className="bg-blue-50 px-4 py-2 grid grid-cols-5 gap-4 font-medium text-sm">
                   <span>Employee Name</span>
                   <span>Employee ID</span>
                   <span>Signature</span>

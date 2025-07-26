@@ -124,13 +124,13 @@ function AdminLoginCheck() {
             <SafetySyncIcon size={64} className="rounded-lg" />
           </div>
           <h1 className="text-3xl font-bold text-white mb-2">Admin Dashboard</h1>
-          <p className="text-gray-300">Secure access to platform analytics</p>
+          <p className="text-blue-300">Secure access to platform analytics</p>
         </div>
 
         <Card className="bg-black/20 backdrop-blur-sm border-red-800/50">
           <CardHeader>
             <CardTitle className="text-white">Admin Authentication</CardTitle>
-            <CardDescription className="text-gray-300">
+            <CardDescription className="text-blue-300">
               Enter your admin key to access the dashboard
             </CardDescription>
           </CardHeader>
@@ -637,7 +637,7 @@ export default function AdminDashboard() {
                   <Button
                     key={category.id}
                     variant={selectedCategory === category.id ? "secondary" : "ghost"}
-                    className="w-full justify-start text-gray-300 hover:text-white text-sm"
+                    className="w-full justify-start text-blue-300 hover:text-white text-sm"
                     onClick={() => setSelectedCategory(category.id)}
                   >
                     {category.icon}
@@ -667,7 +667,7 @@ export default function AdminDashboard() {
         <div className="p-4 space-y-2">
           <Button
             variant="ghost"
-            className="w-full justify-start text-gray-300 hover:text-white"
+            className="w-full justify-start text-blue-300 hover:text-white"
             onClick={handleLogout}
           >
             <LogOut className="w-5 h-5 mr-3" />
@@ -676,7 +676,7 @@ export default function AdminDashboard() {
           <Link href="/">
             <Button
               variant="ghost"
-              className="w-full justify-start text-gray-300 hover:text-white"
+              className="w-full justify-start text-blue-300 hover:text-white"
             >
               <Home className="w-5 h-5 mr-3" />
               {sidebarOpen && "Back to Site"}
@@ -698,7 +698,7 @@ export default function AdminDashboard() {
               <Badge variant="outline" className="text-green-400 border-green-400">
                 Live Data
               </Badge>
-              <Button variant="outline" className="text-gray-300 border-blue-500 hover:bg-blue-700">
+              <Button variant="outline" className="text-blue-300 border-blue-500 hover:bg-blue-700">
                 <Activity className="w-4 h-4 mr-2" />
                 Real-time
               </Button>
@@ -714,7 +714,7 @@ export default function AdminDashboard() {
               <Button
                 variant="outline"
                 onClick={() => setShowWidgetManager(!showWidgetManager)}
-                className="text-gray-300 border-blue-500 hover:bg-blue-700"
+                className="text-blue-300 border-blue-500 hover:bg-blue-700"
               >
                 <Settings className="w-4 h-4 mr-2" />
                 Manage Widgets
@@ -722,7 +722,7 @@ export default function AdminDashboard() {
               <Button
                 variant="outline"
                 onClick={saveAsDefault}
-                className="text-gray-300 border-blue-500 hover:bg-blue-700"
+                className="text-blue-300 border-blue-500 hover:bg-blue-700"
               >
                 <Save className="w-4 h-4 mr-2" />
                 Save as Default
@@ -731,7 +731,7 @@ export default function AdminDashboard() {
                 <Button
                   variant="outline"
                   onClick={loadCustomDefaults}
-                  className="text-gray-300 border-blue-500 hover:bg-blue-700"
+                  className="text-blue-300 border-blue-500 hover:bg-blue-700"
                 >
                   <Upload className="w-4 h-4 mr-2" />
                   Load My Default
@@ -740,7 +740,7 @@ export default function AdminDashboard() {
               <Button
                 variant="outline"
                 onClick={resetWidgetLayout}
-                className="text-gray-300 border-blue-500 hover:bg-blue-700"
+                className="text-blue-300 border-blue-500 hover:bg-blue-700"
               >
                 <RotateCcw className="w-4 h-4 mr-2" />
                 Reset to Original

@@ -53,8 +53,8 @@ export default function PublicEmployeeCertificates() {
     switch (status) {
       case 'active': return 'bg-green-100 text-green-800';
       case 'expired': return 'bg-red-100 text-red-800';
-      case 'revoked': return 'bg-gray-100 text-blue-700';
-      default: return 'bg-gray-100 text-blue-700';
+      case 'revoked': return 'bg-blue-100 text-blue-700';
+      default: return 'bg-blue-100 text-blue-700';
     }
   };
 
@@ -72,7 +72,7 @@ export default function PublicEmployeeCertificates() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-blue-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500 mx-auto mb-4"></div>
           <p className="text-blue-500">Loading employee certificates...</p>
@@ -83,7 +83,7 @@ export default function PublicEmployeeCertificates() {
 
   if (error || !data || !data.success) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-blue-50 flex items-center justify-center">
         <Card className="w-full max-w-md">
           <CardContent className="text-center py-12">
             <Scan className="h-16 w-16 text-red-400 mx-auto mb-4" />
@@ -106,7 +106,7 @@ export default function PublicEmployeeCertificates() {
   const expired = certificates.filter(c => isExpired(c.expirationDate));
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-blue-50">
       {/* Header */}
       <div className="bg-white border-b">
         <div className="max-w-4xl mx-auto px-4 py-6">
@@ -212,7 +212,7 @@ export default function PublicEmployeeCertificates() {
           {certificates.length === 0 ? (
             <Card>
               <CardContent className="text-center py-12">
-                <ShieldCheck className="h-16 w-16 text-gray-300 mx-auto mb-4" />
+                <ShieldCheck className="h-16 w-16 text-blue-300 mx-auto mb-4" />
                 <h3 className="text-lg font-medium text-blue-800 mb-2">No Certificates</h3>
                 <p className="text-blue-500">
                   This employee doesn't have any training certificates on file.

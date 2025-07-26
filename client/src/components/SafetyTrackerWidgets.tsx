@@ -90,7 +90,7 @@ const safetyTrackerWidgets: SafetyTrackerWidget[] = [
     title: 'Organization Structure',
     description: 'Manage company divisions and departments',
     icon: <Sitemap className="w-6 h-6" />,
-    color: 'bg-gray-100 text-blue-600',
+    color: 'bg-blue-100 text-blue-600',
     category: 'management',
     features: ['Department hierarchy', 'Division management', 'Reporting structure', 'Role assignments']
   },

@@ -335,7 +335,7 @@ export function TermsAndConditions({
 
             <Separator />
 
-            <div className="bg-gray-50 p-4 rounded-lg">
+            <div className="bg-blue-50 p-4 rounded-lg">
               <h4 className="font-semibold text-blue-800 mb-2">Contact Information</h4>
               <p className="text-blue-600">
                 For questions about these terms or your account, contact our support team at{' '}
@@ -356,7 +356,7 @@ export function TermsAndConditions({
                 id="read-terms" 
                 checked={hasReadTerms}
                 onChange={(e) => setHasReadTerms(e.target.checked)}
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+                className="w-4 h-4 text-blue-600 bg-blue-100 border-blue-300 rounded focus:ring-blue-500 focus:ring-2"
               />
               <label 
                 htmlFor="read-terms" 
@@ -372,7 +372,7 @@ export function TermsAndConditions({
                 id="accept-terms" 
                 checked={hasAcceptedTerms}
                 onChange={(e) => setHasAcceptedTerms(e.target.checked)}
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+                className="w-4 h-4 text-blue-600 bg-blue-100 border-blue-300 rounded focus:ring-blue-500 focus:ring-2"
               />
               <label 
                 htmlFor="accept-terms" 
@@ -388,7 +388,7 @@ export function TermsAndConditions({
                 id="accept-privacy" 
                 checked={hasAcceptedPrivacy}
                 onChange={(e) => setHasAcceptedPrivacy(e.target.checked)}
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+                className="w-4 h-4 text-blue-600 bg-blue-100 border-blue-300 rounded focus:ring-blue-500 focus:ring-2"
               />
               <label 
                 htmlFor="accept-privacy" 

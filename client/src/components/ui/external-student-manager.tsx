@@ -338,7 +338,7 @@ export function ExternalStudentManager({
             ) : (
               <div className="space-y-2 max-h-96 overflow-y-auto">
                 {displayStudents.map((student: ExternalStudent) => (
-                  <div key={student.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                  <div key={student.id} className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
                         <div className="font-medium">

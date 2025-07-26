@@ -162,10 +162,10 @@ const QuickSearchWidget = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'active': return 'bg-green-100 text-green-700';
-      case 'inactive': return 'bg-gray-100 text-blue-600';
+      case 'inactive': return 'bg-blue-100 text-blue-600';
       case 'training': return 'bg-blue-100 text-blue-700';
       case 'on-leave': return 'bg-yellow-100 text-yellow-700';
-      default: return 'bg-gray-100 text-blue-600';
+      default: return 'bg-blue-100 text-blue-600';
     }
   };
 
@@ -174,8 +174,8 @@ const QuickSearchWidget = () => {
       case 'Current': return 'bg-green-100 text-green-700';
       case 'Expiring Soon': return 'bg-yellow-100 text-yellow-700';
       case 'Needs Renewal': return 'bg-red-100 text-red-700';
-      case 'No Certificates': return 'bg-gray-100 text-blue-600';
-      default: return 'bg-gray-100 text-blue-600';
+      case 'No Certificates': return 'bg-blue-100 text-blue-600';
+      default: return 'bg-blue-100 text-blue-600';
     }
   };
 
@@ -235,7 +235,7 @@ const QuickSearchWidget = () => {
   const renderListView = () => (
     <div className="space-y-1 pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
       {filteredEmployees.map(employee => (
-        <div key={employee.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+        <div key={employee.id} className="flex items-center justify-between p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
               <span className="text-blue-600 font-semibold text-sm">
@@ -263,7 +263,7 @@ const QuickSearchWidget = () => {
   const renderTableView = () => (
     <div className="overflow-x-auto">
       <table className="w-full text-sm">
-        <thead className="bg-gray-50">
+        <thead className="bg-blue-50">
           <tr>
             <th className="p-2 text-left">Employee</th>
             <th className="p-2 text-left">Position</th>
@@ -275,7 +275,7 @@ const QuickSearchWidget = () => {
         </thead>
         <tbody>
           {filteredEmployees.map(employee => (
-            <tr key={employee.id} className="border-b hover:bg-gray-50">
+            <tr key={employee.id} className="border-b hover:bg-blue-50">
               <td className="p-2">
                 <div className="flex items-center gap-2">
                   <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
