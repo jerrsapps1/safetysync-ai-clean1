@@ -113,37 +113,37 @@ export default function DownloadDocsPage() {
                 Visual Documentation
               </CardTitle>
               <CardDescription className="text-blue-100">
-                Enhanced HTML documentation with fresh platform screenshots captured from current version
+                Enhanced HTML documentation with actual platform screenshots
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="text-blue-100 text-sm">
-                • 8 fresh platform screenshots from current version
+                • 16 high-quality platform screenshots
                 <br />
                 • Clickable images for full-size viewing
                 <br />
                 • Professional visual guide format
                 <br />
-                • Print-optimized with current interface
+                • Print-optimized with images
               </div>
               
               <div className="flex gap-3">
                 <Button 
-                  onClick={() => openInNewTab('SafetySync_AI_Fresh_Screenshots_Documentation.html')}
+                  onClick={() => openInNewTab('SafetySync_AI_Platform_Documentation_With_Screenshots.html')}
                   className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white"
                 >
                   <Globe className="w-4 h-4 mr-2" />
-                  View Fresh Visual Guide
+                  View Visual Guide
                 </Button>
                 
                 <Button 
-                  onClick={() => handleDownload('SafetySync_AI_Fresh_Screenshots_Documentation.html', 'html')}
-                  disabled={downloading === 'SafetySync_AI_Fresh_Screenshots_Documentation.html'}
+                  onClick={() => handleDownload('SafetySync_AI_Platform_Documentation_With_Screenshots.html', 'html')}
+                  disabled={downloading === 'SafetySync_AI_Platform_Documentation_With_Screenshots.html'}
                   variant="outline"
                   className="flex-1 border-emerald-400 text-emerald-400 hover:bg-emerald-600/20"
                 >
                   <Download className="w-4 h-4 mr-2" />
-                  {downloading === 'SafetySync_AI_Fresh_Screenshots_Documentation.html' ? 'Downloading...' : 'Download'}
+                  {downloading === 'SafetySync_AI_Platform_Documentation_With_Screenshots.html' ? 'Downloading...' : 'Download'}
                 </Button>
               </div>
             </CardContent>
