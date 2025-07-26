@@ -73,6 +73,9 @@ export default {
           border: "var(--sidebar-border)",
           ring: "var(--sidebar-ring)",
         },
+        // Custom SafetySync.AI colors
+        'safetysync-primary': '#2563EB', // Blue-600
+        'safetysync-accent': '#FBBF24',  // Yellow-400
       },
       keyframes: {
         "accordion-down": {
