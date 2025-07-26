@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/hooks/useAuth';
 import { SafetySyncIcon } from '@/components/ui/safetysync-icon';
@@ -32,7 +33,16 @@ import {
   EyeOff,
   TrendingUp,
   BookOpen,
-  Play
+  Play,
+  X,
+  CheckCircle,
+  Shield,
+  Clock,
+  DollarSign,
+  Users,
+  FileText,
+  Award,
+  BarChart3
 } from 'lucide-react';
 
 interface Special {
@@ -87,6 +97,8 @@ export default function ClientPortal() {
   const [showAuthPopup, setShowAuthPopup] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(false);
   const [forceShowLogin, setForceShowLogin] = useState(false);
+  const [showBusinessImpactDialog, setShowBusinessImpactDialog] = useState(false);
+  const [selectedService, setSelectedService] = useState<Special | null>(null);
   const { toast } = useToast();
   const { user, isAuthenticated, isLoading, login, logout } = useAuth();
 
@@ -337,6 +349,59 @@ export default function ClientPortal() {
     });
     // Force page reload to clear any remaining state
     window.location.reload();
+  };
+
+  const handleLearnMore = (special: Special) => {
+    setSelectedService(special);
+    setShowBusinessImpactDialog(true);
+  };
+
+  const getBusinessImpactContent = (special: Special) => {
+    switch (special.id) {
+      case 1: // AI Training Document Processing
+        return {
+          benefits: [
+            "Reduce document processing time from hours to minutes with 95% accuracy",
+            "Eliminate manual data entry errors that cost $3,000+ per mistake",
+            "Process 10x more training documents with same staff resources",
+            "Automatic OSHA compliance validation prevents costly violations"
+          ],
+          roi: "Save 15+ hours weekly on administrative tasks = $780/week cost reduction",
+          industries: "Perfect for construction, manufacturing, healthcare, and logistics companies",
+          implementation: "Ready in 24 hours - upload existing documents and see immediate AI processing results"
+        };
+      case 2: // Digital Certificate System
+        return {
+          benefits: [
+            "Eliminate lost paper certificates costing $50-200 per replacement",
+            "Instant verification via QR codes reduces audit preparation time by 75%",
+            "Mobile access means workers always have current certifications on-site",
+            "Automatic expiration alerts prevent compliance gaps and fines"
+          ],
+          roi: "Prevent $5,000+ OSHA violations and reduce certificate management costs by 80%",
+          industries: "Essential for any business with equipment operators, safety personnel, or skilled trades",
+          implementation: "Generate first digital certificates in minutes - works with existing training records"
+        };
+      case 3: // Compliance Automation Suite
+        return {
+          benefits: [
+            "Automate 90% of compliance reporting tasks saving 20+ hours monthly",
+            "Real-time tracking prevents missed training deadlines and violations",
+            "AI-powered risk assessment identifies problems before they become costly",
+            "One-click audit reports impress inspectors and reduce citation risk"
+          ],
+          roi: "Avoid $10,000+ in OSHA fines while reducing compliance staff workload by 60%",
+          industries: "Critical for high-risk industries: construction, oil & gas, chemical, heavy manufacturing",
+          implementation: "Full automation setup within 48 hours with dedicated implementation specialist"
+        };
+      default:
+        return {
+          benefits: ["Streamline safety operations", "Reduce compliance risks", "Save time and money"],
+          roi: "Significant cost savings and efficiency improvements",
+          industries: "All industries with safety compliance requirements",
+          implementation: "Quick setup with expert guidance"
+        };
+    }
   };
 
   // Debug logging
@@ -705,7 +770,10 @@ export default function ClientPortal() {
                   </CardHeader>
                   <CardContent>
                     <p className="text-white mb-4">{special.description}</p>
-                    <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">
+                    <Button 
+                      onClick={() => handleLearnMore(special)}
+                      className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+                    >
                       <Gift className="w-4 h-4 mr-2" />
                       Learn More
                     </Button>
@@ -953,6 +1021,109 @@ export default function ClientPortal() {
           </div>
         </div>
       )}
+
+      {/* Business Impact Dialog */}
+      <Dialog open={showBusinessImpactDialog} onOpenChange={setShowBusinessImpactDialog}>
+        <DialogContent className="max-w-4xl bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 border-violet-500/30 text-white">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-3 text-2xl">
+              <div className="w-10 h-10 bg-gradient-to-r from-emerald-600 to-emerald-500 rounded-lg flex items-center justify-center">
+                <BarChart3 className="w-6 h-6 text-white" />
+              </div>
+              How {selectedService?.title} Helps Your Business
+            </DialogTitle>
+            <DialogDescription className="text-blue-200 text-lg">
+              Discover the real-world business impact and ROI of implementing this solution
+            </DialogDescription>
+          </DialogHeader>
+          
+          {selectedService && (
+            <div className="space-y-6 max-h-[70vh] overflow-y-auto">
+              {/* Key Benefits */}
+              <div className="bg-blue-900/40 border border-emerald-500/30 rounded-lg p-6">
+                <h3 className="flex items-center gap-2 text-xl font-semibold mb-4 text-emerald-400">
+                  <CheckCircle className="w-6 h-6" />
+                  Key Business Benefits
+                </h3>
+                <div className="grid gap-3">
+                  {getBusinessImpactContent(selectedService).benefits.map((benefit, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 flex-shrink-0" />
+                      <p className="text-white">{benefit}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* ROI & Cost Savings */}
+              <div className="bg-green-900/40 border border-green-500/30 rounded-lg p-6">
+                <h3 className="flex items-center gap-2 text-xl font-semibold mb-4 text-green-400">
+                  <DollarSign className="w-6 h-6" />
+                  Return on Investment
+                </h3>
+                <p className="text-white text-lg font-medium">
+                  {getBusinessImpactContent(selectedService).roi}
+                </p>
+              </div>
+
+              {/* Industry Applications */}
+              <div className="bg-purple-900/40 border border-purple-500/30 rounded-lg p-6">
+                <h3 className="flex items-center gap-2 text-xl font-semibold mb-4 text-purple-400">
+                  <Users className="w-6 h-6" />
+                  Industry Applications
+                </h3>
+                <p className="text-white">
+                  {getBusinessImpactContent(selectedService).industries}
+                </p>
+              </div>
+
+              {/* Implementation Timeline */}
+              <div className="bg-blue-900/40 border border-blue-500/30 rounded-lg p-6">
+                <h3 className="flex items-center gap-2 text-xl font-semibold mb-4 text-blue-400">
+                  <Clock className="w-6 h-6" />
+                  Implementation Timeline
+                </h3>
+                <p className="text-white">
+                  {getBusinessImpactContent(selectedService).implementation}
+                </p>
+              </div>
+
+              {/* Call to Action */}
+              <div className="bg-gradient-to-r from-emerald-600/20 to-blue-600/20 border border-emerald-500/30 rounded-lg p-6">
+                <div className="text-center">
+                  <h3 className="text-xl font-semibold mb-3 text-emerald-400">Ready to Transform Your Business?</h3>
+                  <p className="text-white mb-4">
+                    Join 500+ companies already saving time and money with SafetySync.AI
+                  </p>
+                  <div className="flex gap-3 justify-center">
+                    <Button 
+                      onClick={() => {
+                        setShowBusinessImpactDialog(false);
+                        handleWorkspaceAccess();
+                      }}
+                      className="bg-emerald-600 hover:bg-emerald-700 text-white"
+                    >
+                      <Rocket className="w-4 h-4 mr-2" />
+                      Start 6-Hour Trial
+                    </Button>
+                    <Button 
+                      onClick={() => {
+                        setShowBusinessImpactDialog(false);
+                        window.open('https://calendly.com/safetysync-demo', '_blank');
+                      }}
+                      variant="outline"
+                      className="border-white/30 text-white hover:bg-white/10"
+                    >
+                      <Calendar className="w-4 h-4 mr-2" />
+                      Schedule Demo
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
 
       {/* Onboarding Tutorial */}
       <ClientOnboardingTutorial
