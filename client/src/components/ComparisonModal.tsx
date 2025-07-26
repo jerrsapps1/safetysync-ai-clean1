@@ -16,8 +16,8 @@ export default function ComparisonModal({ isOpen, onClose }: ComparisonModalProp
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white max-w-3xl w-full rounded shadow-lg p-6 relative">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 transition-opacity duration-200">
+      <div className="bg-white max-w-3xl w-full rounded-xl shadow-xl p-6 relative animate-fade-in">
         <h2 className="text-xl font-bold text-gray-800 mb-4">Compare SafetySync.ai to Other EHS Platforms</h2>
         <table className="w-full text-sm border">
           <thead className="bg-gray-100">
