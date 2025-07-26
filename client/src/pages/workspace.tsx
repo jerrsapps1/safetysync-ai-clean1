@@ -429,16 +429,7 @@ export default function WorkspacePage() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, [activeTab]);
 
-  // Track login event when user is authenticated
-  useEffect(() => {
-    if (isAuthenticated && user) {
-      trackMilestone('login', { 
-        userId: user.id, 
-        timestamp: new Date(),
-        sessionId: `session-${Date.now()}`
-      });
-    }
-  }, [isAuthenticated, user, trackMilestone]);
+
 
   // Widget icon mapping
   const getWidgetIcon = (id: string) => {
@@ -1262,7 +1253,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         layoutUpdateRef.current = false;
       }, 20);
     }
-  }, [layouts, widgets.length, trackMilestone]);
+  }, [layouts, widgets.length]);
 
   // Trends widget management functions
   const toggleTrendsWidgetVisibility = useCallback((widgetId: string) => {
