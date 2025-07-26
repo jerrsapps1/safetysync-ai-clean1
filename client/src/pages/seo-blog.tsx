@@ -131,7 +131,7 @@ export default function SEOBlogPage() {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
             <div className="relative max-w-md w-full">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-300 w-5 h-5" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white w-5 h-5" />
               <input
                 type="text"
                 placeholder="Search articles..."

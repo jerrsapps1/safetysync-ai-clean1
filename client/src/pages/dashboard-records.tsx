@@ -92,7 +92,7 @@ export default function DashboardRecordsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 p-4">
       <div className="max-w-7xl mx-auto pt-20">
         
         {/* Header - matches your Python template styling */}
@@ -101,7 +101,7 @@ export default function DashboardRecordsPage() {
             <Brain className="w-8 h-8 mr-3" />
             Extracted Training Records
           </h1>
-          <p className="text-xl text-blue-300">
+          <p className="text-xl text-white">
             AI-processed training documentation and certification data
           </p>
         </div>
@@ -124,7 +124,7 @@ export default function DashboardRecordsPage() {
               onClick={fetchRecords}
               disabled={isLoading}
               variant="outline"
-              className="border-blue-300 text-blue-300 hover:bg-blue-600"
+              className="border-blue-300 text-white hover:bg-blue-600"
             >
               <RefreshCw className={`w-4 h-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
               Refresh
@@ -153,7 +153,7 @@ export default function DashboardRecordsPage() {
             
             {isLoading ? (
               <div className="flex items-center justify-center py-12">
-                <RefreshCw className="w-6 h-6 animate-spin text-emerald-400 mr-2" />
+                <RefreshCw className="w-6 h-6 animate-spin text-violet-400 mr-2" />
                 <span className="text-white">Loading training records...</span>
               </div>
             ) : error ? (
@@ -164,7 +164,7 @@ export default function DashboardRecordsPage() {
                 </Button>
               </div>
             ) : records.length === 0 ? (
-              <div className="text-center py-12 text-blue-300">
+              <div className="text-center py-12 text-white">
                 No training records found. Upload some documents to get started.
               </div>
             ) : (
@@ -174,11 +174,11 @@ export default function DashboardRecordsPage() {
                 <Table>
                   <TableHeader>
                     <TableRow className="border-blue-500">
-                      <TableHead className="text-blue-300 font-bold">ID</TableHead>
-                      <TableHead className="text-blue-300 font-bold">Employee Name</TableHead>
-                      <TableHead className="text-blue-300 font-bold">Course</TableHead>
-                      <TableHead className="text-blue-300 font-bold">Date</TableHead>
-                      <TableHead className="text-blue-300 font-bold">Cert #</TableHead>
+                      <TableHead className="text-white font-bold">ID</TableHead>
+                      <TableHead className="text-white font-bold">Employee Name</TableHead>
+                      <TableHead className="text-white font-bold">Course</TableHead>
+                      <TableHead className="text-white font-bold">Date</TableHead>
+                      <TableHead className="text-white font-bold">Cert #</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -213,13 +213,13 @@ export default function DashboardRecordsPage() {
         </Card>
 
         {/* Python Equivalent Note */}
-        <Card className="mt-8 bg-blue-800/50 border-blue-600/50">
+        <Card className="mt-8 bg-blue-900/60 border-blue-600/50">
           <CardContent className="p-4">
             <div className="flex items-center text-yellow-400 mb-2">
               <Brain className="w-4 h-4 mr-2" />
               <span className="font-semibold">Python Flask Template Equivalent</span>
             </div>
-            <p className="text-blue-300 text-sm">
+            <p className="text-white text-sm">
               This TypeScript React component provides the same functionality as your Python Flask 
               <code className="bg-blue-700 px-1 rounded mx-1">dashboard.html</code> template
               with modern UI components, real-time data loading, and CSV export capabilities.

@@ -94,7 +94,7 @@ export default function VerifyEmailPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 flex items-center justify-center px-4">
       <Card className="w-full max-w-md bg-blue-700/50 border-blue-600/50 backdrop-blur-sm">
         <CardHeader className="text-center">
           <div className="flex justify-center mb-4">
@@ -102,7 +102,7 @@ export default function VerifyEmailPage() {
               <Loader2 className="w-12 h-12 text-blue-400 animate-spin" />
             )}
             {verificationStatus === 'success' && (
-              <CheckCircle className="w-12 h-12 text-emerald-400" />
+              <CheckCircle className="w-12 h-12 text-violet-400" />
             )}
             {(verificationStatus === 'error' || verificationStatus === 'expired') && (
               <AlertCircle className="w-12 h-12 text-red-400" />
@@ -118,7 +118,7 @@ export default function VerifyEmailPage() {
         </CardHeader>
         
         <CardContent className="text-center space-y-6">
-          <p className="text-blue-300 leading-relaxed">
+          <p className="text-white leading-relaxed">
             {message}
           </p>
           
@@ -129,7 +129,7 @@ export default function VerifyEmailPage() {
                   <CheckCircle className="w-5 h-5" />
                   <span className="font-medium">Account Activated</span>
                 </div>
-                <p className="text-emerald-400 text-sm mt-2">
+                <p className="text-violet-400 text-sm mt-2">
                   You now have full access to SafetySync.AI
                 </p>
               </div>
@@ -160,7 +160,7 @@ export default function VerifyEmailPage() {
               <Button 
                 onClick={() => navigate('/')}
                 variant="outline"
-                className="w-full border-blue-500 text-blue-300 hover:bg-blue-600"
+                className="w-full border-blue-500 text-white hover:bg-blue-600"
               >
                 Return to Homepage
               </Button>

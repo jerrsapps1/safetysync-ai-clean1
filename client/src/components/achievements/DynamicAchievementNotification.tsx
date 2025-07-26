@@ -54,11 +54,11 @@ export function DynamicAchievementNotification({ achievement, onClose }: Dynamic
     <div className={`fixed top-4 right-4 z-50 transform transition-all duration-300 ${
       isVisible && !isLeaving ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
     }`}>
-      <Card className="w-80 bg-black/90 backdrop-blur-md border-2 border-emerald-500/50 shadow-2xl">
+      <Card className="w-80 bg-black/90 backdrop-blur-md border-2 border-violet-500/50 shadow-2xl">
         <CardContent className="p-4">
           <div className="flex items-start justify-between mb-3">
             <div className="flex items-center gap-2">
-              <div className="flex items-center gap-1 text-emerald-400">
+              <div className="flex items-center gap-1 text-violet-400">
                 <Sparkles className="w-4 h-4" />
                 <span className="text-sm font-medium">Achievement Unlocked!</span>
               </div>
@@ -70,7 +70,7 @@ export function DynamicAchievementNotification({ achievement, onClose }: Dynamic
               variant="ghost"
               size="sm"
               onClick={handleClose}
-              className="p-1 h-auto text-blue-300 hover:text-white hover:bg-blue-700/50"
+              className="p-1 h-auto text-white hover:text-white hover:bg-blue-700/50"
             >
               <X className="w-4 h-4" />
             </Button>
@@ -85,7 +85,7 @@ export function DynamicAchievementNotification({ achievement, onClose }: Dynamic
             </div>
             <div className="flex-1 min-w-0">
               <h3 className="text-white font-semibold truncate">{achievement.title}</h3>
-              <p className="text-blue-300 text-sm">{achievement.description}</p>
+              <p className="text-white text-sm">{achievement.description}</p>
             </div>
           </div>
 
@@ -96,7 +96,7 @@ export function DynamicAchievementNotification({ achievement, onClose }: Dynamic
               </Badge>
               <span className="text-yellow-400 font-medium">+{achievement.points} pts</span>
             </div>
-            <div className="text-xs text-blue-300">
+            <div className="text-xs text-white">
               {achievement.unlockedAt ? new Date(achievement.unlockedAt).toLocaleTimeString() : 'Just now'}
             </div>
           </div>

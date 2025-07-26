@@ -46,7 +46,7 @@ export function PageHeader({}: PageHeaderProps) {
       <aside 
         className={`
           fixed left-0 top-0 z-40 h-full transition-all duration-300 ease-in-out
-          bg-blue-900/90 backdrop-blur-sm border-r border-blue-700/50 shadow-2xl
+          bg-blue-900/90 backdrop-blur-sm border-r border-violet-500/30 shadow-2xl
           ${isMobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
           ${isHovered ? 'w-64' : 'w-16'}
           hover:w-64
@@ -62,7 +62,7 @@ export function PageHeader({}: PageHeaderProps) {
               {isHovered && (
                 <div>
                   <h1 className="text-lg font-bold text-white">SafetySync.AI</h1>
-                  <p className="text-xs text-emerald-400 -mt-1">OSHA Compliance</p>
+                  <p className="text-xs text-violet-400 -mt-1">OSHA Compliance</p>
                 </div>
               )}
             </div>
@@ -77,7 +77,7 @@ export function PageHeader({}: PageHeaderProps) {
             <Button 
               className={`
                 ${!isHovered ? 'w-12 h-12 p-0 justify-center' : 'w-full justify-start px-3'} 
-                bg-emerald-500 hover:bg-emerald-600 text-white font-bold border-2 border-emerald-700
+                bg-violet-500 hover:bg-emerald-600 text-white font-bold border-2 border-emerald-700
                 shadow-2xl transition-all duration-300 ring-2 ring-emerald-300/50
               `}
               onClick={() => setIsMobileOpen(false)}
@@ -97,11 +97,11 @@ export function PageHeader({}: PageHeaderProps) {
               return (
                 <Link key={item.name} href={item.href}>
                   <div 
-                    className="flex items-center px-3 py-3 text-sm font-medium text-blue-300 rounded-lg tech-surface hover:text-emerald-400 group relative cursor-pointer"
+                    className="flex items-center px-3 py-3 text-sm font-medium text-white rounded-lg tech-surface hover:text-violet-400 group relative cursor-pointer"
                     onClick={() => setIsMobileOpen(false)}
                     title={!isHovered ? item.name : undefined}
                   >
-                    <IconComponent className="w-5 h-5 text-blue-300 group-hover:text-emerald-400 flex-shrink-0" />
+                    <IconComponent className="w-5 h-5 text-white group-hover:text-violet-400 flex-shrink-0" />
                     {isHovered && (
                       <span className="ml-3">{item.name}</span>
                     )}

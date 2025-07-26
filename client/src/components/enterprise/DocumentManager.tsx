@@ -275,7 +275,7 @@ const DocumentManager: React.FC = () => {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-blue-300">Total Documents</p>
+                <p className="text-sm text-white">Total Documents</p>
                 <p className="text-2xl font-bold text-white">{documentStats.total}</p>
               </div>
               <FileText className="w-8 h-8 text-blue-400" />
@@ -287,7 +287,7 @@ const DocumentManager: React.FC = () => {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-blue-300">Active</p>
+                <p className="text-sm text-white">Active</p>
                 <p className="text-2xl font-bold text-green-400">{documentStats.active}</p>
               </div>
               <CheckCircle className="w-8 h-8 text-green-400" />
@@ -299,7 +299,7 @@ const DocumentManager: React.FC = () => {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-blue-300">Pending Review</p>
+                <p className="text-sm text-white">Pending Review</p>
                 <p className="text-2xl font-bold text-yellow-400">{documentStats.pendingReview}</p>
               </div>
               <Clock className="w-8 h-8 text-yellow-400" />
@@ -311,7 +311,7 @@ const DocumentManager: React.FC = () => {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-blue-300">Expired</p>
+                <p className="text-sm text-white">Expired</p>
                 <p className="text-2xl font-bold text-red-400">{documentStats.expired}</p>
               </div>
               <AlertTriangle className="w-8 h-8 text-red-400" />
@@ -323,7 +323,7 @@ const DocumentManager: React.FC = () => {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-blue-300">Expiring Soon</p>
+                <p className="text-sm text-white">Expiring Soon</p>
                 <p className="text-2xl font-bold text-orange-400">{documentStats.expiringThisMonth}</p>
               </div>
               <Calendar className="w-8 h-8 text-orange-400" />
@@ -338,7 +338,7 @@ const DocumentManager: React.FC = () => {
           <div className="flex flex-col lg:flex-row gap-4">
             <div className="flex-1">
               <div className="relative">
-                <Search className="absolute left-3 top-3 h-4 w-4 text-blue-300" />
+                <Search className="absolute left-3 top-3 h-4 w-4 text-white" />
                 <Input
                   placeholder="Search documents by title, description, or tags..."
                   value={searchTerm}
@@ -469,8 +469,8 @@ const DocumentManager: React.FC = () => {
                     <div>
                       <Label htmlFor="file" className="text-white">File</Label>
                       <div className="border-2 border-dashed border-blue-600 rounded-lg p-6 text-center">
-                        <Upload className="w-12 h-12 mx-auto text-blue-300 mb-4" />
-                        <p className="text-blue-300">Click to upload or drag and drop</p>
+                        <Upload className="w-12 h-12 mx-auto text-white mb-4" />
+                        <p className="text-white">Click to upload or drag and drop</p>
                         <p className="text-sm text-blue-400">PDF, DOC, DOCX, XLS, XLSX (max 25MB)</p>
                       </div>
                     </div>
@@ -512,7 +512,7 @@ const DocumentManager: React.FC = () => {
                         {getExpiryWarning(doc.expiryDate)}
                       </div>
                       
-                      <p className="text-blue-300 text-sm mb-2">{doc.description}</p>
+                      <p className="text-white text-sm mb-2">{doc.description}</p>
                       
                       <div className="flex flex-wrap gap-2 mb-2">
                         <Badge className={getStatusColor(doc.status)}>
@@ -534,7 +534,7 @@ const DocumentManager: React.FC = () => {
                         ))}
                       </div>
                       
-                      <div className="flex items-center gap-4 text-xs text-blue-300">
+                      <div className="flex items-center gap-4 text-xs text-white">
                         <span className="flex items-center gap-1">
                           <Building className="w-3 h-3" />
                           {doc.department}
@@ -558,7 +558,7 @@ const DocumentManager: React.FC = () => {
                       size="sm"
                       variant="ghost"
                       onClick={() => handleViewDocument(doc)}
-                      className="text-blue-300 hover:text-white"
+                      className="text-white hover:text-white"
                     >
                       <Eye className="w-4 h-4" />
                     </Button>
@@ -566,14 +566,14 @@ const DocumentManager: React.FC = () => {
                       size="sm"
                       variant="ghost"
                       onClick={() => handleDownload(doc)}
-                      className="text-blue-300 hover:text-white"
+                      className="text-white hover:text-white"
                     >
                       <Download className="w-4 h-4" />
                     </Button>
                     <Button
                       size="sm"
                       variant="ghost"
-                      className="text-blue-300 hover:text-white"
+                      className="text-white hover:text-white"
                     >
                       <Edit className="w-4 h-4" />
                     </Button>
@@ -585,8 +585,8 @@ const DocumentManager: React.FC = () => {
           
           {filteredDocuments.length === 0 && (
             <div className="text-center py-12">
-              <FileText className="w-16 h-16 mx-auto text-blue-300 mb-4" />
-              <p className="text-blue-300 text-lg">No documents found</p>
+              <FileText className="w-16 h-16 mx-auto text-white mb-4" />
+              <p className="text-white text-lg">No documents found</p>
               <p className="text-blue-400 text-sm">Try adjusting your search criteria or upload a new document</p>
             </div>
           )}
@@ -604,42 +604,42 @@ const DocumentManager: React.FC = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <Label className="text-white">Title</Label>
-                  <p className="text-blue-300">{selectedDocument.title}</p>
+                  <p className="text-white">{selectedDocument.title}</p>
                 </div>
                 <div>
                   <Label className="text-white">Type</Label>
-                  <p className="text-blue-300">{selectedDocument.type}</p>
+                  <p className="text-white">{selectedDocument.type}</p>
                 </div>
               </div>
               
               <div>
                 <Label className="text-white">Description</Label>
-                <p className="text-blue-300">{selectedDocument.description}</p>
+                <p className="text-white">{selectedDocument.description}</p>
               </div>
               
               <div className="grid grid-cols-3 gap-4">
                 <div>
                   <Label className="text-white">Department</Label>
-                  <p className="text-blue-300">{selectedDocument.department}</p>
+                  <p className="text-white">{selectedDocument.department}</p>
                 </div>
                 <div>
                   <Label className="text-white">Uploaded By</Label>
-                  <p className="text-blue-300">{selectedDocument.uploadedBy}</p>
+                  <p className="text-white">{selectedDocument.uploadedBy}</p>
                 </div>
                 <div>
                   <Label className="text-white">Upload Date</Label>
-                  <p className="text-blue-300">{new Date(selectedDocument.uploadDate).toLocaleDateString()}</p>
+                  <p className="text-white">{new Date(selectedDocument.uploadDate).toLocaleDateString()}</p>
                 </div>
               </div>
               
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <Label className="text-white">Version</Label>
-                  <p className="text-blue-300">v{selectedDocument.version}</p>
+                  <p className="text-white">v{selectedDocument.version}</p>
                 </div>
                 <div>
                   <Label className="text-white">File Size</Label>
-                  <p className="text-blue-300">{selectedDocument.fileSize}</p>
+                  <p className="text-white">{selectedDocument.fileSize}</p>
                 </div>
               </div>
               

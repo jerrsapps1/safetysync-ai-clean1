@@ -200,7 +200,7 @@ export default function CompanyProfile() {
               <SafetySyncIcon size={32} className="rounded-lg" />
               Company Profile
             </h2>
-            <p className="text-blue-300">Manage your company information and settings</p>
+            <p className="text-white">Manage your company information and settings</p>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -226,7 +226,7 @@ export default function CompanyProfile() {
   return (
     <div className="space-y-6 relative">
       {/* Tech grid background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 opacity-10 rounded-lg"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 opacity-10 rounded-lg"></div>
       
       {/* Floating tech icons */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -240,7 +240,7 @@ export default function CompanyProfile() {
           <TrendingUp className="w-6 h-6 text-green-400/30" />
         </div>
         <div className="absolute bottom-32 right-32 animate-float-delay-3">
-          <Shield className="w-7 h-7 text-emerald-400/30" />
+          <Shield className="w-7 h-7 text-violet-400/30" />
         </div>
       </div>
 
@@ -250,14 +250,14 @@ export default function CompanyProfile() {
             <SafetySyncIcon size={32} className="rounded-lg" />
             Company Profile
           </h2>
-          <p className="text-blue-300">Manage your company information and settings</p>
-          <p className="text-blue-300 text-sm mt-1">
+          <p className="text-white">Manage your company information and settings</p>
+          <p className="text-white text-sm mt-1">
             💡 This information will be used for billing, invoices, and official documentation
           </p>
         </div>
         <div className="flex items-center space-x-2">
           {profile && (
-            <Badge variant="secondary" className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30">
+            <Badge variant="secondary" className="bg-violet-500/20 text-violet-400 border-violet-500/30">
               🤖 AI-Verified Complete
             </Badge>
           )}
@@ -286,7 +286,7 @@ export default function CompanyProfile() {
             </div>
             <div>
               <h3 className="text-white font-semibold">Company Profile Usage</h3>
-              <p className="text-blue-300 text-sm mt-1">
+              <p className="text-white text-sm mt-1">
                 Your company profile information is used for billing, invoices, certificates, and official documentation. 
                 You can edit this information at any time to keep your account details current.
               </p>
@@ -301,28 +301,28 @@ export default function CompanyProfile() {
             <TabsList className="grid w-full grid-cols-4 bg-black/20 backdrop-blur-sm border-blue-700">
               <TabsTrigger 
                 value="business" 
-                className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
+                className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-white hover:text-white transition-all duration-200"
               >
                 <Building2 className="h-4 w-4" />
                 Business Info
               </TabsTrigger>
               <TabsTrigger 
                 value="contacts" 
-                className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
+                className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-white hover:text-white transition-all duration-200"
               >
                 <Users className="h-4 w-4" />
                 Key Contacts
               </TabsTrigger>
               <TabsTrigger 
                 value="branding" 
-                className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
+                className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-white hover:text-white transition-all duration-200"
               >
                 <Palette className="h-4 w-4" />
                 Branding
               </TabsTrigger>
               <TabsTrigger 
                 value="settings" 
-                className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
+                className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-white hover:text-white transition-all duration-200"
               >
                 <Settings className="h-4 w-4" />
                 Settings
@@ -336,7 +336,7 @@ export default function CompanyProfile() {
                     <Building2 className="h-5 w-5 text-blue-400" />
                     Company Information
                   </CardTitle>
-                  <CardDescription className="text-blue-300">
+                  <CardDescription className="text-white">
                     Basic information about your organization (editable anytime)
                   </CardDescription>
                 </CardHeader>
@@ -347,7 +347,7 @@ export default function CompanyProfile() {
                       name="companyName"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-blue-300">Company Name</FormLabel>
+                          <FormLabel className="text-white">Company Name</FormLabel>
                           <FormControl>
                             <Input placeholder="Enter company name" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                           </FormControl>
@@ -360,7 +360,7 @@ export default function CompanyProfile() {
                       name="industry"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-blue-300">Industry</FormLabel>
+                          <FormLabel className="text-white">Industry</FormLabel>
                           <Select onValueChange={field.onChange} value={field.value}>
                             <FormControl>
                               <SelectTrigger className="bg-blue-700/50 border-blue-600 text-white">
@@ -388,7 +388,7 @@ export default function CompanyProfile() {
                       name="companySize"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-blue-300">Company Size</FormLabel>
+                          <FormLabel className="text-white">Company Size</FormLabel>
                           <Select onValueChange={field.onChange} value={field.value}>
                             <FormControl>
                               <SelectTrigger className="bg-blue-700/50 border-blue-600 text-white">
@@ -415,7 +415,7 @@ export default function CompanyProfile() {
                       name="website"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-blue-300">Website</FormLabel>
+                          <FormLabel className="text-white">Website</FormLabel>
                           <FormControl>
                             <Input placeholder="https://www.example.com" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                           </FormControl>
@@ -429,7 +429,7 @@ export default function CompanyProfile() {
                     name="description"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-blue-300">Company Description</FormLabel>
+                        <FormLabel className="text-white">Company Description</FormLabel>
                         <FormControl>
                           <Textarea 
                             placeholder="Brief description of your company and operations"
@@ -450,7 +450,7 @@ export default function CompanyProfile() {
                     <MapPin className="h-5 w-5 text-green-400" />
                     Business Address
                   </CardTitle>
-                  <CardDescription className="text-blue-300">
+                  <CardDescription className="text-white">
                     Primary business location (used for billing address)
                   </CardDescription>
                 </CardHeader>
@@ -460,7 +460,7 @@ export default function CompanyProfile() {
                     name="address"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-blue-300">Street Address</FormLabel>
+                        <FormLabel className="text-white">Street Address</FormLabel>
                         <FormControl>
                           <Input placeholder="123 Main Street" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                         </FormControl>
@@ -474,7 +474,7 @@ export default function CompanyProfile() {
                       name="city"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-blue-300">City</FormLabel>
+                          <FormLabel className="text-white">City</FormLabel>
                           <FormControl>
                             <Input placeholder="City" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                           </FormControl>
@@ -487,7 +487,7 @@ export default function CompanyProfile() {
                       name="state"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-blue-300">State</FormLabel>
+                          <FormLabel className="text-white">State</FormLabel>
                           <FormControl>
                             <Input placeholder="State" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                           </FormControl>
@@ -500,7 +500,7 @@ export default function CompanyProfile() {
                       name="zipCode"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-blue-300">ZIP Code</FormLabel>
+                          <FormLabel className="text-white">ZIP Code</FormLabel>
                           <FormControl>
                             <Input placeholder="12345" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                           </FormControl>
@@ -514,7 +514,7 @@ export default function CompanyProfile() {
                     name="country"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-blue-300">Country</FormLabel>
+                        <FormLabel className="text-white">Country</FormLabel>
                         <FormControl>
                           <Input placeholder="United States" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                         </FormControl>
@@ -531,7 +531,7 @@ export default function CompanyProfile() {
                     <Phone className="h-5 w-5 text-purple-400" />
                     Contact Information
                   </CardTitle>
-                  <CardDescription className="text-blue-300">
+                  <CardDescription className="text-white">
                     Primary contact details (used for billing and invoices)
                   </CardDescription>
                 </CardHeader>
@@ -542,7 +542,7 @@ export default function CompanyProfile() {
                       name="phone"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-blue-300">Phone Number</FormLabel>
+                          <FormLabel className="text-white">Phone Number</FormLabel>
                           <FormControl>
                             <Input placeholder="(555) 123-4567" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                           </FormControl>
@@ -555,7 +555,7 @@ export default function CompanyProfile() {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-blue-300">Email Address</FormLabel>
+                          <FormLabel className="text-white">Email Address</FormLabel>
                           <FormControl>
                             <Input placeholder="contact@company.com" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                           </FormControl>
@@ -572,10 +572,10 @@ export default function CompanyProfile() {
               <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-white">
-                    <Shield className="h-5 w-5 text-emerald-400" />
+                    <Shield className="h-5 w-5 text-violet-400" />
                     Safety Officer
                   </CardTitle>
-                  <CardDescription className="text-blue-300">
+                  <CardDescription className="text-white">
                     Primary safety officer information
                   </CardDescription>
                 </CardHeader>
@@ -586,7 +586,7 @@ export default function CompanyProfile() {
                       name="safetyOfficer"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-blue-300">Full Name</FormLabel>
+                          <FormLabel className="text-white">Full Name</FormLabel>
                           <FormControl>
                             <Input placeholder="John Doe" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                           </FormControl>
@@ -599,7 +599,7 @@ export default function CompanyProfile() {
                       name="safetyOfficerPhone"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-blue-300">Phone Number</FormLabel>
+                          <FormLabel className="text-white">Phone Number</FormLabel>
                           <FormControl>
                             <Input placeholder="(555) 123-4567" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                           </FormControl>
@@ -613,7 +613,7 @@ export default function CompanyProfile() {
                     name="safetyOfficerEmail"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-blue-300">Email Address</FormLabel>
+                        <FormLabel className="text-white">Email Address</FormLabel>
                         <FormControl>
                           <Input placeholder="safety@company.com" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                         </FormControl>
@@ -630,7 +630,7 @@ export default function CompanyProfile() {
                     <Users className="h-5 w-5 text-blue-400" />
                     Compliance Manager
                   </CardTitle>
-                  <CardDescription className="text-blue-300">
+                  <CardDescription className="text-white">
                     Primary compliance manager information
                   </CardDescription>
                 </CardHeader>
@@ -641,7 +641,7 @@ export default function CompanyProfile() {
                       name="complianceManager"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-blue-300">Full Name</FormLabel>
+                          <FormLabel className="text-white">Full Name</FormLabel>
                           <FormControl>
                             <Input placeholder="Jane Smith" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                           </FormControl>
@@ -654,7 +654,7 @@ export default function CompanyProfile() {
                       name="complianceManagerEmail"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-blue-300">Email Address</FormLabel>
+                          <FormLabel className="text-white">Email Address</FormLabel>
                           <FormControl>
                             <Input placeholder="compliance@company.com" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                           </FormControl>
@@ -674,7 +674,7 @@ export default function CompanyProfile() {
                     <Palette className="h-5 w-5 text-pink-400" />
                     Brand Customization
                   </CardTitle>
-                  <CardDescription className="text-blue-300">
+                  <CardDescription className="text-white">
                     Customize your company's brand appearance
                   </CardDescription>
                 </CardHeader>
@@ -685,7 +685,7 @@ export default function CompanyProfile() {
                       name="primaryColor"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-blue-300">Primary Color</FormLabel>
+                          <FormLabel className="text-white">Primary Color</FormLabel>
                           <FormControl>
                             <div className="flex items-center space-x-2">
                               <Input type="color" className="w-20 h-10 bg-blue-700/50 border-blue-600" {...field} />
@@ -701,7 +701,7 @@ export default function CompanyProfile() {
                       name="secondaryColor"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-blue-300">Secondary Color</FormLabel>
+                          <FormLabel className="text-white">Secondary Color</FormLabel>
                           <FormControl>
                             <div className="flex items-center space-x-2">
                               <Input type="color" className="w-20 h-10 bg-blue-700/50 border-blue-600" {...field} />
@@ -718,7 +718,7 @@ export default function CompanyProfile() {
                     name="logoUrl"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-blue-300">Logo URL</FormLabel>
+                        <FormLabel className="text-white">Logo URL</FormLabel>
                         <FormControl>
                           <Input placeholder="https://example.com/logo.png" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                         </FormControl>
@@ -728,7 +728,7 @@ export default function CompanyProfile() {
                   />
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
-                      <Label className="text-blue-300 text-base">Show Company Branding</Label>
+                      <Label className="text-white text-base">Show Company Branding</Label>
                       <p className="text-sm text-blue-400">
                         Display your company branding on reports and certificates
                       </p>
@@ -759,7 +759,7 @@ export default function CompanyProfile() {
                     <Globe className="h-5 w-5 text-cyan-400" />
                     Domain Settings
                   </CardTitle>
-                  <CardDescription className="text-blue-300">
+                  <CardDescription className="text-white">
                     Configure custom domain settings
                   </CardDescription>
                 </CardHeader>
@@ -769,7 +769,7 @@ export default function CompanyProfile() {
                     name="customDomain"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-blue-300">Custom Domain</FormLabel>
+                        <FormLabel className="text-white">Custom Domain</FormLabel>
                         <FormControl>
                           <Input placeholder="safety.yourcompany.com" className="bg-blue-700/50 border-blue-600 text-white placeholder-blue-300" {...field} />
                         </FormControl>
@@ -778,7 +778,7 @@ export default function CompanyProfile() {
                     )}
                   />
                   <div className="p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
-                    <p className="text-sm text-blue-300">
+                    <p className="text-sm text-white">
                       <strong>Note:</strong> Custom domain configuration requires DNS setup. 
                       Contact support for assistance with domain configuration.
                     </p>

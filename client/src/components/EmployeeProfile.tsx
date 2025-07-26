@@ -150,7 +150,7 @@ export default function EmployeeProfile({ employeeId, onClose }: EmployeeProfile
   if (loadingEmployee) {
     return (
       <div className="flex items-center justify-center py-12">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-violet-500"></div>
         <span className="ml-2">Loading employee profile...</span>
       </div>
     );
@@ -170,11 +170,11 @@ export default function EmployeeProfile({ employeeId, onClose }: EmployeeProfile
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
           <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900 rounded-full flex items-center justify-center">
-            <User className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
+            <User className="h-6 w-6 text-emerald-600 dark:text-violet-400" />
           </div>
           <div>
             <h1 className="text-2xl font-bold">{employee.firstName} {employee.lastName}</h1>
-            <p className="text-blue-500 dark:text-blue-300">{employee.position} • {employee.department}</p>
+            <p className="text-blue-500 dark:text-white">{employee.position} • {employee.department}</p>
           </div>
         </div>
         
@@ -210,7 +210,7 @@ export default function EmployeeProfile({ employeeId, onClose }: EmployeeProfile
                   </div>
                 ) : (
                   <div className="space-y-4">
-                    <QrCode className="h-24 w-24 text-blue-300 mx-auto" />
+                    <QrCode className="h-24 w-24 text-white mx-auto" />
                     <p className="text-blue-500">No QR code generated yet</p>
                     <Button onClick={handleGenerateQrCode}>
                       Generate QR Code
@@ -339,12 +339,12 @@ export default function EmployeeProfile({ employeeId, onClose }: EmployeeProfile
                 <div className="pt-4 border-t">
                   <div className="space-y-2">
                     <div className="flex items-center space-x-2">
-                      <Mail className="h-4 w-4 text-blue-300" />
+                      <Mail className="h-4 w-4 text-white" />
                       <span className="text-sm">{employee.email}</span>
                     </div>
                     {employee.phone && (
                       <div className="flex items-center space-x-2">
-                        <Phone className="h-4 w-4 text-blue-300" />
+                        <Phone className="h-4 w-4 text-white" />
                         <span className="text-sm">{employee.phone}</span>
                       </div>
                     )}
@@ -417,13 +417,13 @@ export default function EmployeeProfile({ employeeId, onClose }: EmployeeProfile
 
           {loadingCertificates ? (
             <div className="flex items-center justify-center py-12">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-violet-500"></div>
               <span className="ml-2">Loading certificates...</span>
             </div>
           ) : certificateList.length === 0 ? (
             <Card>
               <CardContent className="py-12 text-center">
-                <ShieldCheck className="h-12 w-12 text-blue-300 mx-auto mb-4" />
+                <ShieldCheck className="h-12 w-12 text-white mx-auto mb-4" />
                 <h3 className="text-lg font-medium text-blue-800 mb-2">No Certificates</h3>
                 <p className="text-blue-500 mb-4">
                   This employee doesn't have any certificates on file yet.

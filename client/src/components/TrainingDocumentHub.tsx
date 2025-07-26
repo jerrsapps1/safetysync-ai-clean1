@@ -1082,11 +1082,11 @@ This document serves as an official attendance record for the training session.`
   }));
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 p-6">
       {/* Floating tech icons background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-8 h-8 bg-blue-500/10 rounded-full animate-pulse" />
-        <div className="absolute top-40 right-20 w-6 h-6 bg-emerald-500/10 rounded-full animate-pulse delay-1000" />
+        <div className="absolute top-40 right-20 w-6 h-6 bg-violet-500/10 rounded-full animate-pulse delay-1000" />
         <div className="absolute bottom-40 left-20 w-10 h-10 bg-purple-500/10 rounded-full animate-pulse delay-2000" />
         <div className="absolute bottom-20 right-10 w-4 h-4 bg-yellow-500/10 rounded-full animate-pulse delay-3000" />
       </div>
@@ -1097,7 +1097,7 @@ This document serves as an official attendance record for the training session.`
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-4xl font-bold text-white mb-2">Training Document Hub</h1>
-              <p className="text-blue-300 text-lg">Centralized training documentation and record management</p>
+              <p className="text-white text-lg">Centralized training documentation and record management</p>
             </div>
             <div className="flex items-center space-x-4">
               <Dialog open={isUploadDialogOpen} onOpenChange={setIsUploadDialogOpen}>
@@ -1169,9 +1169,9 @@ This document serves as an official attendance record for the training session.`
                                     <div className="flex items-center gap-2 mb-2">
                                       <FileText className="w-4 h-4 text-blue-400" />
                                       <span className="text-white font-medium">{fileData.file.name}</span>
-                                      <span className="text-blue-300 text-sm">({formatFileSize(fileData.file.size)})</span>
+                                      <span className="text-white text-sm">({formatFileSize(fileData.file.size)})</span>
                                     </div>
-                                    <div className="text-blue-300 text-sm bg-blue-700 p-2 rounded max-h-20 overflow-y-auto font-mono">
+                                    <div className="text-white text-sm bg-blue-700 p-2 rounded max-h-20 overflow-y-auto font-mono">
                                       {fileData.content}
                                     </div>
                                   </div>
@@ -1180,7 +1180,7 @@ This document serves as an official attendance record for the training session.`
                                       size="sm"
                                       variant="outline"
                                       onClick={() => window.open(fileData.blob, '_blank')}
-                                      className="border-blue-500 text-blue-300 hover:bg-blue-600"
+                                      className="border-blue-500 text-white hover:bg-blue-600"
                                     >
                                       <Download className="w-3 h-3" />
                                     </Button>
@@ -1188,7 +1188,7 @@ This document serves as an official attendance record for the training session.`
                                       size="sm"
                                       variant="outline"
                                       onClick={() => window.print()}
-                                      className="border-blue-500 text-blue-300 hover:bg-blue-600"
+                                      className="border-blue-500 text-white hover:bg-blue-600"
                                     >
                                       <Printer className="w-3 h-3" />
                                     </Button>
@@ -1211,7 +1211,7 @@ This document serves as an official attendance record for the training session.`
                           setPreviewFiles([]);
                           setUploadData({ trainingDate: '', description: '' });
                         }}
-                        className="border-blue-500 text-blue-300 hover:bg-blue-600"
+                        className="border-blue-500 text-white hover:bg-blue-600"
                       >
                         Cancel
                       </Button>
@@ -1238,7 +1238,7 @@ This document serves as an official attendance record for the training session.`
           <CardContent className="p-6">
             <div className="flex flex-wrap items-center gap-4">
               <div className="flex items-center space-x-2">
-                <Search className="w-4 h-4 text-blue-300" />
+                <Search className="w-4 h-4 text-white" />
                 <Input
                   placeholder="Search training files..."
                   value={searchTerm}
@@ -1248,7 +1248,7 @@ This document serves as an official attendance record for the training session.`
               </div>
               
               <div className="flex items-center space-x-2">
-                <Calendar className="w-4 h-4 text-blue-300" />
+                <Calendar className="w-4 h-4 text-white" />
                 <Input
                   type="date"
                   placeholder="From date"
@@ -1256,7 +1256,7 @@ This document serves as an official attendance record for the training session.`
                   onChange={(e) => setDateFilter(prev => ({ ...prev, from: e.target.value }))}
                   className="w-40 bg-blue-600 border-blue-500 text-white"
                 />
-                <span className="text-blue-300">to</span>
+                <span className="text-white">to</span>
                 <Input
                   type="date"
                   placeholder="To date"
@@ -1275,14 +1275,14 @@ This document serves as an official attendance record for the training session.`
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
-                  <div className="text-emerald-400 font-medium">
+                  <div className="text-violet-400 font-medium">
                     {selectedDocuments.size} document{selectedDocuments.size > 1 ? 's' : ''} selected
                   </div>
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={() => setSelectedDocuments(new Set())}
-                    className="text-blue-300 hover:text-white"
+                    className="text-white hover:text-white"
                   >
                     Clear Selection
                   </Button>
@@ -1293,7 +1293,7 @@ This document serves as an official attendance record for the training session.`
                     size="sm"
                     onClick={handleBulkView}
                     disabled={selectedDocuments.size !== 1}
-                    className="border-blue-500 text-blue-300 hover:bg-blue-600 disabled:opacity-50"
+                    className="border-blue-500 text-white hover:bg-blue-600 disabled:opacity-50"
                   >
                     <Eye className="w-4 h-4 mr-1" />
                     View
@@ -1302,7 +1302,7 @@ This document serves as an official attendance record for the training session.`
                     variant="outline"
                     size="sm"
                     onClick={handleBulkDownload}
-                    className="border-blue-500 text-blue-300 hover:bg-blue-600"
+                    className="border-blue-500 text-white hover:bg-blue-600"
                   >
                     <Download className="w-4 h-4 mr-1" />
                     Download ({selectedDocuments.size})
@@ -1327,9 +1327,9 @@ This document serves as an official attendance record for the training session.`
           {filteredDocuments.length === 0 ? (
             <Card className="bg-blue-700/50 border-blue-600 backdrop-blur-sm">
               <CardContent className="p-12 text-center">
-                <FileText className="w-16 h-16 text-blue-300 mx-auto mb-4" />
+                <FileText className="w-16 h-16 text-white mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-white mb-2">No Documents Found</h3>
-                <p className="text-blue-300">Try adjusting your filters or upload a new document to get started.</p>
+                <p className="text-white">Try adjusting your filters or upload a new document to get started.</p>
               </CardContent>
             </Card>
           ) : (
@@ -1348,7 +1348,7 @@ This document serves as an official attendance record for the training session.`
                           className="border-blue-400"
                         />
                         <div className="flex-shrink-0">
-                          <IconComponent className="w-8 h-8 text-emerald-400" />
+                          <IconComponent className="w-8 h-8 text-violet-400" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center space-x-2 mb-2">
@@ -1357,26 +1357,26 @@ This document serves as an official attendance record for the training session.`
                               {categoryInfo.name}
                             </Badge>
                           </div>
-                          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-blue-300">
+                          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-white">
                             <div className="flex items-center space-x-1">
-                              <BookOpen className="w-4 h-4 text-blue-300" />
+                              <BookOpen className="w-4 h-4 text-white" />
                               <span>{doc.trainingSubject}</span>
                             </div>
                             <div className="flex items-center space-x-1">
-                              <User className="w-4 h-4 text-blue-300" />
+                              <User className="w-4 h-4 text-white" />
                               <span>{doc.instructorName}</span>
                             </div>
                             <div className="flex items-center space-x-1">
-                              <Calendar className="w-4 h-4 text-blue-300" />
+                              <Calendar className="w-4 h-4 text-white" />
                               <span>{format(doc.trainingDate, 'MMM dd, yyyy')}</span>
                             </div>
                             <div className="flex items-center space-x-1">
-                              <Users className="w-4 h-4 text-blue-300" />
+                              <Users className="w-4 h-4 text-white" />
                               <span>{doc.studentCount} students</span>
                             </div>
                           </div>
                           {doc.description && (
-                            <p className="mt-2 text-sm text-blue-300">{doc.description}</p>
+                            <p className="mt-2 text-sm text-white">{doc.description}</p>
                           )}
                           <div className="flex items-center space-x-4 mt-2 text-xs text-blue-400">
                             <span>Size: {formatFileSize(doc.fileSize)}</span>
@@ -1413,7 +1413,7 @@ This document serves as an official attendance record for the training session.`
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-white">{viewingDocument.fileName}</h3>
-                    <p className="text-blue-300">{viewingDocument.fileType} • {formatFileSize(viewingDocument.fileSize)}</p>
+                    <p className="text-white">{viewingDocument.fileType} • {formatFileSize(viewingDocument.fileSize)}</p>
                   </div>
                 </div>
                 <Badge className={getCategoryInfo(viewingDocument.category).color}>
@@ -1424,29 +1424,29 @@ This document serves as an official attendance record for the training session.`
               <div className="grid grid-cols-2 gap-6">
                 <div className="space-y-4">
                   <div>
-                    <Label className="text-blue-300">Training Subject</Label>
+                    <Label className="text-white">Training Subject</Label>
                     <p className="text-white font-medium">{viewingDocument.trainingSubject}</p>
                   </div>
                   <div>
-                    <Label className="text-blue-300">Instructor</Label>
+                    <Label className="text-white">Instructor</Label>
                     <p className="text-white font-medium">{viewingDocument.instructorName}</p>
                   </div>
                   <div>
-                    <Label className="text-blue-300">Training Date</Label>
+                    <Label className="text-white">Training Date</Label>
                     <p className="text-white font-medium">{format(viewingDocument.trainingDate, 'MMMM dd, yyyy')}</p>
                   </div>
                 </div>
                 <div className="space-y-4">
                   <div>
-                    <Label className="text-blue-300">Location</Label>
+                    <Label className="text-white">Location</Label>
                     <p className="text-white font-medium">{viewingDocument.location}</p>
                   </div>
                   <div>
-                    <Label className="text-blue-300">Student Count</Label>
+                    <Label className="text-white">Student Count</Label>
                     <p className="text-white font-medium">{viewingDocument.studentCount} students</p>
                   </div>
                   <div>
-                    <Label className="text-blue-300">Upload Date</Label>
+                    <Label className="text-white">Upload Date</Label>
                     <p className="text-white font-medium">{format(viewingDocument.uploadDate, 'MMMM dd, yyyy HH:mm')}</p>
                   </div>
                 </div>
@@ -1454,7 +1454,7 @@ This document serves as an official attendance record for the training session.`
 
               {viewingDocument.description && (
                 <div>
-                  <Label className="text-blue-300">Description</Label>
+                  <Label className="text-white">Description</Label>
                   <p className="text-white font-medium bg-blue-600/50 p-3 rounded-lg">{viewingDocument.description}</p>
                 </div>
               )}
@@ -1483,7 +1483,7 @@ This document serves as an official attendance record for the training session.`
                 <Button
                   variant="outline"
                   onClick={() => setIsViewDialogOpen(false)}
-                  className="border-blue-500 text-blue-300 hover:bg-blue-600"
+                  className="border-blue-500 text-white hover:bg-blue-600"
                 >
                   Close
                 </Button>

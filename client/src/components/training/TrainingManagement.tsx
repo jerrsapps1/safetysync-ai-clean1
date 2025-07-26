@@ -161,10 +161,10 @@ export default function TrainingManagement() {
       case 'in-progress': return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30';
       case 'completed': return 'bg-green-500/20 text-green-400 border-green-500/30';
       case 'cancelled': return 'bg-red-500/20 text-red-400 border-red-500/30';
-      case 'active': return 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30';
-      case 'draft': return 'bg-blue-400/20 text-blue-300 border-blue-400/30';
+      case 'active': return 'bg-violet-500/20 text-violet-400 border-violet-500/30';
+      case 'draft': return 'bg-blue-400/20 text-white border-blue-400/30';
       case 'archived': return 'bg-orange-500/20 text-orange-400 border-orange-500/30';
-      default: return 'bg-blue-400/20 text-blue-300 border-blue-400/30';
+      default: return 'bg-blue-400/20 text-white border-blue-400/30';
     }
   };
 
@@ -185,7 +185,7 @@ export default function TrainingManagement() {
   return (
     <div className="space-y-6 relative">
       {/* Tech grid background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 opacity-10 rounded-lg"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 opacity-10 rounded-lg"></div>
       
       {/* Floating tech icons */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -199,7 +199,7 @@ export default function TrainingManagement() {
           <TrendingUp className="w-6 h-6 text-green-400/30" />
         </div>
         <div className="absolute bottom-32 right-32 animate-float-delay-3">
-          <Shield className="w-7 h-7 text-emerald-400/30" />
+          <Shield className="w-7 h-7 text-violet-400/30" />
         </div>
       </div>
 
@@ -209,14 +209,14 @@ export default function TrainingManagement() {
             <SafetySyncIcon size={32} className="rounded-lg" />
             Training Management
           </h2>
-          <p className="text-blue-300">Schedule, track, and manage safety training programs</p>
-          <p className="text-blue-300 text-sm mt-1">
+          <p className="text-white">Schedule, track, and manage safety training programs</p>
+          <p className="text-white text-sm mt-1">
             🎓 OSHA-compliant training modules with automated scheduling and compliance tracking
           </p>
         </div>
         <div className="flex items-center space-x-2">
           <Button 
-            className="bg-emerald-500 hover:bg-emerald-600 text-white"
+            className="bg-violet-500 hover:bg-emerald-600 text-white"
             onClick={() => {
               setIsLoading(true);
               setTimeout(() => setIsLoading(false), 2000);
@@ -244,7 +244,7 @@ export default function TrainingManagement() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-blue-300 text-sm">Scheduled Sessions</p>
+                <p className="text-white text-sm">Scheduled Sessions</p>
                 <p className="text-2xl font-bold text-white">12</p>
                 <p className="text-green-400 text-sm">🤖 AI-Scheduled</p>
               </div>
@@ -257,11 +257,11 @@ export default function TrainingManagement() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-blue-300 text-sm">Active Modules</p>
+                <p className="text-white text-sm">Active Modules</p>
                 <p className="text-2xl font-bold text-white">25</p>
-                <p className="text-emerald-400 text-sm">OSHA Compliant</p>
+                <p className="text-violet-400 text-sm">OSHA Compliant</p>
               </div>
-              <BookOpen className="w-8 h-8 text-emerald-400" />
+              <BookOpen className="w-8 h-8 text-violet-400" />
             </div>
           </CardContent>
         </Card>
@@ -270,7 +270,7 @@ export default function TrainingManagement() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-blue-300 text-sm">Total Enrolled</p>
+                <p className="text-white text-sm">Total Enrolled</p>
                 <p className="text-2xl font-bold text-white">156</p>
                 <p className="text-blue-400 text-sm">Employees</p>
               </div>
@@ -283,7 +283,7 @@ export default function TrainingManagement() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-blue-300 text-sm">Completion Rate</p>
+                <p className="text-white text-sm">Completion Rate</p>
                 <p className="text-2xl font-bold text-white">89%</p>
                 <p className="text-green-400 text-sm">⬆ +5% this month</p>
               </div>
@@ -296,7 +296,7 @@ export default function TrainingManagement() {
       {/* Search and Filter */}
       <div className="flex items-center gap-4 relative z-10">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-blue-300" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white" />
           <Input
             placeholder="Search training sessions or modules..."
             value={searchTerm}
@@ -305,7 +305,7 @@ export default function TrainingManagement() {
           />
         </div>
         <div className="flex items-center gap-2">
-          <Filter className="w-4 h-4 text-blue-300" />
+          <Filter className="w-4 h-4 text-white" />
           <select
             value={selectedStatus}
             onChange={(e) => setSelectedStatus(e.target.value)}
@@ -328,21 +328,21 @@ export default function TrainingManagement() {
         <TabsList className="grid w-full grid-cols-3 bg-black/20 backdrop-blur-sm border-blue-700">
           <TabsTrigger 
             value="sessions" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-white hover:text-white transition-all duration-200"
           >
             <Calendar className="h-4 w-4" />
             Training Sessions
           </TabsTrigger>
           <TabsTrigger 
             value="modules" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-white hover:text-white transition-all duration-200"
           >
             <BookOpen className="h-4 w-4" />
             Training Modules
           </TabsTrigger>
           <TabsTrigger 
             value="compliance" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-white hover:text-white transition-all duration-200"
           >
             <Shield className="h-4 w-4" />
             Compliance Tracking
@@ -365,7 +365,7 @@ export default function TrainingManagement() {
                   <div className="flex items-start justify-between">
                     <div>
                       <CardTitle className="text-white">{session.title}</CardTitle>
-                      <CardDescription className="text-blue-300">
+                      <CardDescription className="text-white">
                         {session.instructor} • {session.location}
                       </CardDescription>
                     </div>
@@ -378,27 +378,27 @@ export default function TrainingManagement() {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="flex items-center gap-2">
                       <Calendar className="w-4 h-4 text-blue-400" />
-                      <span className="text-blue-300 text-sm">{session.date}</span>
+                      <span className="text-white text-sm">{session.date}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Clock className="w-4 h-4 text-purple-400" />
-                      <span className="text-blue-300 text-sm">{session.time} ({session.duration}h)</span>
+                      <span className="text-white text-sm">{session.time} ({session.duration}h)</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Users className="w-4 h-4 text-green-400" />
-                      <span className="text-blue-300 text-sm">{session.enrolled}/{session.capacity}</span>
+                      <span className="text-white text-sm">{session.enrolled}/{session.capacity}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Shield className="w-4 h-4 text-emerald-400" />
-                      <span className="text-blue-300 text-sm">{session.type}</span>
+                      <Shield className="w-4 h-4 text-violet-400" />
+                      <span className="text-white text-sm">{session.type}</span>
                     </div>
                   </div>
                   
                   <div className="space-y-2">
-                    <p className="text-blue-300 text-sm">{session.description}</p>
+                    <p className="text-white text-sm">{session.description}</p>
                     <div className="flex flex-wrap gap-1">
                       {session.compliance.map((comp, index) => (
-                        <Badge key={index} variant="outline" className="text-xs text-blue-300 border-blue-500/30">
+                        <Badge key={index} variant="outline" className="text-xs text-white border-blue-500/30">
                           {comp}
                         </Badge>
                       ))}
@@ -410,7 +410,7 @@ export default function TrainingManagement() {
                       <Eye className="w-3 h-3 mr-1" />
                       View Details
                     </Button>
-                    <Button size="sm" variant="outline" className="border-blue-500 text-blue-300">
+                    <Button size="sm" variant="outline" className="border-blue-500 text-white">
                       <Edit className="w-3 h-3 mr-1" />
                       Edit
                     </Button>
@@ -438,7 +438,7 @@ export default function TrainingManagement() {
                   <div className="flex items-start justify-between">
                     <div>
                       <CardTitle className="text-white">{module.title}</CardTitle>
-                      <CardDescription className="text-blue-300">
+                      <CardDescription className="text-white">
                         {module.category} • {module.duration} hours
                       </CardDescription>
                     </div>
@@ -448,11 +448,11 @@ export default function TrainingManagement() {
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <p className="text-blue-300 text-sm">{module.description}</p>
+                  <p className="text-white text-sm">{module.description}</p>
                   
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="text-blue-300 text-sm">Completion Rate</span>
+                      <span className="text-white text-sm">Completion Rate</span>
                       <span className="text-white font-medium">{module.completionRate}%</span>
                     </div>
                     <div className="w-full bg-blue-600 rounded-full h-2">
@@ -466,19 +466,19 @@ export default function TrainingManagement() {
                   <div className="space-y-2">
                     <div className="flex items-center gap-2">
                       <Clock className="w-4 h-4 text-blue-400" />
-                      <span className="text-blue-300 text-sm">Frequency: {module.frequency}</span>
+                      <span className="text-white text-sm">Frequency: {module.frequency}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Calendar className="w-4 h-4 text-purple-400" />
-                      <span className="text-blue-300 text-sm">Updated: {module.lastUpdated}</span>
+                      <span className="text-white text-sm">Updated: {module.lastUpdated}</span>
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <p className="text-blue-300 text-sm font-medium">Compliance Standards:</p>
+                    <p className="text-white text-sm font-medium">Compliance Standards:</p>
                     <div className="flex flex-wrap gap-1">
                       {module.compliance.map((comp, index) => (
-                        <Badge key={index} variant="outline" className="text-xs text-emerald-300 border-emerald-500/30">
+                        <Badge key={index} variant="outline" className="text-xs text-emerald-300 border-violet-500/30">
                           {comp}
                         </Badge>
                       ))}
@@ -486,11 +486,11 @@ export default function TrainingManagement() {
                   </div>
 
                   <div className="flex items-center gap-2 pt-2">
-                    <Button size="sm" className="bg-emerald-500 hover:bg-emerald-600 text-white">
+                    <Button size="sm" className="bg-violet-500 hover:bg-emerald-600 text-white">
                       <BookOpen className="w-3 h-3 mr-1" />
                       View Module
                     </Button>
-                    <Button size="sm" variant="outline" className="border-blue-500 text-blue-300">
+                    <Button size="sm" variant="outline" className="border-blue-500 text-white">
                       <Edit className="w-3 h-3 mr-1" />
                       Edit
                     </Button>
@@ -508,26 +508,26 @@ export default function TrainingManagement() {
             <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
               <CardHeader>
                 <CardTitle className="text-white flex items-center gap-2">
-                  <Shield className="w-5 h-5 text-emerald-400" />
+                  <Shield className="w-5 h-5 text-violet-400" />
                   Compliance Overview
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-blue-300">OSHA 1926.501 (Fall Protection)</span>
+                    <span className="text-white">OSHA 1926.501 (Fall Protection)</span>
                     <Badge className="bg-green-500/20 text-green-400">92% Compliant</Badge>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-blue-300">OSHA 1910.178 (Forklift)</span>
+                    <span className="text-white">OSHA 1910.178 (Forklift)</span>
                     <Badge className="bg-green-500/20 text-green-400">88% Compliant</Badge>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-blue-300">OSHA 1910.120 (HAZWOPER)</span>
+                    <span className="text-white">OSHA 1910.120 (HAZWOPER)</span>
                     <Badge className="bg-yellow-500/20 text-yellow-400">75% Compliant</Badge>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-blue-300">OSHA 1910.134 (Respiratory)</span>
+                    <span className="text-white">OSHA 1910.134 (Respiratory)</span>
                     <Badge className="bg-green-500/20 text-green-400">95% Compliant</Badge>
                   </div>
                 </div>
@@ -547,21 +547,21 @@ export default function TrainingManagement() {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-white font-medium">Fall Protection</p>
-                      <p className="text-blue-300 text-sm">15 employees</p>
+                      <p className="text-white text-sm">15 employees</p>
                     </div>
                     <Badge className="bg-yellow-500/20 text-yellow-400">30 days</Badge>
                   </div>
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-white font-medium">First Aid/CPR</p>
-                      <p className="text-blue-300 text-sm">8 employees</p>
+                      <p className="text-white text-sm">8 employees</p>
                     </div>
                     <Badge className="bg-red-500/20 text-red-400">7 days</Badge>
                   </div>
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-white font-medium">Forklift Certification</p>
-                      <p className="text-blue-300 text-sm">12 employees</p>
+                      <p className="text-white text-sm">12 employees</p>
                     </div>
                     <Badge className="bg-yellow-500/20 text-yellow-400">45 days</Badge>
                   </div>

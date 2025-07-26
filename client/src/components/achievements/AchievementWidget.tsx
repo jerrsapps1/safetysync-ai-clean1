@@ -92,11 +92,11 @@ export default function AchievementWidget({ isSmall = false }: AchievementWidget
         <div className="grid grid-cols-2 gap-2">
           <div className="bg-blue-700/30 rounded-lg p-2 text-center">
             <div className="text-lg font-bold text-yellow-400">{userStats.totalPoints}</div>
-            <div className="text-xs text-blue-300">Points</div>
+            <div className="text-xs text-white">Points</div>
           </div>
           <div className="bg-blue-700/30 rounded-lg p-2 text-center">
-            <div className="text-lg font-bold text-emerald-400">{userStats.unlockedBadges}</div>
-            <div className="text-xs text-blue-300">Badges</div>
+            <div className="text-lg font-bold text-violet-400">{userStats.unlockedBadges}</div>
+            <div className="text-xs text-white">Badges</div>
           </div>
         </div>
 
@@ -108,7 +108,7 @@ export default function AchievementWidget({ isSmall = false }: AchievementWidget
               </div>
               <div className="flex-1 min-w-0">
                 <div className="text-xs text-white font-medium truncate">{nextAchievement.title}</div>
-                <div className="text-xs text-blue-300">
+                <div className="text-xs text-white">
                   {nextAchievement.progress}/{nextAchievement.maxProgress}
                 </div>
               </div>
@@ -130,7 +130,7 @@ export default function AchievementWidget({ isSmall = false }: AchievementWidget
         <Button 
           variant="ghost" 
           size="sm"
-          className="text-emerald-400 hover:text-emerald-300 p-1"
+          className="text-violet-400 hover:text-emerald-300 p-1"
           onClick={() => {/* Navigate to full achievements page */}}
         >
           View All <ChevronRight className="w-4 h-4 ml-1" />
@@ -144,21 +144,21 @@ export default function AchievementWidget({ isSmall = false }: AchievementWidget
             <Star className="w-4 h-4 text-yellow-500" />
             <div className="text-lg font-bold text-yellow-400">{userStats.totalPoints}</div>
           </div>
-          <div className="text-xs text-blue-300">Total Points</div>
+          <div className="text-xs text-white">Total Points</div>
         </div>
         <div className="bg-blue-700/30 rounded-lg p-3 text-center">
           <div className="flex items-center justify-center gap-1 mb-1">
             <Award className="w-4 h-4 text-emerald-500" />
-            <div className="text-lg font-bold text-emerald-400">{userStats.unlockedBadges}</div>
+            <div className="text-lg font-bold text-violet-400">{userStats.unlockedBadges}</div>
           </div>
-          <div className="text-xs text-blue-300">Badges</div>
+          <div className="text-xs text-white">Badges</div>
         </div>
         <div className="bg-blue-700/30 rounded-lg p-3 text-center">
           <div className="flex items-center justify-center gap-1 mb-1">
             <Target className="w-4 h-4 text-blue-500" />
             <div className="text-lg font-bold text-blue-400">{userStats.complianceStreak}</div>
           </div>
-          <div className="text-xs text-blue-300">Day Streak</div>
+          <div className="text-xs text-white">Day Streak</div>
         </div>
       </div>
 
@@ -176,7 +176,7 @@ export default function AchievementWidget({ isSmall = false }: AchievementWidget
                   <div className="text-sm font-medium text-white truncate">{achievement.title}</div>
                   {tierIcons[achievement.tier]}
                 </div>
-                <div className="text-xs text-emerald-400">+{achievement.points} points</div>
+                <div className="text-xs text-violet-400">+{achievement.points} points</div>
               </div>
             </div>
           ))}
@@ -194,12 +194,12 @@ export default function AchievementWidget({ isSmall = false }: AchievementWidget
               </div>
               <div className="flex-1 min-w-0">
                 <div className="text-sm font-medium text-white">{nextAchievement.title}</div>
-                <div className="text-xs text-blue-300">{nextAchievement.description}</div>
+                <div className="text-xs text-white">{nextAchievement.description}</div>
               </div>
             </div>
             <div className="space-y-1">
               <div className="flex items-center justify-between text-xs">
-                <span className="text-blue-300">Progress</span>
+                <span className="text-white">Progress</span>
                 <span className="text-white">{nextAchievement.progress} / {nextAchievement.maxProgress}</span>
               </div>
               <Progress 

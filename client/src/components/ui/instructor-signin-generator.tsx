@@ -1772,9 +1772,9 @@ END:VCALENDAR`;
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 p-6 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 p-6 relative overflow-hidden">
       {/* Tech grid background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 opacity-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 opacity-10"></div>
       
       {/* Floating tech icons */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -1788,7 +1788,7 @@ END:VCALENDAR`;
           <Users className="w-6 h-6 text-green-400/30" />
         </div>
         <div className="absolute bottom-32 right-32 animate-float-delay-3">
-          <Shield className="w-7 h-7 text-emerald-400/30" />
+          <Shield className="w-7 h-7 text-violet-400/30" />
         </div>
       </div>
 
@@ -1799,10 +1799,10 @@ END:VCALENDAR`;
               <SafetySyncIcon size={32} className="rounded-lg" />
               Instructor Sign-In Sheet Generator
             </h1>
-            <p className="text-blue-300 mt-2">
+            <p className="text-white mt-2">
               Create OSHA-compliant attendance records for safety training classes
             </p>
-            <p className="text-blue-300 text-sm mt-1">
+            <p className="text-white text-sm mt-1">
               📋 Generate professional sign-in sheets with automated compliance tracking
             </p>
           </div>
@@ -1817,10 +1817,10 @@ END:VCALENDAR`;
             <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-white">
-                  <Shield className="w-5 h-5 text-emerald-400" />
+                  <Shield className="w-5 h-5 text-violet-400" />
                   Training Information
                 </CardTitle>
-                <CardDescription className="text-blue-300">
+                <CardDescription className="text-white">
                   Basic details about the safety training session
                 </CardDescription>
               </CardHeader>
@@ -1937,7 +1937,7 @@ END:VCALENDAR`;
                   <Users className="w-5 h-5 text-blue-400" />
                   Instructor Information
                 </CardTitle>
-                <CardDescription className="text-blue-300">
+                <CardDescription className="text-white">
                   Details about the certified instructor
                 </CardDescription>
               </CardHeader>
@@ -1969,7 +1969,7 @@ END:VCALENDAR`;
                       onClick={() => handleInstructorTypeChange('visiting')}
                       className={`w-full h-10 flex items-center justify-center ${
                         instructorType === 'visiting' 
-                          ? 'bg-emerald-500 hover:bg-emerald-600 text-white' 
+                          ? 'bg-violet-500 hover:bg-emerald-600 text-white' 
                           : 'bg-black/20 backdrop-blur-sm border-blue-600 text-white hover:bg-black/30'
                       }`}
                     >
@@ -2193,7 +2193,7 @@ END:VCALENDAR`;
                   <Calendar className="w-5 h-5 text-orange-400" />
                   Session Details
                 </CardTitle>
-                <CardDescription className="text-blue-300">
+                <CardDescription className="text-white">
                   When and where the training will take place
                 </CardDescription>
               </CardHeader>
@@ -2287,7 +2287,7 @@ END:VCALENDAR`;
                   <Users className="w-5 h-5 text-purple-400" />
                   Training Attendees ({formData.employees?.length || 0})
                 </CardTitle>
-                <CardDescription className="text-blue-300">
+                <CardDescription className="text-white">
                   Add employees and external students who will attend this training session
                 </CardDescription>
               </CardHeader>
@@ -2377,7 +2377,7 @@ END:VCALENDAR`;
                     <div key={employee.id} className="flex items-center justify-between p-3 bg-blue-700/50 border border-blue-600 rounded-lg backdrop-blur-sm">
                       <div className="flex-1">
                         <div className="font-medium text-white">{employee.name}</div>
-                        <div className="text-sm text-blue-300">
+                        <div className="text-sm text-white">
                           ID: {employee.employeeId} • {employee.company}
                           {employee.type && (
                             <Badge variant={employee.type === 'internal' ? 'default' : 'secondary'} className="ml-2">
@@ -2397,7 +2397,7 @@ END:VCALENDAR`;
                   ))}
                   
                   {(!formData.employees || formData.employees.length === 0) && (
-                    <div className="text-center py-8 text-blue-300">
+                    <div className="text-center py-8 text-white">
                       No attendees added yet. Use the search tab to find employees and students, or manually add them.
                     </div>
                   )}
@@ -2421,7 +2421,7 @@ END:VCALENDAR`;
         <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardHeader>
             <CardTitle className="text-white">Saved Sign-In Sheets</CardTitle>
-            <CardDescription className="text-blue-300">
+            <CardDescription className="text-white">
               Manage your drafted and generated training attendance records
             </CardDescription>
           </CardHeader>

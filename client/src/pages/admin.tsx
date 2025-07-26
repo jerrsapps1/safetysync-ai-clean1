@@ -421,7 +421,7 @@ export default function AdminPanel() {
                   <div className="flex-1">
                     <Label htmlFor="search">Search Leads</Label>
                     <div className="relative">
-                      <Search className="absolute left-3 top-3 h-4 w-4 text-blue-300" />
+                      <Search className="absolute left-3 top-3 h-4 w-4 text-white" />
                       <Input
                         id="search"
                         placeholder="Search by name, email, or company..."

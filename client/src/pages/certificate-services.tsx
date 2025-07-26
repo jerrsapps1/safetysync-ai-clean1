@@ -5,20 +5,20 @@ import { Award, CreditCard, Download, Eye, Shield, Star } from "lucide-react";
 
 export default function CertificateServicesPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 text-white">
       {/* Hero Section */}
       <section className="relative py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-blue-600/20 backdrop-blur-sm border border-blue-400/30 rounded-full px-4 py-2 mb-6">
             <Award className="w-5 h-5 text-blue-400" />
-            <span className="text-blue-300 font-medium">Professional Certificate Generation</span>
+            <span className="text-white font-medium">Professional Certificate Generation</span>
           </div>
           
           <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
             Professional Certificate & Digital Card Services
           </h1>
           
-          <p className="text-xl text-blue-300 mb-8 max-w-3xl mx-auto">
+          <p className="text-xl text-white mb-8 max-w-3xl mx-auto">
             Generate high-quality OSHA-compliant certificates and digital wallet cards that match industry standards. 
             Perfect for safety professionals who need authentic documentation for their training programs.
           </p>
@@ -93,7 +93,7 @@ export default function CertificateServicesPage() {
           {/* Pricing Structure */}
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Certificate Generation Pricing</h2>
-            <p className="text-blue-300 text-lg">
+            <p className="text-white text-lg">
               Plan-specific allowances with transparent overage pricing
             </p>
           </div>
@@ -101,13 +101,13 @@ export default function CertificateServicesPage() {
           <div className="grid md:grid-cols-4 gap-6 mb-12">
             <Card className="bg-gradient-to-br from-blue-600/20 to-purple-600/20 backdrop-blur-sm border-blue-400/30 text-white">
               <CardHeader className="text-center">
-                <CardTitle className="text-blue-300">Essential</CardTitle>
+                <CardTitle className="text-white">Essential</CardTitle>
                 <div className="text-2xl font-bold">$49/month</div>
               </CardHeader>
               <CardContent className="text-center">
                 <div className="text-lg font-semibold mb-2">15 items included</div>
-                <div className="text-sm text-blue-300">First month: 15 certificates + 15 digital cards</div>
-                <div className="text-sm text-blue-300 mt-2">Additional: $5.95 each</div>
+                <div className="text-sm text-white">First month: 15 certificates + 15 digital cards</div>
+                <div className="text-sm text-white mt-2">Additional: $5.95 each</div>
               </CardContent>
             </Card>
 
@@ -118,8 +118,8 @@ export default function CertificateServicesPage() {
               </CardHeader>
               <CardContent className="text-center">
                 <div className="text-lg font-semibold mb-2">50 items included</div>
-                <div className="text-sm text-blue-300">First month: 50 certificates + 50 digital cards</div>
-                <div className="text-sm text-blue-300 mt-2">Additional: $5.95 each</div>
+                <div className="text-sm text-white">First month: 50 certificates + 50 digital cards</div>
+                <div className="text-sm text-white mt-2">Additional: $5.95 each</div>
               </CardContent>
             </Card>
 
@@ -130,8 +130,8 @@ export default function CertificateServicesPage() {
               </CardHeader>
               <CardContent className="text-center">
                 <div className="text-lg font-semibold mb-2">100 items included</div>
-                <div className="text-sm text-blue-300">First month: 100 certificates + 100 digital cards</div>
-                <div className="text-sm text-blue-300 mt-2">Additional: $5.95 each</div>
+                <div className="text-sm text-white">First month: 100 certificates + 100 digital cards</div>
+                <div className="text-sm text-white mt-2">Additional: $5.95 each</div>
               </CardContent>
             </Card>
 
@@ -142,15 +142,15 @@ export default function CertificateServicesPage() {
               </CardHeader>
               <CardContent className="text-center">
                 <div className="text-lg font-semibold mb-2">250 items included</div>
-                <div className="text-sm text-blue-300">First month: 250 certificates + 250 digital cards</div>
-                <div className="text-sm text-blue-300 mt-2">Additional: $5.95 each</div>
+                <div className="text-sm text-white">First month: 250 certificates + 250 digital cards</div>
+                <div className="text-sm text-white mt-2">Additional: $5.95 each</div>
               </CardContent>
             </Card>
           </div>
 
           <div className="bg-blue-900/30 backdrop-blur-sm border border-blue-400/30 rounded-lg p-6 text-center">
             <h3 className="text-xl font-semibold mb-2">Billing Information</h3>
-            <p className="text-blue-300">
+            <p className="text-white">
               Additional certificates and digital cards are automatically billed to your monthly subscription at $5.95 each. 
               Service remains uninterrupted - generate as needed.
             </p>
@@ -163,7 +163,7 @@ export default function CertificateServicesPage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Digital Wallet Card Examples</h2>
-            <p className="text-blue-300 text-lg">
+            <p className="text-white text-lg">
               Professional credit card-sized examples showcasing generator capabilities
             </p>
           </div>
@@ -291,7 +291,7 @@ export default function CertificateServicesPage() {
       <section className="py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
-          <p className="text-blue-300 text-lg mb-8">
+          <p className="text-white text-lg mb-8">
             Choose a subscription plan that fits your needs and start generating professional certificates today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

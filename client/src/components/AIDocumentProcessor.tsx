@@ -426,7 +426,7 @@ Date: January 21, 2025`
               </div>
             ) : (
               <div className="space-y-2">
-                <Upload className="h-12 w-12 text-blue-300 mx-auto" />
+                <Upload className="h-12 w-12 text-white mx-auto" />
                 <p className="text-blue-500">
                   Upload instructor sign-in sheets, training rosters, or attendance documents
                 </p>
@@ -674,15 +674,15 @@ Date: January 21, 2025`
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                 <div className="flex items-center space-x-2 text-emerald-600">
-                  <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-violet-500 rounded-full"></div>
                   <span>Professional PDF certificates</span>
                 </div>
                 <div className="flex items-center space-x-2 text-emerald-600">
-                  <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-violet-500 rounded-full"></div>
                   <span>Digital wallet cards</span>
                 </div>
                 <div className="flex items-center space-x-2 text-emerald-600">
-                  <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-violet-500 rounded-full"></div>
                   <span>OSHA compliance records</span>
                 </div>
               </div>

@@ -39,7 +39,7 @@ const SmoothLoading = ({
       <div className={cn("flex items-center justify-center space-x-2", className)}>
         <Loader2 className={cn("animate-spin", sizes[size], colors[color])} />
         {text && (
-          <span className="text-sm text-blue-500 dark:text-blue-300 animate-pulse">
+          <span className="text-sm text-blue-500 dark:text-white animate-pulse">
             {text}
           </span>
         )}
@@ -56,7 +56,7 @@ const SmoothLoading = ({
           <span></span>
         </div>
         {text && (
-          <span className="text-sm text-blue-500 dark:text-blue-300 ml-2">
+          <span className="text-sm text-blue-500 dark:text-white ml-2">
             {text}
           </span>
         )}
@@ -78,7 +78,7 @@ const SmoothLoading = ({
     return (
       <div className={cn(
         "relative overflow-hidden rounded-lg",
-        "bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400",
+        "bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900",
         "backdrop-blur-sm border border-white/10 p-6 space-y-4",
         className
       )}>
@@ -110,7 +110,7 @@ const SmoothLoading = ({
         {text && (
           <div className="flex items-center justify-center space-x-2 mt-4 relative z-10">
             <Brain className="w-4 h-4 text-blue-400 animate-pulse-glow" />
-            <div className="text-sm text-blue-300">{text}</div>
+            <div className="text-sm text-white">{text}</div>
           </div>
         )}
       </div>
@@ -124,12 +124,12 @@ const SmoothLoading = ({
           "rounded-full animate-pulse",
           sizes[size],
           color === "blue" && "bg-blue-500",
-          color === "emerald" && "bg-emerald-500",
+          color === "emerald" && "bg-violet-500",
           color === "purple" && "bg-purple-500",
           color === "gray" && "bg-blue-400"
         )}></div>
         {text && (
-          <span className="text-sm text-blue-500 dark:text-blue-300">
+          <span className="text-sm text-blue-500 dark:text-white">
             {text}
           </span>
         )}

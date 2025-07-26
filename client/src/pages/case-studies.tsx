@@ -155,7 +155,7 @@ export default function CaseStudiesPage() {
   const allStudies = caseStudies.filter(study => !study.featured);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
+    <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900">
       <PageHeader />
 
       {/* Main Content with Sidebar Margin */}
@@ -166,7 +166,7 @@ export default function CaseStudiesPage() {
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Real Results from Real Companies
           </h1>
-          <p className="text-xl text-blue-300 max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-white max-w-3xl mx-auto mb-8">
             Discover how industry leaders across construction, manufacturing, and energy 
             sectors achieved dramatic compliance improvements with SafetySync.AI
           </p>
@@ -176,10 +176,10 @@ export default function CaseStudiesPage() {
             {industryMetrics.map((metric, index) => (
               <div key={index} className="text-center">
                 <div className="flex items-center justify-center mb-2">
-                  <metric.icon className="w-6 h-6 text-emerald-400 mr-2" />
-                  <div className="text-2xl font-bold text-emerald-400">{metric.value}</div>
+                  <metric.icon className="w-6 h-6 text-violet-400 mr-2" />
+                  <div className="text-2xl font-bold text-violet-400">{metric.value}</div>
                 </div>
-                <div className="text-sm text-blue-300">{metric.metric}</div>
+                <div className="text-sm text-white">{metric.metric}</div>
               </div>
             ))}
           </div>
@@ -193,13 +193,13 @@ export default function CaseStudiesPage() {
               <Card key={study.id} className="hover:shadow-xl transition-all duration-300 bg-blue-700/50 border-blue-600/50 backdrop-blur-sm hover:bg-blue-700/70">
                 <CardHeader>
                   <div className="flex items-center justify-between mb-2">
-                    <Badge variant="outline" className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30">
+                    <Badge variant="outline" className="bg-violet-500/20 text-emerald-300 border-violet-500/30">
                       Featured
                     </Badge>
-                    <div className="text-sm text-blue-300">{study.timeline}</div>
+                    <div className="text-sm text-white">{study.timeline}</div>
                   </div>
                   <CardTitle className="text-xl text-white">{study.company}</CardTitle>
-                  <CardDescription className="flex items-center gap-4 text-sm text-blue-300">
+                  <CardDescription className="flex items-center gap-4 text-sm text-white">
                     <span className="flex items-center gap-1">
                       <Building className="w-4 h-4" />
                       {study.industry}
@@ -214,13 +214,13 @@ export default function CaseStudiesPage() {
                   {/* Challenge */}
                   <div>
                     <h4 className="font-semibold text-white mb-2">The Challenge</h4>
-                    <p className="text-blue-300 text-sm leading-relaxed">{study.challenge}</p>
+                    <p className="text-white text-sm leading-relaxed">{study.challenge}</p>
                   </div>
 
                   {/* Solution */}
                   <div>
                     <h4 className="font-semibold text-white mb-2">SafetySync Solution</h4>
-                    <p className="text-blue-300 text-sm leading-relaxed">{study.solution}</p>
+                    <p className="text-white text-sm leading-relaxed">{study.solution}</p>
                   </div>
 
                   {/* Key Implementation Points */}
@@ -228,8 +228,8 @@ export default function CaseStudiesPage() {
                     <h4 className="font-semibold text-white mb-2">Implementation Highlights</h4>
                     <ul className="space-y-1">
                       {study.implementation.slice(0, 3).map((item, index) => (
-                        <li key={index} className="flex items-start gap-2 text-sm text-blue-300">
-                          <CheckCircle className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
+                        <li key={index} className="flex items-start gap-2 text-sm text-white">
+                          <CheckCircle className="w-4 h-4 text-violet-400 mt-0.5 flex-shrink-0" />
                           {item}
                         </li>
                       ))}
@@ -244,28 +244,28 @@ export default function CaseStudiesPage() {
                     </h4>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="text-center">
-                        <div className="text-2xl font-bold text-emerald-400">{study.results.timeReduction}</div>
-                        <div className="text-xs text-blue-300">Time Reduction</div>
+                        <div className="text-2xl font-bold text-violet-400">{study.results.timeReduction}</div>
+                        <div className="text-xs text-white">Time Reduction</div>
                       </div>
                       <div className="text-center">
                         <div className="text-2xl font-bold text-blue-400">{study.results.costSavings}</div>
-                        <div className="text-xs text-blue-300">Annual Savings</div>
+                        <div className="text-xs text-white">Annual Savings</div>
                       </div>
                       <div className="text-center">
                         <div className="text-2xl font-bold text-purple-400">{study.results.complianceImprovement}</div>
-                        <div className="text-xs text-blue-300">Compliance Score</div>
+                        <div className="text-xs text-white">Compliance Score</div>
                       </div>
                       <div className="text-center">
                         <div className="text-2xl font-bold text-orange-400">{study.results.roi}</div>
-                        <div className="text-xs text-blue-300">ROI</div>
+                        <div className="text-xs text-white">ROI</div>
                       </div>
                     </div>
                   </div>
 
                   {/* Quote */}
-                  <blockquote className="border-l-4 border-emerald-500/50 pl-4 italic text-blue-300">
+                  <blockquote className="border-l-4 border-violet-500/50 pl-4 italic text-white">
                     "{study.quote}"
-                    <footer className="mt-2 text-sm text-blue-300">
+                    <footer className="mt-2 text-sm text-white">
                       — {study.author}, {study.authorTitle}
                     </footer>
                   </blockquote>
@@ -284,9 +284,9 @@ export default function CaseStudiesPage() {
                 <CardHeader>
                   <div className="flex items-center justify-between mb-2">
                     <CardTitle className="text-lg text-white">{study.company}</CardTitle>
-                    <div className="text-sm text-blue-300">{study.timeline}</div>
+                    <div className="text-sm text-white">{study.timeline}</div>
                   </div>
-                  <CardDescription className="flex items-center gap-4 text-sm text-blue-300">
+                  <CardDescription className="flex items-center gap-4 text-sm text-white">
                     <span className="flex items-center gap-1">
                       <Building className="w-4 h-4" />
                       {study.industry}
@@ -298,7 +298,7 @@ export default function CaseStudiesPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <p className="text-blue-300 text-sm leading-relaxed line-clamp-3">
+                  <p className="text-white text-sm leading-relaxed line-clamp-3">
                     {study.challenge}
                   </p>
                   
@@ -306,17 +306,17 @@ export default function CaseStudiesPage() {
                   <div className="bg-blue-600/50 rounded-lg p-3 backdrop-blur-sm">
                     <div className="grid grid-cols-2 gap-3 text-center">
                       <div>
-                        <div className="text-lg font-bold text-emerald-400">{study.results.timeReduction}</div>
-                        <div className="text-xs text-blue-300">Time Saved</div>
+                        <div className="text-lg font-bold text-violet-400">{study.results.timeReduction}</div>
+                        <div className="text-xs text-white">Time Saved</div>
                       </div>
                       <div>
                         <div className="text-lg font-bold text-blue-400">{study.results.roi}</div>
-                        <div className="text-xs text-blue-300">ROI</div>
+                        <div className="text-xs text-white">ROI</div>
                       </div>
                     </div>
                   </div>
 
-                  <blockquote className="text-sm italic text-blue-300 border-l-2 border-emerald-500/50 pl-3">
+                  <blockquote className="text-sm italic text-white border-l-2 border-violet-500/50 pl-3">
                     "{study.quote}"
                   </blockquote>
                 </CardContent>
@@ -335,15 +335,15 @@ export default function CaseStudiesPage() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center">
                   <div className="text-3xl font-bold text-blue-400 mb-2">1,200+</div>
-                  <div className="text-blue-300">Companies Transformed</div>
+                  <div className="text-white">Companies Transformed</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-emerald-400 mb-2">$8.5M</div>
-                  <div className="text-blue-300">Total Cost Savings</div>
+                  <div className="text-3xl font-bold text-violet-400 mb-2">$8.5M</div>
+                  <div className="text-white">Total Cost Savings</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-purple-400 mb-2">99.2%</div>
-                  <div className="text-blue-300">Customer Satisfaction</div>
+                  <div className="text-white">Customer Satisfaction</div>
                 </div>
               </div>
             </CardContent>

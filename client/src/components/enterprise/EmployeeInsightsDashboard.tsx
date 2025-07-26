@@ -270,7 +270,7 @@ export function EmployeeInsightsDashboard() {
       <div className="p-8 space-y-6">
         <div className="flex items-center justify-between">
           <h2 className="text-2xl font-bold text-white">Employee Insights Dashboard</h2>
-          <RefreshCw className="h-6 w-6 text-blue-300 animate-spin" />
+          <RefreshCw className="h-6 w-6 text-white animate-spin" />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[1, 2, 3, 4].map(i => (
@@ -291,19 +291,19 @@ export function EmployeeInsightsDashboard() {
   if (!insights) {
     return (
       <div className="p-8 text-center">
-        <Users className="h-12 w-12 text-blue-300 mx-auto mb-4" />
+        <Users className="h-12 w-12 text-white mx-auto mb-4" />
         <h3 className="text-lg font-semibold text-white mb-2">No Employee Data</h3>
-        <p className="text-blue-300">Add employees to see insights and analytics</p>
+        <p className="text-white">Add employees to see insights and analytics</p>
       </div>
     );
   }
 
   return (
-    <div className="p-8 space-y-6 bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 min-h-screen">
+    <div className="p-8 space-y-6 bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 min-h-screen">
       {/* Header */}
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div className="flex items-center gap-3">
-          <Brain className="h-8 w-8 text-emerald-400" />
+          <Brain className="h-8 w-8 text-violet-400" />
           <h2 className="text-2xl font-bold text-white">Employee Insights Dashboard</h2>
         </div>
         <div className="flex items-center gap-4">
@@ -344,9 +344,9 @@ export function EmployeeInsightsDashboard() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-blue-300">Total Employees</p>
+                <p className="text-sm text-white">Total Employees</p>
                 <p className="text-2xl font-bold text-white">{insights.totalEmployees}</p>
-                <p className="text-xs text-emerald-400 flex items-center gap-1">
+                <p className="text-xs text-violet-400 flex items-center gap-1">
                   <TrendingUp className="h-3 w-3" />
                   {insights.activeRate.toFixed(1)}% active
                 </p>
@@ -360,14 +360,14 @@ export function EmployeeInsightsDashboard() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-blue-300">ID Verified</p>
+                <p className="text-sm text-white">ID Verified</p>
                 <p className="text-2xl font-bold text-white">{insights.verifiedEmployees}</p>
-                <p className="text-xs text-emerald-400 flex items-center gap-1">
+                <p className="text-xs text-violet-400 flex items-center gap-1">
                   <ShieldCheck className="h-3 w-3" />
                   {insights.verificationRate.toFixed(1)}% verified
                 </p>
               </div>
-              <Shield className="h-8 w-8 text-emerald-400" />
+              <Shield className="h-8 w-8 text-violet-400" />
             </div>
           </CardContent>
         </Card>
@@ -376,7 +376,7 @@ export function EmployeeInsightsDashboard() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-blue-300">Active Certificates</p>
+                <p className="text-sm text-white">Active Certificates</p>
                 <p className="text-2xl font-bold text-white">{insights.activeCertificates}</p>
                 <p className="text-xs text-yellow-400 flex items-center gap-1">
                   <AlertTriangle className="h-3 w-3" />
@@ -392,7 +392,7 @@ export function EmployeeInsightsDashboard() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-blue-300">Compliance Score</p>
+                <p className="text-sm text-white">Compliance Score</p>
                 <p className="text-2xl font-bold text-white">{insights.complianceScore.toFixed(1)}%</p>
                 <p className="text-xs text-purple-400 flex items-center gap-1">
                   <Target className="h-3 w-3" />
@@ -524,21 +524,21 @@ export function EmployeeInsightsDashboard() {
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div className="text-center">
                       <p className="text-2xl font-bold text-blue-400">{dept.count}</p>
-                      <p className="text-sm text-blue-300">Total</p>
+                      <p className="text-sm text-white">Total</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-2xl font-bold text-emerald-400">{dept.activeCount}</p>
-                      <p className="text-sm text-blue-300">Active</p>
+                      <p className="text-2xl font-bold text-violet-400">{dept.activeCount}</p>
+                      <p className="text-sm text-white">Active</p>
                     </div>
                     <div className="text-center">
                       <p className="text-2xl font-bold text-purple-400">{dept.verifiedCount}</p>
-                      <p className="text-sm text-blue-300">Verified</p>
+                      <p className="text-sm text-white">Verified</p>
                     </div>
                     <div className="text-center">
                       <p className="text-2xl font-bold text-yellow-400">
                         {dept.count > 0 ? ((dept.activeCount / dept.count) * 100).toFixed(1) : 0}%
                       </p>
-                      <p className="text-sm text-blue-300">Active Rate</p>
+                      <p className="text-sm text-white">Active Rate</p>
                     </div>
                   </div>
                 </CardContent>
@@ -588,7 +588,7 @@ export function EmployeeInsightsDashboard() {
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
                     <div className={`p-2 rounded-full ${
-                      insight.type === 'success' ? 'bg-emerald-500/20 text-emerald-400' :
+                      insight.type === 'success' ? 'bg-violet-500/20 text-violet-400' :
                       insight.type === 'warning' ? 'bg-yellow-500/20 text-yellow-400' :
                       insight.type === 'alert' ? 'bg-red-500/20 text-red-400' :
                       'bg-blue-500/20 text-blue-400'
@@ -612,11 +612,11 @@ export function EmployeeInsightsDashboard() {
                           {insight.priority}
                         </Badge>
                       </div>
-                      <p className="text-blue-300 mb-3">{insight.description}</p>
+                      <p className="text-white mb-3">{insight.description}</p>
                       <div className="flex items-center gap-2">
                         <Zap className="h-4 w-4 text-purple-400" />
                         <span className="text-sm text-purple-400 font-medium">Recommended Action:</span>
-                        <span className="text-sm text-blue-300">{insight.action}</span>
+                        <span className="text-sm text-white">{insight.action}</span>
                       </div>
                     </div>
                   </div>

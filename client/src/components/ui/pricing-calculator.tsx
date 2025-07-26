@@ -606,7 +606,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
                 <div className="space-y-2">
                   {/* Show original price if promo is applied */}
                   {pricing.promoDiscount > 0 && (
-                    <div className="text-lg text-blue-300 line-through">
+                    <div className="text-lg text-white line-through">
                       ${Math.round(isAnnual ? pricing.monthly : pricing.monthly)}
                     </div>
                   )}

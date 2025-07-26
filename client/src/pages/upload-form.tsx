@@ -80,7 +80,7 @@ export default function UploadFormPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 p-4">
       <div className="max-w-4xl mx-auto pt-20">
         
         {/* Header */}
@@ -88,7 +88,7 @@ export default function UploadFormPage() {
           <h1 className="text-4xl font-bold text-white mb-4">
             PDF Document Upload
           </h1>
-          <p className="text-xl text-blue-300">
+          <p className="text-xl text-white">
             Upload OSHA training documents for AI-powered data extraction
           </p>
         </div>
@@ -100,7 +100,7 @@ export default function UploadFormPage() {
               <Upload className="w-5 h-5 mr-2" />
               Upload Training Document
             </CardTitle>
-            <CardDescription className="text-blue-300">
+            <CardDescription className="text-white">
               Select a PDF file containing OSHA training records for processing
             </CardDescription>
           </CardHeader>
@@ -119,7 +119,7 @@ export default function UploadFormPage() {
                 className="bg-blue-700 border-blue-500 text-white file:bg-emerald-600 file:text-white file:border-0"
               />
               {selectedFile && (
-                <div className="flex items-center text-emerald-400 text-sm">
+                <div className="flex items-center text-violet-400 text-sm">
                   <FileText className="w-4 h-4 mr-2" />
                   {selectedFile.name} ({(selectedFile.size / 1024 / 1024).toFixed(2)} MB)
                 </div>
@@ -149,7 +149,7 @@ export default function UploadFormPage() {
             {uploadResult && (
               <Card className="bg-blue-700/50 border-blue-500">
                 <CardHeader>
-                  <CardTitle className="text-emerald-400 flex items-center">
+                  <CardTitle className="text-violet-400 flex items-center">
                     <CheckCircle className="w-5 h-5 mr-2" />
                     Processing Complete
                   </CardTitle>
@@ -157,18 +157,18 @@ export default function UploadFormPage() {
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
-                      <span className="text-blue-300">Record ID:</span>
+                      <span className="text-white">Record ID:</span>
                       <p className="text-white font-mono">{uploadResult.id}</p>
                     </div>
                     <div>
-                      <span className="text-blue-300">Confidence:</span>
-                      <p className="text-emerald-400">{uploadResult.confidence}%</p>
+                      <span className="text-white">Confidence:</span>
+                      <p className="text-violet-400">{uploadResult.confidence}%</p>
                     </div>
                   </div>
                   
                   {uploadResult.data?.employees && (
                     <div>
-                      <span className="text-blue-300">Extracted Employees:</span>
+                      <span className="text-white">Extracted Employees:</span>
                       <div className="mt-2 space-y-1">
                         {uploadResult.data.employees.map((emp: any, idx: number) => (
                           <div key={idx} className="text-white text-sm bg-blue-600/50 p-2 rounded">
@@ -181,7 +181,7 @@ export default function UploadFormPage() {
 
                   {uploadResult.data?.trainingTitle && (
                     <div>
-                      <span className="text-blue-300">Training:</span>
+                      <span className="text-white">Training:</span>
                       <p className="text-white">{uploadResult.data.trainingTitle}</p>
                     </div>
                   )}
@@ -194,14 +194,14 @@ export default function UploadFormPage() {
               <Button
                 onClick={() => window.location.href = '/api/records'}
                 variant="outline"
-                className="border-blue-500 text-blue-300 hover:bg-blue-600"
+                className="border-blue-500 text-white hover:bg-blue-600"
               >
                 View All Records
               </Button>
               <Button
                 onClick={() => window.location.href = '/api/dashboard'}
                 variant="outline"
-                className="border-blue-500 text-blue-300 hover:bg-blue-600"
+                className="border-blue-500 text-white hover:bg-blue-600"
               >
                 Dashboard
               </Button>
@@ -211,13 +211,13 @@ export default function UploadFormPage() {
         </Card>
 
         {/* Python Equivalent Note */}
-        <Card className="mt-8 bg-blue-800/50 border-blue-600/50">
+        <Card className="mt-8 bg-blue-900/60 border-blue-600/50">
           <CardContent className="p-4">
             <div className="flex items-center text-yellow-400 mb-2">
               <AlertCircle className="w-4 h-4 mr-2" />
               <span className="font-semibold">Python Flask Equivalent</span>
             </div>
-            <p className="text-blue-300 text-sm">
+            <p className="text-white text-sm">
               This TypeScript React page provides the same functionality as your Python Flask 
               <code className="bg-blue-700 px-1 rounded mx-1">render_template("upload_form.html")</code>
               with modern UI components and real-time processing feedback.

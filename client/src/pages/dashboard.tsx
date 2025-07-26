@@ -100,7 +100,7 @@ function LoginForm() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-6 shadow-2xl">
           <div className="text-center mb-6">
@@ -256,7 +256,7 @@ export default function Dashboard() {
   // Show loading state while checking authentication
   if (authLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 flex items-center justify-center">
         <div className="text-white">Loading...</div>
       </div>
     );
@@ -268,7 +268,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 relative overflow-hidden">
       {/* Tech Grid Background */}
       <div className="absolute inset-0 tech-grid opacity-20"></div>
       
@@ -342,7 +342,7 @@ export default function Dashboard() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
         {/* Header */}
         <div className="mb-8 text-center">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-500/20 text-blue-300 text-sm font-medium mb-4 backdrop-blur-sm border border-blue-500/30">
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-500/20 text-white text-sm font-medium mb-4 backdrop-blur-sm border border-blue-500/30">
             <Brain className="w-4 h-4 mr-2" />
             AI-Powered Compliance Dashboard
           </div>
@@ -351,7 +351,7 @@ export default function Dashboard() {
               Compliance Dashboard
             </span>
           </h1>
-          <p className="text-blue-300 text-lg">
+          <p className="text-white text-lg">
             Monitor and manage your OSHA compliance status with intelligent automation
           </p>
         </div>
@@ -365,12 +365,12 @@ export default function Dashboard() {
                   <Brain className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-blue-300">AI-Powered Setup Guide</h3>
+                  <h3 className="font-medium text-white">AI-Powered Setup Guide</h3>
                   <p className="text-sm text-blue-200">Follow the intelligent workflow: Employees → Training → Branding → Reports for optimal setup</p>
                 </div>
               </div>
               <Link href="/user-guide">
-                <Button variant="outline" size="sm" className="border-blue-400/50 text-blue-300 hover:bg-blue-400/20 hover:border-blue-400 transition-all duration-300">
+                <Button variant="outline" size="sm" className="border-blue-400/50 text-white hover:bg-blue-400/20 hover:border-blue-400 transition-all duration-300">
                   <BookOpen className="w-4 h-4 mr-2" />
                   Full Guide
                 </Button>
@@ -394,7 +394,7 @@ export default function Dashboard() {
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-blue-300">🤖 AI-Verified Compliant</p>
+                      <p className="text-sm font-medium text-white">🤖 AI-Verified Compliant</p>
                       <p className="text-3xl font-bold text-white">{stats.totalEmployees}</p>
                     </div>
                     <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-blue-500 rounded-lg flex items-center justify-center group-hover:pulse-glow">
@@ -523,7 +523,7 @@ export default function Dashboard() {
                   </div>
                   AI-Monitored Recent Activity
                 </CardTitle>
-                <CardDescription className="text-blue-300">
+                <CardDescription className="text-white">
                   Real-time intelligent compliance tracking and notifications
                 </CardDescription>
               </CardHeader>
@@ -1482,7 +1482,7 @@ export default function Dashboard() {
                   <div className="flex items-center space-x-4">
                     <div className="w-24 h-24 bg-blue-100 border-2 border-dashed border-blue-300 rounded-lg flex items-center justify-center">
                       <div className="text-center">
-                        <Palette className="w-8 h-8 text-blue-300 mx-auto mb-2" />
+                        <Palette className="w-8 h-8 text-white mx-auto mb-2" />
                         <p className="text-xs text-blue-400">Current Logo</p>
                       </div>
                     </div>
@@ -2045,7 +2045,7 @@ export default function Dashboard() {
                   <Activity className="w-5 h-5 text-blue-400" />
                   Interactive Safety Trends Dashboard
                 </CardTitle>
-                <CardDescription className="text-blue-300">
+                <CardDescription className="text-white">
                   Real-time safety analytics with predictive intelligence and animated trend visualizations
                 </CardDescription>
               </CardHeader>
@@ -2057,7 +2057,7 @@ export default function Dashboard() {
                       Launch Safety Trends Dashboard
                     </Button>
                   </Link>
-                  <p className="text-sm text-blue-300 mt-3 text-center">
+                  <p className="text-sm text-white mt-3 text-center">
                     Access comprehensive safety trend analysis, real-time metrics, and AI-powered insights
                   </p>
                 </div>

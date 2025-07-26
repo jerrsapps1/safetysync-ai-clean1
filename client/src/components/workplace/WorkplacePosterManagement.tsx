@@ -188,7 +188,7 @@ export default function WorkplacePosterManagement() {
       case 'compliant': return 'bg-green-500/20 text-green-400 border-green-500/30';
       case 'non-compliant': return 'bg-red-500/20 text-red-400 border-red-500/30';
       case 'pending': return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30';
-      default: return 'bg-blue-400/20 text-blue-300 border-blue-400/30';
+      default: return 'bg-blue-400/20 text-white border-blue-400/30';
     }
   };
 
@@ -196,8 +196,8 @@ export default function WorkplacePosterManagement() {
     switch (category) {
       case 'federal': return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
       case 'state': return 'bg-purple-500/20 text-purple-400 border-purple-500/30';
-      case 'local': return 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30';
-      default: return 'bg-blue-400/20 text-blue-300 border-blue-400/30';
+      case 'local': return 'bg-violet-500/20 text-violet-400 border-violet-500/30';
+      default: return 'bg-blue-400/20 text-white border-blue-400/30';
     }
   };
 
@@ -217,7 +217,7 @@ export default function WorkplacePosterManagement() {
   return (
     <div className="space-y-6 relative">
       {/* Tech grid background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 opacity-10 rounded-lg"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 opacity-10 rounded-lg"></div>
       
       {/* Floating tech icons */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -231,7 +231,7 @@ export default function WorkplacePosterManagement() {
           <TrendingUp className="w-6 h-6 text-green-400/30" />
         </div>
         <div className="absolute bottom-32 right-32 animate-float-delay-3">
-          <Shield className="w-7 h-7 text-emerald-400/30" />
+          <Shield className="w-7 h-7 text-violet-400/30" />
         </div>
       </div>
 
@@ -241,13 +241,13 @@ export default function WorkplacePosterManagement() {
             <SafetySyncIcon size={32} className="rounded-lg" />
             Workplace Poster Management
           </h2>
-          <p className="text-blue-300">Track and manage mandatory workplace safety and compliance posters</p>
-          <p className="text-blue-300 text-sm mt-1">
+          <p className="text-white">Track and manage mandatory workplace safety and compliance posters</p>
+          <p className="text-white text-sm mt-1">
             📋 OSHA & DOL compliant posters • {averageCompliance.toFixed(1)}% location compliance
           </p>
         </div>
         <div className="flex items-center space-x-2">
-          <Button className="bg-emerald-500 hover:bg-emerald-600 text-white">
+          <Button className="bg-violet-500 hover:bg-emerald-600 text-white">
             <Plus className="w-4 h-4 mr-2" />
             Add Poster
           </Button>
@@ -264,7 +264,7 @@ export default function WorkplacePosterManagement() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-blue-300 text-sm">Total Posters</p>
+                <p className="text-white text-sm">Total Posters</p>
                 <p className="text-2xl font-bold text-white">{totalPosters}</p>
                 <p className="text-blue-400 text-sm">🤖 AI-Tracked</p>
               </div>
@@ -277,7 +277,7 @@ export default function WorkplacePosterManagement() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-blue-300 text-sm">Required Posters</p>
+                <p className="text-white text-sm">Required Posters</p>
                 <p className="text-2xl font-bold text-white">{requiredPosters}</p>
                 <p className="text-green-400 text-sm">Mandatory</p>
               </div>
@@ -290,7 +290,7 @@ export default function WorkplacePosterManagement() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-blue-300 text-sm">Expired/Updated</p>
+                <p className="text-white text-sm">Expired/Updated</p>
                 <p className="text-2xl font-bold text-white">{expiredPosters}</p>
                 <p className="text-yellow-400 text-sm">Needs Attention</p>
               </div>
@@ -303,7 +303,7 @@ export default function WorkplacePosterManagement() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-blue-300 text-sm">Avg Compliance</p>
+                <p className="text-white text-sm">Avg Compliance</p>
                 <p className="text-2xl font-bold text-white">{averageCompliance.toFixed(1)}%</p>
                 <p className="text-purple-400 text-sm">All Locations</p>
               </div>
@@ -316,7 +316,7 @@ export default function WorkplacePosterManagement() {
       {/* Search and Filter */}
       <div className="flex items-center gap-4 relative z-10">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-blue-300" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white" />
           <Input
             placeholder="Search posters by title or regulation..."
             value={searchTerm}
@@ -325,7 +325,7 @@ export default function WorkplacePosterManagement() {
           />
         </div>
         <div className="flex items-center gap-2">
-          <Filter className="w-4 h-4 text-blue-300" />
+          <Filter className="w-4 h-4 text-white" />
           <Select value={selectedCategory} onValueChange={setSelectedCategory}>
             <SelectTrigger className="bg-blue-700/50 border-blue-600 text-white">
               <SelectValue placeholder="Category" />
@@ -356,21 +356,21 @@ export default function WorkplacePosterManagement() {
         <TabsList className="grid w-full grid-cols-3 bg-black/20 backdrop-blur-sm border-blue-700">
           <TabsTrigger 
             value="posters" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-white hover:text-white transition-all duration-200"
           >
             <FileText className="h-4 w-4" />
             Posters
           </TabsTrigger>
           <TabsTrigger 
             value="compliance" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-white hover:text-white transition-all duration-200"
           >
             <CheckCircle className="h-4 w-4" />
             Compliance
           </TabsTrigger>
           <TabsTrigger 
             value="locations" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-white hover:text-white transition-all duration-200"
           >
             <MapPin className="h-4 w-4" />
             Locations
@@ -385,7 +385,7 @@ export default function WorkplacePosterManagement() {
                   <div className="flex items-start justify-between">
                     <div>
                       <CardTitle className="text-white">{poster.title}</CardTitle>
-                      <CardDescription className="text-blue-300">
+                      <CardDescription className="text-white">
                         {poster.regulation} • {poster.size}
                       </CardDescription>
                     </div>
@@ -400,24 +400,24 @@ export default function WorkplacePosterManagement() {
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <p className="text-blue-300 text-sm">{poster.description}</p>
+                  <p className="text-white text-sm">{poster.description}</p>
                   
                   <div className="grid grid-cols-2 gap-4">
                     <div className="flex items-center gap-2">
                       <Calendar className="w-4 h-4 text-blue-400" />
-                      <span className="text-blue-300 text-sm">Updated: {poster.lastUpdated}</span>
+                      <span className="text-white text-sm">Updated: {poster.lastUpdated}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Building className="w-4 h-4 text-purple-400" />
-                      <span className="text-blue-300 text-sm">{poster.locations.length} locations</span>
+                      <span className="text-white text-sm">{poster.locations.length} locations</span>
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <p className="text-blue-300 text-sm font-medium">Industries:</p>
+                    <p className="text-white text-sm font-medium">Industries:</p>
                     <div className="flex flex-wrap gap-1">
                       {poster.industry.map((ind, index) => (
-                        <Badge key={index} variant="outline" className="text-xs text-emerald-300 border-emerald-500/30">
+                        <Badge key={index} variant="outline" className="text-xs text-emerald-300 border-violet-500/30">
                           {ind}
                         </Badge>
                       ))}
@@ -425,10 +425,10 @@ export default function WorkplacePosterManagement() {
                   </div>
 
                   <div className="space-y-2">
-                    <p className="text-blue-300 text-sm font-medium">Posted At:</p>
+                    <p className="text-white text-sm font-medium">Posted At:</p>
                     <div className="flex flex-wrap gap-1">
                       {poster.locations.map((loc, index) => (
-                        <Badge key={index} variant="outline" className="text-xs text-blue-300 border-blue-500/30">
+                        <Badge key={index} variant="outline" className="text-xs text-white border-blue-500/30">
                           {loc}
                         </Badge>
                       ))}
@@ -444,7 +444,7 @@ export default function WorkplacePosterManagement() {
                       <Download className="w-3 h-3 mr-1" />
                       Download
                     </Button>
-                    <Button size="sm" variant="outline" className="border-blue-500 text-blue-300">
+                    <Button size="sm" variant="outline" className="border-blue-500 text-white">
                       <Edit className="w-3 h-3 mr-1" />
                       Edit
                     </Button>
@@ -463,7 +463,7 @@ export default function WorkplacePosterManagement() {
                   <div className="flex items-start justify-between">
                     <div>
                       <CardTitle className="text-white">{comp.location}</CardTitle>
-                      <CardDescription className="text-blue-300">
+                      <CardDescription className="text-white">
                         {comp.currentPosters} of {comp.requiredPosters} posters displayed
                       </CardDescription>
                     </div>
@@ -475,7 +475,7 @@ export default function WorkplacePosterManagement() {
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="text-blue-300">Compliance Score</span>
+                      <span className="text-white">Compliance Score</span>
                       <span className="text-white font-bold">{comp.complianceScore}%</span>
                     </div>
                     <div className="w-full bg-blue-600 rounded-full h-2">
@@ -489,17 +489,17 @@ export default function WorkplacePosterManagement() {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="flex items-center gap-2">
                       <Calendar className="w-4 h-4 text-blue-400" />
-                      <span className="text-blue-300 text-sm">Last Audit: {comp.lastAudit}</span>
+                      <span className="text-white text-sm">Last Audit: {comp.lastAudit}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <CheckCircle className="w-4 h-4 text-green-400" />
-                      <span className="text-blue-300 text-sm">{comp.currentPosters} Current</span>
+                      <span className="text-white text-sm">{comp.currentPosters} Current</span>
                     </div>
                   </div>
 
                   {comp.missingPosters.length > 0 && (
                     <div className="space-y-2">
-                      <p className="text-blue-300 text-sm font-medium">Missing Posters:</p>
+                      <p className="text-white text-sm font-medium">Missing Posters:</p>
                       <div className="flex flex-wrap gap-1">
                         {comp.missingPosters.map((missing, index) => (
                           <Badge key={index} className="bg-red-500/20 text-red-400 border-red-500/30">
@@ -515,7 +515,7 @@ export default function WorkplacePosterManagement() {
                       <Eye className="w-3 h-3 mr-1" />
                       View Details
                     </Button>
-                    <Button size="sm" className="bg-emerald-500 hover:bg-emerald-600 text-white">
+                    <Button size="sm" className="bg-violet-500 hover:bg-emerald-600 text-white">
                       <Settings className="w-3 h-3 mr-1" />
                       Audit
                     </Button>
@@ -530,7 +530,7 @@ export default function WorkplacePosterManagement() {
           <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
             <CardHeader>
               <CardTitle className="text-white">Location Management</CardTitle>
-              <CardDescription className="text-blue-300">
+              <CardDescription className="text-white">
                 Manage poster requirements and compliance by location
               </CardDescription>
             </CardHeader>
@@ -541,7 +541,7 @@ export default function WorkplacePosterManagement() {
                     <div className="flex items-start justify-between mb-3">
                       <div>
                         <h4 className="text-white font-medium">{comp.location}</h4>
-                        <p className="text-blue-300 text-sm">
+                        <p className="text-white text-sm">
                           {comp.currentPosters} of {comp.requiredPosters} posters displayed
                         </p>
                       </div>
@@ -552,15 +552,15 @@ export default function WorkplacePosterManagement() {
                     <div className="grid grid-cols-3 gap-4">
                       <div className="text-center">
                         <p className="text-2xl font-bold text-white">{comp.requiredPosters}</p>
-                        <p className="text-blue-300 text-sm">Required</p>
+                        <p className="text-white text-sm">Required</p>
                       </div>
                       <div className="text-center">
                         <p className="text-2xl font-bold text-green-400">{comp.currentPosters}</p>
-                        <p className="text-blue-300 text-sm">Current</p>
+                        <p className="text-white text-sm">Current</p>
                       </div>
                       <div className="text-center">
                         <p className="text-2xl font-bold text-red-400">{comp.missingPosters.length}</p>
-                        <p className="text-blue-300 text-sm">Missing</p>
+                        <p className="text-white text-sm">Missing</p>
                       </div>
                     </div>
                   </div>

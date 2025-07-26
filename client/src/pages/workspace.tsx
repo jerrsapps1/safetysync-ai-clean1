@@ -232,7 +232,7 @@ function LoginForm() {
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-emerald-500 hover:bg-emerald-600 text-white"
+                className="w-full bg-violet-500 hover:bg-emerald-600 text-white"
               >
                 {isLoading ? "Signing in..." : "Sign In"}
               </Button>
@@ -1419,17 +1419,17 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     {getGreeting()}, {user?.name?.split(' ')[0] || 'Safety Manager'}!
                   </h3>
                 </div>
-                <p className="text-blue-300 text-sm mb-3 line-clamp-2">
+                <p className="text-white text-sm mb-3 line-clamp-2">
                   {getMotivationalMessage()}
                 </p>
                 <div className="flex items-center space-x-4 text-xs">
                   <div className="flex items-center space-x-2">
                     <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse flex-shrink-0" />
-                    <span className="text-blue-300">System Online</span>
+                    <span className="text-white">System Online</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Calendar className="w-3 h-3 text-blue-400 flex-shrink-0" />
-                    <span className="text-blue-300 hidden sm:inline">
+                    <span className="text-white hidden sm:inline">
                       {new Date().toLocaleDateString('en-US', { 
                         weekday: 'short', 
                         month: 'short', 
@@ -1442,7 +1442,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               <div className="flex items-center space-x-3 flex-shrink-0">
                 <div className="text-right">
                   <p className="text-xl font-bold text-white">{stats.complianceScore}%</p>
-                  <p className="text-blue-300 text-xs">Compliance</p>
+                  <p className="text-white text-xs">Compliance</p>
                 </div>
                 <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-full flex items-center justify-center">
                   <Shield className="w-6 h-6 text-white" />
@@ -1455,7 +1455,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         return (
           <div className="flex items-center justify-between h-full">
             <div className="flex-1 min-w-0">
-              <p className={`text-blue-300 ${labelSize} truncate`}>Total Employees</p>
+              <p className={`text-white ${labelSize} truncate`}>Total Employees</p>
               <p className={`${textSize} font-bold text-white truncate`}>{stats.totalEmployees}</p>
             </div>
             <Users className={`${iconSize} text-blue-400 flex-shrink-0 ml-2`} />
@@ -1465,17 +1465,17 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         return (
           <div className="flex items-center justify-between h-full">
             <div className="flex-1 min-w-0">
-              <p className={`text-blue-300 ${labelSize} truncate`}>Compliant</p>
-              <p className={`${textSize} font-bold text-emerald-400 truncate`}>{stats.compliantEmployees}</p>
+              <p className={`text-white ${labelSize} truncate`}>Compliant</p>
+              <p className={`${textSize} font-bold text-violet-400 truncate`}>{stats.compliantEmployees}</p>
             </div>
-            <CheckCircle className={`${iconSize} text-emerald-400 flex-shrink-0 ml-2`} />
+            <CheckCircle className={`${iconSize} text-violet-400 flex-shrink-0 ml-2`} />
           </div>
         );
       case "pending-training":
         return (
           <div className="flex items-center justify-between h-full">
             <div className="flex-1 min-w-0">
-              <p className={`text-blue-300 ${labelSize} truncate`}>Pending Training</p>
+              <p className={`text-white ${labelSize} truncate`}>Pending Training</p>
               <p className={`${textSize} font-bold text-yellow-400 truncate`}>{stats.pendingTraining}</p>
             </div>
             <Clock className={`${iconSize} text-yellow-400 flex-shrink-0 ml-2`} />
@@ -1485,7 +1485,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         return (
           <div className="flex items-center justify-between h-full">
             <div className="flex-1 min-w-0">
-              <p className={`text-blue-300 ${labelSize} truncate`}>Compliance Score</p>
+              <p className={`text-white ${labelSize} truncate`}>Compliance Score</p>
               <p className={`${textSize} font-bold text-white truncate`}>{stats.complianceScore}%</p>
             </div>
             <TrendingUp className={`${iconSize} text-blue-400 flex-shrink-0 ml-2`} />
@@ -1499,12 +1499,12 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               {complianceRecords.slice(0, isSmall ? 2 : 3).map((record) => (
                 <div key={record.id} className="flex items-center justify-between p-2 bg-blue-700/50 rounded-lg">
                   <div className="flex items-center space-x-2 flex-1 min-w-0">
-                    <div className={`${isSmall ? 'w-6 h-6' : 'w-8 h-8'} bg-emerald-500 rounded-full flex items-center justify-center flex-shrink-0`}>
+                    <div className={`${isSmall ? 'w-6 h-6' : 'w-8 h-8'} bg-violet-500 rounded-full flex items-center justify-center flex-shrink-0`}>
                       <User className={`${isSmall ? 'w-3 h-3' : 'w-4 h-4'} text-white`} />
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className={`text-white ${isSmall ? 'text-xs' : 'text-sm'} font-medium truncate`}>{record.employeeName}</p>
-                      <p className={`text-blue-300 ${isSmall ? 'text-xs' : 'text-xs'} truncate`}>{record.training}</p>
+                      <p className={`text-white ${isSmall ? 'text-xs' : 'text-xs'} truncate`}>{record.training}</p>
                     </div>
                   </div>
                   <Badge 
@@ -1528,14 +1528,14 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 <AlertTriangle className={`${isSmall ? 'w-4 h-4' : 'w-5 h-5'} text-red-400 flex-shrink-0`} />
                 <div className="min-w-0 flex-1">
                   <p className={`text-white ${isSmall ? 'text-xs' : 'text-sm'} font-medium truncate`}>3 Expired Certifications</p>
-                  <p className={`text-blue-300 ${isSmall ? 'text-xs' : 'text-xs'} truncate`}>Immediate action required</p>
+                  <p className={`text-white ${isSmall ? 'text-xs' : 'text-xs'} truncate`}>Immediate action required</p>
                 </div>
               </div>
               <div className="flex items-center space-x-2 p-2 bg-yellow-900/20 rounded-lg border border-yellow-500/20">
                 <Clock className={`${isSmall ? 'w-4 h-4' : 'w-5 h-5'} text-yellow-400 flex-shrink-0`} />
                 <div className="min-w-0 flex-1">
                   <p className={`text-white ${isSmall ? 'text-xs' : 'text-sm'} font-medium truncate`}>8 Certifications Expiring Soon</p>
-                  <p className={`text-blue-300 ${isSmall ? 'text-xs' : 'text-xs'} truncate`}>Within 30 days</p>
+                  <p className={`text-white ${isSmall ? 'text-xs' : 'text-xs'} truncate`}>Within 30 days</p>
                 </div>
               </div>
             </div>
@@ -1548,14 +1548,14 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             <div className="space-y-3 overflow-y-auto" style={{ maxHeight: 'calc(100% - 2rem)' }}>
               <div>
                 <div className="flex justify-between mb-1">
-                  <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-blue-300 truncate`}>Fall Protection</span>
+                  <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-white truncate`}>Fall Protection</span>
                   <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-white flex-shrink-0`}>87%</span>
                 </div>
                 <Progress value={87} className="h-2" />
               </div>
               <div>
                 <div className="flex justify-between mb-1">
-                  <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-blue-300 truncate`}>OSHA 10</span>
+                  <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-white truncate`}>OSHA 10</span>
                   <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-white flex-shrink-0`}>92%</span>
                 </div>
                 <Progress value={92} className="h-2" />
@@ -1563,7 +1563,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               {!isSmall && (
                 <div>
                   <div className="flex justify-between mb-1">
-                    <span className="text-sm text-blue-300 truncate">First Aid</span>
+                    <span className="text-sm text-white truncate">First Aid</span>
                     <span className="text-sm text-white flex-shrink-0">76%</span>
                   </div>
                   <Progress value={76} className="h-2" />
@@ -1578,14 +1578,14 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             <h3 className={`${isSmall ? 'text-sm' : 'text-lg'} font-semibold text-white mb-2`}>Compliance Trends</h3>
             <div className="space-y-2 overflow-y-auto" style={{ maxHeight: 'calc(100% - 2rem)' }}>
               <div className="flex items-center justify-between">
-                <span className={`text-blue-300 ${isSmall ? 'text-xs' : 'text-sm'} truncate`}>This Month</span>
+                <span className={`text-white ${isSmall ? 'text-xs' : 'text-sm'} truncate`}>This Month</span>
                 <div className="flex items-center space-x-1 flex-shrink-0">
                   <TrendingUp className={`${isSmall ? 'w-3 h-3' : 'w-4 h-4'} text-green-400`} />
                   <span className={`text-green-400 ${isSmall ? 'text-xs' : 'text-sm'}`}>+5%</span>
                 </div>
               </div>
               <div className="flex items-center justify-between">
-                <span className={`text-blue-300 ${isSmall ? 'text-xs' : 'text-sm'} truncate`}>Last Quarter</span>
+                <span className={`text-white ${isSmall ? 'text-xs' : 'text-sm'} truncate`}>Last Quarter</span>
                 <div className="flex items-center space-x-1 flex-shrink-0">
                   <TrendingUp className={`${isSmall ? 'w-3 h-3' : 'w-4 h-4'} text-green-400`} />
                   <span className={`text-green-400 ${isSmall ? 'text-xs' : 'text-sm'}`}>+12%</span>
@@ -1593,7 +1593,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </div>
               {!isSmall && (
                 <div className="flex items-center justify-between">
-                  <span className="text-blue-300 text-sm truncate">YTD</span>
+                  <span className="text-white text-sm truncate">YTD</span>
                   <div className="flex items-center space-x-1 flex-shrink-0">
                     <TrendingUp className="w-4 h-4 text-green-400" />
                     <span className="text-green-400 text-sm">+18%</span>
@@ -1637,16 +1637,16 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             <h3 className={`${isSmall ? 'text-sm' : 'text-lg'} font-semibold text-white mb-2`}>Analytics Overview</h3>
             <div className="space-y-2 overflow-y-auto" style={{ maxHeight: 'calc(100% - 2rem)' }}>
               <div className="flex items-center justify-between p-2 bg-blue-700/50 rounded-lg">
-                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-blue-300`}>Monthly Progress</span>
-                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-emerald-400 font-semibold`}>+12%</span>
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-white`}>Monthly Progress</span>
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-violet-400 font-semibold`}>+12%</span>
               </div>
               <div className="flex items-center justify-between p-2 bg-blue-700/50 rounded-lg">
-                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-blue-300`}>Compliance Rate</span>
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-white`}>Compliance Rate</span>
                 <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-blue-400 font-semibold`}>94.2%</span>
               </div>
               {!isSmall && (
                 <div className="flex items-center justify-between p-2 bg-blue-700/50 rounded-lg">
-                  <span className="text-sm text-blue-300">Training Hours</span>
+                  <span className="text-sm text-white">Training Hours</span>
                   <span className="text-sm text-yellow-400 font-semibold">2,847</span>
                 </div>
               )}
@@ -1696,18 +1696,18 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             <h3 className={`${isSmall ? 'text-sm' : 'text-lg'} font-semibold text-white mb-2`}>Training Completion</h3>
             <div className="space-y-3 overflow-y-auto" style={{ maxHeight: 'calc(100% - 2rem)' }}>
               <div className="flex items-center justify-between">
-                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-blue-300 truncate`}>Overall Progress</span>
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-white truncate`}>Overall Progress</span>
                 <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-white flex-shrink-0`}>87%</span>
               </div>
               <Progress value={87} className="h-2" />
               <div className="grid grid-cols-2 gap-2">
                 <div className="text-center p-2 bg-blue-700/30 rounded">
-                  <div className={`${isSmall ? 'text-sm' : 'text-lg'} font-bold text-emerald-400`}>42</div>
-                  <div className={`${isSmall ? 'text-xs' : 'text-xs'} text-blue-300`}>Completed</div>
+                  <div className={`${isSmall ? 'text-sm' : 'text-lg'} font-bold text-violet-400`}>42</div>
+                  <div className={`${isSmall ? 'text-xs' : 'text-xs'} text-white`}>Completed</div>
                 </div>
                 <div className="text-center p-2 bg-blue-700/30 rounded">
                   <div className={`${isSmall ? 'text-sm' : 'text-lg'} font-bold text-yellow-400`}>8</div>
-                  <div className={`${isSmall ? 'text-xs' : 'text-xs'} text-blue-300`}>Pending</div>
+                  <div className={`${isSmall ? 'text-xs' : 'text-xs'} text-white`}>Pending</div>
                 </div>
               </div>
             </div>
@@ -1722,7 +1722,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 <Brain className={`${isSmall ? 'w-4 h-4' : 'w-5 h-5'} text-blue-400 flex-shrink-0 mt-0.5`} />
                 <div className="min-w-0 flex-1">
                   <p className={`text-white ${isSmall ? 'text-xs' : 'text-sm'} font-medium`}>Schedule fall protection training for Construction department</p>
-                  <p className={`text-blue-300 ${isSmall ? 'text-xs' : 'text-xs'} mt-1`}>High confidence recommendation</p>
+                  <p className={`text-white ${isSmall ? 'text-xs' : 'text-xs'} mt-1`}>High confidence recommendation</p>
                 </div>
               </div>
               {!isSmall && (
@@ -1730,7 +1730,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <Brain className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
                   <div className="min-w-0 flex-1">
                     <p className="text-white text-sm font-medium">Compliance rate improved by 12% this quarter</p>
-                    <p className="text-blue-300 text-xs mt-1">Trend analysis</p>
+                    <p className="text-white text-xs mt-1">Trend analysis</p>
                   </div>
                 </div>
               )}
@@ -1741,12 +1741,12 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         return (
           <div className="flex items-center justify-between h-full">
             <div className="flex-1 min-w-0">
-              <p className={`text-blue-300 ${labelSize} truncate`}>Safety Score</p>
-              <p className={`${textSize} font-bold text-emerald-400 truncate`}>A+</p>
-              <p className={`text-blue-300 ${isSmall ? 'text-xs' : 'text-sm'} truncate`}>88% Overall</p>
+              <p className={`text-white ${labelSize} truncate`}>Safety Score</p>
+              <p className={`${textSize} font-bold text-violet-400 truncate`}>A+</p>
+              <p className={`text-white ${isSmall ? 'text-xs' : 'text-sm'} truncate`}>88% Overall</p>
             </div>
             <div className="flex flex-col items-center flex-shrink-0 ml-2">
-              <CheckCircle className={`${iconSize} text-emerald-400`} />
+              <CheckCircle className={`${iconSize} text-violet-400`} />
               <TrendingUp className={`${isSmall ? 'w-3 h-3' : 'w-4 h-4'} text-green-400 mt-1`} />
             </div>
           </div>
@@ -1757,14 +1757,14 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             <h3 className={`${isSmall ? 'text-sm' : 'text-lg'} font-semibold text-white mb-2`}>Safety Trends</h3>
             <div className="space-y-2 overflow-y-auto" style={{ maxHeight: 'calc(100% - 2rem)' }}>
               <div className="flex items-center justify-between p-2 bg-blue-700/30 rounded-lg">
-                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-blue-300`}>Incident Rate</span>
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-white`}>Incident Rate</span>
                 <div className="flex items-center space-x-1">
-                  <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-emerald-400`}>↓ 15%</span>
-                  <TrendingDown className={`${isSmall ? 'w-3 h-3' : 'w-4 h-4'} text-emerald-400`} />
+                  <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-violet-400`}>↓ 15%</span>
+                  <TrendingDown className={`${isSmall ? 'w-3 h-3' : 'w-4 h-4'} text-violet-400`} />
                 </div>
               </div>
               <div className="flex items-center justify-between p-2 bg-blue-700/30 rounded-lg">
-                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-blue-300`}>Near Misses</span>
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-white`}>Near Misses</span>
                 <div className="flex items-center space-x-1">
                   <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-yellow-400`}>↑ 8%</span>
                   <TrendingUp className={`${isSmall ? 'w-3 h-3' : 'w-4 h-4'} text-yellow-400`} />
@@ -1772,10 +1772,10 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </div>
               {!isSmall && (
                 <div className="flex items-center justify-between p-2 bg-blue-700/30 rounded-lg">
-                  <span className="text-sm text-blue-300">Training Hours</span>
+                  <span className="text-sm text-white">Training Hours</span>
                   <div className="flex items-center space-x-1">
-                    <span className="text-sm text-emerald-400">↑ 22%</span>
-                    <TrendingUp className="w-4 h-4 text-emerald-400" />
+                    <span className="text-sm text-violet-400">↑ 22%</span>
+                    <TrendingUp className="w-4 h-4 text-violet-400" />
                   </div>
                 </div>
               )}
@@ -1788,18 +1788,18 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             <h3 className={`${isSmall ? 'text-sm' : 'text-lg'} font-semibold text-white mb-2`}>Compliance Metrics</h3>
             <div className="space-y-3 overflow-y-auto" style={{ maxHeight: 'calc(100% - 2rem)' }}>
               <div className="flex items-center justify-between">
-                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-blue-300`}>OSHA Compliance</span>
-                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-emerald-400 font-semibold`}>94%</span>
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-white`}>OSHA Compliance</span>
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-violet-400 font-semibold`}>94%</span>
               </div>
               <Progress value={94} className="h-2" />
               <div className="grid grid-cols-2 gap-2">
                 <div className="text-center p-2 bg-blue-700/30 rounded">
                   <div className={`${isSmall ? 'text-sm' : 'text-lg'} font-bold text-white`}>147</div>
-                  <div className={`${isSmall ? 'text-xs' : 'text-xs'} text-blue-300`}>Total Audits</div>
+                  <div className={`${isSmall ? 'text-xs' : 'text-xs'} text-white`}>Total Audits</div>
                 </div>
                 <div className="text-center p-2 bg-blue-700/30 rounded">
                   <div className={`${isSmall ? 'text-sm' : 'text-lg'} font-bold text-green-400`}>138</div>
-                  <div className={`${isSmall ? 'text-xs' : 'text-xs'} text-blue-300`}>Passed</div>
+                  <div className={`${isSmall ? 'text-xs' : 'text-xs'} text-white`}>Passed</div>
                 </div>
               </div>
             </div>
@@ -1815,7 +1815,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <Building className={`${isSmall ? 'w-4 h-4' : 'w-5 h-5'} text-blue-400`} />
                   <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-white`}>Construction</span>
                 </div>
-                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-emerald-400`}>93%</span>
+                <span className={`${isSmall ? 'text-xs' : 'text-sm'} text-violet-400`}>93%</span>
               </div>
               <div className="flex items-center justify-between p-2 bg-blue-700/30 rounded-lg">
                 <div className="flex items-center space-x-2">
@@ -1830,7 +1830,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     <Building className="w-5 h-5 text-green-400" />
                     <span className="text-sm text-white">Safety</span>
                   </div>
-                  <span className="text-sm text-emerald-400">100%</span>
+                  <span className="text-sm text-violet-400">100%</span>
                 </div>
               )}
             </div>
@@ -1868,7 +1868,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           </div>
         );
       default:
-        return <div className="h-full flex items-center justify-center text-blue-300">Widget content</div>;
+        return <div className="h-full flex items-center justify-center text-white">Widget content</div>;
     }
   };
 
@@ -1909,7 +1909,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
   if (authLoading || isDashboardLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 flex items-center justify-center">
         <div className="max-w-md w-full mx-auto">
           <SmoothLoading 
             variant="ai-skeleton" 
@@ -1923,7 +1923,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
   if (authLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 flex items-center justify-center">
         <div className="text-center">
           <SafetySyncIcon size={64} className="mx-auto mb-4 animate-pulse" />
           <p className="text-white text-lg">Loading workspace...</p>
@@ -1939,7 +1939,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
       window.location.replace('/client-portal');
     }, 100);
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 flex items-center justify-center">
         <div className="text-center">
           <SafetySyncIcon size={64} className="mx-auto mb-4 animate-pulse" />
           <p className="text-white text-lg">Redirecting to login...</p>
@@ -1950,7 +1950,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
   if (dashboardError) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 flex items-center justify-center">
         <div className="text-center">
           <SafetySyncIcon size={64} className="mx-auto mb-4" />
           <p className="text-white text-lg mb-4">Error loading dashboard data</p>
@@ -1986,7 +1986,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <h2 className="text-white font-semibold text-sm md:text-base">
                     {workspaceSettings.showBranding ? workspaceSettings.companyName : "SafetySync.AI"}
                   </h2>
-                  <p className="text-blue-300 text-xs md:text-sm">Workspace</p>
+                  <p className="text-white text-xs md:text-sm">Workspace</p>
                 </div>
               </div>
             ) : (
@@ -1996,7 +1996,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               variant="ghost"
               size="sm"
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="text-blue-300 hover:text-white"
+              className="text-white hover:text-white"
             >
               {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </Button>
@@ -2015,7 +2015,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           >
             <Button
               variant="ghost"
-              className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+              className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
                 activeTab === "company-profile" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("company-profile")}
@@ -2030,7 +2030,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <div className="space-y-1">
             <Button
               variant="ghost"
-              className="w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3"
+              className="w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3"
               onClick={() => toggleSection('employee-management')}
               title="Employee Management"
             >
@@ -2046,7 +2046,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               <div className="ml-6 space-y-1">
                 <Button
                   variant="ghost"
-                  className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                  className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
                     activeTab === "employees" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("employees")}
@@ -2057,7 +2057,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </Button>
                 <Button
                   variant="ghost"
-                  className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                  className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
                     activeTab === "employee-insights" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("employee-insights")}
@@ -2068,7 +2068,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </Button>
                 <Button
                   variant="ghost"
-                  className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                  className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
                     activeTab === "employee-profile" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("employee-profile")}
@@ -2079,7 +2079,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </Button>
                 <Button
                   variant="ghost"
-                  className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                  className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
                     activeTab === "employee-portal" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("employee-portal")}
@@ -2096,7 +2096,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <div className="space-y-1">
             <Button
               variant="ghost"
-              className="w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3"
+              className="w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3"
               onClick={() => toggleSection('training-features')}
               title="Training Documents"
             >
@@ -2112,7 +2112,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               <div className="ml-6 space-y-1">
               <Button
                 variant="ghost"
-                className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
                   activeTab === "ai-document-processor" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                 }`}
                 onClick={() => handleTabSwitch("ai-document-processor")}
@@ -2123,7 +2123,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </Button>
               <Button
                 variant="ghost"
-                className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
                   activeTab === "certificates" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                 }`}
                 onClick={() => handleTabSwitch("certificates")}
@@ -2134,7 +2134,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </Button>
               <Button
                 variant="ghost"
-                className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
                   activeTab === "instructor-signin" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                 }`}
                 onClick={() => handleTabSwitch("instructor-signin")}
@@ -2145,7 +2145,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </Button>
               <Button
                 variant="ghost"
-                className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
                   activeTab === "training-records" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                 }`}
                 onClick={() => handleTabSwitch("training-records")}
@@ -2156,7 +2156,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </Button>
               <Button
                 variant="ghost"
-                className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
                   activeTab === "training-document-hub" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                 }`}
                 onClick={() => handleTabSwitch("training-document-hub")}
@@ -2167,7 +2167,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </Button>
               <Button
                 variant="ghost"
-                className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
                   activeTab === "training" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                 }`}
                 onClick={() => handleTabSwitch("training")}
@@ -2189,7 +2189,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             >
               <Button
                 variant="ghost"
-                className="w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3"
+                className="w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3"
                 onClick={() => toggleSection('compliance-reporting')}
                 title="Compliance & Reporting"
               >
@@ -2218,7 +2218,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <motion.div variants={subItemVariants}>
                     <Button
                       variant="ghost"
-                      className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                      className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
                         activeTab === "analytics-reports" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("analytics-reports")}
@@ -2231,7 +2231,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <motion.div variants={subItemVariants}>
                     <Button
                       variant="ghost"
-                      className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                      className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
                         activeTab === "reports" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("reports")}
@@ -2244,7 +2244,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <motion.div variants={subItemVariants}>
                     <Button
                       variant="ghost"
-                      className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                      className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
                         activeTab === "osha-compliance" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("osha-compliance")}
@@ -2257,7 +2257,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <motion.div variants={subItemVariants}>
                     <Button
                       variant="ghost"
-                      className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                      className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
                         activeTab === "document-manager" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("document-manager")}
@@ -2270,7 +2270,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <motion.div variants={subItemVariants}>
                     <Button
                       variant="ghost"
-                      className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                      className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
                         activeTab === "trends" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("trends")}
@@ -2288,7 +2288,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <div className="space-y-1">
             <Button
               variant="ghost"
-              className="w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3"
+              className="w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3"
               onClick={() => toggleSection('system-tools')}
               title="System Tools"
             >
@@ -2304,7 +2304,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 <div className="ml-6 space-y-1">
                   <Button
                     variant="ghost"
-                    className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                    className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
                       activeTab === "achievements" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                     }`}
                     onClick={() => handleTabSwitch("achievements")}
@@ -2315,7 +2315,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   </Button>
                   <Button
                     variant="ghost"
-                    className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                    className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
                       activeTab === "notifications" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                     }`}
                     onClick={() => handleTabSwitch("notifications")}
@@ -2326,7 +2326,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   </Button>
                   <Button
                     variant="ghost"
-                    className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                    className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
                       activeTab === "settings" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                     }`}
                     onClick={() => handleTabSwitch("settings")}
@@ -2337,7 +2337,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   </Button>
                   <Button
                     variant="ghost"
-                    className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                    className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
                       activeTab === "subscription-billing" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                     }`}
                     onClick={() => handleTabSwitch("subscription-billing")}
@@ -2348,7 +2348,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   </Button>
                   <Button
                     variant="ghost"
-                    className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                    className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
                       activeTab === "instructors" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                     }`}
                     onClick={() => handleTabSwitch("instructors")}
@@ -2359,7 +2359,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   </Button>
                   <Button
                     variant="ghost"
-                    className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                    className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
                       activeTab === "document-manager" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                     }`}
                     onClick={() => handleTabSwitch("document-manager")}
@@ -2381,19 +2381,19 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           {sidebarOpen && (
             <div className="mb-4">
               <div className="flex items-center space-x-3 mb-2">
-                <div className="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center">
+                <div className="w-8 h-8 bg-violet-500 rounded-full flex items-center justify-center">
                   <User className="w-4 h-4 text-white" />
                 </div>
                 <div>
                   <p className="text-white text-sm font-medium">{user?.name || "User"}</p>
-                  <p className="text-blue-300 text-xs">Safety Manager</p>
+                  <p className="text-white text-xs">Safety Manager</p>
                 </div>
               </div>
             </div>
           )}
           <Button
             variant="ghost"
-            className="w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50"
+            className="w-full justify-start text-white hover:text-white hover:bg-blue-600/50"
             onClick={handleLogout}
           >
             <LogOut className="w-5 h-5 mr-3" />
@@ -2437,7 +2437,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 {activeTab === "company-profile" && "Company Profile"}
                 {activeTab === "settings" && "Workspace Settings"}
               </h1>
-              <p className="text-blue-300 text-sm md:text-base">
+              <p className="text-white text-sm md:text-base">
                 {activeTab === "unified-dashboard" && (
                   <span>
                     Final step: Review your complete compliance dashboard with all integrated data
@@ -2473,7 +2473,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </p>
             </div>
             <div className="flex items-center space-x-2 md:space-x-4">
-              <Button variant="secondary" className="bg-blue-700/50 text-blue-300 border-blue-500 hover:bg-blue-600/50 p-2 md:px-4 md:py-2">
+              <Button variant="secondary" className="bg-blue-700/50 text-white border-blue-500 hover:bg-blue-600/50 p-2 md:px-4 md:py-2">
                 <Bell className="w-4 h-4 md:mr-2" />
                 <span className="hidden md:inline">Notifications</span>
               </Button>
@@ -2488,7 +2488,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 <LogOut className="w-4 h-4 md:mr-2" />
                 <span className="hidden md:inline">Logout</span>
               </Button>
-              <a href="/" className="hidden md:inline text-blue-300 hover:text-white hover:bg-blue-600/50 px-2 py-1 rounded text-sm">
+              <a href="/" className="hidden md:inline text-white hover:text-white hover:bg-blue-600/50 px-2 py-1 rounded text-sm">
                 ← Back to SafetySync.AI
               </a>
             </div>
@@ -2496,7 +2496,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         </div>
 
         {/* Content Area */}
-        <div className="flex-1 p-2 md:p-6 overflow-y-auto min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
+        <div className="flex-1 p-2 md:p-6 overflow-y-auto min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900">
           {activeTab === "unified-dashboard" && (
             <div className="space-y-6">
               {/* Widget Management Controls */}
@@ -2505,7 +2505,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <Button
                     variant="secondary"
                     onClick={() => setShowWidgetManager(!showWidgetManager)}
-                    className="bg-blue-700/50 text-blue-300 border-blue-500 hover:bg-blue-600/50 text-sm"
+                    className="bg-blue-700/50 text-white border-blue-500 hover:bg-blue-600/50 text-sm"
                   >
                     <Settings className="w-4 h-4 mr-2" />
                     Manage Widgets
@@ -2513,7 +2513,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <Button
                     variant="secondary"
                     onClick={saveAsDefault}
-                    className="bg-blue-700/50 text-blue-300 border-blue-500 hover:bg-blue-600/50 text-sm"
+                    className="bg-blue-700/50 text-white border-blue-500 hover:bg-blue-600/50 text-sm"
                   >
                     <Save className="w-4 h-4 mr-2" />
                     <span className="hidden sm:inline">Save as Default</span>
@@ -2523,7 +2523,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     <Button
                       variant="secondary"
                       onClick={loadCustomDefaults}
-                      className="bg-blue-700/50 text-blue-300 border-blue-500 hover:bg-blue-600/50 text-sm"
+                      className="bg-blue-700/50 text-white border-blue-500 hover:bg-blue-600/50 text-sm"
                     >
                       <Upload className="w-4 h-4 mr-2" />
                       <span className="hidden sm:inline">Load My Default</span>
@@ -2533,7 +2533,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <Button
                     variant="secondary"
                     onClick={resetWidgetLayout}
-                    className="bg-blue-700/50 text-blue-300 border-blue-500 hover:bg-blue-600/50 text-sm"
+                    className="bg-blue-700/50 text-white border-blue-500 hover:bg-blue-600/50 text-sm"
                   >
                     <RotateCcw className="w-4 h-4 mr-2" />
                     <span className="hidden sm:inline">Reset to Original</span>
@@ -2547,7 +2547,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 <Card className="bg-black/20 backdrop-blur-sm border-blue-700 mb-6">
                   <CardHeader>
                     <CardTitle className="text-white">Widget Manager</CardTitle>
-                    <CardDescription className="text-blue-300">
+                    <CardDescription className="text-white">
                       Toggle widgets on/off and drag to resize them on your dashboard
                     </CardDescription>
                   </CardHeader>
@@ -2560,7 +2560,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                           <Button
                             variant={isGroupSelectionMode ? "default" : "outline"}
                             onClick={toggleGroupSelectionMode}
-                            className={`${isGroupSelectionMode ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-blue-700/50 text-blue-300 border-blue-500 hover:bg-blue-600/50'}`}
+                            className={`${isGroupSelectionMode ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-blue-700/50 text-white border-blue-500 hover:bg-blue-600/50'}`}
                           >
                             <MousePointer className="w-4 h-4 mr-2" />
                             {isGroupSelectionMode ? 'Exit Selection Mode' : 'Select Multiple'}
@@ -2570,7 +2570,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                               <Button
                                 variant="outline"
                                 onClick={selectAllWidgets}
-                                className="bg-blue-700/50 text-blue-300 border-blue-500 hover:bg-blue-600/50"
+                                className="bg-blue-700/50 text-white border-blue-500 hover:bg-blue-600/50"
                               >
                                 <CheckSquare className="w-4 h-4 mr-2" />
                                 Select All
@@ -2578,41 +2578,41 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                               <Button
                                 variant="outline"
                                 onClick={clearSelection}
-                                className="bg-blue-700/50 text-blue-300 border-blue-500 hover:bg-blue-600/50"
+                                className="bg-blue-700/50 text-white border-blue-500 hover:bg-blue-600/50"
                               >
                                 <Square className="w-4 h-4 mr-2" />
                                 Clear Selection
                               </Button>
                               {selectedWidgets.size > 0 && (
                                 <div className="flex items-center space-x-2">
-                                  <span className="text-blue-300 text-sm">
+                                  <span className="text-white text-sm">
                                     {selectedWidgets.size} selected
                                   </span>
                                   <Button
                                     variant="outline"
                                     onClick={() => moveSelectedWidgets(-1, 0)}
-                                    className="bg-blue-700/50 text-blue-300 border-blue-500 hover:bg-blue-600/50 p-2"
+                                    className="bg-blue-700/50 text-white border-blue-500 hover:bg-blue-600/50 p-2"
                                   >
                                     <ArrowLeft className="w-4 h-4" />
                                   </Button>
                                   <Button
                                     variant="outline"
                                     onClick={() => moveSelectedWidgets(1, 0)}
-                                    className="bg-blue-700/50 text-blue-300 border-blue-500 hover:bg-blue-600/50 p-2"
+                                    className="bg-blue-700/50 text-white border-blue-500 hover:bg-blue-600/50 p-2"
                                   >
                                     <ArrowRight className="w-4 h-4" />
                                   </Button>
                                   <Button
                                     variant="outline"
                                     onClick={() => moveSelectedWidgets(0, -1)}
-                                    className="bg-blue-700/50 text-blue-300 border-blue-500 hover:bg-blue-600/50 p-2"
+                                    className="bg-blue-700/50 text-white border-blue-500 hover:bg-blue-600/50 p-2"
                                   >
                                     <ArrowUp className="w-4 h-4" />
                                   </Button>
                                   <Button
                                     variant="outline"
                                     onClick={() => moveSelectedWidgets(0, 1)}
-                                    className="bg-blue-700/50 text-blue-300 border-blue-500 hover:bg-blue-600/50 p-2"
+                                    className="bg-blue-700/50 text-white border-blue-500 hover:bg-blue-600/50 p-2"
                                   >
                                     <ArrowDown className="w-4 h-4" />
                                   </Button>
@@ -2622,7 +2622,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                           )}
                         </div>
                         {isGroupSelectionMode && (
-                          <div className="text-sm text-blue-300 mt-2">
+                          <div className="text-sm text-white mt-2">
                             Click widgets to select them, then use arrow buttons or drag to move selected widgets together
                           </div>
                         )}
@@ -2647,7 +2647,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                                   <span className="text-white text-sm">{widget.title}</span>
                                 </div>
                               </div>
-                              <div className="text-blue-300 text-xs">
+                              <div className="text-white text-xs">
                                 Drag to resize
                               </div>
                             </div>
@@ -2696,7 +2696,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                           onClick={isGroupSelectionMode ? (e) => toggleWidgetSelection(widget.id, e) : undefined}
                         >
                           <Card className={`bg-black/20 backdrop-blur-sm border-blue-700 h-full group relative transition-all duration-200 ${
-                            selectedWidgets.has(widget.id) ? 'ring-2 ring-emerald-500 bg-emerald-500/10' : ''
+                            selectedWidgets.has(widget.id) ? 'ring-2 ring-emerald-500 bg-violet-500/10' : ''
                           } ${isGroupSelectionMode ? 'cursor-pointer hover:bg-blue-700/30' : ''}`}>
                             <CardContent className="p-4 h-full">
                               {/* Selection Indicator */}
@@ -2704,7 +2704,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                                 <div className="absolute top-2 left-2 z-10">
                                   <div className={`w-5 h-5 rounded border-2 flex items-center justify-center ${
                                     selectedWidgets.has(widget.id) 
-                                      ? 'bg-emerald-500 border-emerald-500' 
+                                      ? 'bg-violet-500 border-violet-500' 
                                       : 'border-blue-300 bg-blue-700/50'
                                   }`}>
                                     {selectedWidgets.has(widget.id) && (
@@ -2716,7 +2716,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                               
                               {/* Drag Handle */}
                               <div className="drag-handle absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity cursor-move">
-                                <GripVertical className="w-4 h-4 text-blue-300" />
+                                <GripVertical className="w-4 h-4 text-white" />
                               </div>
                               
                               {/* Widget Content */}
@@ -2770,7 +2770,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 <div className="space-y-6">
                   <div className="text-center">
                     <h2 className="text-2xl font-bold text-white mb-2">Select Employee Profile</h2>
-                    <p className="text-blue-300">Choose an employee to view and manage their certificate profile</p>
+                    <p className="text-white">Choose an employee to view and manage their certificate profile</p>
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -2779,22 +2779,22 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                         onClick={() => setSelectedEmployeeForProfile(employee.id)}>
                         <CardContent className="p-4">
                           <div className="flex items-center space-x-3">
-                            <div className="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center">
+                            <div className="w-10 h-10 bg-violet-500 rounded-full flex items-center justify-center">
                               <User className="w-5 h-5 text-white" />
                             </div>
                             <div>
                               <h3 className="text-white font-semibold">{employee.name}</h3>
-                              <p className="text-blue-300 text-sm">{employee.department}</p>
+                              <p className="text-white text-sm">{employee.department}</p>
                               <p className="text-blue-400 text-xs">{employee.position}</p>
                             </div>
                           </div>
                           <div className="mt-3 pt-3 border-t border-blue-600">
                             <div className="flex justify-between text-sm">
-                              <span className="text-blue-300">Certificates:</span>
-                              <span className="text-emerald-400">{employee.certifications?.length || 0}</span>
+                              <span className="text-white">Certificates:</span>
+                              <span className="text-violet-400">{employee.certifications?.length || 0}</span>
                             </div>
                             <div className="flex justify-between text-sm mt-1">
-                              <span className="text-blue-300">Status:</span>
+                              <span className="text-white">Status:</span>
                               <span className={employee.status === 'Active' ? 'text-green-400' : 'text-red-400'}>
                                 {employee.status}
                               </span>
@@ -2859,21 +2859,21 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <CardContent>
                     <div className="space-y-3">
                       <div className="flex items-center justify-between">
-                        <span className="text-blue-300 text-sm">Compliance Rate</span>
+                        <span className="text-white text-sm">Compliance Rate</span>
                         <div className="flex items-center space-x-1">
                           <TrendingUp className="w-3 h-3 text-green-400" />
                           <span className="text-green-400 text-sm">96%</span>
                         </div>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-blue-300 text-sm">Training Completion</span>
+                        <span className="text-white text-sm">Training Completion</span>
                         <div className="flex items-center space-x-1">
                           <TrendingUp className="w-3 h-3 text-blue-400" />
                           <span className="text-blue-400 text-sm">89%</span>
                         </div>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-blue-300 text-sm">Safety Score</span>
+                        <span className="text-white text-sm">Safety Score</span>
                         <div className="flex items-center space-x-1">
                           <TrendingUp className="w-3 h-3 text-yellow-400" />
                           <span className="text-yellow-400 text-sm">92%</span>
@@ -2895,21 +2895,21 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     <div className="space-y-3">
                       <div>
                         <div className="flex justify-between mb-1">
-                          <span className="text-blue-300 text-sm">Overall Compliance</span>
+                          <span className="text-white text-sm">Overall Compliance</span>
                           <span className="text-green-400 text-sm">96%</span>
                         </div>
                         <Progress value={96} className="h-2" />
                       </div>
                       <div>
                         <div className="flex justify-between mb-1">
-                          <span className="text-blue-300 text-sm">Training Progress</span>
+                          <span className="text-white text-sm">Training Progress</span>
                           <span className="text-blue-400 text-sm">89%</span>
                         </div>
                         <Progress value={89} className="h-2" />
                       </div>
                       <div>
                         <div className="flex justify-between mb-1">
-                          <span className="text-blue-300 text-sm">Safety Score</span>
+                          <span className="text-white text-sm">Safety Score</span>
                           <span className="text-yellow-400 text-sm">92%</span>
                         </div>
                         <Progress value={92} className="h-2" />
@@ -2929,15 +2929,15 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <CardContent>
                     <div className="space-y-2">
                       <div className="flex items-center justify-between p-2 bg-blue-700/50 rounded-lg">
-                        <span className="text-blue-300 text-sm">Construction</span>
+                        <span className="text-white text-sm">Construction</span>
                         <span className="text-green-400 text-sm">96%</span>
                       </div>
                       <div className="flex items-center justify-between p-2 bg-blue-700/50 rounded-lg">
-                        <span className="text-blue-300 text-sm">Manufacturing</span>
+                        <span className="text-white text-sm">Manufacturing</span>
                         <span className="text-green-400 text-sm">98%</span>
                       </div>
                       <div className="flex items-center justify-between p-2 bg-blue-700/50 rounded-lg">
-                        <span className="text-blue-300 text-sm">Maintenance</span>
+                        <span className="text-white text-sm">Maintenance</span>
                         <span className="text-yellow-400 text-sm">94%</span>
                       </div>
                     </div>
@@ -2958,21 +2958,21 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                         <CheckCircle className="w-4 h-4 text-green-400" />
                         <div className="flex-1">
                           <p className="text-white text-sm font-medium">Low Risk</p>
-                          <p className="text-blue-300 text-xs">65% of operations</p>
+                          <p className="text-white text-xs">65% of operations</p>
                         </div>
                       </div>
                       <div className="flex items-center space-x-2 p-2 bg-yellow-900/20 rounded-lg border border-yellow-500/20">
                         <AlertTriangle className="w-4 h-4 text-yellow-400" />
                         <div className="flex-1">
                           <p className="text-white text-sm font-medium">Medium Risk</p>
-                          <p className="text-blue-300 text-xs">25% of operations</p>
+                          <p className="text-white text-xs">25% of operations</p>
                         </div>
                       </div>
                       <div className="flex items-center space-x-2 p-2 bg-red-900/20 rounded-lg border border-red-500/20">
                         <AlertTriangle className="w-4 h-4 text-red-400" />
                         <div className="flex-1">
                           <p className="text-white text-sm font-medium">High Risk</p>
-                          <p className="text-blue-300 text-xs">10% of operations</p>
+                          <p className="text-white text-xs">10% of operations</p>
                         </div>
                       </div>
                     </div>
@@ -2991,21 +2991,21 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     <div className="space-y-3">
                       <div>
                         <div className="flex justify-between mb-1">
-                          <span className="text-blue-300 text-sm">Fall Protection</span>
+                          <span className="text-white text-sm">Fall Protection</span>
                           <span className="text-white text-sm">87%</span>
                         </div>
                         <Progress value={87} className="h-2" />
                       </div>
                       <div>
                         <div className="flex justify-between mb-1">
-                          <span className="text-blue-300 text-sm">OSHA 10</span>
+                          <span className="text-white text-sm">OSHA 10</span>
                           <span className="text-white text-sm">92%</span>
                         </div>
                         <Progress value={92} className="h-2" />
                       </div>
                       <div>
                         <div className="flex justify-between mb-1">
-                          <span className="text-blue-300 text-sm">First Aid</span>
+                          <span className="text-white text-sm">First Aid</span>
                           <span className="text-white text-sm">76%</span>
                         </div>
                         <Progress value={76} className="h-2" />
@@ -3025,7 +3025,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <CardContent>
                     <div className="flex flex-col items-center justify-center h-24">
                       <div className="text-3xl font-bold text-green-400 mb-2">92%</div>
-                      <p className="text-blue-300 text-sm text-center">Overall Safety Score</p>
+                      <p className="text-white text-sm text-center">Overall Safety Score</p>
                       <div className="w-full mt-3">
                         <Progress value={92} className="h-2" />
                       </div>
@@ -3040,7 +3040,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             <div className="space-y-6">
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between space-y-4 sm:space-y-0">
                 <h2 className="text-xl font-semibold text-white">Instructor Management</h2>
-                <Button className="bg-emerald-500 hover:bg-emerald-600" onClick={handleAddInstructor}>
+                <Button className="bg-violet-500 hover:bg-emerald-600" onClick={handleAddInstructor}>
                   <Plus className="w-4 h-4 mr-2" />
                   Add Instructor
                 </Button>
@@ -3056,20 +3056,20 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                           </div>
                           <div>
                             <h3 className="text-white font-semibold">John Smith</h3>
-                            <p className="text-blue-300 text-sm">Senior Safety Instructor</p>
+                            <p className="text-white text-sm">Senior Safety Instructor</p>
                           </div>
                         </div>
                         <div className="space-y-2">
                           <div className="flex items-center justify-between">
-                            <span className="text-blue-300 text-sm">Certifications</span>
+                            <span className="text-white text-sm">Certifications</span>
                             <Badge className="bg-green-100 text-green-700">5 Active</Badge>
                           </div>
                           <div className="flex items-center justify-between">
-                            <span className="text-blue-300 text-sm">Students Trained</span>
+                            <span className="text-white text-sm">Students Trained</span>
                             <span className="text-white">247</span>
                           </div>
                           <div className="flex items-center justify-between">
-                            <span className="text-blue-300 text-sm">Specialization</span>
+                            <span className="text-white text-sm">Specialization</span>
                             <span className="text-white">Fall Protection</span>
                           </div>
                         </div>
@@ -3083,20 +3083,20 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                           </div>
                           <div>
                             <h3 className="text-white font-semibold">Sarah Johnson</h3>
-                            <p className="text-blue-300 text-sm">Equipment Training Specialist</p>
+                            <p className="text-white text-sm">Equipment Training Specialist</p>
                           </div>
                         </div>
                         <div className="space-y-2">
                           <div className="flex items-center justify-between">
-                            <span className="text-blue-300 text-sm">Certifications</span>
+                            <span className="text-white text-sm">Certifications</span>
                             <Badge className="bg-green-100 text-green-700">7 Active</Badge>
                           </div>
                           <div className="flex items-center justify-between">
-                            <span className="text-blue-300 text-sm">Students Trained</span>
+                            <span className="text-white text-sm">Students Trained</span>
                             <span className="text-white">189</span>
                           </div>
                           <div className="flex items-center justify-between">
-                            <span className="text-blue-300 text-sm">Specialization</span>
+                            <span className="text-white text-sm">Specialization</span>
                             <span className="text-white">Forklift Operation</span>
                           </div>
                         </div>
@@ -3110,20 +3110,20 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                           </div>
                           <div>
                             <h3 className="text-white font-semibold">Mike Rodriguez</h3>
-                            <p className="text-blue-300 text-sm">OSHA Training Coordinator</p>
+                            <p className="text-white text-sm">OSHA Training Coordinator</p>
                           </div>
                         </div>
                         <div className="space-y-2">
                           <div className="flex items-center justify-between">
-                            <span className="text-blue-300 text-sm">Certifications</span>
+                            <span className="text-white text-sm">Certifications</span>
                             <Badge className="bg-green-100 text-green-700">4 Active</Badge>
                           </div>
                           <div className="flex items-center justify-between">
-                            <span className="text-blue-300 text-sm">Students Trained</span>
+                            <span className="text-white text-sm">Students Trained</span>
                             <span className="text-white">312</span>
                           </div>
                           <div className="flex items-center justify-between">
-                            <span className="text-blue-300 text-sm">Specialization</span>
+                            <span className="text-white text-sm">Specialization</span>
                             <span className="text-white">OSHA 30 Hour</span>
                           </div>
                         </div>
@@ -3144,7 +3144,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     <Plus className="w-4 h-4 mr-2" />
                     Add Division
                   </Button>
-                  <Button className="bg-emerald-500 hover:bg-emerald-600" onClick={() => setShowAddDepartment(true)}>
+                  <Button className="bg-violet-500 hover:bg-emerald-600" onClick={() => setShowAddDepartment(true)}>
                     <Plus className="w-4 h-4 mr-2" />
                     Add Department
                   </Button>
@@ -3164,7 +3164,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                               <Building className="w-6 h-6 text-blue-400" />
                               <div>
                                 <p className="text-white font-semibold text-lg">{division}</p>
-                                <p className="text-blue-300 text-sm">
+                                <p className="text-white text-sm">
                                   {employees.filter(emp => emp.division === division).length} employees
                                 </p>
                               </div>
@@ -3190,13 +3190,13 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                                   <div className="w-2 h-2 bg-blue-300 rounded-full"></div>
                                   <div>
                                     <p className="text-white font-medium">{department}</p>
-                                    <p className="text-blue-300 text-sm">
+                                    <p className="text-white text-sm">
                                       {employees.filter(emp => emp.department === department).length} employees
                                     </p>
                                   </div>
                                 </div>
                                 <div className="flex items-center space-x-2">
-                                  <Badge variant="secondary" className="bg-blue-700/50 text-blue-300 border-blue-500">
+                                  <Badge variant="secondary" className="bg-blue-700/50 text-white border-blue-500">
                                     {Math.round((employees.filter(emp => emp.department === department && emp.status === 'Active').length / Math.max(employees.filter(emp => emp.department === department).length, 1)) * 100)}% Active
                                   </Badge>
                                   <Button
@@ -3296,7 +3296,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               <Card className="bg-blue-500/50 backdrop-blur-sm border-blue-400">
                 <CardHeader>
                   <CardTitle className="text-white">Workspace Settings</CardTitle>
-                  <CardDescription className="text-blue-300">
+                  <CardDescription className="text-white">
                     Configure your white-label workspace appearance and branding
                   </CardDescription>
                 </CardHeader>
@@ -3345,7 +3345,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     </div>
                   </div>
 
-                  <Button className="bg-emerald-500 hover:bg-emerald-600">
+                  <Button className="bg-violet-500 hover:bg-emerald-600">
                     Save Settings
                   </Button>
                 </CardContent>
@@ -3360,7 +3360,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         <DialogContent className="bg-blue-800 border-blue-700 text-white max-w-2xl">
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold text-white">Add New Employee</DialogTitle>
-            <DialogDescription className="text-blue-300">
+            <DialogDescription className="text-white">
               Enter employee information to add them to your SafetySync.AI workspace
             </DialogDescription>
           </DialogHeader>
@@ -3480,13 +3480,13 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 type="button"
                 variant="outline"
                 onClick={() => setShowAddEmployee(false)}
-                className="border-blue-600 text-blue-300 hover:bg-blue-600/50"
+                className="border-blue-600 text-white hover:bg-blue-600/50"
               >
                 Cancel
               </Button>
               <Button
                 type="submit"
-                className="bg-emerald-500 hover:bg-emerald-600 text-white"
+                className="bg-violet-500 hover:bg-emerald-600 text-white"
               >
                 <Users className="w-4 h-4 mr-2" />
                 Add Employee
@@ -3504,7 +3504,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           </DialogHeader>
           <div className="space-y-4">
             <div>
-              <Label className="text-blue-300">Division Name</Label>
+              <Label className="text-white">Division Name</Label>
               <Input
                 value={newDivisionName}
                 onChange={(e) => setNewDivisionName(e.target.value)}
@@ -3519,7 +3519,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   setShowAddDivision(false);
                   setNewDivisionName("");
                 }}
-                className="border-blue-500 text-blue-300 hover:bg-blue-600/50"
+                className="border-blue-500 text-white hover:bg-blue-600/50"
               >
                 Cancel
               </Button>
@@ -3542,7 +3542,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           </DialogHeader>
           <div className="space-y-4">
             <div>
-              <Label className="text-blue-300">Select Division</Label>
+              <Label className="text-white">Select Division</Label>
               <Select value={selectedDivisionForDepartment} onValueChange={setSelectedDivisionForDepartment}>
                 <SelectTrigger className="bg-blue-700/50 border-blue-600 text-white mt-1">
                   <SelectValue placeholder="Select a division" />
@@ -3555,7 +3555,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </Select>
             </div>
             <div>
-              <Label className="text-blue-300">Department Name</Label>
+              <Label className="text-white">Department Name</Label>
               <Input
                 value={newDepartmentName}
                 onChange={(e) => setNewDepartmentName(e.target.value)}
@@ -3571,13 +3571,13 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   setNewDepartmentName("");
                   setSelectedDivisionForDepartment("");
                 }}
-                className="border-blue-500 text-blue-300 hover:bg-blue-600/50"
+                className="border-blue-500 text-white hover:bg-blue-600/50"
               >
                 Cancel
               </Button>
               <Button 
                 onClick={handleAddDepartment}
-                className="bg-emerald-500 hover:bg-emerald-600"
+                className="bg-violet-500 hover:bg-emerald-600"
               >
                 Add Department
               </Button>

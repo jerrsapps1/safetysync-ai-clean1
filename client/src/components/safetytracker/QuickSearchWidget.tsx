@@ -405,7 +405,7 @@ const QuickSearchWidget = () => {
     if (filteredEmployees.length === 0) {
       return (
         <div className="text-center py-8 text-blue-400">
-          <Users className="w-12 h-12 mx-auto mb-2 text-blue-300" />
+          <Users className="w-12 h-12 mx-auto mb-2 text-white" />
           <p>No employees found matching your search criteria</p>
         </div>
       );

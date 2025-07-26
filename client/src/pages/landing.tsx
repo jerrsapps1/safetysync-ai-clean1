@@ -253,7 +253,7 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 text-white font-sans">
+    <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 text-white font-sans">
       {/* Navigation */}
       <PageHeader />
       
@@ -289,7 +289,7 @@ export default function LandingPage() {
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <div className="mb-8">
             <span className="inline-flex items-center px-6 py-3 rounded-full bg-black/20 backdrop-blur-sm border border-blue-700 text-emerald-300 text-sm font-medium">
-              <Shield className="w-4 h-4 mr-2 text-emerald-400" />
+              <Shield className="w-4 h-4 mr-2 text-violet-400" />
               AI-Powered Compliance Platform
             </span>
           </div>
@@ -299,7 +299,7 @@ export default function LandingPage() {
             <span className="block text-emerald-300">Made Simple</span>
           </h1>
           
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-blue-300 max-w-2xl mx-auto mb-6 md:mb-8 lg:mb-12 leading-relaxed px-4">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white max-w-2xl mx-auto mb-6 md:mb-8 lg:mb-12 leading-relaxed px-4">
             Ditch the spreadsheets. SafetySync.AI brings all your safety and compliance workflows into one smart, powerful platform—so you can stay inspection-ready, reduce risk, and focus on what matters most.
           </p>
           
@@ -318,17 +318,17 @@ export default function LandingPage() {
             </Button>
           </div>
           
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center text-xs sm:text-sm text-blue-300 mb-6 md:mb-8 px-4">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center text-xs sm:text-sm text-white mb-6 md:mb-8 px-4">
             <div className="flex items-center justify-center">
-              <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 mr-2 text-emerald-400 flex-shrink-0" />
+              <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 mr-2 text-violet-400 flex-shrink-0" />
               <span>No Credit Card Required</span>
             </div>
             <div className="flex items-center justify-center">
-              <Shield className="w-3 h-3 sm:w-4 sm:h-4 mr-2 text-emerald-400 flex-shrink-0" />
+              <Shield className="w-3 h-3 sm:w-4 sm:h-4 mr-2 text-violet-400 flex-shrink-0" />
               <span>OSHA Compliant</span>
             </div>
             <div className="flex items-center justify-center">
-              <Timer className="w-3 h-3 sm:w-4 sm:h-4 mr-2 text-emerald-400 flex-shrink-0" />
+              <Timer className="w-3 h-3 sm:w-4 sm:h-4 mr-2 text-violet-400 flex-shrink-0" />
               <span>Setup in Minutes</span>
             </div>
           </div>
@@ -337,7 +337,7 @@ export default function LandingPage() {
             <Button 
               onClick={() => setShowProductTour(true)}
               variant="link"
-              className="text-blue-300 hover:text-emerald-400 underline transition-colors duration-300"
+              className="text-white hover:text-violet-400 underline transition-colors duration-300"
             >
               Take a Quick Tour
             </Button>
@@ -351,7 +351,7 @@ export default function LandingPage() {
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
             Sound Familiar?
           </h2>
-          <p className="text-lg text-blue-300 max-w-3xl mx-auto">
+          <p className="text-lg text-white max-w-3xl mx-auto">
             You're juggling compliance requirements while trying to keep your team safe. These challenges shouldn't slow you down.
           </p>
         </div>
@@ -400,7 +400,7 @@ export default function LandingPage() {
         
         <div className="text-center">
           <div className="inline-flex items-center px-6 py-3 bg-black/20 border border-blue-700 rounded-lg">
-            <CheckCircle className="w-5 h-5 text-emerald-400 mr-2" />
+            <CheckCircle className="w-5 h-5 text-violet-400 mr-2" />
             <span className="text-emerald-200 font-medium">There's a better way. Let us show you.</span>
           </div>
         </div>
@@ -412,7 +412,7 @@ export default function LandingPage() {
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
             Why SafetySync.AI is Different
           </h2>
-          <p className="text-lg text-blue-300 max-w-3xl mx-auto">
+          <p className="text-lg text-white max-w-3xl mx-auto">
             Stop fighting compliance chaos. Start confidently managing safety with automated tracking that works.
           </p>
         </div>
@@ -420,48 +420,48 @@ export default function LandingPage() {
         <div className="grid md:grid-cols-2 gap-8">
           <div className="bg-blue-700/50 border border-blue-600 p-6 rounded-xl hover:bg-blue-700/70 transition-all duration-300">
             <div className="flex items-start">
-              <div className="flex-shrink-0 w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mr-4">
-                <ShieldCheck className="w-6 h-6 text-emerald-400" />
+              <div className="flex-shrink-0 w-12 h-12 bg-violet-500/20 rounded-lg flex items-center justify-center mr-4">
+                <ShieldCheck className="w-6 h-6 text-violet-400" />
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-white mb-2">Automate Compliance Tracking</h3>
-                <p className="text-blue-300">Track all OSHA-required training in one place and never worry about expired certifications again. Automated alerts keep you ahead of deadlines.</p>
+                <p className="text-white">Track all OSHA-required training in one place and never worry about expired certifications again. Automated alerts keep you ahead of deadlines.</p>
               </div>
             </div>
           </div>
           
           <div className="bg-blue-700/50 border border-blue-600 p-6 rounded-xl hover:bg-blue-700/70 transition-all duration-300">
             <div className="flex items-start">
-              <div className="flex-shrink-0 w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mr-4">
-                <FileText className="w-6 h-6 text-emerald-400" />
+              <div className="flex-shrink-0 w-12 h-12 bg-violet-500/20 rounded-lg flex items-center justify-center mr-4">
+                <FileText className="w-6 h-6 text-violet-400" />
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-white mb-2">Simplify Audits</h3>
-                <p className="text-blue-300">Quickly generate reports that prove your compliance, so you're always audit-ready. No more scrambling when inspectors arrive.</p>
+                <p className="text-white">Quickly generate reports that prove your compliance, so you're always audit-ready. No more scrambling when inspectors arrive.</p>
               </div>
             </div>
           </div>
           
           <div className="bg-blue-700/50 border border-blue-600 p-6 rounded-xl hover:bg-blue-700/70 transition-all duration-300">
             <div className="flex items-start">
-              <div className="flex-shrink-0 w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mr-4">
-                <Clock className="w-6 h-6 text-emerald-400" />
+              <div className="flex-shrink-0 w-12 h-12 bg-violet-500/20 rounded-lg flex items-center justify-center mr-4">
+                <Clock className="w-6 h-6 text-violet-400" />
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-white mb-2">Stay Ahead of Deadlines</h3>
-                <p className="text-blue-300">Receive reminders for upcoming training and expiration dates, helping you stay ahead of regulatory requirements before they become problems.</p>
+                <p className="text-white">Receive reminders for upcoming training and expiration dates, helping you stay ahead of regulatory requirements before they become problems.</p>
               </div>
             </div>
           </div>
           
           <div className="bg-blue-700/50 border border-blue-600 p-6 rounded-xl hover:bg-blue-700/70 transition-all duration-300">
             <div className="flex items-start">
-              <div className="flex-shrink-0 w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mr-4">
-                <Shield className="w-6 h-6 text-emerald-400" />
+              <div className="flex-shrink-0 w-12 h-12 bg-violet-500/20 rounded-lg flex items-center justify-center mr-4">
+                <Shield className="w-6 h-6 text-violet-400" />
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-white mb-2">Reduce Risk & Liability</h3>
-                <p className="text-blue-300">Minimize the risk of penalties by ensuring all employee training is properly documented and up-to-date with enterprise-grade security.</p>
+                <p className="text-white">Minimize the risk of penalties by ensuring all employee training is properly documented and up-to-date with enterprise-grade security.</p>
               </div>
             </div>
           </div>
@@ -474,7 +474,7 @@ export default function LandingPage() {
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
             Common Concerns? We've Got You Covered
           </h2>
-          <p className="text-lg text-blue-300 max-w-3xl mx-auto">
+          <p className="text-lg text-white max-w-3xl mx-auto">
             We understand your hesitations. Here's how we address the most common concerns from safety managers like you.
           </p>
         </div>
@@ -482,37 +482,37 @@ export default function LandingPage() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="bg-black/20 border border-blue-700 p-6 rounded-lg">
             <h3 className="text-lg font-semibold text-blue-200 mb-3">💰 Cost Concerns</h3>
-            <p className="text-blue-300 mb-2 font-medium">"This might be too expensive for our budget."</p>
+            <p className="text-white mb-2 font-medium">"This might be too expensive for our budget."</p>
             <p className="text-blue-400 text-sm">We offer flexible pricing plans to match companies of all sizes. Most clients save more in avoided fines than they spend on our platform.</p>
           </div>
           
           <div className="bg-black/20 border border-blue-700 p-6 rounded-lg">
             <h3 className="text-lg font-semibold text-blue-200 mb-3">🔧 Complexity Worries</h3>
-            <p className="text-blue-300 mb-2 font-medium">"Our team isn't tech-savvy enough."</p>
+            <p className="text-white mb-2 font-medium">"Our team isn't tech-savvy enough."</p>
             <p className="text-blue-400 text-sm">Our software is easy to integrate and use—no steep learning curve. Most teams are up and running in under an hour.</p>
           </div>
           
           <div className="bg-black/20 border border-blue-700 p-6 rounded-lg">
             <h3 className="text-lg font-semibold text-blue-200 mb-3">🔗 Integration Issues</h3>
-            <p className="text-blue-300 mb-2 font-medium">"Will this work with our current systems?"</p>
+            <p className="text-white mb-2 font-medium">"Will this work with our current systems?"</p>
             <p className="text-blue-400 text-sm">Built to integrate seamlessly with existing HR and training platforms. We handle data migration so you don't lose anything.</p>
           </div>
           
           <div className="bg-black/20 border border-blue-700 p-6 rounded-lg">
             <h3 className="text-lg font-semibold text-blue-200 mb-3">⚙️ Customization Needs</h3>
-            <p className="text-blue-300 mb-2 font-medium">"Our processes are very specific."</p>
+            <p className="text-white mb-2 font-medium">"Our processes are very specific."</p>
             <p className="text-blue-400 text-sm">Highly customizable to match your unique workflows, industry requirements, and compliance standards. Built for flexibility.</p>
           </div>
           
           <div className="bg-black/20 border border-blue-700 p-6 rounded-lg">
             <h3 className="text-lg font-semibold text-blue-200 mb-3">🔐 Security Concerns</h3>
-            <p className="text-blue-300 mb-2 font-medium">"How secure is our sensitive data?"</p>
+            <p className="text-white mb-2 font-medium">"How secure is our sensitive data?"</p>
             <p className="text-blue-400 text-sm">Enterprise-grade security with SOC 2 compliance, encrypted data storage, and regular security audits. Your data is safer than spreadsheets.</p>
           </div>
           
           <div className="bg-black/20 border border-blue-700 p-6 rounded-lg">
             <h3 className="text-lg font-semibold text-blue-200 mb-3">🤝 Trust & Reliability</h3>
-            <p className="text-blue-300 mb-2 font-medium">"How do I know you're reliable?"</p>
+            <p className="text-white mb-2 font-medium">"How do I know you're reliable?"</p>
             <p className="text-blue-400 text-sm">Trusted by 500+ companies with 99.9% uptime, dedicated customer success team, and proven track record in safety compliance.</p>
           </div>
         </div>
@@ -535,19 +535,19 @@ export default function LandingPage() {
         <div className="grid md:grid-cols-2 gap-6 md:gap-8 text-left">
           <div className="bg-blue-700/50 border border-blue-600 p-6 rounded-2xl hover:bg-blue-700/70 transition-all duration-300">
             <h3 className="text-xl font-semibold mb-2 text-white">Real-Time Dashboards</h3>
-            <p className="text-blue-300">Stay ahead of inspections with live visibility into training, audits, and corrective actions.</p>
+            <p className="text-white">Stay ahead of inspections with live visibility into training, audits, and corrective actions.</p>
           </div>
           <div className="bg-blue-700/50 border border-blue-600 p-6 rounded-2xl hover:bg-blue-700/70 transition-all duration-300">
             <h3 className="text-xl font-semibold mb-2 text-white">Mobile-First Access</h3>
-            <p className="text-blue-300">Assign tasks and complete checklists from any device—field to office, online or offline.</p>
+            <p className="text-white">Assign tasks and complete checklists from any device—field to office, online or offline.</p>
           </div>
           <div className="bg-blue-700/50 border border-blue-600 p-6 rounded-2xl hover:bg-blue-700/70 transition-all duration-300">
             <h3 className="text-xl font-semibold mb-2 text-white">Training Management</h3>
-            <p className="text-blue-300">Easily assign, track, and verify required safety trainings across teams, roles, and locations.</p>
+            <p className="text-white">Easily assign, track, and verify required safety trainings across teams, roles, and locations.</p>
           </div>
           <div className="bg-blue-700/50 border border-blue-600 p-6 rounded-2xl hover:bg-blue-700/70 transition-all duration-300">
             <h3 className="text-xl font-semibold mb-2 text-white">Compliance Automation</h3>
-            <p className="text-blue-300">Simplify OSHA recordkeeping, deadline reminders, and documentation—zero guesswork, full confidence.</p>
+            <p className="text-white">Simplify OSHA recordkeeping, deadline reminders, and documentation—zero guesswork, full confidence.</p>
           </div>
         </div>
       </section>
@@ -557,7 +557,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              A Simple Solution to Stay <span className="text-emerald-400">OSHA-Compliant</span>
+              A Simple Solution to Stay <span className="text-violet-400">OSHA-Compliant</span>
             </h2>
             <h3 className="text-xl text-blue-200 mb-8">
               Automated, Accurate, and Always Ready
@@ -571,8 +571,8 @@ export default function LandingPage() {
             <Card className="bg-blue-600/40 rounded-xl border border-blue-500 hover:bg-blue-600/60 transition-all duration-300">
               <CardContent className="p-8">
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-emerald-500/30 rounded-lg flex items-center justify-center mr-4">
-                    <Users className="w-6 h-6 text-emerald-400" />
+                  <div className="flex-shrink-0 w-12 h-12 bg-violet-500/30 rounded-lg flex items-center justify-center mr-4">
+                    <Users className="w-6 h-6 text-violet-400" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-white mb-2">Automated Tracking & Reminders</h3>
@@ -585,8 +585,8 @@ export default function LandingPage() {
             <Card className="bg-blue-600/40 rounded-xl border border-blue-500 hover:bg-blue-600/60 transition-all duration-300">
               <CardContent className="p-8">
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-emerald-500/30 rounded-lg flex items-center justify-center mr-4">
-                    <FileText className="w-6 h-6 text-emerald-400" />
+                  <div className="flex-shrink-0 w-12 h-12 bg-violet-500/30 rounded-lg flex items-center justify-center mr-4">
+                    <FileText className="w-6 h-6 text-violet-400" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-white mb-2">Centralized Database</h3>
@@ -646,7 +646,7 @@ export default function LandingPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-white mb-2">Reduce Risk & Liability</h3>
-                    <p className="text-blue-300">Minimize the risk of penalties by ensuring all employee training is properly documented and up-to-date.</p>
+                    <p className="text-white">Minimize the risk of penalties by ensuring all employee training is properly documented and up-to-date.</p>
                   </div>
                 </div>
               </CardContent>
@@ -689,7 +689,7 @@ export default function LandingPage() {
           </Button>
           <Button 
             onClick={handleTrialClick}
-            className="bg-emerald-500 text-white font-semibold px-6 py-3 rounded-2xl hover:bg-emerald-600 transition-all duration-200 hover:scale-105 hover:shadow-lg transform"
+            className="bg-violet-500 text-white font-semibold px-6 py-3 rounded-2xl hover:bg-emerald-600 transition-all duration-200 hover:scale-105 hover:shadow-lg transform"
           >
             Start Free — No Credit Card Required
           </Button>
@@ -702,7 +702,7 @@ export default function LandingPage() {
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready to Transform Your Safety Management?
           </h2>
-          <p className="text-xl text-blue-300 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-white mb-8 max-w-2xl mx-auto">
             Join thousands of organizations using SafetySync.AI to streamline compliance, reduce risks, and focus on what matters most.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

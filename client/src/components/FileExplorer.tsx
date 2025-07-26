@@ -381,7 +381,7 @@ const FileExplorer: React.FC<FileExplorerProps> = ({ className }) => {
 
         <div className="flex items-center space-x-2">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-blue-300" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white" />
             <Input
               placeholder="Search files and folders..."
               value={searchQuery}
@@ -461,7 +461,7 @@ const FileExplorer: React.FC<FileExplorerProps> = ({ className }) => {
           )}
         </div>
 
-        <div className="flex items-center space-x-2 text-sm text-blue-300">
+        <div className="flex items-center space-x-2 text-sm text-white">
           {selectedItems.size > 0 && (
             <span>{selectedItems.size} item(s) selected</span>
           )}
@@ -479,7 +479,7 @@ const FileExplorer: React.FC<FileExplorerProps> = ({ className }) => {
               <Button
                 variant="ghost"
                 size="sm"
-                className="h-auto p-1 text-blue-400 hover:text-blue-300"
+                className="h-auto p-1 text-blue-400 hover:text-white"
                 onClick={() => navigateToFolder(crumb.id, crumb.path)}
               >
                 {crumb.name}
@@ -572,12 +572,12 @@ const FileExplorer: React.FC<FileExplorerProps> = ({ className }) => {
                     <div className={`${viewMode === 'grid' ? 'space-y-1' : 'flex-1'}`}>
                       <div className="text-sm font-medium truncate">{item.name}</div>
                       {viewMode === 'grid' && (
-                        <div className="text-xs text-blue-300">
+                        <div className="text-xs text-white">
                           {formatDate(item.lastModified)}
                         </div>
                       )}
                       {viewMode === 'list' && (
-                        <div className="flex items-center space-x-4 text-sm text-blue-300">
+                        <div className="flex items-center space-x-4 text-sm text-white">
                           <span>{formatDate(item.lastModified)}</span>
                           {item.size && <span>{formatFileSize(item.size)}</span>}
                         </div>
@@ -614,7 +614,7 @@ const FileExplorer: React.FC<FileExplorerProps> = ({ className }) => {
         )}
 
         {filteredItems.length === 0 && !foldersLoading && !filesLoading && (
-          <div className="flex flex-col items-center justify-center h-64 text-blue-300">
+          <div className="flex flex-col items-center justify-center h-64 text-white">
             <Folder className="w-16 h-16 mb-4" />
             <p>This folder is empty</p>
             <p className="text-sm">Drop files here or click "Upload" to add files</p>

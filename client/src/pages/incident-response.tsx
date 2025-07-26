@@ -187,7 +187,7 @@ export default function IncidentResponse() {
       case "available": return <CheckCircle className="w-4 h-4 text-green-400" />;
       case "on-call": return <Clock className="w-4 h-4 text-yellow-400" />;
       case "busy": return <AlertCircle className="w-4 h-4 text-red-400" />;
-      default: return <Clock className="w-4 h-4 text-blue-300" />;
+      default: return <Clock className="w-4 h-4 text-white" />;
     }
   };
 
@@ -203,7 +203,7 @@ export default function IncidentResponse() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 p-6">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
         <div className="text-center space-y-4">
@@ -211,7 +211,7 @@ export default function IncidentResponse() {
             <AlertTriangle className="w-8 h-8 text-red-400" />
             <h1 className="text-3xl font-bold text-white">Incident Response</h1>
           </div>
-          <p className="text-blue-300 max-w-2xl mx-auto">
+          <p className="text-white max-w-2xl mx-auto">
             Comprehensive incident management and response coordination for SafetySync.AI
           </p>
         </div>
@@ -223,7 +223,7 @@ export default function IncidentResponse() {
               <div className="flex items-center gap-3">
                 <AlertTriangle className="w-5 h-5 text-red-400" />
                 <div>
-                  <p className="text-sm text-blue-300">Active Incidents</p>
+                  <p className="text-sm text-white">Active Incidents</p>
                   <p className="text-xl font-bold text-white">{activeIncidents.length}</p>
                 </div>
               </div>
@@ -235,7 +235,7 @@ export default function IncidentResponse() {
               <div className="flex items-center gap-3">
                 <Users className="w-5 h-5 text-blue-400" />
                 <div>
-                  <p className="text-sm text-blue-300">Affected Users</p>
+                  <p className="text-sm text-white">Affected Users</p>
                   <p className="text-xl font-bold text-white">15</p>
                 </div>
               </div>
@@ -247,7 +247,7 @@ export default function IncidentResponse() {
               <div className="flex items-center gap-3">
                 <Clock className="w-5 h-5 text-yellow-400" />
                 <div>
-                  <p className="text-sm text-blue-300">Avg Response Time</p>
+                  <p className="text-sm text-white">Avg Response Time</p>
                   <p className="text-xl font-bold text-white">23m</p>
                 </div>
               </div>
@@ -259,7 +259,7 @@ export default function IncidentResponse() {
               <div className="flex items-center gap-3">
                 <TrendingUp className="w-5 h-5 text-green-400" />
                 <div>
-                  <p className="text-sm text-blue-300">Resolution Rate</p>
+                  <p className="text-sm text-white">Resolution Rate</p>
                   <p className="text-xl font-bold text-white">98.7%</p>
                 </div>
               </div>
@@ -309,19 +309,19 @@ export default function IncidentResponse() {
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                           <div>
-                            <p className="text-blue-300">ID</p>
+                            <p className="text-white">ID</p>
                             <p className="text-white">{incident.id}</p>
                           </div>
                           <div>
-                            <p className="text-blue-300">Assignee</p>
+                            <p className="text-white">Assignee</p>
                             <p className="text-white">{incident.assignee}</p>
                           </div>
                           <div>
-                            <p className="text-blue-300">Affected Users</p>
+                            <p className="text-white">Affected Users</p>
                             <p className="text-white">{incident.affectedUsers}</p>
                           </div>
                           <div>
-                            <p className="text-blue-300">Created</p>
+                            <p className="text-white">Created</p>
                             <p className="text-white">{incident.created}</p>
                           </div>
                         </div>
@@ -362,19 +362,19 @@ export default function IncidentResponse() {
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                           <div>
-                            <p className="text-blue-300">ID</p>
+                            <p className="text-white">ID</p>
                             <p className="text-white">{incident.id}</p>
                           </div>
                           <div>
-                            <p className="text-blue-300">Assignee</p>
+                            <p className="text-white">Assignee</p>
                             <p className="text-white">{incident.assignee}</p>
                           </div>
                           <div>
-                            <p className="text-blue-300">Affected Users</p>
+                            <p className="text-white">Affected Users</p>
                             <p className="text-white">{incident.affectedUsers}</p>
                           </div>
                           <div>
-                            <p className="text-blue-300">Resolution Time</p>
+                            <p className="text-white">Resolution Time</p>
                             <p className="text-white">{Math.floor((new Date(incident.resolved!) - new Date(incident.created)) / 1000 / 60)}m</p>
                           </div>
                         </div>
@@ -410,7 +410,7 @@ export default function IncidentResponse() {
                         {getStatusIcon(member.status)}
                         <div>
                           <h3 className="font-semibold text-white">{member.name}</h3>
-                          <p className="text-sm text-blue-300">{member.role}</p>
+                          <p className="text-sm text-white">{member.role}</p>
                           <div className="flex gap-2 mt-1">
                             {member.expertise.map((skill) => (
                               <Badge key={skill} variant="outline" className="text-xs">
@@ -449,19 +449,19 @@ export default function IncidentResponse() {
                     </div>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                       <div>
-                        <p className="text-blue-300">Response Time</p>
+                        <p className="text-white">Response Time</p>
                         <p className="text-white">{level.responseTime}</p>
                       </div>
                       <div>
-                        <p className="text-blue-300">Escalation Time</p>
+                        <p className="text-white">Escalation Time</p>
                         <p className="text-white">{level.escalation}</p>
                       </div>
                       <div>
-                        <p className="text-blue-300">Contacts</p>
+                        <p className="text-white">Contacts</p>
                         <p className="text-white">{level.contacts.join(", ")}</p>
                       </div>
                       <div>
-                        <p className="text-blue-300">Approval Required</p>
+                        <p className="text-white">Approval Required</p>
                         <p className="text-white">{level.approval}</p>
                       </div>
                     </div>

@@ -206,12 +206,12 @@ export default function SystemHealth() {
       case "error":
         return <XCircle className="w-4 h-4 text-red-400" />;
       default:
-        return <Clock className="w-4 h-4 text-blue-300" />;
+        return <Clock className="w-4 h-4 text-white" />;
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 p-6">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
         <div className="text-center space-y-4">
@@ -219,7 +219,7 @@ export default function SystemHealth() {
             <Activity className="w-8 h-8 text-green-400" />
             <h1 className="text-3xl font-bold text-white">System Health</h1>
           </div>
-          <p className="text-blue-300 max-w-2xl mx-auto">
+          <p className="text-white max-w-2xl mx-auto">
             Real-time monitoring and performance metrics for SafetySync.AI infrastructure
           </p>
         </div>
@@ -232,7 +232,7 @@ export default function SystemHealth() {
                 <div className="flex items-center gap-3">
                   <Server className="w-5 h-5 text-blue-400" />
                   <div>
-                    <p className="text-sm text-blue-300">CPU Usage</p>
+                    <p className="text-sm text-white">CPU Usage</p>
                     <p className="text-xl font-bold text-white">{realTimeData.cpu.toFixed(1)}%</p>
                   </div>
                 </div>
@@ -249,7 +249,7 @@ export default function SystemHealth() {
                 <div className="flex items-center gap-3">
                   <Database className="w-5 h-5 text-purple-400" />
                   <div>
-                    <p className="text-sm text-blue-300">Memory</p>
+                    <p className="text-sm text-white">Memory</p>
                     <p className="text-xl font-bold text-white">{realTimeData.memory.toFixed(1)}%</p>
                   </div>
                 </div>
@@ -266,7 +266,7 @@ export default function SystemHealth() {
                 <div className="flex items-center gap-3">
                   <BarChart3 className="w-5 h-5 text-green-400" />
                   <div>
-                    <p className="text-sm text-blue-300">Disk Usage</p>
+                    <p className="text-sm text-white">Disk Usage</p>
                     <p className="text-xl font-bold text-white">{realTimeData.disk.toFixed(1)}%</p>
                   </div>
                 </div>
@@ -283,7 +283,7 @@ export default function SystemHealth() {
                 <div className="flex items-center gap-3">
                   <Wifi className="w-5 h-5 text-yellow-400" />
                   <div>
-                    <p className="text-sm text-blue-300">Network I/O</p>
+                    <p className="text-sm text-white">Network I/O</p>
                     <p className="text-xl font-bold text-white">{realTimeData.network.toFixed(1)} MB/s</p>
                   </div>
                 </div>
@@ -315,7 +315,7 @@ export default function SystemHealth() {
                         {getStatusIcon(service.status)}
                         <div>
                           <h3 className="font-semibold text-white">{service.name}</h3>
-                          <p className="text-sm text-blue-300">{service.endpoint}</p>
+                          <p className="text-sm text-white">{service.endpoint}</p>
                         </div>
                       </div>
                       <Badge className={`${getStatusColor(service.status)} text-white`}>
@@ -324,15 +324,15 @@ export default function SystemHealth() {
                     </div>
                     <div className="grid grid-cols-3 gap-4 mt-3 text-sm">
                       <div>
-                        <p className="text-blue-300">Uptime</p>
+                        <p className="text-white">Uptime</p>
                         <p className="text-white font-semibold">{service.uptime}</p>
                       </div>
                       <div>
-                        <p className="text-blue-300">Response Time</p>
+                        <p className="text-white">Response Time</p>
                         <p className="text-white font-semibold">{service.responseTime}</p>
                       </div>
                       <div>
-                        <p className="text-blue-300">Last Check</p>
+                        <p className="text-white">Last Check</p>
                         <p className="text-white font-semibold">{service.lastCheck}</p>
                       </div>
                     </div>
@@ -359,12 +359,12 @@ export default function SystemHealth() {
                         </Badge>
                         <div className="flex items-center gap-1 mt-2">
                           <TrendingUp className={`w-4 h-4 ${metric.trend === 'up' ? 'text-green-400' : 'text-red-400'}`} />
-                          <span className="text-sm text-blue-300">{metric.change}</span>
+                          <span className="text-sm text-white">{metric.change}</span>
                         </div>
                       </div>
                     </div>
                     <div className="mt-3">
-                      <p className="text-sm text-blue-300">Target: {metric.target}</p>
+                      <p className="text-sm text-white">Target: {metric.target}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -383,7 +383,7 @@ export default function SystemHealth() {
                         <Shield className="w-5 h-5 text-blue-400" />
                         <div>
                           <h3 className="font-semibold text-white">{item.component}</h3>
-                          <div className="mt-2 text-sm text-blue-300">
+                          <div className="mt-2 text-sm text-white">
                             {item.component === "SSL Certificate" && (
                               <div className="space-y-1">
                                 <p>Expires: {item.expires}</p>
@@ -433,7 +433,7 @@ export default function SystemHealth() {
                 <AlertDescription className="text-white">
                   <strong>Warning:</strong> Email service response time above normal (234ms vs 150ms average)
                   <br />
-                  <span className="text-sm text-blue-300">Detected 15 minutes ago</span>
+                  <span className="text-sm text-white">Detected 15 minutes ago</span>
                 </AlertDescription>
               </Alert>
               
@@ -442,7 +442,7 @@ export default function SystemHealth() {
                 <AlertDescription className="text-white">
                   <strong>Info:</strong> Scheduled maintenance completed successfully
                   <br />
-                  <span className="text-sm text-blue-300">Completed 2 hours ago</span>
+                  <span className="text-sm text-white">Completed 2 hours ago</span>
                 </AlertDescription>
               </Alert>
               
@@ -451,7 +451,7 @@ export default function SystemHealth() {
                 <AlertDescription className="text-white">
                   <strong>Success:</strong> All system backups completed successfully
                   <br />
-                  <span className="text-sm text-blue-300">Completed 3 hours ago</span>
+                  <span className="text-sm text-white">Completed 3 hours ago</span>
                 </AlertDescription>
               </Alert>
             </div>

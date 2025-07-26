@@ -206,12 +206,12 @@ export default function OperationsDashboard() {
       case "info":
         return <Info className="w-4 h-4 text-blue-400" />;
       default:
-        return <Bell className="w-4 h-4 text-blue-300" />;
+        return <Bell className="w-4 h-4 text-white" />;
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 p-6">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
         <div className="flex justify-between items-center">
@@ -219,12 +219,12 @@ export default function OperationsDashboard() {
             <Command className="w-8 h-8 text-blue-400" />
             <div>
               <h1 className="text-3xl font-bold text-white">Operations Dashboard</h1>
-              <p className="text-blue-300">Enterprise operations center for SafetySync.AI</p>
+              <p className="text-white">Enterprise operations center for SafetySync.AI</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
             <div className="text-right">
-              <p className="text-sm text-blue-300">Last updated</p>
+              <p className="text-sm text-white">Last updated</p>
               <p className="text-white">{refreshTime.toLocaleTimeString()}</p>
             </div>
             <Button variant="outline" size="sm" className="text-white border-white/30">
@@ -240,7 +240,7 @@ export default function OperationsDashboard() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-blue-300">System Status</p>
+                  <p className="text-sm text-white">System Status</p>
                   <div className="flex items-center gap-2 mt-1">
                     <CheckCircle className="w-5 h-5 text-green-400" />
                     <span className="text-xl font-bold text-white">Operational</span>
@@ -249,7 +249,7 @@ export default function OperationsDashboard() {
                 <Badge className="bg-green-500 text-white">All Systems</Badge>
               </div>
               <div className="mt-4">
-                <p className="text-sm text-blue-300">Uptime: {systemMetrics.uptime}%</p>
+                <p className="text-sm text-white">Uptime: {systemMetrics.uptime}%</p>
                 <Progress value={systemMetrics.uptime} className="mt-2" />
               </div>
             </CardContent>
@@ -259,7 +259,7 @@ export default function OperationsDashboard() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-blue-300">Active Incidents</p>
+                  <p className="text-sm text-white">Active Incidents</p>
                   <div className="flex items-center gap-2 mt-1">
                     <AlertTriangle className="w-5 h-5 text-yellow-400" />
                     <span className="text-xl font-bold text-white">1</span>
@@ -268,7 +268,7 @@ export default function OperationsDashboard() {
                 <Badge className="bg-yellow-500 text-white">Medium</Badge>
               </div>
               <div className="mt-4">
-                <p className="text-sm text-blue-300">Email service degraded</p>
+                <p className="text-sm text-white">Email service degraded</p>
                 <Button size="sm" variant="outline" className="mt-2 text-white border-white/30">
                   <ExternalLink className="w-3 h-3 mr-1" />
                   View Details
@@ -281,7 +281,7 @@ export default function OperationsDashboard() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-blue-300">Performance</p>
+                  <p className="text-sm text-white">Performance</p>
                   <div className="flex items-center gap-2 mt-1">
                     <TrendingUp className="w-5 h-5 text-blue-400" />
                     <span className="text-xl font-bold text-white">{systemMetrics.responseTime}ms</span>
@@ -292,10 +292,10 @@ export default function OperationsDashboard() {
                 </Badge>
               </div>
               <div className="mt-4">
-                <p className="text-sm text-blue-300">Avg response time</p>
+                <p className="text-sm text-white">Avg response time</p>
                 <div className="flex items-center gap-2 mt-1">
                   <Progress value={Math.max(0, Math.min(100, (300 - systemMetrics.responseTime) / 2))} className="flex-1" />
-                  <span className="text-xs text-blue-300">Target: &lt;200ms</span>
+                  <span className="text-xs text-white">Target: &lt;200ms</span>
                 </div>
               </div>
             </CardContent>
@@ -316,12 +316,12 @@ export default function OperationsDashboard() {
                       </div>
                       <div className="flex-1">
                         <h3 className="font-semibold text-white">{action.title}</h3>
-                        <p className="text-sm text-blue-300">{action.description}</p>
+                        <p className="text-sm text-white">{action.description}</p>
                         <Badge variant="outline" className="mt-1 text-xs">
                           {action.status}
                         </Badge>
                       </div>
-                      <ExternalLink className="w-4 h-4 text-blue-300" />
+                      <ExternalLink className="w-4 h-4 text-white" />
                     </div>
                   </CardContent>
                 </Card>
@@ -350,7 +350,7 @@ export default function OperationsDashboard() {
                         <div className={`w-3 h-3 rounded-full ${getStatusColor(service.status)}`} />
                         <div>
                           <h3 className="font-semibold text-white">{service.name}</h3>
-                          <p className="text-sm text-blue-300">
+                          <p className="text-sm text-white">
                             {service.users} active users • Uptime: {service.uptime}
                           </p>
                         </div>
@@ -365,7 +365,7 @@ export default function OperationsDashboard() {
                         </Button>
                       </div>
                     </div>
-                    <div className="mt-3 text-sm text-blue-300">
+                    <div className="mt-3 text-sm text-white">
                       Last incident: {service.lastIncident}
                     </div>
                   </CardContent>
@@ -386,7 +386,7 @@ export default function OperationsDashboard() {
                         <CardContent className="p-4">
                           <div className="flex justify-between items-start">
                             <div>
-                              <p className="text-sm text-blue-300">{metric.name}</p>
+                              <p className="text-sm text-white">{metric.name}</p>
                               <p className="text-xl font-bold text-white">{metric.value}</p>
                             </div>
                             <Badge className={`${getStatusColor(metric.status)} text-white`}>
@@ -394,7 +394,7 @@ export default function OperationsDashboard() {
                             </Badge>
                           </div>
                           <div className="mt-2">
-                            <p className="text-xs text-blue-300">Target: {metric.target}</p>
+                            <p className="text-xs text-white">Target: {metric.target}</p>
                           </div>
                         </CardContent>
                       </Card>
@@ -422,7 +422,7 @@ export default function OperationsDashboard() {
                         <br />
                         {alert.message}
                         <br />
-                        <span className="text-sm text-blue-300">{alert.time}</span>
+                        <span className="text-sm text-white">{alert.time}</span>
                       </AlertDescription>
                     </div>
                     <Badge variant="outline" className="text-white">
@@ -466,7 +466,7 @@ export default function OperationsDashboard() {
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm text-blue-300">Response Time Warning</label>
+                      <label className="text-sm text-white">Response Time Warning</label>
                       <input 
                         type="number" 
                         defaultValue="200"
@@ -474,7 +474,7 @@ export default function OperationsDashboard() {
                       />
                     </div>
                     <div>
-                      <label className="text-sm text-blue-300">Error Rate Alert</label>
+                      <label className="text-sm text-white">Error Rate Alert</label>
                       <input 
                         type="number" 
                         defaultValue="0.1"
