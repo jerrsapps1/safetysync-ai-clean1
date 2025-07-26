@@ -11,7 +11,7 @@ export default function PricingPage() {
   const [showChat, setShowChat] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
+    <div className="min-h-screen bg-gradient-to-br from-sky-400 via-sky-300 to-blue-300">
       <PageHeader />
 
       {/* Main Content with Sidebar Margin */}
@@ -31,7 +31,7 @@ export default function PricingPage() {
         {/* Certificate & Digital Card Services Link */}
         <section className="mb-20">
           <div className="text-center">
-            <div className="bg-gradient-to-r from-blue-600/30 to-purple-600/30 border border-blue-400/40 rounded-lg p-8 max-w-4xl mx-auto backdrop-blur-sm">
+            <div className="bg-gradient-to-r from-blue-600/30 to-purple-600/30 border border-sky-300/40 rounded-lg p-8 max-w-4xl mx-auto backdrop-blur-sm">
               <h2 className="text-3xl font-bold text-white mb-4">Professional Certificate & Digital Card Services</h2>
               <p className="text-xl text-white mb-6">
                 Generate high-quality OSHA-compliant certificates and digital wallet cards with plan-specific allowances
@@ -47,7 +47,7 @@ export default function PricingPage() {
                 <Button 
                   size="lg" 
                   variant="secondary" 
-                  className="bg-blue-100 border-blue-400 text-blue-600 hover:bg-blue-200"
+                  className="bg-blue-100 border-sky-300 text-blue-600 hover:bg-blue-200"
                   onClick={() => window.location.href = '/certificate-services'}
                 >
                   See Examples & Pricing

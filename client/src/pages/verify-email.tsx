@@ -94,7 +94,7 @@ export default function VerifyEmailPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-sky-400 via-sky-300 to-blue-300 flex items-center justify-center px-4">
       <Card className="w-full max-w-md bg-blue-700/50 border-blue-600/50 backdrop-blur-sm">
         <CardHeader className="text-center">
           <div className="flex justify-center mb-4">

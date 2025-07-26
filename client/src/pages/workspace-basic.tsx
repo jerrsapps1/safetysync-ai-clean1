@@ -63,7 +63,7 @@ export default function WorkspaceBasic() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-sky-400 via-sky-300 to-blue-300 flex items-center justify-center">
         <div className="text-white text-center">
           <h2 className="text-xl font-semibold mb-2">Loading...</h2>
           <p className="text-blue-200">Please wait while we load your workspace</p>
@@ -74,7 +74,7 @@ export default function WorkspaceBasic() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-sky-400 via-sky-300 to-blue-300 flex items-center justify-center">
         <div className="text-white text-center">
           <h2 className="text-xl font-semibold mb-2">Authentication Required</h2>
           <p className="text-blue-200">Redirecting to login...</p>
@@ -84,7 +84,7 @@ export default function WorkspaceBasic() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
+    <div className="min-h-screen bg-gradient-to-br from-sky-400 via-sky-300 to-blue-300">
       {/* Tech Grid Background */}
       <div className="fixed inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
       
@@ -106,7 +106,7 @@ export default function WorkspaceBasic() {
 
       <div className="flex min-h-screen relative z-10">
         {/* Sidebar */}
-        <div className={`${sidebarOpen ? 'w-64' : 'w-16'} bg-blue-500/50 backdrop-blur-sm border-r border-blue-400 flex flex-col transition-all duration-300`}>
+        <div className={`${sidebarOpen ? 'w-64' : 'w-16'} bg-sky-400/50 backdrop-blur-sm border-r border-sky-300 flex flex-col transition-all duration-300`}>
           {/* Header */}
           <div className="p-4 border-b border-blue-700">
             <div className="flex items-center justify-between">
