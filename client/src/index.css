@@ -180,6 +180,10 @@ html, body {
   --text-primary: #ffffff;       /* Pure white like logo checkmark */
   --text-secondary: #cbd5e1;     /* Light gray for secondary text */
   --text-accent: #34d399;        /* Light emerald for accents */
+  
+  /* SafetySync.AI primary brand colors */
+  --safetysync-primary: #2563EB; /* Blue-600 - Primary brand color */
+  --safetysync-accent: #FBBF24;  /* Yellow-400 - Accent color */
 }
 
 /* Professional glassmorphic effects using logo colors */
