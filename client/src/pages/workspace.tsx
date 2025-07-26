@@ -370,7 +370,7 @@ export default function WorkspacePage() {
   // Extract tab from URL or default to overview
   const getActiveTabFromUrl = () => {
     const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('tab') || 'unified-dashboard';
+    return urlParams.get('tab') || 'user-guide';
   };
   
   const [activeTab, setActiveTab] = useState(getActiveTabFromUrl());
@@ -2012,7 +2012,27 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         {/* Navigation - Organized by Tutorial Order */}
         <nav className={`${sidebarOpen ? 'block' : 'hidden'} md:block flex-1 p-4 space-y-2`}>
           <div className="space-y-2">
-          {/* Workspace View - First Tab */}
+          {/* User Guide - First Tab */}
+          <motion.div
+            variants={navButtonVariants}
+            initial="idle"
+            whileHover="hover"
+            animate={activeTab === "user-guide" ? "active" : "idle"}
+          >
+            <Button
+              variant="ghost"
+              className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+                activeTab === "user-guide" ? "text-white bg-blue-600/30" : ""
+              }`}
+              onClick={() => handleTabSwitch("user-guide")}
+              title="User Guide"
+            >
+              <BookOpen className="w-5 h-5 mr-3 flex-shrink-0" />
+              {sidebarOpen && <span className="truncate">User Guide</span>}
+            </Button>
+          </motion.div>
+
+          {/* Workspace View - Second Tab */}
           <motion.div
             variants={navButtonVariants}
             initial="idle"
