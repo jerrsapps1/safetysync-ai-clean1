@@ -2376,23 +2376,25 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   </Button>
                   <Button
                     variant="ghost"
-                    className="w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3"
-                    onClick={() => window.open('/.replit.dev/dashboard', '_blank')}
+                    className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+                      activeTab === "platform-dashboard" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
+                    }`}
+                    onClick={() => handleTabSwitch("platform-dashboard")}
                     title="Platform Dashboard"
                   >
                     <Monitor className="w-4 h-4 mr-3 flex-shrink-0" />
                     {sidebarOpen && <span className="truncate">Platform Dashboard</span>}
-                    <ExternalLink className="w-3 h-3 ml-auto flex-shrink-0 opacity-60" />
                   </Button>
                   <Button
                     variant="ghost"
-                    className="w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3"
-                    onClick={() => window.open('/users', '_blank')}
+                    className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+                      activeTab === "user-guide" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
+                    }`}
+                    onClick={() => handleTabSwitch("user-guide")}
                     title="User Guide"
                   >
-                    <HelpCircle className="w-4 h-4 mr-3 flex-shrink-0" />
+                    <BookOpen className="w-4 h-4 mr-3 flex-shrink-0" />
                     {sidebarOpen && <span className="truncate">User Guide</span>}
-                    <ExternalLink className="w-3 h-3 ml-auto flex-shrink-0 opacity-60" />
                   </Button>
                 </div>
               )}
@@ -2439,6 +2441,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 {activeTab === "document-manager" && "Document Management"}
                 {activeTab === "company-profile" && "Company Profile"}
                 {activeTab === "settings" && "Workspace Settings"}
+                {activeTab === "platform-dashboard" && "Platform Dashboard"}
+                {activeTab === "user-guide" && "User Guide"}
               </h1>
               <p className="text-white text-sm md:text-base">
                 {activeTab === "unified-dashboard" && (
@@ -2473,6 +2477,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 {activeTab === "document-manager" && "Upload, organize, and manage safety documents"}
                 {activeTab === "company-profile" && "Manage your company profile and business information"}
                 {activeTab === "settings" && "Configure your workspace and branding"}
+                {activeTab === "platform-dashboard" && "Access development dashboard and system monitoring tools"}
+                {activeTab === "user-guide" && "Comprehensive user guide and documentation for the SafetySync.AI platform"}
               </p>
             </div>
             <div className="flex items-center space-x-2 md:space-x-4">
@@ -3351,6 +3357,210 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <Button className="bg-violet-500 hover:bg-emerald-600">
                     Save Settings
                   </Button>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
+          {activeTab === "platform-dashboard" && (
+            <div className="space-y-6">
+              <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
+                <CardHeader>
+                  <CardTitle className="text-white flex items-center">
+                    <Monitor className="w-5 h-5 mr-2" />
+                    Platform Dashboard
+                  </CardTitle>
+                  <CardDescription className="text-white">
+                    Development dashboard and system monitoring tools
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="bg-blue-600/30 p-4 rounded-lg border border-blue-500">
+                      <h3 className="text-white font-semibold mb-2">System Status</h3>
+                      <div className="space-y-2">
+                        <div className="flex justify-between">
+                          <span className="text-white">Database</span>
+                          <span className="text-green-400">Connected</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-white">AI Services</span>
+                          <span className="text-green-400">Active</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-white">Email Service</span>
+                          <span className="text-green-400">Ready</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="bg-blue-600/30 p-4 rounded-lg border border-blue-500">
+                      <h3 className="text-white font-semibold mb-2">Quick Actions</h3>
+                      <div className="space-y-2">
+                        <Button 
+                          variant="outline"
+                          className="w-full text-white border-blue-400 hover:bg-blue-600/50"
+                          onClick={() => window.open('/.replit.dev/dashboard', '_blank')}
+                        >
+                          <ExternalLink className="w-4 h-4 mr-2" />
+                          Open Replit Dashboard
+                        </Button>
+                        <Button 
+                          variant="outline"
+                          className="w-full text-white border-blue-400 hover:bg-blue-600/50"
+                          onClick={() => handleTabSwitch("unified-dashboard")}
+                        >
+                          <BarChart3 className="w-4 h-4 mr-2" />
+                          View Main Dashboard
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-blue-600/30 p-4 rounded-lg border border-blue-500">
+                    <h3 className="text-white font-semibold mb-2">Platform Information</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                      <div>
+                        <div className="text-blue-300">Version</div>
+                        <div className="text-white">v2.1.0</div>
+                      </div>
+                      <div>
+                        <div className="text-blue-300">Environment</div>
+                        <div className="text-white">Development</div>
+                      </div>
+                      <div>
+                        <div className="text-blue-300">Database</div>
+                        <div className="text-white">PostgreSQL</div>
+                      </div>
+                      <div>
+                        <div className="text-blue-300">AI Provider</div>
+                        <div className="text-white">OpenAI GPT-4o</div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
+          {activeTab === "user-guide" && (
+            <div className="space-y-6">
+              <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
+                <CardHeader>
+                  <CardTitle className="text-white flex items-center">
+                    <BookOpen className="w-5 h-5 mr-2" />
+                    SafetySync.AI User Guide
+                  </CardTitle>
+                  <CardDescription className="text-white">
+                    Comprehensive documentation for the SafetySync.AI platform
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="bg-blue-600/30 p-4 rounded-lg border border-blue-500">
+                      <h3 className="text-white font-semibold mb-3 flex items-center">
+                        <User className="w-4 h-4 mr-2" />
+                        Getting Started
+                      </h3>
+                      <ul className="space-y-2 text-sm text-white">
+                        <li>• Setting up your company profile</li>
+                        <li>• Adding employees and roles</li>
+                        <li>• Configuring training standards</li>
+                        <li>• Dashboard overview</li>
+                      </ul>
+                    </div>
+                    <div className="bg-blue-600/30 p-4 rounded-lg border border-blue-500">
+                      <h3 className="text-white font-semibold mb-3 flex items-center">
+                        <FileText className="w-4 h-4 mr-2" />
+                        Document Management
+                      </h3>
+                      <ul className="space-y-2 text-sm text-white">
+                        <li>• AI document processing</li>
+                        <li>• Training record management</li>
+                        <li>• Certificate generation</li>
+                        <li>• Digital wallet cards</li>
+                      </ul>
+                    </div>
+                    <div className="bg-blue-600/30 p-4 rounded-lg border border-blue-500">
+                      <h3 className="text-white font-semibold mb-3 flex items-center">
+                        <Shield className="w-4 h-4 mr-2" />
+                        OSHA Compliance
+                      </h3>
+                      <ul className="space-y-2 text-sm text-white">
+                        <li>• Compliance manager overview</li>
+                        <li>• Training requirements</li>
+                        <li>• Audit preparation</li>
+                        <li>• Reporting tools</li>
+                      </ul>
+                    </div>
+                    <div className="bg-blue-600/30 p-4 rounded-lg border border-blue-500">
+                      <h3 className="text-white font-semibold mb-3 flex items-center">
+                        <Users className="w-4 h-4 mr-2" />
+                        Employee Management
+                      </h3>
+                      <ul className="space-y-2 text-sm text-white">
+                        <li>• Employee profiles</li>
+                        <li>• Training assignments</li>
+                        <li>• Certification tracking</li>
+                        <li>• Performance analytics</li>
+                      </ul>
+                    </div>
+                    <div className="bg-blue-600/30 p-4 rounded-lg border border-blue-500">
+                      <h3 className="text-white font-semibold mb-3 flex items-center">
+                        <BarChart3 className="w-4 h-4 mr-2" />
+                        Analytics & Reports
+                      </h3>
+                      <ul className="space-y-2 text-sm text-white">
+                        <li>• Dashboard widgets</li>
+                        <li>• Compliance reports</li>
+                        <li>• Training trends</li>
+                        <li>• Custom analytics</li>
+                      </ul>
+                    </div>
+                    <div className="bg-blue-600/30 p-4 rounded-lg border border-blue-500">
+                      <h3 className="text-white font-semibold mb-3 flex items-center">
+                        <Settings className="w-4 h-4 mr-2" />
+                        Platform Features
+                      </h3>
+                      <ul className="space-y-2 text-sm text-white">
+                        <li>• AI contextual help</li>
+                        <li>• Workspace customization</li>
+                        <li>• Integration options</li>
+                        <li>• Security settings</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="bg-blue-600/30 p-4 rounded-lg border border-blue-500">
+                    <h3 className="text-white font-semibold mb-3">Need More Help?</h3>
+                    <div className="flex flex-wrap gap-3">
+                      <Button 
+                        variant="outline"
+                        className="text-white border-blue-400 hover:bg-blue-600/50"
+                        onClick={() => window.open('/users', '_blank')}
+                      >
+                        <ExternalLink className="w-4 h-4 mr-2" />
+                        Full Documentation
+                      </Button>
+                      <Button 
+                        variant="outline"
+                        className="text-white border-blue-400 hover:bg-blue-600/50"
+                        onClick={() => {
+                          // Trigger contextual help
+                          const helpButton = document.querySelector('[title="Get AI-powered help"]') as HTMLButtonElement;
+                          if (helpButton) helpButton.click();
+                        }}
+                      >
+                        <HelpCircle className="w-4 h-4 mr-2" />
+                        Ask AI Assistant
+                      </Button>
+                      <Button 
+                        variant="outline"
+                        className="text-white border-blue-400 hover:bg-blue-600/50"
+                        onClick={() => handleTabSwitch("unified-dashboard")}
+                      >
+                        <Home className="w-4 h-4 mr-2" />
+                        Back to Dashboard
+                      </Button>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
             </div>
