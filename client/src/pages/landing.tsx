@@ -6,6 +6,8 @@ import { TrialSignupDialog } from "@/components/ui/trial-signup-dialog";
 import { DemoRequestDialog } from "@/components/ui/demo-request-dialog";
 import { Toaster } from "@/components/ui/toaster";
 import { Link } from "wouter";
+import PricingFAQ from "@/components/PricingFAQ";
+import ComparisonModal from "@/components/ComparisonModal";
 
 import { ProductTour } from "@/components/ui/product-tour";
 import { LiveChatWidget } from "@/components/ui/live-chat-widget";
@@ -69,6 +71,8 @@ export default function LandingPage() {
   const [showProductTour, setShowProductTour] = useState(false);
   const [showLiveChat, setShowLiveChat] = useState(false);
   const [showTermsDialog, setShowTermsDialog] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [liferCount, setLiferCount] = useState(0);
   const [pendingSignupData, setPendingSignupData] = useState<{
     type: 'trial' | 'demo';
     data: any;
@@ -96,6 +100,20 @@ export default function LandingPage() {
       window.location.href = '/workspace';
     }
   };
+
+  // Fetch Lifer count on component mount
+  useEffect(() => {
+    async function fetchLiferCount() {
+      try {
+        const res = await fetch('/api/lifers-claimed');
+        const data = await res.json();
+        setLiferCount(data.count);
+      } catch (err) {
+        console.error('Failed to load lifer count', err);
+      }
+    }
+    fetchLiferCount();
+  }, []);
 
 
 
@@ -803,6 +821,13 @@ export default function LandingPage() {
         onToggle={() => setShowLiveChat(!showLiveChat)}
         onClose={() => setShowLiveChat(false)}
       />
+      
+      {showModal && (
+        <ComparisonModal 
+          isOpen={showModal}
+          onClose={() => setShowModal(false)}
+        />
+      )}
       
       <Toaster />
       </div>
