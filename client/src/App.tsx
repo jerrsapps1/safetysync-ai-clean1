@@ -47,6 +47,7 @@ import PublicEmployeeCertificates from "@/components/PublicEmployeeCertificates"
 import { SkeletonDemo } from "@/components/ui/skeleton-demo";
 import SidebarDemoPage from "@/pages/sidebar-demo";
 import DownloadDocsPage from "@/pages/download-docs";
+import AdminEmailPage from "@/pages/admin-email";
 
 function Router() {
   return (
@@ -89,6 +90,7 @@ function Router() {
       <Route path="/skeleton-demo" component={SkeletonDemo} />
       <Route path="/sidebar-demo" component={SidebarDemoPage} />
       <Route path="/download-docs" component={DownloadDocsPage} />
+      <Route path="/admin-email" component={AdminEmailPage} />
       <Route component={NotFound} />
     </Switch>
   );
