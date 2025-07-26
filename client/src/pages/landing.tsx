@@ -375,7 +375,7 @@ export default function LandingPage() {
         </div>
         
         <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-16">
-          <div className="bg-black/20 border border-blue-700 border-l-4 border-red-500 p-6 rounded-lg">
+          <div className="bg-black/20 border border-blue-700 border-l-4 border-red-500 p-6 rounded-xl shadow">
             <div className="flex items-start">
               <AlertTriangle className="w-5 h-5 text-red-400 mt-0.5 mr-3 flex-shrink-0" />
               <div>
@@ -385,7 +385,7 @@ export default function LandingPage() {
             </div>
           </div>
           
-          <div className="bg-black/20 border border-blue-700 border-l-4 border-red-500 p-6 rounded-lg">
+          <div className="bg-black/20 border border-blue-700 border-l-4 border-red-500 p-6 rounded-xl shadow">
             <div className="flex items-start">
               <Clock className="w-5 h-5 text-red-400 mt-0.5 mr-3 flex-shrink-0" />
               <div>
@@ -395,7 +395,7 @@ export default function LandingPage() {
             </div>
           </div>
           
-          <div className="bg-black/20 border border-blue-700 border-l-4 border-red-500 p-6 rounded-lg">
+          <div className="bg-black/20 border border-blue-700 border-l-4 border-red-500 p-6 rounded-xl shadow">
             <div className="flex items-start">
               <FileX className="w-5 h-5 text-red-400 mt-0.5 mr-3 flex-shrink-0" />
               <div>
@@ -405,7 +405,7 @@ export default function LandingPage() {
             </div>
           </div>
           
-          <div className="bg-black/20 border border-blue-700 border-l-4 border-red-500 p-6 rounded-lg">
+          <div className="bg-black/20 border border-blue-700 border-l-4 border-red-500 p-6 rounded-xl shadow">
             <div className="flex items-start">
               <AlertCircle className="w-5 h-5 text-red-400 mt-0.5 mr-3 flex-shrink-0" />
               <div>
@@ -417,7 +417,7 @@ export default function LandingPage() {
         </div>
         
         <div className="text-center">
-          <div className="inline-flex items-center px-6 py-3 bg-black/20 border border-blue-700 rounded-lg">
+          <div className="inline-flex items-center px-6 py-3 bg-black/20 border border-blue-700 rounded-xl shadow">
             <CheckCircle className="w-5 h-5 text-violet-400 mr-2" />
             <span className="text-emerald-200 font-medium">There's a better way. Let us show you.</span>
           </div>
@@ -425,7 +425,7 @@ export default function LandingPage() {
       </section>
 
       {/* Key Benefits Section */}
-      <section className="py-16 px-4 md:px-6 max-w-6xl mx-auto bg-black/20 border border-blue-700 rounded-lg">
+      <section className="py-16 px-4 md:px-6 max-w-6xl mx-auto bg-black/20 border border-blue-700 rounded-xl shadow">
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
             Why SafetySync.AI is Different
@@ -498,37 +498,37 @@ export default function LandingPage() {
         </div>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="bg-black/20 border border-blue-700 p-6 rounded-lg">
+          <div className="bg-black/20 border border-blue-700 p-6 rounded-xl shadow">
             <h3 className="text-lg font-semibold text-blue-200 mb-3">💰 Cost Concerns</h3>
             <p className="text-white mb-2 font-medium">"This might be too expensive for our budget."</p>
             <p className="text-blue-400 text-sm">We offer flexible pricing plans to match companies of all sizes. Most clients save more in avoided fines than they spend on our platform.</p>
           </div>
           
-          <div className="bg-black/20 border border-blue-700 p-6 rounded-lg">
+          <div className="bg-black/20 border border-blue-700 p-6 rounded-xl shadow">
             <h3 className="text-lg font-semibold text-blue-200 mb-3">🔧 Complexity Worries</h3>
             <p className="text-white mb-2 font-medium">"Our team isn't tech-savvy enough."</p>
             <p className="text-blue-400 text-sm">Our software is easy to integrate and use—no steep learning curve. Most teams are up and running in under an hour.</p>
           </div>
           
-          <div className="bg-black/20 border border-blue-700 p-6 rounded-lg">
+          <div className="bg-black/20 border border-blue-700 p-6 rounded-xl shadow">
             <h3 className="text-lg font-semibold text-blue-200 mb-3">🔗 Integration Issues</h3>
             <p className="text-white mb-2 font-medium">"Will this work with our current systems?"</p>
             <p className="text-blue-400 text-sm">Built to integrate seamlessly with existing HR and training platforms. We handle data migration so you don't lose anything.</p>
           </div>
           
-          <div className="bg-black/20 border border-blue-700 p-6 rounded-lg">
+          <div className="bg-black/20 border border-blue-700 p-6 rounded-xl shadow">
             <h3 className="text-lg font-semibold text-blue-200 mb-3">⚙️ Customization Needs</h3>
             <p className="text-white mb-2 font-medium">"Our processes are very specific."</p>
             <p className="text-blue-400 text-sm">Highly customizable to match your unique workflows, industry requirements, and compliance standards. Built for flexibility.</p>
           </div>
           
-          <div className="bg-black/20 border border-blue-700 p-6 rounded-lg">
+          <div className="bg-black/20 border border-blue-700 p-6 rounded-xl shadow">
             <h3 className="text-lg font-semibold text-blue-200 mb-3">🔐 Security Concerns</h3>
             <p className="text-white mb-2 font-medium">"How secure is our sensitive data?"</p>
             <p className="text-blue-400 text-sm">Enterprise-grade security with SOC 2 compliance, encrypted data storage, and regular security audits. Your data is safer than spreadsheets.</p>
           </div>
           
-          <div className="bg-black/20 border border-blue-700 p-6 rounded-lg">
+          <div className="bg-black/20 border border-blue-700 p-6 rounded-xl shadow">
             <h3 className="text-lg font-semibold text-blue-200 mb-3">🤝 Trust & Reliability</h3>
             <p className="text-white mb-2 font-medium">"How do I know you're reliable?"</p>
             <p className="text-blue-400 text-sm">Trusted by 500+ companies with 99.9% uptime, dedicated customer success team, and proven track record in safety compliance.</p>
@@ -538,7 +538,7 @@ export default function LandingPage() {
         <div className="text-center mt-12">
           <Button 
             onClick={handleTrialClick}
-            className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-lg text-lg font-semibold"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl shadow-md transition duration-200 text-lg font-semibold"
           >
             Still Have Questions? Start Your Free Trial
           </Button>

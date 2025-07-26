@@ -41,7 +41,7 @@ export default function PricingFAQ() {
   return (
     <div className="space-y-4">
       {faqs.map((faq, i) => (
-        <div key={i} className="border rounded">
+        <div key={i} className="border rounded-xl shadow">
           <button
             className="w-full text-left px-4 py-3 font-medium text-gray-800 bg-white hover:bg-gray-50"
             onClick={() => setOpenIndex(openIndex === i ? null : i)}
