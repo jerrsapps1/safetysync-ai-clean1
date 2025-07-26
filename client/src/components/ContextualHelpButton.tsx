@@ -132,13 +132,12 @@ Keep responses focused on OSHA compliance, safety management, training documenta
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button
-          variant="outline"
+          variant="ghost"
           size="sm"
-          className="fixed bottom-4 right-4 z-50 bg-blue-600 hover:bg-blue-700 text-white border-blue-500 shadow-lg backdrop-blur-sm"
+          className="text-white hover:text-white hover:bg-blue-600/50 border-blue-400"
           title="Get AI-powered help"
         >
-          <HelpCircle className="w-4 h-4 mr-2" />
-          Ask AI
+          <HelpCircle className="w-4 h-4" />
         </Button>
       </DialogTrigger>
       

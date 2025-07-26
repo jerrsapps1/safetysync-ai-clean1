@@ -49,6 +49,7 @@ import { SmoothLoading } from "@/components/ui/smooth-loading";
 import SafetyTrendsDashboard from "@/components/safety-trends-dashboard";
 import QuickSearchWidget from "@/components/safetytracker/QuickSearchWidget";
 import { SafetySyncIcon } from "@/components/ui/safetysync-icon";
+import { ContextualHelpButton } from "@/components/ContextualHelpButton";
 
 import { Responsive, WidthProvider } from "react-grid-layout";
 import "react-grid-layout/css/styles.css";
@@ -1994,14 +1995,17 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             ) : (
               <SafetySyncIcon size={32} className="rounded-lg" />
             )}
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="text-white hover:text-white"
-            >
-              {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </Button>
+            <div className="flex items-center space-x-2">
+              <ContextualHelpButton currentPage={activeTab} />
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setSidebarOpen(!sidebarOpen)}
+                className="text-white hover:text-white"
+              >
+                {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </Button>
+            </div>
           </div>
         </div>
 
