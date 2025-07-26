@@ -2026,6 +2026,72 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             </Button>
           </motion.div>
 
+          {/* Step 2: Employee Management Section */}
+          <div className="space-y-1">
+            <Button
+              variant="ghost"
+              className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3"
+              onClick={() => toggleSection('employee-management')}
+              title="Employee Management"
+            >
+              <Users className="w-5 h-5 mr-3 flex-shrink-0" />
+              {sidebarOpen && <span className="truncate">2. Employee Management</span>}
+              {sidebarOpen && (
+                expandedSections['employee-management'] ? 
+                  <ChevronDown className="w-4 h-4 ml-auto flex-shrink-0" /> : 
+                  <ChevronRight className="w-4 h-4 ml-auto flex-shrink-0" />
+              )}
+            </Button>
+            {expandedSections['employee-management'] && (
+              <div className="ml-6 space-y-1">
+                <Button
+                  variant="ghost"
+                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
+                    activeTab === "employees" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                  }`}
+                  onClick={() => handleTabSwitch("employees")}
+                  title="Employee Management"
+                >
+                  <Users className="w-4 h-4 mr-3 flex-shrink-0" />
+                  {sidebarOpen && <span className="truncate">Employee Management</span>}
+                </Button>
+                <Button
+                  variant="ghost"
+                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
+                    activeTab === "employee-insights" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                  }`}
+                  onClick={() => handleTabSwitch("employee-insights")}
+                  title="Employee Insights"
+                >
+                  <Brain className="w-4 h-4 mr-3 flex-shrink-0" />
+                  {sidebarOpen && <span className="truncate">Employee Insights</span>}
+                </Button>
+                <Button
+                  variant="ghost"
+                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
+                    activeTab === "employee-profile" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                  }`}
+                  onClick={() => handleTabSwitch("employee-profile")}
+                  title="Employee Profile"
+                >
+                  <User className="w-4 h-4 mr-3 flex-shrink-0" />
+                  {sidebarOpen && <span className="truncate">Employee Profile</span>}
+                </Button>
+                <Button
+                  variant="ghost"
+                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
+                    activeTab === "employee-portal" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
+                  }`}
+                  onClick={() => handleTabSwitch("employee-portal")}
+                  title="Employee Portal"
+                >
+                  <FileUser className="w-4 h-4 mr-3 flex-shrink-0" />
+                  {sidebarOpen && <span className="truncate">Employee Portal</span>}
+                </Button>
+              </div>
+            )}
+          </div>
+
           {/* Compliance & Reporting Section */}
           <div className="space-y-1">
             <motion.div
@@ -2130,72 +2196,6 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               )}
             </AnimatePresence>
           </div>
-          {/* Employee Management Section */}
-          <div className="space-y-1">
-            <Button
-              variant="ghost"
-              className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3"
-              onClick={() => toggleSection('employee-management')}
-              title="Employee Management"
-            >
-              <Users className="w-5 h-5 mr-3 flex-shrink-0" />
-              {sidebarOpen && <span className="truncate">Employee Management</span>}
-              {sidebarOpen && (
-                expandedSections['employee-management'] ? 
-                  <ChevronDown className="w-4 h-4 ml-auto flex-shrink-0" /> : 
-                  <ChevronRight className="w-4 h-4 ml-auto flex-shrink-0" />
-              )}
-            </Button>
-            {expandedSections['employee-management'] && (
-              <div className="ml-6 space-y-1">
-                <Button
-                  variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                    activeTab === "employees" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
-                  }`}
-                  onClick={() => handleTabSwitch("employees")}
-                  title="Employee Management"
-                >
-                  <Users className="w-4 h-4 mr-3 flex-shrink-0" />
-                  {sidebarOpen && <span className="truncate">Employee Management</span>}
-                </Button>
-                <Button
-                  variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                    activeTab === "employee-insights" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
-                  }`}
-                  onClick={() => handleTabSwitch("employee-insights")}
-                  title="Employee Insights"
-                >
-                  <Brain className="w-4 h-4 mr-3 flex-shrink-0" />
-                  {sidebarOpen && <span className="truncate">Employee Insights</span>}
-                </Button>
-                <Button
-                  variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                    activeTab === "employee-profile" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
-                  }`}
-                  onClick={() => handleTabSwitch("employee-profile")}
-                  title="Employee Profile"
-                >
-                  <User className="w-4 h-4 mr-3 flex-shrink-0" />
-                  {sidebarOpen && <span className="truncate">Employee Profile</span>}
-                </Button>
-                <Button
-                  variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700/50 pl-3 ${
-                    activeTab === "employee-portal" ? "text-white border-b-2 border-blue-400 rounded-b-none bg-gray-700/30" : ""
-                  }`}
-                  onClick={() => handleTabSwitch("employee-portal")}
-                  title="Employee Portal"
-                >
-                  <FileUser className="w-4 h-4 mr-3 flex-shrink-0" />
-                  {sidebarOpen && <span className="truncate">Employee Portal</span>}
-                </Button>
-              </div>
-            )}
-          </div>
-
             {/* Compliance & Reporting Features */}
             <div className="space-y-1">
               <Button
