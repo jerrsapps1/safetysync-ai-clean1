@@ -1968,7 +1968,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 flex flex-col md:flex-row">
+    <div className="min-h-screen bg-gradient-to-br from-slate-700 via-blue-500 to-purple-600 flex flex-col md:flex-row">
       {/* Sidebar */}
       <motion.div 
         className={`${sidebarOpen ? 'w-full md:w-64' : 'w-full md:w-16'} ${sidebarOpen ? 'h-auto' : 'h-16'} md:h-auto bg-black/20 backdrop-blur-sm border-r border-gray-800 flex flex-col md:border-r md:border-b-0 border-b`}
@@ -2849,7 +2849,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                 {/* Safety Trends Chart */}
-                <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700">
+                <Card className="bg-slate-600/50 backdrop-blur-sm border-slate-500">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-white text-sm flex items-center">
                       <TrendingUp className="w-4 h-4 mr-2 text-blue-400" />
@@ -2884,7 +2884,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </Card>
 
                 {/* Compliance Metrics */}
-                <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700">
+                <Card className="bg-slate-600/50 backdrop-blur-sm border-slate-500">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-white text-sm flex items-center">
                       <BarChart3 className="w-4 h-4 mr-2 text-blue-400" />
@@ -2919,7 +2919,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </Card>
 
                 {/* Department Performance */}
-                <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700">
+                <Card className="bg-slate-600/50 backdrop-blur-sm border-slate-500">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-white text-sm flex items-center">
                       <Users className="w-4 h-4 mr-2 text-blue-400" />
@@ -2945,7 +2945,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </Card>
 
                 {/* Risk Analysis */}
-                <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700">
+                <Card className="bg-slate-600/50 backdrop-blur-sm border-slate-500">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-white text-sm flex items-center">
                       <AlertTriangle className="w-4 h-4 mr-2 text-blue-400" />
@@ -2980,7 +2980,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </Card>
 
                 {/* Training Completion */}
-                <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700">
+                <Card className="bg-slate-600/50 backdrop-blur-sm border-slate-500">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-white text-sm flex items-center">
                       <BookOpen className="w-4 h-4 mr-2 text-blue-400" />
@@ -3015,7 +3015,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </Card>
 
                 {/* Safety Score */}
-                <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700">
+                <Card className="bg-slate-600/50 backdrop-blur-sm border-slate-500">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-white text-sm flex items-center">
                       <Shield className="w-4 h-4 mr-2 text-blue-400" />

@@ -3,7 +3,7 @@ import { PageHeader } from '@/components/ui/page-header';
 
 export default function HRTeamsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700">
+    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
       <PageHeader />
       
       {/* Main Content with Sidebar Margin */}
