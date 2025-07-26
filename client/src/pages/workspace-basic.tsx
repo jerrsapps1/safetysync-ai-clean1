@@ -63,7 +63,7 @@ export default function WorkspaceBasic() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
         <div className="text-white text-center">
           <h2 className="text-xl font-semibold mb-2">Loading...</h2>
           <p className="text-blue-200">Please wait while we load your workspace</p>
@@ -74,7 +74,7 @@ export default function WorkspaceBasic() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
         <div className="text-white text-center">
           <h2 className="text-xl font-semibold mb-2">Authentication Required</h2>
           <p className="text-blue-200">Redirecting to login...</p>
@@ -84,7 +84,7 @@ export default function WorkspaceBasic() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900">
+    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
       {/* Tech Grid Background */}
       <div className="fixed inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
       

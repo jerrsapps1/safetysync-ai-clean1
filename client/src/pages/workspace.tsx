@@ -1909,7 +1909,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
   if (authLoading || isDashboardLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
         <div className="max-w-md w-full mx-auto">
           <SmoothLoading 
             variant="ai-skeleton" 
@@ -1923,7 +1923,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
   if (authLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
         <div className="text-center">
           <SafetySyncIcon size={64} className="mx-auto mb-4 animate-pulse" />
           <p className="text-white text-lg">Loading workspace...</p>
@@ -1939,7 +1939,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
       window.location.replace('/client-portal');
     }, 100);
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
         <div className="text-center">
           <SafetySyncIcon size={64} className="mx-auto mb-4 animate-pulse" />
           <p className="text-white text-lg">Redirecting to login...</p>
@@ -1950,7 +1950,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
   if (dashboardError) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
         <div className="text-center">
           <SafetySyncIcon size={64} className="mx-auto mb-4" />
           <p className="text-white text-lg mb-4">Error loading dashboard data</p>
@@ -2496,7 +2496,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         </div>
 
         {/* Content Area */}
-        <div className="flex-1 p-2 md:p-6 overflow-y-auto min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900">
+        <div className="flex-1 p-2 md:p-6 overflow-y-auto min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
           {activeTab === "unified-dashboard" && (
             <div className="space-y-6">
               {/* Widget Management Controls */}

@@ -80,7 +80,7 @@ export default function UploadFormPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 p-4">
       <div className="max-w-4xl mx-auto pt-20">
         
         {/* Header */}
