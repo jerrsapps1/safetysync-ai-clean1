@@ -2496,7 +2496,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         </div>
 
         {/* Content Area */}
-        <div className="flex-1 p-2 md:p-6 overflow-y-auto min-h-screen bg-gray-50">
+        <div className="flex-1 p-2 md:p-6 overflow-y-auto min-h-screen bg-white">
           {activeTab === "unified-dashboard" && (
             <div className="space-y-6">
               {/* Widget Management Controls */}
