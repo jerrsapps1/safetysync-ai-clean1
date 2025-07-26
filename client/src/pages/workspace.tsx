@@ -186,7 +186,7 @@ function LoginForm() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-700 to-purple-800 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
@@ -1410,7 +1410,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         };
 
         return (
-          <div className="h-full bg-gradient-to-r from-blue-900/20 to-purple-900/20 rounded-lg p-4 overflow-hidden">
+          <div className="h-full bg-gradient-to-r from-blue-500/20 to-blue-400/20 rounded-lg p-4 overflow-hidden">
             <div className="flex items-center justify-between h-full">
               <div className="flex-1 min-w-0 pr-4">
                 <div className="flex items-center space-x-3 mb-2">
@@ -1968,7 +1968,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-500 via-blue-500 to-purple-600 flex flex-col md:flex-row">
+    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex flex-col md:flex-row">
       {/* Sidebar */}
       <motion.div 
         className={`${sidebarOpen ? 'w-full md:w-64' : 'w-full md:w-16'} ${sidebarOpen ? 'h-auto' : 'h-16'} md:h-auto bg-blue-500/50 backdrop-blur-sm border-r border-blue-400 flex flex-col md:border-r md:border-b-0 border-b`}
