@@ -73,6 +73,7 @@ import {
   Brain,
   Eye,
   Palette,
+  Mail,
   Upload,
   RefreshCw,
   Building,
@@ -2381,6 +2382,17 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                       className="w-full bg-emerald-600/20 border-emerald-500/30 text-white hover:bg-emerald-600/40"
                     />
                   </div>
+                  
+                  {/* Email Administration Button */}
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3"
+                    onClick={() => window.open('/admin-email', '_blank')}
+                    title="Email Administration"
+                  >
+                    <Mail className="w-4 h-4 mr-3 flex-shrink-0" />
+                    {sidebarOpen && <span className="truncate">Email Administration</span>}
+                  </Button>
                   <Button
                     variant="ghost"
                     className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
