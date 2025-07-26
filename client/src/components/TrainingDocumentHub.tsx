@@ -1082,7 +1082,7 @@ This document serves as an official attendance record for the training session.`
   }));
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 p-6">
       {/* Floating tech icons background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-8 h-8 bg-blue-500/10 rounded-full animate-pulse" />
@@ -1107,7 +1107,7 @@ This document serves as an official attendance record for the training session.`
                     Create File
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="max-w-2xl bg-blue-700 border-blue-600" aria-describedby="create-file-description">
+                <DialogContent className="max-w-2xl bg-black/20 backdrop-blur-sm border-blue-700" aria-describedby="create-file-description">
                   <DialogHeader>
                     <DialogTitle className="text-white">Create Training File</DialogTitle>
                   </DialogHeader>
@@ -1162,7 +1162,7 @@ This document serves as an official attendance record for the training session.`
                         <Label className="text-white">File Previews ({previewFiles.length} files selected)</Label>
                         <div className="max-h-64 overflow-y-auto space-y-2">
                           {previewFiles.map((fileData, index) => (
-                            <Card key={index} className="bg-blue-600/50 border-blue-500">
+                            <Card key={index} className="bg-black/20 border-blue-700 backdrop-blur-sm">
                               <CardContent className="p-4">
                                 <div className="flex items-start justify-between">
                                   <div className="flex-1">
@@ -1234,7 +1234,7 @@ This document serves as an official attendance record for the training session.`
 
 
         {/* Search Only */}
-        <Card className="bg-blue-700/50 border-blue-600 backdrop-blur-sm mb-6">
+        <Card className="bg-black/20 border-blue-700 backdrop-blur-sm mb-6">
           <CardContent className="p-6">
             <div className="flex flex-wrap items-center gap-4">
               <div className="flex items-center space-x-2">
@@ -1325,7 +1325,7 @@ This document serves as an official attendance record for the training session.`
         {/* Document List */}
         <div className="space-y-4">
           {filteredDocuments.length === 0 ? (
-            <Card className="bg-blue-700/50 border-blue-600 backdrop-blur-sm">
+            <Card className="bg-black/20 border-blue-700 backdrop-blur-sm">
               <CardContent className="p-12 text-center">
                 <FileText className="w-16 h-16 text-white mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-white mb-2">No Documents Found</h3>
@@ -1338,7 +1338,7 @@ This document serves as an official attendance record for the training session.`
               const IconComponent = categoryInfo.icon;
               
               return (
-                <Card key={doc.id} className={`bg-blue-700/50 border-blue-600 backdrop-blur-sm hover:bg-blue-700/70 transition-all duration-200 ${selectedDocuments.has(doc.id) ? 'ring-1 ring-emerald-500 bg-emerald-900/10' : ''}`}>
+                <Card key={doc.id} className={`bg-black/20 border-blue-700 backdrop-blur-sm hover:bg-black/30 transition-all duration-200 ${selectedDocuments.has(doc.id) ? 'ring-1 ring-emerald-500 bg-emerald-900/10' : ''}`}>
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-4">
@@ -1400,7 +1400,7 @@ This document serves as an official attendance record for the training session.`
 
       {/* View Document Dialog */}
       <Dialog open={isViewDialogOpen} onOpenChange={setIsViewDialogOpen}>
-        <DialogContent className="max-w-3xl bg-blue-700 border-blue-600" aria-describedby="document-preview-description">
+        <DialogContent className="max-w-3xl bg-black/20 backdrop-blur-sm border-blue-700" aria-describedby="document-preview-description">
           <DialogHeader>
             <DialogTitle className="text-white">Document Details</DialogTitle>
           </DialogHeader>
