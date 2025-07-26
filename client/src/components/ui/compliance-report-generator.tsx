@@ -305,7 +305,7 @@ export function ComplianceReportGenerator({ onReportGenerated }: ComplianceRepor
         <CardContent>
           {existingReports.length === 0 ? (
             <div className="text-center py-8 text-blue-400">
-              <FileText className="w-12 h-12 mx-auto mb-4 text-gray-300" />
+              <FileText className="w-12 h-12 mx-auto mb-4 text-blue-300" />
               <p>No reports generated yet.</p>
               <p className="text-sm">Generate your first compliance report above.</p>
             </div>
@@ -358,7 +358,7 @@ export function ComplianceReportGenerator({ onReportGenerated }: ComplianceRepor
           {generatedReport && (
             <div className="space-y-6">
               {/* Report Actions */}
-              <div className="flex flex-wrap gap-2 p-4 bg-gray-50 rounded-lg">
+              <div className="flex flex-wrap gap-2 p-4 bg-blue-50 rounded-lg">
                 <Button onClick={() => downloadReport('pdf')} variant="outline" size="sm">
                   <Download className="w-4 h-4 mr-2" />
                   PDF

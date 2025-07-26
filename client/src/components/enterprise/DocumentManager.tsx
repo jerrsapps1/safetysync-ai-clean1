@@ -191,8 +191,8 @@ const DocumentManager: React.FC = () => {
       case 'active': return 'bg-green-100 text-green-800';
       case 'expired': return 'bg-red-100 text-red-800';
       case 'pending_review': return 'bg-yellow-100 text-yellow-800';
-      case 'archived': return 'bg-gray-100 text-blue-700';
-      default: return 'bg-gray-100 text-blue-700';
+      case 'archived': return 'bg-blue-100 text-blue-700';
+      default: return 'bg-blue-100 text-blue-700';
     }
   };
 
@@ -214,7 +214,7 @@ const DocumentManager: React.FC = () => {
       case 'public': return 'bg-blue-100 text-blue-800';
       case 'restricted': return 'bg-orange-100 text-orange-800';
       case 'confidential': return 'bg-red-100 text-red-800';
-      default: return 'bg-gray-100 text-blue-700';
+      default: return 'bg-blue-100 text-blue-700';
     }
   };
 
@@ -275,7 +275,7 @@ const DocumentManager: React.FC = () => {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-300">Total Documents</p>
+                <p className="text-sm text-blue-300">Total Documents</p>
                 <p className="text-2xl font-bold text-white">{documentStats.total}</p>
               </div>
               <FileText className="w-8 h-8 text-blue-400" />
@@ -287,7 +287,7 @@ const DocumentManager: React.FC = () => {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-300">Active</p>
+                <p className="text-sm text-blue-300">Active</p>
                 <p className="text-2xl font-bold text-green-400">{documentStats.active}</p>
               </div>
               <CheckCircle className="w-8 h-8 text-green-400" />
@@ -299,7 +299,7 @@ const DocumentManager: React.FC = () => {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-300">Pending Review</p>
+                <p className="text-sm text-blue-300">Pending Review</p>
                 <p className="text-2xl font-bold text-yellow-400">{documentStats.pendingReview}</p>
               </div>
               <Clock className="w-8 h-8 text-yellow-400" />
@@ -311,7 +311,7 @@ const DocumentManager: React.FC = () => {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-300">Expired</p>
+                <p className="text-sm text-blue-300">Expired</p>
                 <p className="text-2xl font-bold text-red-400">{documentStats.expired}</p>
               </div>
               <AlertTriangle className="w-8 h-8 text-red-400" />
@@ -323,7 +323,7 @@ const DocumentManager: React.FC = () => {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-300">Expiring Soon</p>
+                <p className="text-sm text-blue-300">Expiring Soon</p>
                 <p className="text-2xl font-bold text-orange-400">{documentStats.expiringThisMonth}</p>
               </div>
               <Calendar className="w-8 h-8 text-orange-400" />
@@ -512,7 +512,7 @@ const DocumentManager: React.FC = () => {
                         {getExpiryWarning(doc.expiryDate)}
                       </div>
                       
-                      <p className="text-gray-300 text-sm mb-2">{doc.description}</p>
+                      <p className="text-blue-300 text-sm mb-2">{doc.description}</p>
                       
                       <div className="flex flex-wrap gap-2 mb-2">
                         <Badge className={getStatusColor(doc.status)}>
@@ -604,42 +604,42 @@ const DocumentManager: React.FC = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <Label className="text-white">Title</Label>
-                  <p className="text-gray-300">{selectedDocument.title}</p>
+                  <p className="text-blue-300">{selectedDocument.title}</p>
                 </div>
                 <div>
                   <Label className="text-white">Type</Label>
-                  <p className="text-gray-300">{selectedDocument.type}</p>
+                  <p className="text-blue-300">{selectedDocument.type}</p>
                 </div>
               </div>
               
               <div>
                 <Label className="text-white">Description</Label>
-                <p className="text-gray-300">{selectedDocument.description}</p>
+                <p className="text-blue-300">{selectedDocument.description}</p>
               </div>
               
               <div className="grid grid-cols-3 gap-4">
                 <div>
                   <Label className="text-white">Department</Label>
-                  <p className="text-gray-300">{selectedDocument.department}</p>
+                  <p className="text-blue-300">{selectedDocument.department}</p>
                 </div>
                 <div>
                   <Label className="text-white">Uploaded By</Label>
-                  <p className="text-gray-300">{selectedDocument.uploadedBy}</p>
+                  <p className="text-blue-300">{selectedDocument.uploadedBy}</p>
                 </div>
                 <div>
                   <Label className="text-white">Upload Date</Label>
-                  <p className="text-gray-300">{new Date(selectedDocument.uploadDate).toLocaleDateString()}</p>
+                  <p className="text-blue-300">{new Date(selectedDocument.uploadDate).toLocaleDateString()}</p>
                 </div>
               </div>
               
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <Label className="text-white">Version</Label>
-                  <p className="text-gray-300">v{selectedDocument.version}</p>
+                  <p className="text-blue-300">v{selectedDocument.version}</p>
                 </div>
                 <div>
                   <Label className="text-white">File Size</Label>
-                  <p className="text-gray-300">{selectedDocument.fileSize}</p>
+                  <p className="text-blue-300">{selectedDocument.fileSize}</p>
                 </div>
               </div>
               

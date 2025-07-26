@@ -230,7 +230,7 @@ export function LiveChatWidget({ isOpen, onToggle, onClose }: LiveChatWidgetProp
                     <div className={`max-w-xs px-3 py-2 rounded-lg ${
                       message.sender === 'user'
                         ? 'bg-blue-600 text-white rounded-br-none'
-                        : 'bg-gray-100 text-blue-700 rounded-bl-none'
+                        : 'bg-blue-100 text-blue-700 rounded-bl-none'
                     }`}>
                       <p className="text-sm">{message.text}</p>
                       <div className="flex items-center justify-between mt-1">
@@ -250,7 +250,7 @@ export function LiveChatWidget({ isOpen, onToggle, onClose }: LiveChatWidgetProp
                 
                 {isTyping && (
                   <div className="flex justify-start">
-                    <div className="bg-gray-100 px-3 py-2 rounded-lg rounded-bl-none">
+                    <div className="bg-blue-100 px-3 py-2 rounded-lg rounded-bl-none">
                       <div className="flex items-center gap-1">
                         <div className="w-2 h-2 bg-blue-300 rounded-full animate-bounce" />
                         <div className="w-2 h-2 bg-blue-300 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
@@ -265,7 +265,7 @@ export function LiveChatWidget({ isOpen, onToggle, onClose }: LiveChatWidgetProp
 
               {/* Quick Replies */}
               {messages.length === 1 && (
-                <div className="px-4 py-3 bg-gray-50 border-t border-gray-200">
+                <div className="px-4 py-3 bg-blue-50 border-t border-blue-200">
                   <div className="text-xs text-blue-400 mb-2">Quick questions:</div>
                   <div className="flex flex-col gap-2">
                     {quickReplies.slice(0, 3).map((reply) => (

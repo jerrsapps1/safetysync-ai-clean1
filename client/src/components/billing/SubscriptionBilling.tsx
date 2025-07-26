@@ -216,28 +216,28 @@ export default function SubscriptionBilling() {
         <TabsList className="grid w-full grid-cols-4 bg-black/20 backdrop-blur-sm border-blue-700">
           <TabsTrigger 
             value="overview" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
           >
             <TrendingUp className="h-4 w-4" />
             Overview
           </TabsTrigger>
           <TabsTrigger 
             value="usage" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
           >
             <Database className="h-4 w-4" />
             Usage
           </TabsTrigger>
           <TabsTrigger 
             value="invoices" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
           >
             <FileText className="h-4 w-4" />
             Invoices
           </TabsTrigger>
           <TabsTrigger 
             value="plans" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
           >
             <Award className="h-4 w-4" />
             Plans
@@ -283,23 +283,23 @@ export default function SubscriptionBilling() {
               <CardContent className="space-y-3">
                 <div className="flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-green-400" />
-                  <span className="text-gray-300">50 Certificates/Month</span>
+                  <span className="text-blue-300">50 Certificates/Month</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-green-400" />
-                  <span className="text-gray-300">50 Digital Wallet Cards/Month</span>
+                  <span className="text-blue-300">50 Digital Wallet Cards/Month</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-green-400" />
-                  <span className="text-gray-300">Up to 500 Employees</span>
+                  <span className="text-blue-300">Up to 500 Employees</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-green-400" />
-                  <span className="text-gray-300">Advanced Analytics</span>
+                  <span className="text-blue-300">Advanced Analytics</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-green-400" />
-                  <span className="text-gray-300">Priority Support</span>
+                  <span className="text-blue-300">Priority Support</span>
                 </div>
               </CardContent>
             </Card>
@@ -437,19 +437,19 @@ export default function SubscriptionBilling() {
                     <div className="space-y-2">
                       <div className="flex items-center gap-2">
                         <CheckCircle className="w-4 h-4 text-green-400" />
-                        <span className="text-gray-300 text-sm">{certificates[index]} Certificates/Month</span>
+                        <span className="text-blue-300 text-sm">{certificates[index]} Certificates/Month</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <CheckCircle className="w-4 h-4 text-green-400" />
-                        <span className="text-gray-300 text-sm">{certificates[index]} Digital Cards/Month</span>
+                        <span className="text-blue-300 text-sm">{certificates[index]} Digital Cards/Month</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <CheckCircle className="w-4 h-4 text-green-400" />
-                        <span className="text-gray-300 text-sm">Up to {employees[index]} Employees</span>
+                        <span className="text-blue-300 text-sm">Up to {employees[index]} Employees</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <CheckCircle className="w-4 h-4 text-green-400" />
-                        <span className="text-gray-300 text-sm">Advanced Analytics</span>
+                        <span className="text-blue-300 text-sm">Advanced Analytics</span>
                       </div>
                     </div>
                     <Button 

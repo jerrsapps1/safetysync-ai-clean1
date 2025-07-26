@@ -88,7 +88,7 @@ export default function UploadFormPage() {
           <h1 className="text-4xl font-bold text-white mb-4">
             PDF Document Upload
           </h1>
-          <p className="text-xl text-gray-300">
+          <p className="text-xl text-blue-300">
             Upload OSHA training documents for AI-powered data extraction
           </p>
         </div>
@@ -100,7 +100,7 @@ export default function UploadFormPage() {
               <Upload className="w-5 h-5 mr-2" />
               Upload Training Document
             </CardTitle>
-            <CardDescription className="text-gray-300">
+            <CardDescription className="text-blue-300">
               Select a PDF file containing OSHA training records for processing
             </CardDescription>
           </CardHeader>
@@ -194,14 +194,14 @@ export default function UploadFormPage() {
               <Button
                 onClick={() => window.location.href = '/api/records'}
                 variant="outline"
-                className="border-blue-500 text-gray-300 hover:bg-blue-600"
+                className="border-blue-500 text-blue-300 hover:bg-blue-600"
               >
                 View All Records
               </Button>
               <Button
                 onClick={() => window.location.href = '/api/dashboard'}
                 variant="outline"
-                className="border-blue-500 text-gray-300 hover:bg-blue-600"
+                className="border-blue-500 text-blue-300 hover:bg-blue-600"
               >
                 Dashboard
               </Button>
@@ -217,7 +217,7 @@ export default function UploadFormPage() {
               <AlertCircle className="w-4 h-4 mr-2" />
               <span className="font-semibold">Python Flask Equivalent</span>
             </div>
-            <p className="text-gray-300 text-sm">
+            <p className="text-blue-300 text-sm">
               This TypeScript React page provides the same functionality as your Python Flask 
               <code className="bg-blue-700 px-1 rounded mx-1">render_template("upload_form.html")</code>
               with modern UI components and real-time processing feedback.

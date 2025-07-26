@@ -356,21 +356,21 @@ export default function WorkplacePosterManagement() {
         <TabsList className="grid w-full grid-cols-3 bg-black/20 backdrop-blur-sm border-blue-700">
           <TabsTrigger 
             value="posters" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
           >
             <FileText className="h-4 w-4" />
             Posters
           </TabsTrigger>
           <TabsTrigger 
             value="compliance" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
           >
             <CheckCircle className="h-4 w-4" />
             Compliance
           </TabsTrigger>
           <TabsTrigger 
             value="locations" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-gray-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
           >
             <MapPin className="h-4 w-4" />
             Locations
@@ -400,16 +400,16 @@ export default function WorkplacePosterManagement() {
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <p className="text-gray-300 text-sm">{poster.description}</p>
+                  <p className="text-blue-300 text-sm">{poster.description}</p>
                   
                   <div className="grid grid-cols-2 gap-4">
                     <div className="flex items-center gap-2">
                       <Calendar className="w-4 h-4 text-blue-400" />
-                      <span className="text-gray-300 text-sm">Updated: {poster.lastUpdated}</span>
+                      <span className="text-blue-300 text-sm">Updated: {poster.lastUpdated}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Building className="w-4 h-4 text-purple-400" />
-                      <span className="text-gray-300 text-sm">{poster.locations.length} locations</span>
+                      <span className="text-blue-300 text-sm">{poster.locations.length} locations</span>
                     </div>
                   </div>
 
@@ -444,7 +444,7 @@ export default function WorkplacePosterManagement() {
                       <Download className="w-3 h-3 mr-1" />
                       Download
                     </Button>
-                    <Button size="sm" variant="outline" className="border-blue-500 text-gray-300">
+                    <Button size="sm" variant="outline" className="border-blue-500 text-blue-300">
                       <Edit className="w-3 h-3 mr-1" />
                       Edit
                     </Button>
@@ -489,11 +489,11 @@ export default function WorkplacePosterManagement() {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="flex items-center gap-2">
                       <Calendar className="w-4 h-4 text-blue-400" />
-                      <span className="text-gray-300 text-sm">Last Audit: {comp.lastAudit}</span>
+                      <span className="text-blue-300 text-sm">Last Audit: {comp.lastAudit}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <CheckCircle className="w-4 h-4 text-green-400" />
-                      <span className="text-gray-300 text-sm">{comp.currentPosters} Current</span>
+                      <span className="text-blue-300 text-sm">{comp.currentPosters} Current</span>
                     </div>
                   </div>
 

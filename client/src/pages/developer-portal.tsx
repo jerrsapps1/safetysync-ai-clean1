@@ -195,7 +195,7 @@ cron.schedule('0 9 1 * *', async () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-blue-50">
       <Navigation 
         onTrialClick={() => {}} 
         onDemoClick={() => {}} 
@@ -324,7 +324,7 @@ cron.schedule('0 9 1 * *', async () => {
                     <Label htmlFor="endpoint">Endpoint</Label>
                     <select 
                       id="endpoint" 
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                      className="w-full px-3 py-2 border border-blue-300 rounded-md"
                       value={testEndpoint}
                       onChange={(e) => setTestEndpoint(e.target.value)}
                     >
@@ -350,15 +350,15 @@ cron.schedule('0 9 1 * *', async () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <a href="#" className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                  <a href="#" className="block p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
                     <h4 className="font-medium">API Reference</h4>
                     <p className="text-sm text-blue-500">Complete endpoint documentation with examples</p>
                   </a>
-                  <a href="#" className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                  <a href="#" className="block p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
                     <h4 className="font-medium">Authentication Guide</h4>
                     <p className="text-sm text-blue-500">Learn about API keys, JWT tokens, and security</p>
                   </a>
-                  <a href="#" className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                  <a href="#" className="block p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
                     <h4 className="font-medium">Webhook Documentation</h4>
                     <p className="text-sm text-blue-500">Set up real-time event notifications</p>
                   </a>
@@ -373,15 +373,15 @@ cron.schedule('0 9 1 * *', async () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <a href="#" className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                  <a href="#" className="block p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
                     <h4 className="font-medium">GitHub Repository</h4>
                     <p className="text-sm text-blue-500">Sample applications and integration examples</p>
                   </a>
-                  <a href="#" className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                  <a href="#" className="block p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
                     <h4 className="font-medium">Postman Collection</h4>
                     <p className="text-sm text-blue-500">Ready-to-use API calls for testing</p>
                   </a>
-                  <a href="#" className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                  <a href="#" className="block p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
                     <h4 className="font-medium">Integration Templates</h4>
                     <p className="text-sm text-blue-500">Common integration patterns and workflows</p>
                   </a>
@@ -440,7 +440,7 @@ cron.schedule('0 9 1 * *', async () => {
                 
                 <div>
                   <h4 className="font-medium mb-2">Example Usage</h4>
-                  <div className="bg-gray-50 p-4 rounded-lg overflow-x-auto">
+                  <div className="bg-blue-50 p-4 rounded-lg overflow-x-auto">
                     <pre className="text-sm text-blue-600">
                       {sdkLibraries.find(lib => lib.id === selectedLibrary)?.example}
                     </pre>
@@ -495,7 +495,7 @@ cron.schedule('0 9 1 * *', async () => {
                       ))}
                     </div>
                     
-                    <div className="bg-gray-50 p-3 rounded-lg">
+                    <div className="bg-blue-50 p-3 rounded-lg">
                       <pre className="text-xs text-blue-600 overflow-x-auto">
                         {integration.example}
                       </pre>
@@ -532,7 +532,7 @@ cron.schedule('0 9 1 * *', async () => {
                     { name: 'Monday.com', status: 'Beta' },
                     { name: 'Zapier', status: 'Available' }
                   ].map((integration, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div key={index} className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                       <span className="font-medium text-sm">{integration.name}</span>
                       <Badge 
                         variant={integration.status === 'Available' ? 'default' : 'outline'}
@@ -601,7 +601,7 @@ cron.schedule('0 9 1 * *', async () => {
               <CardContent>
                 <div className="space-y-3">
                   {statusEndpoints.map((endpoint, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div key={index} className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                       <div className="flex items-center gap-3">
                         <CheckCircle className="w-5 h-5 text-green-500" />
                         <span className="font-mono text-sm">{endpoint.endpoint}</span>

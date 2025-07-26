@@ -118,7 +118,7 @@ export default function VerifyEmailPage() {
         </CardHeader>
         
         <CardContent className="text-center space-y-6">
-          <p className="text-gray-300 leading-relaxed">
+          <p className="text-blue-300 leading-relaxed">
             {message}
           </p>
           
@@ -160,7 +160,7 @@ export default function VerifyEmailPage() {
               <Button 
                 onClick={() => navigate('/')}
                 variant="outline"
-                className="w-full border-blue-500 text-gray-300 hover:bg-blue-600"
+                className="w-full border-blue-500 text-blue-300 hover:bg-blue-600"
               >
                 Return to Homepage
               </Button>

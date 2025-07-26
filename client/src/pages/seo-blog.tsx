@@ -115,7 +115,7 @@ const categories = ['All', 'Compliance', 'Technology', 'Manufacturing', 'Trainin
 
 export default function SEOBlogPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-blue-50">
       <PageHeader />
 
       {/* Header */}
@@ -135,10 +135,10 @@ export default function SEOBlogPage() {
               <input
                 type="text"
                 placeholder="Search articles..."
-                className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-blue-800"
+                className="w-full pl-10 pr-4 py-3 rounded-lg border border-blue-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-blue-800"
               />
             </div>
-            <Button className="bg-white text-blue-600 hover:bg-gray-100 px-6 py-3">
+            <Button className="bg-white text-blue-600 hover:bg-blue-100 px-6 py-3">
               Subscribe to Updates
             </Button>
           </div>

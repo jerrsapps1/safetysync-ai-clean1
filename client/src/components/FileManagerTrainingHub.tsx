@@ -543,9 +543,9 @@ This training file was created using the Create File system.`
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-blue-50">
       {/* File Manager Header */}
-      <div className="bg-white border-b border-gray-200">
+      <div className="bg-white border-b border-blue-200">
         <div className="flex items-center justify-between p-4">
           <div className="flex items-center space-x-2 text-blue-500 text-sm">
             <button 
@@ -580,7 +580,7 @@ This training file was created using the Create File system.`
         </div>
         
         {/* Action Bar */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200">
+        <div className="flex items-center justify-between p-4 border-b border-blue-200">
           <div className="flex items-center space-x-3">
             <Button
               onClick={() => setIsCreateFileDialogOpen(true)}
@@ -606,7 +606,7 @@ This training file was created using the Create File system.`
           </div>
           
           <div className="flex items-center space-x-3">
-            <div className="flex items-center bg-gray-100 rounded-lg px-3 py-2">
+            <div className="flex items-center bg-blue-100 rounded-lg px-3 py-2">
               <Search className="w-4 h-4 text-blue-300 mr-2" />
               <input
                 type="text"
@@ -629,7 +629,7 @@ This training file was created using the Create File system.`
       {/* File List */}
       <div className="bg-white">
         {/* Table Header */}
-        <div className="grid grid-cols-12 gap-4 p-4 border-b border-gray-200 bg-gray-50 text-sm font-medium text-blue-500">
+        <div className="grid grid-cols-12 gap-4 p-4 border-b border-blue-200 bg-blue-50 text-sm font-medium text-blue-500">
           <div className="col-span-1">
             <input type="checkbox" className="rounded" />
           </div>
@@ -641,7 +641,7 @@ This training file was created using the Create File system.`
         
         {/* Back button when in subfolder */}
         {currentPath.length > 0 && (
-          <div className="grid grid-cols-12 gap-4 p-4 border-b border-gray-100 hover:bg-blue-50 cursor-pointer items-center"
+          <div className="grid grid-cols-12 gap-4 p-4 border-b border-blue-100 hover:bg-blue-50 cursor-pointer items-center"
                onClick={navigateBack}>
             <div className="col-span-1">
               <input type="checkbox" className="rounded opacity-50" disabled />
@@ -660,7 +660,7 @@ This training file was created using the Create File system.`
         {getCurrentLevelDocuments().map((doc) => (
           <div
             key={doc.id}
-            className="grid grid-cols-12 gap-4 p-4 border-b border-gray-100 hover:bg-blue-50 cursor-pointer items-center"
+            className="grid grid-cols-12 gap-4 p-4 border-b border-blue-100 hover:bg-blue-50 cursor-pointer items-center"
             onClick={() => handleViewDocument(doc)}
           >
             <div className="col-span-1">
@@ -718,7 +718,7 @@ This training file was created using the Create File system.`
                 type="date"
                 value={uploadData.trainingDate}
                 onChange={(e) => setUploadData(prev => ({ ...prev, trainingDate: e.target.value }))}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div>
@@ -730,7 +730,7 @@ This training file was created using the Create File system.`
                 placeholder="e.g., Safety Meeting Minutes, Training Materials"
                 value={uploadData.description}
                 onChange={(e) => setUploadData(prev => ({ ...prev, description: e.target.value }))}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div className="flex justify-end space-x-2 pt-4">
@@ -780,7 +780,7 @@ This training file was created using the Create File system.`
               {viewingDocument.fileContent && (
                 <div>
                   <strong>Content Preview:</strong>
-                  <pre className="mt-1 p-3 bg-gray-50 rounded-md text-xs overflow-auto max-h-64 font-mono">
+                  <pre className="mt-1 p-3 bg-blue-50 rounded-md text-xs overflow-auto max-h-64 font-mono">
                     {viewingDocument.fileContent}
                   </pre>
                 </div>

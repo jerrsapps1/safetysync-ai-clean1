@@ -475,7 +475,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
           </div>
 
           {/* Billing Cycle */}
-          <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+          <div className="flex items-center justify-between p-4 bg-blue-50 rounded-lg">
             <div>
               <div className="font-medium">Annual Billing</div>
               <div className="text-sm text-blue-500">Save 15% with annual payments</div>

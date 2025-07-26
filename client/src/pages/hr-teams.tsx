@@ -14,7 +14,7 @@ export default function HRTeamsPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
               For HR Teams
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+            <p className="text-xl text-blue-300 max-w-3xl mx-auto mb-8">
               Streamline your OSHA compliance training management with SafetySync.ai's comprehensive HR tools
             </p>
           </div>
@@ -26,7 +26,7 @@ export default function HRTeamsPage() {
               <h3 className="text-lg font-semibold text-white mb-3">
                 Employee Training Management
               </h3>
-              <p className="text-gray-300">
+              <p className="text-blue-300">
                 Track, schedule, and manage all employee safety training requirements in one centralized system.
               </p>
             </div>
@@ -35,7 +35,7 @@ export default function HRTeamsPage() {
               <h3 className="text-lg font-semibold text-white mb-3">
                 Compliance Documentation
               </h3>
-              <p className="text-gray-300">
+              <p className="text-blue-300">
                 Generate audit-ready documentation and maintain comprehensive training records automatically.
               </p>
             </div>
@@ -44,7 +44,7 @@ export default function HRTeamsPage() {
               <h3 className="text-lg font-semibold text-white mb-3">
                 Digital Certificates
               </h3>
-              <p className="text-gray-300">
+              <p className="text-blue-300">
                 Issue and manage digital safety certificates that employees can access via QR codes.
               </p>
             </div>
@@ -53,7 +53,7 @@ export default function HRTeamsPage() {
               <h3 className="text-lg font-semibold text-white mb-3">
                 Training Matrix
               </h3>
-              <p className="text-gray-300">
+              <p className="text-blue-300">
                 Define role-based training requirements and track completion across your organization.
               </p>
             </div>
@@ -62,7 +62,7 @@ export default function HRTeamsPage() {
               <h3 className="text-lg font-semibold text-white mb-3">
                 Automated Reminders
               </h3>
-              <p className="text-gray-300">
+              <p className="text-blue-300">
                 Never miss training deadlines with automated notifications and renewal reminders.
               </p>
             </div>
@@ -71,7 +71,7 @@ export default function HRTeamsPage() {
               <h3 className="text-lg font-semibold text-white mb-3">
                 Reporting & Analytics
               </h3>
-              <p className="text-gray-300">
+              <p className="text-blue-300">
                 Get insights into training completion rates, compliance gaps, and organizational safety metrics.
               </p>
             </div>
@@ -83,7 +83,7 @@ export default function HRTeamsPage() {
             <h2 className="text-3xl font-bold text-white mb-4">
               Ready to streamline your HR safety processes?
             </h2>
-            <p className="text-xl text-gray-300 mb-8">
+            <p className="text-xl text-blue-300 mb-8">
               Join thousands of HR professionals using SafetySync.ai
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

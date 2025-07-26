@@ -18,7 +18,7 @@ export default function CertificateServicesPage() {
             Professional Certificate & Digital Card Services
           </h1>
           
-          <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+          <p className="text-xl text-blue-300 mb-8 max-w-3xl mx-auto">
             Generate high-quality OSHA-compliant certificates and digital wallet cards that match industry standards. 
             Perfect for safety professionals who need authentic documentation for their training programs.
           </p>
@@ -93,7 +93,7 @@ export default function CertificateServicesPage() {
           {/* Pricing Structure */}
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Certificate Generation Pricing</h2>
-            <p className="text-gray-300 text-lg">
+            <p className="text-blue-300 text-lg">
               Plan-specific allowances with transparent overage pricing
             </p>
           </div>
@@ -106,8 +106,8 @@ export default function CertificateServicesPage() {
               </CardHeader>
               <CardContent className="text-center">
                 <div className="text-lg font-semibold mb-2">15 items included</div>
-                <div className="text-sm text-gray-300">First month: 15 certificates + 15 digital cards</div>
-                <div className="text-sm text-gray-300 mt-2">Additional: $5.95 each</div>
+                <div className="text-sm text-blue-300">First month: 15 certificates + 15 digital cards</div>
+                <div className="text-sm text-blue-300 mt-2">Additional: $5.95 each</div>
               </CardContent>
             </Card>
 
@@ -118,8 +118,8 @@ export default function CertificateServicesPage() {
               </CardHeader>
               <CardContent className="text-center">
                 <div className="text-lg font-semibold mb-2">50 items included</div>
-                <div className="text-sm text-gray-300">First month: 50 certificates + 50 digital cards</div>
-                <div className="text-sm text-gray-300 mt-2">Additional: $5.95 each</div>
+                <div className="text-sm text-blue-300">First month: 50 certificates + 50 digital cards</div>
+                <div className="text-sm text-blue-300 mt-2">Additional: $5.95 each</div>
               </CardContent>
             </Card>
 
@@ -130,8 +130,8 @@ export default function CertificateServicesPage() {
               </CardHeader>
               <CardContent className="text-center">
                 <div className="text-lg font-semibold mb-2">100 items included</div>
-                <div className="text-sm text-gray-300">First month: 100 certificates + 100 digital cards</div>
-                <div className="text-sm text-gray-300 mt-2">Additional: $5.95 each</div>
+                <div className="text-sm text-blue-300">First month: 100 certificates + 100 digital cards</div>
+                <div className="text-sm text-blue-300 mt-2">Additional: $5.95 each</div>
               </CardContent>
             </Card>
 
@@ -142,15 +142,15 @@ export default function CertificateServicesPage() {
               </CardHeader>
               <CardContent className="text-center">
                 <div className="text-lg font-semibold mb-2">250 items included</div>
-                <div className="text-sm text-gray-300">First month: 250 certificates + 250 digital cards</div>
-                <div className="text-sm text-gray-300 mt-2">Additional: $5.95 each</div>
+                <div className="text-sm text-blue-300">First month: 250 certificates + 250 digital cards</div>
+                <div className="text-sm text-blue-300 mt-2">Additional: $5.95 each</div>
               </CardContent>
             </Card>
           </div>
 
           <div className="bg-blue-900/30 backdrop-blur-sm border border-blue-400/30 rounded-lg p-6 text-center">
             <h3 className="text-xl font-semibold mb-2">Billing Information</h3>
-            <p className="text-gray-300">
+            <p className="text-blue-300">
               Additional certificates and digital cards are automatically billed to your monthly subscription at $5.95 each. 
               Service remains uninterrupted - generate as needed.
             </p>
@@ -163,14 +163,14 @@ export default function CertificateServicesPage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Digital Wallet Card Examples</h2>
-            <p className="text-gray-300 text-lg">
+            <p className="text-blue-300 text-lg">
               Professional credit card-sized examples showcasing generator capabilities
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             {/* Heavy Equipment Operator Card - FRONT */}
-            <div className="bg-white border-2 border-gray-300 rounded-lg shadow-lg overflow-hidden" style={{ aspectRatio: '1.586/1' }}>
+            <div className="bg-white border-2 border-blue-300 rounded-lg shadow-lg overflow-hidden" style={{ aspectRatio: '1.586/1' }}>
               <div className="bg-blue-600 text-white p-3">
                 <div className="flex justify-between items-center">
                   <span className="font-bold text-sm">EQUIPMENT OPERATOR</span>
@@ -179,7 +179,7 @@ export default function CertificateServicesPage() {
               </div>
               <div className="p-4">
                 <div className="flex items-center mb-3">
-                  <div className="w-8 h-8 bg-gray-200 rounded border mr-3 flex items-center justify-center">
+                  <div className="w-8 h-8 bg-blue-200 rounded border mr-3 flex items-center justify-center">
                     <span className="text-xs text-blue-400">LOGO</span>
                   </div>
                   <div>
@@ -206,7 +206,7 @@ export default function CertificateServicesPage() {
             </div>
 
             {/* Equipment Operator Card - BACK */}
-            <div className="bg-white border-2 border-gray-300 rounded-lg shadow-lg overflow-hidden" style={{ aspectRatio: '1.586/1' }}>
+            <div className="bg-white border-2 border-blue-300 rounded-lg shadow-lg overflow-hidden" style={{ aspectRatio: '1.586/1' }}>
               <div className="bg-blue-600 text-white p-3">
                 <div className="flex justify-between items-center">
                   <span className="font-bold text-sm">EQUIPMENT OPERATOR</span>
@@ -237,7 +237,7 @@ export default function CertificateServicesPage() {
             </div>
 
             {/* Fall Protection Card - FRONT */}
-            <div className="bg-white border-2 border-gray-300 rounded-lg shadow-lg overflow-hidden" style={{ aspectRatio: '1.586/1' }}>
+            <div className="bg-white border-2 border-blue-300 rounded-lg shadow-lg overflow-hidden" style={{ aspectRatio: '1.586/1' }}>
               <div className="bg-red-600 text-white p-3">
                 <div className="flex justify-between items-center">
                   <span className="font-bold text-sm">FALL PROTECTION</span>
@@ -246,7 +246,7 @@ export default function CertificateServicesPage() {
               </div>
               <div className="p-4">
                 <div className="flex items-center mb-3">
-                  <div className="w-8 h-8 bg-gray-200 rounded border mr-3 flex items-center justify-center">
+                  <div className="w-8 h-8 bg-blue-200 rounded border mr-3 flex items-center justify-center">
                     <span className="text-xs text-blue-400">LOGO</span>
                   </div>
                   <div>
@@ -291,7 +291,7 @@ export default function CertificateServicesPage() {
       <section className="py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
-          <p className="text-gray-300 text-lg mb-8">
+          <p className="text-blue-300 text-lg mb-8">
             Choose a subscription plan that fits your needs and start generating professional certificates today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

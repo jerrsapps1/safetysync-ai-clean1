@@ -361,7 +361,7 @@ export function AIQuickActions({ onActionExecute, currentPage = 'dashboard' }: A
       case 'compliance': return 'bg-red-100 text-red-800';
       case 'training': return 'bg-green-100 text-green-800';
       case 'reporting': return 'bg-orange-100 text-orange-800';
-      default: return 'bg-gray-100 text-blue-700';
+      default: return 'bg-blue-100 text-blue-700';
     }
   };
 
@@ -412,7 +412,7 @@ export function AIQuickActions({ onActionExecute, currentPage = 'dashboard' }: A
           
           <CardContent className="space-y-4">
             {/* Tab Navigation */}
-            <div className="flex space-x-1 bg-gray-100 rounded-lg p-1">
+            <div className="flex space-x-1 bg-blue-100 rounded-lg p-1">
               <Button
                 variant={activeTab === 'actions' ? 'default' : 'ghost'}
                 size="sm"
@@ -532,7 +532,7 @@ export function AIQuickActions({ onActionExecute, currentPage = 'dashboard' }: A
                         <div className={`max-w-[80%] p-2 rounded-lg text-xs ${
                           message.role === 'user' 
                             ? 'bg-blue-500 text-white' 
-                            : 'bg-gray-100 text-blue-700'
+                            : 'bg-blue-100 text-blue-700'
                         }`}>
                           {message.content}
                         </div>
@@ -540,7 +540,7 @@ export function AIQuickActions({ onActionExecute, currentPage = 'dashboard' }: A
                     ))}
                     {isProcessing && (
                       <div className="flex justify-start">
-                        <div className="bg-gray-100 text-blue-700 p-2 rounded-lg text-xs">
+                        <div className="bg-blue-100 text-blue-700 p-2 rounded-lg text-xs">
                           <div className="flex space-x-1">
                             <div className="w-2 h-2 bg-blue-300 rounded-full animate-bounce"></div>
                             <div className="w-2 h-2 bg-blue-300 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>

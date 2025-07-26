@@ -285,7 +285,7 @@ export function DemoRequestDialog({ isOpen, onClose, onSubmit }: DemoRequestDial
             </div>
             
             {/* Next Steps */}
-            <div className="bg-gray-50 p-4 rounded-lg">
+            <div className="bg-blue-50 p-4 rounded-lg">
               <h4 className="font-semibold text-blue-800 mb-2">What happens next?</h4>
               <ul className="text-sm text-blue-500 space-y-1">
                 <li>• You'll receive a confirmation email with demo details</li>

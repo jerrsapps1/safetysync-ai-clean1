@@ -84,8 +84,8 @@ export default function EmployeeProfile({ employeeId, onClose }: EmployeeProfile
     switch (status) {
       case 'active': return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
       case 'expired': return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';
-      case 'revoked': return 'bg-gray-100 text-blue-700 dark:bg-blue-800 dark:text-gray-200';
-      default: return 'bg-gray-100 text-blue-700 dark:bg-blue-800 dark:text-gray-200';
+      case 'revoked': return 'bg-blue-100 text-blue-700 dark:bg-blue-800 dark:text-blue-200';
+      default: return 'bg-blue-100 text-blue-700 dark:bg-blue-800 dark:text-blue-200';
     }
   };
 
@@ -210,7 +210,7 @@ export default function EmployeeProfile({ employeeId, onClose }: EmployeeProfile
                   </div>
                 ) : (
                   <div className="space-y-4">
-                    <QrCode className="h-24 w-24 text-gray-300 mx-auto" />
+                    <QrCode className="h-24 w-24 text-blue-300 mx-auto" />
                     <p className="text-blue-500">No QR code generated yet</p>
                     <Button onClick={handleGenerateQrCode}>
                       Generate QR Code

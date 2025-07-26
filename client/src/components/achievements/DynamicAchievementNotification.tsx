@@ -85,7 +85,7 @@ export function DynamicAchievementNotification({ achievement, onClose }: Dynamic
             </div>
             <div className="flex-1 min-w-0">
               <h3 className="text-white font-semibold truncate">{achievement.title}</h3>
-              <p className="text-gray-300 text-sm">{achievement.description}</p>
+              <p className="text-blue-300 text-sm">{achievement.description}</p>
             </div>
           </div>
 

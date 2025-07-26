@@ -157,7 +157,7 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
               { name: "Mike Chen", dept: "Manufacturing", status: "pending", training: "Fall Protection Certification", date: "Due in 15 days", score: 82, certCount: 5 },
               { name: "Lisa Rodriguez", dept: "General Industry", status: "expired", training: "Hazard Communication", date: "Expired 3 days ago", score: 74, certCount: 3 }
             ].map((emp, idx) => (
-              <div key={idx} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200">
+              <div key={idx} className="flex items-center justify-between p-3 bg-blue-50 rounded-lg border border-blue-200">
                 <div className="flex-1">
                   <div className="font-semibold text-blue-700">{emp.name}</div>
                   <div className="text-sm text-blue-500">{emp.dept} • {emp.training}</div>
@@ -470,7 +470,7 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
                     ? 'bg-blue-600'
                     : index < currentStep
                     ? 'bg-green-600'
-                    : 'bg-gray-300'
+                    : 'bg-blue-300'
                 }`}
                 onClick={() => {
                   setCurrentStep(index);

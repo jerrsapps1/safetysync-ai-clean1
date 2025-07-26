@@ -254,14 +254,14 @@ export default function AdminPanel() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-blue-50">
       {/* Navigation Header */}
       <div className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <Link href="/">
-                <Button variant="ghost" size="sm" className="text-blue-500 hover:text-blue-800 hover:bg-gray-100/50">
+                <Button variant="ghost" size="sm" className="text-blue-500 hover:text-blue-800 hover:bg-blue-100/50">
                   <Home className="w-4 h-4 mr-2" />
                   Home
                 </Button>
@@ -437,7 +437,7 @@ export default function AdminPanel() {
                       id="filter"
                       value={filterType}
                       onChange={(e) => setFilterType(e.target.value as 'all' | 'trial' | 'demo')}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                       <option value="all">All Leads</option>
                       <option value="trial">Trial Signups</option>
@@ -591,7 +591,7 @@ export default function AdminPanel() {
                               user.userTier === 'enterprise' ? 'bg-purple-100 text-purple-800' :
                               user.userTier === 'professional' ? 'bg-blue-100 text-blue-800' :
                               user.userTier === 'basic' ? 'bg-green-100 text-green-800' :
-                              'bg-gray-100 text-blue-700'
+                              'bg-blue-100 text-blue-700'
                             }>
                               {user.userTier?.replace('_', ' ').toUpperCase() || 'FREE TRIAL'}
                             </Badge>
@@ -607,7 +607,7 @@ export default function AdminPanel() {
                             </Badge>
 
                             {/* Active Status Badge */}
-                            <Badge className={user.isActive ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-blue-700'}>
+                            <Badge className={user.isActive ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-700'}>
                               {user.isActive ? 'Active' : 'Inactive'}
                             </Badge>
 

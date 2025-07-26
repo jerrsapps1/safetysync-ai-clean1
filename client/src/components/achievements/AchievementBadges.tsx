@@ -370,7 +370,7 @@ export default function AchievementBadges() {
             <Button
               variant={selectedCategory === 'all' ? 'default' : 'outline'}
               onClick={() => setSelectedCategory('all')}
-              className={selectedCategory === 'all' ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-700'}
+              className={selectedCategory === 'all' ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-blue-700/50 text-blue-300 border-blue-500 hover:bg-blue-700'}
             >
               All Categories
             </Button>
@@ -381,7 +381,7 @@ export default function AchievementBadges() {
                   key={category.id}
                   variant={selectedCategory === category.id ? 'default' : 'outline'}
                   onClick={() => setSelectedCategory(category.id)}
-                  className={selectedCategory === category.id ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-700'}
+                  className={selectedCategory === category.id ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-blue-700/50 text-blue-300 border-blue-500 hover:bg-blue-700'}
                 >
                   {category.icon}
                   <span className="ml-2">{category.name}</span>
@@ -498,7 +498,7 @@ export default function AchievementBadges() {
                 <p className="text-sm text-blue-300 mb-2">Requirements</p>
                 <ul className="space-y-1">
                   {selectedAchievement.requirements.map((req, index) => (
-                    <li key={index} className="text-sm text-gray-300 flex items-start gap-2">
+                    <li key={index} className="text-sm text-blue-300 flex items-start gap-2">
                       <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
                       {req}
                     </li>

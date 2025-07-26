@@ -130,7 +130,7 @@ export default function TestimonialsPage() {
     return Array.from({ length: 5 }, (_, i) => (
       <Star
         key={i}
-        className={`w-5 h-5 ${i < rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`}
+        className={`w-5 h-5 ${i < rating ? 'text-yellow-400 fill-current' : 'text-blue-300'}`}
       />
     ));
   };
@@ -147,7 +147,7 @@ export default function TestimonialsPage() {
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Industry Research & Implementation Studies
           </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-blue-300 max-w-3xl mx-auto mb-8">
             Hypothetical business scenarios based on industry research and academic studies of compliance management implementations. 
             These educational examples demonstrate potential outcomes suggested by published research.
           </p>
@@ -203,11 +203,11 @@ export default function TestimonialsPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-white">{scenario.name}</h3>
-                      <p className="text-sm text-gray-300">{scenario.title}</p>
+                      <p className="text-sm text-blue-300">{scenario.title}</p>
                       <p className="text-sm text-emerald-400 font-medium">{scenario.company}</p>
                     </div>
                   </div>
-                  <Quote className="w-8 h-8 text-gray-300" />
+                  <Quote className="w-8 h-8 text-blue-300" />
                 </div>
 
                 {/* Rating - Hidden for compliance scenarios */}
@@ -221,7 +221,7 @@ export default function TestimonialsPage() {
                 )}
 
                 {/* Testimonial */}
-                <blockquote className="text-gray-300 mb-6 leading-relaxed">
+                <blockquote className="text-blue-300 mb-6 leading-relaxed">
                   "{scenario.researchFindings}"
                 </blockquote>
 
@@ -238,7 +238,7 @@ export default function TestimonialsPage() {
                 </div>
 
                 {/* Results */}
-                <div className="bg-gray-50 rounded-lg p-4">
+                <div className="bg-blue-50 rounded-lg p-4">
                   <h4 className="font-semibold text-blue-800 mb-3 flex items-center gap-2">
                     <TrendingUp className="w-4 h-4" />
                     Measurable Results
@@ -271,7 +271,7 @@ export default function TestimonialsPage() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {industryStats.map((stat, index) => (
-                <div key={index} className="text-center p-4 bg-gray-50 rounded-lg">
+                <div key={index} className="text-center p-4 bg-blue-50 rounded-lg">
                   <h3 className="font-semibold text-blue-800 mb-2">{stat.industry}</h3>
                   <div className="text-2xl font-bold text-blue-600 mb-1">{stat.companies}</div>
                   <div className="text-sm text-blue-500 mb-2">Companies</div>
@@ -295,7 +295,7 @@ export default function TestimonialsPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/">
-                <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
+                <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-100">
                   Start Free Trial
                 </Button>
               </Link>

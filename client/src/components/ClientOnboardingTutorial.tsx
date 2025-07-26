@@ -110,8 +110,8 @@ export default function ClientOnboardingTutorial({
     switch (importance) {
       case "critical": return "bg-red-500/20 text-red-300 border-red-500/30";
       case "recommended": return "bg-blue-500/20 text-blue-300 border-blue-500/30";
-      case "optional": return "bg-blue-400/20 text-gray-300 border-blue-400/30";
-      default: return "bg-blue-400/20 text-gray-300 border-blue-400/30";
+      case "optional": return "bg-blue-400/20 text-blue-300 border-blue-400/30";
+      default: return "bg-blue-400/20 text-blue-300 border-blue-400/30";
     }
   };
 
@@ -163,7 +163,7 @@ export default function ClientOnboardingTutorial({
           {/* Progress Section */}
           <div className="space-y-3">
             <div className="flex items-center justify-between text-sm">
-              <span className="text-gray-300">
+              <span className="text-blue-300">
                 Step {currentStep} of {onboardingSteps.length}
               </span>
               <span className="text-blue-300">
@@ -196,7 +196,7 @@ export default function ClientOnboardingTutorial({
                   <CheckCircle className="w-4 h-4 text-emerald-400" />
                 )}
               </div>
-              <p className="text-gray-300 text-sm">{currentStepData.description}</p>
+              <p className="text-blue-300 text-sm">{currentStepData.description}</p>
               <div className="text-xs text-blue-300">
                 Estimated time: {currentStepData.estimatedTime}
               </div>
@@ -205,7 +205,7 @@ export default function ClientOnboardingTutorial({
 
           {/* Step Content */}
           <div className="bg-blue-700/50 rounded-lg p-4 border border-blue-600">
-            <p className="text-gray-200 leading-relaxed">
+            <p className="text-blue-200 leading-relaxed">
               {currentStepData.content}
             </p>
           </div>
@@ -225,7 +225,7 @@ export default function ClientOnboardingTutorial({
                 variant="outline"
                 onClick={handlePrevious}
                 disabled={currentStep === 1}
-                className="border-blue-500 text-gray-300 hover:bg-blue-700"
+                className="border-blue-500 text-blue-300 hover:bg-blue-700"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Previous
@@ -235,7 +235,7 @@ export default function ClientOnboardingTutorial({
                 variant="outline"
                 onClick={handleNext}
                 disabled={currentStep === onboardingSteps.length}
-                className="border-blue-500 text-gray-300 hover:bg-blue-700"
+                className="border-blue-500 text-blue-300 hover:bg-blue-700"
               >
                 Next
                 <ArrowRight className="w-4 h-4 ml-2" />

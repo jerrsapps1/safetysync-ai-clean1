@@ -330,7 +330,7 @@ export function ApiDocumentation({ userTier = 'free_trial' }: ApiDocumentationPr
                 
                 <div className="space-y-3">
                   <h4 className="font-semibold">2. Base URL</h4>
-                  <div className="bg-gray-50 p-3 rounded-lg border">
+                  <div className="bg-blue-50 p-3 rounded-lg border">
                     <code className="text-sm">https://api.safetysync.ai</code>
                   </div>
                   <p className="text-sm text-blue-500">
@@ -343,7 +343,7 @@ export function ApiDocumentation({ userTier = 'free_trial' }: ApiDocumentationPr
 
               <div className="space-y-3">
                 <h4 className="font-semibold">3. Authentication Headers</h4>
-                <div className="bg-gray-50 p-4 rounded-lg border">
+                <div className="bg-blue-50 p-4 rounded-lg border">
                   <pre className="text-sm">
 {`Authorization: Bearer YOUR_API_KEY
 Content-Type: application/json
@@ -384,7 +384,7 @@ X-API-Version: 2025-01`}
                   <p className="text-sm text-blue-500">
                     Use API keys for server-to-server integrations and automated scripts.
                   </p>
-                  <div className="bg-gray-50 p-3 rounded-lg">
+                  <div className="bg-blue-50 p-3 rounded-lg">
                     <code className="text-sm">Authorization: Bearer sk_live_abc123...</code>
                   </div>
                 </div>
@@ -397,7 +397,7 @@ X-API-Version: 2025-01`}
                   <p className="text-sm text-blue-500">
                     Use JWT tokens for user session management in web applications.
                   </p>
-                  <div className="bg-gray-50 p-3 rounded-lg">
+                  <div className="bg-blue-50 p-3 rounded-lg">
                     <code className="text-sm">Authorization: Bearer eyJhbGciOiJIUzI1...</code>
                   </div>
                 </div>
@@ -447,7 +447,7 @@ X-API-Version: 2025-01`}
                         <Badge variant={method.method === 'GET' ? 'default' : method.method === 'POST' ? 'secondary' : 'outline'}>
                           {method.method}
                         </Badge>
-                        <code className="text-sm bg-gray-100 px-2 py-1 rounded">{method.endpoint}</code>
+                        <code className="text-sm bg-blue-100 px-2 py-1 rounded">{method.endpoint}</code>
                         {getTierBadge(method.tier)}
                       </div>
                       <Button
@@ -480,7 +480,7 @@ X-API-Version: 2025-01`}
                       
                       <div>
                         <h5 className="font-medium mb-2">Example Response</h5>
-                        <div className="bg-gray-50 p-3 rounded-lg overflow-x-auto">
+                        <div className="bg-blue-50 p-3 rounded-lg overflow-x-auto">
                           <pre className="text-xs text-blue-600">{method.response}</pre>
                         </div>
                       </div>
@@ -514,7 +514,7 @@ X-API-Version: 2025-01`}
                       { event: 'compliance.violation', description: 'Compliance violation detected' },
                       { event: 'report.generated', description: 'New compliance report available' }
                     ].map((item, index) => (
-                      <div key={index} className="bg-gray-50 p-3 rounded-lg">
+                      <div key={index} className="bg-blue-50 p-3 rounded-lg">
                         <code className="text-sm font-medium">{item.event}</code>
                         <p className="text-xs text-blue-500 mt-1">{item.description}</p>
                       </div>

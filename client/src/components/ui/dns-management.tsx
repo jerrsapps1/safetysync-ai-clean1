@@ -211,7 +211,7 @@ export function DNSManagement() {
       case "TXT": return "bg-purple-100 text-purple-800";
       case "MX": return "bg-orange-100 text-orange-800";
       case "CAA": return "bg-red-100 text-red-800";
-      default: return "bg-gray-100 text-blue-700";
+      default: return "bg-blue-100 text-blue-700";
     }
   };
 
@@ -296,7 +296,7 @@ export function DNSManagement() {
                 {dnsRecords.map((record, index) => (
                   <div 
                     key={index}
-                    className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50"
+                    className="flex items-center justify-between p-4 border rounded-lg hover:bg-blue-50"
                   >
                     <div className="flex-1 grid grid-cols-1 md:grid-cols-6 gap-4 items-center">
                       <div>
@@ -377,13 +377,13 @@ export function DNSManagement() {
               <div className="space-y-4">
                 <div>
                   <h4 className="font-medium mb-2">Run DNS Setup Script</h4>
-                  <div className="bg-gray-100 p-3 rounded font-mono text-sm">
+                  <div className="bg-blue-100 p-3 rounded font-mono text-sm">
                     chmod +x scripts/dns-setup.sh && ./scripts/dns-setup.sh
                   </div>
                 </div>
                 <div>
                   <h4 className="font-medium mb-2">Let's Encrypt SSL Certificate</h4>
-                  <div className="bg-gray-100 p-3 rounded font-mono text-sm">
+                  <div className="bg-blue-100 p-3 rounded font-mono text-sm">
                     sudo certbot certonly --dns-cloudflare -d {customDomain} -d *.{customDomain}
                   </div>
                 </div>

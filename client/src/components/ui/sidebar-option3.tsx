@@ -82,7 +82,7 @@ export function SidebarOption3({}: SidebarOption3Props) {
               return (
                 <Link key={item.name} href={item.href}>
                   <a 
-                    className="flex items-center px-3 py-3 text-sm font-medium text-gray-300 rounded-lg hover:bg-blue-700 hover:text-emerald-400 transition-colors group relative"
+                    className="flex items-center px-3 py-3 text-sm font-medium text-blue-300 rounded-lg hover:bg-blue-700 hover:text-emerald-400 transition-colors group relative"
                     onClick={() => setIsMobileOpen(false)}
                     title={isCollapsed ? item.name : undefined}
                   >

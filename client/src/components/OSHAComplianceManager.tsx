@@ -437,7 +437,7 @@ export default function OSHAComplianceManager() {
                             return (
                               <div key={standard} className="text-sm">
                                 <div className="text-blue-400">{standard}</div>
-                                <div className="text-gray-300">{standardInfo?.title}</div>
+                                <div className="text-blue-300">{standardInfo?.title}</div>
                                 <div className="text-blue-400">
                                   Frequency: {matrix.frequency[standard]} | Duration: {standardInfo?.duration}
                                 </div>
@@ -491,7 +491,7 @@ export default function OSHAComplianceManager() {
                     <div className="grid md:grid-cols-3 gap-4 text-sm">
                       <div>
                         <h4 className="font-medium text-white mb-2">Training Details:</h4>
-                        <div className="space-y-1 text-gray-300">
+                        <div className="space-y-1 text-blue-300">
                           <div><strong>Topic:</strong> {record.trainingTopic}</div>
                           <div><strong>OSHA Standard:</strong> {record.oshaStandard}</div>
                           <div><strong>Date:</strong> {record.trainingDate}</div>
@@ -502,7 +502,7 @@ export default function OSHAComplianceManager() {
 
                       <div>
                         <h4 className="font-medium text-white mb-2">Trainer Information:</h4>
-                        <div className="space-y-1 text-gray-300">
+                        <div className="space-y-1 text-blue-300">
                           <div><strong>Trainer:</strong> {record.trainerName}</div>
                           <div><strong>Qualifications:</strong> {record.trainerQualifications}</div>
                         </div>
@@ -510,7 +510,7 @@ export default function OSHAComplianceManager() {
 
                       <div>
                         <h4 className="font-medium text-white mb-2">Assessment & Proof:</h4>
-                        <div className="space-y-1 text-gray-300">
+                        <div className="space-y-1 text-blue-300">
                           <div><strong>Results:</strong> {record.assessmentResults}</div>
                           <div><strong>Signature:</strong> 
                             {record.employeeSignature ? 
@@ -570,7 +570,7 @@ export default function OSHAComplianceManager() {
                         <h4 className="font-medium text-white mb-2">Correction Steps:</h4>
                         <div className="space-y-1">
                           {gap.correctionSteps.map((step, index) => (
-                            <div key={index} className="text-sm text-gray-300">
+                            <div key={index} className="text-sm text-blue-300">
                               {index + 1}. {step}
                             </div>
                           ))}
@@ -608,7 +608,7 @@ export default function OSHAComplianceManager() {
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <h4 className="font-medium text-white mb-2">Time-Based Triggers:</h4>
-                      <ul className="space-y-1 text-gray-300 text-sm">
+                      <ul className="space-y-1 text-blue-300 text-sm">
                         <li>• Annual requirements (Respiratory Protection)</li>
                         <li>• Triennial requirements (Forklift Operation)</li>
                         <li>• Certificate expiration dates</li>
@@ -617,7 +617,7 @@ export default function OSHAComplianceManager() {
                     </div>
                     <div>
                       <h4 className="font-medium text-white mb-2">Event-Based Triggers:</h4>
-                      <ul className="space-y-1 text-gray-300 text-sm">
+                      <ul className="space-y-1 text-blue-300 text-sm">
                         <li>• Equipment or process changes</li>
                         <li>• Accident/near-miss investigations</li>
                         <li>• New chemical introductions</li>
@@ -671,7 +671,7 @@ export default function OSHAComplianceManager() {
                   <div className="grid md:grid-cols-3 gap-4">
                     <div>
                       <h4 className="font-medium text-white mb-2">Written Tests:</h4>
-                      <ul className="space-y-1 text-gray-300 text-sm">
+                      <ul className="space-y-1 text-blue-300 text-sm">
                         <li>• Minimum 80% passing score</li>
                         <li>• Standard-specific questions</li>
                         <li>• Hazard identification</li>
@@ -680,7 +680,7 @@ export default function OSHAComplianceManager() {
                     </div>
                     <div>
                       <h4 className="font-medium text-white mb-2">Practical Demonstrations:</h4>
-                      <ul className="space-y-1 text-gray-300 text-sm">
+                      <ul className="space-y-1 text-blue-300 text-sm">
                         <li>• Equipment operation</li>
                         <li>• Safety procedure execution</li>
                         <li>• Emergency response</li>
@@ -689,7 +689,7 @@ export default function OSHAComplianceManager() {
                     </div>
                     <div>
                       <h4 className="font-medium text-white mb-2">Observation Checklists:</h4>
-                      <ul className="space-y-1 text-gray-300 text-sm">
+                      <ul className="space-y-1 text-blue-300 text-sm">
                         <li>• Job performance evaluation</li>
                         <li>• Safety compliance</li>
                         <li>• Knowledge application</li>
@@ -701,13 +701,13 @@ export default function OSHAComplianceManager() {
 
                 <div className="border border-blue-500 rounded-lg p-4">
                   <h3 className="text-lg font-semibold text-white mb-3">Employee Knowledge Verification</h3>
-                  <p className="text-gray-300 mb-3">
+                  <p className="text-blue-300 mb-3">
                     Compliance verification may include employee interviews. Ensure employees can answer:
                   </p>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <h4 className="font-medium text-white mb-2">Training Knowledge:</h4>
-                      <ul className="space-y-1 text-gray-300 text-sm">
+                      <ul className="space-y-1 text-blue-300 text-sm">
                         <li>• What training they've received</li>
                         <li>• When training was completed</li>
                         <li>• Who provided the training</li>
@@ -716,7 +716,7 @@ export default function OSHAComplianceManager() {
                     </div>
                     <div>
                       <h4 className="font-medium text-white mb-2">Hazard Awareness:</h4>
-                      <ul className="space-y-1 text-gray-300 text-sm">
+                      <ul className="space-y-1 text-blue-300 text-sm">
                         <li>• Workplace hazards they face</li>
                         <li>• Control measures in place</li>
                         <li>• Emergency procedures</li>
@@ -755,7 +755,7 @@ export default function OSHAComplianceManager() {
                     ].map((item, index) => (
                       <div key={index} className="flex items-center gap-2">
                         <CheckCircle2 className="w-4 h-4 text-green-500" />
-                        <span className="text-gray-300">{item}</span>
+                        <span className="text-blue-300">{item}</span>
                       </div>
                     ))}
                   </div>
@@ -774,7 +774,7 @@ export default function OSHAComplianceManager() {
                     ].map((item, index) => (
                       <div key={index} className="flex items-center gap-2">
                         <CheckCircle2 className="w-4 h-4 text-green-500" />
-                        <span className="text-gray-300">{item}</span>
+                        <span className="text-blue-300">{item}</span>
                       </div>
                     ))}
                   </div>
@@ -782,7 +782,7 @@ export default function OSHAComplianceManager() {
 
                 <div className="border border-blue-500 rounded-lg p-4">
                   <h3 className="text-lg font-semibold text-white mb-3">Documentation Access System</h3>
-                  <p className="text-gray-300 mb-4">
+                  <p className="text-blue-300 mb-4">
                     All records organized and accessible for compliance verification:
                   </p>
                   <div className="flex gap-4 flex-wrap">

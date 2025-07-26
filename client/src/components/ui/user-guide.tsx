@@ -436,7 +436,7 @@ export function UserGuide({ userPlan = 'professional' }: UserGuideProps) {
       case 'professional': return 'bg-blue-100 text-blue-800';
       case 'enterprise': return 'bg-purple-100 text-purple-800';
       case 'enterprise-plus': return 'bg-orange-100 text-orange-800';
-      default: return 'bg-gray-100 text-blue-700';
+      default: return 'bg-blue-100 text-blue-700';
     }
   };
 
@@ -568,7 +568,7 @@ export function UserGuide({ userPlan = 'professional' }: UserGuideProps) {
                           <p className="text-blue-600 mb-2">{step.description}</p>
                           
                           {step.action && (
-                            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 mb-3">
+                            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-3">
                               <div className="flex items-center gap-2 text-sm font-medium text-blue-600 mb-1">
                                 <Target className="w-4 h-4" />
                                 Action Required:

@@ -203,7 +203,7 @@ export default function InstructorTrainingCompletion() {
                     className={`p-4 border rounded-lg cursor-pointer transition-colors ${
                       selectedSession?.id === session.id
                         ? 'border-blue-500 bg-blue-50'
-                        : 'border-gray-200 hover:border-gray-300'
+                        : 'border-blue-200 hover:border-blue-300'
                     }`}
                     onClick={() => setSelectedSession(session)}
                   >
@@ -334,7 +334,7 @@ export default function InstructorTrainingCompletion() {
               ))}
 
               {employees.length === 0 && (
-                <div className="text-center py-8 text-blue-400 border-2 border-dashed border-gray-200 rounded-lg">
+                <div className="text-center py-8 text-blue-400 border-2 border-dashed border-blue-200 rounded-lg">
                   No employees added yet. Click "Add Employee" to start recording attendance.
                 </div>
               )}

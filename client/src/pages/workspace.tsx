@@ -1419,7 +1419,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     {getGreeting()}, {user?.name?.split(' ')[0] || 'Safety Manager'}!
                   </h3>
                 </div>
-                <p className="text-gray-300 text-sm mb-3 line-clamp-2">
+                <p className="text-blue-300 text-sm mb-3 line-clamp-2">
                   {getMotivationalMessage()}
                 </p>
                 <div className="flex items-center space-x-4 text-xs">
@@ -1996,7 +1996,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               variant="ghost"
               size="sm"
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="text-slate-300 hover:text-white"
+              className="text-blue-300 hover:text-white"
             >
               {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </Button>
@@ -2015,7 +2015,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           >
             <Button
               variant="ghost"
-              className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+              className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
                 activeTab === "company-profile" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("company-profile")}
@@ -2030,7 +2030,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <div className="space-y-1">
             <Button
               variant="ghost"
-              className="w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3"
+              className="w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3"
               onClick={() => toggleSection('employee-management')}
               title="Employee Management"
             >
@@ -2046,7 +2046,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               <div className="ml-6 space-y-1">
                 <Button
                   variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                  className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
                     activeTab === "employees" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("employees")}
@@ -2057,7 +2057,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </Button>
                 <Button
                   variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                  className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
                     activeTab === "employee-insights" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("employee-insights")}
@@ -2068,7 +2068,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </Button>
                 <Button
                   variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                  className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
                     activeTab === "employee-profile" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("employee-profile")}
@@ -2079,7 +2079,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </Button>
                 <Button
                   variant="ghost"
-                  className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                  className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
                     activeTab === "employee-portal" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("employee-portal")}
@@ -2096,7 +2096,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <div className="space-y-1">
             <Button
               variant="ghost"
-              className="w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3"
+              className="w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3"
               onClick={() => toggleSection('training-features')}
               title="Training Documents"
             >
@@ -2112,7 +2112,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               <div className="ml-6 space-y-1">
               <Button
                 variant="ghost"
-                className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
                   activeTab === "ai-document-processor" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                 }`}
                 onClick={() => handleTabSwitch("ai-document-processor")}
@@ -2123,7 +2123,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </Button>
               <Button
                 variant="ghost"
-                className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
                   activeTab === "certificates" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                 }`}
                 onClick={() => handleTabSwitch("certificates")}
@@ -2134,7 +2134,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </Button>
               <Button
                 variant="ghost"
-                className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
                   activeTab === "instructor-signin" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                 }`}
                 onClick={() => handleTabSwitch("instructor-signin")}
@@ -2145,7 +2145,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </Button>
               <Button
                 variant="ghost"
-                className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
                   activeTab === "training-records" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                 }`}
                 onClick={() => handleTabSwitch("training-records")}
@@ -2156,7 +2156,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </Button>
               <Button
                 variant="ghost"
-                className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
                   activeTab === "training-document-hub" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                 }`}
                 onClick={() => handleTabSwitch("training-document-hub")}
@@ -2167,7 +2167,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </Button>
               <Button
                 variant="ghost"
-                className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
                   activeTab === "training" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                 }`}
                 onClick={() => handleTabSwitch("training")}
@@ -2189,7 +2189,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             >
               <Button
                 variant="ghost"
-                className="w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3"
+                className="w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3"
                 onClick={() => toggleSection('compliance-reporting')}
                 title="Compliance & Reporting"
               >
@@ -2218,7 +2218,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <motion.div variants={subItemVariants}>
                     <Button
                       variant="ghost"
-                      className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                      className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
                         activeTab === "analytics-reports" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("analytics-reports")}
@@ -2231,7 +2231,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <motion.div variants={subItemVariants}>
                     <Button
                       variant="ghost"
-                      className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                      className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
                         activeTab === "reports" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("reports")}
@@ -2244,7 +2244,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <motion.div variants={subItemVariants}>
                     <Button
                       variant="ghost"
-                      className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                      className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
                         activeTab === "osha-compliance" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("osha-compliance")}
@@ -2257,7 +2257,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <motion.div variants={subItemVariants}>
                     <Button
                       variant="ghost"
-                      className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                      className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
                         activeTab === "document-manager" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("document-manager")}
@@ -2270,7 +2270,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <motion.div variants={subItemVariants}>
                     <Button
                       variant="ghost"
-                      className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                      className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
                         activeTab === "trends" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("trends")}
@@ -2288,7 +2288,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <div className="space-y-1">
             <Button
               variant="ghost"
-              className="w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3"
+              className="w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3"
               onClick={() => toggleSection('system-tools')}
               title="System Tools"
             >
@@ -2304,7 +2304,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 <div className="ml-6 space-y-1">
                   <Button
                     variant="ghost"
-                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                    className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
                       activeTab === "achievements" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                     }`}
                     onClick={() => handleTabSwitch("achievements")}
@@ -2315,7 +2315,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   </Button>
                   <Button
                     variant="ghost"
-                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                    className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
                       activeTab === "notifications" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                     }`}
                     onClick={() => handleTabSwitch("notifications")}
@@ -2326,7 +2326,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   </Button>
                   <Button
                     variant="ghost"
-                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                    className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
                       activeTab === "settings" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                     }`}
                     onClick={() => handleTabSwitch("settings")}
@@ -2337,7 +2337,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   </Button>
                   <Button
                     variant="ghost"
-                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                    className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
                       activeTab === "subscription-billing" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                     }`}
                     onClick={() => handleTabSwitch("subscription-billing")}
@@ -2348,7 +2348,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   </Button>
                   <Button
                     variant="ghost"
-                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                    className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
                       activeTab === "instructors" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                     }`}
                     onClick={() => handleTabSwitch("instructors")}
@@ -2359,7 +2359,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   </Button>
                   <Button
                     variant="ghost"
-                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+                    className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
                       activeTab === "document-manager" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                     }`}
                     onClick={() => handleTabSwitch("document-manager")}
@@ -2393,7 +2393,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           )}
           <Button
             variant="ghost"
-            className="w-full justify-start text-gray-300 hover:text-white hover:bg-blue-600/50"
+            className="w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50"
             onClick={handleLogout}
           >
             <LogOut className="w-5 h-5 mr-3" />
@@ -2473,7 +2473,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </p>
             </div>
             <div className="flex items-center space-x-2 md:space-x-4">
-              <Button variant="secondary" className="bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-600/50 p-2 md:px-4 md:py-2">
+              <Button variant="secondary" className="bg-blue-700/50 text-blue-300 border-blue-500 hover:bg-blue-600/50 p-2 md:px-4 md:py-2">
                 <Bell className="w-4 h-4 md:mr-2" />
                 <span className="hidden md:inline">Notifications</span>
               </Button>
@@ -2505,7 +2505,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <Button
                     variant="secondary"
                     onClick={() => setShowWidgetManager(!showWidgetManager)}
-                    className="bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-600/50 text-sm"
+                    className="bg-blue-700/50 text-blue-300 border-blue-500 hover:bg-blue-600/50 text-sm"
                   >
                     <Settings className="w-4 h-4 mr-2" />
                     Manage Widgets
@@ -2513,7 +2513,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <Button
                     variant="secondary"
                     onClick={saveAsDefault}
-                    className="bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-600/50 text-sm"
+                    className="bg-blue-700/50 text-blue-300 border-blue-500 hover:bg-blue-600/50 text-sm"
                   >
                     <Save className="w-4 h-4 mr-2" />
                     <span className="hidden sm:inline">Save as Default</span>
@@ -2523,7 +2523,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                     <Button
                       variant="secondary"
                       onClick={loadCustomDefaults}
-                      className="bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-600/50 text-sm"
+                      className="bg-blue-700/50 text-blue-300 border-blue-500 hover:bg-blue-600/50 text-sm"
                     >
                       <Upload className="w-4 h-4 mr-2" />
                       <span className="hidden sm:inline">Load My Default</span>
@@ -2533,7 +2533,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <Button
                     variant="secondary"
                     onClick={resetWidgetLayout}
-                    className="bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-600/50 text-sm"
+                    className="bg-blue-700/50 text-blue-300 border-blue-500 hover:bg-blue-600/50 text-sm"
                   >
                     <RotateCcw className="w-4 h-4 mr-2" />
                     <span className="hidden sm:inline">Reset to Original</span>
@@ -2560,7 +2560,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                           <Button
                             variant={isGroupSelectionMode ? "default" : "outline"}
                             onClick={toggleGroupSelectionMode}
-                            className={`${isGroupSelectionMode ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-600/50'}`}
+                            className={`${isGroupSelectionMode ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-blue-700/50 text-blue-300 border-blue-500 hover:bg-blue-600/50'}`}
                           >
                             <MousePointer className="w-4 h-4 mr-2" />
                             {isGroupSelectionMode ? 'Exit Selection Mode' : 'Select Multiple'}
@@ -2570,7 +2570,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                               <Button
                                 variant="outline"
                                 onClick={selectAllWidgets}
-                                className="bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-600/50"
+                                className="bg-blue-700/50 text-blue-300 border-blue-500 hover:bg-blue-600/50"
                               >
                                 <CheckSquare className="w-4 h-4 mr-2" />
                                 Select All
@@ -2578,7 +2578,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                               <Button
                                 variant="outline"
                                 onClick={clearSelection}
-                                className="bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-600/50"
+                                className="bg-blue-700/50 text-blue-300 border-blue-500 hover:bg-blue-600/50"
                               >
                                 <Square className="w-4 h-4 mr-2" />
                                 Clear Selection
@@ -2591,28 +2591,28 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                                   <Button
                                     variant="outline"
                                     onClick={() => moveSelectedWidgets(-1, 0)}
-                                    className="bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-600/50 p-2"
+                                    className="bg-blue-700/50 text-blue-300 border-blue-500 hover:bg-blue-600/50 p-2"
                                   >
                                     <ArrowLeft className="w-4 h-4" />
                                   </Button>
                                   <Button
                                     variant="outline"
                                     onClick={() => moveSelectedWidgets(1, 0)}
-                                    className="bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-600/50 p-2"
+                                    className="bg-blue-700/50 text-blue-300 border-blue-500 hover:bg-blue-600/50 p-2"
                                   >
                                     <ArrowRight className="w-4 h-4" />
                                   </Button>
                                   <Button
                                     variant="outline"
                                     onClick={() => moveSelectedWidgets(0, -1)}
-                                    className="bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-600/50 p-2"
+                                    className="bg-blue-700/50 text-blue-300 border-blue-500 hover:bg-blue-600/50 p-2"
                                   >
                                     <ArrowUp className="w-4 h-4" />
                                   </Button>
                                   <Button
                                     variant="outline"
                                     onClick={() => moveSelectedWidgets(0, 1)}
-                                    className="bg-blue-700/50 text-gray-300 border-blue-500 hover:bg-blue-600/50 p-2"
+                                    className="bg-blue-700/50 text-blue-300 border-blue-500 hover:bg-blue-600/50 p-2"
                                   >
                                     <ArrowDown className="w-4 h-4" />
                                   </Button>
@@ -2929,15 +2929,15 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <CardContent>
                     <div className="space-y-2">
                       <div className="flex items-center justify-between p-2 bg-blue-700/50 rounded-lg">
-                        <span className="text-gray-300 text-sm">Construction</span>
+                        <span className="text-blue-300 text-sm">Construction</span>
                         <span className="text-green-400 text-sm">96%</span>
                       </div>
                       <div className="flex items-center justify-between p-2 bg-blue-700/50 rounded-lg">
-                        <span className="text-gray-300 text-sm">Manufacturing</span>
+                        <span className="text-blue-300 text-sm">Manufacturing</span>
                         <span className="text-green-400 text-sm">98%</span>
                       </div>
                       <div className="flex items-center justify-between p-2 bg-blue-700/50 rounded-lg">
-                        <span className="text-gray-300 text-sm">Maintenance</span>
+                        <span className="text-blue-300 text-sm">Maintenance</span>
                         <span className="text-yellow-400 text-sm">94%</span>
                       </div>
                     </div>
@@ -3196,7 +3196,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                                   </div>
                                 </div>
                                 <div className="flex items-center space-x-2">
-                                  <Badge variant="secondary" className="bg-blue-700/50 text-gray-300 border-blue-500">
+                                  <Badge variant="secondary" className="bg-blue-700/50 text-blue-300 border-blue-500">
                                     {Math.round((employees.filter(emp => emp.department === department && emp.status === 'Active').length / Math.max(employees.filter(emp => emp.department === department).length, 1)) * 100)}% Active
                                   </Badge>
                                   <Button
@@ -3480,7 +3480,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 type="button"
                 variant="outline"
                 onClick={() => setShowAddEmployee(false)}
-                className="border-blue-600 text-gray-300 hover:bg-blue-600/50"
+                className="border-blue-600 text-blue-300 hover:bg-blue-600/50"
               >
                 Cancel
               </Button>
@@ -3504,7 +3504,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           </DialogHeader>
           <div className="space-y-4">
             <div>
-              <Label className="text-gray-300">Division Name</Label>
+              <Label className="text-blue-300">Division Name</Label>
               <Input
                 value={newDivisionName}
                 onChange={(e) => setNewDivisionName(e.target.value)}
@@ -3519,7 +3519,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   setShowAddDivision(false);
                   setNewDivisionName("");
                 }}
-                className="border-blue-500 text-gray-300 hover:bg-blue-600/50"
+                className="border-blue-500 text-blue-300 hover:bg-blue-600/50"
               >
                 Cancel
               </Button>
@@ -3542,7 +3542,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           </DialogHeader>
           <div className="space-y-4">
             <div>
-              <Label className="text-gray-300">Select Division</Label>
+              <Label className="text-blue-300">Select Division</Label>
               <Select value={selectedDivisionForDepartment} onValueChange={setSelectedDivisionForDepartment}>
                 <SelectTrigger className="bg-blue-700/50 border-blue-600 text-white mt-1">
                   <SelectValue placeholder="Select a division" />
@@ -3555,7 +3555,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </Select>
             </div>
             <div>
-              <Label className="text-gray-300">Department Name</Label>
+              <Label className="text-blue-300">Department Name</Label>
               <Input
                 value={newDepartmentName}
                 onChange={(e) => setNewDepartmentName(e.target.value)}
@@ -3571,7 +3571,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   setNewDepartmentName("");
                   setSelectedDivisionForDepartment("");
                 }}
-                className="border-blue-500 text-gray-300 hover:bg-blue-600/50"
+                className="border-blue-500 text-blue-300 hover:bg-blue-600/50"
               >
                 Cancel
               </Button>
