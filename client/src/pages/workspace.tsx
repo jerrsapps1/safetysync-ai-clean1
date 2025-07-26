@@ -1972,6 +1972,18 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex flex-col md:flex-row">
+      {/* Hamburger Menu Button - Shows when sidebar is collapsed */}
+      {!sidebarOpen && (
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => setSidebarOpen(true)}
+          className="fixed top-4 left-4 z-50 bg-blue-500/70 backdrop-blur-sm text-white hover:text-white hover:bg-blue-600/80 border border-blue-400/50"
+        >
+          <Menu className="w-5 h-5" />
+        </Button>
+      )}
+      
       {/* Sidebar */}
       <motion.div 
         className={`${sidebarOpen ? 'w-full md:w-64' : 'w-full md:w-16'} ${sidebarOpen ? 'h-auto' : 'h-16'} md:h-auto bg-blue-500/50 backdrop-blur-sm border-r border-blue-400 flex flex-col md:border-r md:border-b-0 border-b`}
