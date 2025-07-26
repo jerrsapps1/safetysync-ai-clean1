@@ -1,133 +1,267 @@
-// SafetySync.AI Platform Documentation Generator with Screenshots
-// Creates comprehensive documentation with visual page captures
+// SafetySync.AI Platform Documentation Generator with Fresh Screenshots
+// Captures live screenshots from the running platform and creates comprehensive documentation
 
 import fs from 'fs';
 import path from 'path';
 import puppeteer from 'puppeteer';
 
-class SafetySyncDocumentationWithScreenshots {
+class SafetySyncDocumentationGenerator {
   constructor() {
+    this.baseUrl = 'http://localhost:5000';
+    this.outputDir = 'platform-documentation';
+    this.screenshotsDir = path.join(this.outputDir, 'fresh-screenshots');
+    
+    // Platform pages to capture with fresh screenshots
     this.platformPages = [
       {
         section: "Landing & Public Pages",
         pages: [
-          { name: "Landing Page", url: "/", description: "Hero section with SafetySync.AI branding, features showcase, call-to-action buttons for trial signup and demo requests" },
-          { name: "Contact Page", url: "/contact", description: "Professional contact form, company information, support channels" },
-          { name: "Case Studies", url: "/case-studies", description: "Customer success stories demonstrating OSHA compliance improvements" },
-          { name: "Pricing Plans", url: "/pricing", description: "Subscription tiers, feature comparisons, ROI calculator" },
-          { name: "HR Teams Page", url: "/hr", description: "HR-specific features including employee training management, compliance documentation, digital certificates" }
+          { 
+            name: "Landing Page", 
+            url: "/", 
+            description: "Hero section with SafetySync.AI branding, features showcase, call-to-action buttons for trial signup and demo requests",
+            waitFor: "h1"
+          },
+          { 
+            name: "Contact Page", 
+            url: "/contact", 
+            description: "Professional contact form, company information, support channels",
+            waitFor: "h1"
+          },
+          { 
+            name: "Case Studies", 
+            url: "/case-studies", 
+            description: "Customer success stories demonstrating OSHA compliance improvements",
+            waitFor: "h1"
+          },
+          { 
+            name: "Pricing Plans", 
+            url: "/pricing", 
+            description: "Subscription tiers, feature comparisons, ROI calculator",
+            waitFor: "h1"
+          },
+          { 
+            name: "HR Teams Page", 
+            url: "/hr", 
+            description: "HR-specific features including employee training management, compliance documentation, digital certificates",
+            waitFor: "h1"
+          },
+          { 
+            name: "Testimonials", 
+            url: "/testimonials", 
+            description: "Customer reviews and testimonials showcasing platform success",
+            waitFor: "h1"
+          }
         ]
       },
       {
         section: "Authentication System", 
         pages: [
-          { name: "Client Portal", url: "/client-portal", description: "Secure login interface with username/password authentication, remember me option, password strength validation" },
-          { name: "Standalone Dashboard", url: "/dashboard", description: "Authentication-protected comprehensive dashboard with compliance tracking, AI clone detection, collaboration tools" }
+          { 
+            name: "Client Portal", 
+            url: "/client-portal", 
+            description: "Secure login interface with username/password authentication, remember me option, password strength validation",
+            waitFor: "form"
+          },
+          { 
+            name: "Download Documentation", 
+            url: "/download-docs", 
+            description: "Documentation download center with multiple format options and preview capabilities",
+            waitFor: "h1"
+          }
         ]
       },
       {
         section: "Main Workspace Platform",
         pages: [
-          { name: "User Guide", url: "/workspace?tab=user-guide", description: "Comprehensive platform documentation, feature explanations, tutorial content (First Tab)" },
-          { name: "Workspace View", url: "/workspace?tab=unified-dashboard", description: "Main compliance dashboard with customizable widgets, employee statistics, safety alerts, training progress (Second Tab)" },
-          { name: "Company Profile", url: "/workspace?tab=company-profile", description: "Company setup and configuration, industry selection, contact information management" },
-          { name: "Employee Management", url: "/workspace?tab=employee-management", description: "Employee database with 200+ records, department analytics, bulk operations, CSV export, certificate tracking" }
+          { 
+            name: "User Guide", 
+            url: "/workspace?tab=user-guide", 
+            description: "Comprehensive platform documentation, feature explanations, tutorial content (First Tab)",
+            waitFor: ".workspace-content",
+            requireAuth: true
+          },
+          { 
+            name: "Workspace View", 
+            url: "/workspace?tab=unified-dashboard", 
+            description: "Main compliance dashboard with customizable widgets, employee statistics, safety alerts, training progress (Second Tab)",
+            waitFor: ".workspace-content",
+            requireAuth: true
+          },
+          { 
+            name: "Company Profile", 
+            url: "/workspace?tab=company-profile", 
+            description: "Company setup and configuration, industry selection, contact information management",
+            waitFor: ".workspace-content",
+            requireAuth: true
+          },
+          { 
+            name: "Employee Management", 
+            url: "/workspace?tab=employee-management", 
+            description: "Employee database with 200+ records, department analytics, bulk operations, CSV export, certificate tracking",
+            waitFor: ".workspace-content",
+            requireAuth: true
+          }
         ]
       },
       {
         section: "Training & Compliance Features",
         pages: [
-          { name: "Training Document Hub", url: "/workspace?tab=training-document-hub", description: "AI-powered document upload and processing, training record management, certificate generation" },
-          { name: "OSHA Compliance Manager", url: "/workspace?tab=osha-compliance-manager", description: "Comprehensive OSHA compliance tracking, training matrix, certification monitoring, audit readiness" },
-          { name: "Employee Insights", url: "/workspace?tab=employee-insights", description: "Analytics dashboard with department performance, hiring trends, compliance scores, AI-powered insights" }
+          { 
+            name: "Training Document Hub", 
+            url: "/workspace?tab=training-document-hub", 
+            description: "AI-powered document upload and processing, training record management, certificate generation",
+            waitFor: ".workspace-content",
+            requireAuth: true
+          },
+          { 
+            name: "OSHA Compliance Manager", 
+            url: "/workspace?tab=osha-compliance-manager", 
+            description: "Comprehensive OSHA compliance tracking, training matrix, certification monitoring, audit readiness",
+            waitFor: ".workspace-content",
+            requireAuth: true
+          },
+          { 
+            name: "Employee Insights", 
+            url: "/workspace?tab=employee-insights", 
+            description: "Analytics dashboard with department performance, hiring trends, compliance scores, AI-powered insights",
+            waitFor: ".workspace-content",
+            requireAuth: true
+          }
+        ]
+      },
+      {
+        section: "Advanced Features",
+        pages: [
+          { 
+            name: "AI Document Processing", 
+            url: "/workspace?tab=ai-document-processor", 
+            description: "Revolutionary AI-powered document extraction and processing with OpenAI GPT-4o integration",
+            waitFor: ".workspace-content",
+            requireAuth: true
+          },
+          { 
+            name: "Training Session Generator", 
+            url: "/workspace?tab=instructor-sign-in-generator", 
+            description: "Instructor sign-in sheet generation with customizable training classes and employee management",
+            waitFor: ".workspace-content",
+            requireAuth: true
+          }
         ]
       }
     ];
-
-    this.baseUrl = 'http://localhost:5000';
-    this.screenshotDir = 'platform-screenshots';
-    this.outputDir = 'platform-documentation';
   }
 
   async initializeBrowser() {
-    console.log('🚀 Launching browser for screenshot capture...');
     this.browser = await puppeteer.launch({
       headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      executablePath: '/nix/store/zi4f80l169xlmivz8vja8wlphq74qqk0-chromium-125.0.6422.141/bin/chromium',
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-accelerated-2d-canvas',
+        '--no-first-run',
+        '--no-zygote',
+        '--single-process',
+        '--disable-gpu',
+        '--disable-extensions',
+        '--disable-default-apps',
+        '--disable-background-timer-throttling',
+        '--disable-backgrounding-occluded-windows',
+        '--disable-renderer-backgrounding'
+      ]
     });
     this.page = await this.browser.newPage();
     await this.page.setViewport({ width: 1920, height: 1080 });
   }
 
-  async login() {
-    console.log('🔐 Logging in to capture authenticated pages...');
+  async authenticate() {
+    console.log('🔐 Authenticating with test account...');
+    
     try {
-      await this.page.goto(`${this.baseUrl}/client-portal`);
-      await this.page.waitForSelector('input[name="username"]', { timeout: 10000 });
+      // Go to client portal
+      await this.page.goto(`${this.baseUrl}/client-portal`, { waitUntil: 'networkidle0' });
       
+      // Fill in login form
+      await this.page.waitForSelector('input[name="username"]', { timeout: 10000 });
       await this.page.type('input[name="username"]', 'testuser');
       await this.page.type('input[name="password"]', 'password');
       
+      // Submit form
       await this.page.click('button[type="submit"]');
       await this.page.waitForNavigation({ waitUntil: 'networkidle0' });
       
-      console.log('✓ Successfully logged in');
+      console.log('✓ Authentication successful');
     } catch (error) {
-      console.log('⚠️ Login failed, will capture public pages only:', error.message);
+      console.log('⚠️ Authentication failed, proceeding with public pages only:', error.message);
     }
   }
 
-  async captureScreenshot(url, filename) {
+  async captureScreenshot(page, filename) {
+    const screenshotPath = path.join(this.screenshotsDir, filename);
+    
     try {
-      console.log(`📸 Capturing screenshot for: ${url}`);
-      await this.page.goto(`${this.baseUrl}${url}`, { waitUntil: 'networkidle0' });
-      
-      // Wait for content to load
-      await this.page.waitForTimeout(3000);
-      
-      // Take full page screenshot
-      const screenshotPath = path.join(this.screenshotDir, `${filename}.png`);
+      // Navigate to page
+      await this.page.goto(`${this.baseUrl}${page.url}`, { 
+        waitUntil: 'networkidle0',
+        timeout: 30000 
+      });
+
+      // Wait for specific element if specified
+      if (page.waitFor) {
+        await this.page.waitForSelector(page.waitFor, { timeout: 10000 });
+      }
+
+      // Additional wait for content to load
+      await new Promise(resolve => setTimeout(resolve, 2000));
+
+      // Take screenshot
       await this.page.screenshot({
         path: screenshotPath,
+        type: 'png',
         fullPage: true,
         quality: 90
       });
-      
-      console.log(`✓ Screenshot saved: ${screenshotPath}`);
-      return `${filename}.png`;
+
+      console.log(`✓ Captured: ${page.name}`);
+      return filename;
     } catch (error) {
-      console.log(`❌ Failed to capture ${url}:`, error.message);
+      console.log(`⚠️ Failed to capture ${page.name}: ${error.message}`);
       return null;
     }
   }
 
   async captureAllScreenshots() {
-    console.log('📸 Starting screenshot capture process...');
-    
+    console.log('📸 Capturing fresh screenshots...\n');
+
     // Create screenshots directory
-    if (!fs.existsSync(this.screenshotDir)) {
-      fs.mkdirSync(this.screenshotDir, { recursive: true });
+    if (!fs.existsSync(this.screenshotsDir)) {
+      fs.mkdirSync(this.screenshotsDir, { recursive: true });
     }
 
-    const screenshots = {};
+    const capturedScreenshots = {};
+
+    // Authenticate for workspace pages
+    await this.authenticate();
 
     for (const section of this.platformPages) {
-      console.log(`\n📂 Capturing ${section.section} screenshots...`);
+      console.log(`\n📁 Section: ${section.section}`);
       
       for (const page of section.pages) {
-        const filename = page.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-        const screenshotFile = await this.captureScreenshot(page.url, filename);
+        const filename = `${page.name.replace(/[^a-zA-Z0-9]/g, '_')}_${Date.now()}.png`;
+        const result = await this.captureScreenshot(page, filename);
         
-        if (screenshotFile) {
-          screenshots[page.name] = screenshotFile;
+        if (result) {
+          capturedScreenshots[page.name] = filename;
         }
       }
     }
 
-    return screenshots;
+    return capturedScreenshots;
   }
 
-  generateHTMLWithScreenshots(screenshots) {
+  generateHTMLWithFreshScreenshots(screenshots) {
     const timestamp = new Date().toLocaleString();
     
     let sectionsHTML = '';
@@ -140,13 +274,21 @@ class SafetySyncDocumentationWithScreenshots {
       `;
       
       for (const page of section.pages) {
-        const screenshot = screenshots[page.name];
-        const screenshotHTML = screenshot ? 
+        const hasScreenshot = screenshots[page.name];
+        const screenshotHTML = hasScreenshot ? 
           `<div class="page-screenshot">
-             <img src="../platform-screenshots/${screenshot}" alt="${page.name} Screenshot" />
+             <img src="fresh-screenshots/${screenshots[page.name]}" alt="${page.name} Screenshot" loading="lazy" />
+             <div class="screenshot-overlay">
+               <span class="view-full">Click to view full size</span>
+             </div>
            </div>` : 
           `<div class="page-screenshot no-image">
-             <p>Screenshot not available</p>
+             <div class="no-image-content">
+               <svg class="no-image-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 002 2v12a2 2 0 002 2z"></path>
+               </svg>
+               <p>Screenshot Capture Failed</p>
+             </div>
            </div>`;
         
         sectionsHTML += `
@@ -175,7 +317,7 @@ class SafetySyncDocumentationWithScreenshots {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SafetySync.AI Platform Documentation with Screenshots</title>
+    <title>SafetySync.AI Platform Documentation - Fresh Screenshots</title>
     <style>
         * {
             margin: 0;
@@ -223,6 +365,18 @@ class SafetySyncDocumentationWithScreenshots {
         .header .timestamp {
             color: #bbdefb;
             font-size: 0.9rem;
+        }
+
+        .fresh-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 1rem;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
         }
 
         .overview {
@@ -317,24 +471,68 @@ class SafetySyncDocumentationWithScreenshots {
         .page-screenshot {
             position: relative;
             background: #f8fafc;
+            cursor: pointer;
         }
 
         .page-screenshot img {
             width: 100%;
-            height: 300px;
+            height: 350px;
             object-fit: cover;
             object-position: top;
             border-bottom: 1px solid #e2e8f0;
+            transition: transform 0.3s ease;
         }
 
-        .page-screenshot.no-image {
-            height: 300px;
+        .page-screenshot:hover img {
+            transform: scale(1.02);
+        }
+
+        .screenshot-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #64748b;
-            background: #f1f5f9;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .page-screenshot:hover .screenshot-overlay {
+            opacity: 1;
+        }
+
+        .view-full {
+            color: white;
+            background: rgba(37, 99, 235, 0.9);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .page-screenshot.no-image {
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
             border-bottom: 1px solid #e2e8f0;
+        }
+
+        .no-image-content {
+            text-align: center;
+            color: #64748b;
+        }
+
+        .no-image-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 0.5rem;
+            opacity: 0.5;
         }
 
         .page-description {
@@ -399,6 +597,47 @@ class SafetySyncDocumentationWithScreenshots {
             font-weight: bold;
         }
 
+        .screenshot-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            padding: 2rem;
+        }
+
+        .screenshot-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .screenshot-modal img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 1rem;
@@ -414,6 +653,14 @@ class SafetySyncDocumentationWithScreenshots {
             
             .tech-categories {
                 grid-template-columns: 1fr;
+            }
+
+            .page-screenshot img {
+                height: 250px;
+            }
+
+            .page-screenshot.no-image {
+                height: 250px;
             }
         }
 
@@ -435,6 +682,10 @@ class SafetySyncDocumentationWithScreenshots {
             .documentation-section {
                 break-inside: avoid;
             }
+
+            .screenshot-overlay {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -442,13 +693,16 @@ class SafetySyncDocumentationWithScreenshots {
     <div class="container">
         <div class="header">
             <h1>SafetySync.AI Platform Documentation</h1>
-            <p class="subtitle">Comprehensive Visual Guide with Screenshots</p>
+            <p class="subtitle">Complete Visual Guide with Fresh Screenshots</p>
             <p class="timestamp">Generated on: ${timestamp}</p>
+            <div class="fresh-badge">✨ Fresh Screenshots Captured Live</div>
         </div>
 
         <div class="overview">
             <h2>Platform Overview</h2>
             <p>SafetySync.AI is an advanced AI-powered enterprise safety management platform that transforms workforce document processing and OSHA compliance through intelligent extraction, verification, and proactive risk management.</p>
+            
+            <p><strong>This documentation features fresh screenshots captured directly from the live platform, providing the most accurate and up-to-date visual representation of all features and interfaces.</strong></p>
             
             <h3>Key Features</h3>
             <div class="features-grid">
@@ -518,40 +772,78 @@ class SafetySyncDocumentationWithScreenshots {
             </div>
         </div>
     </div>
+
+    <!-- Screenshot Modal -->
+    <div class="screenshot-modal" id="screenshotModal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <img id="modalImage" src="" alt="Full size screenshot">
+    </div>
+
+    <script>
+        // Add click handlers for screenshots
+        document.querySelectorAll('.page-screenshot img').forEach(img => {
+            img.addEventListener('click', function() {
+                const modal = document.getElementById('screenshotModal');
+                const modalImg = document.getElementById('modalImage');
+                modalImg.src = this.src;
+                modal.classList.add('active');
+            });
+        });
+
+        function closeModal() {
+            document.getElementById('screenshotModal').classList.remove('active');
+        }
+
+        // Close modal on outside click
+        document.getElementById('screenshotModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>`;
   }
 
   async generate() {
     try {
-      console.log('🎯 Starting SafetySync.AI Documentation Generation with Screenshots...\n');
+      console.log('🎯 Starting SafetySync.AI Documentation Generation with Fresh Screenshots...\n');
 
       // Create output directory
       if (!fs.existsSync(this.outputDir)) {
         fs.mkdirSync(this.outputDir, { recursive: true });
       }
 
-      // Initialize browser and login
+      // Initialize browser
       await this.initializeBrowser();
-      await this.login();
 
-      // Capture all screenshots
-      const screenshots = await this.captureAllScreenshots();
+      // Capture fresh screenshots
+      const capturedScreenshots = await this.captureAllScreenshots();
 
-      // Generate HTML documentation with screenshots
-      const htmlContent = this.generateHTMLWithScreenshots(screenshots);
+      // Generate HTML documentation with fresh screenshots
+      console.log('\n📄 Generating HTML documentation with fresh screenshots...');
+      const htmlContent = this.generateHTMLWithFreshScreenshots(capturedScreenshots);
       
       // Write HTML file
-      const htmlPath = path.join(this.outputDir, 'SafetySync_AI_Platform_Documentation_With_Screenshots.html');
+      const htmlPath = path.join(this.outputDir, 'SafetySync_AI_Fresh_Screenshots_Documentation.html');
       fs.writeFileSync(htmlPath, htmlContent, 'utf8');
 
       // Close browser
       await this.browser.close();
 
-      console.log('\n🎉 SafetySync.AI Documentation with Screenshots Generated Successfully!');
+      console.log('\n🎉 SafetySync.AI Documentation with Fresh Screenshots Generated Successfully!');
       console.log(`📄 HTML Documentation: ${path.resolve(htmlPath)}`);
-      console.log(`📸 Screenshots Directory: ${path.resolve(this.screenshotDir)}`);
-      console.log('✓ Ready for download and printing with visual page captures');
+      console.log(`📸 Fresh screenshots captured: ${Object.keys(capturedScreenshots).length} pages`);
+      console.log('✨ All screenshots captured live from running platform');
+      console.log('✓ Ready for download and printing with current visual state');
+      console.log('✓ Features clickable screenshots for full-size viewing');
 
     } catch (error) {
       console.error('❌ Documentation generation failed:', error);
@@ -563,5 +855,5 @@ class SafetySyncDocumentationWithScreenshots {
 }
 
 // Run the generator
-const generator = new SafetySyncDocumentationWithScreenshots();
+const generator = new SafetySyncDocumentationGenerator();
 generator.generate();

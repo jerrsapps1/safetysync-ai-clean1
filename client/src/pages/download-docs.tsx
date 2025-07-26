@@ -113,7 +113,7 @@ export default function DownloadDocsPage() {
                 Visual Documentation
               </CardTitle>
               <CardDescription className="text-blue-100">
-                Enhanced HTML documentation with actual platform screenshots
+                Enhanced HTML documentation with actual platform screenshots from your assets folder
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
