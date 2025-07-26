@@ -66,24 +66,30 @@ export function TermsAndConditions({
               <div className="bg-green-50 p-4 rounded-lg border border-green-200">
                 <h4 className="font-semibold text-green-900 mb-2">✓ Platform Features</h4>
                 <ul className="text-green-800 space-y-1 text-sm">
-                  <li>• AI-powered compliance analysis and risk assessment</li>
-                  <li>• Real-time collaboration and team annotation tools</li>
-                  <li>• Multi-location management and custom branding</li>
-                  <li>• API access and developer portal (Pro+ plans)</li>
-                  <li>• Automated audit reviews and intelligent insights</li>
-                  <li>• Clone detection and security monitoring</li>
+                  <li>• AI-powered document processing and certificate generation</li>
+                  <li>• Comprehensive employee management with 200+ employee database</li>
+                  <li>• Training document hub with PDF extraction capabilities</li>
+                  <li>• Instructor sign-in generator with customizable classes</li>
+                  <li>• Employee portal with QR code verification system</li>
+                  <li>• Digital wallet cards replacing physical certifications</li>
+                  <li>• Real-time dashboard with customizable widget layout</li>
+                  <li>• Advanced analytics and compliance reporting</li>
+                  <li>• Mobile-responsive design for field access</li>
+                  <li>• AI contextual help system with intelligent recommendations</li>
                 </ul>
               </div>
               
               <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
                 <h4 className="font-semibold text-blue-900 mb-2">🔒 Data & Privacy</h4>
                 <ul className="text-blue-800 space-y-1 text-sm">
-                  <li>• End-to-end encryption for all data</li>
-                  <li>• GDPR and CCPA compliance</li>
-                  <li>• AI processing within secure environments</li>
-                  <li>• Your data never used for external AI training</li>
-                  <li>• Team collaboration data stays within your org</li>
-                  <li>• Full data export tools available</li>
+                  <li>• PostgreSQL database with enterprise-grade security</li>
+                  <li>• JWT token authentication with 7-day expiration</li>
+                  <li>• OpenAI GPT-4o integration with secure API handling</li>
+                  <li>• Employee data protection with ID verification tracking</li>
+                  <li>• GDPR and CCPA compliance with data retention policies</li>
+                  <li>• Your training documents processed securely within platform</li>
+                  <li>• Full data export capabilities with CSV format support</li>
+                  <li>• Rate limiting and authentication protection on all endpoints</li>
                 </ul>
               </div>
               
@@ -123,10 +129,12 @@ export function TermsAndConditions({
                   <h4 className="font-semibold text-blue-800">1. SERVICE DESCRIPTION</h4>
                   <p className="mt-1">
                     SafetySync.AI provides comprehensive AI-powered OSHA compliance management software as a service (SaaS). 
-                    Our platform includes: compliance tracking, automated reporting, training management, regulatory updates, 
-                    AI-powered clone detection, real-time collaboration tools, multi-location management, custom branding services, 
-                    advanced analytics, API access, developer portal, automated audit reviews, real-time risk assessment, 
-                    intelligent quick actions, and AI chat assistance for compliance guidance.
+                    Our platform includes: AI-powered document processing with OpenAI GPT-4o integration, automated certificate generation, 
+                    employee management system with 200+ employee database, comprehensive training document hub, instructor sign-in generator, 
+                    AI contextual help system, compliance reporting and analytics, employee portal with QR code verification, 
+                    digital wallet cards replacing physical certifications, real-time dashboard with customizable widgets, 
+                    multi-departmental analytics, bulk operations management, advanced search and filtering capabilities, 
+                    CSV export functionality, mobile-responsive design, and enterprise-grade security with authentication protection.
                   </p>
                 </div>
 
@@ -280,11 +288,15 @@ export function TermsAndConditions({
                 <div>
                   <h4 className="font-semibold text-blue-800">10. COMPLIANCE AND LIABILITY</h4>
                   <p className="mt-1">
-                    <strong>Compliance Tool:</strong> Our platform is a tool to assist with OSHA compliance but does not guarantee compliance.
+                    <strong>Compliance Tool:</strong> SafetySync.AI assists with OSHA compliance tracking and documentation but does not guarantee regulatory compliance.
                     <br />
-                    <strong>Professional Responsibility:</strong> You remain responsible for ensuring actual compliance with all applicable regulations.
+                    <strong>Professional Responsibility:</strong> You remain solely responsible for ensuring actual compliance with OSHA, EPA, and other applicable regulations.
                     <br />
-                    <strong>AI Accuracy:</strong> AI insights, clone detection, and automated recommendations are tools only; verify all results independently.
+                    <strong>AI Document Processing:</strong> AI extraction from training documents and certificate generation are tools only; verify all results independently.
+                    <br />
+                    <strong>Training Records:</strong> While platform helps organize training documentation, you must ensure all training meets regulatory requirements.
+                    <br />
+                    <strong>Employee Verification:</strong> ID verification and employee data accuracy remain your responsibility despite platform tracking capabilities.
                     <br />
                     <strong>Limitation of Liability:</strong> Our liability is limited to the amount paid for services in the preceding 12 months.
                   </p>
@@ -303,13 +315,19 @@ export function TermsAndConditions({
                 <div>
                   <h4 className="font-semibold text-blue-800">12. DATA SECURITY AND PRIVACY</h4>
                   <p className="mt-1">
-                    <strong>Encryption:</strong> All data is encrypted in transit and at rest using industry-standard protocols.
+                    <strong>Database Security:</strong> All data stored in secure PostgreSQL database with encrypted connections and access controls.
                     <br />
-                    <strong>Data Retention:</strong> Your data is retained for the duration of your subscription plus 90 days for backups.
+                    <strong>Authentication:</strong> JWT token-based authentication with secure session management and rate limiting protection.
                     <br />
-                    <strong>GDPR Compliance:</strong> We comply with applicable data protection regulations including GDPR and CCPA.
+                    <strong>AI Processing:</strong> OpenAI GPT-4o integration processes documents securely without storing sensitive data externally.
                     <br />
-                    <strong>Third-Party Access:</strong> We do not sell or share your data with third parties except as required by law.
+                    <strong>Employee Data:</strong> Employee information protected with ID verification tracking and departmental access controls.
+                    <br />
+                    <strong>Data Retention:</strong> Training records, certificates, and employee data retained for duration of subscription plus 90 days.
+                    <br />
+                    <strong>GDPR Compliance:</strong> Full compliance with data protection regulations including right to deletion and data portability.
+                    <br />
+                    <strong>Third-Party Access:</strong> Only OpenAI API used for document processing; no data shared with other third parties.
                   </p>
                 </div>
 
