@@ -552,9 +552,9 @@ export default function EmployeeManagement() {
   }
 
   return (
-    <div className="space-y-6 relative min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 p-6 rounded-lg">
+    <div className="space-y-6 relative min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 p-6 rounded-lg">
       {/* Tech grid background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 opacity-20 rounded-lg"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 opacity-20 rounded-lg"></div>
       
       {/* Floating tech icons */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

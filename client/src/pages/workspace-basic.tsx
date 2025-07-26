@@ -63,10 +63,10 @@ export default function WorkspaceBasic() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
         <div className="text-white text-center">
           <h2 className="text-xl font-semibold mb-2">Loading...</h2>
-          <p className="text-gray-400">Please wait while we load your workspace</p>
+          <p className="text-gray-200">Please wait while we load your workspace</p>
         </div>
       </div>
     );
@@ -74,17 +74,17 @@ export default function WorkspaceBasic() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
         <div className="text-white text-center">
           <h2 className="text-xl font-semibold mb-2">Authentication Required</h2>
-          <p className="text-gray-400">Redirecting to login...</p>
+          <p className="text-gray-200">Redirecting to login...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
       {/* Tech Grid Background */}
       <div className="fixed inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
       
@@ -106,7 +106,7 @@ export default function WorkspaceBasic() {
 
       <div className="flex min-h-screen relative z-10">
         {/* Sidebar */}
-        <div className={`${sidebarOpen ? 'w-64' : 'w-16'} bg-black/20 backdrop-blur-sm border-r border-gray-800 flex flex-col transition-all duration-300`}>
+        <div className={`${sidebarOpen ? 'w-64' : 'w-16'} bg-slate-600/50 backdrop-blur-sm border-r border-slate-500 flex flex-col transition-all duration-300`}>
           {/* Header */}
           <div className="p-4 border-b border-gray-800">
             <div className="flex items-center justify-between">
