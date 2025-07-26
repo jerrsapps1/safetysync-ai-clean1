@@ -2496,7 +2496,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         </div>
 
         {/* Content Area */}
-        <div className="flex-1 p-2 md:p-6 overflow-y-auto min-h-screen bg-white text-gray-900">
+        <div className="flex-1 p-2 md:p-6 overflow-y-auto min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
           {activeTab === "unified-dashboard" && (
             <div className="space-y-6">
               {/* Widget Management Controls */}
@@ -2544,10 +2544,10 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
               {/* Widget Manager Panel */}
               {showWidgetManager && (
-                <Card className="bg-gray-50 border-gray-200 mb-6">
+                <Card className="bg-black/20 backdrop-blur-sm border-blue-700 mb-6">
                   <CardHeader>
-                    <CardTitle className="text-gray-900">Widget Manager</CardTitle>
-                    <CardDescription className="text-gray-600">
+                    <CardTitle className="text-white">Widget Manager</CardTitle>
+                    <CardDescription className="text-white">
                       Toggle widgets on/off and drag to resize them on your dashboard
                     </CardDescription>
                   </CardHeader>
