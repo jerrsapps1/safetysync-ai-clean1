@@ -7,7 +7,7 @@ import { CopyrightProtection } from "@/components/ui/copyright-protection";
 import { AchievementNotificationManager } from "@/components/achievements/DynamicAchievementNotification";
 import NotFound from "@/pages/not-found";
 import LandingPage from "@/pages/landing";
-import Dashboard from "@/pages/dashboard";
+
 import WorkspacePage from "@/pages/workspace";
 import WorkspaceSimplified from "@/pages/workspace-simplified";
 import WorkspaceBasic from "@/pages/workspace-basic";
@@ -49,7 +49,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={LandingPage} />
-      <Route path="/dashboard" component={Dashboard} />
+
       <Route path="/workspace" component={WorkspacePage} />
       <Route path="/workspace-basic" component={WorkspaceBasic} />
       <Route path="/admin" component={AdminPanel} />
