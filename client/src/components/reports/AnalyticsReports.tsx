@@ -252,14 +252,14 @@ export default function AnalyticsReports() {
     switch (trend) {
       case 'up': return <TrendingUp className="w-4 h-4 text-green-400" />;
       case 'down': return <TrendingDown className="w-4 h-4 text-red-400" />;
-      default: return <TrendingUp className="w-4 h-4 text-blue-300" />;
+      default: return <TrendingUp className="w-4 h-4 text-white" />;
     }
   };
 
   return (
     <div className="space-y-6 relative">
       {/* Tech grid background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 opacity-10 rounded-lg"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 opacity-10 rounded-lg"></div>
       
       {/* Floating tech icons */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -273,7 +273,7 @@ export default function AnalyticsReports() {
           <TrendingUp className="w-6 h-6 text-green-400/30" />
         </div>
         <div className="absolute bottom-32 right-32 animate-float-delay-3">
-          <Shield className="w-7 h-7 text-emerald-400/30" />
+          <Shield className="w-7 h-7 text-violet-400/30" />
         </div>
       </div>
 
@@ -283,8 +283,8 @@ export default function AnalyticsReports() {
             <SafetySyncIcon size={32} className="rounded-lg" />
             Analytics & Reports
           </h2>
-          <p className="text-blue-300">Comprehensive analytics, reporting, and compliance insights</p>
-          <p className="text-blue-300 text-sm mt-1">
+          <p className="text-white">Comprehensive analytics, reporting, and compliance insights</p>
+          <p className="text-white text-sm mt-1">
             📊 AI-powered insights • {mockMetrics.complianceRate}% compliance rate • {mockMetrics.totalCertificates} active certificates
           </p>
         </div>
@@ -301,7 +301,7 @@ export default function AnalyticsReports() {
             </SelectContent>
           </Select>
           <Button 
-            className="bg-emerald-500 hover:bg-emerald-600 text-white"
+            className="bg-violet-500 hover:bg-emerald-600 text-white"
             onClick={() => handleDownloadReport("Analytics Dashboard Export")}
           >
             <Download className="w-4 h-4 mr-2" />
@@ -331,7 +331,7 @@ export default function AnalyticsReports() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-blue-300 text-sm">Compliance Rate</p>
+                <p className="text-white text-sm">Compliance Rate</p>
                 <p className="text-2xl font-bold text-white">{mockMetrics.complianceRate}%</p>
                 <p className="text-green-400 text-sm flex items-center gap-1">
                   {getTrendIcon(mockMetrics.trend)}
@@ -347,7 +347,7 @@ export default function AnalyticsReports() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-blue-300 text-sm">Total Employees</p>
+                <p className="text-white text-sm">Total Employees</p>
                 <p className="text-2xl font-bold text-white">{mockMetrics.totalEmployees}</p>
                 <p className="text-blue-400 text-sm">{mockMetrics.compliantEmployees} compliant</p>
               </div>
@@ -360,7 +360,7 @@ export default function AnalyticsReports() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-blue-300 text-sm">Training Hours</p>
+                <p className="text-white text-sm">Training Hours</p>
                 <p className="text-2xl font-bold text-white">{mockMetrics.trainingHours.toLocaleString()}</p>
                 <p className="text-purple-400 text-sm">This period</p>
               </div>
@@ -373,7 +373,7 @@ export default function AnalyticsReports() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-blue-300 text-sm">Certificates</p>
+                <p className="text-white text-sm">Certificates</p>
                 <p className="text-2xl font-bold text-white">{mockMetrics.totalCertificates}</p>
                 <p className="text-orange-400 text-sm">{mockMetrics.expiringCertificates} expiring</p>
               </div>
@@ -388,28 +388,28 @@ export default function AnalyticsReports() {
         <TabsList className="grid w-full grid-cols-4 bg-black/20 backdrop-blur-sm border-blue-700">
           <TabsTrigger 
             value="overview" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-white hover:text-white transition-all duration-200"
           >
             <BarChart3 className="h-4 w-4" />
             Overview
           </TabsTrigger>
           <TabsTrigger 
             value="departments" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-white hover:text-white transition-all duration-200"
           >
             <Users className="h-4 w-4" />
             Departments
           </TabsTrigger>
           <TabsTrigger 
             value="training" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-white hover:text-white transition-all duration-200"
           >
             <Target className="h-4 w-4" />
             Training
           </TabsTrigger>
           <TabsTrigger 
             value="reports" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-white hover:text-white transition-all duration-200"
           >
             <FileText className="h-4 w-4" />
             Reports
@@ -421,7 +421,7 @@ export default function AnalyticsReports() {
             <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
               <CardHeader>
                 <CardTitle className="text-white">Compliance Trend</CardTitle>
-                <CardDescription className="text-blue-300">
+                <CardDescription className="text-white">
                   Overall compliance rate over time
                 </CardDescription>
               </CardHeader>
@@ -429,7 +429,7 @@ export default function AnalyticsReports() {
                 <div className="h-64 flex items-center justify-center border border-blue-600 rounded-lg">
                   <div className="text-center">
                     <TrendingUp className="w-12 h-12 text-blue-400 mx-auto mb-2" />
-                    <p className="text-blue-300">Compliance trend chart</p>
+                    <p className="text-white">Compliance trend chart</p>
                     <p className="text-blue-400 text-sm">87.8% current rate, trending up</p>
                   </div>
                 </div>
@@ -439,7 +439,7 @@ export default function AnalyticsReports() {
             <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
               <CardHeader>
                 <CardTitle className="text-white">Training Progress</CardTitle>
-                <CardDescription className="text-blue-300">
+                <CardDescription className="text-white">
                   Training completion and performance metrics
                 </CardDescription>
               </CardHeader>
@@ -447,7 +447,7 @@ export default function AnalyticsReports() {
                 <div className="h-64 flex items-center justify-center border border-blue-600 rounded-lg">
                   <div className="text-center">
                     <Target className="w-12 h-12 text-green-400 mx-auto mb-2" />
-                    <p className="text-blue-300">Training analytics chart</p>
+                    <p className="text-white">Training analytics chart</p>
                     <p className="text-blue-400 text-sm">Average score: {mockMetrics.averageScore}%</p>
                   </div>
                 </div>
@@ -458,7 +458,7 @@ export default function AnalyticsReports() {
           <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
             <CardHeader>
               <CardTitle className="text-white">Key Performance Indicators</CardTitle>
-              <CardDescription className="text-blue-300">
+              <CardDescription className="text-white">
                 Critical metrics for safety and compliance management
               </CardDescription>
             </CardHeader>
@@ -468,21 +468,21 @@ export default function AnalyticsReports() {
                   <div className="text-3xl font-bold text-green-400 mb-2">
                     {mockMetrics.complianceRate}%
                   </div>
-                  <p className="text-blue-300">Overall Compliance</p>
+                  <p className="text-white">Overall Compliance</p>
                   <p className="text-green-400 text-sm">Target: 90%</p>
                 </div>
                 <div className="text-center p-4 bg-blue-500/10 rounded-lg border border-blue-500/20">
                   <div className="text-3xl font-bold text-blue-400 mb-2">
                     {mockMetrics.averageScore}%
                   </div>
-                  <p className="text-blue-300">Average Training Score</p>
+                  <p className="text-white">Average Training Score</p>
                   <p className="text-blue-400 text-sm">Target: 85%</p>
                 </div>
                 <div className="text-center p-4 bg-purple-500/10 rounded-lg border border-purple-500/20">
                   <div className="text-3xl font-bold text-purple-400 mb-2">
                     {mockMetrics.expiringCertificates}
                   </div>
-                  <p className="text-blue-300">Expiring Certificates</p>
+                  <p className="text-white">Expiring Certificates</p>
                   <p className="text-purple-400 text-sm">Next 30 days</p>
                 </div>
               </div>
@@ -511,23 +511,23 @@ export default function AnalyticsReports() {
                   <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                     <div className="text-center">
                       <div className="text-2xl font-bold text-white">{dept.employees}</div>
-                      <p className="text-blue-300 text-sm">Employees</p>
+                      <p className="text-white text-sm">Employees</p>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-green-400">{dept.compliantEmployees}</div>
-                      <p className="text-blue-300 text-sm">Compliant</p>
+                      <p className="text-white text-sm">Compliant</p>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-blue-400">{dept.trainingHours}</div>
-                      <p className="text-blue-300 text-sm">Training Hours</p>
+                      <p className="text-white text-sm">Training Hours</p>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-purple-400">{dept.certificates}</div>
-                      <p className="text-blue-300 text-sm">Certificates</p>
+                      <p className="text-white text-sm">Certificates</p>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-orange-400">{dept.riskScore}</div>
-                      <p className="text-blue-300 text-sm">Risk Score</p>
+                      <p className="text-white text-sm">Risk Score</p>
                     </div>
                   </div>
                 </CardContent>
@@ -552,23 +552,23 @@ export default function AnalyticsReports() {
                   <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                     <div className="text-center">
                       <div className="text-2xl font-bold text-white">{training.totalEnrolled}</div>
-                      <p className="text-blue-300 text-sm">Total Enrolled</p>
+                      <p className="text-white text-sm">Total Enrolled</p>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-green-400">{training.completed}</div>
-                      <p className="text-blue-300 text-sm">Completed</p>
+                      <p className="text-white text-sm">Completed</p>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-blue-400">{training.averageScore}%</div>
-                      <p className="text-blue-300 text-sm">Average Score</p>
+                      <p className="text-white text-sm">Average Score</p>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-purple-400">{training.averageTime}h</div>
-                      <p className="text-blue-300 text-sm">Average Time</p>
+                      <p className="text-white text-sm">Average Time</p>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-orange-400">{training.lastUpdated}</div>
-                      <p className="text-blue-300 text-sm">Last Updated</p>
+                      <p className="text-white text-sm">Last Updated</p>
                     </div>
                   </div>
                 </CardContent>
@@ -587,7 +587,7 @@ export default function AnalyticsReports() {
                       {template.icon}
                       <div>
                         <CardTitle className="text-white">{template.name}</CardTitle>
-                        <CardDescription className="text-blue-300">
+                        <CardDescription className="text-white">
                           {template.description}
                         </CardDescription>
                       </div>
@@ -599,7 +599,7 @@ export default function AnalyticsReports() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-blue-300">Last Generated</span>
+                    <span className="text-white">Last Generated</span>
                     <span className="text-white">{template.lastGenerated}</span>
                   </div>
                   <div className="flex items-center gap-2">
@@ -613,7 +613,7 @@ export default function AnalyticsReports() {
                     </Button>
                     <Button 
                       size="sm" 
-                      className="bg-emerald-500 hover:bg-emerald-600 text-white"
+                      className="bg-violet-500 hover:bg-emerald-600 text-white"
                       onClick={() => handleDownloadReport(template.name)}
                     >
                       <Download className="w-4 h-4 mr-2" />

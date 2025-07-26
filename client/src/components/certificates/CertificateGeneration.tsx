@@ -156,8 +156,8 @@ export default function CertificateGeneration() {
       case 'active': return 'bg-green-500/20 text-green-400 border-green-500/30';
       case 'expired': return 'bg-red-500/20 text-red-400 border-red-500/30';
       case 'pending': return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30';
-      case 'draft': return 'bg-blue-400/20 text-blue-300 border-blue-400/30';
-      default: return 'bg-blue-400/20 text-blue-300 border-blue-400/30';
+      case 'draft': return 'bg-blue-400/20 text-white border-blue-400/30';
+      default: return 'bg-blue-400/20 text-white border-blue-400/30';
     }
   };
 
@@ -165,7 +165,7 @@ export default function CertificateGeneration() {
     switch (type) {
       case 'certificate': return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
       case 'wallet-card': return 'bg-purple-500/20 text-purple-400 border-purple-500/30';
-      default: return 'bg-blue-400/20 text-blue-300 border-blue-400/30';
+      default: return 'bg-blue-400/20 text-white border-blue-400/30';
     }
   };
 
@@ -192,7 +192,7 @@ export default function CertificateGeneration() {
   return (
     <div className="space-y-6 relative">
       {/* Tech grid background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 opacity-10 rounded-lg"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 opacity-10 rounded-lg"></div>
       
       {/* Floating tech icons */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -206,7 +206,7 @@ export default function CertificateGeneration() {
           <TrendingUp className="w-6 h-6 text-green-400/30" />
         </div>
         <div className="absolute bottom-32 right-32 animate-float-delay-3">
-          <Shield className="w-7 h-7 text-emerald-400/30" />
+          <Shield className="w-7 h-7 text-violet-400/30" />
         </div>
       </div>
 
@@ -216,14 +216,14 @@ export default function CertificateGeneration() {
             <SafetySyncIcon size={32} className="rounded-lg" />
             Certificate Generation
           </h2>
-          <p className="text-blue-300">Generate professional certificates and digital wallet cards</p>
-          <p className="text-blue-300 text-sm mt-1">
+          <p className="text-white">Generate professional certificates and digital wallet cards</p>
+          <p className="text-white text-sm mt-1">
             🎓 OSHA-compliant certificates with automated generation • First 15 FREE monthly
           </p>
         </div>
         <div className="flex items-center space-x-2">
           <Button 
-            className="bg-emerald-500 hover:bg-emerald-600 text-white"
+            className="bg-violet-500 hover:bg-emerald-600 text-white"
             onClick={() => setShowGenerationForm(true)}
           >
             <Plus className="w-4 h-4 mr-2" />
@@ -242,7 +242,7 @@ export default function CertificateGeneration() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-blue-300 text-sm">Total Generated</p>
+                <p className="text-white text-sm">Total Generated</p>
                 <p className="text-2xl font-bold text-white">{totalGenerated}</p>
                 <p className="text-blue-400 text-sm">🤖 AI-Generated</p>
               </div>
@@ -255,7 +255,7 @@ export default function CertificateGeneration() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-blue-300 text-sm">Active Certificates</p>
+                <p className="text-white text-sm">Active Certificates</p>
                 <p className="text-2xl font-bold text-white">{activeCertificates}</p>
                 <p className="text-green-400 text-sm">Valid & Current</p>
               </div>
@@ -268,7 +268,7 @@ export default function CertificateGeneration() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-blue-300 text-sm">Expiring Soon</p>
+                <p className="text-white text-sm">Expiring Soon</p>
                 <p className="text-2xl font-bold text-white">{expiredCertificates}</p>
                 <p className="text-yellow-400 text-sm">Next 30 days</p>
               </div>
@@ -281,9 +281,9 @@ export default function CertificateGeneration() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-blue-300 text-sm">Monthly Usage</p>
+                <p className="text-white text-sm">Monthly Usage</p>
                 <p className="text-2xl font-bold text-white">12/15</p>
-                <p className="text-emerald-400 text-sm">3 remaining free</p>
+                <p className="text-violet-400 text-sm">3 remaining free</p>
               </div>
               <CreditCard className="w-8 h-8 text-purple-400" />
             </div>
@@ -294,7 +294,7 @@ export default function CertificateGeneration() {
       {/* Search and Filter */}
       <div className="flex items-center gap-4 relative z-10">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-blue-300" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white" />
           <Input
             placeholder="Search certificates, employees, or training..."
             value={searchTerm}
@@ -303,7 +303,7 @@ export default function CertificateGeneration() {
           />
         </div>
         <div className="flex items-center gap-2">
-          <Filter className="w-4 h-4 text-blue-300" />
+          <Filter className="w-4 h-4 text-white" />
           <select
             value={selectedStatus}
             onChange={(e) => setSelectedStatus(e.target.value)}
@@ -323,21 +323,21 @@ export default function CertificateGeneration() {
         <TabsList className="grid w-full grid-cols-3 bg-black/20 backdrop-blur-sm border-blue-700">
           <TabsTrigger 
             value="certificates" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-white hover:text-white transition-all duration-200"
           >
             <Award className="h-4 w-4" />
             Certificates
           </TabsTrigger>
           <TabsTrigger 
             value="templates" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-white hover:text-white transition-all duration-200"
           >
             <FileText className="h-4 w-4" />
             Templates
           </TabsTrigger>
           <TabsTrigger 
             value="generation" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-white hover:text-white transition-all duration-200"
           >
             <Plus className="h-4 w-4" />
             Generate New
@@ -352,7 +352,7 @@ export default function CertificateGeneration() {
                   <div className="flex items-start justify-between">
                     <div>
                       <CardTitle className="text-white">{certificate.training}</CardTitle>
-                      <CardDescription className="text-blue-300">
+                      <CardDescription className="text-white">
                         {certificate.employeeName} • {certificate.certificateNumber}
                       </CardDescription>
                     </div>
@@ -370,27 +370,27 @@ export default function CertificateGeneration() {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="flex items-center gap-2">
                       <Calendar className="w-4 h-4 text-blue-400" />
-                      <span className="text-blue-300 text-sm">Issued: {certificate.issueDate}</span>
+                      <span className="text-white text-sm">Issued: {certificate.issueDate}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <AlertCircle className="w-4 h-4 text-yellow-400" />
-                      <span className="text-blue-300 text-sm">Expires: {certificate.expirationDate}</span>
+                      <span className="text-white text-sm">Expires: {certificate.expirationDate}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <User className="w-4 h-4 text-purple-400" />
-                      <span className="text-blue-300 text-sm">{certificate.instructor}</span>
+                      <span className="text-white text-sm">{certificate.instructor}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Building className="w-4 h-4 text-emerald-400" />
-                      <span className="text-blue-300 text-sm">{certificate.company}</span>
+                      <Building className="w-4 h-4 text-violet-400" />
+                      <span className="text-white text-sm">{certificate.company}</span>
                     </div>
                   </div>
                   
                   <div className="space-y-2">
-                    <p className="text-blue-300 text-sm font-medium">Compliance Standards:</p>
+                    <p className="text-white text-sm font-medium">Compliance Standards:</p>
                     <div className="flex flex-wrap gap-1">
                       {certificate.compliance.map((comp, index) => (
-                        <Badge key={index} variant="outline" className="text-xs text-blue-300 border-blue-500/30">
+                        <Badge key={index} variant="outline" className="text-xs text-white border-blue-500/30">
                           {comp}
                         </Badge>
                       ))}
@@ -399,10 +399,10 @@ export default function CertificateGeneration() {
 
                   {certificate.equipment && (
                     <div className="space-y-2">
-                      <p className="text-blue-300 text-sm font-medium">Authorized Equipment:</p>
+                      <p className="text-white text-sm font-medium">Authorized Equipment:</p>
                       <div className="flex flex-wrap gap-1">
                         {certificate.equipment.map((eq, index) => (
-                          <Badge key={index} variant="outline" className="text-xs text-emerald-300 border-emerald-500/30">
+                          <Badge key={index} variant="outline" className="text-xs text-emerald-300 border-violet-500/30">
                             {eq}
                           </Badge>
                         ))}
@@ -419,7 +419,7 @@ export default function CertificateGeneration() {
                       <Download className="w-3 h-3 mr-1" />
                       Download PDF
                     </Button>
-                    <Button size="sm" variant="outline" className="border-blue-500 text-blue-300">
+                    <Button size="sm" variant="outline" className="border-blue-500 text-white">
                       <Edit className="w-3 h-3 mr-1" />
                       Edit
                     </Button>
@@ -438,7 +438,7 @@ export default function CertificateGeneration() {
                   <div className="flex items-start justify-between">
                     <div>
                       <CardTitle className="text-white">{template.name}</CardTitle>
-                      <CardDescription className="text-blue-300">
+                      <CardDescription className="text-white">
                         {template.category} • {template.defaultHours} hours
                       </CardDescription>
                     </div>
@@ -453,13 +453,13 @@ export default function CertificateGeneration() {
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <p className="text-blue-300 text-sm">{template.description}</p>
+                  <p className="text-white text-sm">{template.description}</p>
                   
                   <div className="space-y-2">
-                    <p className="text-blue-300 text-sm font-medium">Compliance Standards:</p>
+                    <p className="text-white text-sm font-medium">Compliance Standards:</p>
                     <div className="flex flex-wrap gap-1">
                       {template.compliance.map((comp, index) => (
-                        <Badge key={index} variant="outline" className="text-xs text-emerald-300 border-emerald-500/30">
+                        <Badge key={index} variant="outline" className="text-xs text-emerald-300 border-violet-500/30">
                           {comp}
                         </Badge>
                       ))}
@@ -469,7 +469,7 @@ export default function CertificateGeneration() {
                   <div className="flex items-center gap-2 pt-2">
                     <Button 
                       size="sm" 
-                      className="bg-emerald-500 hover:bg-emerald-600 text-white"
+                      className="bg-violet-500 hover:bg-emerald-600 text-white"
                       onClick={() => {
                         setSelectedTemplate(template);
                         setShowGenerationForm(true);
@@ -478,7 +478,7 @@ export default function CertificateGeneration() {
                       <Plus className="w-3 h-3 mr-1" />
                       Use Template
                     </Button>
-                    <Button size="sm" variant="outline" className="border-blue-500 text-blue-300">
+                    <Button size="sm" variant="outline" className="border-blue-500 text-white">
                       <Edit className="w-3 h-3 mr-1" />
                       Edit
                     </Button>
@@ -493,7 +493,7 @@ export default function CertificateGeneration() {
           <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
             <CardHeader>
               <CardTitle className="text-white">Generate New Certificate</CardTitle>
-              <CardDescription className="text-blue-300">
+              <CardDescription className="text-white">
                 Create professional certificates and digital wallet cards
               </CardDescription>
             </CardHeader>
@@ -579,7 +579,7 @@ export default function CertificateGeneration() {
               </div>
 
               <div className="flex items-center gap-2 pt-4">
-                <Button className="bg-emerald-500 hover:bg-emerald-600 text-white">
+                <Button className="bg-violet-500 hover:bg-emerald-600 text-white">
                   <Award className="w-4 h-4 mr-2" />
                   Generate Certificate
                 </Button>

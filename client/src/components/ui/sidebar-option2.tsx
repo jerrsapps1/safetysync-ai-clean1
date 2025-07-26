@@ -79,7 +79,7 @@ export function SidebarOption2({}: SidebarOption2Props) {
                         {item.description}
                       </div>
                     </div>
-                    <Dot className="w-4 h-4 text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <Dot className="w-4 h-4 text-violet-400 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </a>
                 </Link>
               );

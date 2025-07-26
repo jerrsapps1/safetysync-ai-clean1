@@ -170,7 +170,7 @@ export default function BackupRecovery() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 p-6">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
         <div className="text-center space-y-4">
@@ -178,7 +178,7 @@ export default function BackupRecovery() {
             <Shield className="w-8 h-8 text-blue-400" />
             <h1 className="text-3xl font-bold text-white">Backup & Recovery</h1>
           </div>
-          <p className="text-blue-300 max-w-2xl mx-auto">
+          <p className="text-white max-w-2xl mx-auto">
             Enterprise-grade backup and disaster recovery for your safety compliance data
           </p>
         </div>
@@ -190,7 +190,7 @@ export default function BackupRecovery() {
               <div className="flex items-center gap-3">
                 <Database className="w-5 h-5 text-blue-400" />
                 <div>
-                  <p className="text-sm text-blue-300">Total Backups</p>
+                  <p className="text-sm text-white">Total Backups</p>
                   <p className="text-xl font-bold text-white">247</p>
                 </div>
               </div>
@@ -202,7 +202,7 @@ export default function BackupRecovery() {
               <div className="flex items-center gap-3">
                 <CheckCircle className="w-5 h-5 text-green-400" />
                 <div>
-                  <p className="text-sm text-blue-300">Success Rate</p>
+                  <p className="text-sm text-white">Success Rate</p>
                   <p className="text-xl font-bold text-white">99.2%</p>
                 </div>
               </div>
@@ -214,7 +214,7 @@ export default function BackupRecovery() {
               <div className="flex items-center gap-3">
                 <Clock className="w-5 h-5 text-yellow-400" />
                 <div>
-                  <p className="text-sm text-blue-300">Last Backup</p>
+                  <p className="text-sm text-white">Last Backup</p>
                   <p className="text-xl font-bold text-white">2h ago</p>
                 </div>
               </div>
@@ -226,7 +226,7 @@ export default function BackupRecovery() {
               <div className="flex items-center gap-3">
                 <Download className="w-5 h-5 text-purple-400" />
                 <div>
-                  <p className="text-sm text-blue-300">Storage Used</p>
+                  <p className="text-sm text-white">Storage Used</p>
                   <p className="text-xl font-bold text-white">47.3 GB</p>
                 </div>
               </div>
@@ -282,7 +282,7 @@ export default function BackupRecovery() {
                     <div className="flex justify-between items-start">
                       <div>
                         <CardTitle className="text-white">{schedule.name}</CardTitle>
-                        <p className="text-sm text-blue-300">{schedule.frequency}</p>
+                        <p className="text-sm text-white">{schedule.frequency}</p>
                       </div>
                       <Badge variant={schedule.status === 'active' ? 'default' : 'secondary'}>
                         {schedule.status}
@@ -292,19 +292,19 @@ export default function BackupRecovery() {
                   <CardContent className="space-y-2">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                       <div>
-                        <p className="text-blue-300">Last Run</p>
+                        <p className="text-white">Last Run</p>
                         <p className="text-white">{schedule.lastRun}</p>
                       </div>
                       <div>
-                        <p className="text-blue-300">Next Run</p>
+                        <p className="text-white">Next Run</p>
                         <p className="text-white">{schedule.nextRun}</p>
                       </div>
                       <div>
-                        <p className="text-blue-300">Backup Size</p>
+                        <p className="text-white">Backup Size</p>
                         <p className="text-white">{schedule.size}</p>
                       </div>
                       <div>
-                        <p className="text-blue-300">Retention</p>
+                        <p className="text-white">Retention</p>
                         <p className="text-white">{schedule.retention}</p>
                       </div>
                     </div>
@@ -337,25 +337,25 @@ export default function BackupRecovery() {
                           <Badge variant={backup.status === 'completed' ? 'default' : 'destructive'}>
                             {backup.status}
                           </Badge>
-                          <Badge variant="outline" className="text-blue-300">
+                          <Badge variant="outline" className="text-white">
                             {backup.type}
                           </Badge>
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-2 text-sm">
                           <div>
-                            <p className="text-blue-300">Date</p>
+                            <p className="text-white">Date</p>
                             <p className="text-white">{backup.date}</p>
                           </div>
                           <div>
-                            <p className="text-blue-300">Size</p>
+                            <p className="text-white">Size</p>
                             <p className="text-white">{backup.size}</p>
                           </div>
                           <div>
-                            <p className="text-blue-300">Duration</p>
+                            <p className="text-white">Duration</p>
                             <p className="text-white">{backup.duration}</p>
                           </div>
                           <div>
-                            <p className="text-blue-300">Location</p>
+                            <p className="text-white">Location</p>
                             <p className="text-white">{backup.location}</p>
                           </div>
                         </div>
@@ -409,19 +409,19 @@ export default function BackupRecovery() {
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-2 text-sm">
                           <div>
-                            <p className="text-blue-300">Date</p>
+                            <p className="text-white">Date</p>
                             <p className="text-white">{point.date}</p>
                           </div>
                           <div>
-                            <p className="text-blue-300">Size</p>
+                            <p className="text-white">Size</p>
                             <p className="text-white">{point.size}</p>
                           </div>
                           <div>
-                            <p className="text-blue-300">RTO</p>
+                            <p className="text-white">RTO</p>
                             <p className="text-white">{point.rto}</p>
                           </div>
                           <div>
-                            <p className="text-blue-300">RPO</p>
+                            <p className="text-white">RPO</p>
                             <p className="text-white">{point.rpo}</p>
                           </div>
                         </div>
@@ -457,21 +457,21 @@ export default function BackupRecovery() {
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm text-blue-300">Primary Storage</label>
+                      <label className="text-sm text-white">Primary Storage</label>
                       <p className="text-white">AWS S3 - us-east-1</p>
                     </div>
                     <div>
-                      <label className="text-sm text-blue-300">Backup Storage</label>
+                      <label className="text-sm text-white">Backup Storage</label>
                       <p className="text-white">AWS S3 - us-west-2</p>
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm text-blue-300">Encryption</label>
+                      <label className="text-sm text-white">Encryption</label>
                       <p className="text-white">AES-256</p>
                     </div>
                     <div>
-                      <label className="text-sm text-blue-300">Compression</label>
+                      <label className="text-sm text-white">Compression</label>
                       <p className="text-white">Enabled</p>
                     </div>
                   </div>
@@ -485,15 +485,15 @@ export default function BackupRecovery() {
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-3 gap-4">
                     <div>
-                      <label className="text-sm text-blue-300">Daily Backups</label>
+                      <label className="text-sm text-white">Daily Backups</label>
                       <p className="text-white">30 days</p>
                     </div>
                     <div>
-                      <label className="text-sm text-blue-300">Weekly Backups</label>
+                      <label className="text-sm text-white">Weekly Backups</label>
                       <p className="text-white">12 weeks</p>
                     </div>
                     <div>
-                      <label className="text-sm text-blue-300">Monthly Backups</label>
+                      <label className="text-sm text-white">Monthly Backups</label>
                       <p className="text-white">12 months</p>
                     </div>
                   </div>

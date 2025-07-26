@@ -607,7 +607,7 @@ This training file was created using the Create File system.`
           
           <div className="flex items-center space-x-3">
             <div className="flex items-center bg-blue-100 rounded-lg px-3 py-2">
-              <Search className="w-4 h-4 text-blue-300 mr-2" />
+              <Search className="w-4 h-4 text-white mr-2" />
               <input
                 type="text"
                 placeholder="Search in Drive"
@@ -647,7 +647,7 @@ This training file was created using the Create File system.`
               <input type="checkbox" className="rounded opacity-50" disabled />
             </div>
             <div className="col-span-5 flex items-center">
-              <FolderIcon className="w-5 h-5 text-blue-300 mr-3" />
+              <FolderIcon className="w-5 h-5 text-white mr-3" />
               <span className="text-sm text-blue-500">.. (Back to parent folder)</span>
             </div>
             <div className="col-span-3 text-sm text-blue-400">-</div>

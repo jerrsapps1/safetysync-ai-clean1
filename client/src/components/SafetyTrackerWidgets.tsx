@@ -190,7 +190,7 @@ const SafetyTrackerWidgetCard: React.FC<SafetyTrackerWidgetProps> = ({ widget, o
           <div className={`p-3 rounded-lg ${widget.color}`}>
             {widget.icon}
           </div>
-          <ChevronRight className="w-5 h-5 text-blue-300 group-hover:text-blue-500 transition-colors" />
+          <ChevronRight className="w-5 h-5 text-white group-hover:text-blue-500 transition-colors" />
         </div>
         <CardTitle className="text-lg font-semibold">{widget.title}</CardTitle>
       </CardHeader>

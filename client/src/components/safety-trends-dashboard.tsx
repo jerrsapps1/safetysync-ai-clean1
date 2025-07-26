@@ -153,7 +153,7 @@ const SafetyTrendsDashboard: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 p-6">
       {/* Animated Background Grid */}
       <div className="fixed inset-0 opacity-20" style={{
         backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
@@ -222,7 +222,7 @@ const SafetyTrendsDashboard: React.FC = () => {
               onClick={() => setSelectedMetric(metric.id)}
             >
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-blue-300 flex items-center justify-between">
+                <CardTitle className="text-sm font-medium text-white flex items-center justify-between">
                   <span className="flex items-center">
                     <div className="p-2 rounded-lg mr-3" style={{ backgroundColor: `${metric.color}20` }}>
                       <div style={{ color: metric.color }}>
@@ -247,7 +247,7 @@ const SafetyTrendsDashboard: React.FC = () => {
                   className="h-2" 
                   style={{ backgroundColor: `${metric.color}20` }}
                 />
-                <p className="text-xs text-blue-300 mt-2">
+                <p className="text-xs text-white mt-2">
                   Target: {metric.target}{metric.id === 'compliance' || metric.id === 'training' ? '%' : ''}
                 </p>
               </CardContent>
@@ -342,7 +342,7 @@ const SafetyTrendsDashboard: React.FC = () => {
                       className="w-3 h-3 rounded-full mr-2" 
                       style={{ backgroundColor: item.fill }}
                     />
-                    <span className="text-sm text-blue-300">{item.name}</span>
+                    <span className="text-sm text-white">{item.name}</span>
                   </div>
                 ))}
               </div>
@@ -396,7 +396,7 @@ const SafetyTrendsDashboard: React.FC = () => {
                   </div>
                   <div>
                     <p className="text-white font-medium">Compliance Improving</p>
-                    <p className="text-sm text-blue-300">8% increase in overall compliance rates this quarter</p>
+                    <p className="text-sm text-white">8% increase in overall compliance rates this quarter</p>
                   </div>
                 </div>
                 
@@ -406,7 +406,7 @@ const SafetyTrendsDashboard: React.FC = () => {
                   </div>
                   <div>
                     <p className="text-white font-medium">Training Gap Identified</p>
-                    <p className="text-sm text-blue-300">Maintenance department needs additional fall protection training</p>
+                    <p className="text-sm text-white">Maintenance department needs additional fall protection training</p>
                   </div>
                 </div>
                 
@@ -416,7 +416,7 @@ const SafetyTrendsDashboard: React.FC = () => {
                   </div>
                   <div>
                     <p className="text-white font-medium">Predictive Alert</p>
-                    <p className="text-sm text-blue-300">AI predicts 23% risk reduction with proposed safety measures</p>
+                    <p className="text-sm text-white">AI predicts 23% risk reduction with proposed safety measures</p>
                   </div>
                 </div>
                 
@@ -426,7 +426,7 @@ const SafetyTrendsDashboard: React.FC = () => {
                   </div>
                   <div>
                     <p className="text-white font-medium">Critical Action Required</p>
-                    <p className="text-sm text-blue-300">3 overdue safety inspections in Manufacturing</p>
+                    <p className="text-sm text-white">3 overdue safety inspections in Manufacturing</p>
                   </div>
                 </div>
               </div>

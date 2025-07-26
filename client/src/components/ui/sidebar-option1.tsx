@@ -74,7 +74,7 @@ export function SidebarOption1({}: SidebarOption1Props) {
                   >
                     <IconComponent className="w-5 h-5 mr-3 text-blue-400 group-hover:text-emerald-600" />
                     {item.name}
-                    <ChevronRight className="w-4 h-4 ml-auto text-blue-300 group-hover:text-emerald-600" />
+                    <ChevronRight className="w-4 h-4 ml-auto text-white group-hover:text-emerald-600" />
                   </a>
                 </Link>
               );

@@ -305,7 +305,7 @@ export function ComplianceReportGenerator({ onReportGenerated }: ComplianceRepor
         <CardContent>
           {existingReports.length === 0 ? (
             <div className="text-center py-8 text-blue-400">
-              <FileText className="w-12 h-12 mx-auto mb-4 text-blue-300" />
+              <FileText className="w-12 h-12 mx-auto mb-4 text-white" />
               <p>No reports generated yet.</p>
               <p className="text-sm">Generate your first compliance report above.</p>
             </div>

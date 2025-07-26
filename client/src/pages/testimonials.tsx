@@ -130,13 +130,13 @@ export default function TestimonialsPage() {
     return Array.from({ length: 5 }, (_, i) => (
       <Star
         key={i}
-        className={`w-5 h-5 ${i < rating ? 'text-yellow-400 fill-current' : 'text-blue-300'}`}
+        className={`w-5 h-5 ${i < rating ? 'text-yellow-400 fill-current' : 'text-white'}`}
       />
     ));
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
+    <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900">
       <PageHeader />
 
       {/* Main Content with Sidebar Margin */}
@@ -147,7 +147,7 @@ export default function TestimonialsPage() {
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Industry Research & Implementation Studies
           </h1>
-          <p className="text-xl text-blue-300 max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-white max-w-3xl mx-auto mb-8">
             Hypothetical business scenarios based on industry research and academic studies of compliance management implementations. 
             These educational examples demonstrate potential outcomes suggested by published research.
           </p>
@@ -203,11 +203,11 @@ export default function TestimonialsPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-white">{scenario.name}</h3>
-                      <p className="text-sm text-blue-300">{scenario.title}</p>
-                      <p className="text-sm text-emerald-400 font-medium">{scenario.company}</p>
+                      <p className="text-sm text-white">{scenario.title}</p>
+                      <p className="text-sm text-violet-400 font-medium">{scenario.company}</p>
                     </div>
                   </div>
-                  <Quote className="w-8 h-8 text-blue-300" />
+                  <Quote className="w-8 h-8 text-white" />
                 </div>
 
                 {/* Rating - Hidden for compliance scenarios */}
@@ -221,7 +221,7 @@ export default function TestimonialsPage() {
                 )}
 
                 {/* Testimonial */}
-                <blockquote className="text-blue-300 mb-6 leading-relaxed">
+                <blockquote className="text-white mb-6 leading-relaxed">
                   "{scenario.researchFindings}"
                 </blockquote>
 

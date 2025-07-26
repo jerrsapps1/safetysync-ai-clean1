@@ -11,7 +11,7 @@ export default function PricingPage() {
   const [showChat, setShowChat] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
+    <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900">
       <PageHeader />
 
       {/* Main Content with Sidebar Margin */}
@@ -22,7 +22,7 @@ export default function PricingPage() {
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Simple, Transparent Pricing
           </h1>
-          <p className="text-xl text-blue-300 max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-white max-w-3xl mx-auto mb-8">
             Choose the perfect plan for your organization. All plans include our core compliance features 
             with a 30-day free trial and no setup fees.
           </p>
@@ -33,7 +33,7 @@ export default function PricingPage() {
           <div className="text-center">
             <div className="bg-gradient-to-r from-blue-600/30 to-purple-600/30 border border-blue-400/40 rounded-lg p-8 max-w-4xl mx-auto backdrop-blur-sm">
               <h2 className="text-3xl font-bold text-white mb-4">Professional Certificate & Digital Card Services</h2>
-              <p className="text-xl text-blue-300 mb-6">
+              <p className="text-xl text-white mb-6">
                 Generate high-quality OSHA-compliant certificates and digital wallet cards with plan-specific allowances
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

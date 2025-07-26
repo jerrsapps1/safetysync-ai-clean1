@@ -112,7 +112,7 @@ export default function CertificateViewer() {
           <h2 className="text-2xl font-bold">Certificate Management</h2>
         </div>
         <div className="flex items-center justify-center py-12">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-violet-500"></div>
           <span className="ml-2">Loading certificates...</span>
         </div>
       </div>
@@ -254,7 +254,7 @@ export default function CertificateViewer() {
       {filteredCertificates.length === 0 ? (
         <Card>
           <CardContent className="py-12 text-center">
-            <Shield className="h-12 w-12 text-blue-300 mx-auto mb-4" />
+            <Shield className="h-12 w-12 text-white mx-auto mb-4" />
             <h3 className="text-lg font-medium text-blue-800 mb-2">No Certificates Found</h3>
             <p className="text-blue-500">
               {certificateList.length === 0 

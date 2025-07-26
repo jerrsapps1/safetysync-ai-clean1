@@ -14,14 +14,14 @@ export const SkeletonDemo = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 p-6">
       {/* Header */}
       <div className="max-w-7xl mx-auto mb-8">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">
             AI-Powered Loading Skeletons
           </h1>
-          <p className="text-blue-300 text-lg mb-6">
+          <p className="text-white text-lg mb-6">
             Experience our intelligent loading patterns with AI-inspired animations
           </p>
           <Button
@@ -65,12 +65,12 @@ export const SkeletonDemo = () => {
                         <Brain className="w-5 h-5 text-blue-400" />
                         <CardTitle>AI Compliance Monitor</CardTitle>
                       </div>
-                      <CardDescription className="text-blue-300">
+                      <CardDescription className="text-white">
                         Real-time compliance analysis
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-blue-300">
+                      <p className="text-white">
                         Our AI continuously monitors your compliance status and provides intelligent recommendations.
                       </p>
                     </CardContent>
@@ -81,12 +81,12 @@ export const SkeletonDemo = () => {
                         <Zap className="w-5 h-5 text-purple-400" />
                         <CardTitle>Smart Analytics</CardTitle>
                       </div>
-                      <CardDescription className="text-blue-300">
+                      <CardDescription className="text-white">
                         Advanced data insights
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-blue-300">
+                      <p className="text-white">
                         Leverage machine learning to understand patterns in your safety data.
                       </p>
                     </CardContent>
@@ -97,12 +97,12 @@ export const SkeletonDemo = () => {
                         <Cpu className="w-5 h-5 text-green-400" />
                         <CardTitle>Automated Reports</CardTitle>
                       </div>
-                      <CardDescription className="text-blue-300">
+                      <CardDescription className="text-white">
                         Intelligent report generation
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-blue-300">
+                      <p className="text-white">
                         Generate comprehensive reports automatically with AI-powered insights.
                       </p>
                     </CardContent>
@@ -126,23 +126,23 @@ export const SkeletonDemo = () => {
                     <div className="grid grid-cols-4 gap-4 mb-6">
                       <div className="text-center">
                         <div className="text-2xl font-bold text-blue-400">98%</div>
-                        <div className="text-sm text-blue-300">Compliance</div>
+                        <div className="text-sm text-white">Compliance</div>
                       </div>
                       <div className="text-center">
                         <div className="text-2xl font-bold text-green-400">247</div>
-                        <div className="text-sm text-blue-300">Employees</div>
+                        <div className="text-sm text-white">Employees</div>
                       </div>
                       <div className="text-center">
                         <div className="text-2xl font-bold text-yellow-400">12</div>
-                        <div className="text-sm text-blue-300">Pending</div>
+                        <div className="text-sm text-white">Pending</div>
                       </div>
                       <div className="text-center">
                         <div className="text-2xl font-bold text-purple-400">5</div>
-                        <div className="text-sm text-blue-300">Alerts</div>
+                        <div className="text-sm text-white">Alerts</div>
                       </div>
                     </div>
                     <div className="h-32 bg-blue-600/50 rounded-lg flex items-center justify-center">
-                      <span className="text-blue-300">Chart Area</span>
+                      <span className="text-white">Chart Area</span>
                     </div>
                   </Card>
                   <Card className="bg-blue-700/50 backdrop-blur-sm border-white/10 text-white p-6">
@@ -150,15 +150,15 @@ export const SkeletonDemo = () => {
                     <div className="space-y-4">
                       <div className="flex items-center space-x-3">
                         <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                        <span className="text-blue-300">Fall protection training due in 2 weeks</span>
+                        <span className="text-white">Fall protection training due in 2 weeks</span>
                       </div>
                       <div className="flex items-center space-x-3">
                         <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                        <span className="text-blue-300">Compliance rate improved by 15%</span>
+                        <span className="text-white">Compliance rate improved by 15%</span>
                       </div>
                       <div className="flex items-center space-x-3">
                         <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                        <span className="text-blue-300">Equipment inspection scheduled</span>
+                        <span className="text-white">Equipment inspection scheduled</span>
                       </div>
                     </div>
                   </Card>
@@ -174,7 +174,7 @@ export const SkeletonDemo = () => {
               <Card className="bg-blue-700/50 backdrop-blur-sm border-white/10 text-white">
                 <CardHeader>
                   <CardTitle>Employee Training Records</CardTitle>
-                  <CardDescription className="text-blue-300">
+                  <CardDescription className="text-white">
                     Current training status for all employees
                   </CardDescription>
                 </CardHeader>
@@ -191,14 +191,14 @@ export const SkeletonDemo = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr className="border-b border-blue-700/50">
+                        <tr className="border-b border-violet-500/30">
                           <td className="p-2">John Smith</td>
                           <td className="p-2">Fall Protection</td>
                           <td className="p-2"><span className="text-green-400">Completed</span></td>
                           <td className="p-2">2025-09-15</td>
                           <td className="p-2"><Button size="sm" variant="outline">View</Button></td>
                         </tr>
-                        <tr className="border-b border-blue-700/50">
+                        <tr className="border-b border-violet-500/30">
                           <td className="p-2">Jane Doe</td>
                           <td className="p-2">HAZWOPER</td>
                           <td className="p-2"><span className="text-yellow-400">Pending</span></td>
@@ -226,22 +226,22 @@ export const SkeletonDemo = () => {
                 <>
                   <Card className="bg-blue-700/50 backdrop-blur-sm border-white/10 text-white text-center p-6">
                     <div className="text-3xl font-bold text-blue-400 mb-2">98.5%</div>
-                    <div className="text-blue-300">Compliance Rate</div>
+                    <div className="text-white">Compliance Rate</div>
                     <div className="text-sm text-green-400 mt-2">↑ 2.1%</div>
                   </Card>
                   <Card className="bg-blue-700/50 backdrop-blur-sm border-white/10 text-white text-center p-6">
                     <div className="text-3xl font-bold text-green-400 mb-2">247</div>
-                    <div className="text-blue-300">Active Employees</div>
+                    <div className="text-white">Active Employees</div>
                     <div className="text-sm text-blue-400 mt-2">↑ 12</div>
                   </Card>
                   <Card className="bg-blue-700/50 backdrop-blur-sm border-white/10 text-white text-center p-6">
                     <div className="text-3xl font-bold text-yellow-400 mb-2">12</div>
-                    <div className="text-blue-300">Pending Training</div>
+                    <div className="text-white">Pending Training</div>
                     <div className="text-sm text-red-400 mt-2">↓ 5</div>
                   </Card>
                   <Card className="bg-blue-700/50 backdrop-blur-sm border-white/10 text-white text-center p-6">
                     <div className="text-3xl font-bold text-purple-400 mb-2">5</div>
-                    <div className="text-blue-300">Active Alerts</div>
+                    <div className="text-white">Active Alerts</div>
                     <div className="text-sm text-yellow-400 mt-2">→ 0</div>
                   </Card>
                 </>
@@ -256,7 +256,7 @@ export const SkeletonDemo = () => {
               <Card className="bg-blue-700/50 backdrop-blur-sm border-white/10 text-white max-w-2xl">
                 <CardHeader>
                   <CardTitle>Employee Registration</CardTitle>
-                  <CardDescription className="text-blue-300">
+                  <CardDescription className="text-white">
                     Add a new employee to the system
                   </CardDescription>
                 </CardHeader>
@@ -301,26 +301,26 @@ export const SkeletonDemo = () => {
               <Card className="bg-blue-700/50 backdrop-blur-sm border-white/10 text-white">
                 <CardHeader>
                   <CardTitle>Compliance Trends</CardTitle>
-                  <CardDescription className="text-blue-300">
+                  <CardDescription className="text-white">
                     Monthly compliance rate over time
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="h-64 bg-blue-600/50 rounded-lg flex items-center justify-center">
-                    <span className="text-blue-300">Interactive Chart Placeholder</span>
+                    <span className="text-white">Interactive Chart Placeholder</span>
                   </div>
                   <div className="flex justify-center space-x-6 mt-4">
                     <div className="flex items-center space-x-2">
                       <div className="w-3 h-3 bg-blue-400 rounded-full"></div>
-                      <span className="text-sm text-blue-300">Compliance Rate</span>
+                      <span className="text-sm text-white">Compliance Rate</span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-                      <span className="text-sm text-blue-300">Training Completion</span>
+                      <span className="text-sm text-white">Training Completion</span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <div className="w-3 h-3 bg-purple-400 rounded-full"></div>
-                      <span className="text-sm text-blue-300">Certifications</span>
+                      <span className="text-sm text-white">Certifications</span>
                     </div>
                   </div>
                 </CardContent>

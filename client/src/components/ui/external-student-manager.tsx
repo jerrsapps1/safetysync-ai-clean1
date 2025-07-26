@@ -324,7 +324,7 @@ export function ExternalStudentManager({
         <CardContent>
           <div className="space-y-4">
             <div className="relative">
-              <Search className="absolute left-3 top-3 h-4 w-4 text-blue-300" />
+              <Search className="absolute left-3 top-3 h-4 w-4 text-white" />
               <Input
                 placeholder="Search external students..."
                 value={searchQuery}

@@ -210,13 +210,13 @@ export default function EmployeePortal() {
       case 'active': return 'bg-green-500/20 text-green-400 border-green-500/30';
       case 'expired': return 'bg-red-500/20 text-red-400 border-red-500/30';
       case 'expiring': return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30';
-      case 'completed': return 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30';
+      case 'completed': return 'bg-violet-500/20 text-violet-400 border-violet-500/30';
       case 'in-progress': return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
-      case 'pending': return 'bg-blue-400/20 text-blue-300 border-blue-400/30';
+      case 'pending': return 'bg-blue-400/20 text-white border-blue-400/30';
       case 'enrolled': return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
       case 'required': return 'bg-red-500/20 text-red-400 border-red-500/30';
       case 'optional': return 'bg-purple-500/20 text-purple-400 border-purple-500/30';
-      default: return 'bg-blue-400/20 text-blue-300 border-blue-400/30';
+      default: return 'bg-blue-400/20 text-white border-blue-400/30';
     }
   };
 
@@ -228,7 +228,7 @@ export default function EmployeePortal() {
   return (
     <div className="space-y-6 relative">
       {/* Tech grid background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 opacity-10 rounded-lg"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 opacity-10 rounded-lg"></div>
       
       {/* Floating tech icons */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -242,7 +242,7 @@ export default function EmployeePortal() {
           <TrendingUp className="w-6 h-6 text-green-400/30" />
         </div>
         <div className="absolute bottom-32 right-32 animate-float-delay-3">
-          <Shield className="w-7 h-7 text-emerald-400/30" />
+          <Shield className="w-7 h-7 text-violet-400/30" />
         </div>
       </div>
 
@@ -252,8 +252,8 @@ export default function EmployeePortal() {
             <SafetySyncIcon size={32} className="rounded-lg" />
             Employee Portal
           </h2>
-          <p className="text-blue-300">Self-service portal for employees to manage their safety training and certifications</p>
-          <p className="text-blue-300 text-sm mt-1">
+          <p className="text-white">Self-service portal for employees to manage their safety training and certifications</p>
+          <p className="text-white text-sm mt-1">
             👤 Welcome back, {profile.name} • {profile.department}
           </p>
         </div>
@@ -274,35 +274,35 @@ export default function EmployeePortal() {
         <TabsList className="grid w-full grid-cols-5 bg-black/20 backdrop-blur-sm border-blue-700">
           <TabsTrigger 
             value="dashboard" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-white hover:text-white transition-all duration-200"
           >
             <User className="h-4 w-4" />
             Dashboard
           </TabsTrigger>
           <TabsTrigger 
             value="certifications" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-white hover:text-white transition-all duration-200"
           >
             <Award className="h-4 w-4" />
             Certifications
           </TabsTrigger>
           <TabsTrigger 
             value="training" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-white hover:text-white transition-all duration-200"
           >
             <BookOpen className="h-4 w-4" />
             Training
           </TabsTrigger>
           <TabsTrigger 
             value="schedule" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-white hover:text-white transition-all duration-200"
           >
             <Calendar className="h-4 w-4" />
             Schedule
           </TabsTrigger>
           <TabsTrigger 
             value="profile" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-300 hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-white hover:text-white transition-all duration-200"
           >
             <Settings className="h-4 w-4" />
             Profile
@@ -316,7 +316,7 @@ export default function EmployeePortal() {
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-blue-300 text-sm">Active Certifications</p>
+                    <p className="text-white text-sm">Active Certifications</p>
                     <p className="text-2xl font-bold text-white">{activeCertifications}</p>
                     <p className="text-green-400 text-sm">Current & Valid</p>
                   </div>
@@ -329,7 +329,7 @@ export default function EmployeePortal() {
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-blue-300 text-sm">Expiring Soon</p>
+                    <p className="text-white text-sm">Expiring Soon</p>
                     <p className="text-2xl font-bold text-white">{expiringCertifications}</p>
                     <p className="text-yellow-400 text-sm">Next 30 days</p>
                   </div>
@@ -342,7 +342,7 @@ export default function EmployeePortal() {
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-blue-300 text-sm">Completed Training</p>
+                    <p className="text-white text-sm">Completed Training</p>
                     <p className="text-2xl font-bold text-white">{completedTrainings}</p>
                     <p className="text-blue-400 text-sm">Programs</p>
                   </div>
@@ -355,7 +355,7 @@ export default function EmployeePortal() {
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-blue-300 text-sm">Training Hours</p>
+                    <p className="text-white text-sm">Training Hours</p>
                     <p className="text-2xl font-bold text-white">{totalTrainingHours}</p>
                     <p className="text-purple-400 text-sm">Total Hours</p>
                   </div>
@@ -379,7 +379,7 @@ export default function EmployeePortal() {
                         <CheckCircle className="w-5 h-5 text-green-400" />
                         <div>
                           <p className="text-white font-medium">{record.name}</p>
-                          <p className="text-blue-300 text-sm">{record.completionDate}</p>
+                          <p className="text-white text-sm">{record.completionDate}</p>
                         </div>
                       </div>
                       <Badge className={getStatusColor(record.status)}>
@@ -403,7 +403,7 @@ export default function EmployeePortal() {
                         <Calendar className="w-5 h-5 text-blue-400" />
                         <div>
                           <p className="text-white font-medium">{training.name}</p>
-                          <p className="text-blue-300 text-sm">{training.date} at {training.time}</p>
+                          <p className="text-white text-sm">{training.date} at {training.time}</p>
                         </div>
                       </div>
                       <Badge className={getStatusColor(training.status)}>
@@ -425,7 +425,7 @@ export default function EmployeePortal() {
                   <div className="flex items-start justify-between">
                     <div>
                       <CardTitle className="text-white">{cert.name}</CardTitle>
-                      <CardDescription className="text-blue-300">
+                      <CardDescription className="text-white">
                         {cert.certificateNumber} • {cert.instructor}
                       </CardDescription>
                     </div>
@@ -438,11 +438,11 @@ export default function EmployeePortal() {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="flex items-center gap-2">
                       <Calendar className="w-4 h-4 text-blue-400" />
-                      <span className="text-blue-300 text-sm">Issued: {cert.issueDate}</span>
+                      <span className="text-white text-sm">Issued: {cert.issueDate}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <AlertTriangle className="w-4 h-4 text-yellow-400" />
-                      <span className="text-blue-300 text-sm">Expires: {cert.expirationDate}</span>
+                      <span className="text-white text-sm">Expires: {cert.expirationDate}</span>
                     </div>
                   </div>
 
@@ -470,7 +470,7 @@ export default function EmployeePortal() {
                   <div className="flex items-start justify-between">
                     <div>
                       <CardTitle className="text-white">{record.name}</CardTitle>
-                      <CardDescription className="text-blue-300">
+                      <CardDescription className="text-white">
                         {record.instructor} • {record.hours} hours
                       </CardDescription>
                     </div>
@@ -483,12 +483,12 @@ export default function EmployeePortal() {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="flex items-center gap-2">
                       <Calendar className="w-4 h-4 text-blue-400" />
-                      <span className="text-blue-300 text-sm">Completed: {record.completionDate}</span>
+                      <span className="text-white text-sm">Completed: {record.completionDate}</span>
                     </div>
                     {record.score && (
                       <div className="flex items-center gap-2">
                         <CheckCircle className="w-4 h-4 text-green-400" />
-                        <span className="text-blue-300 text-sm">Score: {record.score}%</span>
+                        <span className="text-white text-sm">Score: {record.score}%</span>
                       </div>
                     )}
                   </div>
@@ -496,7 +496,7 @@ export default function EmployeePortal() {
                   {record.score && (
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="text-blue-300 text-sm">Performance</span>
+                        <span className="text-white text-sm">Performance</span>
                         <span className="text-white font-medium">{record.score}%</span>
                       </div>
                       <Progress value={record.score} className="h-2" />
@@ -516,7 +516,7 @@ export default function EmployeePortal() {
                   <div className="flex items-start justify-between">
                     <div>
                       <CardTitle className="text-white">{training.name}</CardTitle>
-                      <CardDescription className="text-blue-300">
+                      <CardDescription className="text-white">
                         {training.instructor} • {training.duration} hours
                       </CardDescription>
                     </div>
@@ -529,15 +529,15 @@ export default function EmployeePortal() {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="flex items-center gap-2">
                       <Calendar className="w-4 h-4 text-blue-400" />
-                      <span className="text-blue-300 text-sm">{training.date}</span>
+                      <span className="text-white text-sm">{training.date}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Clock className="w-4 h-4 text-purple-400" />
-                      <span className="text-blue-300 text-sm">{training.time}</span>
+                      <span className="text-white text-sm">{training.time}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <MapPin className="w-4 h-4 text-green-400" />
-                      <span className="text-blue-300 text-sm">{training.location}</span>
+                      <span className="text-white text-sm">{training.location}</span>
                     </div>
                   </div>
 
@@ -547,7 +547,7 @@ export default function EmployeePortal() {
                       View Details
                     </Button>
                     {training.status === 'optional' && (
-                      <Button size="sm" className="bg-emerald-500 hover:bg-emerald-600 text-white">
+                      <Button size="sm" className="bg-violet-500 hover:bg-emerald-600 text-white">
                         <CheckCircle className="w-3 h-3 mr-1" />
                         Enroll
                       </Button>
@@ -563,7 +563,7 @@ export default function EmployeePortal() {
           <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
             <CardHeader>
               <CardTitle className="text-white">Employee Profile</CardTitle>
-              <CardDescription className="text-blue-300">
+              <CardDescription className="text-white">
                 View and update your personal information
               </CardDescription>
             </CardHeader>
@@ -576,22 +576,22 @@ export default function EmployeePortal() {
                     </div>
                     <div>
                       <h3 className="text-white font-semibold text-lg">{profile.name}</h3>
-                      <p className="text-blue-300">{profile.position}</p>
+                      <p className="text-white">{profile.position}</p>
                     </div>
                   </div>
                   
                   <div className="space-y-3">
                     <div className="flex items-center gap-2">
                       <Mail className="w-4 h-4 text-blue-400" />
-                      <span className="text-blue-300">{profile.email}</span>
+                      <span className="text-white">{profile.email}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Phone className="w-4 h-4 text-green-400" />
-                      <span className="text-blue-300">{profile.phone}</span>
+                      <span className="text-white">{profile.phone}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Building className="w-4 h-4 text-purple-400" />
-                      <span className="text-blue-300">{profile.department}</span>
+                      <span className="text-white">{profile.department}</span>
                     </div>
                   </div>
                 </div>
@@ -602,15 +602,15 @@ export default function EmployeePortal() {
                     <div className="space-y-2">
                       <div className="flex items-center gap-2">
                         <User className="w-4 h-4 text-blue-400" />
-                        <span className="text-blue-300">{profile.emergencyContact.name}</span>
+                        <span className="text-white">{profile.emergencyContact.name}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <Phone className="w-4 h-4 text-green-400" />
-                        <span className="text-blue-300">{profile.emergencyContact.phone}</span>
+                        <span className="text-white">{profile.emergencyContact.phone}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <User className="w-4 h-4 text-purple-400" />
-                        <span className="text-blue-300">{profile.emergencyContact.relationship}</span>
+                        <span className="text-white">{profile.emergencyContact.relationship}</span>
                       </div>
                     </div>
                   </div>

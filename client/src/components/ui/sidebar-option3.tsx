@@ -58,7 +58,7 @@ export function SidebarOption3({}: SidebarOption3Props) {
               {!isCollapsed && (
                 <div>
                   <h1 className="text-lg font-bold text-white">SafetySync.AI</h1>
-                  <p className="text-xs text-emerald-400 -mt-1">OSHA Compliance</p>
+                  <p className="text-xs text-violet-400 -mt-1">OSHA Compliance</p>
                 </div>
               )}
             </div>
@@ -67,7 +67,7 @@ export function SidebarOption3({}: SidebarOption3Props) {
           <Button
             variant="ghost"
             size="sm"
-            className="hidden md:flex text-blue-300 hover:text-white hover:bg-blue-700"
+            className="hidden md:flex text-white hover:text-white hover:bg-blue-700"
             onClick={() => setIsCollapsed(!isCollapsed)}
           >
             <ArrowRight className={`h-4 w-4 transition-transform ${isCollapsed ? 'rotate-180' : ''}`} />
@@ -82,11 +82,11 @@ export function SidebarOption3({}: SidebarOption3Props) {
               return (
                 <Link key={item.name} href={item.href}>
                   <a 
-                    className="flex items-center px-3 py-3 text-sm font-medium text-blue-300 rounded-lg hover:bg-blue-700 hover:text-emerald-400 transition-colors group relative"
+                    className="flex items-center px-3 py-3 text-sm font-medium text-white rounded-lg hover:bg-blue-700 hover:text-violet-400 transition-colors group relative"
                     onClick={() => setIsMobileOpen(false)}
                     title={isCollapsed ? item.name : undefined}
                   >
-                    <IconComponent className="w-5 h-5 text-blue-300 group-hover:text-emerald-400 flex-shrink-0" />
+                    <IconComponent className="w-5 h-5 text-white group-hover:text-violet-400 flex-shrink-0" />
                     {!isCollapsed && (
                       <span className="ml-3">{item.name}</span>
                     )}

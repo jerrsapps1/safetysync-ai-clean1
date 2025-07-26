@@ -14,7 +14,7 @@ const AIPatternSkeleton = ({ className, variant = "card", showIcon = true, anima
 
   const baseClasses = cn(
     "relative overflow-hidden rounded-lg",
-    "bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400",
+    "bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900",
     "backdrop-blur-sm border border-white/10",
     animated && "animate-pulse-glow",
     className
@@ -143,7 +143,7 @@ const AIPatternSkeleton = ({ className, variant = "card", showIcon = true, anima
       {/* AI Processing Indicator */}
       <div className="flex items-center justify-center space-x-2 mt-6 relative z-10">
         <Brain className="w-4 h-4 text-blue-400 animate-pulse-glow" />
-        <div className="text-sm text-blue-300">AI Processing Data...</div>
+        <div className="text-sm text-white">AI Processing Data...</div>
       </div>
     </div>
   );

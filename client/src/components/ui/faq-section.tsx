@@ -180,7 +180,7 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
       <Card>
         <CardContent className="p-6">
           <div className="relative">
-            <Search className="absolute left-3 top-3 h-4 w-4 text-blue-300" />
+            <Search className="absolute left-3 top-3 h-4 w-4 text-white" />
             <Input
               placeholder="Search FAQs..."
               value={searchQuery}
@@ -231,8 +231,8 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
                           </div>
                         </div>
                         {openItems.includes(faq.id) ? 
-                          <ChevronUp className="w-4 h-4 text-blue-300" /> : 
-                          <ChevronDown className="w-4 h-4 text-blue-300" />
+                          <ChevronUp className="w-4 h-4 text-white" /> : 
+                          <ChevronDown className="w-4 h-4 text-white" />
                         }
                       </div>
                       {openItems.includes(faq.id) && (
@@ -252,7 +252,7 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
             {filteredFAQs.length === 0 ? (
               <Card>
                 <CardContent className="p-8 text-center">
-                  <HelpCircle className="w-12 h-12 mx-auto mb-4 text-blue-300" />
+                  <HelpCircle className="w-12 h-12 mx-auto mb-4 text-white" />
                   <h3 className="text-lg font-medium mb-2">No questions found</h3>
                   <p className="text-blue-500 mb-4">
                     Try adjusting your search terms or browse different categories.
@@ -283,8 +283,8 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
                             </div>
                           </div>
                           {openItems.includes(faq.id) ? 
-                            <ChevronUp className="w-5 h-5 text-blue-300" /> : 
-                            <ChevronDown className="w-5 h-5 text-blue-300" />
+                            <ChevronUp className="w-5 h-5 text-white" /> : 
+                            <ChevronDown className="w-5 h-5 text-white" />
                           }
                         </div>
                       </CardHeader>

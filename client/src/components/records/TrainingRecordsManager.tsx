@@ -52,7 +52,7 @@ export default function TrainingRecordsManager() {
           <TrendingUp className="w-6 h-6 text-green-400/30" />
         </div>
         <div className="absolute bottom-32 right-32 animate-float-delay-3">
-          <Shield className="w-7 h-7 text-emerald-400/30" />
+          <Shield className="w-7 h-7 text-violet-400/30" />
         </div>
       </div>
 
@@ -62,8 +62,8 @@ export default function TrainingRecordsManager() {
             <SafetySyncIcon size={32} className="rounded-lg" />
             Training Records
           </h2>
-          <p className="text-blue-300">Comprehensive training session documentation and tracking</p>
-          <p className="text-blue-300 text-sm mt-1">
+          <p className="text-white">Comprehensive training session documentation and tracking</p>
+          <p className="text-white text-sm mt-1">
             📋 Complete audit trail for compliance documentation and certificate tracking
           </p>
         </div>
@@ -73,7 +73,7 @@ export default function TrainingRecordsManager() {
       <div className="relative z-10">
         <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
           <CardContent className="p-8 text-center">
-            <div className="text-blue-300">
+            <div className="text-white">
               <p className="text-lg">Training Records page content removed.</p>
               <p className="text-sm mt-2">Ready for new implementation.</p>
             </div>

@@ -144,7 +144,7 @@ export default function Helpdesk() {
 
   if (selectedTicket && selectedTicketData) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 p-4">
+      <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 p-4">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="flex items-center justify-between mb-8">
@@ -162,7 +162,7 @@ export default function Helpdesk() {
                 <h1 className="text-2xl font-bold text-white">Support Ticket #{selectedTicketData.id}</h1>
               </div>
             </div>
-            <Link href="/" className="text-white hover:text-blue-300">
+            <Link href="/" className="text-white hover:text-white">
               <Button variant="ghost" className="text-white hover:bg-white/10">
                 Home
               </Button>
@@ -187,7 +187,7 @@ export default function Helpdesk() {
                     </Badge>
                   </div>
                 </div>
-                <div className="text-right text-sm text-blue-300">
+                <div className="text-right text-sm text-white">
                   <p>Created: {new Date(selectedTicketData.createdAt).toLocaleDateString()}</p>
                   <p>Updated: {new Date(selectedTicketData.updatedAt).toLocaleDateString()}</p>
                 </div>
@@ -225,7 +225,7 @@ export default function Helpdesk() {
                       }`}>
                         <p className="whitespace-pre-wrap">{response.message}</p>
                       </div>
-                      <p className="text-xs text-blue-300 mt-1">
+                      <p className="text-xs text-white mt-1">
                         {response.author} • {new Date(response.createdAt).toLocaleString()}
                       </p>
                     </div>
@@ -260,7 +260,7 @@ export default function Helpdesk() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 p-4">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
@@ -268,7 +268,7 @@ export default function Helpdesk() {
             <SafetySyncIcon className="w-8 h-8" />
             <h1 className="text-3xl font-bold text-white">Support Helpdesk</h1>
           </div>
-          <Link href="/" className="text-white hover:text-blue-300">
+          <Link href="/" className="text-white hover:text-white">
             <Button variant="ghost" className="text-white hover:bg-white/10">
               Home
             </Button>
@@ -293,7 +293,7 @@ export default function Helpdesk() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <div className="flex-1">
                     <div className="relative">
-                      <Search className="absolute left-3 top-3 w-4 h-4 text-blue-300" />
+                      <Search className="absolute left-3 top-3 w-4 h-4 text-white" />
                       <Input
                         placeholder="Search tickets..."
                         value={searchTerm}
@@ -359,9 +359,9 @@ export default function Helpdesk() {
                     <CardContent className="p-6">
                       <div className="flex items-start justify-between mb-3">
                         <h3 className="font-semibold text-white truncate pr-2">{ticket.title}</h3>
-                        <Ticket className="w-5 h-5 text-blue-300 flex-shrink-0" />
+                        <Ticket className="w-5 h-5 text-white flex-shrink-0" />
                       </div>
-                      <p className="text-blue-300 text-sm mb-4 line-clamp-2">{ticket.description}</p>
+                      <p className="text-white text-sm mb-4 line-clamp-2">{ticket.description}</p>
                       <div className="flex items-center gap-2 mb-3">
                         <Badge className={statusColors[ticket.status]}>
                           {ticket.status.replace('_', ' ')}
@@ -370,7 +370,7 @@ export default function Helpdesk() {
                           {ticket.priority}
                         </Badge>
                       </div>
-                      <div className="flex items-center justify-between text-xs text-blue-300">
+                      <div className="flex items-center justify-between text-xs text-white">
                         <span>#{ticket.id}</span>
                         <span>{new Date(ticket.createdAt).toLocaleDateString()}</span>
                       </div>
@@ -383,9 +383,9 @@ export default function Helpdesk() {
             {filteredTickets.length === 0 && !isLoading && (
               <Card className="bg-white/10 backdrop-blur-sm border-white/20">
                 <CardContent className="p-12 text-center">
-                  <Ticket className="w-16 h-16 text-blue-300 mx-auto mb-4" />
+                  <Ticket className="w-16 h-16 text-white mx-auto mb-4" />
                   <h3 className="text-xl font-semibold text-white mb-2">No tickets found</h3>
-                  <p className="text-blue-300 mb-4">You haven't created any support tickets yet.</p>
+                  <p className="text-white mb-4">You haven't created any support tickets yet.</p>
                   <Button
                     onClick={() => document.querySelector('[data-value="create"]')?.click()}
                     className="bg-blue-600 hover:bg-blue-700"

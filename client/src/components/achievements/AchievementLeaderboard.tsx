@@ -50,11 +50,11 @@ export default function AchievementLeaderboard({ period = 'month' }: Leaderboard
       case 1:
         return <Trophy className="w-5 h-5 text-yellow-500" />;
       case 2:
-        return <Medal className="w-5 h-5 text-blue-300" />;
+        return <Medal className="w-5 h-5 text-white" />;
       case 3:
         return <Award className="w-5 h-5 text-amber-600" />;
       default:
-        return <span className="w-5 h-5 flex items-center justify-center text-blue-300 font-medium">{rank}</span>;
+        return <span className="w-5 h-5 flex items-center justify-center text-white font-medium">{rank}</span>;
     }
   };
 
@@ -89,7 +89,7 @@ export default function AchievementLeaderboard({ period = 'month' }: Leaderboard
               variant={selectedPeriod === p ? 'default' : 'outline'}
               size="sm"
               onClick={() => setSelectedPeriod(p as typeof selectedPeriod)}
-              className={selectedPeriod === p ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-blue-700/50 text-blue-300 border-blue-500 hover:bg-blue-700'}
+              className={selectedPeriod === p ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-blue-700/50 text-white border-blue-500 hover:bg-blue-700'}
             >
               {p === 'all' ? 'All Time' : `This ${p.charAt(0).toUpperCase() + p.slice(1)}`}
             </Button>
@@ -120,14 +120,14 @@ export default function AchievementLeaderboard({ period = 'month' }: Leaderboard
                     {getRankIcon(entry.rank)}
                   </div>
                 </div>
-                <h3 className={`font-medium ${entry.isCurrentUser ? 'text-emerald-400' : 'text-white'}`}>
+                <h3 className={`font-medium ${entry.isCurrentUser ? 'text-violet-400' : 'text-white'}`}>
                   {entry.name}
                 </h3>
-                <div className="flex items-center justify-center gap-1 text-sm text-blue-300 mt-1">
+                <div className="flex items-center justify-center gap-1 text-sm text-white mt-1">
                   <Star className="w-4 h-4 text-yellow-500" />
                   <span>{entry.points.toLocaleString()}</span>
                 </div>
-                <div className="flex items-center justify-center gap-1 text-sm text-blue-300">
+                <div className="flex items-center justify-center gap-1 text-sm text-white">
                   <Award className="w-4 h-4 text-emerald-500" />
                   <span>{entry.badges} badges</span>
                 </div>
@@ -169,16 +169,16 @@ export default function AchievementLeaderboard({ period = 'month' }: Leaderboard
                 
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
-                    <span className={`font-medium ${entry.isCurrentUser ? 'text-emerald-400' : 'text-white'}`}>
+                    <span className={`font-medium ${entry.isCurrentUser ? 'text-violet-400' : 'text-white'}`}>
                       {entry.name}
                     </span>
                     {entry.isCurrentUser && (
-                      <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30">
+                      <Badge className="bg-violet-500/20 text-emerald-300 border-violet-500/30">
                         You
                       </Badge>
                     )}
                   </div>
-                  <div className="flex items-center gap-4 text-sm text-blue-300">
+                  <div className="flex items-center gap-4 text-sm text-white">
                     <div className="flex items-center gap-1">
                       <Star className="w-3 h-3 text-yellow-500" />
                       <span>{entry.points.toLocaleString()} points</span>
@@ -213,22 +213,22 @@ export default function AchievementLeaderboard({ period = 'month' }: Leaderboard
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="text-center">
-                <div className="text-2xl font-bold text-emerald-400">#{currentUser.rank}</div>
-                <div className="text-sm text-blue-300">Current Rank</div>
+                <div className="text-2xl font-bold text-violet-400">#{currentUser.rank}</div>
+                <div className="text-sm text-white">Current Rank</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-yellow-400">{currentUser.points.toLocaleString()}</div>
-                <div className="text-sm text-blue-300">Total Points</div>
+                <div className="text-sm text-white">Total Points</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-blue-400">{currentUser.badges}</div>
-                <div className="text-sm text-blue-300">Badges Earned</div>
+                <div className="text-sm text-white">Badges Earned</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-purple-400">
                   {currentUser.rank <= 3 ? 'Top 3' : 'Top 10'}
                 </div>
-                <div className="text-sm text-blue-300">Percentile</div>
+                <div className="text-sm text-white">Percentile</div>
               </div>
             </div>
           </CardContent>

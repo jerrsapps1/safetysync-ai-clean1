@@ -69,7 +69,7 @@ export default function WorkspaceSimplified() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
+    <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900">
       {/* Tech Grid Background */}
       <div className="fixed inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
       
@@ -78,7 +78,7 @@ export default function WorkspaceSimplified() {
         <div className="animate-float-slow absolute top-20 left-20 text-blue-400/20">
           <FileText className="w-16 h-16" />
         </div>
-        <div className="animate-float-medium absolute top-40 right-32 text-emerald-400/20">
+        <div className="animate-float-medium absolute top-40 right-32 text-violet-400/20">
           <Users className="w-20 h-20" />
         </div>
         <div className="animate-float-fast absolute bottom-32 left-1/4 text-purple-400/20">
@@ -103,7 +103,7 @@ export default function WorkspaceSimplified() {
                   <SafetySyncIcon size={40} className="rounded-lg" />
                   <div>
                     <h2 className="text-white font-semibold text-base">SafetySync.AI</h2>
-                    <p className="text-blue-300 text-sm">Training Records</p>
+                    <p className="text-white text-sm">Training Records</p>
                   </div>
                 </div>
               ) : (
@@ -113,7 +113,7 @@ export default function WorkspaceSimplified() {
                 variant="ghost"
                 size="sm"
                 onClick={() => setSidebarOpen(!sidebarOpen)}
-                className="text-blue-300 hover:text-white"
+                className="text-white hover:text-white"
               >
                 {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </Button>
@@ -125,7 +125,7 @@ export default function WorkspaceSimplified() {
             {/* Dashboard */}
             <Button
               variant="ghost"
-              className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+              className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
                 activeTab === "dashboard" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("dashboard")}
@@ -138,7 +138,7 @@ export default function WorkspaceSimplified() {
             {/* Instructor Sign-In Generator */}
             <Button
               variant="ghost"
-              className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+              className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
                 activeTab === "instructor-signin" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("instructor-signin")}
@@ -151,7 +151,7 @@ export default function WorkspaceSimplified() {
             {/* Training Records */}
             <Button
               variant="ghost"
-              className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+              className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
                 activeTab === "training-records" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("training-records")}
@@ -164,7 +164,7 @@ export default function WorkspaceSimplified() {
             {/* Document Hub */}
             <Button
               variant="ghost"
-              className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+              className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
                 activeTab === "document-hub" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("document-hub")}
@@ -177,7 +177,7 @@ export default function WorkspaceSimplified() {
             {/* Employee Management */}
             <Button
               variant="ghost"
-              className={`w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50 pl-3 ${
+              className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
                 activeTab === "employees" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("employees")}
@@ -193,19 +193,19 @@ export default function WorkspaceSimplified() {
             {sidebarOpen && (
               <div className="mb-4">
                 <div className="flex items-center space-x-3 mb-2">
-                  <div className="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center">
+                  <div className="w-8 h-8 bg-violet-500 rounded-full flex items-center justify-center">
                     <User className="w-4 h-4 text-white" />
                   </div>
                   <div>
                     <p className="text-white text-sm font-medium">{user?.name || "User"}</p>
-                    <p className="text-blue-300 text-xs">Training Manager</p>
+                    <p className="text-white text-xs">Training Manager</p>
                   </div>
                 </div>
               </div>
             )}
             <Button
               variant="ghost"
-              className="w-full justify-start text-blue-300 hover:text-white hover:bg-blue-600/50"
+              className="w-full justify-start text-white hover:text-white hover:bg-blue-600/50"
               onClick={handleLogout}
             >
               <LogOut className="w-5 h-5 mr-3" />
@@ -227,7 +227,7 @@ export default function WorkspaceSimplified() {
                   {activeTab === "document-hub" && "Training Document Hub"}
                   {activeTab === "employees" && "Employee Management"}
                 </h1>
-                <p className="text-blue-300 text-sm mt-1">
+                <p className="text-white text-sm mt-1">
                   {activeTab === "dashboard" && "Overview of training records and activities"}
                   {activeTab === "instructor-signin" && "Create sign-in sheets for training sessions"}
                   {activeTab === "training-records" && "Manage and organize training records"}
@@ -319,7 +319,7 @@ export default function WorkspaceSimplified() {
                     <CardContent>
                       <div className="space-y-4">
                         <div className="flex items-center gap-3">
-                          <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                          <div className="w-2 h-2 bg-violet-500 rounded-full"></div>
                           <div className="flex-1">
                             <p className="text-sm font-medium">Fall Protection Training - Sign-in sheet created</p>
                             <p className="text-xs text-blue-400">2 hours ago</p>

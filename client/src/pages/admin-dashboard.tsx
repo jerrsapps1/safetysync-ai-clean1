@@ -124,13 +124,13 @@ function AdminLoginCheck() {
             <SafetySyncIcon size={64} className="rounded-lg" />
           </div>
           <h1 className="text-3xl font-bold text-white mb-2">Admin Dashboard</h1>
-          <p className="text-blue-300">Secure access to platform analytics</p>
+          <p className="text-white">Secure access to platform analytics</p>
         </div>
 
         <Card className="bg-black/20 backdrop-blur-sm border-red-800/50">
           <CardHeader>
             <CardTitle className="text-white">Admin Authentication</CardTitle>
-            <CardDescription className="text-blue-300">
+            <CardDescription className="text-white">
               Enter your admin key to access the dashboard
             </CardDescription>
           </CardHeader>
@@ -148,7 +148,7 @@ function AdminLoginCheck() {
                 <button
                   type="button"
                   onClick={() => setShowKey(!showKey)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-blue-300 hover:text-white transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white hover:text-white transition-colors"
                 >
                   {showKey ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
@@ -165,7 +165,7 @@ function AdminLoginCheck() {
         </Card>
 
         <div className="text-center mt-6">
-          <Link href="/" className="text-blue-300 hover:text-white text-sm">
+          <Link href="/" className="text-white hover:text-white text-sm">
             ← Back to SafetySync.AI
           </Link>
         </div>
@@ -581,10 +581,10 @@ export default function AdminDashboard() {
     return (
       <div className="flex items-center justify-between h-full">
         <div className="flex-1 min-w-0">
-          <p className={`text-blue-300 ${labelSize} truncate`}>{widget.title}</p>
+          <p className={`text-white ${labelSize} truncate`}>{widget.title}</p>
           <p className={`${textSize} font-bold ${valueColor} truncate`}>{formattedValue}</p>
         </div>
-        <div className={`${iconSize} text-blue-300 flex-shrink-0 ml-2`}>
+        <div className={`${iconSize} text-white flex-shrink-0 ml-2`}>
           {widget.icon}
         </div>
       </div>
@@ -597,7 +597,7 @@ export default function AdminDashboard() {
     : widgets.filter(widget => widget.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 text-white">
       {/* Sidebar */}
       <div className={`fixed left-0 top-0 h-full bg-black/40 backdrop-blur-sm border-r border-red-800/50 transition-all duration-300 ${sidebarOpen ? 'w-64' : 'w-16'} z-50`}>
         {/* Header */}
@@ -613,7 +613,7 @@ export default function AdminDashboard() {
               variant="ghost"
               size="sm"
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="text-blue-300 hover:text-white"
+              className="text-white hover:text-white"
             >
               {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </Button>
@@ -624,7 +624,7 @@ export default function AdminDashboard() {
         <div className="p-4 border-b border-red-800/50">
           {sidebarOpen && (
             <div className="space-y-2">
-              <p className="text-sm text-blue-300 uppercase tracking-wider">Categories</p>
+              <p className="text-sm text-white uppercase tracking-wider">Categories</p>
               <div className="space-y-1">
                 {[
                   { id: 'all', label: 'All Widgets', icon: <BarChart3 className="w-4 h-4" /> },
@@ -637,7 +637,7 @@ export default function AdminDashboard() {
                   <Button
                     key={category.id}
                     variant={selectedCategory === category.id ? "secondary" : "ghost"}
-                    className="w-full justify-start text-blue-300 hover:text-white text-sm"
+                    className="w-full justify-start text-white hover:text-white text-sm"
                     onClick={() => setSelectedCategory(category.id)}
                   >
                     {category.icon}
@@ -653,9 +653,9 @@ export default function AdminDashboard() {
         <div className="p-4 border-b border-red-800/50">
           {sidebarOpen && (
             <div className="space-y-2">
-              <p className="text-sm text-blue-300">Logged in as</p>
+              <p className="text-sm text-white">Logged in as</p>
               <p className="text-white font-medium">Platform Administrator</p>
-              <div className="flex items-center space-x-2 text-xs text-blue-300">
+              <div className="flex items-center space-x-2 text-xs text-white">
                 <CheckCircle className="w-3 h-3 text-green-400" />
                 <span>Full Access</span>
               </div>
@@ -667,7 +667,7 @@ export default function AdminDashboard() {
         <div className="p-4 space-y-2">
           <Button
             variant="ghost"
-            className="w-full justify-start text-blue-300 hover:text-white"
+            className="w-full justify-start text-white hover:text-white"
             onClick={handleLogout}
           >
             <LogOut className="w-5 h-5 mr-3" />
@@ -676,7 +676,7 @@ export default function AdminDashboard() {
           <Link href="/">
             <Button
               variant="ghost"
-              className="w-full justify-start text-blue-300 hover:text-white"
+              className="w-full justify-start text-white hover:text-white"
             >
               <Home className="w-5 h-5 mr-3" />
               {sidebarOpen && "Back to Site"}
@@ -692,13 +692,13 @@ export default function AdminDashboard() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold text-white">Platform Analytics</h1>
-              <p className="text-blue-300">Real-time monitoring and insights</p>
+              <p className="text-white">Real-time monitoring and insights</p>
             </div>
             <div className="flex items-center space-x-4">
               <Badge variant="outline" className="text-green-400 border-green-400">
                 Live Data
               </Badge>
-              <Button variant="outline" className="text-blue-300 border-blue-500 hover:bg-blue-700">
+              <Button variant="outline" className="text-white border-blue-500 hover:bg-blue-700">
                 <Activity className="w-4 h-4 mr-2" />
                 Real-time
               </Button>
@@ -714,7 +714,7 @@ export default function AdminDashboard() {
               <Button
                 variant="outline"
                 onClick={() => setShowWidgetManager(!showWidgetManager)}
-                className="text-blue-300 border-blue-500 hover:bg-blue-700"
+                className="text-white border-blue-500 hover:bg-blue-700"
               >
                 <Settings className="w-4 h-4 mr-2" />
                 Manage Widgets
@@ -722,7 +722,7 @@ export default function AdminDashboard() {
               <Button
                 variant="outline"
                 onClick={saveAsDefault}
-                className="text-blue-300 border-blue-500 hover:bg-blue-700"
+                className="text-white border-blue-500 hover:bg-blue-700"
               >
                 <Save className="w-4 h-4 mr-2" />
                 Save as Default
@@ -731,7 +731,7 @@ export default function AdminDashboard() {
                 <Button
                   variant="outline"
                   onClick={loadCustomDefaults}
-                  className="text-blue-300 border-blue-500 hover:bg-blue-700"
+                  className="text-white border-blue-500 hover:bg-blue-700"
                 >
                   <Upload className="w-4 h-4 mr-2" />
                   Load My Default
@@ -740,13 +740,13 @@ export default function AdminDashboard() {
               <Button
                 variant="outline"
                 onClick={resetWidgetLayout}
-                className="text-blue-300 border-blue-500 hover:bg-blue-700"
+                className="text-white border-blue-500 hover:bg-blue-700"
               >
                 <RotateCcw className="w-4 h-4 mr-2" />
                 Reset to Original
               </Button>
             </div>
-            <div className="text-sm text-blue-300">
+            <div className="text-sm text-white">
               Drag widgets to reposition • Drag corners to resize • Filter by category
             </div>
           </div>
@@ -756,7 +756,7 @@ export default function AdminDashboard() {
             <Card className="bg-black/20 backdrop-blur-sm border-red-800/50 mb-6">
               <CardHeader>
                 <CardTitle className="text-white">Widget Manager</CardTitle>
-                <CardDescription className="text-blue-300">
+                <CardDescription className="text-white">
                   Toggle widgets on/off and drag to resize them on your dashboard
                 </CardDescription>
               </CardHeader>
@@ -818,7 +818,7 @@ export default function AdminDashboard() {
                         <CardContent className="p-4 h-full">
                           {/* Drag Handle */}
                           <div className="drag-handle absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity cursor-move">
-                            <GripVertical className="w-4 h-4 text-blue-300" />
+                            <GripVertical className="w-4 h-4 text-white" />
                           </div>
                           
                           {/* Widget Content */}

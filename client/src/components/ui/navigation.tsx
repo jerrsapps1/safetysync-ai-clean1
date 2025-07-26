@@ -97,7 +97,7 @@ export function Navigation({ onTrialClick, onDemoClick, onLoginClick }: Navigati
             </Link>
             <Button 
               onClick={onTrialClick}
-              className="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+              className="bg-violet-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
             >
               Get Started Free
             </Button>
@@ -181,7 +181,7 @@ export function Navigation({ onTrialClick, onDemoClick, onLoginClick }: Navigati
                 </Link>
                 <Button 
                   onClick={onTrialClick}
-                  className="w-full bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                  className="w-full bg-violet-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
                 >
                   Get Started Free
                 </Button>

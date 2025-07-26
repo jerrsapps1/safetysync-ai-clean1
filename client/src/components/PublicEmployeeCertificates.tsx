@@ -74,7 +74,7 @@ export default function PublicEmployeeCertificates() {
     return (
       <div className="min-h-screen bg-blue-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-violet-500 mx-auto mb-4"></div>
           <p className="text-blue-500">Loading employee certificates...</p>
         </div>
       </div>
@@ -212,7 +212,7 @@ export default function PublicEmployeeCertificates() {
           {certificates.length === 0 ? (
             <Card>
               <CardContent className="text-center py-12">
-                <ShieldCheck className="h-16 w-16 text-blue-300 mx-auto mb-4" />
+                <ShieldCheck className="h-16 w-16 text-white mx-auto mb-4" />
                 <h3 className="text-lg font-medium text-blue-800 mb-2">No Certificates</h3>
                 <p className="text-blue-500">
                   This employee doesn't have any training certificates on file.
@@ -255,7 +255,7 @@ export default function PublicEmployeeCertificates() {
                         <h4 className="font-medium text-blue-800 mb-3">Certificate Details</h4>
                         <div className="space-y-2 text-sm">
                           <div className="flex items-center space-x-2">
-                            <Calendar className="h-4 w-4 text-blue-300" />
+                            <Calendar className="h-4 w-4 text-white" />
                             <span className="text-blue-500">Issue Date:</span>
                             <span className="font-medium">
                               {new Date(cert.issueDate).toLocaleDateString()}
@@ -263,7 +263,7 @@ export default function PublicEmployeeCertificates() {
                           </div>
                           {cert.expirationDate && (
                             <div className="flex items-center space-x-2">
-                              <Clock className="h-4 w-4 text-blue-300" />
+                              <Clock className="h-4 w-4 text-white" />
                               <span className="text-blue-500">Expires:</span>
                               <span className="font-medium">
                                 {new Date(cert.expirationDate).toLocaleDateString()}
@@ -272,7 +272,7 @@ export default function PublicEmployeeCertificates() {
                           )}
                           {cert.certificateNumber && (
                             <div className="flex items-center space-x-2">
-                              <BadgeIcon className="h-4 w-4 text-blue-300" />
+                              <BadgeIcon className="h-4 w-4 text-white" />
                               <span className="text-blue-500">Cert #:</span>
                               <span className="font-mono text-xs font-medium">
                                 {cert.certificateNumber}

@@ -318,7 +318,7 @@ export function AICloneDetector({ onScanComplete }: AICloneDetectorProps) {
           {results.length === 0 ? (
             <Card>
               <CardContent className="py-8 text-center">
-                <Search className="w-12 h-12 mx-auto text-blue-300 mb-4" />
+                <Search className="w-12 h-12 mx-auto text-white mb-4" />
                 <p className="text-blue-400">No scan results yet. Start a new scan to detect potential clones.</p>
               </CardContent>
             </Card>
@@ -420,7 +420,7 @@ export function AICloneDetector({ onScanComplete }: AICloneDetectorProps) {
           {scanHistory.length === 0 ? (
             <Card>
               <CardContent className="py-8 text-center">
-                <Clock className="w-12 h-12 mx-auto text-blue-300 mb-4" />
+                <Clock className="w-12 h-12 mx-auto text-white mb-4" />
                 <p className="text-blue-400">No scan history yet. Your completed scans will appear here.</p>
               </CardContent>
             </Card>
