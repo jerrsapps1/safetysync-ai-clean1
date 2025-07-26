@@ -60,7 +60,7 @@ export default function DownloadDocsPage() {
         </div>
 
         {/* Documentation Cards */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {/* HTML Documentation */}
           <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
             <CardHeader>
@@ -100,6 +100,50 @@ export default function DownloadDocsPage() {
                 >
                   <Download className="w-4 h-4 mr-2" />
                   {downloading === 'SafetySync_AI_Platform_Documentation.html' ? 'Downloading...' : 'Download'}
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* HTML Documentation with Screenshots */}
+          <Card className="bg-black/20 backdrop-blur-sm border-blue-700">
+            <CardHeader>
+              <CardTitle className="text-white flex items-center">
+                <Globe className="w-5 h-5 mr-2" />
+                Visual Documentation
+              </CardTitle>
+              <CardDescription className="text-blue-100">
+                Enhanced HTML documentation with actual platform screenshots
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="text-blue-100 text-sm">
+                • 16 high-quality platform screenshots
+                <br />
+                • Clickable images for full-size viewing
+                <br />
+                • Professional visual guide format
+                <br />
+                • Print-optimized with images
+              </div>
+              
+              <div className="flex gap-3">
+                <Button 
+                  onClick={() => openInNewTab('SafetySync_AI_Platform_Documentation_With_Screenshots.html')}
+                  className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white"
+                >
+                  <Globe className="w-4 h-4 mr-2" />
+                  View Visual Guide
+                </Button>
+                
+                <Button 
+                  onClick={() => handleDownload('SafetySync_AI_Platform_Documentation_With_Screenshots.html', 'html')}
+                  disabled={downloading === 'SafetySync_AI_Platform_Documentation_With_Screenshots.html'}
+                  variant="outline"
+                  className="flex-1 border-emerald-400 text-emerald-400 hover:bg-emerald-600/20"
+                >
+                  <Download className="w-4 h-4 mr-2" />
+                  {downloading === 'SafetySync_AI_Platform_Documentation_With_Screenshots.html' ? 'Downloading...' : 'Download'}
                 </Button>
               </div>
             </CardContent>
@@ -151,14 +195,14 @@ export default function DownloadDocsPage() {
         </div>
 
         {/* Documentation Content Preview */}
-        <Card className="bg-black/20 backdrop-blur-sm border-blue-700 max-w-4xl mx-auto mt-8">
+        <Card className="bg-black/20 backdrop-blur-sm border-blue-700 max-w-6xl mx-auto mt-8">
           <CardHeader>
-            <CardTitle className="text-white">Documentation Includes</CardTitle>
+            <CardTitle className="text-white">Complete Documentation Package</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid md:grid-cols-2 gap-6 text-blue-100">
+            <div className="grid md:grid-cols-3 gap-6 text-blue-100">
               <div>
-                <h4 className="font-semibold text-white mb-2">Platform Pages</h4>
+                <h4 className="font-semibold text-white mb-2">Platform Coverage</h4>
                 <ul className="space-y-1 text-sm">
                   <li>• Landing page with hero section</li>
                   <li>• Authentication and login flows</li>
@@ -167,7 +211,22 @@ export default function DownloadDocsPage() {
                   <li>• Workspace View (compliance dashboard)</li>
                   <li>• Employee management system</li>
                   <li>• Training document hub</li>
+                  <li>• OSHA compliance manager</li>
                   <li>• Company profile setup</li>
+                </ul>
+              </div>
+              
+              <div>
+                <h4 className="font-semibold text-white mb-2">Visual Features</h4>
+                <ul className="space-y-1 text-sm">
+                  <li>• 16 high-quality screenshots</li>
+                  <li>• Recent platform captures</li>
+                  <li>• Clickable image viewing</li>
+                  <li>• Full-size screenshot modal</li>
+                  <li>• Print-optimized layouts</li>
+                  <li>• Professional formatting</li>
+                  <li>• Mobile-responsive design</li>
+                  <li>• Blue gradient theme consistency</li>
                 </ul>
               </div>
               
@@ -179,9 +238,9 @@ export default function DownloadDocsPage() {
                   <li>• Database schema information</li>
                   <li>• Security implementations</li>
                   <li>• Navigation structure</li>
-                  <li>• Color theme specifications</li>
                   <li>• AI integration details</li>
                   <li>• Component relationships</li>
+                  <li>• Development stack overview</li>
                 </ul>
               </div>
             </div>
@@ -190,12 +249,22 @@ export default function DownloadDocsPage() {
 
         {/* Instructions */}
         <div className="text-center mt-8">
-          <div className="bg-black/20 backdrop-blur-sm border border-blue-700 rounded-lg p-6 max-w-2xl mx-auto">
-            <h3 className="text-white font-semibold mb-2">How to Use</h3>
-            <p className="text-blue-100 text-sm">
-              Click "View Online" to preview the documentation in your browser, or "Download" to save the files locally. 
-              The HTML version is perfect for printing, while the Markdown version is ideal for editing and version control.
-            </p>
+          <div className="bg-black/20 backdrop-blur-sm border border-blue-700 rounded-lg p-6 max-w-4xl mx-auto">
+            <h3 className="text-white font-semibold mb-3">How to Use</h3>
+            <div className="grid md:grid-cols-3 gap-4 text-blue-100 text-sm">
+              <div className="text-center">
+                <h4 className="text-white font-medium mb-2">Standard Documentation</h4>
+                <p>Professional web format with complete feature descriptions and technical details.</p>
+              </div>
+              <div className="text-center">
+                <h4 className="text-emerald-400 font-medium mb-2">Visual Documentation</h4>
+                <p>Enhanced version with 16 platform screenshots, clickable images, and visual guide format - perfect for PDF printing.</p>
+              </div>
+              <div className="text-center">
+                <h4 className="text-white font-medium mb-2">Markdown Version</h4>
+                <p>Developer-friendly text format ideal for editing, version control, and technical documentation.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
