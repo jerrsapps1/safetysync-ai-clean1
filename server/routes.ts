@@ -2985,6 +2985,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
     return viewEmployeeCertificatesPublic(req, res);
   });
 
+  // AI-powered contextual help routes
+  app.use("/api/ai", (await import("./routes/ai-help.js")).default);
+
   // Register instructor training session routes
   instructorTrainingSessionRoutes(app);
 
