@@ -1,6 +1,7 @@
 import type { Express } from "express";
 import express from "express";
 import { createServer, type Server } from "http";
+import axios from "axios";
 import { storage } from "./storage";
 import { cloneDetector } from "./ai-clone-detection";
 import { emailAutomation } from "./email-automation";
@@ -842,6 +843,39 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Email automation API routes
   app.use("/api/email-automation", emailAutomationRoutes);
+
+  // Weekly summary email endpoint
+  app.post('/api/send-summary', async (req, res) => {
+    const { summary } = req.body;
+    const apiKey = process.env.BREVO_API_KEY;
+
+    if (!apiKey || !summary) {
+      return res.status(400).json({ error: 'Missing API key or summary' });
+    }
+
+    try {
+      const response = await axios.post(
+        'https://api.brevo.com/v3/smtp/email',
+        {
+          sender: { name: 'SafetySync AI', email: 'admin@safetysync.ai' },
+          to: [{ email: 'you@yourdomain.com', name: 'Admin' }],
+          subject: '📊 Weekly Signup Summary',
+          htmlContent: `<p>Hi Admin,</p><pre>${summary}</pre>`
+        },
+        {
+          headers: {
+            'api-key': apiKey,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      res.json({ success: true, messageId: response.data.messageId });
+    } catch (error) {
+      console.error('Failed to send Brevo email:', error.response?.data || error);
+      res.status(500).json({ error: 'Email failed to send' });
+    }
+  });
 
   // Promo Code API Routes - 30-day expiration system
   app.post("/api/promo-codes/apply", async (req, res) => {
