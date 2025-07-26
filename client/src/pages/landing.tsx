@@ -280,6 +280,13 @@ export default function LandingPage() {
       {/* Main Content with Sidebar Margin */}
       <div className="md:ml-16">
 
+      {/* Lifer Count Banner */}
+      <section className="bg-yellow-100 text-yellow-900 py-6 text-center shadow-inner">
+        <div className="text-xl font-bold tracking-wide">
+          🎉 {liferCount}+ companies joined the Lifer Plan
+        </div>
+      </section>
+
       {/* Hero Section */}
       <section className="relative pt-16 md:pt-32 pb-12 md:pb-32 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center overflow-hidden">
         {/* Floating Background Icons */}
