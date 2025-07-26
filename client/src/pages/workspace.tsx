@@ -3,7 +3,7 @@ import { Link, useLocation } from "wouter";
 import { useAuth } from "@/hooks/useAuth";
 import { useDashboardData } from "@/hooks/useDashboardData";
 import { motion, AnimatePresence } from "framer-motion";
-import { useDynamicAchievements } from "@/hooks/useDynamicAchievements";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -31,9 +31,7 @@ import NotificationSystem from "@/components/notifications/NotificationSystem";
 
 import SubscriptionBilling from "@/components/billing/SubscriptionBilling";
 import AnalyticsReports from "@/components/reports/AnalyticsReports";
-import AchievementBadges from "@/components/achievements/AchievementBadges";
-import DynamicAchievementWidget from "@/components/achievements/DynamicAchievementWidget";
-import { AchievementNotificationManager } from "@/components/achievements/DynamicAchievementNotification";
+
 import { InstructorSignInGenerator } from "@/components/ui/instructor-signin-generator";
 import TrainingRecordsManager from "@/components/records/TrainingRecordsManager";
 import TrainingDocumentHub from "@/components/TrainingDocumentHub";
@@ -357,7 +355,7 @@ const subItemVariants = {
 
 export default function WorkspacePage() {
   const { user, isLoading: authLoading, isAuthenticated, logout } = useAuth();
-  const { trackMilestone } = useDynamicAchievements();
+
   const [location, setLocation] = useLocation();
 
   console.log('🏢 WORKSPACE: Component render', { 
@@ -388,12 +386,7 @@ export default function WorkspacePage() {
   const { toast } = useToast();
   const { data: dashboardData, isLoading: isDashboardLoading, error: dashboardError } = useDashboardData();
   
-  // Track initial login milestone for achievements
-  useEffect(() => {
-    if (isAuthenticated && user) {
-      trackMilestone('login', { timestamp: new Date() });
-    }
-  }, [isAuthenticated, user, trackMilestone]);
+
   const [workspaceSettings, setWorkspaceSettings] = useState<WorkspaceSettings>({
     companyName: "SafetySync.AI",
     companyLogo: "",
@@ -411,10 +404,9 @@ export default function WorkspacePage() {
       const newUrl = `/workspace?tab=${tab}`;
       window.history.pushState({}, '', newUrl);
       
-      // Track tab navigation achievement
-      trackMilestone('tab_navigation', { tabName: tab, timestamp: new Date() });
+
     }
-  }, [activeTab, trackMilestone]);
+  }, [activeTab]);
 
   // Toggle section expansion
   const toggleSection = useCallback((sectionId: string) => {
@@ -462,7 +454,7 @@ export default function WorkspacePage() {
       "certification-progress": <Award className="w-5 h-5" />,
       "compliance-trends": <BarChart3 className="w-5 h-5" />,
       "quick-search": <Search className="w-5 h-5" />,
-      "achievement-progress": <Award className="w-5 h-5" />,
+
       // Trends widget icons
       "safety-trends-chart": <Activity className="w-5 h-5" />,
       "compliance-metrics": <TrendingUp className="w-5 h-5" />,
@@ -551,12 +543,7 @@ export default function WorkspacePage() {
       defaultProps: { x: 12, y: 18, w: 12, h: 5 },
       visible: true
     },
-    {
-      id: "achievement-progress",
-      title: "Achievement Progress",
-      defaultProps: { x: 0, y: 23, w: 12, h: 6 },
-      visible: true
-    },
+
     {
       id: "department-performance",
       title: "Department Performance",
@@ -1188,13 +1175,8 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         : widget
     ));
     
-    // Track widget interaction achievement
-    trackMilestone('widget_customized', { 
-      widgetId, 
-      action: 'toggle_visibility',
-      timestamp: new Date() 
-    });
-  }, [trackMilestone]);
+
+  }, []);
 
   // Group selection functions
   const toggleWidgetSelection = useCallback((widgetId: string, event?: React.MouseEvent) => {
@@ -1273,12 +1255,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
       layoutUpdateRef.current = true;
       setLayouts(allLayouts);
       
-      // Track widget layout customization achievement
-      trackMilestone('widget_customized', { 
-        action: 'layout_change',
-        widgetCount: widgets.length,
-        timestamp: new Date() 
-      });
+
       
       // Reset the flag after a short delay
       setTimeout(() => {
@@ -1656,12 +1633,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             </div>
           </div>
         );
-      case "achievement-progress":
-        return (
-          <div className="h-full overflow-hidden">
-            <DynamicAchievementWidget isSmall={isSmall} />
-          </div>
-        );
+
       case "osha-training":
         return (
           <div className="h-full overflow-hidden">
@@ -2360,17 +2332,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             </Button>
             {expandedSections['system-tools'] && (
                 <div className="ml-6 space-y-1">
-                  <Button
-                    variant="ghost"
-                    className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
-                      activeTab === "achievements" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
-                    }`}
-                    onClick={() => handleTabSwitch("achievements")}
-                    title="Achievements & Milestones"
-                  >
-                    <Award className="w-4 h-4 mr-3 flex-shrink-0" />
-                    {sidebarOpen && <span className="truncate">Achievements & Milestones</span>}
-                  </Button>
+
                   <Button
                     variant="ghost"
                     className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
@@ -2482,7 +2444,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
                 {activeTab === "subscription-billing" && "Subscription & Billing"}
                 {activeTab === "analytics-reports" && "Analytics & Reports"}
-                {activeTab === "achievements" && "Achievements & Milestones"}
+
                 {activeTab === "document-manager" && "Document Management"}
                 {activeTab === "company-profile" && "Company Profile"}
                 {activeTab === "settings" && "Workspace Settings"}
@@ -2518,7 +2480,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
                 {activeTab === "subscription-billing" && "Manage your plan and billing information"}
                 {activeTab === "analytics-reports" && "Generate comprehensive analytics and reports"}
-                {activeTab === "achievements" && "Track your safety milestones and earn achievement badges"}
+
                 {activeTab === "document-manager" && "Upload, organize, and manage safety documents"}
                 {activeTab === "company-profile" && "Manage your company profile and business information"}
                 {activeTab === "settings" && "Configure your workspace and branding"}
@@ -3333,11 +3295,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             </div>
           )}
 
-          {activeTab === "achievements" && (
-            <div className="p-8">
-              <AchievementBadges />
-            </div>
-          )}
+
 
           {activeTab === "company-profile" && (
             <div className="p-8">
@@ -3844,8 +3802,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         </DialogContent>
       </Dialog>
 
-      {/* Achievement Notification System */}
-      <AchievementNotificationManager />
+
       
 
 
