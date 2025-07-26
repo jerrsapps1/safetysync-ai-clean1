@@ -127,6 +127,10 @@ export default {
           "0%": { backgroundPosition: "-200px 0" },
           "100%": { backgroundPosition: "calc(200px + 100%) 0" },
         },
+        fadeIn: {
+          "0%": { opacity: "0", transform: "scale(0.95)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -138,6 +142,7 @@ export default {
         "gradient-shift": "gradient-shift 15s ease infinite",
         "grid-flow": "grid-flow 20s linear infinite",
         shimmer: "shimmer 2s ease-in-out infinite",
+        "fade-in": "fadeIn 0.3s ease-in-out",
       },
       backdropBlur: {
         xs: "2px",
