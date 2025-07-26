@@ -103,6 +103,74 @@ export const promoCodeUsage = pgTable("promo_code_usage", {
   orderId: text("order_id"), // Link to billing system
 });
 
+// Shopping cart items
+export const cartItems = pgTable("cart_items", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id),
+  sessionId: text("session_id"), // For anonymous users
+  itemType: text("item_type").notNull(), // 'certificate', 'wallet_card', 'training_package', 'ai_credits', 'branding_package'
+  itemName: text("item_name").notNull(),
+  quantity: integer("quantity").notNull().default(1),
+  unitPrice: decimal("unit_price", { precision: 10, scale: 2 }).notNull(),
+  totalPrice: decimal("total_price", { precision: 10, scale: 2 }).notNull(),
+  discountApplied: decimal("discount_applied", { precision: 10, scale: 2 }).default("0"),
+  metadata: jsonb("metadata"), // Additional item details
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+// Purchase orders
+export const purchaseOrders = pgTable("purchase_orders", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  orderNumber: text("order_number").notNull().unique(),
+  status: text("status", { enum: ["pending", "processing", "completed", "failed", "refunded"] }).default("pending"),
+  subtotal: decimal("subtotal", { precision: 10, scale: 2 }).notNull(),
+  discountAmount: decimal("discount_amount", { precision: 10, scale: 2 }).default("0"),
+  totalAmount: decimal("total_amount", { precision: 10, scale: 2 }).notNull(),
+  paymentMethod: text("payment_method"), // 'stripe', 'paypal', 'invoice'
+  stripePaymentIntentId: text("stripe_payment_intent_id"),
+  notes: text("notes"),
+  createdAt: timestamp("created_at").defaultNow(),
+  completedAt: timestamp("completed_at"),
+});
+
+// Purchase order items
+export const purchaseOrderItems = pgTable("purchase_order_items", {
+  id: serial("id").primaryKey(),
+  orderId: integer("order_id").references(() => purchaseOrders.id).notNull(),
+  itemType: text("item_type").notNull(),
+  itemName: text("item_name").notNull(),
+  quantity: integer("quantity").notNull(),
+  unitPrice: decimal("unit_price", { precision: 10, scale: 2 }).notNull(),
+  totalPrice: decimal("total_price", { precision: 10, scale: 2 }).notNull(),
+  metadata: jsonb("metadata"),
+});
+
+// Certificate and wallet card balances
+export const userBalances = pgTable("user_balances", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull().unique(),
+  certificatesRemaining: integer("certificates_remaining").default(0),
+  walletCardsRemaining: integer("wallet_cards_remaining").default(0),
+  aiCreditsRemaining: integer("ai_credits_remaining").default(0),
+  lastPurchaseAt: timestamp("last_purchase_at"),
+  lowBalanceAlertSent: boolean("low_balance_alert_sent").default(false),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+// Certificate and wallet card usage tracking
+export const usageHistory = pgTable("usage_history", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  itemType: text("item_type").notNull(), // 'certificate', 'wallet_card', 'ai_credit'
+  action: text("action").notNull(), // 'purchased', 'used', 'refunded'
+  quantity: integer("quantity").notNull(),
+  description: text("description"),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 // Enhanced Employee Management
 export const employees = pgTable("employees", {
   id: serial("id").primaryKey(),
@@ -471,6 +539,34 @@ export const insertPromoCodeUsageSchema = createInsertSchema(promoCodeUsage).omi
   usedAt: true,
 });
 
+// Shopping cart and purchase schemas
+export const insertCartItemSchema = createInsertSchema(cartItems).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertPurchaseOrderSchema = createInsertSchema(purchaseOrders).omit({
+  id: true,
+  orderNumber: true,
+  createdAt: true,
+  completedAt: true,
+});
+
+export const insertPurchaseOrderItemSchema = createInsertSchema(purchaseOrderItems).omit({
+  id: true,
+});
+
+export const insertUserBalanceSchema = createInsertSchema(userBalances).omit({
+  id: true,
+  updatedAt: true,
+});
+
+export const insertUsageHistorySchema = createInsertSchema(usageHistory).omit({
+  id: true,
+  createdAt: true,
+});
+
 // New schemas for enhanced functionality
 export const insertEmployeeSchema = createInsertSchema(employees).omit({
   id: true,
@@ -730,6 +826,18 @@ export type InsertHelpDeskTicket = z.infer<typeof insertHelpDeskTicketSchema>;
 export type HelpDeskTicket = typeof helpDeskTickets.$inferSelect;
 export type InsertPromoCodeUsage = z.infer<typeof insertPromoCodeUsageSchema>;
 export type PromoCodeUsage = typeof promoCodeUsage.$inferSelect;
+
+// Shopping cart and purchase types
+export type InsertCartItem = z.infer<typeof insertCartItemSchema>;
+export type CartItem = typeof cartItems.$inferSelect;
+export type InsertPurchaseOrder = z.infer<typeof insertPurchaseOrderSchema>;
+export type PurchaseOrder = typeof purchaseOrders.$inferSelect;
+export type InsertPurchaseOrderItem = z.infer<typeof insertPurchaseOrderItemSchema>;
+export type PurchaseOrderItem = typeof purchaseOrderItems.$inferSelect;
+export type InsertUserBalance = z.infer<typeof insertUserBalanceSchema>;
+export type UserBalance = typeof userBalances.$inferSelect;
+export type InsertUsageHistory = z.infer<typeof insertUsageHistorySchema>;
+export type UsageHistory = typeof usageHistory.$inferSelect;
 
 // Enhanced functionality types
 export type InsertEmployee = z.infer<typeof insertEmployeeSchema>;
