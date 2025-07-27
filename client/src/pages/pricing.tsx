@@ -19,6 +19,14 @@ export default function PricingPage() {
     if (window.clarity) window.clarity('set', 'page_visited', 'pricing');
   }, []);
 
+  // Debug: Add red borders to all sections
+  useEffect(() => {
+    document.querySelectorAll("section").forEach(sec => {
+      sec.style.border = "2px dashed red";
+      sec.style.marginBottom = "2rem";
+    });
+  }, []);
+
   const handleAddToCart = (itemType: 'certificate' | 'wallet_card', quantity: number) => {
     const itemName = itemType === 'certificate' ? 'OSHA Training Certificate' : 'Digital Wallet Card';
     addToCart({
