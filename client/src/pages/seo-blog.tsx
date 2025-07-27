@@ -138,7 +138,7 @@ export default function SEOBlogPage() {
                 className="w-full pl-10 pr-4 py-3 rounded-lg border border-blue-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-blue-800"
               />
             </div>
-            <Button className="bg-blue-900 text-blue-600 hover:bg-blue-100 px-6 py-3">
+            <Button className="bg-blue-900 text-blue-600  px-6 py-3">
               Subscribe to Updates
             </Button>
           </div>
@@ -152,7 +152,7 @@ export default function SEOBlogPage() {
             <Badge
               key={category}
               variant={category === 'All' ? 'default' : 'outline'}
-              className="cursor-pointer hover:bg-blue-100 px-4 py-2"
+              className="cursor-pointer  px-4 py-2"
             >
               {category}
             </Badge>
@@ -315,7 +315,7 @@ export default function SEOBlogPage() {
           </div>
           
           <div className="mt-8 text-center">
-            <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+            <Button size="lg" className="bg-blue-600 ">
               Start Your Free Trial Today
             </Button>
             <p className="text-sm text-blue-400 mt-2">

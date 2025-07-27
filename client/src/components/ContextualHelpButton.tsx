@@ -134,7 +134,7 @@ Keep responses focused on OSHA compliance, safety management, training documenta
         <Button
           variant="ghost"
           size="sm"
-          className="text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 border-blue-400"
+          className="text-blue-100  /50 border-blue-400"
           title="Get AI-powered help"
         >
           <HelpCircle className="w-4 h-4" />
@@ -169,7 +169,7 @@ Keep responses focused on OSHA compliance, safety management, training documenta
           <Button
             onClick={handleGetHelp}
             disabled={isLoading || !question.trim()}
-            className="w-full bg-blue-700 hover:bg-blue-800 text-white"
+            className="w-full bg-blue-700  text-white"
           >
             {isLoading ? (
               <>
@@ -218,7 +218,7 @@ Keep responses focused on OSHA compliance, safety management, training documenta
                         variant="outline"
                         size="sm"
                         onClick={() => handleQuickAction(action.action)}
-                        className="w-full justify-start bg-black/10 border-blue-600 text-white hover:bg-blue-600/20"
+                        className="w-full justify-start bg-black/10 border-blue-600 text-white /20"
                       >
                         {action.label}
                       </Button>

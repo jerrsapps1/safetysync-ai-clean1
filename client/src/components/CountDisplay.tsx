@@ -183,7 +183,7 @@ export default function CountDisplay({
   const sizeClass = sizeClasses[size];
 
   return (
-    <Card className="bg-blue-800/30 backdrop-blur-sm border-blue-700/50 hover:bg-blue-800/30 transition-all duration-300">
+    <Card className="bg-blue-800/30 backdrop-blur-sm border-blue-700/50 /30 ">
       <CardContent className={sizeClass.card}>
         <div className="flex items-center justify-between">
           <div className="flex-1">

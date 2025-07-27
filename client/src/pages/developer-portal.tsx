@@ -350,15 +350,15 @@ cron.schedule('0 9 1 * *', async () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <a href="#" className="block p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+                  <a href="#" className="block p-3 bg-blue-50 rounded-lg  transition-colors">
                     <h4 className="font-medium">API Reference</h4>
                     <p className="text-sm text-blue-500">Complete endpoint documentation with examples</p>
                   </a>
-                  <a href="#" className="block p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+                  <a href="#" className="block p-3 bg-blue-50 rounded-lg  transition-colors">
                     <h4 className="font-medium">Authentication Guide</h4>
                     <p className="text-sm text-blue-500">Learn about API keys, JWT tokens, and security</p>
                   </a>
-                  <a href="#" className="block p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+                  <a href="#" className="block p-3 bg-blue-50 rounded-lg  transition-colors">
                     <h4 className="font-medium">Webhook Documentation</h4>
                     <p className="text-sm text-blue-500">Set up real-time event notifications</p>
                   </a>
@@ -373,15 +373,15 @@ cron.schedule('0 9 1 * *', async () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <a href="#" className="block p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+                  <a href="#" className="block p-3 bg-blue-50 rounded-lg  transition-colors">
                     <h4 className="font-medium">GitHub Repository</h4>
                     <p className="text-sm text-blue-500">Sample applications and integration examples</p>
                   </a>
-                  <a href="#" className="block p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+                  <a href="#" className="block p-3 bg-blue-50 rounded-lg  transition-colors">
                     <h4 className="font-medium">Postman Collection</h4>
                     <p className="text-sm text-blue-500">Ready-to-use API calls for testing</p>
                   </a>
-                  <a href="#" className="block p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+                  <a href="#" className="block p-3 bg-blue-50 rounded-lg  transition-colors">
                     <h4 className="font-medium">Integration Templates</h4>
                     <p className="text-sm text-blue-500">Common integration patterns and workflows</p>
                   </a>

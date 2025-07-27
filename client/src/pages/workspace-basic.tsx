@@ -106,7 +106,7 @@ export default function WorkspaceBasic() {
 
       <div className="flex min-h-screen relative z-10">
         {/* Sidebar */}
-        <div className={`${sidebarOpen ? 'w-64' : 'w-16'} bg-blue-500/50 backdrop-blur-sm border-r border-blue-400 flex flex-col transition-all duration-300`}>
+        <div className={`${sidebarOpen ? 'w-64' : 'w-16'} bg-blue-500/50 backdrop-blur-sm border-r border-blue-400 flex flex-col `}>
           {/* Header */}
           <div className="p-4 border-b border-blue-700">
             <div className="flex items-center justify-between">
@@ -125,7 +125,7 @@ export default function WorkspaceBasic() {
                 variant="ghost"
                 size="sm"
                 onClick={() => setSidebarOpen(!sidebarOpen)}
-                className="text-blue-100 hover:text-blue-200"
+                className="text-blue-100 "
               >
                 {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </Button>
@@ -137,7 +137,7 @@ export default function WorkspaceBasic() {
             {/* Dashboard */}
             <Button
               variant="ghost"
-              className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
+              className={`w-full justify-start text-blue-100  /50 pl-3 ${
                 activeTab === "dashboard" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("dashboard")}
@@ -150,7 +150,7 @@ export default function WorkspaceBasic() {
             {/* Instructor Sign-In Generator */}
             <Button
               variant="ghost"
-              className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
+              className={`w-full justify-start text-blue-100  /50 pl-3 ${
                 activeTab === "instructor-signin" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("instructor-signin")}
@@ -163,7 +163,7 @@ export default function WorkspaceBasic() {
             {/* Training Records */}
             <Button
               variant="ghost"
-              className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
+              className={`w-full justify-start text-blue-100  /50 pl-3 ${
                 activeTab === "training-records" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("training-records")}
@@ -176,7 +176,7 @@ export default function WorkspaceBasic() {
             {/* Document Hub */}
             <Button
               variant="ghost"
-              className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
+              className={`w-full justify-start text-blue-100  /50 pl-3 ${
                 activeTab === "document-hub" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("document-hub")}
@@ -189,7 +189,7 @@ export default function WorkspaceBasic() {
             {/* Employee Management */}
             <Button
               variant="ghost"
-              className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
+              className={`w-full justify-start text-blue-100  /50 pl-3 ${
                 activeTab === "employees" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("employees")}
@@ -217,7 +217,7 @@ export default function WorkspaceBasic() {
             )}
             <Button
               variant="ghost"
-              className="w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50"
+              className="w-full justify-start text-blue-100  /50"
               onClick={handleLogout}
             >
               <LogOut className="w-5 h-5 mr-3" />

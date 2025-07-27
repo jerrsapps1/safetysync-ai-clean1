@@ -31,7 +31,7 @@ export default function LandingPageSimple() {
               if (window.clarity) window.clarity('set', 'comparison_modal_opened', true);
               setShowModal(true);
             }}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl shadow-md transition duration-200"
+            className="bg-blue-600  text-white px-6 py-2 rounded-xl shadow-md "
           >
             See Competitor Comparison
           </button>

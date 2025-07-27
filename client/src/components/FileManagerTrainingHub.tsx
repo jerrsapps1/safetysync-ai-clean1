@@ -585,7 +585,7 @@ This training file was created using the Create File system.`
             <Button
               onClick={() => setIsCreateFileDialogOpen(true)}
               size="sm"
-              className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-full"
+              className="bg-blue-600  text-white text-sm px-4 py-2 rounded-full"
             >
               + New
             </Button>
@@ -641,7 +641,7 @@ This training file was created using the Create File system.`
         
         {/* Back button when in subfolder */}
         {currentPath.length > 0 && (
-          <div className="grid grid-cols-12 gap-4 p-4 border-b border-blue-100 hover:bg-blue-50 cursor-pointer items-center"
+          <div className="grid grid-cols-12 gap-4 p-4 border-b border-blue-100  cursor-pointer items-center"
                onClick={navigateBack}>
             <div className="col-span-1">
               <input type="checkbox" className="rounded opacity-50" disabled />
@@ -660,7 +660,7 @@ This training file was created using the Create File system.`
         {getCurrentLevelDocuments().map((doc) => (
           <div
             key={doc.id}
-            className="grid grid-cols-12 gap-4 p-4 border-b border-blue-100 hover:bg-blue-50 cursor-pointer items-center"
+            className="grid grid-cols-12 gap-4 p-4 border-b border-blue-100  cursor-pointer items-center"
             onClick={() => handleViewDocument(doc)}
           >
             <div className="col-span-1">
@@ -742,7 +742,7 @@ This training file was created using the Create File system.`
               </Button>
               <Button
                 onClick={handleCreateFile}
-                className="bg-blue-600 hover:bg-blue-700"
+                className="bg-blue-600 "
               >
                 Create File
               </Button>

@@ -232,7 +232,7 @@ export default function HelpDeskManagement() {
               tickets.map((ticket) => (
                 <div
                   key={ticket.id}
-                  className="border rounded-lg p-4 hover:bg-blue-50"
+                  className="border rounded-lg p-4 "
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex-1">

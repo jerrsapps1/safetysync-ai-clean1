@@ -36,7 +36,7 @@ export function PageHeader({}: PageHeaderProps) {
       <Button
         variant="ghost"
         size="sm"
-        className="fixed top-4 left-4 z-50 md:hidden bg-blue-700/80 border border-blue-500 text-blue-800 hover:bg-blue-600/80 shadow-md"
+        className="fixed top-4 left-4 z-50 md:hidden bg-blue-700/80 border border-blue-500 text-blue-800 /80 shadow-md"
         onClick={() => setIsMobileOpen(!isMobileOpen)}
       >
         {isMobileOpen ? <X className="h-5 w-5 text-blue-800" /> : <Menu className="h-5 w-5 text-blue-800" />}
@@ -45,7 +45,7 @@ export function PageHeader({}: PageHeaderProps) {
       {/* Hover-Based Icon Sidebar - Always Visible on Desktop */}
       <aside 
         className={`
-          fixed left-0 top-0 z-40 h-full transition-all duration-300 ease-in-out
+          fixed left-0 top-0 z-40 h-full  ease-in-out
           bg-blue-900/90 backdrop-blur-sm border-r border-violet-500/30 shadow-2xl
           ${isMobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
           ${isHovered ? 'w-64' : 'w-16'}
@@ -78,7 +78,7 @@ export function PageHeader({}: PageHeaderProps) {
               className={`
                 ${!isHovered ? 'w-12 h-12 p-0 justify-center' : 'w-full justify-start px-3'} 
                 bg-violet-500 hover:bg-emerald-600 text-white font-bold border-2 border-emerald-700
-                shadow-2xl transition-all duration-300 ring-2 ring-emerald-300/50
+                shadow-2xl  ring-2 ring-emerald-300/50
               `}
               onClick={() => setIsMobileOpen(false)}
               title={!isHovered ? "Client Login" : undefined}

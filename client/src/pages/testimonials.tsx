@@ -193,7 +193,7 @@ export default function TestimonialsPage() {
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
           {researchScenarios.map((scenario) => (
-            <Card key={scenario.id} className="p-6 hover:shadow-xl transition-all duration-300 bg-blue-700/50 border-blue-600/50 backdrop-blur-sm hover:bg-blue-700/70">
+            <Card key={scenario.id} className="p-6 hover:shadow-xl  bg-blue-700/50 border-blue-600/50 backdrop-blur-sm /70">
               <CardContent className="p-0">
                 {/* Header */}
                 <div className="flex items-start justify-between mb-4">
@@ -295,7 +295,7 @@ export default function TestimonialsPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/">
-                <Button size="lg" className="bg-blue-900 text-blue-600 hover:bg-blue-100">
+                <Button size="lg" className="bg-blue-900 text-blue-600 ">
                   Start Free Trial
                 </Button>
               </Link>

@@ -162,7 +162,7 @@ export default function Helpdesk() {
                 <h1 className="text-2xl font-bold text-white">Support Ticket #{selectedTicketData.id}</h1>
               </div>
             </div>
-            <Link href="/" className="text-blue-100 hover:text-blue-200">
+            <Link href="/" className="text-blue-100 ">
               <Button variant="ghost" className="text-white hover:bg-blue-900/60">
                 Home
               </Button>
@@ -247,7 +247,7 @@ export default function Helpdesk() {
                 <Button 
                   onClick={() => handleAddResponse(selectedTicketData.id)}
                   disabled={!newResponse.trim() || addResponseMutation.isPending}
-                  className="bg-blue-600 hover:bg-blue-700"
+                  className="bg-blue-600 "
                 >
                   {addResponseMutation.isPending ? 'Sending...' : 'Send Response'}
                 </Button>
@@ -268,7 +268,7 @@ export default function Helpdesk() {
             <SafetySyncIcon className="w-8 h-8" />
             <h1 className="text-3xl font-bold text-white">Support Helpdesk</h1>
           </div>
-          <Link href="/" className="text-blue-100 hover:text-blue-200">
+          <Link href="/" className="text-blue-100 ">
             <Button variant="ghost" className="text-white hover:bg-blue-900/60">
               Home
             </Button>
@@ -388,7 +388,7 @@ export default function Helpdesk() {
                   <p className="text-white mb-4">You haven't created any support tickets yet.</p>
                   <Button
                     onClick={() => document.querySelector('[data-value="create"]')?.click()}
-                    className="bg-blue-600 hover:bg-blue-700"
+                    className="bg-blue-600 "
                   >
                     Create Your First Ticket
                   </Button>
@@ -465,7 +465,7 @@ export default function Helpdesk() {
                 <Button
                   onClick={handleCreateTicket}
                   disabled={createTicketMutation.isPending}
-                  className="bg-blue-600 hover:bg-blue-700"
+                  className="bg-blue-600 "
                 >
                   {createTicketMutation.isPending ? 'Creating...' : 'Create Ticket'}
                 </Button>

@@ -312,7 +312,7 @@ export default function NotificationSystem() {
             <Plus className="w-4 h-4 mr-2" />
             Create Alert
           </Button>
-          <Button className="bg-blue-500 hover:bg-blue-600 text-white">
+          <Button className="bg-blue-500  text-white">
             <Settings className="w-4 h-4 mr-2" />
             Preferences
           </Button>
@@ -406,21 +406,21 @@ export default function NotificationSystem() {
         <TabsList className="grid w-full grid-cols-3 bg-black/20 backdrop-blur-sm border-blue-700">
           <TabsTrigger 
             value="notifications" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100 hover:text-blue-200 transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100  "
           >
             <Bell className="h-4 w-4" />
             Notifications
           </TabsTrigger>
           <TabsTrigger 
             value="preferences" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100 hover:text-blue-200 transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100  "
           >
             <Settings className="h-4 w-4" />
             Preferences
           </TabsTrigger>
           <TabsTrigger 
             value="alerts" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100 hover:text-blue-200 transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100  "
           >
             <AlertTriangle className="h-4 w-4" />
             Alert Rules
@@ -480,7 +480,7 @@ export default function NotificationSystem() {
                       <Button
                         key={index}
                         size="sm"
-                        className="bg-blue-500 hover:bg-blue-600 text-white"
+                        className="bg-blue-500  text-white"
                       >
                         {action.label}
                       </Button>

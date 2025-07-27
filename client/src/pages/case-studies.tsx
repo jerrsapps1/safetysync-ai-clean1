@@ -196,7 +196,7 @@ export default function CaseStudiesPage() {
           <h2 className="text-2xl font-bold text-white mb-8">Featured Success Stories</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {featuredStudies.map((study) => (
-              <Card key={study.id} className="hover:shadow-xl transition-all duration-300 bg-blue-700/50 border-blue-600/50 backdrop-blur-sm hover:bg-blue-700/70">
+              <Card key={study.id} className="hover:shadow-xl  bg-blue-700/50 border-blue-600/50 backdrop-blur-sm /70">
                 <CardHeader>
                   <div className="flex items-center justify-between mb-2">
                     <Badge variant="outline" className="bg-violet-500/20 text-emerald-300 border-violet-500/30">
@@ -286,7 +286,7 @@ export default function CaseStudiesPage() {
           <h2 className="text-2xl font-bold text-white mb-8">More Success Stories</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {allStudies.map((study) => (
-              <Card key={study.id} className="hover:shadow-lg transition-shadow bg-blue-700/50 border-blue-600/50 backdrop-blur-sm hover:bg-blue-700/70">
+              <Card key={study.id} className="hover:shadow-lg transition-shadow bg-blue-700/50 border-blue-600/50 backdrop-blur-sm /70">
                 <CardHeader>
                   <div className="flex items-center justify-between mb-2">
                     <CardTitle className="text-lg text-white">{study.company}</CardTitle>
@@ -368,7 +368,7 @@ export default function CaseStudiesPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/">
-                <Button size="lg" className="bg-blue-900 text-blue-600 hover:bg-blue-100">
+                <Button size="lg" className="bg-blue-900 text-blue-600 ">
                   Start Your Transformation
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>

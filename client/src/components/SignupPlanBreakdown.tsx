@@ -145,7 +145,7 @@ export default function SignupPlanBreakdown() {
               variant={timeframe === '7d' ? 'default' : 'ghost'}
               size="sm"
               onClick={() => setTimeframe('7d')}
-              className={timeframe === '7d' ? 'bg-blue-600 text-white' : 'text-blue-200 hover:text-blue-200 hover:bg-blue-800/30'}
+              className={timeframe === '7d' ? 'bg-blue-600 text-white' : 'text-blue-200  /30'}
             >
               7 Days
             </Button>
@@ -153,7 +153,7 @@ export default function SignupPlanBreakdown() {
               variant={timeframe === '30d' ? 'default' : 'ghost'}
               size="sm"
               onClick={() => setTimeframe('30d')}
-              className={timeframe === '30d' ? 'bg-blue-600 text-white' : 'text-blue-200 hover:text-blue-200 hover:bg-blue-800/30'}
+              className={timeframe === '30d' ? 'bg-blue-600 text-white' : 'text-blue-200  /30'}
             >
               30 Days
             </Button>
@@ -163,7 +163,7 @@ export default function SignupPlanBreakdown() {
             onClick={exportData}
             variant="outline"
             size="sm"
-            className="border-blue-600 text-blue-200 hover:bg-blue-600 hover:text-blue-200"
+            className="border-blue-600 text-blue-200  "
           >
             <Download className="h-4 w-4 mr-2" />
             Export

@@ -235,7 +235,7 @@ const QuickSearchWidget = () => {
   const renderListView = () => (
     <div className="space-y-1 pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
       {filteredEmployees.map(employee => (
-        <div key={employee.id} className="flex items-center justify-between p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+        <div key={employee.id} className="flex items-center justify-between p-3 bg-blue-50 rounded-lg  transition-colors">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
               <span className="text-blue-600 font-semibold text-sm">
@@ -275,7 +275,7 @@ const QuickSearchWidget = () => {
         </thead>
         <tbody>
           {filteredEmployees.map(employee => (
-            <tr key={employee.id} className="border-b hover:bg-blue-50">
+            <tr key={employee.id} className="border-b ">
               <td className="p-2">
                 <div className="flex items-center gap-2">
                   <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">

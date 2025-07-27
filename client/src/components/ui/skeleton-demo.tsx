@@ -26,7 +26,7 @@ export const SkeletonDemo = () => {
           </p>
           <Button
             onClick={simulateLoading}
-            className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-300"
+            className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-semibold px-8 py-3 rounded-lg "
           >
             <Sparkles className="w-4 h-4 mr-2" />
             Simulate Loading

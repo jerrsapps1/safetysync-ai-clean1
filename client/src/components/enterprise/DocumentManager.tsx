@@ -395,7 +395,7 @@ const DocumentManager: React.FC = () => {
               
               <Dialog open={isUploadDialogOpen} onOpenChange={setIsUploadDialogOpen}>
                 <DialogTrigger asChild>
-                  <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                  <Button className="bg-blue-600  text-white">
                     <Upload className="w-4 h-4 mr-2" />
                     Upload
                   </Button>
@@ -479,7 +479,7 @@ const DocumentManager: React.FC = () => {
                       <Button variant="outline" onClick={() => setIsUploadDialogOpen(false)}>
                         Cancel
                       </Button>
-                      <Button onClick={handleUpload} className="bg-blue-600 hover:bg-blue-700">
+                      <Button onClick={handleUpload} className="bg-blue-600 ">
                         Upload Document
                       </Button>
                     </div>
@@ -558,7 +558,7 @@ const DocumentManager: React.FC = () => {
                       size="sm"
                       variant="ghost"
                       onClick={() => handleViewDocument(doc)}
-                      className="text-blue-100 hover:text-blue-200"
+                      className="text-blue-100 "
                     >
                       <Eye className="w-4 h-4" />
                     </Button>
@@ -566,14 +566,14 @@ const DocumentManager: React.FC = () => {
                       size="sm"
                       variant="ghost"
                       onClick={() => handleDownload(doc)}
-                      className="text-blue-100 hover:text-blue-200"
+                      className="text-blue-100 "
                     >
                       <Download className="w-4 h-4" />
                     </Button>
                     <Button
                       size="sm"
                       variant="ghost"
-                      className="text-blue-100 hover:text-blue-200"
+                      className="text-blue-100 "
                     >
                       <Edit className="w-4 h-4" />
                     </Button>
@@ -658,7 +658,7 @@ const DocumentManager: React.FC = () => {
                 <Button variant="outline" onClick={() => setIsViewDialogOpen(false)}>
                   Close
                 </Button>
-                <Button onClick={() => handleDownload(selectedDocument)} className="bg-blue-600 hover:bg-blue-700">
+                <Button onClick={() => handleDownload(selectedDocument)} className="bg-blue-600 ">
                   <Download className="w-4 h-4 mr-2" />
                   Download
                 </Button>

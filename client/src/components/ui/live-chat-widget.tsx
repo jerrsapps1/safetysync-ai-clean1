@@ -163,7 +163,7 @@ export function LiveChatWidget({ isOpen, onToggle, onClose }: LiveChatWidgetProp
         <Button
           onClick={onToggle}
           size="lg"
-          className="rounded-full w-14 h-14 shadow-lg hover:shadow-xl transition-all duration-200"
+          className="rounded-full w-14 h-14 shadow-lg hover:shadow-xl "
         >
           <MessageCircle className="w-6 h-6" />
         </Button>
@@ -174,7 +174,7 @@ export function LiveChatWidget({ isOpen, onToggle, onClose }: LiveChatWidgetProp
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
-      <Card className={`w-80 shadow-xl transition-all duration-300 ${isMinimized ? 'h-14' : 'h-[420px]'}`}>
+      <Card className={`w-80 shadow-xl  ${isMinimized ? 'h-14' : 'h-[420px]'}`}>
         {/* Header */}
         <CardHeader className="p-4 bg-blue-600 text-white rounded-t-lg">
           <div className="flex items-center justify-between">
@@ -201,7 +201,7 @@ export function LiveChatWidget({ isOpen, onToggle, onClose }: LiveChatWidgetProp
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsMinimized(!isMinimized)}
-                className="h-6 w-6 p-0 text-white hover:bg-blue-500"
+                className="h-6 w-6 p-0 text-white 0"
               >
                 {isMinimized ? <Maximize2 className="w-3 h-3" /> : <Minimize2 className="w-3 h-3" />}
               </Button>
@@ -209,7 +209,7 @@ export function LiveChatWidget({ isOpen, onToggle, onClose }: LiveChatWidgetProp
                 variant="ghost"
                 size="sm"
                 onClick={onClose}
-                className="h-6 w-6 p-0 text-white hover:bg-blue-500"
+                className="h-6 w-6 p-0 text-white 0"
               >
                 <X className="w-3 h-3" />
               </Button>
@@ -273,7 +273,7 @@ export function LiveChatWidget({ isOpen, onToggle, onClose }: LiveChatWidgetProp
                         key={reply}
                         variant="outline"
                         size="sm"
-                        className="text-xs h-8 px-3 justify-start bg-blue-900 hover:bg-blue-50 text-left"
+                        className="text-xs h-8 px-3 justify-start bg-blue-900  text-left"
                         onClick={() => handleQuickReply(reply)}
                       >
                         {reply}

@@ -252,7 +252,7 @@ export function DemoRequestDialog({ isOpen, onClose, onSubmit }: DemoRequestDial
                           variant="outline" 
                           size="sm" 
                           onClick={() => copyPromoCode(code)}
-                          className="h-8 w-8 p-0 bg-blue-50 border-blue-200 hover:bg-blue-100"
+                          className="h-8 w-8 p-0 bg-blue-50 border-blue-200 "
                         >
                           <Copy className="w-3 h-3 text-blue-600" />
                         </Button>

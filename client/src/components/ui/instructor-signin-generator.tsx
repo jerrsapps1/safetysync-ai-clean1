@@ -2294,15 +2294,15 @@ END:VCALENDAR`;
               <CardContent className="space-y-4">
                 <Tabs defaultValue="search" className="w-full">
                   <TabsList className="flex flex-col w-full space-y-2 bg-transparent p-0 h-auto">
-                    <TabsTrigger value="search" className="flex items-center justify-start gap-2 text-sm w-full bg-blue-700/50 border border-blue-600 text-white hover:bg-blue-600/50 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
+                    <TabsTrigger value="search" className="flex items-center justify-start gap-2 text-sm w-full bg-blue-700/50 border border-blue-600 text-white /50 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
                       <Search className="w-4 h-4" />
                       Quick Search
                     </TabsTrigger>
-                    <TabsTrigger value="manual" className="flex items-center justify-start gap-2 text-sm w-full bg-blue-700/50 border border-blue-600 text-white hover:bg-blue-600/50 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
+                    <TabsTrigger value="manual" className="flex items-center justify-start gap-2 text-sm w-full bg-blue-700/50 border border-blue-600 text-white /50 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
                       <UserPlus className="w-4 h-4" />
                       Manual Entry
                     </TabsTrigger>
-                    <TabsTrigger value="manage" className="flex items-center justify-start gap-2 text-sm w-full bg-blue-700/50 border border-blue-600 text-white hover:bg-blue-600/50 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
+                    <TabsTrigger value="manage" className="flex items-center justify-start gap-2 text-sm w-full bg-blue-700/50 border border-blue-600 text-white /50 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
                       <Settings className="w-4 h-4" />
                       Manage Students
                     </TabsTrigger>
@@ -2636,7 +2636,7 @@ END:VCALENDAR`;
                           <Label className="text-sm font-medium">Completion Progress</Label>
                           <div className="w-full bg-blue-600 rounded-full h-2">
                             <div 
-                              className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                              className="bg-blue-600 h-2 rounded-full "
                               style={{ 
                                 width: `${(sheet.signatureWorkflow.receivedSignatures / sheet.signatureWorkflow.totalSignatures) * 100}%` 
                               }}

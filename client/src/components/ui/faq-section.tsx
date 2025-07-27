@@ -217,7 +217,7 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {popularFAQs.slice(0, 4).map((faq) => (
-                    <div key={faq.id} className="p-4 border rounded-lg hover:bg-blue-100 cursor-pointer"
+                    <div key={faq.id} className="p-4 border rounded-lg  cursor-pointer"
                          onClick={() => toggleItem(faq.id)}>
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
@@ -267,7 +267,7 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
                 <Collapsible key={faq.id} open={openItems.includes(faq.id)} onOpenChange={() => toggleItem(faq.id)}>
                   <Card>
                     <CollapsibleTrigger asChild>
-                      <CardHeader className="cursor-pointer hover:bg-blue-100 transition-colors">
+                      <CardHeader className="cursor-pointer  transition-colors">
                         <div className="flex items-center justify-between">
                           <div className="flex-1">
                             <CardTitle className="text-left text-lg flex items-center gap-2">

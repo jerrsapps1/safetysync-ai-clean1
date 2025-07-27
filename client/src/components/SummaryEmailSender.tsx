@@ -140,7 +140,7 @@ Next Week Focus:
               onClick={generateSampleSummary}
               variant="outline"
               size="sm"
-              className="bg-blue-600/20 border-blue-500/30 text-white hover:bg-blue-600/40"
+              className="bg-blue-600/20 border-blue-500/30 text-white /40"
             >
               Generate Sample Summary
             </Button>

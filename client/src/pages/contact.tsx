@@ -124,7 +124,7 @@ export default function ContactPage() {
         {/* Contact Options */}
         <div className="flex justify-center mb-16">
           {contactOptions.map((option) => (
-            <Card key={option.title} className="text-center hover:shadow-xl transition-all duration-300 max-w-md bg-blue-700/50 border-blue-600/50 backdrop-blur-sm hover:bg-blue-700/70">
+            <Card key={option.title} className="text-center hover:shadow-xl  max-w-md bg-blue-700/50 border-blue-600/50 backdrop-blur-sm /70">
               <CardHeader className="pb-4">
                 <div className={`w-12 h-12 ${option.color} rounded-lg flex items-center justify-center mx-auto mb-4`}>
                   <option.icon className="w-6 h-6 text-white" />
@@ -377,7 +377,7 @@ export default function ContactPage() {
               Our support team is available during business hours to help you with any questions or issues.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="outline" className="border-blue-300 text-blue-700 hover:bg-blue-50">
+              <Button variant="outline" className="border-blue-300 text-blue-700 ">
                 <Mail className="w-4 h-4 mr-2" />
                 support@safetysync.ai
               </Button>

@@ -67,7 +67,7 @@ export function SidebarOption2({}: SidebarOption2Props) {
               return (
                 <Link key={item.name} href={item.href}>
                   <a 
-                    className="flex items-start px-4 py-3 text-sm font-medium text-blue-600 rounded-xl hover:bg-blue-900 hover:shadow-md transition-all duration-200 group"
+                    className="flex items-start px-4 py-3 text-sm font-medium text-blue-600 rounded-xl hover:bg-blue-900 hover:shadow-md  group"
                     onClick={() => setIsOpen(false)}
                   >
                     <IconComponent className="w-5 h-5 mt-0.5 mr-3 text-emerald-600" />

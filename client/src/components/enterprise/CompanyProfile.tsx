@@ -270,7 +270,7 @@ export default function CompanyProfile() {
             type="submit"
             form="company-profile-form"
             disabled={mutation.isPending}
-            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-200 border-0"
+            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl  border-0"
           >
             {mutation.isPending ? "Saving..." : profile ? "Update Profile" : "Create Profile"}
           </Button>
@@ -301,28 +301,28 @@ export default function CompanyProfile() {
             <TabsList className="grid w-full grid-cols-4 bg-black/20 backdrop-blur-sm border-blue-700">
               <TabsTrigger 
                 value="business" 
-                className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100 hover:text-blue-200 transition-all duration-200"
+                className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100  "
               >
                 <Building2 className="h-4 w-4" />
                 Business Info
               </TabsTrigger>
               <TabsTrigger 
                 value="contacts" 
-                className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100 hover:text-blue-200 transition-all duration-200"
+                className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100  "
               >
                 <Users className="h-4 w-4" />
                 Key Contacts
               </TabsTrigger>
               <TabsTrigger 
                 value="branding" 
-                className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100 hover:text-blue-200 transition-all duration-200"
+                className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100  "
               >
                 <Palette className="h-4 w-4" />
                 Branding
               </TabsTrigger>
               <TabsTrigger 
                 value="settings" 
-                className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100 hover:text-blue-200 transition-all duration-200"
+                className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100  "
               >
                 <Settings className="h-4 w-4" />
                 Settings

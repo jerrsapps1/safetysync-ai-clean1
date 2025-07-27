@@ -149,7 +149,7 @@ function AdminLoginCheck() {
                 <button
                   type="button"
                   onClick={() => setShowKey(!showKey)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-blue-100 hover:text-blue-200 transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-blue-100  transition-colors"
                 >
                   {showKey ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
@@ -166,7 +166,7 @@ function AdminLoginCheck() {
         </Card>
 
         <div className="text-center mt-6">
-          <Link href="/" className="text-blue-100 hover:text-blue-200 text-sm">
+          <Link href="/" className="text-blue-100  text-sm">
             ← Back to SafetySync.AI
           </Link>
         </div>
@@ -600,7 +600,7 @@ export default function AdminDashboard() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 text-white">
       {/* Sidebar */}
-      <div className={`fixed left-0 top-0 h-full bg-black/40 backdrop-blur-sm border-r border-red-800/50 transition-all duration-300 ${sidebarOpen ? 'w-64' : 'w-16'} z-50`}>
+      <div className={`fixed left-0 top-0 h-full bg-black/40 backdrop-blur-sm border-r border-red-800/50  ${sidebarOpen ? 'w-64' : 'w-16'} z-50`}>
         {/* Header */}
         <div className="p-4 border-b border-red-800/50">
           <div className="flex items-center justify-between">
@@ -614,7 +614,7 @@ export default function AdminDashboard() {
               variant="ghost"
               size="sm"
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="text-blue-100 hover:text-blue-200"
+              className="text-blue-100 "
             >
               {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </Button>
@@ -638,7 +638,7 @@ export default function AdminDashboard() {
                   <Button
                     key={category.id}
                     variant={selectedCategory === category.id ? "secondary" : "ghost"}
-                    className="w-full justify-start text-blue-100 hover:text-blue-200 text-sm"
+                    className="w-full justify-start text-blue-100  text-sm"
                     onClick={() => setSelectedCategory(category.id)}
                   >
                     {category.icon}
@@ -668,7 +668,7 @@ export default function AdminDashboard() {
         <div className="p-4 space-y-2">
           <Button
             variant="ghost"
-            className="w-full justify-start text-blue-100 hover:text-blue-200"
+            className="w-full justify-start text-blue-100 "
             onClick={handleLogout}
           >
             <LogOut className="w-5 h-5 mr-3" />
@@ -677,7 +677,7 @@ export default function AdminDashboard() {
           <Link href="/">
             <Button
               variant="ghost"
-              className="w-full justify-start text-blue-100 hover:text-blue-200"
+              className="w-full justify-start text-blue-100 "
             >
               <Home className="w-5 h-5 mr-3" />
               {sidebarOpen && "Back to Site"}
@@ -687,7 +687,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Main Content */}
-      <div className={`transition-all duration-300 ${sidebarOpen ? 'ml-64' : 'ml-16'}`}>
+      <div className={` ${sidebarOpen ? 'ml-64' : 'ml-16'}`}>
         {/* Top Bar */}
         <div className="bg-black/20 backdrop-blur-sm border-b border-red-800/50 p-4">
           <div className="flex items-center justify-between">
@@ -699,7 +699,7 @@ export default function AdminDashboard() {
               <Badge variant="outline" className="text-green-400 border-green-400">
                 Live Data
               </Badge>
-              <Button variant="outline" className="text-white border-blue-500 hover:bg-blue-700">
+              <Button variant="outline" className="text-white border-blue-500 ">
                 <Activity className="w-4 h-4 mr-2" />
                 Real-time
               </Button>
@@ -715,7 +715,7 @@ export default function AdminDashboard() {
               <Button
                 variant="outline"
                 onClick={() => setShowWidgetManager(!showWidgetManager)}
-                className="text-white border-blue-500 hover:bg-blue-700"
+                className="text-white border-blue-500 "
               >
                 <Settings className="w-4 h-4 mr-2" />
                 Manage Widgets
@@ -723,7 +723,7 @@ export default function AdminDashboard() {
               <Button
                 variant="outline"
                 onClick={saveAsDefault}
-                className="text-white border-blue-500 hover:bg-blue-700"
+                className="text-white border-blue-500 "
               >
                 <Save className="w-4 h-4 mr-2" />
                 Save as Default
@@ -732,7 +732,7 @@ export default function AdminDashboard() {
                 <Button
                   variant="outline"
                   onClick={loadCustomDefaults}
-                  className="text-white border-blue-500 hover:bg-blue-700"
+                  className="text-white border-blue-500 "
                 >
                   <Upload className="w-4 h-4 mr-2" />
                   Load My Default
@@ -741,7 +741,7 @@ export default function AdminDashboard() {
               <Button
                 variant="outline"
                 onClick={resetWidgetLayout}
-                className="text-white border-blue-500 hover:bg-blue-700"
+                className="text-white border-blue-500 "
               >
                 <RotateCcw className="w-4 h-4 mr-2" />
                 Reset to Original

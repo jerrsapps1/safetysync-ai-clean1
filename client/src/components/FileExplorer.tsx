@@ -479,7 +479,7 @@ const FileExplorer: React.FC<FileExplorerProps> = ({ className }) => {
               <Button
                 variant="ghost"
                 size="sm"
-                className="h-auto p-1 text-blue-400 hover:text-blue-200"
+                className="h-auto p-1 text-blue-400 "
                 onClick={() => navigateToFolder(crumb.id, crumb.path)}
               >
                 {crumb.name}
@@ -533,7 +533,7 @@ const FileExplorer: React.FC<FileExplorerProps> = ({ className }) => {
                       relative p-3 rounded-lg border cursor-pointer transition-all
                       ${selectedItems.has(item.id) 
                         ? 'bg-blue-600/20 border-blue-500' 
-                        : 'bg-blue-700/50 border-blue-600 hover:bg-blue-600/50'
+                        : 'bg-blue-700/50 border-blue-600 /50'
                       }
                       ${viewMode === 'list' ? 'flex items-center space-x-3' : 'text-center'}
                     `}

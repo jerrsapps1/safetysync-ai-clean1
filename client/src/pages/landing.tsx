@@ -379,13 +379,13 @@ export default function LandingPage() {
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 md:mb-12 px-4">
             <Button 
               onClick={handleDemoClick}
-              className="bg-blue-600/20 hover:bg-blue-600/30 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-xl shadow-md transition duration-200 border border-blue-700"
+              className="bg-blue-600/20 /30 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-xl shadow-md  border border-blue-700"
             >
               Book a Demo
             </Button>
             <Button 
               onClick={handleTrialClick}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-xl shadow-md transition duration-200"
+              className="bg-blue-600  text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-xl shadow-md "
             >
               Get Started Free
             </Button>
@@ -491,7 +491,7 @@ export default function LandingPage() {
         </div>
         
         <div className="grid md:grid-cols-2 gap-8">
-          <div className="bg-blue-700/50 border border-blue-600 p-6 rounded-xl hover:bg-blue-700/70 transition-all duration-300">
+          <div className="bg-blue-700/50 border border-blue-600 p-6 rounded-xl /70 ">
             <div className="flex items-start">
               <div className="flex-shrink-0 w-12 h-12 bg-violet-500/20 rounded-lg flex items-center justify-center mr-4">
                 <ShieldCheck className="w-6 h-6 text-violet-400" />
@@ -503,7 +503,7 @@ export default function LandingPage() {
             </div>
           </div>
           
-          <div className="bg-blue-700/50 border border-blue-600 p-6 rounded-xl hover:bg-blue-700/70 transition-all duration-300">
+          <div className="bg-blue-700/50 border border-blue-600 p-6 rounded-xl /70 ">
             <div className="flex items-start">
               <div className="flex-shrink-0 w-12 h-12 bg-violet-500/20 rounded-lg flex items-center justify-center mr-4">
                 <FileText className="w-6 h-6 text-violet-400" />
@@ -515,7 +515,7 @@ export default function LandingPage() {
             </div>
           </div>
           
-          <div className="bg-blue-700/50 border border-blue-600 p-6 rounded-xl hover:bg-blue-700/70 transition-all duration-300">
+          <div className="bg-blue-700/50 border border-blue-600 p-6 rounded-xl /70 ">
             <div className="flex items-start">
               <div className="flex-shrink-0 w-12 h-12 bg-violet-500/20 rounded-lg flex items-center justify-center mr-4">
                 <Clock className="w-6 h-6 text-violet-400" />
@@ -527,7 +527,7 @@ export default function LandingPage() {
             </div>
           </div>
           
-          <div className="bg-blue-700/50 border border-blue-600 p-6 rounded-xl hover:bg-blue-700/70 transition-all duration-300">
+          <div className="bg-blue-700/50 border border-blue-600 p-6 rounded-xl /70 ">
             <div className="flex items-start">
               <div className="flex-shrink-0 w-12 h-12 bg-violet-500/20 rounded-lg flex items-center justify-center mr-4">
                 <Shield className="w-6 h-6 text-violet-400" />
@@ -593,7 +593,7 @@ export default function LandingPage() {
         <div className="text-center mt-12">
           <Button 
             onClick={handleTrialClick}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl shadow-md transition duration-200 text-lg font-semibold"
+            className="bg-blue-600  text-white px-8 py-4 rounded-xl shadow-md  text-lg font-semibold"
           >
             Still Have Questions? Start Your Free Trial
           </Button>
@@ -606,19 +606,19 @@ export default function LandingPage() {
           Built for Safety Leaders Who Do It All
         </h2>
         <div className="grid md:grid-cols-2 gap-6 md:gap-8 text-left">
-          <div className="bg-blue-700/50 border border-blue-600 p-6 rounded-2xl hover:bg-blue-700/70 transition-all duration-300">
+          <div className="bg-blue-700/50 border border-blue-600 p-6 rounded-2xl /70 ">
             <h3 className="text-xl font-semibold mb-2 text-white">Real-Time Dashboards</h3>
             <p className="text-white">Stay ahead of inspections with live visibility into training, audits, and corrective actions.</p>
           </div>
-          <div className="bg-blue-700/50 border border-blue-600 p-6 rounded-2xl hover:bg-blue-700/70 transition-all duration-300">
+          <div className="bg-blue-700/50 border border-blue-600 p-6 rounded-2xl /70 ">
             <h3 className="text-xl font-semibold mb-2 text-white">Mobile-First Access</h3>
             <p className="text-white">Assign tasks and complete checklists from any device—field to office, online or offline.</p>
           </div>
-          <div className="bg-blue-700/50 border border-blue-600 p-6 rounded-2xl hover:bg-blue-700/70 transition-all duration-300">
+          <div className="bg-blue-700/50 border border-blue-600 p-6 rounded-2xl /70 ">
             <h3 className="text-xl font-semibold mb-2 text-white">Training Management</h3>
             <p className="text-white">Easily assign, track, and verify required safety trainings across teams, roles, and locations.</p>
           </div>
-          <div className="bg-blue-700/50 border border-blue-600 p-6 rounded-2xl hover:bg-blue-700/70 transition-all duration-300">
+          <div className="bg-blue-700/50 border border-blue-600 p-6 rounded-2xl /70 ">
             <h3 className="text-xl font-semibold mb-2 text-white">Compliance Automation</h3>
             <p className="text-white">Simplify OSHA recordkeeping, deadline reminders, and documentation—zero guesswork, full confidence.</p>
           </div>
@@ -641,7 +641,7 @@ export default function LandingPage() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="bg-blue-600/40 rounded-xl border border-blue-500 hover:bg-blue-600/60 transition-all duration-300">
+            <Card className="bg-blue-600/40 rounded-xl border border-blue-500 /60 ">
               <CardContent className="p-8">
                 <div className="flex items-start">
                   <div className="flex-shrink-0 w-12 h-12 bg-violet-500/30 rounded-lg flex items-center justify-center mr-4">
@@ -655,7 +655,7 @@ export default function LandingPage() {
               </CardContent>
             </Card>
             
-            <Card className="bg-blue-600/40 rounded-xl border border-blue-500 hover:bg-blue-600/60 transition-all duration-300">
+            <Card className="bg-blue-600/40 rounded-xl border border-blue-500 /60 ">
               <CardContent className="p-8">
                 <div className="flex items-start">
                   <div className="flex-shrink-0 w-12 h-12 bg-violet-500/30 rounded-lg flex items-center justify-center mr-4">
@@ -669,7 +669,7 @@ export default function LandingPage() {
               </CardContent>
             </Card>
             
-            <Card className="bg-blue-600/40 rounded-xl border border-blue-500 hover:bg-blue-600/60 transition-all duration-300">
+            <Card className="bg-blue-600/40 rounded-xl border border-blue-500 /60 ">
               <CardContent className="p-8">
                 <div className="flex items-start">
                   <div className="flex-shrink-0 w-12 h-12 bg-blue-500/30 rounded-lg flex items-center justify-center mr-4">
@@ -683,7 +683,7 @@ export default function LandingPage() {
               </CardContent>
             </Card>
             
-            <Card className="bg-blue-600/40 rounded-xl border border-blue-500 hover:bg-blue-600/60 transition-all duration-300">
+            <Card className="bg-blue-600/40 rounded-xl border border-blue-500 /60 ">
               <CardContent className="p-8">
                 <div className="flex items-start">
                   <div className="flex-shrink-0 w-12 h-12 bg-purple-500/30 rounded-lg flex items-center justify-center mr-4">
@@ -697,7 +697,7 @@ export default function LandingPage() {
               </CardContent>
             </Card>
             
-            <Card className="bg-blue-600/40 rounded-xl border border-blue-500 hover:bg-blue-600/60 transition-all duration-300">
+            <Card className="bg-blue-600/40 rounded-xl border border-blue-500 /60 ">
               <CardContent className="p-8">
                 <div className="flex items-start">
                   <div className="flex-shrink-0 w-12 h-12 bg-orange-500/30 rounded-lg flex items-center justify-center mr-4">
@@ -711,7 +711,7 @@ export default function LandingPage() {
               </CardContent>
             </Card>
             
-            <Card className="bg-blue-600/40 rounded-xl border border-blue-500 hover:bg-blue-600/60 transition-all duration-300">
+            <Card className="bg-blue-600/40 rounded-xl border border-blue-500 /60 ">
               <CardContent className="p-8">
                 <div className="flex items-start">
                   <div className="flex-shrink-0 w-12 h-12 bg-red-500/20 rounded-lg flex items-center justify-center mr-4">
@@ -729,7 +729,7 @@ export default function LandingPage() {
           <div className="text-center mt-16">
             <Button 
               onClick={handleTrialClick}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl shadow-md transition duration-200 text-lg font-semibold"
+              className="bg-blue-600  text-white px-8 py-4 rounded-xl shadow-md  text-lg font-semibold"
             >
               Try It for Free – No Credit Card Required
             </Button>
@@ -756,13 +756,13 @@ export default function LandingPage() {
         <div className="flex justify-center gap-4">
           <Button 
             onClick={handleDemoClick}
-            className="bg-blue-600/20 hover:bg-blue-600/30 text-white font-semibold px-6 py-3 rounded-xl shadow-md transition duration-200 border border-blue-500"
+            className="bg-blue-600/20 /30 text-white font-semibold px-6 py-3 rounded-xl shadow-md  border border-blue-500"
           >
             Book a Demo
           </Button>
           <Button 
             onClick={handleTrialClick}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl shadow-md transition duration-200"
+            className="bg-blue-600  text-white font-semibold px-6 py-3 rounded-xl shadow-md "
           >
             Start Free — No Credit Card Required
           </Button>
@@ -781,13 +781,13 @@ export default function LandingPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               onClick={handleTrialClick}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl shadow-md transition duration-200 text-lg font-semibold"
+              className="bg-blue-600  text-white px-8 py-4 rounded-xl shadow-md  text-lg font-semibold"
             >
               Start Your Free Trial
             </Button>
             <Button 
               onClick={handleDemoClick}
-              className="bg-blue-600/20 hover:bg-blue-600/30 text-white px-8 py-4 rounded-xl shadow-md transition duration-200 text-lg font-semibold border border-blue-500"
+              className="bg-blue-600/20 /30 text-white px-8 py-4 rounded-xl shadow-md  text-lg font-semibold border border-blue-500"
             >
               Book a Demo
             </Button>
@@ -826,7 +826,7 @@ export default function LandingPage() {
               <Button
                 type="submit"
                 disabled={isSubscribing}
-                className="w-full bg-blue-100 text-blue-600 hover:bg-blue-200 font-semibold py-3 px-6 rounded-lg transition duration-200"
+                className="w-full bg-blue-100 text-blue-600  font-semibold py-3 px-6 rounded-lg "
               >
                 {isSubscribing ? (
                   <>
@@ -864,10 +864,10 @@ export default function LandingPage() {
             <div>
               <h4 className="text-lg font-semibold text-blue-800 mb-4">Product</h4>
               <ul className="space-y-2 text-blue-500">
-                <li><a href="#features" className="hover:text-blue-800 hover:underline transition-all duration-200">Features</a></li>
-                <li><a href="/pricing" className="hover:text-blue-800 hover:underline transition-all duration-200">Pricing</a></li>
-                <li><a href="/case-studies" className="hover:text-blue-800 hover:underline transition-all duration-200">Case Studies</a></li>
-                <li><a href="/resources" className="hover:text-blue-800 hover:underline transition-all duration-200">Resources</a></li>
+                <li><a href="#features" className="hover:text-blue-800 hover:underline ">Features</a></li>
+                <li><a href="/pricing" className="hover:text-blue-800 hover:underline ">Pricing</a></li>
+                <li><a href="/case-studies" className="hover:text-blue-800 hover:underline ">Case Studies</a></li>
+                <li><a href="/resources" className="hover:text-blue-800 hover:underline ">Resources</a></li>
               </ul>
             </div>
             

@@ -138,7 +138,7 @@ const SignupGraph: React.FC = () => {
                 onClick={() => setTimeframe(period)}
                 className={timeframe === period 
                   ? "bg-blue-600 text-white" 
-                  : "border-blue-400 text-blue-200 hover:bg-blue-600/20"
+                  : "border-blue-400 text-blue-200 /20"
                 }
               >
                 {period === '7d' ? '7 Days' : period === '30d' ? '30 Days' : '90 Days'}
@@ -151,7 +151,7 @@ const SignupGraph: React.FC = () => {
             size="sm"
             onClick={() => window.location.reload()}
             disabled={isLoading}
-            className="border-blue-400 text-blue-200 hover:bg-blue-600/20"
+            className="border-blue-400 text-blue-200 /20"
           >
             <RefreshCw className={`w-4 h-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
             Refresh
@@ -161,7 +161,7 @@ const SignupGraph: React.FC = () => {
             variant="outline"
             size="sm"
             onClick={exportData}
-            className="border-blue-400 text-blue-200 hover:bg-blue-600/20"
+            className="border-blue-400 text-blue-200 /20"
           >
             <Download className="w-4 h-4 mr-2" />
             Export
@@ -267,7 +267,7 @@ const SignupGraph: React.FC = () => {
                     <div className="flex flex-col items-center space-y-1 mb-2">
                       {/* Total signups bar */}
                       <div 
-                        className="w-8 bg-blue-500 rounded-t transition-all duration-200 group-hover:bg-blue-400"
+                        className="w-8 bg-blue-500 rounded-t  group-hover:bg-blue-400"
                         style={{ 
                           height: `${(day.signups / maxSignups) * 120}px`,
                           minHeight: '4px'

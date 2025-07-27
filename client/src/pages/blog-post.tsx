@@ -418,7 +418,7 @@ export default function BlogPostPage() {
               Discover how SafetySync.AI can help automate your compliance processes and improve safety outcomes.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Button className="bg-blue-600 hover:bg-blue-700">
+              <Button className="bg-blue-600 ">
                 Start Free Trial
               </Button>
               <Button variant="outline">

@@ -251,7 +251,7 @@ export default function WorkplacePosterManagement() {
             <Plus className="w-4 h-4 mr-2" />
             Add Poster
           </Button>
-          <Button className="bg-blue-500 hover:bg-blue-600 text-white">
+          <Button className="bg-blue-500  text-white">
             <Upload className="w-4 h-4 mr-2" />
             Upload Custom
           </Button>
@@ -356,21 +356,21 @@ export default function WorkplacePosterManagement() {
         <TabsList className="grid w-full grid-cols-3 bg-black/20 backdrop-blur-sm border-blue-700">
           <TabsTrigger 
             value="posters" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100 hover:text-blue-200 transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100  "
           >
             <FileText className="h-4 w-4" />
             Posters
           </TabsTrigger>
           <TabsTrigger 
             value="compliance" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100 hover:text-blue-200 transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100  "
           >
             <CheckCircle className="h-4 w-4" />
             Compliance
           </TabsTrigger>
           <TabsTrigger 
             value="locations" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100 hover:text-blue-200 transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100  "
           >
             <MapPin className="h-4 w-4" />
             Locations
@@ -436,7 +436,7 @@ export default function WorkplacePosterManagement() {
                   </div>
 
                   <div className="flex items-center gap-2 pt-2">
-                    <Button size="sm" className="bg-blue-500 hover:bg-blue-600 text-white">
+                    <Button size="sm" className="bg-blue-500  text-white">
                       <Eye className="w-3 h-3 mr-1" />
                       View
                     </Button>
@@ -480,7 +480,7 @@ export default function WorkplacePosterManagement() {
                     </div>
                     <div className="w-full bg-blue-600 rounded-full h-2">
                       <div 
-                        className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-300"
+                        className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full "
                         style={{ width: `${comp.complianceScore}%` }}
                       ></div>
                     </div>
@@ -511,7 +511,7 @@ export default function WorkplacePosterManagement() {
                   )}
 
                   <div className="flex items-center gap-2 pt-2">
-                    <Button size="sm" className="bg-blue-500 hover:bg-blue-600 text-white">
+                    <Button size="sm" className="bg-blue-500  text-white">
                       <Eye className="w-3 h-3 mr-1" />
                       View Details
                     </Button>

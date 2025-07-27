@@ -304,11 +304,11 @@ export default function LandingPageAddons() {
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-          <Button size="lg" className="bg-blue-100 text-blue-600 hover:bg-blue-200 font-semibold">
+          <Button size="lg" className="bg-blue-100 text-blue-600  font-semibold">
             <CheckCircle className="h-5 w-5 mr-2" />
             Start Your Trial
           </Button>
-          <Button size="lg" variant="outline" className="border-blue-400 text-blue-100 hover:bg-blue-600 hover:text-blue-200 hover:border-blue-600 font-semibold transition-all duration-200">
+          <Button size="lg" variant="outline" className="border-blue-400 text-blue-100    font-semibold ">
             <Users className="h-5 w-5 mr-2" />
             Request Demo
           </Button>

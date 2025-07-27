@@ -49,7 +49,7 @@ export default function PricingPage() {
                 <Button 
                   size="lg" 
                   variant="outline" 
-                  className="border-blue-300 text-blue-700 hover:bg-blue-50"
+                  className="border-blue-300 text-blue-700 "
                   onClick={() => window.location.href = '/certificate-services'}
                 >
                   See Examples & Pricing
@@ -87,7 +87,7 @@ export default function PricingPage() {
         <div className="fixed bottom-6 right-6 z-50">
           <Button
             onClick={() => setShowChat(!showChat)}
-            className="bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-lg"
+            className="bg-blue-600  text-white rounded-full p-4 shadow-lg"
           >
             <MessageCircle className="w-6 h-6" />
           </Button>

@@ -34,9 +34,9 @@ export default function NavbarVariant() {
 
       {isOpen && (
         <div className="md:hidden px-4 pt-2 pb-3 space-y-1">
-          <a href="/" className="block px-4 py-2 text-blue-600 hover:bg-blue-100 rounded">Home</a>
-          <a href="/features" className="block px-4 py-2 text-blue-600 hover:bg-blue-100 rounded">Features</a>
-          <a href="/hr" className="block px-4 py-2 text-blue-600 hover:bg-blue-100 rounded">For HR Teams</a>
+          <a href="/" className="block px-4 py-2 text-blue-600  rounded">Home</a>
+          <a href="/features" className="block px-4 py-2 text-blue-600  rounded">Features</a>
+          <a href="/hr" className="block px-4 py-2 text-blue-600  rounded">For HR Teams</a>
         </div>
       )}
     </nav>

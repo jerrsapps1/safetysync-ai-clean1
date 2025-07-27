@@ -261,7 +261,7 @@ export default function AdminPanel() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <Link href="/">
-                <Button variant="ghost" size="sm" className="text-blue-500 hover:text-blue-800 hover:bg-blue-100/50">
+                <Button variant="ghost" size="sm" className="text-blue-500 hover:text-blue-800 /50">
                   <Home className="w-4 h-4 mr-2" />
                   Home
                 </Button>

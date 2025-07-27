@@ -154,7 +154,7 @@ export default function ClientOnboardingTutorial({
               variant="ghost"
               size="sm"
               onClick={onClose}
-              className="text-blue-100 hover:text-blue-200"
+              className="text-blue-100 "
             >
               <X className="w-4 h-4" />
             </Button>
@@ -225,7 +225,7 @@ export default function ClientOnboardingTutorial({
                 variant="outline"
                 onClick={handlePrevious}
                 disabled={currentStep === 1}
-                className="border-blue-500 text-white hover:bg-blue-700"
+                className="border-blue-500 text-white "
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Previous
@@ -235,7 +235,7 @@ export default function ClientOnboardingTutorial({
                 variant="outline"
                 onClick={handleNext}
                 disabled={currentStep === onboardingSteps.length}
-                className="border-blue-500 text-white hover:bg-blue-700"
+                className="border-blue-500 text-white "
               >
                 Next
                 <ArrowRight className="w-4 h-4 ml-2" />
@@ -248,7 +248,7 @@ export default function ClientOnboardingTutorial({
             <Button
               variant="ghost"
               onClick={handleSkipForNow}
-              className="text-blue-100 hover:text-blue-200 text-sm"
+              className="text-blue-100  text-sm"
             >
               Skip for now (return anytime from Settings)
             </Button>
