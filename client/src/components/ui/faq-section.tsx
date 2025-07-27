@@ -35,7 +35,8 @@ interface FAQSectionProps {
   onContactSupport?: () => void;
 }
 
-export function FAQSection({ onContactSupport }: FAQSectionProps) {
+export function FAQSection({ onContactSupport = () => alert('Live chat support coming soon! Please email support@safetysync.ai for immediate assistance.') }: FAQSectionProps) {
+  console.log('🔍 FAQ Section rendering...');
   const [searchQuery, setSearchQuery] = useState("");
   const [openItems, setOpenItems] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -163,6 +164,8 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
     );
   };
 
+  console.log('🔍 FAQ Section about to render DOM...');
+  
   return (
     <div className="space-y-8">
       {/* Header */}
@@ -302,91 +305,23 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
         </TabsContent>
       </Tabs>
 
-      {/* Contact Support */}
-      <div style={{
-        background: 'linear-gradient(to right, #dbeafe, #f3e8ff)',
-        borderRadius: '8px',
-        padding: '32px',
-        margin: '20px 0',
-        border: '2px solid #3b82f6'
-      }}>
-        <div style={{ textAlign: 'center' }}>
-          <h3 style={{ 
-            fontSize: '24px', 
-            fontWeight: 'bold', 
-            marginBottom: '16px',
-            color: '#000000'
-          }}>
-            Still have questions?
-          </h3>
-          <p style={{ 
-            color: '#3b82f6', 
-            marginBottom: '24px',
-            maxWidth: '500px',
-            margin: '0 auto 24px auto'
-          }}>
-            Our support team is here to help you with any questions about SafetySync or OSHA compliance requirements.
-          </p>
-          
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '16px',
-            maxWidth: '800px',
-            margin: '0 auto'
-          }}>
-            <div style={{ textAlign: 'center', padding: '16px' }}>
-              <div style={{ fontSize: '24px', marginBottom: '8px' }}>💬</div>
-              <div style={{ fontWeight: '600', color: '#000000' }}>Live Chat</div>
-              <div style={{ fontSize: '14px', color: '#3b82f6', marginBottom: '12px' }}>Available 24/7</div>
-              <button style={{
-                backgroundColor: '#3b82f6',
-                color: 'white',
-                padding: '8px 16px',
-                borderRadius: '4px',
-                border: 'none',
-                cursor: 'pointer'
-              }}>
-                Start Chat
-              </button>
-            </div>
-            
-            <div style={{ textAlign: 'center', padding: '16px' }}>
-              <div style={{ fontSize: '24px', marginBottom: '8px' }}>📧</div>
-              <div style={{ fontWeight: '600', color: '#000000' }}>Email Support</div>
-              <div style={{ fontSize: '14px', color: '#3b82f6', marginBottom: '12px' }}>Response within 2 hours</div>
-              <button 
-                style={{
-                  backgroundColor: '#10b981',
-                  color: 'white',
-                  padding: '8px 16px',
-                  borderRadius: '4px',
-                  border: 'none',
-                  cursor: 'pointer'
-                }}
-                onClick={() => window.location.href = 'mailto:support@safetysync.ai?subject=Support Request&body=Hello SafetySync team, I need help with:'}
-              >
-                Send Email
-              </button>
-            </div>
-            
-            <div style={{ textAlign: 'center', padding: '16px' }}>
-              <div style={{ fontSize: '24px', marginBottom: '8px' }}>📞</div>
-              <div style={{ fontWeight: '600', color: '#000000' }}>Phone Support</div>
-              <div style={{ fontSize: '14px', color: '#3b82f6', marginBottom: '12px' }}>Business hours only</div>
-              <button style={{
-                backgroundColor: '#8b5cf6',
-                color: 'white',
-                padding: '8px 16px',
-                borderRadius: '4px',
-                border: 'none',
-                cursor: 'pointer'
-              }}>
-                Call Us
-              </button>
-            </div>
-          </div>
-        </div>
+      {/* Contact Support - TESTING */}
+      <div id="support-section-test" 
+           style={{
+             position: 'fixed',
+             top: '50%',
+             left: '50%',
+             transform: 'translate(-50%, -50%)',
+             background: 'red',
+             color: 'white',
+             padding: '20px',
+             fontSize: '24px',
+             zIndex: 9999,
+             border: '5px solid blue'
+           }}>
+        SUPPORT SECTION TEST - CAN YOU SEE THIS?
+        <br/>
+        <button onClick={() => window.location.href = 'mailto:support@safetysync.ai'}>EMAIL US</button>
       </div>
     </div>
   );
