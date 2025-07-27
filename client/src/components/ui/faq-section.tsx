@@ -180,7 +180,7 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
       <Card>
         <CardContent className="p-6">
           <div className="relative">
-            <Search className="absolute left-3 top-3 h-4 w-4 text-white" />
+            <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
             <Input
               placeholder="Search FAQs..."
               value={searchQuery}
@@ -217,7 +217,7 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {popularFAQs.slice(0, 4).map((faq) => (
-                    <div key={faq.id} className="p-4 border rounded-lg hover:bg-blue-50 cursor-pointer"
+                    <div key={faq.id} className="p-4 border rounded-lg hover:bg-blue-100 cursor-pointer"
                          onClick={() => toggleItem(faq.id)}>
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
@@ -231,8 +231,8 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
                           </div>
                         </div>
                         {openItems.includes(faq.id) ? 
-                          <ChevronUp className="w-4 h-4 text-white" /> : 
-                          <ChevronDown className="w-4 h-4 text-white" />
+                          <ChevronUp className="w-4 h-4 text-blue-600" /> : 
+                          <ChevronDown className="w-4 h-4 text-blue-600" />
                         }
                       </div>
                       {openItems.includes(faq.id) && (
@@ -252,7 +252,7 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
             {filteredFAQs.length === 0 ? (
               <Card>
                 <CardContent className="p-8 text-center">
-                  <HelpCircle className="w-12 h-12 mx-auto mb-4 text-white" />
+                  <HelpCircle className="w-12 h-12 mx-auto mb-4 text-blue-600" />
                   <h3 className="text-lg font-medium mb-2">No questions found</h3>
                   <p className="text-blue-500 mb-4">
                     Try adjusting your search terms or browse different categories.
@@ -267,7 +267,7 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
                 <Collapsible key={faq.id} open={openItems.includes(faq.id)} onOpenChange={() => toggleItem(faq.id)}>
                   <Card>
                     <CollapsibleTrigger asChild>
-                      <CardHeader className="cursor-pointer hover:bg-blue-50 transition-colors">
+                      <CardHeader className="cursor-pointer hover:bg-blue-100 transition-colors">
                         <div className="flex items-center justify-between">
                           <div className="flex-1">
                             <CardTitle className="text-left text-lg flex items-center gap-2">
@@ -283,8 +283,8 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
                             </div>
                           </div>
                           {openItems.includes(faq.id) ? 
-                            <ChevronUp className="w-5 h-5 text-white" /> : 
-                            <ChevronDown className="w-5 h-5 text-white" />
+                            <ChevronUp className="w-5 h-5 text-blue-600" /> : 
+                            <ChevronDown className="w-5 h-5 text-blue-600" />
                           }
                         </div>
                       </CardHeader>
