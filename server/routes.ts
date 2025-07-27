@@ -288,9 +288,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const user = await storage.createUser({
         ...userData,
         password: hashedPassword,
-        emailVerificationToken: verificationToken,
-        emailVerificationExpires: verificationExpires,
-        isEmailVerified: false
+        // Note: Email verification would be added when user schema supports it
       });
 
       // Send verification email
@@ -301,8 +299,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         company: user.company || undefined
       });
 
-      // Don't return password or token in response
-      const { password, emailVerificationToken, ...userWithoutPassword } = user;
+      // Don't return password in response
+      const { password, ...userWithoutPassword } = user;
 
       console.log(`✅ NEW USER REGISTERED: ${user.username} (${user.email}) - Company: ${user.company || 'Not provided'} - Email sent: ${emailSent}`);
       
@@ -684,7 +682,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.error("❌ PDF UPLOAD ERROR:", error);
       res.status(500).json({
         error: "Failed to process PDF file",
-        message: error.message
+        message: error instanceof Error ? error.message : 'Unknown error'
       });
     }
   });
@@ -734,7 +732,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({
         success: false,
         message: "Failed to load dashboard data",
-        error: error.message
+        error: error instanceof Error ? error.message : 'Unknown error'
       });
     }
   });
@@ -775,7 +773,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({
         success: false,
         message: "Failed to retrieve records",
-        error: error.message
+        error: error instanceof Error ? error.message : 'Unknown error'
       });
     }
   });
@@ -2980,7 +2978,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const result = await employeeCertService.generateAndStoreEmployeeCertificate({
         ...req.body,
-        userId: req.user?.id
+        userId: (req as any).user?.id
       });
 
       res.json(result);

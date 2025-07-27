@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { clarity } from '@/lib/clarity-analytics';
 
 const faqs = [
   {
@@ -36,7 +37,7 @@ const faqs = [
 ];
 
 export default function PricingFAQ() {
-  const [openIndex, setOpenIndex] = useState(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
     <div className="space-y-4">
@@ -44,7 +45,12 @@ export default function PricingFAQ() {
         <div key={i} className="border rounded-xl shadow">
           <button
             className="w-full text-left px-4 py-3 font-medium text-gray-800 bg-white hover:bg-gray-50"
-            onClick={() => setOpenIndex(openIndex === i ? null : i)}
+            onClick={() => {
+              if (typeof window !== 'undefined' && window.clarity) {
+                window.clarity('set', 'faq_opened', faqs[i].question);
+              }
+              setOpenIndex(openIndex === i ? null : i);
+            }}
           >
             {faq.question}
           </button>
