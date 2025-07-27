@@ -38,7 +38,6 @@ import TrainingDocumentHub from "@/components/TrainingDocumentHub";
 import FileManagerTrainingHub from "@/components/FileManagerTrainingHub";
 import AIDocumentProcessor from "@/components/AIDocumentProcessor";
 import EmployeeProfile from "@/components/EmployeeProfile";
-import ComplianceRecommendationEngine from "@/components/ComplianceRecommendationEngine";
 import InstructorTrainingCompletion from "@/components/InstructorTrainingCompletion";
 import OSHAComplianceManager from "@/components/OSHAComplianceManager";
 
@@ -163,7 +162,7 @@ function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
   const { toast } = useToast();
-  const [, setLocation] = useLocation();
+  const [, navigate] = useLocation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -359,7 +358,7 @@ const subItemVariants = {
 export default function WorkspacePage() {
   const { user, isLoading: authLoading, isAuthenticated, logout } = useAuth();
 
-  const [location, setLocation] = useLocation();
+  const [location] = useLocation();
 
   console.log('🏢 WORKSPACE: Component render', { 
     isAuthenticated, 
@@ -367,6 +366,38 @@ export default function WorkspacePage() {
     hasUser: !!user,
     location 
   });
+
+  // Handle authentication state
+  useEffect(() => {
+    if (!authLoading && !isAuthenticated) {
+      console.log('🏢 WORKSPACE: Not authenticated, redirecting to client portal');
+      window.location.href = '/client-portal';
+    }
+  }, [authLoading, isAuthenticated]);
+
+  // Show loading state while authentication is being checked
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
+        <div className="text-white text-center">
+          <h2 className="text-xl font-semibold mb-2">Loading...</h2>
+          <p className="text-blue-200">Please wait while we load your workspace</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show authentication required if not authenticated
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
+        <div className="text-white text-center">
+          <h2 className="text-xl font-semibold mb-2">Authentication Required</h2>
+          <p className="text-blue-200">Redirecting to login...</p>
+        </div>
+      </div>
+    );
+  }
   
   // Extract tab from URL or default to workspace view
   const getActiveTabFromUrl = () => {
@@ -956,7 +987,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
       return;
     }
 
-    if (organizationalStructure.departmentsByDivision[selectedDivisionForDepartment]?.includes(newDepartmentName.trim())) {
+    if ((organizationalStructure.departmentsByDivision as any)[selectedDivisionForDepartment]?.includes(newDepartmentName.trim())) {
       toast({
         title: "Error",
         description: "This department already exists in the selected division.",
@@ -970,7 +1001,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
       departmentsByDivision: {
         ...prev.departmentsByDivision,
         [selectedDivisionForDepartment]: [
-          ...(prev.departmentsByDivision[selectedDivisionForDepartment] || []),
+          ...((prev.departmentsByDivision as any)[selectedDivisionForDepartment] || []),
           newDepartmentName.trim()
         ]
       }
@@ -1031,7 +1062,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
       ...prev,
       departmentsByDivision: {
         ...prev.departmentsByDivision,
-        [divisionName]: prev.departmentsByDivision[divisionName].filter(dept => dept !== departmentName)
+        [divisionName]: (prev.departmentsByDivision as any)[divisionName].filter((dept: any) => dept !== departmentName)
       }
     }));
 

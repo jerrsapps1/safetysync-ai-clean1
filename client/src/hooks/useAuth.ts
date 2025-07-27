@@ -7,6 +7,7 @@ interface User {
   company: string;
   userTier: string;
   subscriptionStatus: string;
+  isAdmin?: boolean;
 }
 
 export function useAuth() {
