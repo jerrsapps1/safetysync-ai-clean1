@@ -36,7 +36,6 @@ interface FAQSectionProps {
 }
 
 export function FAQSection({ onContactSupport = () => alert('Live chat support coming soon! Please email support@safetysync.ai for immediate assistance.') }: FAQSectionProps) {
-  console.log('🔍 FAQ Section rendering...');
   const [searchQuery, setSearchQuery] = useState("");
   const [openItems, setOpenItems] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -164,8 +163,6 @@ export function FAQSection({ onContactSupport = () => alert('Live chat support c
     );
   };
 
-  console.log('🔍 FAQ Section about to render DOM...');
-  
   return (
     <div className="space-y-8">
       {/* Header */}
@@ -305,23 +302,46 @@ export function FAQSection({ onContactSupport = () => alert('Live chat support c
         </TabsContent>
       </Tabs>
 
-      {/* Contact Support - TESTING */}
-      <div id="support-section-test" 
-           style={{
-             position: 'fixed',
-             top: '50%',
-             left: '50%',
-             transform: 'translate(-50%, -50%)',
-             background: 'red',
-             color: 'white',
-             padding: '20px',
-             fontSize: '24px',
-             zIndex: 9999,
-             border: '5px solid blue'
-           }}>
-        SUPPORT SECTION TEST - CAN YOU SEE THIS?
-        <br/>
-        <button onClick={() => window.location.href = 'mailto:support@safetysync.ai'}>EMAIL US</button>
+      {/* Contact Support */}
+      <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-8 mt-12">
+        <div className="text-center space-y-4">
+          <MessageCircle className="w-12 h-12 mx-auto text-blue-600" />
+          <h3 className="text-xl font-bold text-gray-900">Still have questions?</h3>
+          <p className="text-blue-600 max-w-md mx-auto">
+            Our support team is here to help you with any questions about SafetySync or OSHA compliance requirements.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
+            <div className="text-center p-4">
+              <MessageCircle className="w-6 h-6 mx-auto mb-2 text-blue-600" />
+              <div className="font-medium text-gray-900">Live Chat</div>
+              <div className="text-sm text-blue-600">Available 24/7</div>
+              <Button variant="outline" size="sm" className="mt-2" onClick={onContactSupport}>
+                Start Chat
+              </Button>
+            </div>
+            <div className="text-center p-4">
+              <Mail className="w-6 h-6 mx-auto mb-2 text-green-600" />
+              <div className="font-medium text-gray-900">Email Support</div>
+              <div className="text-sm text-blue-600">Response within 2 hours</div>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="mt-2"
+                onClick={() => window.location.href = 'mailto:support@safetysync.ai?subject=Support Request&body=Hello SafetySync team, I need help with:'}
+              >
+                Send Email
+              </Button>
+            </div>
+            <div className="text-center p-4">
+              <Phone className="w-6 h-6 mx-auto mb-2 text-purple-600" />
+              <div className="font-medium text-gray-900">Phone Support</div>
+              <div className="text-sm text-blue-600">Business hours only</div>
+              <Button variant="outline" size="sm" className="mt-2">
+                Call Us
+              </Button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
