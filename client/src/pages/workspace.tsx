@@ -162,7 +162,7 @@ function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
   const { toast } = useToast();
-  const [, navigate] = useLocation();
+  // Navigation will be handled by window.location for redirects
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -358,7 +358,7 @@ const subItemVariants = {
 export default function WorkspacePage() {
   const { user, isLoading: authLoading, isAuthenticated, logout } = useAuth();
 
-  const [location] = useLocation();
+  const location = useLocation();
 
   console.log('🏢 WORKSPACE: Component render', { 
     isAuthenticated, 
