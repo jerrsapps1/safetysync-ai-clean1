@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import PricingFAQ from '@/components/PricingFAQ';
 import ComparisonModal from '@/components/ComparisonModal';
+import { clarity } from '@/lib/clarity-analytics';
 
 export default function LandingPageSimple() {
   const [showModal, setShowModal] = useState(false);
@@ -26,7 +27,12 @@ export default function LandingPageSimple() {
         <p className="text-gray-600 max-w-xl mx-auto">Smart tracking for training, certification, and audit readiness.</p>
         <div className="mt-6">
           <button
-            onClick={() => setShowModal(true)}
+            onClick={() => {
+              if (typeof window !== 'undefined' && window.clarity) {
+                window.clarity('set', 'comparison_modal_opened', true);
+              }
+              setShowModal(true);
+            }}
             className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl shadow-md transition duration-200"
           >
             See Competitor Comparison

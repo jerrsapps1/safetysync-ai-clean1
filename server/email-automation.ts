@@ -13,7 +13,7 @@ interface EmailJob {
 }
 
 interface EmailServiceConfig {
-  provider: 'sendgrid' | 'mailgun' | 'postmark' | 'mock';
+  provider: 'brevo' | 'sendgrid' | 'mailgun' | 'postmark' | 'mock';
   apiKey?: string;
   fromEmail: string;
   fromName: string;
@@ -112,6 +112,9 @@ class EmailAutomationService {
       case 'mock':
         await this.sendMockEmail(leadData.email, subject, htmlContent, textContent);
         break;
+      case 'brevo':
+        await this.sendViaBrevo(leadData.email, subject, htmlContent, textContent);
+        break;
       case 'sendgrid':
         await this.sendViaSendGrid(leadData.email, subject, htmlContent, textContent);
         break;
@@ -154,6 +157,41 @@ class EmailAutomationService {
     
     // In a real app, you might store this in a database for testing
     console.log('Mock email stored for testing:', mockEmail);
+  }
+
+  // Brevo implementation (more reliable than SMTP)
+  private async sendViaBrevo(to: string, subject: string, html: string, text: string): Promise<void> {
+    if (!this.config.apiKey) {
+      throw new Error('Brevo API key not configured');
+    }
+
+    try {
+      const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'api-key': this.config.apiKey
+        },
+        body: JSON.stringify({
+          sender: { email: this.config.fromEmail, name: this.config.fromName },
+          to: [{ email: to, name: to }],
+          subject: subject,
+          htmlContent: html,
+          textContent: text || html.replace(/<[^>]*>/g, '') // Strip HTML for text version
+        })
+      });
+      
+      if (response.ok) {
+        console.log(`✅ Brevo email sent successfully to ${to}`);
+      } else {
+        const errorData = await response.json();
+        console.error(`❌ Brevo API error:`, errorData);
+        throw new Error(`Brevo API error: ${response.status}`);
+      }
+    } catch (error) {
+      console.error('❌ Brevo email sending failed:', error);
+      throw error;
+    }
   }
 
   // SendGrid implementation
@@ -229,10 +267,11 @@ class EmailAutomationService {
   }
 }
 
-// Default configuration
+// Default configuration using Brevo
 const defaultConfig: EmailServiceConfig = {
-  provider: 'mock', // Start with mock for testing
-  fromEmail: 'noreply@safetysync.ai',
+  provider: 'brevo', // Use Brevo for reliable email delivery
+  apiKey: process.env.BREVO_API_KEY,
+  fromEmail: 'jerry@safetysync.ai',
   fromName: 'SafetySync.AI Team'
 };
 
