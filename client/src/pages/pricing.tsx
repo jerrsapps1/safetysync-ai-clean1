@@ -62,6 +62,11 @@ export default function PricingPage() {
 
         {/* Certificate & Digital Card Pre-Purchase */}
         <section className="mb-20">
+          {/* TEST: Support Section at Top for Debugging */}
+          <div className="mb-20">
+            <SupportSection />
+          </div>
+          
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-white mb-4">Pre-Purchase Certificates & Digital Cards</h2>
             <p className="text-xl text-white mb-8">
