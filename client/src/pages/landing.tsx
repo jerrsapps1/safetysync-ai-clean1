@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { PageHeader } from "@/components/ui/page-header";
+// Removed PageHeader since we're using Navbar in App.tsx
 import { TrialSignupDialog } from "@/components/ui/trial-signup-dialog";
 import { DemoRequestDialog } from "@/components/ui/demo-request-dialog";
 import { Toaster } from "@/components/ui/toaster";
-import { Link } from "react-router-dom";
+// Removed Link import since we're using a simple App structure
 import PricingFAQ from "@/components/PricingFAQ";
 import ComparisonModal from "@/components/ComparisonModal";
 
@@ -323,13 +323,8 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 text-white font-sans">
-      {/* Navigation */}
-      <PageHeader />
-      
-
-      
-      {/* Main Content with Sidebar Margin */}
-      <div className="md:ml-16">
+      {/* Main Content - Full Width Since Navbar is in App.tsx */}
+      <div className="pt-16"> {/* Added top padding for fixed navbar */}
 
       {/* Lifer Count Banner */}
       <section className="bg-yellow-100 text-yellow-900 py-6 text-center shadow-inner">
