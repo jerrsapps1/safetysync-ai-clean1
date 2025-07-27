@@ -47,7 +47,7 @@ export default function PricingFAQ() {
       {faqs.map((faq, i) => (
         <div key={i} className="border rounded-xl shadow">
           <button
-            className="w-full text-left px-4 py-3 font-medium text-gray-800 bg-white hover:bg-gray-50"
+            className="w-full text-left px-4 py-3 font-medium text-gray-800 bg-white hover:bg-blue-50 hover:text-blue-800 transition-all duration-200"
             onClick={() => {
               logClarity('faq_opened', faqs[i].question);
               setOpenIndex(openIndex === i ? null : i);

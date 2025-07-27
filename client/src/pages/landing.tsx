@@ -864,10 +864,10 @@ export default function LandingPage() {
             <div>
               <h4 className="text-lg font-semibold text-blue-800 mb-4">Product</h4>
               <ul className="space-y-2 text-blue-500">
-                <li><a href="#features" className="hover:text-navy-900">Features</a></li>
-                <li><a href="/pricing" className="hover:text-navy-900">Pricing</a></li>
-                <li><a href="/case-studies" className="hover:text-navy-900">Case Studies</a></li>
-                <li><a href="/resources" className="hover:text-navy-900">Resources</a></li>
+                <li><a href="#features" className="hover:text-blue-800 hover:underline transition-all duration-200">Features</a></li>
+                <li><a href="/pricing" className="hover:text-blue-800 hover:underline transition-all duration-200">Pricing</a></li>
+                <li><a href="/case-studies" className="hover:text-blue-800 hover:underline transition-all duration-200">Case Studies</a></li>
+                <li><a href="/resources" className="hover:text-blue-800 hover:underline transition-all duration-200">Resources</a></li>
               </ul>
             </div>
             
