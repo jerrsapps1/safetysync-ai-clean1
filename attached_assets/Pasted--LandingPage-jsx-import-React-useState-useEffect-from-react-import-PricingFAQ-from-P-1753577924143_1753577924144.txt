@@ -1,0 +1,148 @@
+// LandingPage.jsx
+import React, { useState, useEffect } from 'react';
+import PricingFAQ from './PricingFAQ';
+import ComparisonModal from './ComparisonModal';
+
+export default function LandingPage() {
+  const [showModal, setShowModal] = useState(false);
+  const [liferCount, setLiferCount] = useState(0);
+  const [formData, setFormData] = useState({ name: '', email: '' });
+
+  useEffect(() => {
+    async function fetchLiferCount() {
+      try {
+        const res = await fetch('/api/lifers-claimed');
+        const data = await res.json();
+        setLiferCount(data.count);
+      } catch (err) {
+        console.error('Failed to load lifer count', err);
+      }
+    }
+    fetchLiferCount();
+  }, []);
+
+  const logClarity = (name, value) => {
+    if (window.clarity) window.clarity('set', name, value);
+  };
+
+  const handleDemoRequest = () => {
+    logClarity('demo_requested', true);
+  };
+
+  const handleTrialSignup = () => {
+    logClarity('trial_signup', true);
+  };
+
+  const handleLiferPlanClick = () => {
+    logClarity('lifer_plan_clicked', true);
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    logClarity('form_submitted', formData.email);
+
+    try {
+      const res = await fetch('/api/subscribe-brevo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await res.json();
+      if (!res.ok) throw new Error(result.error || 'Failed to subscribe');
+
+      alert('Thank you! You’ve been added to our email list.');
+      setFormData({ name: '', email: '' });
+    } catch (err) {
+      alert('Something went wrong: ' + err.message);
+    }
+  };
+
+  return (
+    <div className="bg-gray-50">
+      <header className="text-center py-12">
+        <h1 className="text-4xl font-bold text-blue-700 mb-4">Simplify Your OSHA Compliance</h1>
+        <p className="text-gray-600 max-w-xl mx-auto">
+          Smart tracking for training, certification, and audit readiness.
+        </p>
+        <div className="mt-6 space-x-4">
+          <button
+            onClick={() => {
+              logClarity('comparison_modal_opened', true);
+              setShowModal(true);
+            }}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl shadow-md transition duration-200"
+          >
+            See Competitor Comparison
+          </button>
+          <button
+            onClick={handleDemoRequest}
+            className="bg-gray-800 hover:bg-gray-900 text-white px-6 py-2 rounded-xl shadow-md transition duration-200"
+          >
+            Request Demo
+          </button>
+          <button
+            onClick={handleTrialSignup}
+            className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-2 rounded-xl shadow-md transition duration-200"
+          >
+            Start Free Trial
+          </button>
+        </div>
+      </header>
+
+      <section className="bg-yellow-100 text-yellow-900 py-6 text-center shadow-inner cursor-pointer" onClick={handleLiferPlanClick}>
+        <div className="text-xl font-bold tracking-wide">
+          🎉 {liferCount}+ companies joined the Lifer Plan
+        </div>
+      </section>
+
+      <section className="py-12 px-4 bg-gray-100">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold text-gray-700 mb-4">Pricing FAQs</h2>
+          <div className="space-y-4">
+            {/* Updated FAQ styling */}
+            <style>{`
+              .faq-button {
+                color: #1f2937;
+              }
+              .faq-button:hover {
+                color: #1f2937 !important;
+              }
+            `}</style>
+            <div className="faq-button">
+              <PricingFAQ />
+            </div>
+          </div>
+
+          <form onSubmit={handleFormSubmit} className="mt-12 bg-white p-6 rounded-xl shadow">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">Get in Touch</h3>
+            <input
+              type="text"
+              placeholder="Your Name"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              className="block w-full border border-gray-300 rounded px-4 py-2 mb-4"
+              required
+            />
+            <input
+              type="email"
+              placeholder="Your Email"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              className="block w-full border border-gray-300 rounded px-4 py-2 mb-4"
+              required
+            />
+            <button
+              type="submit"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded shadow-md transition"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </section>
+
+      {showModal && <ComparisonModal onClose={() => setShowModal(false)} />}
+    </div>
+  );
+}
