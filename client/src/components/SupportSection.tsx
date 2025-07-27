@@ -41,14 +41,14 @@ export default function SupportSection() {
 
         <div style={{ 
           display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-          gap: '24px' 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', 
+          gap: '32px' 
         }}>
           {/* Live Chat */}
           <div style={{ 
             backgroundColor: '#dbeafe', 
             borderRadius: '8px', 
-            padding: '24px', 
+            padding: '32px', 
             textAlign: 'center' 
           }}>
             <div style={{ fontSize: '48px', marginBottom: '16px' }}>💬</div>
@@ -56,24 +56,26 @@ export default function SupportSection() {
               fontWeight: '600', 
               marginBottom: '8px',
               color: '#000000',
-              fontSize: '18px'
+              fontSize: '20px'
             }}>
               Live Chat
             </h4>
             <p style={{ 
-              fontSize: '14px', 
+              fontSize: '16px', 
               marginBottom: '24px',
               color: '#000000'
             }}>
-              Available 24/7
+              Available 24/7 for immediate assistance
             </p>
             <button style={{ 
               backgroundColor: '#1d4ed8', 
               color: '#ffffff', 
-              padding: '8px 16px', 
-              borderRadius: '4px',
+              padding: '12px 24px', 
+              borderRadius: '6px',
               border: 'none',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              fontSize: '16px',
+              fontWeight: '600'
             }}>
               Start Chat
             </button>
@@ -83,7 +85,7 @@ export default function SupportSection() {
           <div style={{ 
             backgroundColor: '#dcfce7', 
             borderRadius: '8px', 
-            padding: '24px', 
+            padding: '32px', 
             textAlign: 'center' 
           }}>
             <div style={{ fontSize: '48px', marginBottom: '16px' }}>📧</div>
@@ -91,61 +93,28 @@ export default function SupportSection() {
               fontWeight: '600', 
               marginBottom: '8px',
               color: '#000000',
-              fontSize: '18px'
+              fontSize: '20px'
             }}>
               Email Support
             </h4>
             <p style={{ 
-              fontSize: '14px', 
+              fontSize: '16px', 
               marginBottom: '24px',
               color: '#000000'
             }}>
-              Response within 2 hours
+              Response within 2 hours during business hours
             </p>
             <button style={{ 
               backgroundColor: '#16a34a', 
               color: '#ffffff', 
-              padding: '8px 16px', 
-              borderRadius: '4px',
+              padding: '12px 24px', 
+              borderRadius: '6px',
               border: 'none',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              fontSize: '16px',
+              fontWeight: '600'
             }}>
               Send Email
-            </button>
-          </div>
-
-          {/* Premium Support */}
-          <div style={{ 
-            backgroundColor: '#faf5ff', 
-            borderRadius: '8px', 
-            padding: '24px', 
-            textAlign: 'center' 
-          }}>
-            <div style={{ fontSize: '48px', marginBottom: '16px' }}>💎</div>
-            <h4 style={{ 
-              fontWeight: '600', 
-              marginBottom: '8px',
-              color: '#000000',
-              fontSize: '18px'
-            }}>
-              Premium Support
-            </h4>
-            <p style={{ 
-              fontSize: '14px', 
-              marginBottom: '24px',
-              color: '#000000'
-            }}>
-              Available to paying customers
-            </p>
-            <button style={{ 
-              backgroundColor: '#9333ea', 
-              color: '#ffffff', 
-              padding: '8px 16px', 
-              borderRadius: '4px',
-              border: 'none',
-              cursor: 'pointer'
-            }}>
-              Get Support
             </button>
           </div>
         </div>
