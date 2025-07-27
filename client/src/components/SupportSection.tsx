@@ -67,16 +67,23 @@ export default function SupportSection() {
             }}>
               Available 24/7 for immediate assistance
             </p>
-            <button style={{ 
-              backgroundColor: '#1d4ed8', 
-              color: '#ffffff', 
-              padding: '12px 24px', 
-              borderRadius: '6px',
-              border: 'none',
-              cursor: 'pointer',
-              fontSize: '16px',
-              fontWeight: '600'
-            }}>
+            <button 
+              style={{ 
+                backgroundColor: '#1d4ed8', 
+                color: '#ffffff', 
+                padding: '12px 24px', 
+                borderRadius: '6px',
+                border: 'none',
+                cursor: 'pointer',
+                fontSize: '16px',
+                fontWeight: '600'
+              }}
+              onClick={() => {
+                // Trigger chat widget if available or alert user
+                if (window.clarity) window.clarity('set', 'support_chat_clicked', 'faq_section');
+                alert('Live chat will be available soon! For immediate assistance, please email support@safetysync.ai');
+              }}
+            >
               Start Chat
             </button>
           </div>
@@ -104,16 +111,22 @@ export default function SupportSection() {
             }}>
               Response within 2 hours during business hours
             </p>
-            <button style={{ 
-              backgroundColor: '#16a34a', 
-              color: '#ffffff', 
-              padding: '12px 24px', 
-              borderRadius: '6px',
-              border: 'none',
-              cursor: 'pointer',
-              fontSize: '16px',
-              fontWeight: '600'
-            }}>
+            <button 
+              style={{ 
+                backgroundColor: '#16a34a', 
+                color: '#ffffff', 
+                padding: '12px 24px', 
+                borderRadius: '6px',
+                border: 'none',
+                cursor: 'pointer',
+                fontSize: '16px',
+                fontWeight: '600'
+              }}
+              onClick={() => {
+                if (window.clarity) window.clarity('set', 'support_email_clicked', 'support_section');
+                window.location.href = 'mailto:support@safetysync.ai?subject=Support Request&body=Hello SafetySync team, I need help with:';
+              }}
+            >
               Send Email
             </button>
           </div>
