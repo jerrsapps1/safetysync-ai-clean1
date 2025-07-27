@@ -357,8 +357,15 @@ const subItemVariants = {
 
 export default function WorkspacePage() {
   const { user, isLoading: authLoading, isAuthenticated, logout } = useAuth();
-
   const location = useLocation();
+
+  // Extract tab from URL or default to workspace view
+  const getActiveTabFromUrl = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('tab') || 'unified-dashboard';
+  };
+  
+  const [activeTab, setActiveTab] = useState(getActiveTabFromUrl());
 
   console.log('🏢 WORKSPACE: Component render', { 
     isAuthenticated, 
@@ -398,14 +405,6 @@ export default function WorkspacePage() {
       </div>
     );
   }
-  
-  // Extract tab from URL or default to workspace view
-  const getActiveTabFromUrl = () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('tab') || 'unified-dashboard';
-  };
-  
-  const [activeTab, setActiveTab] = useState(getActiveTabFromUrl());
   
   // Track workspace access with Clarity analytics
   useEffect(() => {
