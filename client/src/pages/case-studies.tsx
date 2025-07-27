@@ -157,9 +157,7 @@ export default function CaseStudiesPage() {
 
   // Track page visit with Clarity analytics
   useEffect(() => {
-    if (window.clarity) {
-      window.clarity('set', 'page_visited', 'case_studies');
-    }
+    if (window.clarity) window.clarity('set', 'page_visited', 'case_studies');
   }, []);
 
   return (

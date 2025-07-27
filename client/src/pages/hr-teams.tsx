@@ -4,9 +4,7 @@ import { PageHeader } from '@/components/ui/page-header';
 export default function HRTeamsPage() {
   // Track page visit with Clarity analytics
   useEffect(() => {
-    if (window.clarity) {
-      window.clarity('set', 'page_visited', 'hr_teams');
-    }
+    if (window.clarity) window.clarity('set', 'page_visited', 'hr_teams');
   }, []);
 
   return (

@@ -378,9 +378,7 @@ export default function WorkspacePage() {
   
   // Track workspace access with Clarity analytics
   useEffect(() => {
-    if (window.clarity) {
-      window.clarity('set', 'workspace_accessed', true);
-    }
+    if (window.clarity) window.clarity('set', 'workspace_accessed', true);
   }, []);
   
   // Hierarchical navigation state
