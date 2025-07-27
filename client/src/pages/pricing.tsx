@@ -19,6 +19,18 @@ export default function PricingPage() {
     if (window.clarity) window.clarity('set', 'page_visited', 'pricing');
   }, []);
 
+  // Debug: Add red border to all elements
+  useEffect(() => {
+    const style = document.createElement('style');
+    style.textContent = `
+      * {
+        border: 1px solid red !important;
+      }
+    `;
+    document.head.appendChild(style);
+    return () => style.remove();
+  }, []);
+
 
 
   const handleAddToCart = (itemType: 'certificate' | 'wallet_card', quantity: number) => {
