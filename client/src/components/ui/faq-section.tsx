@@ -303,49 +303,47 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
       </Tabs>
 
       {/* Contact Support */}
-      <Card className="bg-gradient-to-r from-blue-50 to-purple-50 shadow-none">
-        <CardContent className="p-8">
-          <div className="text-center space-y-4">
-            <MessageCircle className="w-12 h-12 mx-auto text-blue-600" />
-            <h3 className="text-xl font-bold">Still have questions?</h3>
-            <p className="text-blue-500 max-w-md mx-auto">
-              Our support team is here to help you with any questions about SafetySync
-              or OSHA compliance requirements.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
-              <div className="text-center p-4">
-                <MessageCircle className="w-6 h-6 mx-auto mb-2 text-blue-600" />
-                <div className="font-medium">Live Chat</div>
-                <div className="text-sm text-blue-500">Available 24/7</div>
-                <Button variant="outline" size="sm" className="mt-2" onClick={onContactSupport}>
-                  Start Chat
-                </Button>
-              </div>
-              <div className="text-center p-4">
-                <Mail className="w-6 h-6 mx-auto mb-2 text-green-600" />
-                <div className="font-medium">Email Support</div>
-                <div className="text-sm text-blue-500">Response within 2 hours</div>
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  className="mt-2"
-                  onClick={() => window.location.href = 'mailto:support@safetysync.ai?subject=Support Request&body=Hello SafetySync team, I need help with:'}
-                >
-                  Send Email
-                </Button>
-              </div>
-              <div className="text-center p-4">
-                <Phone className="w-6 h-6 mx-auto mb-2 text-purple-600" />
-                <div className="font-medium">Phone Support</div>
-                <div className="text-sm text-blue-500">Business hours only</div>
-                <Button variant="outline" size="sm" className="mt-2">
-                  Call Us
-                </Button>
-              </div>
+      <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-8">
+        <div className="text-center space-y-4">
+          <MessageCircle className="w-12 h-12 mx-auto text-blue-600" />
+          <h3 className="text-xl font-bold">Still have questions?</h3>
+          <p className="text-blue-500 max-w-md mx-auto">
+            Our support team is here to help you with any questions about SafetySync
+            or OSHA compliance requirements.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
+            <div className="text-center p-4">
+              <MessageCircle className="w-6 h-6 mx-auto mb-2 text-blue-600" />
+              <div className="font-medium">Live Chat</div>
+              <div className="text-sm text-blue-500">Available 24/7</div>
+              <Button variant="outline" size="sm" className="mt-2" onClick={onContactSupport}>
+                Start Chat
+              </Button>
+            </div>
+            <div className="text-center p-4">
+              <Mail className="w-6 h-6 mx-auto mb-2 text-green-600" />
+              <div className="font-medium">Email Support</div>
+              <div className="text-sm text-blue-500">Response within 2 hours</div>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="mt-2"
+                onClick={() => window.location.href = 'mailto:support@safetysync.ai?subject=Support Request&body=Hello SafetySync team, I need help with:'}
+              >
+                Send Email
+              </Button>
+            </div>
+            <div className="text-center p-4">
+              <Phone className="w-6 h-6 mx-auto mb-2 text-purple-600" />
+              <div className="font-medium">Phone Support</div>
+              <div className="text-sm text-blue-500">Business hours only</div>
+              <Button variant="outline" size="sm" className="mt-2">
+                Call Us
+              </Button>
             </div>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }
