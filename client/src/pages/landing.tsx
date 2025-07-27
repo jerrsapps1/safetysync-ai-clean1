@@ -15,7 +15,7 @@ import { TermsAndConditions } from "@/components/ui/terms-and-conditions";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/useAuth";
 import { trackConversionEvent, CONVERSION_EVENTS } from "@/lib/analytics";
-import { useABTest } from "@/lib/ab-testing";
+import { useLaunchDarkly, FEATURE_FLAGS, LAUNCHDARKLY_EVENTS } from "@/lib/launchdarkly";
 import { clarity } from '@/lib/clarity-analytics';
 import { 
   CheckCircle, 
@@ -65,9 +65,10 @@ export default function LandingPage() {
   // Authentication hook
   const { user, isLoading: authLoading, isAuthenticated, logout } = useAuth();
   
-  // A/B Testing hooks
-  const heroCtaTest = useABTest('hero_cta_test');
-  const pricingTest = useABTest('pricing_display_test');
+  // LaunchDarkly feature flags
+  const { getFlag, track } = useLaunchDarkly();
+  const heroCtaText = getFlag(FEATURE_FLAGS.HERO_CTA_TEXT, 'Start Free Trial');
+  const showAnnualSavings = getFlag(FEATURE_FLAGS.SHOW_ANNUAL_SAVINGS, false);
 
   const [showProductTour, setShowProductTour] = useState(false);
   const [showLiveChat, setShowLiveChat] = useState(false);
@@ -121,14 +122,16 @@ export default function LandingPage() {
   };
 
   const handleTrialClick = () => {
-    // Track A/B test conversion
-    heroCtaTest.trackConversion(49);
+    // Track LaunchDarkly event
+    track(LAUNCHDARKLY_EVENTS.TRIAL_SIGNUP_STARTED, { source: 'hero_cta', value: 49 });
     // Track Clarity analytics
     if (window.clarity) window.clarity('set', 'trial_signup_started', true);
     setIsTrialDialogOpen(true);
   };
 
   const handleDemoClick = () => {
+    // Track LaunchDarkly event
+    track(LAUNCHDARKLY_EVENTS.DEMO_REQUEST_SUBMITTED, { source: 'hero_cta', value: 200 });
     // Track Clarity analytics
     if (window.clarity) window.clarity('set', 'demo_request_started', true);
     setIsDemoDialogOpen(true);
@@ -929,7 +932,6 @@ export default function LandingPage() {
       
       {showModal && (
         <ComparisonModal 
-          isOpen={showModal}
           onClose={() => setShowModal(false)}
         />
       )}
