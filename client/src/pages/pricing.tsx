@@ -54,7 +54,7 @@ export default function PricingPage() {
             <ShoppingCartButton 
               variant="outline" 
               size="lg"
-              className="bg-blue-600/20 border-blue-400/30 text-white hover:bg-blue-600/30"
+              className="bg-blue-600/20 border-blue-400 text-white hover:bg-blue-600 hover:border-blue-500 transition-all duration-200"
             />
           </div>
         </div>
@@ -96,14 +96,14 @@ export default function PricingPage() {
                   <Button
                     onClick={() => handleAddToCart('certificate', 25)}
                     variant="outline"
-                    className="border-blue-400/30 text-white hover:bg-blue-600/20"
+                    className="border-blue-400 text-white hover:bg-blue-600 hover:border-blue-500 transition-all duration-200"
                   >
                     +25 Certificates
                   </Button>
                   <Button
                     onClick={() => handleAddToCart('certificate', 50)}
                     variant="outline"
-                    className="border-blue-400/30 text-white hover:bg-blue-600/20"
+                    className="border-blue-400 text-white hover:bg-blue-600 hover:border-blue-500 transition-all duration-200"
                   >
                     +50 Certificates
                   </Button>
@@ -148,14 +148,14 @@ export default function PricingPage() {
                   <Button
                     onClick={() => handleAddToCart('wallet_card', 25)}
                     variant="outline"
-                    className="border-blue-400/30 text-white hover:bg-blue-600/20"
+                    className="border-blue-400 text-white hover:bg-blue-600 hover:border-blue-500 transition-all duration-200"
                   >
                     +25 Cards
                   </Button>
                   <Button
                     onClick={() => handleAddToCart('wallet_card', 50)}
                     variant="outline"
-                    className="border-blue-400/30 text-white hover:bg-blue-600/20"
+                    className="border-blue-400 text-white hover:bg-blue-600 hover:border-blue-500 transition-all duration-200"
                   >
                     +50 Cards
                   </Button>
