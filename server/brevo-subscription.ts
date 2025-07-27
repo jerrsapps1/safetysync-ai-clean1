@@ -16,7 +16,7 @@ export default async function handler(req: Request, res: Response) {
       body: JSON.stringify({
         email,
         attributes: { FIRSTNAME: name },
-        listIds: [1], // SafetySync.AI newsletter list
+        listIds: [2], // SafetySync.AI newsletter list
         updateEnabled: true,
       }),
     });
