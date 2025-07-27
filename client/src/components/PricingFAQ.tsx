@@ -1,5 +1,8 @@
 import { useState } from 'react';
-import { clarity } from '@/lib/clarity-analytics';
+
+const logClarity = (name: string, value: any) => {
+  if (window.clarity) window.clarity('set', name, value);
+};
 
 const faqs = [
   {
@@ -46,7 +49,7 @@ export default function PricingFAQ() {
           <button
             className="w-full text-left px-4 py-3 font-medium text-gray-800 bg-white hover:bg-gray-50"
             onClick={() => {
-              if (window.clarity) window.clarity('set', 'faq_opened', faqs[i].question);
+              logClarity('faq_opened', faqs[i].question);
               setOpenIndex(openIndex === i ? null : i);
             }}
           >
