@@ -11,7 +11,7 @@ import LandingPage from "@/pages/landing";
 import LandingPageSimple from "@/pages/landing-simple";
 import Dashboard from "@/pages/dashboard";
 
-import WorkspacePage from "@/pages/workspace";
+import WorkspaceSimple from "@/pages/workspace-simple";
 import WorkspaceSimplified from "@/pages/workspace-simplified";
 import WorkspaceBasic from "@/pages/workspace-basic";
 import AdminPanel from "@/pages/admin";
@@ -56,7 +56,7 @@ function AppRouter() {
       <Route path="/" element={<LandingPage />} />
       <Route path="/landing-simple" element={<LandingPageSimple />} />
       <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/workspace" element={<WorkspacePage />} />
+      <Route path="/workspace" element={<WorkspaceSimple />} />
       <Route path="/workspace-basic" element={<WorkspaceBasic />} />
       <Route path="/admin" element={<AdminPanel />} />
       <Route path="/admin-dashboard" element={<AdminDashboard />} />
