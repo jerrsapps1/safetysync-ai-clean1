@@ -22,7 +22,7 @@ import {
 } from "@shared/schema";
 import { boomiAI } from "./ai-boomi-integration";
 import { googleDocumentAI } from "./google-documentai-processor";
-import { db, pool } from "./db";
+import { pool } from "./db";
 import multer from "multer";
 
 // Safe import for pdf-parse to avoid test file errors
@@ -80,7 +80,6 @@ const clearFailedAttempts = (identifier: string): void => {
 import { z } from "zod";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { db } from "./db";
 import { and, eq, desc } from "drizzle-orm";
 
 // Generate compliance report data based on type

@@ -5,7 +5,7 @@ import { PageHeader } from "@/components/ui/page-header";
 import { TrialSignupDialog } from "@/components/ui/trial-signup-dialog";
 import { DemoRequestDialog } from "@/components/ui/demo-request-dialog";
 import { Toaster } from "@/components/ui/toaster";
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 import PricingFAQ from "@/components/PricingFAQ";
 import ComparisonModal from "@/components/ComparisonModal";
 
@@ -16,6 +16,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/useAuth";
 import { trackConversionEvent, CONVERSION_EVENTS } from "@/lib/analytics";
 import { useABTest } from "@/lib/ab-testing";
+import { clarity } from '@/lib/clarity-analytics';
 import { 
   CheckCircle, 
   AlertCircle, 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { clarity, CLARITY_EVENTS } from '@/lib/clarity-analytics';
 
 const competitors = [
   { name: 'SafetySync.ai', cost: 'Starts at $49/mo', trainingIncluded: 'No', recordkeeping: 'Yes', 'AI-powered': 'Yes' },
@@ -13,6 +14,14 @@ interface ComparisonModalProps {
 }
 
 export default function ComparisonModal({ isOpen, onClose }: ComparisonModalProps) {
+  // Track when modal opens
+  React.useEffect(() => {
+    if (isOpen) {
+      clarity.set('comparison_modal_opened', true);
+      clarity.set('comparison_modal_timestamp', new Date().toISOString());
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return (
