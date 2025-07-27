@@ -155,6 +155,7 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - **BREVO LIST CONFIGURATION**: Updated newsletter subscriptions to use Brevo list ID 2 for proper email list management and subscriber organization
   - **HOVER STATE FIXES**: Fixed white hover states across platform components including PricingFAQ, ComparisonModal, and LandingPageAddons for better visibility and user experience
   - **SEMI-TRANSPARENT WHITE OVERLAY REMOVAL**: Eliminated all semi-transparent white overlays (bg-white/X, hover:bg-white/X, border-white/X) across entire platform, replacing with blue theme equivalents (bg-blue-800/30, hover:bg-blue-600/20, border-blue-400/30) for consistent visual experience
+  - **FAQ HOVER STATE FIXES**: Fixed FAQ components where white text on white hover backgrounds made content unreadable, replaced with dark blue text (text-blue-900, text-blue-600) and proper hover backgrounds (hover:bg-blue-100) for optimal readability
 
 - **July 26, 2025** - REACT ROUTER MIGRATION COMPLETED:
   - **ROUTING SYSTEM MIGRATION**: Successfully migrated from wouter to React Router using modern `element` prop syntax throughout App.tsx
