@@ -19,12 +19,17 @@ export default function PricingPage() {
     if (window.clarity) window.clarity('set', 'page_visited', 'pricing');
   }, []);
 
-  // Debug: Add red borders to all sections
+  // Debug: Add CSS for sections
   useEffect(() => {
-    document.querySelectorAll("section").forEach(sec => {
-      sec.style.border = "2px dashed red";
-      sec.style.marginBottom = "2rem";
-    });
+    const style = document.createElement('style');
+    style.textContent = `
+      section {
+        border: 2px dashed red !important;
+        margin-bottom: 2rem !important;
+      }
+    `;
+    document.head.appendChild(style);
+    return () => style.remove();
   }, []);
 
   const handleAddToCart = (itemType: 'certificate' | 'wallet_card', quantity: number) => {
@@ -226,8 +231,7 @@ export default function PricingPage() {
         </section>
 
         {/* FAQ Section */}
-        <section className="mb-20" style={{ border: '3px solid green', padding: '20px' }}>
-          <h2 style={{ color: 'green', fontSize: '24px', fontWeight: 'bold' }}>FAQ SECTION CONTAINER</h2>
+        <section className="mb-20">
           <FAQSection />
         </section>
 
