@@ -303,7 +303,7 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
       </Tabs>
 
       {/* Contact Support */}
-      <Card className="bg-gradient-to-r from-blue-50 to-purple-50">
+      <Card className="bg-gradient-to-r from-blue-50 to-purple-50 shadow-none border-none">
         <CardContent className="p-8">
           <div className="text-center space-y-4">
             <MessageCircle className="w-12 h-12 mx-auto text-blue-600" />
