@@ -73,6 +73,8 @@ export default function LandingPage() {
   const [showLiveChat, setShowLiveChat] = useState(false);
   const [showTermsDialog, setShowTermsDialog] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [newsletterForm, setNewsletterForm] = useState({ name: '', email: '' });
+  const [isSubscribing, setIsSubscribing] = useState(false);
   const [liferCount, setLiferCount] = useState(0);
   const [pendingSignupData, setPendingSignupData] = useState<{
     type: 'trial' | 'demo';
@@ -81,6 +83,42 @@ export default function LandingPage() {
     planName: string;
   } | null>(null);
   const { toast } = useToast();
+
+  // Newsletter subscription handler with Clarity tracking
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    clarity.set('newsletter_form_submitted', newsletterForm.email);
+    setIsSubscribing(true);
+
+    try {
+      const res = await fetch('/api/subscribe-brevo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newsletterForm),
+      });
+
+      const result = await res.json();
+      if (!res.ok) throw new Error(result.error || 'Failed to subscribe');
+
+      toast({
+        title: "Success!",
+        description: "You've been added to our SafetySync.AI newsletter.",
+        variant: "default",
+      });
+      
+      clarity.set('newsletter_subscription_success', true);
+      setNewsletterForm({ name: '', email: '' });
+    } catch (err: any) {
+      toast({
+        title: "Subscription Failed",
+        description: err.message,
+        variant: "destructive",
+      });
+      clarity.set('newsletter_subscription_error', err.message);
+    } finally {
+      setIsSubscribing(false);
+    }
+  };
 
   const handleTrialClick = () => {
     // Track A/B test conversion
@@ -754,6 +792,56 @@ export default function LandingPage() {
               Book a Demo
             </Button>
           </div>
+        </div>
+      </section>
+
+      {/* Newsletter Subscription Section */}
+      <section className="py-16 px-4 bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-white mb-4">
+            Stay Updated with SafetySync.AI
+          </h2>
+          <p className="text-blue-100 mb-8">
+            Get the latest safety compliance updates, OSHA insights, and platform improvements delivered to your inbox.
+          </p>
+          
+          <form onSubmit={handleNewsletterSubmit} className="max-w-md mx-auto">
+            <div className="space-y-4">
+              <input
+                type="text"
+                placeholder="Your Name"
+                value={newsletterForm.name}
+                onChange={(e) => setNewsletterForm({ ...newsletterForm, name: e.target.value })}
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                required
+              />
+              <input
+                type="email"
+                placeholder="Your Email Address"
+                value={newsletterForm.email}
+                onChange={(e) => setNewsletterForm({ ...newsletterForm, email: e.target.value })}
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                required
+              />
+              <Button
+                type="submit"
+                disabled={isSubscribing}
+                className="w-full bg-white text-blue-600 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg transition duration-200"
+              >
+                {isSubscribing ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600 mr-2"></div>
+                    Subscribing...
+                  </>
+                ) : (
+                  <>
+                    <Mail className="w-4 h-4 mr-2" />
+                    Subscribe to Newsletter
+                  </>
+                )}
+              </Button>
+            </div>
+          </form>
         </div>
       </section>
 
