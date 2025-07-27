@@ -3139,52 +3139,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Brevo email subscription endpoint (fixes SMTP authentication issues)
   app.post("/api/subscribe-brevo", async (req, res) => {
+    if (req.method !== 'POST') return res.status(405).end();
+
     const { name, email } = req.body;
 
-    if (!name || !email) {
-      return res.status(400).json({ error: 'Name and email are required' });
-    }
-
     try {
-      const brevoApiKey = process.env.BREVO_API_KEY;
-      if (!brevoApiKey) {
-        return res.status(500).json({ error: 'Email service not configured' });
-      }
-
       const response = await fetch('https://api.brevo.com/v3/contacts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'api-key': brevoApiKey,
+          'api-key': process.env.BREVO_API_KEY,
         },
         body: JSON.stringify({
           email,
-          attributes: { 
-            FIRSTNAME: name,
-            SOURCE: 'SafetySync.AI'
-          },
-          listIds: [1], // Update with actual Brevo list ID
+          attributes: { FIRSTNAME: name },
+          listIds: [1], // SafetySync.AI newsletter list
           updateEnabled: true,
         }),
       });
 
       if (!response.ok) {
         const error = await response.text();
-        console.error('Brevo subscription error:', error);
-        return res.status(500).json({ error: 'Failed to subscribe to newsletter' });
+        return res.status(500).json({ error });
       }
 
-      const data = await response.json();
-      console.log('✅ Brevo subscription successful:', { email, name });
-      
-      res.status(200).json({ 
-        success: true, 
-        message: 'Successfully subscribed to SafetySync.AI updates',
-        contactId: data.id 
-      });
+      res.status(200).json({ success: true });
     } catch (err: any) {
-      console.error('❌ Brevo subscription error:', err.message);
-      res.status(500).json({ error: 'Internal server error' });
+      res.status(500).json({ error: err.message });
     }
   });
 
