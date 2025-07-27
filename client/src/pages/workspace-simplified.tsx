@@ -113,7 +113,7 @@ export default function WorkspaceSimplified() {
                 variant="ghost"
                 size="sm"
                 onClick={() => setSidebarOpen(!sidebarOpen)}
-                className="text-white hover:text-white"
+                className="text-blue-100 hover:text-blue-200"
               >
                 {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </Button>
@@ -125,7 +125,7 @@ export default function WorkspaceSimplified() {
             {/* Dashboard */}
             <Button
               variant="ghost"
-              className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+              className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
                 activeTab === "dashboard" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("dashboard")}
@@ -138,7 +138,7 @@ export default function WorkspaceSimplified() {
             {/* Instructor Sign-In Generator */}
             <Button
               variant="ghost"
-              className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+              className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
                 activeTab === "instructor-signin" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("instructor-signin")}
@@ -151,7 +151,7 @@ export default function WorkspaceSimplified() {
             {/* Training Records */}
             <Button
               variant="ghost"
-              className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+              className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
                 activeTab === "training-records" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("training-records")}
@@ -164,7 +164,7 @@ export default function WorkspaceSimplified() {
             {/* Document Hub */}
             <Button
               variant="ghost"
-              className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+              className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
                 activeTab === "document-hub" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("document-hub")}
@@ -177,7 +177,7 @@ export default function WorkspaceSimplified() {
             {/* Employee Management */}
             <Button
               variant="ghost"
-              className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+              className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
                 activeTab === "employees" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("employees")}
@@ -205,7 +205,7 @@ export default function WorkspaceSimplified() {
             )}
             <Button
               variant="ghost"
-              className="w-full justify-start text-white hover:text-white hover:bg-blue-600/50"
+              className="w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50"
               onClick={handleLogout}
             >
               <LogOut className="w-5 h-5 mr-3" />

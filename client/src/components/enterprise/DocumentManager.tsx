@@ -558,7 +558,7 @@ const DocumentManager: React.FC = () => {
                       size="sm"
                       variant="ghost"
                       onClick={() => handleViewDocument(doc)}
-                      className="text-white hover:text-white"
+                      className="text-blue-100 hover:text-blue-200"
                     >
                       <Eye className="w-4 h-4" />
                     </Button>
@@ -566,14 +566,14 @@ const DocumentManager: React.FC = () => {
                       size="sm"
                       variant="ghost"
                       onClick={() => handleDownload(doc)}
-                      className="text-white hover:text-white"
+                      className="text-blue-100 hover:text-blue-200"
                     >
                       <Download className="w-4 h-4" />
                     </Button>
                     <Button
                       size="sm"
                       variant="ghost"
-                      className="text-white hover:text-white"
+                      className="text-blue-100 hover:text-blue-200"
                     >
                       <Edit className="w-4 h-4" />
                     </Button>
