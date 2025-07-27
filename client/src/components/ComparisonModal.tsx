@@ -37,19 +37,19 @@ export default function ComparisonModal({ isOpen, onClose }: ComparisonModalProp
           </thead>
           <tbody>
             {competitors.map((c, i) => (
-              <tr key={i} className="odd:bg-white even:bg-gray-50">
+              <tr key={i} className="odd:bg-white even:bg-gray-50 hover:bg-blue-50 transition-all duration-200">
                 <td className="p-2 font-medium text-gray-800">{c.name}</td>
-                <td className="p-2">{c.cost}</td>
-                <td className="p-2">{c.trainingIncluded}</td>
-                <td className="p-2">{c.recordkeeping}</td>
-                <td className="p-2">{c['AI-powered']}</td>
+                <td className="p-2 text-gray-700">{c.cost}</td>
+                <td className="p-2 text-gray-700">{c.trainingIncluded}</td>
+                <td className="p-2 text-gray-700">{c.recordkeeping}</td>
+                <td className="p-2 text-gray-700">{c['AI-powered']}</td>
               </tr>
             ))}
           </tbody>
         </table>
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 text-gray-500 hover:text-black text-lg"
+          className="absolute top-2 right-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold transition-all duration-200"
         >
           ×
         </button>

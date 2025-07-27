@@ -308,7 +308,7 @@ export default function LandingPageAddons() {
             <CheckCircle className="h-5 w-5 mr-2" />
             Start Your Trial
           </Button>
-          <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600 font-semibold">
+          <Button size="lg" variant="outline" className="border-white text-white hover:bg-blue-600 hover:text-white hover:border-blue-600 font-semibold transition-all duration-200">
             <Users className="h-5 w-5 mr-2" />
             Request Demo
           </Button>
