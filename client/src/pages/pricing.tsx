@@ -19,6 +19,15 @@ export default function PricingPage() {
     if (window.clarity) window.clarity('set', 'page_visited', 'pricing');
   }, []);
 
+  // Clean up any debug red borders
+  useEffect(() => {
+    document.querySelectorAll("section, div").forEach((el) => {
+      if (el.style.border?.includes("red")) {
+        el.style.border = "none";
+      }
+    });
+  }, []);
+
 
 
 
