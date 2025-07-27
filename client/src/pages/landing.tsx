@@ -884,7 +884,7 @@ export default function LandingPage() {
               <h4 className="text-lg font-semibold text-blue-800 mb-4">Support</h4>
               <ul className="space-y-2 text-blue-500">
                 <li><a href="/user-guide" className="hover:text-navy-900">User Guide</a></li>
-                <li><p className="text-blue-400">Support: Available to paying customers</p></li>
+                <li><p className="text-blue-400">Support: Email and live chat available</p></li>
               </ul>
             </div>
           </div>
@@ -929,7 +929,7 @@ export default function LandingPage() {
       
       {showModal && (
         <ComparisonModal 
-          isOpen={showModal}
+          open={showModal}
           onClose={() => setShowModal(false)}
         />
       )}
