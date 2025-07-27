@@ -1941,7 +1941,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
         <div className="text-center">
           <SafetySyncIcon size={64} className="mx-auto mb-4" />
           <p className="text-white text-lg mb-4">Error loading dashboard data</p>
-          <Button onClick={() => window.location.reload()} variant="outline" className="text-white border-white hover:bg-blue-900 hover:text-black">
+          <Button onClick={() => window.location.reload()} variant="outline" className="text-blue-100 border-blue-400 hover:bg-blue-900 hover:text-blue-200">
             Reload Page
           </Button>
         </div>

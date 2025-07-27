@@ -374,7 +374,7 @@ export default function CaseStudiesPage() {
                 </Button>
               </Link>
               <Link href="/">
-                <Button size="lg" variant="secondary" className="bg-blue-900/60 border-white text-white hover:bg-blue-900/20">
+                <Button size="lg" variant="secondary" className="bg-blue-900/60 border-blue-400 text-blue-100 hover:bg-blue-900/20">
                   Schedule Strategy Call
                 </Button>
               </Link>

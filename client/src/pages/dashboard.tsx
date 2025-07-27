@@ -105,7 +105,7 @@ function LoginForm() {
         <div className="bg-blue-900/60 backdrop-blur-sm border border-violet-500/30 rounded-lg p-6 shadow-2xl">
           <div className="text-center mb-6">
             <h1 className="text-2xl font-bold text-white mb-2">SafetySync.AI</h1>
-            <p className="text-white/70">Sign in to your workspace</p>
+            <p className="text-blue-200/90">Sign in to your workspace</p>
           </div>
           
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -296,7 +296,7 @@ export default function Dashboard() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2 md:space-x-4">
               <Link href="/">
-                <Button variant="ghost" size="sm" className="text-white/70 hover:text-blue-200 hover:bg-blue-900/60 transition-all duration-300">
+                <Button variant="ghost" size="sm" className="text-blue-200/90 hover:text-blue-200 hover:bg-blue-900/60 transition-all duration-300">
                   <Home className="w-4 h-4 mr-1" />
                   <span className="hidden sm:inline">Home</span>
                 </Button>
@@ -312,7 +312,7 @@ export default function Dashboard() {
             </div>
             <div className="flex items-center space-x-1">
               <Link href="/user-guide">
-                <Button variant="ghost" size="sm" className="text-white/70 hover:text-blue-200 hover:bg-blue-900/60 transition-all duration-300">
+                <Button variant="ghost" size="sm" className="text-blue-200/90 hover:text-blue-200 hover:bg-blue-900/60 transition-all duration-300">
                   <span className="hidden sm:inline">Guide</span>
                   <BookOpen className="w-4 h-4 sm:hidden" />
                 </Button>
@@ -321,7 +321,7 @@ export default function Dashboard() {
                 onClick={simulateLoading}
                 variant="ghost" 
                 size="sm" 
-                className="text-white/70 hover:text-blue-200 hover:bg-blue-900/60 transition-all duration-300"
+                className="text-blue-200/90 hover:text-blue-200 hover:bg-blue-900/60 transition-all duration-300"
                 title="Test Loading"
               >
                 <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
@@ -329,7 +329,7 @@ export default function Dashboard() {
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-white/70 hover:text-blue-200 hover:bg-blue-900/60 transition-all duration-300"
+                className="text-blue-200/90 hover:text-blue-200 hover:bg-blue-900/60 transition-all duration-300"
                 onClick={logout}
               >
                 Sign Out
@@ -366,7 +366,7 @@ export default function Dashboard() {
                 </div>
                 <div>
                   <h3 className="font-medium text-white">AI-Powered Setup Guide</h3>
-                  <p className="text-sm text-white/80">Follow the intelligent workflow: Employees → Training → Branding → Reports for optimal setup</p>
+                  <p className="text-sm text-blue-100/90">Follow the intelligent workflow: Employees → Training → Branding → Reports for optimal setup</p>
                 </div>
               </div>
               <Link href="/user-guide">
@@ -469,7 +469,7 @@ export default function Dashboard() {
                 {stats.complianceScore}%
               </div>
             </div>
-            <p className="text-sm text-white/70 mt-2">
+            <p className="text-sm text-blue-200/90 mt-2">
               Excellent compliance! You're above industry average.
             </p>
           </CardContent>
@@ -478,37 +478,37 @@ export default function Dashboard() {
         {/* Main Content Tabs */}
         <Tabs defaultValue="overview" className="space-y-6">
           <TabsList className="grid w-full grid-cols-11 bg-blue-900/5 border-violet-500/30 backdrop-blur-sm">
-            <TabsTrigger value="overview" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
+            <TabsTrigger value="overview" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
               Overview
             </TabsTrigger>
-            <TabsTrigger value="employees" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
+            <TabsTrigger value="employees" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
               Employees
             </TabsTrigger>
-            <TabsTrigger value="training" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
+            <TabsTrigger value="training" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
               Training
             </TabsTrigger>
-            <TabsTrigger value="branding" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
+            <TabsTrigger value="branding" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
               Branding
             </TabsTrigger>
-            <TabsTrigger value="reports" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
+            <TabsTrigger value="reports" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
               Reports
             </TabsTrigger>
-            <TabsTrigger value="generator" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
+            <TabsTrigger value="generator" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
               Report Generator
             </TabsTrigger>
-            <TabsTrigger value="certificates" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
+            <TabsTrigger value="certificates" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
               Certificates
             </TabsTrigger>
-            <TabsTrigger value="collaboration" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
+            <TabsTrigger value="collaboration" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
               Team Review
             </TabsTrigger>
-            <TabsTrigger value="locations" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
+            <TabsTrigger value="locations" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
               Locations
             </TabsTrigger>
-            <TabsTrigger value="safety-trends" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
+            <TabsTrigger value="safety-trends" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
               Safety Trends
             </TabsTrigger>
-            <TabsTrigger value="audit-settings" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
+            <TabsTrigger value="audit-settings" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
               Audit Settings
             </TabsTrigger>
           </TabsList>
@@ -544,14 +544,14 @@ export default function Dashboard() {
                     </div>
                     <div>
                       <p className="font-medium">Mike Chen's Hazard Communication training due in 15 days</p>
-                      <p className="text-sm text-white/60">Yesterday</p>
+                      <p className="text-sm text-blue-200/80">Yesterday</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 p-3 bg-red-50 rounded-lg">
                     <AlertTriangle className="w-5 h-5 text-red-600" />
                     <div>
                       <p className="font-medium">Lisa Rodriguez's Fall Protection certification expired</p>
-                      <p className="text-sm text-white/60">3 days ago</p>
+                      <p className="text-sm text-blue-200/80">3 days ago</p>
                     </div>
                   </div>
                 </div>
@@ -602,11 +602,11 @@ export default function Dashboard() {
                   <div className="border-t pt-3">
                     <h4 className="text-sm font-medium mb-2">AI Recommendations</h4>
                     <div className="space-y-2 text-xs">
-                      <p className="text-white/80">• Upload missing practical evaluations for 3 forklift operators</p>
-                      <p className="text-white/80">• Schedule annual evaluation uploads for respiratory protection training</p>
-                      <p className="text-white/80">• Prioritize renewal for 3 expired fall protection certifications</p>
-                      <p className="text-white/80">• Schedule mandatory safety meeting for Manufacturing team</p>
-                      <p className="text-white/80">• Review incident reports from Q4 2024</p>
+                      <p className="text-blue-100/90">• Upload missing practical evaluations for 3 forklift operators</p>
+                      <p className="text-blue-100/90">• Schedule annual evaluation uploads for respiratory protection training</p>
+                      <p className="text-blue-100/90">• Prioritize renewal for 3 expired fall protection certifications</p>
+                      <p className="text-blue-100/90">• Schedule mandatory safety meeting for Manufacturing team</p>
+                      <p className="text-blue-100/90">• Review incident reports from Q4 2024</p>
                     </div>
                   </div>
                 </div>
@@ -627,7 +627,7 @@ export default function Dashboard() {
                     <div key={record.id} className="flex items-center justify-between p-3 border rounded-lg">
                       <div>
                         <p className="font-medium">{record.employeeName}</p>
-                        <p className="text-sm text-white/70">{record.training}</p>
+                        <p className="text-sm text-blue-200/90">{record.training}</p>
                       </div>
                       <div className="text-right">
                         <p className="text-sm font-medium">{record.dueDate}</p>
@@ -741,7 +741,7 @@ export default function Dashboard() {
                         </div>
                         <div>
                           <p className="font-medium text-white">{record.employeeName}</p>
-                          <p className="text-sm text-white/70">{record.training}</p>
+                          <p className="text-sm text-blue-200/90">{record.training}</p>
                           <div className="flex items-center space-x-2 mt-1">
                             <Badge variant="outline" className="text-xs">OSHA 10</Badge>
                             <Badge variant="outline" className="text-xs">Safety Training</Badge>
@@ -750,7 +750,7 @@ export default function Dashboard() {
                       </div>
                       <div className="flex items-center gap-4">
                         <div className="text-center">
-                          <p className="text-xs text-white/60">Documents</p>
+                          <p className="text-xs text-blue-200/80">Documents</p>
                           <div className="flex space-x-1 mt-1">
                             <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
                               <FileText className="w-3 h-3 text-blue-600" />
@@ -1046,7 +1046,7 @@ export default function Dashboard() {
                         <div className="flex items-start justify-between mb-4">
                           <div className="flex-1">
                             <h3 className="font-medium text-lg mb-2">{training.name}</h3>
-                            <div className="flex flex-wrap gap-4 text-sm text-white/70 mb-3">
+                            <div className="flex flex-wrap gap-4 text-sm text-blue-200/90 mb-3">
                               <span className="flex items-center gap-1">
                                 <Clock className="w-3 h-3" />
                                 {training.duration}
@@ -1069,7 +1069,7 @@ export default function Dashboard() {
                             <div className="text-2xl font-bold text-white mb-1">
                               {training.completed}/{training.enrolled}
                             </div>
-                            <div className="text-sm text-white/70">Completed</div>
+                            <div className="text-sm text-blue-200/90">Completed</div>
                           </div>
                         </div>
                         
@@ -1086,7 +1086,7 @@ export default function Dashboard() {
                             {training.syllabus.map((item, idx) => (
                               <div key={idx} className="flex items-start gap-2 text-sm">
                                 <CheckCircle className="w-3 h-3 text-green-600 mt-0.5 flex-shrink-0" />
-                                <span className="text-white/80">{item}</span>
+                                <span className="text-blue-100/90">{item}</span>
                               </div>
                             ))}
                           </div>
