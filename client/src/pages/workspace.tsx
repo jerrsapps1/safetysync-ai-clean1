@@ -358,6 +358,8 @@ const subItemVariants = {
 export default function WorkspacePage() {
   const { user, isLoading: authLoading, isAuthenticated, logout } = useAuth();
   const location = useLocation();
+  const { toast } = useToast();
+  const { data: dashboardData, isLoading: isDashboardLoading, error: dashboardError } = useDashboardData();
 
   // Extract tab from URL or default to workspace view
   const getActiveTabFromUrl = () => {
@@ -366,13 +368,31 @@ export default function WorkspacePage() {
   };
   
   const [activeTab, setActiveTab] = useState(getActiveTabFromUrl());
-
-  console.log('🏢 WORKSPACE: Component render', { 
-    isAuthenticated, 
-    authLoading, 
-    hasUser: !!user,
-    location 
+  
+  // Hierarchical navigation state
+  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
+    'employee-features': false,
+    'compliance-features': false,
+    'training-features': false,
+    'system-tools': false,
+    'document-features': false
   });
+  
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  
+  const [workspaceSettings, setWorkspaceSettings] = useState<WorkspaceSettings>({
+    companyName: "SafetySync.AI",
+    companyLogo: "",
+    primaryColor: "#10B981",
+    secondaryColor: "#3B82F6",
+    customDomain: "",
+    showBranding: true
+  });
+
+  // Track workspace access with Clarity analytics
+  useEffect(() => {
+    if (window.clarity) window.clarity('set', 'workspace_accessed', true);
+  }, []);
 
   // Handle authentication state
   useEffect(() => {
@@ -381,6 +401,44 @@ export default function WorkspacePage() {
       window.location.href = '/client-portal';
     }
   }, [authLoading, isAuthenticated]);
+
+  // Handle URL changes and browser navigation
+  useEffect(() => {
+    const handlePopState = () => {
+      const newTab = getActiveTabFromUrl();
+      if (newTab !== activeTab) {
+        setActiveTab(newTab);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [activeTab]);
+
+  // Memoize tab switching to prevent freezing and persist in URL
+  const handleTabSwitch = useCallback((tab: string) => {
+    if (tab !== activeTab) {
+      setActiveTab(tab);
+      // Update URL to persist tab state
+      const newUrl = `/workspace?tab=${tab}`;
+      window.history.pushState({}, '', newUrl);
+    }
+  }, [activeTab]);
+
+  // Toggle section expansion
+  const toggleSection = useCallback((sectionId: string) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [sectionId]: !prev[sectionId]
+    }));
+  }, []);
+
+  console.log('🏢 WORKSPACE: Component render', { 
+    isAuthenticated, 
+    authLoading, 
+    hasUser: !!user,
+    location 
+  });
 
   // Show loading state while authentication is being checked
   if (authLoading) {
@@ -406,66 +464,8 @@ export default function WorkspacePage() {
     );
   }
   
-  // Track workspace access with Clarity analytics
-  useEffect(() => {
-    if (window.clarity) window.clarity('set', 'workspace_accessed', true);
-  }, []);
-  
-  // Hierarchical navigation state
-  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
-    'employee-features': false,
-    'compliance-features': false,
-    'training-features': false,
-    'system-tools': false,
-    'document-features': false
-  });
-  
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-  const { toast } = useToast();
-  const { data: dashboardData, isLoading: isDashboardLoading, error: dashboardError } = useDashboardData();
-  
 
-  const [workspaceSettings, setWorkspaceSettings] = useState<WorkspaceSettings>({
-    companyName: "SafetySync.AI",
-    companyLogo: "",
-    primaryColor: "#10B981",
-    secondaryColor: "#3B82F6",
-    customDomain: "",
-    showBranding: true
-  });
 
-  // Memoize tab switching to prevent freezing and persist in URL
-  const handleTabSwitch = useCallback((tab: string) => {
-    if (tab !== activeTab) {
-      setActiveTab(tab);
-      // Update URL to persist tab state
-      const newUrl = `/workspace?tab=${tab}`;
-      window.history.pushState({}, '', newUrl);
-      
-
-    }
-  }, [activeTab]);
-
-  // Toggle section expansion
-  const toggleSection = useCallback((sectionId: string) => {
-    setExpandedSections(prev => ({
-      ...prev,
-      [sectionId]: !prev[sectionId]
-    }));
-  }, []);
-
-  // Handle URL changes and browser navigation
-  useEffect(() => {
-    const handlePopState = () => {
-      const newTab = getActiveTabFromUrl();
-      if (newTab !== activeTab) {
-        setActiveTab(newTab);
-      }
-    };
-
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
-  }, [activeTab]);
 
 
 
