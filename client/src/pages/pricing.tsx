@@ -226,7 +226,8 @@ export default function PricingPage() {
         </section>
 
         {/* FAQ Section */}
-        <section className="mb-20">
+        <section className="mb-20" style={{ border: '3px solid green', padding: '20px' }}>
+          <h2 style={{ color: 'green', fontSize: '24px', fontWeight: 'bold' }}>FAQ SECTION CONTAINER</h2>
           <FAQSection />
         </section>
 
