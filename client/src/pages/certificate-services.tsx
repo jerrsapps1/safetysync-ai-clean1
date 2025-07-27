@@ -305,7 +305,7 @@ export default function CertificateServicesPage() {
             <Button 
               size="lg" 
               variant="outline" 
-              className="border-white/30 text-white hover:bg-blue-900/60 font-semibold px-8 py-3"
+              className="border-blue-400/30 text-white hover:bg-blue-900/60 font-semibold px-8 py-3"
               onClick={() => window.location.href = '/'}
             >
               Start Free Trial

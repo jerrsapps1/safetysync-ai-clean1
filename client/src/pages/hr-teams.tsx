@@ -95,7 +95,7 @@ export default function HRTeamsPage() {
               <button className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-200 hover:scale-105 hover:shadow-lg">
                 Start Free Trial
               </button>
-              <button className="bg-blue-900/60 border border-white/30 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-900/20 transition-all duration-200">
+              <button className="bg-blue-900/60 border border-blue-400/30 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-900/20 transition-all duration-200">
                 Book a Demo
               </button>
             </div>

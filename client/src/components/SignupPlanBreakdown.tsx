@@ -111,7 +111,7 @@ export default function SignupPlanBreakdown() {
 
   if (loading) {
     return (
-      <Card className="bg-white/10 backdrop-blur-sm border-blue-700/50">
+      <Card className="bg-blue-800/30 backdrop-blur-sm border-blue-700/50">
         <CardHeader>
           <CardTitle className="text-white flex items-center gap-2">
             <Users className="h-5 w-5" />
@@ -140,12 +140,12 @@ export default function SignupPlanBreakdown() {
         </div>
         
         <div className="flex items-center gap-3">
-          <div className="flex bg-white/10 rounded-lg p-1">
+          <div className="flex bg-blue-800/30 rounded-lg p-1">
             <Button
               variant={timeframe === '7d' ? 'default' : 'ghost'}
               size="sm"
               onClick={() => setTimeframe('7d')}
-              className={timeframe === '7d' ? 'bg-blue-600 text-white' : 'text-blue-200 hover:text-white hover:bg-white/10'}
+              className={timeframe === '7d' ? 'bg-blue-600 text-white' : 'text-blue-200 hover:text-white hover:bg-blue-800/30'}
             >
               7 Days
             </Button>
@@ -153,7 +153,7 @@ export default function SignupPlanBreakdown() {
               variant={timeframe === '30d' ? 'default' : 'ghost'}
               size="sm"
               onClick={() => setTimeframe('30d')}
-              className={timeframe === '30d' ? 'bg-blue-600 text-white' : 'text-blue-200 hover:text-white hover:bg-white/10'}
+              className={timeframe === '30d' ? 'bg-blue-600 text-white' : 'text-blue-200 hover:text-white hover:bg-blue-800/30'}
             >
               30 Days
             </Button>
@@ -173,7 +173,7 @@ export default function SignupPlanBreakdown() {
 
       {/* Summary Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="bg-white/10 backdrop-blur-sm border-blue-700/50">
+        <Card className="bg-blue-800/30 backdrop-blur-sm border-blue-700/50">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -185,7 +185,7 @@ export default function SignupPlanBreakdown() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white/10 backdrop-blur-sm border-blue-700/50">
+        <Card className="bg-blue-800/30 backdrop-blur-sm border-blue-700/50">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -197,7 +197,7 @@ export default function SignupPlanBreakdown() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white/10 backdrop-blur-sm border-blue-700/50">
+        <Card className="bg-blue-800/30 backdrop-blur-sm border-blue-700/50">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -210,7 +210,7 @@ export default function SignupPlanBreakdown() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white/10 backdrop-blur-sm border-blue-700/50">
+        <Card className="bg-blue-800/30 backdrop-blur-sm border-blue-700/50">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -228,7 +228,7 @@ export default function SignupPlanBreakdown() {
       {/* Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Stacked Bar Chart */}
-        <Card className="bg-white/10 backdrop-blur-sm border-blue-700/50">
+        <Card className="bg-blue-800/30 backdrop-blur-sm border-blue-700/50">
           <CardHeader>
             <CardTitle className="text-white">Daily Signup Trends</CardTitle>
           </CardHeader>
@@ -262,7 +262,7 @@ export default function SignupPlanBreakdown() {
         </Card>
 
         {/* Pie Chart */}
-        <Card className="bg-white/10 backdrop-blur-sm border-blue-700/50">
+        <Card className="bg-blue-800/30 backdrop-blur-sm border-blue-700/50">
           <CardHeader>
             <CardTitle className="text-white">Plan Distribution</CardTitle>
           </CardHeader>
@@ -298,7 +298,7 @@ export default function SignupPlanBreakdown() {
       </div>
 
       {/* Plan Details Table */}
-      <Card className="bg-white/10 backdrop-blur-sm border-blue-700/50">
+      <Card className="bg-blue-800/30 backdrop-blur-sm border-blue-700/50">
         <CardHeader>
           <CardTitle className="text-white">Plan Performance Details</CardTitle>
         </CardHeader>

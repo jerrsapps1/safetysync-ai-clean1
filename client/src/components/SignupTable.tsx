@@ -119,7 +119,7 @@ export default function SignupTable() {
 
   if (loading) {
     return (
-      <Card className="bg-white/10 backdrop-blur-sm border-blue-700/50">
+      <Card className="bg-blue-800/30 backdrop-blur-sm border-blue-700/50">
         <CardHeader>
           <CardTitle className="text-white flex items-center gap-2">
             <Users className="h-5 w-5" />
@@ -163,7 +163,7 @@ export default function SignupTable() {
       {/* Plan Statistics */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {planStats.map((stat) => (
-          <Card key={stat.plan} className="bg-white/10 backdrop-blur-sm border-blue-700/50">
+          <Card key={stat.plan} className="bg-blue-800/30 backdrop-blur-sm border-blue-700/50">
             <CardContent className="p-4 text-center">
               <div className="text-2xl font-bold text-white">{stat.count}</div>
               <div className="text-blue-200 text-sm">{stat.plan} Users</div>
@@ -173,7 +173,7 @@ export default function SignupTable() {
       </div>
 
       {/* Filters */}
-      <Card className="bg-white/10 backdrop-blur-sm border-blue-700/50">
+      <Card className="bg-blue-800/30 backdrop-blur-sm border-blue-700/50">
         <CardContent className="p-4">
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="flex-1 relative">
@@ -185,7 +185,7 @@ export default function SignupTable() {
                   setSearchTerm(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="pl-10 bg-white/10 border-blue-600 text-white placeholder-blue-300"
+                className="pl-10 bg-blue-800/30 border-blue-600 text-white placeholder-blue-300"
               />
             </div>
             
@@ -197,7 +197,7 @@ export default function SignupTable() {
                   setSelectedPlan(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="bg-white/10 border border-blue-600 rounded-md px-3 py-2 text-white text-sm"
+                className="bg-blue-800/30 border border-blue-600 rounded-md px-3 py-2 text-white text-sm"
               >
                 <option value="All">All Plans</option>
                 <option value="Basic">Basic</option>
@@ -211,7 +211,7 @@ export default function SignupTable() {
       </Card>
 
       {/* Table */}
-      <Card className="bg-white/10 backdrop-blur-sm border-blue-700/50">
+      <Card className="bg-blue-800/30 backdrop-blur-sm border-blue-700/50">
         <CardContent className="p-0">
           <div className="overflow-x-auto">
             <Table>
@@ -240,7 +240,7 @@ export default function SignupTable() {
               </TableHeader>
               <TableBody>
                 {paginatedData.map((user, index) => (
-                  <TableRow key={index} className="border-blue-700/30 hover:bg-white/5">
+                  <TableRow key={index} className="border-blue-700/30 hover:bg-blue-800/30">
                     <TableCell className="text-white font-medium">
                       {user.name}
                     </TableCell>
@@ -272,7 +272,7 @@ export default function SignupTable() {
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <Card className="bg-white/10 backdrop-blur-sm border-blue-700/50">
+        <Card className="bg-blue-800/30 backdrop-blur-sm border-blue-700/50">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div className="text-blue-200 text-sm">
@@ -311,7 +311,7 @@ export default function SignupTable() {
 
       {/* No Results */}
       {filteredData.length === 0 && !loading && (
-        <Card className="bg-white/10 backdrop-blur-sm border-blue-700/50">
+        <Card className="bg-blue-800/30 backdrop-blur-sm border-blue-700/50">
           <CardContent className="p-8 text-center">
             <Users className="h-12 w-12 text-blue-400 mx-auto mb-4" />
             <h3 className="text-lg font-medium text-white mb-2">No signups found</h3>

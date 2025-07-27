@@ -481,7 +481,7 @@ export default function ClientPortal() {
           {/* Mobile Header - Stack vertically */}
           <div className="md:hidden">
             {/* Top row with logo and home button */}
-            <div className="flex justify-between items-center h-14 border-b border-white/10">
+            <div className="flex justify-between items-center h-14 border-b border-blue-400/30">
               <div className="flex items-center min-w-0 flex-1">
                 <SafetySyncIcon size={28} className="mr-2 flex-shrink-0" />
                 <span className="text-base font-bold text-white truncate">SafetySync.AI Client Portal</span>
@@ -755,7 +755,7 @@ export default function ClientPortal() {
           {activeTab === 'specials' && (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {specials.map((special) => (
-                <Card key={special.id} className="bg-black/40 border-white/10 backdrop-blur-sm">
+                <Card key={special.id} className="bg-black/40 border-blue-400/30 backdrop-blur-sm">
                   <CardHeader>
                     <div className="flex justify-between items-start">
                       <Badge className="bg-emerald-600 text-white mb-2">
@@ -787,7 +787,7 @@ export default function ClientPortal() {
           {activeTab === 'updates' && (
             <div className="grid md:grid-cols-2 gap-6">
               {featureUpdates.map((update) => (
-                <Card key={update.id} className="bg-black/40 border-white/10 backdrop-blur-sm">
+                <Card key={update.id} className="bg-black/40 border-blue-400/30 backdrop-blur-sm">
                   <CardHeader>
                     <div className="flex justify-between items-start">
                       <Badge className={`${
@@ -820,7 +820,7 @@ export default function ClientPortal() {
           {activeTab === 'upcoming' && (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {upcomingSoftware.map((software) => (
-                <Card key={software.id} className="bg-black/40 border-white/10 backdrop-blur-sm">
+                <Card key={software.id} className="bg-black/40 border-blue-400/30 backdrop-blur-sm">
                   <CardHeader>
                     <div className="flex justify-between items-start">
                       <Badge className="bg-purple-600 text-white">
@@ -856,7 +856,7 @@ export default function ClientPortal() {
           {activeTab === 'feedback' && (
             <div className="max-w-4xl mx-auto">
               {/* New Comment Form */}
-              <Card className="bg-black/40 border-white/10 backdrop-blur-sm mb-8">
+              <Card className="bg-black/40 border-blue-400/30 backdrop-blur-sm mb-8">
                 <CardHeader>
                   <CardTitle className="text-white flex items-center">
                     <MessageCircle className="w-5 h-5 mr-2" />
@@ -872,13 +872,13 @@ export default function ClientPortal() {
                       placeholder="Your name"
                       value={userName}
                       onChange={(e) => setUserName(e.target.value)}
-                      className="bg-black/20 border-white/10 text-white placeholder-blue-300"
+                      className="bg-black/20 border-blue-400/30 text-white placeholder-blue-300"
                     />
                     <Textarea
                       placeholder="Share your ideas, feedback, or feature requests..."
                       value={newComment}
                       onChange={(e) => setNewComment(e.target.value)}
-                      className="bg-black/20 border-white/10 text-white placeholder-blue-300"
+                      className="bg-black/20 border-blue-400/30 text-white placeholder-blue-300"
                       rows={3}
                     />
                     <Button 
@@ -895,7 +895,7 @@ export default function ClientPortal() {
               {/* Comments List */}
               <div className="space-y-4">
                 {comments.map((comment) => (
-                  <Card key={comment.id} className="bg-black/40 border-white/10 backdrop-blur-sm">
+                  <Card key={comment.id} className="bg-black/40 border-blue-400/30 backdrop-blur-sm">
                     <CardContent className="pt-4">
                       <div className="flex justify-between items-start mb-2">
                         <div className="flex items-center">
@@ -932,7 +932,7 @@ export default function ClientPortal() {
       </main>
 
       {/* Footer */}
-      <footer className="relative z-10 bg-black/20 backdrop-blur-sm border-t border-white/10 mt-16">
+      <footer className="relative z-10 bg-black/20 backdrop-blur-sm border-t border-blue-400/30 mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center">
             <div className="flex justify-center items-center mb-4">
@@ -949,7 +949,7 @@ export default function ClientPortal() {
       {/* Authentication Popup */}
       {showAuthPopup && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-blue-800 border border-white/10 rounded-lg p-6 max-w-md w-full mx-4 shadow-2xl">
+          <div className="bg-blue-800 border border-blue-400/30 rounded-lg p-6 max-w-md w-full mx-4 shadow-2xl">
             <div className="text-center mb-6">
               <SafetySyncIcon size={48} className="mx-auto mb-4" />
               <h2 className="text-2xl font-bold text-white mb-2">Secure Authentication</h2>
@@ -1112,7 +1112,7 @@ export default function ClientPortal() {
                         window.open('https://calendly.com/safetysync-demo', '_blank');
                       }}
                       variant="outline"
-                      className="border-white/30 text-white hover:bg-white/10"
+                      className="border-blue-400/30 text-white hover:bg-blue-800/30"
                     >
                       <Calendar className="w-4 h-4 mr-2" />
                       Schedule Demo

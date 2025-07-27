@@ -182,7 +182,7 @@ export default function Helpdesk() {
                     <Badge className={priorityColors[selectedTicketData.priority]}>
                       {selectedTicketData.priority} priority
                     </Badge>
-                    <Badge variant="outline" className="text-white border-white/30">
+                    <Badge variant="outline" className="text-white border-blue-400/30">
                       {selectedTicketData.category}
                     </Badge>
                   </div>

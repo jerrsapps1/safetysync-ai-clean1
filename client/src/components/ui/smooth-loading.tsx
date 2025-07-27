@@ -79,7 +79,7 @@ const SmoothLoading = ({
       <div className={cn(
         "relative overflow-hidden rounded-lg",
         "bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900",
-        "backdrop-blur-sm border border-white/10 p-6 space-y-4",
+        "backdrop-blur-sm border border-blue-400/30 p-6 space-y-4",
         className
       )}>
         {/* AI Pattern Grid */}

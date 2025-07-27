@@ -227,7 +227,7 @@ export default function OperationsDashboard() {
               <p className="text-sm text-white">Last updated</p>
               <p className="text-white">{refreshTime.toLocaleTimeString()}</p>
             </div>
-            <Button variant="outline" size="sm" className="text-white border-white/30">
+            <Button variant="outline" size="sm" className="text-white border-blue-400/30">
               <RefreshCw className="w-4 h-4 mr-2" />
               Refresh
             </Button>
@@ -269,7 +269,7 @@ export default function OperationsDashboard() {
               </div>
               <div className="mt-4">
                 <p className="text-sm text-white">Email service degraded</p>
-                <Button size="sm" variant="outline" className="mt-2 text-white border-white/30">
+                <Button size="sm" variant="outline" className="mt-2 text-white border-blue-400/30">
                   <ExternalLink className="w-3 h-3 mr-1" />
                   View Details
                 </Button>
@@ -359,7 +359,7 @@ export default function OperationsDashboard() {
                         <Badge className={`${getStatusColor(service.status)} text-white`}>
                           {service.status}
                         </Badge>
-                        <Button size="sm" variant="outline" className="text-white border-white/30">
+                        <Button size="sm" variant="outline" className="text-white border-blue-400/30">
                           <Settings className="w-3 h-3 mr-1" />
                           Manage
                         </Button>
