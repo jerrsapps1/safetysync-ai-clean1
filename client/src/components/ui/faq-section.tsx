@@ -325,7 +325,12 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
                 <Mail className="w-8 h-8 mx-auto mb-2 text-green-600" />
                 <div className="font-medium">Email Support</div>
                 <div className="text-sm text-blue-500">Response within 2 hours</div>
-                <Button variant="outline" size="sm" className="mt-2">
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="mt-2"
+                  onClick={() => window.location.href = 'mailto:support@safetysync.ai?subject=Support Request&body=Hello SafetySync team, I need help with:'}
+                >
                   Send Email
                 </Button>
               </div>

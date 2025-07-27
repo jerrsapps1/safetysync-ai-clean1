@@ -929,7 +929,7 @@ export default function LandingPage() {
       
       {showModal && (
         <ComparisonModal 
-          open={showModal}
+          isOpen={showModal}
           onClose={() => setShowModal(false)}
         />
       )}
