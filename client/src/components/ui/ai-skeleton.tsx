@@ -15,7 +15,7 @@ const AIPatternSkeleton = ({ className, variant = "card", showIcon = true, anima
   const baseClasses = cn(
     "relative overflow-hidden rounded-lg",
     "bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900",
-    "backdrop-blur-sm border border-white/10",
+    "backdrop-blur-sm border border-blue-400/30",
     animated && "animate-pulse-glow",
     className
   );

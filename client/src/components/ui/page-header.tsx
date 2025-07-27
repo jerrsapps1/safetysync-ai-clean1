@@ -55,7 +55,7 @@ export function PageHeader({}: PageHeaderProps) {
         onMouseLeave={() => setIsHovered(false)}
       >
         {/* Header */}
-        <div className="flex items-center justify-between h-16 px-4 border-b border-white/10">
+        <div className="flex items-center justify-between h-16 px-4 border-b border-blue-400/30">
           <Link to="/">
             <div className="flex items-center space-x-3 cursor-pointer">
               <SafetySyncIcon size={32} />

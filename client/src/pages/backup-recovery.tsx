@@ -309,11 +309,11 @@ export default function BackupRecovery() {
                       </div>
                     </div>
                     <div className="flex gap-2 mt-4">
-                      <Button size="sm" variant="outline" className="text-white border-white/30">
+                      <Button size="sm" variant="outline" className="text-white border-blue-400/30">
                         <Settings className="w-4 h-4 mr-1" />
                         Configure
                       </Button>
-                      <Button size="sm" variant="outline" className="text-white border-white/30">
+                      <Button size="sm" variant="outline" className="text-white border-blue-400/30">
                         <Play className="w-4 h-4 mr-1" />
                         Run Now
                       </Button>
@@ -369,14 +369,14 @@ export default function BackupRecovery() {
                         )}
                       </div>
                       <div className="flex gap-2">
-                        <Button size="sm" variant="outline" className="text-white border-white/30">
+                        <Button size="sm" variant="outline" className="text-white border-blue-400/30">
                           <Download className="w-4 h-4 mr-1" />
                           Download
                         </Button>
                         <Button 
                           size="sm" 
                           variant="outline" 
-                          className="text-white border-white/30"
+                          className="text-white border-blue-400/30"
                           onClick={() => handleRestore(backup.id)}
                         >
                           <RotateCcw className="w-4 h-4 mr-1" />
@@ -427,7 +427,7 @@ export default function BackupRecovery() {
                         </div>
                       </div>
                       <div className="flex gap-2">
-                        <Button size="sm" variant="outline" className="text-white border-white/30">
+                        <Button size="sm" variant="outline" className="text-white border-blue-400/30">
                           <CheckCircle className="w-4 h-4 mr-1" />
                           Verify
                         </Button>

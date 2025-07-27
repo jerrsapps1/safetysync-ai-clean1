@@ -734,7 +734,7 @@ export default function Dashboard() {
                   {records.map(record => (
                     <div key={record.id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-blue-50">
                       <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                        <div className="w-10 h-10 bg-blue-800/30 rounded-full flex items-center justify-center">
                           <span className="text-sm font-medium text-white">
                             {record.employeeName.split(' ').map(n => n[0]).join('')}
                           </span>

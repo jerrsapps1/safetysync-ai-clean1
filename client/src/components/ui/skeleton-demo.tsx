@@ -37,7 +37,7 @@ export const SkeletonDemo = () => {
       {/* Skeleton Examples */}
       <div className="max-w-7xl mx-auto">
         <Tabs defaultValue="cards" className="w-full">
-          <TabsList className="grid w-full grid-cols-6 bg-blue-700/50 backdrop-blur-sm border border-white/10">
+          <TabsList className="grid w-full grid-cols-6 bg-blue-700/50 backdrop-blur-sm border border-blue-400/30">
             <TabsTrigger value="cards" className="text-white">Cards</TabsTrigger>
             <TabsTrigger value="dashboard" className="text-white">Dashboard</TabsTrigger>
             <TabsTrigger value="table" className="text-white">Tables</TabsTrigger>
@@ -59,7 +59,7 @@ export const SkeletonDemo = () => {
                 </>
               ) : (
                 <>
-                  <Card className="bg-blue-700/50 backdrop-blur-sm border-white/10 text-white">
+                  <Card className="bg-blue-700/50 backdrop-blur-sm border-blue-400/30 text-white">
                     <CardHeader>
                       <div className="flex items-center space-x-2">
                         <Brain className="w-5 h-5 text-blue-400" />
@@ -75,7 +75,7 @@ export const SkeletonDemo = () => {
                       </p>
                     </CardContent>
                   </Card>
-                  <Card className="bg-blue-700/50 backdrop-blur-sm border-white/10 text-white">
+                  <Card className="bg-blue-700/50 backdrop-blur-sm border-blue-400/30 text-white">
                     <CardHeader>
                       <div className="flex items-center space-x-2">
                         <Zap className="w-5 h-5 text-purple-400" />
@@ -91,7 +91,7 @@ export const SkeletonDemo = () => {
                       </p>
                     </CardContent>
                   </Card>
-                  <Card className="bg-blue-700/50 backdrop-blur-sm border-white/10 text-white">
+                  <Card className="bg-blue-700/50 backdrop-blur-sm border-blue-400/30 text-white">
                     <CardHeader>
                       <div className="flex items-center space-x-2">
                         <Cpu className="w-5 h-5 text-green-400" />
@@ -121,7 +121,7 @@ export const SkeletonDemo = () => {
                 </>
               ) : (
                 <>
-                  <Card className="bg-blue-700/50 backdrop-blur-sm border-white/10 text-white p-6">
+                  <Card className="bg-blue-700/50 backdrop-blur-sm border-blue-400/30 text-white p-6">
                     <h3 className="text-xl font-semibold mb-4">Dashboard Overview</h3>
                     <div className="grid grid-cols-4 gap-4 mb-6">
                       <div className="text-center">
@@ -145,7 +145,7 @@ export const SkeletonDemo = () => {
                       <span className="text-white">Chart Area</span>
                     </div>
                   </Card>
-                  <Card className="bg-blue-700/50 backdrop-blur-sm border-white/10 text-white p-6">
+                  <Card className="bg-blue-700/50 backdrop-blur-sm border-blue-400/30 text-white p-6">
                     <h3 className="text-xl font-semibold mb-4">AI Insights</h3>
                     <div className="space-y-4">
                       <div className="flex items-center space-x-3">
@@ -171,7 +171,7 @@ export const SkeletonDemo = () => {
             {showSkeletons ? (
               <AIPatternSkeleton variant="table" />
             ) : (
-              <Card className="bg-blue-700/50 backdrop-blur-sm border-white/10 text-white">
+              <Card className="bg-blue-700/50 backdrop-blur-sm border-blue-400/30 text-white">
                 <CardHeader>
                   <CardTitle>Employee Training Records</CardTitle>
                   <CardDescription className="text-white">
@@ -224,22 +224,22 @@ export const SkeletonDemo = () => {
                 </>
               ) : (
                 <>
-                  <Card className="bg-blue-700/50 backdrop-blur-sm border-white/10 text-white text-center p-6">
+                  <Card className="bg-blue-700/50 backdrop-blur-sm border-blue-400/30 text-white text-center p-6">
                     <div className="text-3xl font-bold text-blue-400 mb-2">98.5%</div>
                     <div className="text-white">Compliance Rate</div>
                     <div className="text-sm text-green-400 mt-2">↑ 2.1%</div>
                   </Card>
-                  <Card className="bg-blue-700/50 backdrop-blur-sm border-white/10 text-white text-center p-6">
+                  <Card className="bg-blue-700/50 backdrop-blur-sm border-blue-400/30 text-white text-center p-6">
                     <div className="text-3xl font-bold text-green-400 mb-2">247</div>
                     <div className="text-white">Active Employees</div>
                     <div className="text-sm text-blue-400 mt-2">↑ 12</div>
                   </Card>
-                  <Card className="bg-blue-700/50 backdrop-blur-sm border-white/10 text-white text-center p-6">
+                  <Card className="bg-blue-700/50 backdrop-blur-sm border-blue-400/30 text-white text-center p-6">
                     <div className="text-3xl font-bold text-yellow-400 mb-2">12</div>
                     <div className="text-white">Pending Training</div>
                     <div className="text-sm text-red-400 mt-2">↓ 5</div>
                   </Card>
-                  <Card className="bg-blue-700/50 backdrop-blur-sm border-white/10 text-white text-center p-6">
+                  <Card className="bg-blue-700/50 backdrop-blur-sm border-blue-400/30 text-white text-center p-6">
                     <div className="text-3xl font-bold text-purple-400 mb-2">5</div>
                     <div className="text-white">Active Alerts</div>
                     <div className="text-sm text-yellow-400 mt-2">→ 0</div>
@@ -253,7 +253,7 @@ export const SkeletonDemo = () => {
             {showSkeletons ? (
               <AIPatternSkeleton variant="form" />
             ) : (
-              <Card className="bg-blue-700/50 backdrop-blur-sm border-white/10 text-white max-w-2xl">
+              <Card className="bg-blue-700/50 backdrop-blur-sm border-blue-400/30 text-white max-w-2xl">
                 <CardHeader>
                   <CardTitle>Employee Registration</CardTitle>
                   <CardDescription className="text-white">
@@ -298,7 +298,7 @@ export const SkeletonDemo = () => {
             {showSkeletons ? (
               <AIPatternSkeleton variant="chart" />
             ) : (
-              <Card className="bg-blue-700/50 backdrop-blur-sm border-white/10 text-white">
+              <Card className="bg-blue-700/50 backdrop-blur-sm border-blue-400/30 text-white">
                 <CardHeader>
                   <CardTitle>Compliance Trends</CardTitle>
                   <CardDescription className="text-white">

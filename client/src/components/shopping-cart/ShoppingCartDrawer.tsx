@@ -112,7 +112,7 @@ export default function ShoppingCartDrawer({ isOpen, onClose }: ShoppingCartDraw
           {/* Cart Items */}
           <div className="flex-1 space-y-3 overflow-y-auto">
             {cartItems.map((item) => (
-              <Card key={item.id} className="bg-blue-900/40 border-white/10">
+              <Card key={item.id} className="bg-blue-900/40 border-blue-400/30">
                 <CardContent className="p-4">
                   <div className="flex items-start gap-3">
                     {getItemIcon(item.itemType)}
@@ -150,7 +150,7 @@ export default function ShoppingCartDrawer({ isOpen, onClose }: ShoppingCartDraw
                           size="sm"
                           onClick={() => updateQuantity(item.id, item.quantity - 1)}
                           disabled={item.quantity <= 1}
-                          className="w-8 h-8 p-0 border-white/20 text-white hover:bg-blue-800/50"
+                          className="w-8 h-8 p-0 border-blue-400/30 text-white hover:bg-blue-800/50"
                         >
                           <Minus className="w-3 h-3" />
                         </Button>
@@ -163,7 +163,7 @@ export default function ShoppingCartDrawer({ isOpen, onClose }: ShoppingCartDraw
                           variant="outline"
                           size="sm"
                           onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                          className="w-8 h-8 p-0 border-white/20 text-white hover:bg-blue-800/50"
+                          className="w-8 h-8 p-0 border-blue-400/30 text-white hover:bg-blue-800/50"
                         >
                           <Plus className="w-3 h-3" />
                         </Button>
@@ -199,7 +199,7 @@ export default function ShoppingCartDrawer({ isOpen, onClose }: ShoppingCartDraw
           )}
 
           {/* Cart Summary */}
-          <Card className="bg-blue-900/60 border-white/20">
+          <Card className="bg-blue-900/60 border-blue-400/30">
             <CardHeader className="pb-3">
               <CardTitle className="text-white text-lg">Order Summary</CardTitle>
             </CardHeader>
@@ -216,7 +216,7 @@ export default function ShoppingCartDrawer({ isOpen, onClose }: ShoppingCartDraw
                 </div>
               )}
               
-              <div className="border-t border-white/10 pt-2">
+              <div className="border-t border-blue-400/30 pt-2">
                 <div className="flex justify-between text-white font-bold text-lg">
                   <span>Total:</span>
                   <span>{formatPrice(finalTotal)}</span>
@@ -240,7 +240,7 @@ export default function ShoppingCartDrawer({ isOpen, onClose }: ShoppingCartDraw
               <Button 
                 onClick={onClose}
                 variant="outline"
-                className="flex-1 border-white/30 text-white hover:bg-white/10"
+                className="flex-1 border-blue-400/30 text-white hover:bg-blue-800/30"
               >
                 Continue Shopping
               </Button>

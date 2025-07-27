@@ -80,7 +80,7 @@ export default function LandingPageAddons() {
   return (
     <div className="space-y-12">
       {/* Success Metrics Banner */}
-      <section className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-blue-700/50">
+      <section className="bg-blue-800/30 backdrop-blur-sm rounded-2xl p-8 border border-blue-700/50">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-white mb-4">
             Join and realize the savings in time and money through using SafetySync.AI
@@ -92,7 +92,7 @@ export default function LandingPageAddons() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {keyMetrics.map((metric, index) => (
-            <Card key={index} className="bg-white/10 backdrop-blur-sm border-blue-700/50 text-center">
+            <Card key={index} className="bg-blue-800/30 backdrop-blur-sm border-blue-700/50 text-center">
               <CardContent className="p-6">
                 <metric.icon className={`h-8 w-8 ${metric.color} mx-auto mb-3`} />
                 <div className="text-2xl font-bold text-white">{metric.value}</div>
@@ -104,14 +104,14 @@ export default function LandingPageAddons() {
       </section>
 
       {/* Rotating Testimonials */}
-      <section className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-blue-700/50">
+      <section className="bg-blue-800/30 backdrop-blur-sm rounded-2xl p-8 border border-blue-700/50">
         <div className="text-center mb-8">
           <h2 className="text-2xl font-bold text-white mb-2">What Our Clients Say</h2>
           <p className="text-blue-200">Real results from real safety professionals</p>
         </div>
         
         <div className="max-w-4xl mx-auto">
-          <Card className="bg-white/10 backdrop-blur-sm border-blue-700/50">
+          <Card className="bg-blue-800/30 backdrop-blur-sm border-blue-700/50">
             <CardContent className="p-8 text-center">
               <div className="flex justify-center mb-4">
                 {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
@@ -152,7 +152,7 @@ export default function LandingPageAddons() {
       </section>
 
       {/* Industry Coverage */}
-      <section className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-blue-700/50">
+      <section className="bg-blue-800/30 backdrop-blur-sm rounded-2xl p-8 border border-blue-700/50">
         <div className="text-center mb-8">
           <h2 className="text-2xl font-bold text-white mb-2">Industry Leadership</h2>
           <p className="text-blue-200">Serving safety-critical industries worldwide</p>
@@ -160,7 +160,7 @@ export default function LandingPageAddons() {
         
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {industryStats.map((stat, index) => (
-            <Card key={index} className="bg-white/10 backdrop-blur-sm border-blue-700/50 text-center">
+            <Card key={index} className="bg-blue-800/30 backdrop-blur-sm border-blue-700/50 text-center">
               <CardContent className="p-4">
                 <div className="text-lg font-bold text-white">{stat.clients}</div>
                 <div className="text-blue-200 text-sm mb-2">{stat.industry}</div>
@@ -174,7 +174,7 @@ export default function LandingPageAddons() {
       </section>
 
       {/* Recent Achievements Timeline */}
-      <section className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-blue-700/50">
+      <section className="bg-blue-800/30 backdrop-blur-sm rounded-2xl p-8 border border-blue-700/50">
         <div className="text-center mb-8">
           <h2 className="text-2xl font-bold text-white mb-2">Recent Achievements</h2>
           <p className="text-blue-200">Continuous innovation and platform enhancements</p>
@@ -182,7 +182,7 @@ export default function LandingPageAddons() {
         
         <div className="space-y-4">
           {recentAchievements.map((achievement, index) => (
-            <div key={index} className="flex items-center gap-4 p-4 bg-white/5 rounded-lg">
+            <div key={index} className="flex items-center gap-4 p-4 bg-blue-800/30 rounded-lg">
               <div className={`p-2 rounded-full ${
                 achievement.type === 'milestone' ? 'bg-blue-600' :
                 achievement.type === 'feature' ? 'bg-emerald-600' :
@@ -210,14 +210,14 @@ export default function LandingPageAddons() {
       </section>
 
       {/* Platform Statistics */}
-      <section className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-blue-700/50">
+      <section className="bg-blue-800/30 backdrop-blur-sm rounded-2xl p-8 border border-blue-700/50">
         <div className="text-center mb-8">
           <h2 className="text-2xl font-bold text-white mb-2">Platform Impact</h2>
           <p className="text-blue-200">Real-time platform performance and user impact</p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card className="bg-white/10 backdrop-blur-sm border-blue-700/50">
+          <Card className="bg-blue-800/30 backdrop-blur-sm border-blue-700/50">
             <CardHeader className="pb-3">
               <CardTitle className="text-white flex items-center gap-2">
                 <BarChart3 className="h-5 w-5 text-blue-400" />
@@ -242,7 +242,7 @@ export default function LandingPageAddons() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white/10 backdrop-blur-sm border-blue-700/50">
+          <Card className="bg-blue-800/30 backdrop-blur-sm border-blue-700/50">
             <CardHeader className="pb-3">
               <CardTitle className="text-white flex items-center gap-2">
                 <Users className="h-5 w-5 text-emerald-400" />
@@ -267,7 +267,7 @@ export default function LandingPageAddons() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white/10 backdrop-blur-sm border-blue-700/50">
+          <Card className="bg-blue-800/30 backdrop-blur-sm border-blue-700/50">
             <CardHeader className="pb-3">
               <CardTitle className="text-white flex items-center gap-2">
                 <Globe className="h-5 w-5 text-purple-400" />

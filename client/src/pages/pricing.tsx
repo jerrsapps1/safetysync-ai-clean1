@@ -54,7 +54,7 @@ export default function PricingPage() {
             <ShoppingCartButton 
               variant="outline" 
               size="lg"
-              className="bg-white/10 border-white/30 text-white hover:bg-white/20"
+              className="bg-blue-600/20 border-blue-400/30 text-white hover:bg-blue-600/30"
             />
           </div>
         </div>
@@ -70,7 +70,7 @@ export default function PricingPage() {
           
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* Certificates */}
-            <Card className="bg-blue-900/40 border-white/10 backdrop-blur-sm">
+            <Card className="bg-blue-900/40 border-blue-400/30 backdrop-blur-sm">
               <CardHeader className="text-center">
                 <div className="flex justify-center mb-4">
                   <Award className="w-12 h-12 text-emerald-400" />
@@ -96,14 +96,14 @@ export default function PricingPage() {
                   <Button
                     onClick={() => handleAddToCart('certificate', 25)}
                     variant="outline"
-                    className="border-white/30 text-white hover:bg-white/10"
+                    className="border-blue-400/30 text-white hover:bg-blue-600/20"
                   >
                     +25 Certificates
                   </Button>
                   <Button
                     onClick={() => handleAddToCart('certificate', 50)}
                     variant="outline"
-                    className="border-white/30 text-white hover:bg-white/10"
+                    className="border-blue-400/30 text-white hover:bg-blue-600/20"
                   >
                     +50 Certificates
                   </Button>
@@ -122,7 +122,7 @@ export default function PricingPage() {
             </Card>
 
             {/* Digital Wallet Cards */}
-            <Card className="bg-blue-900/40 border-white/10 backdrop-blur-sm">
+            <Card className="bg-blue-900/40 border-blue-400/30 backdrop-blur-sm">
               <CardHeader className="text-center">
                 <div className="flex justify-center mb-4">
                   <IdCard className="w-12 h-12 text-blue-400" />
@@ -148,14 +148,14 @@ export default function PricingPage() {
                   <Button
                     onClick={() => handleAddToCart('wallet_card', 25)}
                     variant="outline"
-                    className="border-white/30 text-white hover:bg-white/10"
+                    className="border-blue-400/30 text-white hover:bg-blue-600/20"
                   >
                     +25 Cards
                   </Button>
                   <Button
                     onClick={() => handleAddToCart('wallet_card', 50)}
                     variant="outline"
-                    className="border-white/30 text-white hover:bg-white/10"
+                    className="border-blue-400/30 text-white hover:bg-blue-600/20"
                   >
                     +50 Cards
                   </Button>

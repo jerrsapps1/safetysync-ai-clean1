@@ -49,7 +49,7 @@ export default function CertificateBalanceWidget({ className = '' }: Certificate
   };
 
   return (
-    <Card className={`bg-blue-900/40 border-white/10 backdrop-blur-sm ${className}`}>
+    <Card className={`bg-blue-900/40 border-blue-400/30 backdrop-blur-sm ${className}`}>
       <CardHeader className="pb-3">
         <CardTitle className="text-white flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -108,14 +108,14 @@ export default function CertificateBalanceWidget({ className = '' }: Certificate
             onClick={() => setIsExpanded(!isExpanded)}
             variant="outline"
             size="sm"
-            className="w-full border-white/20 text-white hover:bg-white/10"
+            className="w-full border-blue-400/30 text-white hover:bg-blue-800/30"
           >
             <Plus className="w-3 h-3 mr-2" />
             Quick Purchase
           </Button>
           
           {isExpanded && (
-            <div className="space-y-2 pt-2 border-t border-white/10">
+            <div className="space-y-2 pt-2 border-t border-blue-400/30">
               <div className="grid grid-cols-2 gap-2">
                 <Button
                   onClick={() => handleQuickPurchase('certificate', 10)}
@@ -141,7 +141,7 @@ export default function CertificateBalanceWidget({ className = '' }: Certificate
                   onClick={() => handleQuickPurchase('certificate', 25)}
                   size="sm"
                   variant="outline"
-                  className="border-white/20 text-white hover:bg-white/10 text-xs"
+                  className="border-blue-400/30 text-white hover:bg-blue-800/30 text-xs"
                 >
                   +25 Certs
                 </Button>
@@ -150,7 +150,7 @@ export default function CertificateBalanceWidget({ className = '' }: Certificate
                   onClick={() => handleQuickPurchase('wallet_card', 25)}
                   size="sm"
                   variant="outline"
-                  className="border-white/20 text-white hover:bg-white/10 text-xs"
+                  className="border-blue-400/30 text-white hover:bg-blue-800/30 text-xs"
                 >
                   +25 Cards
                 </Button>

@@ -183,7 +183,7 @@ export default function CountDisplay({
   const sizeClass = sizeClasses[size];
 
   return (
-    <Card className="bg-white/10 backdrop-blur-sm border-blue-700/50 hover:bg-white/15 transition-all duration-300">
+    <Card className="bg-blue-800/30 backdrop-blur-sm border-blue-700/50 hover:bg-blue-800/30 transition-all duration-300">
       <CardContent className={sizeClass.card}>
         <div className="flex items-center justify-between">
           <div className="flex-1">
@@ -211,7 +211,7 @@ export default function CountDisplay({
               {showTrend && trendValue && (
                 <Badge 
                   variant="outline" 
-                  className={`${colors.trend} border-current bg-white/10 text-xs`}
+                  className={`${colors.trend} border-current bg-blue-800/30 text-xs`}
                 >
                   <TrendingUp className="h-3 w-3 mr-1" />
                   {trendValue}

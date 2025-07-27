@@ -281,11 +281,11 @@ export default function IncidentResponse() {
             <div className="flex justify-between items-center">
               <h2 className="text-xl font-semibold text-white">Active Incidents</h2>
               <div className="flex gap-2">
-                <Button variant="outline" size="sm" className="text-white border-white/30">
+                <Button variant="outline" size="sm" className="text-white border-blue-400/30">
                   <Filter className="w-4 h-4 mr-2" />
                   Filter
                 </Button>
-                <Button variant="outline" size="sm" className="text-white border-white/30">
+                <Button variant="outline" size="sm" className="text-white border-blue-400/30">
                   <Search className="w-4 h-4 mr-2" />
                   Search
                 </Button>
@@ -327,11 +327,11 @@ export default function IncidentResponse() {
                         </div>
                       </div>
                       <div className="flex gap-2">
-                        <Button size="sm" variant="outline" className="text-white border-white/30">
+                        <Button size="sm" variant="outline" className="text-white border-blue-400/30">
                           <MessageSquare className="w-4 h-4 mr-1" />
                           Update
                         </Button>
-                        <Button size="sm" variant="outline" className="text-white border-white/30">
+                        <Button size="sm" variant="outline" className="text-white border-blue-400/30">
                           <Zap className="w-4 h-4 mr-1" />
                           Escalate
                         </Button>
@@ -387,7 +387,7 @@ export default function IncidentResponse() {
                         )}
                       </div>
                       <div className="flex gap-2">
-                        <Button size="sm" variant="outline" className="text-white border-white/30">
+                        <Button size="sm" variant="outline" className="text-white border-blue-400/30">
                           <FileText className="w-4 h-4 mr-1" />
                           Details
                         </Button>
@@ -421,10 +421,10 @@ export default function IncidentResponse() {
                         </div>
                       </div>
                       <div className="flex gap-2">
-                        <Button size="sm" variant="outline" className="text-white border-white/30">
+                        <Button size="sm" variant="outline" className="text-white border-blue-400/30">
                           <Phone className="w-4 h-4" />
                         </Button>
-                        <Button size="sm" variant="outline" className="text-white border-white/30">
+                        <Button size="sm" variant="outline" className="text-white border-blue-400/30">
                           <Mail className="w-4 h-4" />
                         </Button>
                       </div>
@@ -540,7 +540,7 @@ export default function IncidentResponse() {
                     <Plus className="w-4 h-4 mr-2" />
                     Create Incident
                   </Button>
-                  <Button variant="outline" className="text-white border-white/30">
+                  <Button variant="outline" className="text-white border-blue-400/30">
                     Save Draft
                   </Button>
                 </div>

@@ -379,7 +379,7 @@ export default function LandingPage() {
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 md:mb-12 px-4">
             <Button 
               onClick={handleDemoClick}
-              className="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-xl shadow-md transition duration-200 border border-blue-700"
+              className="bg-blue-600/20 hover:bg-blue-600/30 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-xl shadow-md transition duration-200 border border-blue-700"
             >
               Book a Demo
             </Button>
@@ -756,7 +756,7 @@ export default function LandingPage() {
         <div className="flex justify-center gap-4">
           <Button 
             onClick={handleDemoClick}
-            className="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-xl shadow-md transition duration-200 border border-blue-500"
+            className="bg-blue-600/20 hover:bg-blue-600/30 text-white font-semibold px-6 py-3 rounded-xl shadow-md transition duration-200 border border-blue-500"
           >
             Book a Demo
           </Button>
@@ -787,7 +787,7 @@ export default function LandingPage() {
             </Button>
             <Button 
               onClick={handleDemoClick}
-              className="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-xl shadow-md transition duration-200 text-lg font-semibold border border-blue-500"
+              className="bg-blue-600/20 hover:bg-blue-600/30 text-white px-8 py-4 rounded-xl shadow-md transition duration-200 text-lg font-semibold border border-blue-500"
             >
               Book a Demo
             </Button>
