@@ -67,7 +67,7 @@ export function SidebarOption3({}: SidebarOption3Props) {
           <Button
             variant="ghost"
             size="sm"
-            className="hidden md:flex text-white hover:text-white hover:bg-blue-700"
+            className="hidden md:flex text-blue-100 hover:text-blue-200 hover:bg-blue-700"
             onClick={() => setIsCollapsed(!isCollapsed)}
           >
             <ArrowRight className={`h-4 w-4 transition-transform ${isCollapsed ? 'rotate-180' : ''}`} />

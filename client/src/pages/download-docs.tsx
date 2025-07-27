@@ -43,7 +43,7 @@ export default function DownloadDocsPage() {
         {/* Header */}
         <div className="mb-8">
           <Link href="/">
-            <Button variant="ghost" className="text-white hover:text-white hover:bg-blue-600/50 mb-4">
+            <Button variant="ghost" className="text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 mb-4">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Platform
             </Button>

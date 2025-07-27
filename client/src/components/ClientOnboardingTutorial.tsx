@@ -154,7 +154,7 @@ export default function ClientOnboardingTutorial({
               variant="ghost"
               size="sm"
               onClick={onClose}
-              className="text-white hover:text-white"
+              className="text-blue-100 hover:text-blue-200"
             >
               <X className="w-4 h-4" />
             </Button>
@@ -248,7 +248,7 @@ export default function ClientOnboardingTutorial({
             <Button
               variant="ghost"
               onClick={handleSkipForNow}
-              className="text-white hover:text-white text-sm"
+              className="text-blue-100 hover:text-blue-200 text-sm"
             >
               Skip for now (return anytime from Settings)
             </Button>

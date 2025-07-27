@@ -490,7 +490,7 @@ export default function ClientPortal() {
                 onClick={() => window.location.href = '/'}
                 variant="ghost"
                 size="sm"
-                className="text-white hover:text-white hover:bg-blue-600/50 px-2"
+                className="text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 px-2"
               >
                 <Home className="w-4 h-4" />
               </Button>
@@ -522,7 +522,7 @@ export default function ClientPortal() {
                       type="button"
                       variant="ghost"
                       size="sm"
-                      className="absolute right-0 top-1/2 transform -translate-y-1/2 p-1 text-white hover:text-white h-6 w-6"
+                      className="absolute right-0 top-1/2 transform -translate-y-1/2 p-1 text-blue-100 hover:text-blue-200 h-6 w-6"
                       onClick={() => setShowPassword(!showPassword)}
                       disabled={isAuthenticating}
                     >
@@ -567,7 +567,7 @@ export default function ClientPortal() {
                 onClick={() => window.location.href = '/'}
                 variant="ghost"
                 size="sm"
-                className="text-white hover:text-white hover:bg-blue-600/50 px-2 md:px-3"
+                className="text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 px-2 md:px-3"
               >
                 <Home className="w-4 h-4 mr-1 md:mr-2" />
                 <span className="hidden sm:inline">Home</span>
@@ -598,7 +598,7 @@ export default function ClientPortal() {
                         type="button"
                         variant="ghost"
                         size="sm"
-                        className="absolute right-1 top-1/2 transform -translate-y-1/2 p-1 text-white hover:text-white h-6 w-6"
+                        className="absolute right-1 top-1/2 transform -translate-y-1/2 p-1 text-blue-100 hover:text-blue-200 h-6 w-6"
                         onClick={() => setShowPassword(!showPassword)}
                         disabled={isAuthenticating}
                       >
@@ -913,7 +913,7 @@ export default function ClientPortal() {
                           className={`${
                             comment.userLiked 
                               ? 'text-violet-400 hover:text-emerald-300' 
-                              : 'text-white hover:text-white'
+                              : 'text-blue-100 hover:text-blue-200'
                           }`}
                         >
                           <Heart className={`w-4 h-4 mr-1 ${comment.userLiked ? 'fill-current' : ''}`} />
@@ -992,7 +992,7 @@ export default function ClientPortal() {
                     type="button"
                     variant="ghost"
                     size="sm"
-                    className="absolute right-2 top-1/2 transform -translate-y-1/2 px-2 text-white hover:text-white"
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 px-2 text-blue-100 hover:text-blue-200"
                     onClick={() => setShowPopupPassword(!showPopupPassword)}
                   >
                     {showPopupPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}

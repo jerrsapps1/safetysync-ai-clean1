@@ -134,7 +134,7 @@ Keep responses focused on OSHA compliance, safety management, training documenta
         <Button
           variant="ghost"
           size="sm"
-          className="text-white hover:text-white hover:bg-blue-600/50 border-blue-400"
+          className="text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 border-blue-400"
           title="Get AI-powered help"
         >
           <HelpCircle className="w-4 h-4" />

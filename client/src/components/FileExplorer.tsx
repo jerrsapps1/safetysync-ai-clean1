@@ -479,7 +479,7 @@ const FileExplorer: React.FC<FileExplorerProps> = ({ className }) => {
               <Button
                 variant="ghost"
                 size="sm"
-                className="h-auto p-1 text-blue-400 hover:text-white"
+                className="h-auto p-1 text-blue-400 hover:text-blue-200"
                 onClick={() => navigateToFolder(crumb.id, crumb.path)}
               >
                 {crumb.name}

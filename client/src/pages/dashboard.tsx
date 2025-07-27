@@ -296,7 +296,7 @@ export default function Dashboard() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2 md:space-x-4">
               <Link href="/">
-                <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-blue-900/60 transition-all duration-300">
+                <Button variant="ghost" size="sm" className="text-white/70 hover:text-blue-200 hover:bg-blue-900/60 transition-all duration-300">
                   <Home className="w-4 h-4 mr-1" />
                   <span className="hidden sm:inline">Home</span>
                 </Button>
@@ -312,7 +312,7 @@ export default function Dashboard() {
             </div>
             <div className="flex items-center space-x-1">
               <Link href="/user-guide">
-                <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-blue-900/60 transition-all duration-300">
+                <Button variant="ghost" size="sm" className="text-white/70 hover:text-blue-200 hover:bg-blue-900/60 transition-all duration-300">
                   <span className="hidden sm:inline">Guide</span>
                   <BookOpen className="w-4 h-4 sm:hidden" />
                 </Button>
@@ -321,7 +321,7 @@ export default function Dashboard() {
                 onClick={simulateLoading}
                 variant="ghost" 
                 size="sm" 
-                className="text-white/70 hover:text-white hover:bg-blue-900/60 transition-all duration-300"
+                className="text-white/70 hover:text-blue-200 hover:bg-blue-900/60 transition-all duration-300"
                 title="Test Loading"
               >
                 <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
@@ -329,7 +329,7 @@ export default function Dashboard() {
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-white/70 hover:text-white hover:bg-blue-900/60 transition-all duration-300"
+                className="text-white/70 hover:text-blue-200 hover:bg-blue-900/60 transition-all duration-300"
                 onClick={logout}
               >
                 Sign Out
@@ -478,37 +478,37 @@ export default function Dashboard() {
         {/* Main Content Tabs */}
         <Tabs defaultValue="overview" className="space-y-6">
           <TabsList className="grid w-full grid-cols-11 bg-blue-900/5 border-violet-500/30 backdrop-blur-sm">
-            <TabsTrigger value="overview" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white hover:text-white transition-all duration-300">
+            <TabsTrigger value="overview" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
               Overview
             </TabsTrigger>
-            <TabsTrigger value="employees" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white hover:text-white transition-all duration-300">
+            <TabsTrigger value="employees" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
               Employees
             </TabsTrigger>
-            <TabsTrigger value="training" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white hover:text-white transition-all duration-300">
+            <TabsTrigger value="training" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
               Training
             </TabsTrigger>
-            <TabsTrigger value="branding" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white hover:text-white transition-all duration-300">
+            <TabsTrigger value="branding" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
               Branding
             </TabsTrigger>
-            <TabsTrigger value="reports" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white hover:text-white transition-all duration-300">
+            <TabsTrigger value="reports" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
               Reports
             </TabsTrigger>
-            <TabsTrigger value="generator" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white hover:text-white transition-all duration-300">
+            <TabsTrigger value="generator" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
               Report Generator
             </TabsTrigger>
-            <TabsTrigger value="certificates" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white hover:text-white transition-all duration-300">
+            <TabsTrigger value="certificates" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
               Certificates
             </TabsTrigger>
-            <TabsTrigger value="collaboration" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white hover:text-white transition-all duration-300">
+            <TabsTrigger value="collaboration" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
               Team Review
             </TabsTrigger>
-            <TabsTrigger value="locations" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white hover:text-white transition-all duration-300">
+            <TabsTrigger value="locations" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
               Locations
             </TabsTrigger>
-            <TabsTrigger value="safety-trends" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white hover:text-white transition-all duration-300">
+            <TabsTrigger value="safety-trends" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
               Safety Trends
             </TabsTrigger>
-            <TabsTrigger value="audit-settings" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white hover:text-white transition-all duration-300">
+            <TabsTrigger value="audit-settings" className="text-white/70 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
               Audit Settings
             </TabsTrigger>
           </TabsList>

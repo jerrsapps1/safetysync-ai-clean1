@@ -1962,7 +1962,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           variant="ghost"
           size="sm"
           onClick={() => setSidebarOpen(true)}
-          className="fixed top-4 left-4 z-50 bg-blue-500/70 backdrop-blur-sm text-white hover:text-white hover:bg-blue-600/80 border border-blue-400/50"
+          className="fixed top-4 left-4 z-50 bg-blue-500/70 backdrop-blur-sm text-blue-100 hover:text-blue-200 hover:bg-blue-600/80 border border-blue-400/50"
         >
           <Menu className="w-5 h-5" />
         </Button>
@@ -1997,7 +1997,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 variant="ghost"
                 size="sm"
                 onClick={() => setSidebarOpen(!sidebarOpen)}
-                className="text-white hover:text-white"
+                className="text-blue-100 hover:text-blue-200"
               >
                 {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </Button>
@@ -2017,7 +2017,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           >
             <Button
               variant="ghost"
-              className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+              className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
                 activeTab === "user-guide" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("user-guide")}
@@ -2037,7 +2037,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           >
             <Button
               variant="ghost"
-              className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+              className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
                 activeTab === "unified-dashboard" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("unified-dashboard")}
@@ -2057,7 +2057,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           >
             <Button
               variant="ghost"
-              className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+              className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
                 activeTab === "company-profile" ? "text-white bg-blue-600/30" : ""
               }`}
               onClick={() => handleTabSwitch("company-profile")}
@@ -2072,7 +2072,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <div className="space-y-1">
             <Button
               variant="ghost"
-              className="w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3"
+              className="w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3"
               onClick={() => toggleSection('employee-management')}
               title="Employee Management"
             >
@@ -2088,7 +2088,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               <div className="ml-6 space-y-1">
                 <Button
                   variant="ghost"
-                  className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+                  className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
                     activeTab === "employees" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("employees")}
@@ -2099,7 +2099,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </Button>
                 <Button
                   variant="ghost"
-                  className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+                  className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
                     activeTab === "employee-insights" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("employee-insights")}
@@ -2110,7 +2110,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </Button>
                 <Button
                   variant="ghost"
-                  className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+                  className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
                     activeTab === "employee-profile" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("employee-profile")}
@@ -2121,7 +2121,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 </Button>
                 <Button
                   variant="ghost"
-                  className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+                  className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
                     activeTab === "employee-portal" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                   }`}
                   onClick={() => handleTabSwitch("employee-portal")}
@@ -2138,7 +2138,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <div className="space-y-1">
             <Button
               variant="ghost"
-              className="w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3"
+              className="w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3"
               onClick={() => toggleSection('training-features')}
               title="Training Documents"
             >
@@ -2154,7 +2154,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               <div className="ml-6 space-y-1">
               <Button
                 variant="ghost"
-                className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+                className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
                   activeTab === "ai-document-processor" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                 }`}
                 onClick={() => handleTabSwitch("ai-document-processor")}
@@ -2165,7 +2165,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </Button>
               <Button
                 variant="ghost"
-                className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+                className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
                   activeTab === "certificates" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                 }`}
                 onClick={() => handleTabSwitch("certificates")}
@@ -2176,7 +2176,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </Button>
               <Button
                 variant="ghost"
-                className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+                className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
                   activeTab === "instructor-signin" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                 }`}
                 onClick={() => handleTabSwitch("instructor-signin")}
@@ -2187,7 +2187,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </Button>
               <Button
                 variant="ghost"
-                className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+                className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
                   activeTab === "training-records" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                 }`}
                 onClick={() => handleTabSwitch("training-records")}
@@ -2198,7 +2198,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </Button>
               <Button
                 variant="ghost"
-                className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+                className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
                   activeTab === "training-document-hub" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                 }`}
                 onClick={() => handleTabSwitch("training-document-hub")}
@@ -2209,7 +2209,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
               </Button>
               <Button
                 variant="ghost"
-                className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+                className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
                   activeTab === "training" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                 }`}
                 onClick={() => handleTabSwitch("training")}
@@ -2231,7 +2231,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
             >
               <Button
                 variant="ghost"
-                className="w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3"
+                className="w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3"
                 onClick={() => toggleSection('compliance-reporting')}
                 title="Compliance & Reporting"
               >
@@ -2260,7 +2260,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <motion.div variants={subItemVariants}>
                     <Button
                       variant="ghost"
-                      className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+                      className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
                         activeTab === "analytics-reports" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("analytics-reports")}
@@ -2273,7 +2273,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <motion.div variants={subItemVariants}>
                     <Button
                       variant="ghost"
-                      className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+                      className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
                         activeTab === "reports" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("reports")}
@@ -2286,7 +2286,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <motion.div variants={subItemVariants}>
                     <Button
                       variant="ghost"
-                      className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+                      className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
                         activeTab === "osha-compliance" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("osha-compliance")}
@@ -2299,7 +2299,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <motion.div variants={subItemVariants}>
                     <Button
                       variant="ghost"
-                      className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+                      className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
                         activeTab === "document-manager" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("document-manager")}
@@ -2312,7 +2312,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   <motion.div variants={subItemVariants}>
                     <Button
                       variant="ghost"
-                      className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+                      className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
                         activeTab === "trends" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("trends")}
@@ -2330,7 +2330,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
           <div className="space-y-1">
             <Button
               variant="ghost"
-              className="w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3"
+              className="w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3"
               onClick={() => toggleSection('system-tools')}
               title="System Tools"
             >
@@ -2347,7 +2347,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
                   <Button
                     variant="ghost"
-                    className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+                    className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
                       activeTab === "notifications" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                     }`}
                     onClick={() => handleTabSwitch("notifications")}
@@ -2358,7 +2358,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   </Button>
                   <Button
                     variant="ghost"
-                    className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+                    className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
                       activeTab === "settings" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                     }`}
                     onClick={() => handleTabSwitch("settings")}
@@ -2369,7 +2369,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   </Button>
                   <Button
                     variant="ghost"
-                    className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+                    className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
                       activeTab === "subscription-billing" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                     }`}
                     onClick={() => handleTabSwitch("subscription-billing")}
@@ -2391,7 +2391,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   {/* Email Administration Button */}
                   <Button
                     variant="ghost"
-                    className="w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3"
+                    className="w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3"
                     onClick={() => window.open('/admin-email', '_blank')}
                     title="Email Administration"
                   >
@@ -2400,7 +2400,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   </Button>
                   <Button
                     variant="ghost"
-                    className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+                    className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
                       activeTab === "instructors" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                     }`}
                     onClick={() => handleTabSwitch("instructors")}
@@ -2411,7 +2411,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   </Button>
                   <Button
                     variant="ghost"
-                    className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+                    className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
                       activeTab === "document-manager" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                     }`}
                     onClick={() => handleTabSwitch("document-manager")}
@@ -2424,7 +2424,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                   {user?.isAdmin && (
                     <Button
                       variant="ghost"
-                      className={`w-full justify-start text-white hover:text-white hover:bg-blue-600/50 pl-3 ${
+                      className={`w-full justify-start text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 pl-3 ${
                         activeTab === "platform-dashboard" ? "text-white border-b-2 border-sky-400 rounded-b-none bg-blue-600/30" : ""
                       }`}
                       onClick={() => handleTabSwitch("platform-dashboard")}
@@ -2536,7 +2536,7 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                 <LogOut className="w-4 h-4 md:mr-2" />
                 <span className="hidden md:inline">Logout</span>
               </Button>
-              <a href="/" className="hidden md:inline text-white hover:text-white hover:bg-blue-600/50 px-2 py-1 rounded text-sm">
+              <a href="/" className="hidden md:inline text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 px-2 py-1 rounded text-sm">
                 ← Back to SafetySync.AI
               </a>
             </div>

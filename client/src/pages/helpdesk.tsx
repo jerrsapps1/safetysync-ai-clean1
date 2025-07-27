@@ -162,7 +162,7 @@ export default function Helpdesk() {
                 <h1 className="text-2xl font-bold text-white">Support Ticket #{selectedTicketData.id}</h1>
               </div>
             </div>
-            <Link href="/" className="text-white hover:text-white">
+            <Link href="/" className="text-blue-100 hover:text-blue-200">
               <Button variant="ghost" className="text-white hover:bg-blue-900/60">
                 Home
               </Button>
@@ -268,7 +268,7 @@ export default function Helpdesk() {
             <SafetySyncIcon className="w-8 h-8" />
             <h1 className="text-3xl font-bold text-white">Support Helpdesk</h1>
           </div>
-          <Link href="/" className="text-white hover:text-white">
+          <Link href="/" className="text-blue-100 hover:text-blue-200">
             <Button variant="ghost" className="text-white hover:bg-blue-900/60">
               Home
             </Button>

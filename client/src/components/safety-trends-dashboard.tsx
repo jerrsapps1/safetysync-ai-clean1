@@ -187,7 +187,7 @@ const SafetyTrendsDashboard: React.FC = () => {
                   variant="outline"
                   size="sm"
                   onClick={resetData}
-                  className="border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white"
+                  className="border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-blue-200"
                 >
                   <RotateCcw className="w-4 h-4 mr-2" />
                   Reset

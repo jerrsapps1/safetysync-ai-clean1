@@ -1282,7 +1282,7 @@ This document serves as an official attendance record for the training session.`
                     variant="ghost"
                     size="sm"
                     onClick={() => setSelectedDocuments(new Set())}
-                    className="text-white hover:text-white"
+                    className="text-blue-100 hover:text-blue-200"
                   >
                     Clear Selection
                   </Button>

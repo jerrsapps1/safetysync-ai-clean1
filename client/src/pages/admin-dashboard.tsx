@@ -149,7 +149,7 @@ function AdminLoginCheck() {
                 <button
                   type="button"
                   onClick={() => setShowKey(!showKey)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white hover:text-white transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-blue-100 hover:text-blue-200 transition-colors"
                 >
                   {showKey ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
@@ -166,7 +166,7 @@ function AdminLoginCheck() {
         </Card>
 
         <div className="text-center mt-6">
-          <Link href="/" className="text-white hover:text-white text-sm">
+          <Link href="/" className="text-blue-100 hover:text-blue-200 text-sm">
             ← Back to SafetySync.AI
           </Link>
         </div>
@@ -614,7 +614,7 @@ export default function AdminDashboard() {
               variant="ghost"
               size="sm"
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="text-white hover:text-white"
+              className="text-blue-100 hover:text-blue-200"
             >
               {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </Button>
@@ -638,7 +638,7 @@ export default function AdminDashboard() {
                   <Button
                     key={category.id}
                     variant={selectedCategory === category.id ? "secondary" : "ghost"}
-                    className="w-full justify-start text-white hover:text-white text-sm"
+                    className="w-full justify-start text-blue-100 hover:text-blue-200 text-sm"
                     onClick={() => setSelectedCategory(category.id)}
                   >
                     {category.icon}
@@ -668,7 +668,7 @@ export default function AdminDashboard() {
         <div className="p-4 space-y-2">
           <Button
             variant="ghost"
-            className="w-full justify-start text-white hover:text-white"
+            className="w-full justify-start text-blue-100 hover:text-blue-200"
             onClick={handleLogout}
           >
             <LogOut className="w-5 h-5 mr-3" />
@@ -677,7 +677,7 @@ export default function AdminDashboard() {
           <Link href="/">
             <Button
               variant="ghost"
-              className="w-full justify-start text-white hover:text-white"
+              className="w-full justify-start text-blue-100 hover:text-blue-200"
             >
               <Home className="w-5 h-5 mr-3" />
               {sidebarOpen && "Back to Site"}

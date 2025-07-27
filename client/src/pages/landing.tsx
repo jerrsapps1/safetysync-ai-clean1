@@ -826,7 +826,7 @@ export default function LandingPage() {
               <Button
                 type="submit"
                 disabled={isSubscribing}
-                className="w-full bg-white text-blue-600 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg transition duration-200"
+                className="w-full bg-blue-100 text-blue-600 hover:bg-blue-200 font-semibold py-3 px-6 rounded-lg transition duration-200"
               >
                 {isSubscribing ? (
                   <>
