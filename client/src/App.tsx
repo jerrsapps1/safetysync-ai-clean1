@@ -7,11 +7,11 @@ import { CopyrightProtection } from "@/components/ui/copyright-protection";
 import { CartProvider } from "@/contexts/CartContext";
 
 import NotFound from "@/pages/not-found";
-import LandingPage from "@/pages/landing";
-import LandingPageSimple from "@/pages/landing-simple";
-import Dashboard from "@/pages/dashboard";
+import LandingPage from './pages/landing';
+import LandingPageSimple from './pages/landing-simple';
+import Dashboard from './pages/dashboard';
 
-import WorkspaceSimple from "@/pages/workspace-simple";
+import WorkspaceSimple from './pages/workspace-simple';
 import WorkspaceSimplified from "@/pages/workspace-simplified";
 import WorkspaceBasic from "@/pages/workspace-basic";
 import AdminPanel from "@/pages/admin";
