@@ -86,26 +86,20 @@ export default function LandingPage() {
     // Track A/B test conversion
     heroCtaTest.trackConversion(49);
     // Track Clarity analytics
-    if (window.clarity) {
-      window.clarity('set', 'trial_signup_started', true);
-    }
+    if (window.clarity) window.clarity('set', 'trial_signup_started', true);
     setIsTrialDialogOpen(true);
   };
 
   const handleDemoClick = () => {
     // Track Clarity analytics
-    if (window.clarity) {
-      window.clarity('set', 'demo_request_started', true);
-    }
+    if (window.clarity) window.clarity('set', 'demo_request_started', true);
     setIsDemoDialogOpen(true);
   };
 
   const handleLoginClick = () => {
     if (isAuthenticated) {
       // User is already logged in, go to client portal
-      if (window.clarity) {
-        window.clarity('set', 'login_completed', true);
-      }
+      if (window.clarity) window.clarity('set', 'login_completed', true);
       window.location.href = '/client-portal';
     } else {
       // User needs to log in, go to workspace login form
@@ -215,15 +209,11 @@ export default function LandingPage() {
       if (pendingSignupData.type === 'trial') {
         trackConversionEvent(CONVERSION_EVENTS.TRIAL_SIGNUP_COMPLETED);
         // Track Clarity analytics
-        if (window.clarity) {
-          window.clarity('set', 'account_created', 'trial');
-        }
+        if (window.clarity) window.clarity('set', 'account_created', 'trial');
       } else {
         trackConversionEvent(CONVERSION_EVENTS.DEMO_REQUEST_COMPLETED);
         // Track Clarity analytics
-        if (window.clarity) {
-          window.clarity('set', 'demo_request_completed', true);
-        }
+        if (window.clarity) window.clarity('set', 'demo_request_completed', true);
       }
 
       setShowTermsDialog(false);

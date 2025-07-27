@@ -15,9 +15,7 @@ export default function PricingPage() {
 
   // Track page visit with Clarity analytics
   useEffect(() => {
-    if (window.clarity) {
-      window.clarity('set', 'page_visited', 'pricing');
-    }
+    if (window.clarity) window.clarity('set', 'page_visited', 'pricing');
   }, []);
 
   const handleAddToCart = (itemType: 'certificate' | 'wallet_card', quantity: number) => {

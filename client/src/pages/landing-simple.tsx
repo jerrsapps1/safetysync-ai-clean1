@@ -28,9 +28,7 @@ export default function LandingPageSimple() {
         <div className="mt-6">
           <button
             onClick={() => {
-              if (window.clarity) {
-                window.clarity('set', 'comparison_modal_opened', true);
-              }
+              if (window.clarity) window.clarity('set', 'comparison_modal_opened', true);
               setShowModal(true);
             }}
             className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl shadow-md transition duration-200"

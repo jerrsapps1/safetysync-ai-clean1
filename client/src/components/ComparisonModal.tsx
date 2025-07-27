@@ -16,9 +16,7 @@ interface ComparisonModalProps {
 export default function ComparisonModal({ isOpen, onClose }: ComparisonModalProps) {
   // Track when modal opens
   React.useEffect(() => {
-    if (isOpen && window.clarity) {
-      window.clarity('set', 'comparison_modal_viewed', new Date().toISOString());
-    }
+    if (isOpen && window.clarity) window.clarity('set', 'comparison_modal_viewed', new Date().toISOString());
   }, [isOpen]);
 
   if (!isOpen) return null;
