@@ -303,43 +303,87 @@ export function FAQSection({ onContactSupport }: FAQSectionProps) {
       </Tabs>
 
       {/* Contact Support */}
-      <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-8">
-        <div className="text-center space-y-4">
-          <MessageCircle className="w-12 h-12 mx-auto text-blue-600" />
-          <h3 className="text-xl font-bold">Still have questions?</h3>
-          <p className="text-blue-500 max-w-md mx-auto">
-            Our support team is here to help you with any questions about SafetySync
-            or OSHA compliance requirements.
+      <div style={{
+        background: 'linear-gradient(to right, #dbeafe, #f3e8ff)',
+        borderRadius: '8px',
+        padding: '32px',
+        margin: '20px 0',
+        border: '2px solid #3b82f6'
+      }}>
+        <div style={{ textAlign: 'center' }}>
+          <h3 style={{ 
+            fontSize: '24px', 
+            fontWeight: 'bold', 
+            marginBottom: '16px',
+            color: '#000000'
+          }}>
+            Still have questions?
+          </h3>
+          <p style={{ 
+            color: '#3b82f6', 
+            marginBottom: '24px',
+            maxWidth: '500px',
+            margin: '0 auto 24px auto'
+          }}>
+            Our support team is here to help you with any questions about SafetySync or OSHA compliance requirements.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
-            <div className="text-center p-4">
-              <MessageCircle className="w-6 h-6 mx-auto mb-2 text-blue-600" />
-              <div className="font-medium">Live Chat</div>
-              <div className="text-sm text-blue-500">Available 24/7</div>
-              <Button variant="outline" size="sm" className="mt-2" onClick={onContactSupport}>
+          
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: '16px',
+            maxWidth: '800px',
+            margin: '0 auto'
+          }}>
+            <div style={{ textAlign: 'center', padding: '16px' }}>
+              <div style={{ fontSize: '24px', marginBottom: '8px' }}>💬</div>
+              <div style={{ fontWeight: '600', color: '#000000' }}>Live Chat</div>
+              <div style={{ fontSize: '14px', color: '#3b82f6', marginBottom: '12px' }}>Available 24/7</div>
+              <button style={{
+                backgroundColor: '#3b82f6',
+                color: 'white',
+                padding: '8px 16px',
+                borderRadius: '4px',
+                border: 'none',
+                cursor: 'pointer'
+              }}>
                 Start Chat
-              </Button>
+              </button>
             </div>
-            <div className="text-center p-4">
-              <Mail className="w-6 h-6 mx-auto mb-2 text-green-600" />
-              <div className="font-medium">Email Support</div>
-              <div className="text-sm text-blue-500">Response within 2 hours</div>
-              <Button 
-                variant="outline" 
-                size="sm" 
-                className="mt-2"
+            
+            <div style={{ textAlign: 'center', padding: '16px' }}>
+              <div style={{ fontSize: '24px', marginBottom: '8px' }}>📧</div>
+              <div style={{ fontWeight: '600', color: '#000000' }}>Email Support</div>
+              <div style={{ fontSize: '14px', color: '#3b82f6', marginBottom: '12px' }}>Response within 2 hours</div>
+              <button 
+                style={{
+                  backgroundColor: '#10b981',
+                  color: 'white',
+                  padding: '8px 16px',
+                  borderRadius: '4px',
+                  border: 'none',
+                  cursor: 'pointer'
+                }}
                 onClick={() => window.location.href = 'mailto:support@safetysync.ai?subject=Support Request&body=Hello SafetySync team, I need help with:'}
               >
                 Send Email
-              </Button>
+              </button>
             </div>
-            <div className="text-center p-4">
-              <Phone className="w-6 h-6 mx-auto mb-2 text-purple-600" />
-              <div className="font-medium">Phone Support</div>
-              <div className="text-sm text-blue-500">Business hours only</div>
-              <Button variant="outline" size="sm" className="mt-2">
+            
+            <div style={{ textAlign: 'center', padding: '16px' }}>
+              <div style={{ fontSize: '24px', marginBottom: '8px' }}>📞</div>
+              <div style={{ fontWeight: '600', color: '#000000' }}>Phone Support</div>
+              <div style={{ fontSize: '14px', color: '#3b82f6', marginBottom: '12px' }}>Business hours only</div>
+              <button style={{
+                backgroundColor: '#8b5cf6',
+                color: 'white',
+                padding: '8px 16px',
+                borderRadius: '4px',
+                border: 'none',
+                cursor: 'pointer'
+              }}>
                 Call Us
-              </Button>
+              </button>
             </div>
           </div>
         </div>
