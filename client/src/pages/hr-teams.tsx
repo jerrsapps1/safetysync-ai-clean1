@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { PageHeader } from '@/components/ui/page-header';
 
 export default function HRTeamsPage() {
+  // Track page visit with Clarity analytics
+  useEffect(() => {
+    if (window.clarity) {
+      window.clarity('set', 'page_visited', 'hr_teams');
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
       <PageHeader />

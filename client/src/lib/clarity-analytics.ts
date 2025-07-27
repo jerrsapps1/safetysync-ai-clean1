@@ -9,22 +9,22 @@ declare global {
 
 export const clarity = {
   // Set custom tags for user segmentation
-  set: (key: string, value: any) => {
-    if (typeof window !== 'undefined' && window.clarity) {
-      window.clarity('set', key, value);
+  set: (eventName: string, value: any) => {
+    if (window.clarity) {
+      window.clarity('set', eventName, value);
     }
   },
 
   // Track custom events
   event: (eventName: string) => {
-    if (typeof window !== 'undefined' && window.clarity) {
+    if (window.clarity) {
       window.clarity('event', eventName, {});
     }
   },
 
   // Track user actions with additional data
   track: (action: string, data?: Record<string, any>) => {
-    if (typeof window !== 'undefined' && window.clarity) {
+    if (window.clarity) {
       window.clarity('set', action, data || true);
     }
   }

@@ -28,7 +28,7 @@ export default function LandingPageSimple() {
         <div className="mt-6">
           <button
             onClick={() => {
-              if (typeof window !== 'undefined' && window.clarity) {
+              if (window.clarity) {
                 window.clarity('set', 'comparison_modal_opened', true);
               }
               setShowModal(true);

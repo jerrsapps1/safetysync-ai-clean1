@@ -376,6 +376,13 @@ export default function WorkspacePage() {
   
   const [activeTab, setActiveTab] = useState(getActiveTabFromUrl());
   
+  // Track workspace access with Clarity analytics
+  useEffect(() => {
+    if (window.clarity) {
+      window.clarity('set', 'workspace_accessed', true);
+    }
+  }, []);
+  
   // Hierarchical navigation state
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
     'employee-features': false,
