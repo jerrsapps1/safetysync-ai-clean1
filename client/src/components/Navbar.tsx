@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { SafetySyncIcon } from '@/components/ui/safetysync-icon';
 import { Menu, X } from 'lucide-react';
@@ -13,34 +12,34 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <Link to="/" className="flex items-center space-x-2">
+            <a href="/" className="flex items-center space-x-2">
               <SafetySyncIcon className="w-8 h-8 text-white" />
               <span className="text-xl font-bold text-white">SafetySync.AI</span>
-            </Link>
+            </a>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/case-studies" className="text-white hover:text-blue-100 transition-colors">
+            <a href="#case-studies" className="text-white hover:text-blue-100 transition-colors">
               Case Studies
-            </Link>
-            <Link to="/hr-teams" className="text-white hover:text-blue-100 transition-colors">
+            </a>
+            <a href="#hr-teams" className="text-white hover:text-blue-100 transition-colors">
               For HR Teams
-            </Link>
-            <Link to="/pricing" className="text-white hover:text-blue-100 transition-colors">
+            </a>
+            <a href="#pricing" className="text-white hover:text-blue-100 transition-colors">
               Pricing
-            </Link>
-            <Link to="/contact" className="text-white hover:text-blue-100 transition-colors">
+            </a>
+            <a href="#contact" className="text-white hover:text-blue-100 transition-colors">
               Contact
-            </Link>
-            <Link to="/client-portal">
+            </a>
+            <a href="#client-portal">
               <Button 
                 variant="outline" 
                 className="bg-white/10 border-white/20 text-white hover:bg-white/20"
               >
                 Client Login
               </Button>
-            </Link>
+            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -58,36 +57,36 @@ export default function Navbar() {
         {isOpen && (
           <div className="md:hidden bg-blue-600/95 backdrop-blur-sm">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              <Link
-                to="/case-studies"
+              <a
+                href="#case-studies"
                 className="block px-3 py-2 text-white hover:text-blue-100 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 Case Studies
-              </Link>
-              <Link
-                to="/hr-teams"
+              </a>
+              <a
+                href="#hr-teams"
                 className="block px-3 py-2 text-white hover:text-blue-100 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 For HR Teams
-              </Link>
-              <Link
-                to="/pricing"
+              </a>
+              <a
+                href="#pricing"
                 className="block px-3 py-2 text-white hover:text-blue-100 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 Pricing
-              </Link>
-              <Link
-                to="/contact"
+              </a>
+              <a
+                href="#contact"
                 className="block px-3 py-2 text-white hover:text-blue-100 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 Contact
-              </Link>
-              <Link
-                to="/client-portal"
+              </a>
+              <a
+                href="#client-portal"
                 className="block px-3 py-2"
                 onClick={() => setIsOpen(false)}
               >
@@ -97,7 +96,7 @@ export default function Navbar() {
                 >
                   Client Login
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
         )}
