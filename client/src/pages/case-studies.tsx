@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -153,6 +154,13 @@ const industryMetrics = [
 export default function CaseStudiesPage() {
   const featuredStudies = caseStudies.filter(study => study.featured);
   const allStudies = caseStudies.filter(study => !study.featured);
+
+  // Track page visit with Clarity analytics
+  useEffect(() => {
+    if (window.clarity) {
+      window.clarity('set', 'page_visited', 'case_studies');
+    }
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
