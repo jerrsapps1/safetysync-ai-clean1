@@ -150,7 +150,7 @@ export default function ShoppingCartDrawer({ isOpen, onClose }: ShoppingCartDraw
                           size="sm"
                           onClick={() => updateQuantity(item.id, item.quantity - 1)}
                           disabled={item.quantity <= 1}
-                          className="w-8 h-8 p-0 border-blue-400/30 text-white hover:bg-blue-800/50"
+                          className="w-8 h-8 p-0 border-blue-400/30 text-white /50"
                         >
                           <Minus className="w-3 h-3" />
                         </Button>
@@ -163,7 +163,7 @@ export default function ShoppingCartDrawer({ isOpen, onClose }: ShoppingCartDraw
                           variant="outline"
                           size="sm"
                           onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                          className="w-8 h-8 p-0 border-blue-400/30 text-white hover:bg-blue-800/50"
+                          className="w-8 h-8 p-0 border-blue-400/30 text-white /50"
                         >
                           <Plus className="w-3 h-3" />
                         </Button>
@@ -240,7 +240,7 @@ export default function ShoppingCartDrawer({ isOpen, onClose }: ShoppingCartDraw
               <Button 
                 onClick={onClose}
                 variant="outline"
-                className="flex-1 border-blue-400/30 text-white hover:bg-blue-800/30"
+                className="flex-1 border-blue-400/30 text-white /30"
               >
                 Continue Shopping
               </Button>

@@ -153,7 +153,7 @@ export default function SignupTable() {
           onClick={exportData}
           variant="outline"
           size="sm"
-          className="border-blue-600 text-blue-200 hover:bg-blue-600 hover:text-blue-200"
+          className="border-blue-600 text-blue-200  "
         >
           <Download className="h-4 w-4 mr-2" />
           Export CSV
@@ -240,7 +240,7 @@ export default function SignupTable() {
               </TableHeader>
               <TableBody>
                 {paginatedData.map((user, index) => (
-                  <TableRow key={index} className="border-blue-700/30 hover:bg-blue-800/30">
+                  <TableRow key={index} className="border-blue-700/30 /30">
                     <TableCell className="text-white font-medium">
                       {user.name}
                     </TableCell>
@@ -285,7 +285,7 @@ export default function SignupTable() {
                   size="sm"
                   onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                   disabled={currentPage === 1}
-                  className="border-blue-600 text-blue-200 hover:bg-blue-600 hover:text-blue-200 disabled:opacity-50"
+                  className="border-blue-600 text-blue-200   disabled:opacity-50"
                 >
                   <ChevronLeft className="h-4 w-4" />
                 </Button>
@@ -299,7 +299,7 @@ export default function SignupTable() {
                   size="sm"
                   onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                   disabled={currentPage === totalPages}
-                  className="border-blue-600 text-blue-200 hover:bg-blue-600 hover:text-blue-200 disabled:opacity-50"
+                  className="border-blue-600 text-blue-200   disabled:opacity-50"
                 >
                   <ChevronRight className="h-4 w-4" />
                 </Button>

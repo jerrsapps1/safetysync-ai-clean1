@@ -451,7 +451,7 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
                         <button
                           key={code}
                           onClick={() => setPromoCode(code)}
-                          className="text-xs bg-blue-100 hover:bg-blue-200 text-blue-800 px-2 py-1 rounded font-mono transition-colors"
+                          className="text-xs bg-blue-100  text-blue-800 px-2 py-1 rounded font-mono transition-colors"
                         >
                           {code}
                         </button>
@@ -537,11 +537,11 @@ export function PricingCalculator({ onSelectPlan }: PricingCalculatorProps) {
             <div className="mt-3 text-xs text-blue-700">
               <div className="font-medium mb-1">Try these sample codes:</div>
               <div className="flex flex-wrap gap-2">
-                <code className="bg-blue-100 px-2 py-1 rounded cursor-pointer hover:bg-blue-200" 
+                <code className="bg-blue-100 px-2 py-1 rounded cursor-pointer " 
                       onClick={() => setPromoCode('LAUNCH25')}>LAUNCH25</code>
-                <code className="bg-blue-100 px-2 py-1 rounded cursor-pointer hover:bg-blue-200" 
+                <code className="bg-blue-100 px-2 py-1 rounded cursor-pointer " 
                       onClick={() => setPromoCode('SMALLBIZ')}>SMALLBIZ</code>
-                <code className="bg-blue-100 px-2 py-1 rounded cursor-pointer hover:bg-blue-200" 
+                <code className="bg-blue-100 px-2 py-1 rounded cursor-pointer " 
                       onClick={() => setPromoCode('FREEMONTH')}>FREEMONTH</code>
               </div>
             </div>

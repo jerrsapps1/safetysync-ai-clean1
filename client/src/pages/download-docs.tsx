@@ -43,7 +43,7 @@ export default function DownloadDocsPage() {
         {/* Header */}
         <div className="mb-8">
           <Link href="/">
-            <Button variant="ghost" className="text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 mb-4">
+            <Button variant="ghost" className="text-blue-100  /50 mb-4">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Platform
             </Button>
@@ -86,7 +86,7 @@ export default function DownloadDocsPage() {
               <div className="flex gap-3">
                 <Button 
                   onClick={() => openInNewTab('SafetySync_AI_Platform_Documentation.html')}
-                  className="flex-1 bg-blue-600 hover:bg-blue-700 text-white"
+                  className="flex-1 bg-blue-600  text-white"
                 >
                   <Globe className="w-4 h-4 mr-2" />
                   View Online
@@ -96,7 +96,7 @@ export default function DownloadDocsPage() {
                   onClick={() => handleDownload('SafetySync_AI_Platform_Documentation.html', 'html')}
                   disabled={downloading === 'SafetySync_AI_Platform_Documentation.html'}
                   variant="outline"
-                  className="flex-1 border-blue-400 text-blue-400 hover:bg-blue-600/20"
+                  className="flex-1 border-blue-400 text-blue-400 /20"
                 >
                   <Download className="w-4 h-4 mr-2" />
                   {downloading === 'SafetySync_AI_Platform_Documentation.html' ? 'Downloading...' : 'Download'}
@@ -174,7 +174,7 @@ export default function DownloadDocsPage() {
               <div className="flex gap-3">
                 <Button 
                   onClick={() => openInNewTab('SafetySync_AI_Platform_Documentation.md')}
-                  className="flex-1 bg-blue-600 hover:bg-blue-700 text-white"
+                  className="flex-1 bg-blue-600  text-white"
                 >
                   <FileText className="w-4 h-4 mr-2" />
                   View Raw
@@ -184,7 +184,7 @@ export default function DownloadDocsPage() {
                   onClick={() => handleDownload('SafetySync_AI_Platform_Documentation.md', 'markdown')}
                   disabled={downloading === 'SafetySync_AI_Platform_Documentation.md'}
                   variant="outline"
-                  className="flex-1 border-blue-400 text-blue-400 hover:bg-blue-600/20"
+                  className="flex-1 border-blue-400 text-blue-400 /20"
                 >
                   <Download className="w-4 h-4 mr-2" />
                   {downloading === 'SafetySync_AI_Platform_Documentation.md' ? 'Downloading...' : 'Download'}

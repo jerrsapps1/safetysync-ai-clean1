@@ -27,7 +27,7 @@ export default function HRTeamsPage() {
           {/* Features Section */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             
-            <div className="bg-blue-700/50 border border-blue-600/50 p-6 rounded-lg backdrop-blur-sm hover:bg-blue-700/70 transition-all duration-200">
+            <div className="bg-blue-700/50 border border-blue-600/50 p-6 rounded-lg backdrop-blur-sm /70 ">
               <h3 className="text-lg font-semibold text-white mb-3">
                 Employee Training Management
               </h3>
@@ -36,7 +36,7 @@ export default function HRTeamsPage() {
               </p>
             </div>
 
-            <div className="bg-blue-700/50 border border-blue-600/50 p-6 rounded-lg backdrop-blur-sm hover:bg-blue-700/70 transition-all duration-200">
+            <div className="bg-blue-700/50 border border-blue-600/50 p-6 rounded-lg backdrop-blur-sm /70 ">
               <h3 className="text-lg font-semibold text-white mb-3">
                 Compliance Documentation
               </h3>
@@ -45,7 +45,7 @@ export default function HRTeamsPage() {
               </p>
             </div>
 
-            <div className="bg-blue-700/50 border border-blue-600/50 p-6 rounded-lg backdrop-blur-sm hover:bg-blue-700/70 transition-all duration-200">
+            <div className="bg-blue-700/50 border border-blue-600/50 p-6 rounded-lg backdrop-blur-sm /70 ">
               <h3 className="text-lg font-semibold text-white mb-3">
                 Digital Certificates
               </h3>
@@ -54,7 +54,7 @@ export default function HRTeamsPage() {
               </p>
             </div>
 
-            <div className="bg-blue-700/50 border border-blue-600/50 p-6 rounded-lg backdrop-blur-sm hover:bg-blue-700/70 transition-all duration-200">
+            <div className="bg-blue-700/50 border border-blue-600/50 p-6 rounded-lg backdrop-blur-sm /70 ">
               <h3 className="text-lg font-semibold text-white mb-3">
                 Training Matrix
               </h3>
@@ -63,7 +63,7 @@ export default function HRTeamsPage() {
               </p>
             </div>
 
-            <div className="bg-blue-700/50 border border-blue-600/50 p-6 rounded-lg backdrop-blur-sm hover:bg-blue-700/70 transition-all duration-200">
+            <div className="bg-blue-700/50 border border-blue-600/50 p-6 rounded-lg backdrop-blur-sm /70 ">
               <h3 className="text-lg font-semibold text-white mb-3">
                 Automated Reminders
               </h3>
@@ -72,7 +72,7 @@ export default function HRTeamsPage() {
               </p>
             </div>
 
-            <div className="bg-blue-700/50 border border-blue-600/50 p-6 rounded-lg backdrop-blur-sm hover:bg-blue-700/70 transition-all duration-200">
+            <div className="bg-blue-700/50 border border-blue-600/50 p-6 rounded-lg backdrop-blur-sm /70 ">
               <h3 className="text-lg font-semibold text-white mb-3">
                 Reporting & Analytics
               </h3>
@@ -92,10 +92,10 @@ export default function HRTeamsPage() {
               Join thousands of HR professionals using SafetySync.ai
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-200 hover:scale-105 hover:shadow-lg">
+              <button className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-lg font-semibold  hover:scale-105 hover:shadow-lg">
                 Start Free Trial
               </button>
-              <button className="bg-blue-900/60 border border-blue-400/30 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-900/20 transition-all duration-200">
+              <button className="bg-blue-900/60 border border-blue-400/30 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-900/20 ">
                 Book a Demo
               </button>
             </div>

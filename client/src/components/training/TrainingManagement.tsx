@@ -226,7 +226,7 @@ export default function TrainingManagement() {
             Schedule Training
           </Button>
           <Button 
-            className="bg-blue-500 hover:bg-blue-600 text-white"
+            className="bg-blue-500  text-white"
             onClick={() => {
               setIsLoading(true);
               setTimeout(() => setIsLoading(false), 1500);
@@ -328,21 +328,21 @@ export default function TrainingManagement() {
         <TabsList className="grid w-full grid-cols-3 bg-black/20 backdrop-blur-sm border-blue-700">
           <TabsTrigger 
             value="sessions" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100 hover:text-blue-200 transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100  "
           >
             <Calendar className="h-4 w-4" />
             Training Sessions
           </TabsTrigger>
           <TabsTrigger 
             value="modules" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100 hover:text-blue-200 transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100  "
           >
             <BookOpen className="h-4 w-4" />
             Training Modules
           </TabsTrigger>
           <TabsTrigger 
             value="compliance" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100 hover:text-blue-200 transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100  "
           >
             <Shield className="h-4 w-4" />
             Compliance Tracking
@@ -406,7 +406,7 @@ export default function TrainingManagement() {
                   </div>
 
                   <div className="flex items-center gap-2 pt-2">
-                    <Button size="sm" className="bg-blue-500 hover:bg-blue-600 text-white">
+                    <Button size="sm" className="bg-blue-500  text-white">
                       <Eye className="w-3 h-3 mr-1" />
                       View Details
                     </Button>

@@ -296,7 +296,7 @@ export function DNSManagement() {
                 {dnsRecords.map((record, index) => (
                   <div 
                     key={index}
-                    className="flex items-center justify-between p-4 border rounded-lg hover:bg-blue-50"
+                    className="flex items-center justify-between p-4 border rounded-lg "
                   >
                     <div className="flex-1 grid grid-cols-1 md:grid-cols-6 gap-4 items-center">
                       <div>

@@ -490,7 +490,7 @@ export default function ClientPortal() {
                 onClick={() => window.location.href = '/'}
                 variant="ghost"
                 size="sm"
-                className="text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 px-2"
+                className="text-blue-100  /50 px-2"
               >
                 <Home className="w-4 h-4" />
               </Button>
@@ -522,7 +522,7 @@ export default function ClientPortal() {
                       type="button"
                       variant="ghost"
                       size="sm"
-                      className="absolute right-0 top-1/2 transform -translate-y-1/2 p-1 text-blue-100 hover:text-blue-200 h-6 w-6"
+                      className="absolute right-0 top-1/2 transform -translate-y-1/2 p-1 text-blue-100  h-6 w-6"
                       onClick={() => setShowPassword(!showPassword)}
                       disabled={isAuthenticating}
                     >
@@ -533,7 +533,7 @@ export default function ClientPortal() {
                     type="submit"
                     disabled={isAuthenticating || !loginUsername.trim() || !loginPassword.trim()}
                     size="sm"
-                    className="bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50 text-xs px-3 h-8"
+                    className="bg-blue-600  text-white disabled:opacity-50 text-xs px-3 h-8"
                   >
                     {isAuthenticating ? (
                       <div className="animate-spin rounded-full h-3 w-3 border-2 border-white border-t-transparent"></div>
@@ -567,7 +567,7 @@ export default function ClientPortal() {
                 onClick={() => window.location.href = '/'}
                 variant="ghost"
                 size="sm"
-                className="text-blue-100 hover:text-blue-200 hover:bg-blue-600/50 px-2 md:px-3"
+                className="text-blue-100  /50 px-2 md:px-3"
               >
                 <Home className="w-4 h-4 mr-1 md:mr-2" />
                 <span className="hidden sm:inline">Home</span>
@@ -598,7 +598,7 @@ export default function ClientPortal() {
                         type="button"
                         variant="ghost"
                         size="sm"
-                        className="absolute right-1 top-1/2 transform -translate-y-1/2 p-1 text-blue-100 hover:text-blue-200 h-6 w-6"
+                        className="absolute right-1 top-1/2 transform -translate-y-1/2 p-1 text-blue-100  h-6 w-6"
                         onClick={() => setShowPassword(!showPassword)}
                         disabled={isAuthenticating}
                       >
@@ -609,7 +609,7 @@ export default function ClientPortal() {
                       type="submit"
                       disabled={isAuthenticating || !loginUsername.trim() || !loginPassword.trim()}
                       size="sm"
-                      className="bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50 min-w-[70px]"
+                      className="bg-blue-600  text-white disabled:opacity-50 min-w-[70px]"
                     >
                       {isAuthenticating ? (
                         <div className="flex items-center space-x-1">
@@ -647,7 +647,7 @@ export default function ClientPortal() {
                   <Button 
                     onClick={() => setShowOnboardingTutorial(true)}
                     variant="ghost"
-                    className="text-white hover:text-blue-200 hover:bg-blue-700/50"
+                    className="text-white  /50"
                   >
                     <BookOpen className="w-4 h-4 mr-2" />
                     Setup Guide
@@ -840,7 +840,7 @@ export default function ClientPortal() {
                       className={`w-full ${
                         software.userVoted 
                           ? 'bg-emerald-600 hover:bg-emerald-700' 
-                          : 'bg-blue-500 hover:bg-blue-600'
+                          : 'bg-blue-500 '
                       } text-white`}
                     >
                       <TrendingUp className="w-4 h-4 mr-2" />
@@ -913,7 +913,7 @@ export default function ClientPortal() {
                           className={`${
                             comment.userLiked 
                               ? 'text-violet-400 hover:text-emerald-300' 
-                              : 'text-blue-100 hover:text-blue-200'
+                              : 'text-blue-100 '
                           }`}
                         >
                           <Heart className={`w-4 h-4 mr-1 ${comment.userLiked ? 'fill-current' : ''}`} />
@@ -992,7 +992,7 @@ export default function ClientPortal() {
                     type="button"
                     variant="ghost"
                     size="sm"
-                    className="absolute right-2 top-1/2 transform -translate-y-1/2 px-2 text-blue-100 hover:text-blue-200"
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 px-2 text-blue-100 "
                     onClick={() => setShowPopupPassword(!showPopupPassword)}
                   >
                     {showPopupPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
@@ -1112,7 +1112,7 @@ export default function ClientPortal() {
                         window.open('https://calendly.com/safetysync-demo', '_blank');
                       }}
                       variant="outline"
-                      className="border-blue-400/30 text-white hover:bg-blue-800/30"
+                      className="border-blue-400/30 text-white /30"
                     >
                       <Calendar className="w-4 h-4 mr-2" />
                       Schedule Demo

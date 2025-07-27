@@ -108,7 +108,7 @@ export default function CertificateBalanceWidget({ className = '' }: Certificate
             onClick={() => setIsExpanded(!isExpanded)}
             variant="outline"
             size="sm"
-            className="w-full border-blue-400/30 text-white hover:bg-blue-800/30"
+            className="w-full border-blue-400/30 text-white /30"
           >
             <Plus className="w-3 h-3 mr-2" />
             Quick Purchase
@@ -129,7 +129,7 @@ export default function CertificateBalanceWidget({ className = '' }: Certificate
                 <Button
                   onClick={() => handleQuickPurchase('wallet_card', 10)}
                   size="sm"
-                  className="bg-blue-600 hover:bg-blue-700 text-white text-xs"
+                  className="bg-blue-600  text-white text-xs"
                 >
                   <IdCard className="w-3 h-3 mr-1" />
                   +10 Cards
@@ -141,7 +141,7 @@ export default function CertificateBalanceWidget({ className = '' }: Certificate
                   onClick={() => handleQuickPurchase('certificate', 25)}
                   size="sm"
                   variant="outline"
-                  className="border-blue-400/30 text-white hover:bg-blue-800/30 text-xs"
+                  className="border-blue-400/30 text-white /30 text-xs"
                 >
                   +25 Certs
                 </Button>
@@ -150,7 +150,7 @@ export default function CertificateBalanceWidget({ className = '' }: Certificate
                   onClick={() => handleQuickPurchase('wallet_card', 25)}
                   size="sm"
                   variant="outline"
-                  className="border-blue-400/30 text-white hover:bg-blue-800/30 text-xs"
+                  className="border-blue-400/30 text-white /30 text-xs"
                 >
                   +25 Cards
                 </Button>

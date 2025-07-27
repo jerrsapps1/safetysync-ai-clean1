@@ -285,7 +285,7 @@ export function AICloneDetector({ onScanComplete }: AICloneDetectorProps) {
                 <Button
                   onClick={startScan}
                   disabled={scanning || urls.every(url => url.trim() === '')}
-                  className="bg-blue-600 hover:bg-blue-700"
+                  className="bg-blue-600 "
                 >
                   {scanning ? (
                     <>

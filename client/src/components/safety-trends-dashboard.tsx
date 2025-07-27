@@ -177,7 +177,7 @@ const SafetyTrendsDashboard: React.FC = () => {
                   variant={isAnimating ? "destructive" : "default"}
                   size="sm"
                   onClick={() => setIsAnimating(!isAnimating)}
-                  className="bg-blue-600 hover:bg-blue-700"
+                  className="bg-blue-600 "
                 >
                   {isAnimating ? <Pause className="w-4 h-4 mr-2" /> : <Play className="w-4 h-4 mr-2" />}
                   {isAnimating ? 'Pause' : 'Animate'}
@@ -187,7 +187,7 @@ const SafetyTrendsDashboard: React.FC = () => {
                   variant="outline"
                   size="sm"
                   onClick={resetData}
-                  className="border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-blue-200"
+                  className="border-blue-400 text-blue-400 hover:bg-blue-400 "
                 >
                   <RotateCcw className="w-4 h-4 mr-2" />
                   Reset
@@ -216,7 +216,7 @@ const SafetyTrendsDashboard: React.FC = () => {
           {safetyMetrics.map((metric) => (
             <Card 
               key={metric.id} 
-              className={`bg-blue-700/50 backdrop-blur-sm border-blue-700 cursor-pointer transition-all duration-300 hover:scale-105 ${
+              className={`bg-blue-700/50 backdrop-blur-sm border-blue-700 cursor-pointer  hover:scale-105 ${
                 selectedMetric === metric.id ? 'ring-2 ring-blue-400' : ''
               }`}
               onClick={() => setSelectedMetric(metric.id)}

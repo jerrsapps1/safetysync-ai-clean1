@@ -382,7 +382,7 @@ export default function OSHAComplianceManager() {
           </p>
         </div>
         <div className="flex gap-3">
-          <Button onClick={generateAuditReport} className="bg-blue-600 hover:bg-blue-700">
+          <Button onClick={generateAuditReport} className="bg-blue-600 ">
             <FileText className="w-4 h-4 mr-2" />
             Generate Audit Report
           </Button>
@@ -579,7 +579,7 @@ export default function OSHAComplianceManager() {
                     </div>
 
                     <div className="mt-3 flex gap-2">
-                      <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
+                      <Button size="sm" className="bg-blue-600 ">
                         Mark Resolved
                       </Button>
                       <Button size="sm" variant="outline">
@@ -786,7 +786,7 @@ export default function OSHAComplianceManager() {
                     All records organized and accessible for compliance verification:
                   </p>
                   <div className="flex gap-4 flex-wrap">
-                    <Button className="bg-blue-600 hover:bg-blue-700">
+                    <Button className="bg-blue-600 ">
                       <Eye className="w-4 h-4 mr-2" />
                       View All Records
                     </Button>

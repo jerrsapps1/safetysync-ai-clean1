@@ -592,7 +592,7 @@ export default function EmployeeManagement() {
           <Button 
             variant="outline"
             onClick={downloadAllExcel}
-            className="bg-blue-500/20 hover:bg-blue-500/30 border-blue-500/30 text-white hover:text-blue-200"
+            className="bg-blue-500/20 0/30 border-blue-500/30 text-white "
           >
             <Download className="w-4 h-4 mr-2" />
             Download All Employees ({analytics.totalEmployees})
@@ -610,7 +610,7 @@ export default function EmployeeManagement() {
           <Button 
             variant="outline"
             onClick={() => setShowBulkActions(!showBulkActions)}
-            className="bg-blue-400/20 hover:bg-blue-400/30 border-blue-400/30 text-white hover:text-blue-200"
+            className="bg-blue-400/20 hover:bg-blue-400/30 border-blue-400/30 text-white "
           >
             <CheckSquare className="w-4 h-4 mr-2" />
             Bulk Actions
@@ -700,7 +700,7 @@ export default function EmployeeManagement() {
                   variant="outline" 
                   size="sm"
                   onClick={handleSelectAll}
-                  className="bg-blue-400/20 hover:bg-blue-400/30 border-blue-400/30 text-white hover:text-blue-200"
+                  className="bg-blue-400/20 hover:bg-blue-400/30 border-blue-400/30 text-white "
                 >
                   {selectedEmployees.length === filteredAndSortedEmployees.length ? (
                     <>
@@ -851,7 +851,7 @@ export default function EmployeeManagement() {
               </select>
               <button 
                 onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
-                className="px-3 py-2 border border-blue-500 bg-black/30 text-white rounded-md hover:bg-blue-500/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="px-3 py-2 border border-blue-500 bg-black/30 text-white rounded-md 0/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
                 {sortOrder === 'asc' ? '↑' : '↓'}
               </button>
@@ -888,7 +888,7 @@ export default function EmployeeManagement() {
               </thead>
               <tbody className="divide-y divide-blue-600">
                 {filteredAndSortedEmployees.map((employee) => (
-                  <tr key={employee.id} className="hover:bg-blue-700/30">
+                  <tr key={employee.id} className="/30">
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-3">
                         <input
@@ -935,7 +935,7 @@ export default function EmployeeManagement() {
                             setSelectedEmployee(employee);
                             setShowEditDialog(true);
                           }}
-                          className="bg-blue-400/20 hover:bg-blue-400/30 border-blue-400/30 text-white hover:text-blue-200"
+                          className="bg-blue-400/20 hover:bg-blue-400/30 border-blue-400/30 text-white "
                         >
                           <Eye className="w-4 h-4" />
                         </Button>
@@ -946,7 +946,7 @@ export default function EmployeeManagement() {
                             setSelectedEmployee(employee);
                             setShowEditDialog(true);
                           }}
-                          className="bg-blue-500/20 hover:bg-blue-500/30 border-blue-500/30 text-white hover:text-blue-200"
+                          className="bg-blue-500/20 0/30 border-blue-500/30 text-white "
                         >
                           <Edit className="w-4 h-4" />
                         </Button>
@@ -1099,7 +1099,7 @@ export default function EmployeeManagement() {
                   </SelectTrigger>
                   <SelectContent className="bg-blue-700 border-blue-600">
                     {analytics.departments.map(dept => (
-                      <SelectItem key={dept} value={dept} className="text-white hover:bg-blue-600">{dept}</SelectItem>
+                      <SelectItem key={dept} value={dept} className="text-white ">{dept}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
@@ -1112,7 +1112,7 @@ export default function EmployeeManagement() {
                   </SelectTrigger>
                   <SelectContent className="bg-blue-700 border-blue-600">
                     {analytics.divisions.map(div => (
-                      <SelectItem key={div} value={div} className="text-white hover:bg-blue-600">{div}</SelectItem>
+                      <SelectItem key={div} value={div} className="text-white ">{div}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
@@ -1125,7 +1125,7 @@ export default function EmployeeManagement() {
                   </SelectTrigger>
                   <SelectContent className="bg-blue-700 border-blue-600">
                     {analytics.locations.map(loc => (
-                      <SelectItem key={loc} value={loc} className="text-white hover:bg-blue-600">{loc}</SelectItem>
+                      <SelectItem key={loc} value={loc} className="text-white ">{loc}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
@@ -1135,7 +1135,7 @@ export default function EmployeeManagement() {
               <Button 
                 variant="outline" 
                 onClick={() => setShowAddDialog(false)}
-                className="bg-blue-700 hover:bg-blue-600 border-blue-600 text-white"
+                className="bg-blue-700  border-blue-600 text-white"
               >
                 Cancel
               </Button>

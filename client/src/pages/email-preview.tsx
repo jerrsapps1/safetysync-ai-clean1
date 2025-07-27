@@ -155,7 +155,7 @@ export default function EmailPreview() {
       <div className="max-w-6xl mx-auto">
         <div className="mb-6">
           <Link href="/admin">
-            <Button variant="outline" className="mb-4 text-blue-200 border-blue-500/50 hover:bg-blue-500/20">
+            <Button variant="outline" className="mb-4 text-blue-200 border-blue-500/50 0/20">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Admin
             </Button>

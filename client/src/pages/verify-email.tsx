@@ -147,7 +147,7 @@ export default function VerifyEmailPage() {
             <div className="space-y-4">
               <Button 
                 onClick={handleResendEmail}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                className="w-full bg-blue-600  text-white"
               >
                 <Mail className="w-4 h-4 mr-2" />
                 Send New Verification Email
@@ -160,14 +160,14 @@ export default function VerifyEmailPage() {
               <Button 
                 onClick={() => navigate('/')}
                 variant="outline"
-                className="w-full border-blue-500 text-white hover:bg-blue-600"
+                className="w-full border-blue-500 text-white "
               >
                 Return to Homepage
               </Button>
               
               <Button 
                 onClick={handleResendEmail}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                className="w-full bg-blue-600  text-white"
               >
                 <Mail className="w-4 h-4 mr-2" />
                 Resend Verification Email

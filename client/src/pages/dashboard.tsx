@@ -296,13 +296,13 @@ export default function Dashboard() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2 md:space-x-4">
               <Link href="/">
-                <Button variant="ghost" size="sm" className="text-blue-200/90 hover:text-blue-200 hover:bg-blue-900/60 transition-all duration-300">
+                <Button variant="ghost" size="sm" className="text-blue-200/90  hover:bg-blue-900/60 ">
                   <Home className="w-4 h-4 mr-1" />
                   <span className="hidden sm:inline">Home</span>
                 </Button>
               </Link>
               <div className="flex items-center space-x-2 group">
-                <div className="w-6 h-6 bg-gradient-to-r from-blue-600 to-purple-600 rounded-md flex items-center justify-center group-hover:pulse-glow transition-all duration-300">
+                <div className="w-6 h-6 bg-gradient-to-r from-blue-600 to-purple-600 rounded-md flex items-center justify-center group-hover:pulse-glow ">
                   <Brain className="w-4 h-4 text-white" />
                 </div>
                 <span className="text-lg font-semibold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
@@ -312,7 +312,7 @@ export default function Dashboard() {
             </div>
             <div className="flex items-center space-x-1">
               <Link href="/user-guide">
-                <Button variant="ghost" size="sm" className="text-blue-200/90 hover:text-blue-200 hover:bg-blue-900/60 transition-all duration-300">
+                <Button variant="ghost" size="sm" className="text-blue-200/90  hover:bg-blue-900/60 ">
                   <span className="hidden sm:inline">Guide</span>
                   <BookOpen className="w-4 h-4 sm:hidden" />
                 </Button>
@@ -321,7 +321,7 @@ export default function Dashboard() {
                 onClick={simulateLoading}
                 variant="ghost" 
                 size="sm" 
-                className="text-blue-200/90 hover:text-blue-200 hover:bg-blue-900/60 transition-all duration-300"
+                className="text-blue-200/90  hover:bg-blue-900/60 "
                 title="Test Loading"
               >
                 <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
@@ -329,7 +329,7 @@ export default function Dashboard() {
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-blue-200/90 hover:text-blue-200 hover:bg-blue-900/60 transition-all duration-300"
+                className="text-blue-200/90  hover:bg-blue-900/60 "
                 onClick={logout}
               >
                 Sign Out
@@ -370,7 +370,7 @@ export default function Dashboard() {
                 </div>
               </div>
               <Link href="/user-guide">
-                <Button variant="outline" size="sm" className="border-blue-400/50 text-white hover:bg-blue-400/20 hover:border-blue-400 transition-all duration-300">
+                <Button variant="outline" size="sm" className="border-blue-400/50 text-white hover:bg-blue-400/20 hover:border-blue-400 ">
                   <BookOpen className="w-4 h-4 mr-2" />
                   Full Guide
                 </Button>
@@ -390,7 +390,7 @@ export default function Dashboard() {
             </div>
           ) : (
             <div className="contents content-fade-in">
-              <Card className="bg-blue-500/10 border-blue-500/30 backdrop-blur-sm hover:bg-blue-500/20 transition-all duration-300 group">
+              <Card className="bg-blue-500/10 border-blue-500/30 backdrop-blur-sm 0/20  group">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
@@ -404,7 +404,7 @@ export default function Dashboard() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-green-500/10 border-green-500/30 backdrop-blur-sm hover:bg-green-500/20 transition-all duration-300 group">
+              <Card className="bg-green-500/10 border-green-500/30 backdrop-blur-sm hover:bg-green-500/20  group">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
@@ -418,7 +418,7 @@ export default function Dashboard() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-yellow-500/10 border-yellow-500/30 backdrop-blur-sm hover:bg-yellow-500/20 transition-all duration-300 group">
+              <Card className="bg-yellow-500/10 border-yellow-500/30 backdrop-blur-sm hover:bg-yellow-500/20  group">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
@@ -432,7 +432,7 @@ export default function Dashboard() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-red-500/10 border-red-500/30 backdrop-blur-sm hover:bg-red-500/20 transition-all duration-300 group">
+              <Card className="bg-red-500/10 border-red-500/30 backdrop-blur-sm hover:bg-red-500/20  group">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
@@ -478,37 +478,37 @@ export default function Dashboard() {
         {/* Main Content Tabs */}
         <Tabs defaultValue="overview" className="space-y-6">
           <TabsList className="grid w-full grid-cols-11 bg-blue-900/5 border-violet-500/30 backdrop-blur-sm">
-            <TabsTrigger value="overview" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
+            <TabsTrigger value="overview" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100  ">
               Overview
             </TabsTrigger>
-            <TabsTrigger value="employees" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
+            <TabsTrigger value="employees" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100  ">
               Employees
             </TabsTrigger>
-            <TabsTrigger value="training" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
+            <TabsTrigger value="training" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100  ">
               Training
             </TabsTrigger>
-            <TabsTrigger value="branding" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
+            <TabsTrigger value="branding" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100  ">
               Branding
             </TabsTrigger>
-            <TabsTrigger value="reports" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
+            <TabsTrigger value="reports" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100  ">
               Reports
             </TabsTrigger>
-            <TabsTrigger value="generator" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
+            <TabsTrigger value="generator" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100  ">
               Report Generator
             </TabsTrigger>
-            <TabsTrigger value="certificates" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
+            <TabsTrigger value="certificates" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100  ">
               Certificates
             </TabsTrigger>
-            <TabsTrigger value="collaboration" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
+            <TabsTrigger value="collaboration" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100  ">
               Team Review
             </TabsTrigger>
-            <TabsTrigger value="locations" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
+            <TabsTrigger value="locations" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100  ">
               Locations
             </TabsTrigger>
-            <TabsTrigger value="safety-trends" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
+            <TabsTrigger value="safety-trends" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100  ">
               Safety Trends
             </TabsTrigger>
-            <TabsTrigger value="audit-settings" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100 hover:text-blue-200 transition-all duration-300">
+            <TabsTrigger value="audit-settings" className="text-blue-200/90 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-blue-100  ">
               Audit Settings
             </TabsTrigger>
           </TabsList>
@@ -529,7 +529,7 @@ export default function Dashboard() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <div className="flex items-center gap-3 p-3 bg-green-500/10 border-green-500/30 rounded-lg hover:bg-green-500/20 transition-all duration-300">
+                  <div className="flex items-center gap-3 p-3 bg-green-500/10 border-green-500/30 rounded-lg hover:bg-green-500/20 ">
                     <div className="w-8 h-8 bg-gradient-to-r from-green-600 to-green-500 rounded-full flex items-center justify-center">
                       <CheckCircle className="w-5 h-5 text-white" />
                     </div>
@@ -538,7 +538,7 @@ export default function Dashboard() {
                       <p className="text-sm text-green-200">2 hours ago • Compliance score updated automatically</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 p-3 bg-yellow-500/10 border-yellow-500/30 rounded-lg hover:bg-yellow-500/20 transition-all duration-300">
+                  <div className="flex items-center gap-3 p-3 bg-yellow-500/10 border-yellow-500/30 rounded-lg hover:bg-yellow-500/20 ">
                     <div className="w-8 h-8 bg-gradient-to-r from-yellow-600 to-yellow-500 rounded-full flex items-center justify-center">
                       <Clock className="w-5 h-5 text-white" />
                     </div>
@@ -732,7 +732,7 @@ export default function Dashboard() {
               <CardContent>
                 <div className="space-y-4">
                   {records.map(record => (
-                    <div key={record.id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-blue-50">
+                    <div key={record.id} className="flex items-center justify-between p-4 border rounded-lg ">
                       <div className="flex items-center gap-4">
                         <div className="w-10 h-10 bg-blue-800/30 rounded-full flex items-center justify-center">
                           <span className="text-sm font-medium text-white">
@@ -2052,7 +2052,7 @@ export default function Dashboard() {
               <CardContent>
                 <div className="p-4">
                   <Link href="/safety-trends">
-                    <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 hover:scale-105">
+                    <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium py-3 px-6 rounded-lg  hover:scale-105">
                       <BarChart3 className="w-5 h-5 mr-2" />
                       Launch Safety Trends Dashboard
                     </Button>

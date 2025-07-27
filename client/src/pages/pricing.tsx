@@ -55,7 +55,7 @@ export default function PricingPage() {
             <ShoppingCartButton 
               variant="outline" 
               size="lg"
-              className="bg-blue-600/20 border-blue-400 text-white hover:bg-blue-600 hover:border-blue-500 transition-all duration-200"
+              className="bg-blue-600/20 border-blue-400 text-white   "
             />
           </div>
         </div>
@@ -97,14 +97,14 @@ export default function PricingPage() {
                   <Button
                     onClick={() => handleAddToCart('certificate', 25)}
                     variant="outline"
-                    className="border-blue-400 text-white hover:bg-blue-600 hover:border-blue-500 transition-all duration-200"
+                    className="border-blue-400 text-white   "
                   >
                     +25 Certificates
                   </Button>
                   <Button
                     onClick={() => handleAddToCart('certificate', 50)}
                     variant="outline"
-                    className="border-blue-400 text-white hover:bg-blue-600 hover:border-blue-500 transition-all duration-200"
+                    className="border-blue-400 text-white   "
                   >
                     +50 Certificates
                   </Button>
@@ -142,21 +142,21 @@ export default function PricingPage() {
                 <div className="grid grid-cols-2 gap-3">
                   <Button
                     onClick={() => handleAddToCart('wallet_card', 10)}
-                    className="bg-blue-600 hover:bg-blue-700 text-white"
+                    className="bg-blue-600  text-white"
                   >
                     +10 Cards
                   </Button>
                   <Button
                     onClick={() => handleAddToCart('wallet_card', 25)}
                     variant="outline"
-                    className="border-blue-400 text-white hover:bg-blue-600 hover:border-blue-500 transition-all duration-200"
+                    className="border-blue-400 text-white   "
                   >
                     +25 Cards
                   </Button>
                   <Button
                     onClick={() => handleAddToCart('wallet_card', 50)}
                     variant="outline"
-                    className="border-blue-400 text-white hover:bg-blue-600 hover:border-blue-500 transition-all duration-200"
+                    className="border-blue-400 text-white   "
                   >
                     +50 Cards
                   </Button>
@@ -240,7 +240,7 @@ export default function PricingPage() {
         <div className="fixed bottom-6 right-6 z-50">
           <Button
             onClick={() => setShowChat(!showChat)}
-            className="bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-lg"
+            className="bg-blue-600  text-white rounded-full p-4 shadow-lg"
           >
             <MessageCircle className="w-6 h-6" />
           </Button>

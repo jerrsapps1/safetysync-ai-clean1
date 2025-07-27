@@ -229,7 +229,7 @@ export default function CertificateGeneration() {
             <Plus className="w-4 h-4 mr-2" />
             Generate New
           </Button>
-          <Button className="bg-blue-500 hover:bg-blue-600 text-white">
+          <Button className="bg-blue-500  text-white">
             <Download className="w-4 h-4 mr-2" />
             Export All
           </Button>
@@ -323,21 +323,21 @@ export default function CertificateGeneration() {
         <TabsList className="grid w-full grid-cols-3 bg-black/20 backdrop-blur-sm border-blue-700">
           <TabsTrigger 
             value="certificates" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100 hover:text-blue-200 transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100  "
           >
             <Award className="h-4 w-4" />
             Certificates
           </TabsTrigger>
           <TabsTrigger 
             value="templates" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100 hover:text-blue-200 transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100  "
           >
             <FileText className="h-4 w-4" />
             Templates
           </TabsTrigger>
           <TabsTrigger 
             value="generation" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100 hover:text-blue-200 transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100  "
           >
             <Plus className="h-4 w-4" />
             Generate New
@@ -411,7 +411,7 @@ export default function CertificateGeneration() {
                   )}
 
                   <div className="flex items-center gap-2 pt-2">
-                    <Button size="sm" className="bg-blue-500 hover:bg-blue-600 text-white">
+                    <Button size="sm" className="bg-blue-500  text-white">
                       <Eye className="w-3 h-3 mr-1" />
                       View
                     </Button>
@@ -583,7 +583,7 @@ export default function CertificateGeneration() {
                   <Award className="w-4 h-4 mr-2" />
                   Generate Certificate
                 </Button>
-                <Button className="bg-blue-500 hover:bg-blue-600 text-white">
+                <Button className="bg-blue-500  text-white">
                   <Eye className="w-4 h-4 mr-2" />
                   Preview First
                 </Button>

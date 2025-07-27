@@ -45,7 +45,7 @@ export function SidebarOption3({}: SidebarOption3Props) {
 
       {/* Sidebar */}
       <aside className={`
-        fixed left-0 top-0 z-40 h-full transform transition-all duration-300 ease-in-out
+        fixed left-0 top-0 z-40 h-full transform  ease-in-out
         bg-blue-800 border-r border-blue-700 shadow-2xl
         ${isMobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
         ${isCollapsed ? 'w-16' : 'w-64'}
@@ -67,7 +67,7 @@ export function SidebarOption3({}: SidebarOption3Props) {
           <Button
             variant="ghost"
             size="sm"
-            className="hidden md:flex text-blue-100 hover:text-blue-200 hover:bg-blue-700"
+            className="hidden md:flex text-blue-100  "
             onClick={() => setIsCollapsed(!isCollapsed)}
           >
             <ArrowRight className={`h-4 w-4 transition-transform ${isCollapsed ? 'rotate-180' : ''}`} />
@@ -82,7 +82,7 @@ export function SidebarOption3({}: SidebarOption3Props) {
               return (
                 <Link key={item.name} to={item.to}>
                   <div 
-                    className="flex items-center px-3 py-3 text-sm font-medium text-white rounded-lg hover:bg-blue-700 hover:text-violet-400 transition-colors group relative cursor-pointer"
+                    className="flex items-center px-3 py-3 text-sm font-medium text-white rounded-lg  hover:text-violet-400 transition-colors group relative cursor-pointer"
                     onClick={() => setIsMobileOpen(false)}
                     title={isCollapsed ? item.name : undefined}
                   >

@@ -320,7 +320,7 @@ export function ProductTour({ isOpen, onClose, onComplete }: ProductTourProps) {
             </div>
           </div>
           <div className="grid grid-cols-2 gap-3 max-w-sm mx-auto">
-            <Button variant="outline" onClick={onClose} className="text-blue-600 border-blue-600 hover:bg-blue-50 text-sm">
+            <Button variant="outline" onClick={onClose} className="text-blue-600 border-blue-600  text-sm">
               🔍 Explore Platform
             </Button>
             <Button onClick={() => { onComplete?.(); onClose(); }} className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-sm">

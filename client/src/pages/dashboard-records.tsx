@@ -124,7 +124,7 @@ export default function DashboardRecordsPage() {
               onClick={fetchRecords}
               disabled={isLoading}
               variant="outline"
-              className="border-blue-300 text-white hover:bg-blue-600"
+              className="border-blue-300 text-white "
             >
               <RefreshCw className={`w-4 h-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
               Refresh
@@ -183,7 +183,7 @@ export default function DashboardRecordsPage() {
                   </TableHeader>
                   <TableBody>
                     {records.map((record) => (
-                      <TableRow key={record.id} className="border-blue-600 hover:bg-blue-700/50">
+                      <TableRow key={record.id} className="border-blue-600 /50">
                         <TableCell className="text-white font-mono text-sm">
                           {record.id}
                         </TableCell>

@@ -258,11 +258,11 @@ export default function EmployeePortal() {
           </p>
         </div>
         <div className="flex items-center space-x-2">
-          <Button className="bg-blue-500 hover:bg-blue-600 text-white">
+          <Button className="bg-blue-500  text-white">
             <Bell className="w-4 h-4 mr-2" />
             Notifications
           </Button>
-          <Button className="bg-blue-400 hover:bg-blue-500 text-white">
+          <Button className="bg-blue-400 0 text-white">
             <Settings className="w-4 h-4 mr-2" />
             Settings
           </Button>
@@ -274,35 +274,35 @@ export default function EmployeePortal() {
         <TabsList className="grid w-full grid-cols-5 bg-black/20 backdrop-blur-sm border-blue-700">
           <TabsTrigger 
             value="dashboard" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100 hover:text-blue-200 transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100  "
           >
             <User className="h-4 w-4" />
             Dashboard
           </TabsTrigger>
           <TabsTrigger 
             value="certifications" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100 hover:text-blue-200 transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100  "
           >
             <Award className="h-4 w-4" />
             Certifications
           </TabsTrigger>
           <TabsTrigger 
             value="training" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100 hover:text-blue-200 transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100  "
           >
             <BookOpen className="h-4 w-4" />
             Training
           </TabsTrigger>
           <TabsTrigger 
             value="schedule" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100 hover:text-blue-200 transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100  "
           >
             <Calendar className="h-4 w-4" />
             Schedule
           </TabsTrigger>
           <TabsTrigger 
             value="profile" 
-            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100 hover:text-blue-200 transition-all duration-200"
+            className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white text-blue-100  "
           >
             <Settings className="h-4 w-4" />
             Profile
@@ -447,7 +447,7 @@ export default function EmployeePortal() {
                   </div>
 
                   <div className="flex items-center gap-2 pt-2">
-                    <Button size="sm" className="bg-blue-500 hover:bg-blue-600 text-white">
+                    <Button size="sm" className="bg-blue-500  text-white">
                       <Eye className="w-3 h-3 mr-1" />
                       View
                     </Button>
@@ -542,7 +542,7 @@ export default function EmployeePortal() {
                   </div>
 
                   <div className="flex items-center gap-2 pt-2">
-                    <Button size="sm" className="bg-blue-500 hover:bg-blue-600 text-white">
+                    <Button size="sm" className="bg-blue-500  text-white">
                       <Eye className="w-3 h-3 mr-1" />
                       View Details
                     </Button>

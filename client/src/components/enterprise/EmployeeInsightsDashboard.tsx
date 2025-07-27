@@ -331,7 +331,7 @@ export function EmployeeInsightsDashboard() {
               <SelectItem value="1y">1 Year</SelectItem>
             </SelectContent>
           </Select>
-          <Button variant="outline" className="border-blue-600 text-white hover:bg-blue-700/50">
+          <Button variant="outline" className="border-blue-600 text-white /50">
             <Download className="h-4 w-4 mr-2" />
             Export
           </Button>

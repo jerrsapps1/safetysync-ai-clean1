@@ -194,14 +194,14 @@ export default function UploadFormPage() {
               <Button
                 onClick={() => window.location.href = '/api/records'}
                 variant="outline"
-                className="border-blue-500 text-white hover:bg-blue-600"
+                className="border-blue-500 text-white "
               >
                 View All Records
               </Button>
               <Button
                 onClick={() => window.location.href = '/api/dashboard'}
                 variant="outline"
-                className="border-blue-500 text-white hover:bg-blue-600"
+                className="border-blue-500 text-white "
               >
                 Dashboard
               </Button>

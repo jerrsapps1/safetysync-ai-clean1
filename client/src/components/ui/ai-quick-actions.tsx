@@ -380,7 +380,7 @@ export function AIQuickActions({ onActionExecute, currentPage = 'dashboard' }: A
             console.log('AI Assistant button clicked - expanding');
             setIsExpanded(true);
           }}
-          className="w-16 h-16 rounded-full bg-blue-500 hover:bg-blue-600 text-white shadow-xl border-2 border-blue-200"
+          className="w-16 h-16 rounded-full bg-blue-500  text-white shadow-xl border-2 border-blue-200"
           title="Open AI Assistant"
         >
           <Zap className="w-8 h-8 animate-pulse" />

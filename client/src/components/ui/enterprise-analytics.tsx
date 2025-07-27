@@ -327,7 +327,7 @@ export function EnterpriseAnalytics({ userTier = 'enterprise', companySize = 'la
                   </thead>
                   <tbody>
                     {departmentCompliance.map((dept, index) => (
-                      <tr key={index} className="border-b hover:bg-blue-50">
+                      <tr key={index} className="border-b ">
                         <td className="py-3 px-4 font-medium">{dept.department}</td>
                         <td className="py-3 px-4 text-right">{dept.score}%</td>
                         <td className="py-3 px-4 text-right">{dept.employees}</td>

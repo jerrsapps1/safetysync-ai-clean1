@@ -642,7 +642,7 @@ startxref
             <Badge
               key={category.id}
               variant={category.id === 'all' ? 'default' : 'outline'}
-              className="cursor-pointer hover:bg-blue-100 px-4 py-2"
+              className="cursor-pointer  px-4 py-2"
             >
               {category.label} ({category.count})
             </Badge>
@@ -766,10 +766,10 @@ startxref
               or create custom materials for your specific needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="outline" className="border-blue-300 text-blue-700 hover:bg-blue-50">
+              <Button variant="outline" className="border-blue-300 text-blue-700 ">
                 Contact Support
               </Button>
-              <Button variant="outline" className="border-blue-300 text-blue-700 hover:bg-blue-50">
+              <Button variant="outline" className="border-blue-300 text-blue-700 ">
                 Request Custom Resource
               </Button>
             </div>

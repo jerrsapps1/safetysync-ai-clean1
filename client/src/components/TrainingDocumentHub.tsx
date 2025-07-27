@@ -1149,7 +1149,7 @@ This document serves as an official attendance record for the training session.`
                       />
                       <Button 
                         onClick={() => fileInputRef.current?.click()}
-                        className="bg-blue-600 hover:bg-blue-700 text-white w-full"
+                        className="bg-blue-600  text-white w-full"
                       >
                         <Upload className="w-4 h-4 mr-2" />
                         Add Files
@@ -1180,7 +1180,7 @@ This document serves as an official attendance record for the training session.`
                                       size="sm"
                                       variant="outline"
                                       onClick={() => window.open(fileData.blob, '_blank')}
-                                      className="border-blue-500 text-white hover:bg-blue-600"
+                                      className="border-blue-500 text-white "
                                     >
                                       <Download className="w-3 h-3" />
                                     </Button>
@@ -1188,7 +1188,7 @@ This document serves as an official attendance record for the training session.`
                                       size="sm"
                                       variant="outline"
                                       onClick={() => window.print()}
-                                      className="border-blue-500 text-white hover:bg-blue-600"
+                                      className="border-blue-500 text-white "
                                     >
                                       <Printer className="w-3 h-3" />
                                     </Button>
@@ -1211,7 +1211,7 @@ This document serves as an official attendance record for the training session.`
                           setPreviewFiles([]);
                           setUploadData({ trainingDate: '', description: '' });
                         }}
-                        className="border-blue-500 text-white hover:bg-blue-600"
+                        className="border-blue-500 text-white "
                       >
                         Cancel
                       </Button>
@@ -1282,7 +1282,7 @@ This document serves as an official attendance record for the training session.`
                     variant="ghost"
                     size="sm"
                     onClick={() => setSelectedDocuments(new Set())}
-                    className="text-blue-100 hover:text-blue-200"
+                    className="text-blue-100 "
                   >
                     Clear Selection
                   </Button>
@@ -1293,7 +1293,7 @@ This document serves as an official attendance record for the training session.`
                     size="sm"
                     onClick={handleBulkView}
                     disabled={selectedDocuments.size !== 1}
-                    className="border-blue-500 text-white hover:bg-blue-600 disabled:opacity-50"
+                    className="border-blue-500 text-white  disabled:opacity-50"
                   >
                     <Eye className="w-4 h-4 mr-1" />
                     View
@@ -1302,7 +1302,7 @@ This document serves as an official attendance record for the training session.`
                     variant="outline"
                     size="sm"
                     onClick={handleBulkDownload}
-                    className="border-blue-500 text-white hover:bg-blue-600"
+                    className="border-blue-500 text-white "
                   >
                     <Download className="w-4 h-4 mr-1" />
                     Download ({selectedDocuments.size})
@@ -1338,7 +1338,7 @@ This document serves as an official attendance record for the training session.`
               const IconComponent = categoryInfo.icon;
               
               return (
-                <Card key={doc.id} className={`bg-black/20 border-blue-700 backdrop-blur-sm hover:bg-black/30 transition-all duration-200 ${selectedDocuments.has(doc.id) ? 'ring-1 ring-emerald-500 bg-emerald-900/10' : ''}`}>
+                <Card key={doc.id} className={`bg-black/20 border-blue-700 backdrop-blur-sm hover:bg-black/30  ${selectedDocuments.has(doc.id) ? 'ring-1 ring-emerald-500 bg-emerald-900/10' : ''}`}>
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-4">
@@ -1483,14 +1483,14 @@ This document serves as an official attendance record for the training session.`
                 <Button
                   variant="outline"
                   onClick={() => setIsViewDialogOpen(false)}
-                  className="border-blue-500 text-white hover:bg-blue-600"
+                  className="border-blue-500 text-white "
                 >
                   Close
                 </Button>
                 {viewingDocument.category === 'sign_in_sheet' && (
                   <Button
                     onClick={() => handleRegenerateDocument(viewingDocument)}
-                    className="bg-blue-600 hover:bg-blue-700 text-white"
+                    className="bg-blue-600  text-white"
                   >
                     <Printer className="w-4 h-4 mr-2" />
                     Print Original
