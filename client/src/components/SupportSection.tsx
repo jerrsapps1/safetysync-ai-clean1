@@ -9,7 +9,10 @@ export default function SupportSection() {
       boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)', 
       maxWidth: '80rem', 
       margin: '40px auto',
-      color: '#000000'
+      color: '#000000',
+      position: 'relative',
+      zIndex: 10,
+      border: '3px solid #000000'
     }}>
       <div style={{ textAlign: 'center' }}>
         <div style={{ fontSize: '48px', marginBottom: '16px' }}>💬</div>
@@ -17,14 +20,21 @@ export default function SupportSection() {
           fontSize: '32px', 
           fontWeight: 'bold', 
           marginBottom: '16px',
-          color: '#000000'
+          color: '#000000',
+          textShadow: '1px 1px 1px #ffffff',
+          border: '1px solid #000000',
+          padding: '8px',
+          backgroundColor: '#f0f0f0'
         }}>
           Still have questions?
         </h3>
         <p style={{ 
           marginBottom: '64px',
           color: '#000000',
-          fontSize: '16px'
+          fontSize: '16px',
+          border: '1px solid #000000',
+          padding: '8px',
+          backgroundColor: '#f0f0f0'
         }}>
           Our support team is here to help you with any questions about SafetySync or OSHA compliance requirements.
         </p>
