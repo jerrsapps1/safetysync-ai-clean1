@@ -3137,7 +3137,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Register instructor training session routes
   instructorTrainingSessionRoutes(app);
 
-  // Brevo email subscription endpoint (fixes SMTP authentication issues)
+  // Brevo email subscription endpoint
   app.post("/api/subscribe-brevo", async (req, res) => {
     if (req.method !== 'POST') return res.status(405).end();
 
@@ -3148,7 +3148,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'api-key': process.env.BREVO_API_KEY,
+          'api-key': process.env.BREVO_API_KEY, // Using environment variable for security
         },
         body: JSON.stringify({
           email,
