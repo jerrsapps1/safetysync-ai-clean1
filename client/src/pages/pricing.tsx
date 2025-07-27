@@ -8,6 +8,7 @@ import { PageHeader } from "@/components/ui/page-header";
 import ShoppingCartButton from "@/components/shopping-cart/ShoppingCartButton";
 import { useCart } from "@/contexts/CartContext";
 import { MessageCircle, Award, IdCard, ShoppingCart, Zap } from "lucide-react";
+import SupportSection from "@/components/SupportSection";
 
 export default function PricingPage() {
   const [showChat, setShowChat] = useState(false);
@@ -219,6 +220,11 @@ export default function PricingPage() {
         {/* FAQ Section */}
         <section className="mb-20">
           <FAQSection />
+        </section>
+
+        {/* Support Section */}
+        <section className="mb-20">
+          <SupportSection />
         </section>
 
         {/* Live Chat */}
