@@ -477,6 +477,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Fetch all leads endpoint
+  app.get('/api/leads', async (req, res) => {
+    try {
+      const result = await pool.query(
+        'SELECT id, name, email, company, role, message, created_at FROM leads ORDER BY created_at DESC'
+      );
+      res.json(result.rows);
+    } catch (error) {
+      console.error('Error fetching leads:', error);
+      res.status(500).json({ error: 'Failed to fetch leads' });
+    }
+  });
+
   // Lead submission endpoint
   app.post("/api/leads", async (req, res) => {
     const { name, email, company, role, message } = req.body;
