@@ -968,7 +968,6 @@ export const insertUpcomingTrainingSessionSchema = createInsertSchema(upcomingTr
 });
 
 export type SelectCertificate = typeof certificates.$inferSelect;
-export type InsertCertificate = z.infer<typeof insertCertificateSchema>;
 export type TrainingRequest = typeof trainingRequests.$inferSelect;
 export type InsertTrainingRequest = z.infer<typeof insertTrainingRequestSchema>;
 export type UpcomingTrainingSession = typeof upcomingTrainingSessions.$inferSelect;
