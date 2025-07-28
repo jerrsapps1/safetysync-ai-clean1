@@ -1,1 +1,1 @@
-import './server/index.ts';
+import { setupVite, serveStatic, log } from "../vite";
