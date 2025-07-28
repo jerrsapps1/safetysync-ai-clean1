@@ -14,6 +14,7 @@ import HRTeams from './pages/hr-teams';
 import Pricing from './pages/pricing';
 import Contact from './pages/contact';
 import Leads from './pages/leads';
+import AdminLeads from './pages/admin-leads';
 import ClientPortal from './pages/client-portal';
 import Workspace from './pages/workspace';
 import InvoiceManagement from './pages/invoice-management';
@@ -37,6 +38,7 @@ function App() {
                 <Route path="/pricing" component={Pricing} />
                 <Route path="/contact" component={Contact} />
                 <Route path="/leads" component={Leads} />
+                <Route path="/admin/leads" component={AdminLeads} />
                 <Route path="/client-portal" component={ClientPortal} />
                 <Route path="/workspace" component={Workspace} />
                 <Route path="/admin/invoice-management" component={InvoiceManagement} />
