@@ -22,6 +22,9 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
+            <Link href="/home" className={`transition-colors ${location === '/home' ? 'text-blue-100' : 'text-white hover:text-blue-100'}`}>
+              Home
+            </Link>
             <Link href="/case-studies" className={`transition-colors ${location === '/case-studies' ? 'text-blue-100' : 'text-white hover:text-blue-100'}`}>
               Case Studies
             </Link>
@@ -59,6 +62,13 @@ export default function Navbar() {
         {isOpen && (
           <div className="md:hidden bg-blue-600/95 backdrop-blur-sm">
             <div className="px-2 pt-2 pb-3 space-y-1">
+              <Link
+                href="/home"
+                className={`block px-3 py-2 transition-colors ${location === '/home' ? 'text-blue-100' : 'text-white hover:text-blue-100'}`}
+                onClick={() => setIsOpen(false)}
+              >
+                Home
+              </Link>
               <Link
                 href="/case-studies"
                 className={`block px-3 py-2 transition-colors ${location === '/case-studies' ? 'text-blue-100' : 'text-white hover:text-blue-100'}`}
