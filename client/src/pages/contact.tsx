@@ -1,38 +1,33 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { PageHeader } from "@/components/ui/page-header";
-import { useToast } from "@/hooks/use-toast";
+import React, { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Badge } from '@/components/ui/badge';
+import { useToast } from '@/hooks/use-toast';
 import { 
   Mail, 
   Phone, 
+  MessageCircle, 
   MapPin, 
   Clock, 
-  MessageCircle, 
-  HeadphonesIcon,
-  Shield,
+  Send,
+  CheckCircle,
+  ArrowRight,
   Users,
-  Building,
-  HelpCircle,
-  FileText,
-  Zap,
-  Ticket
-} from "lucide-react";
-import { Link } from "wouter";
+  Calendar,
+  Headphones
+} from 'lucide-react';
 
-export default function ContactPage() {
+export default function Contact() {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    subject: "",
-    message: "",
-    contactReason: "",
-    urgency: "normal"
+    name: '',
+    email: '',
+    company: '',
+    phone: '',
+    subject: '',
+    message: '',
+    contactType: 'demo'
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
@@ -42,27 +37,35 @@ export default function ContactPage() {
     setIsSubmitting(true);
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      toast({
-        title: "Message Sent Successfully",
-        description: "Thank you for contacting us. We'll respond within 24 hours.",
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
-      
-      setFormData({
-        name: "",
-        email: "",
-        company: "",
-        subject: "",
-        message: "",
-        contactReason: "",
-        urgency: "normal"
-      });
+
+      if (response.ok) {
+        toast({
+          title: "Message sent successfully!",
+          description: "We'll get back to you within 2 hours during business hours.",
+        });
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          phone: '',
+          subject: '',
+          message: '',
+          contactType: 'demo'
+        });
+      } else {
+        throw new Error('Failed to send message');
+      }
     } catch (error) {
       toast({
-        title: "Error",
-        description: "Failed to send message. Please try again.",
+        title: "Error sending message",
+        description: "Please try again or contact us directly at hello@safetysync.ai",
         variant: "destructive",
       });
     } finally {
@@ -70,352 +73,309 @@ export default function ContactPage() {
     }
   };
 
-  const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
-  const contactOptions = [
+  const contactMethods = [
     {
-      title: "Sales & Support",
-      description: "Get pricing information, discuss compliance needs, or get help with platform features",
-      icon: HeadphonesIcon,
-      color: "bg-blue-500",
-      email: "hello@safetysync.ai"
-    }
-  ];
-
-  const faqs = [
-    {
-      question: "How quickly can I get started?",
-      answer: "Most customers are up and running within 30 minutes. Our setup wizard guides you through the entire process."
+      icon: MessageCircle,
+      title: "Live Chat",
+      description: "Get instant answers to your questions",
+      detail: "Available 24/7",
+      action: "Start Chat",
+      color: "bg-emerald-500"
     },
     {
-      question: "Do you offer implementation support?",
-      answer: "Yes, we provide dedicated implementation support for Professional and Enterprise plans, including data migration and team training."
+      icon: Mail,
+      title: "Email Support", 
+      description: "Send us a detailed message",
+      detail: "Response within 2 hours",
+      action: "Send Email",
+      color: "bg-blue-500"
     },
     {
-      question: "What integrations do you support?",
-      answer: "We integrate with popular HRIS systems, training platforms, and compliance management tools. Contact us for specific integration questions."
-    },
-    {
-      question: "Is there a minimum contract length?",
-      answer: "No, all plans are month-to-month with no long-term contracts required. Enterprise customers can opt for annual billing with discounts."
+      icon: Phone,
+      title: "Phone Support",
+      description: "Talk to our safety experts",
+      detail: "Mon-Fri 8AM-6PM EST",
+      action: "Call Now",
+      color: "bg-purple-500"
     }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
-      <PageHeader />
-
-      {/* Main Content with Sidebar Margin */}
-      <div className="md:ml-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+    <div className="pt-16 min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
+      {/* Hero Section */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
             Get in Touch
           </h1>
-          <p className="text-xl text-white max-w-3xl mx-auto">
-            Ready to streamline your OSHA compliance? We're here to help you get started, 
-            answer questions, and ensure your safety management success.
+          <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+            Ready to streamline your safety compliance? Our team of OSHA experts is here to help 
+            you find the perfect solution for your organization.
           </p>
-        </div>
-
-        {/* Contact Options */}
-        <div className="flex justify-center mb-16">
-          {contactOptions.map((option) => (
-            <Card key={option.title} className="text-center hover:shadow-xl  max-w-md bg-blue-700/50 border-blue-600/50 backdrop-blur-sm /70">
-              <CardHeader className="pb-4">
-                <div className={`w-12 h-12 ${option.color} rounded-lg flex items-center justify-center mx-auto mb-4`}>
-                  <option.icon className="w-6 h-6 text-white" />
-                </div>
-                <CardTitle className="text-lg text-white">{option.title}</CardTitle>
-                <CardDescription className="text-sm text-white">
-                  {option.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-center justify-center gap-2 text-sm text-white">
-                  <Mail className="w-4 h-4" />
-                  <span className="font-medium">{option.email}</span>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {/* Main Contact Form */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-          {/* Contact Form */}
-          <Card className="bg-blue-700/50 border-blue-600/50 backdrop-blur-sm">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-white">
-                <MessageCircle className="w-5 h-5" />
-                Send us a Message
-              </CardTitle>
-              <CardDescription className="text-white">
-                Fill out the form below and we'll get back to you promptly.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="name">Full Name *</Label>
-                    <Input
-                      id="name"
-                      type="text"
-                      value={formData.name}
-                      onChange={(e) => handleInputChange("name", e.target.value)}
-                      required
-                      placeholder="John Smith"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="contact-email">Email Address *</Label>
-                    <Input
-                      id="contact-email"
-                      name="contact-email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => handleInputChange("email", e.target.value)}
-                      required
-                      placeholder="john@company.com"
-                      autoComplete="contact-email"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <Label htmlFor="company">Company Name</Label>
-                  <Input
-                    id="company"
-                    type="text"
-                    value={formData.company}
-                    onChange={(e) => handleInputChange("company", e.target.value)}
-                    placeholder="Acme Construction Co."
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="contactReason">How can we help you?</Label>
-                  <Select value={formData.contactReason} onValueChange={(value) => handleInputChange("contactReason", value)}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select a reason" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="sales">Sales & Pricing Information</SelectItem>
-                      <SelectItem value="demo">Request a Demo</SelectItem>
-                      <SelectItem value="support">Technical Support</SelectItem>
-                      <SelectItem value="security">Security Questions</SelectItem>
-                      <SelectItem value="other">Other</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div>
-                  <Label htmlFor="subject">Subject *</Label>
-                  <Input
-                    id="subject"
-                    type="text"
-                    value={formData.subject}
-                    onChange={(e) => handleInputChange("subject", e.target.value)}
-                    required
-                    placeholder="Brief description of your inquiry"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="message">Message *</Label>
-                  <Textarea
-                    id="message"
-                    value={formData.message}
-                    onChange={(e) => handleInputChange("message", e.target.value)}
-                    required
-                    rows={5}
-                    placeholder="Please provide details about your inquiry..."
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="urgency">Urgency Level</Label>
-                  <Select value={formData.urgency} onValueChange={(value) => handleInputChange("urgency", value)}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="low">Low - General inquiry</SelectItem>
-                      <SelectItem value="normal">Normal - Standard response</SelectItem>
-                      <SelectItem value="high">High - Need quick response</SelectItem>
-                      <SelectItem value="urgent">Urgent - Critical issue</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <Button 
-                  type="submit" 
-                  className="w-full bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? "Sending..." : "Send Message"}
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
-
-          {/* Company Info & Quick Links */}
-          <div className="space-y-6">
-            {/* Company Information */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Building className="w-5 h-5" />
-                  SafetySync.AI
-                </CardTitle>
-                <CardDescription>
-                  AI-Powered OSHA Compliance Platform
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-blue-400 mt-0.5" />
-                  <div>
-                    <p className="font-medium">Headquarters</p>
-                    <p className="text-sm text-blue-500">
-                      Remote-First Company<br />
-                      Serving clients nationwide
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-3">
-                  <Mail className="w-5 h-5 text-blue-400 mt-0.5" />
-                  <div>
-                    <p className="font-medium">General Inquiries</p>
-                    <p className="text-sm text-blue-500">hello@safetysync.ai</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <Clock className="w-5 h-5 text-blue-400 mt-0.5" />
-                  <div>
-                    <p className="font-medium">Support Hours</p>
-                    <p className="text-sm text-blue-500">
-                      Mon-Fri: 7AM-7PM CT<br />
-                      Weekend: Limited availability
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Quick Actions */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Zap className="w-5 h-5" />
-                  Quick Actions
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <Link href="/pricing">
-                  <Button variant="outline" className="w-full justify-start">
-                    <FileText className="w-4 h-4 mr-2" />
-                    View Pricing Plans
-                  </Button>
-                </Link>
-                <Link href="/resources">
-                  <Button variant="outline" className="w-full justify-start">
-                    <HelpCircle className="w-4 h-4 mr-2" />
-                    Download Resources
-                  </Button>
-                </Link>
-                <Link href="/user-guide">
-                  <Button variant="outline" className="w-full justify-start">
-                    <FileText className="w-4 h-4 mr-2" />
-                    User Guide
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
+              <Clock className="w-4 h-4 mr-2" />
+              2-Hour Response Time
+            </Badge>
+            <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
+              <Users className="w-4 h-4 mr-2" />
+              OSHA Certified Experts
+            </Badge>
+            <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
+              <Headphones className="w-4 h-4 mr-2" />
+              24/7 Live Chat
+            </Badge>
           </div>
         </div>
+      </section>
 
-        {/* FAQ Section */}
-        <Card className="mb-16">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <HelpCircle className="w-5 h-5" />
-              Frequently Asked Questions
-            </CardTitle>
-            <CardDescription>
-              Quick answers to common questions
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {faqs.map((faq, index) => (
-                <div key={index} className="border-l-4 border-blue-500 pl-4">
-                  <h3 className="font-semibold text-blue-800 mb-2">{faq.question}</h3>
-                  <p className="text-sm text-blue-500">{faq.answer}</p>
-                </div>
-              ))}
+      {/* Contact Methods */}
+      <section className="pb-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
+            {contactMethods.map((method, index) => (
+              <Card key={index} className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300">
+                <CardHeader className="text-center">
+                  <div className={`p-4 rounded-lg ${method.color} w-16 h-16 mx-auto mb-4 flex items-center justify-center`}>
+                    <method.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <CardTitle className="text-white text-xl">
+                    {method.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <p className="text-blue-100 mb-2">
+                    {method.description}
+                  </p>
+                  <p className="text-emerald-400 font-semibold mb-4">
+                    {method.detail}
+                  </p>
+                  <Button 
+                    className="w-full bg-white/20 text-white border border-white/30 hover:bg-white/30"
+                  >
+                    {method.action}
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Contact Form */}
+          <div className="grid lg:grid-cols-2 gap-12">
+            <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+              <CardHeader>
+                <CardTitle className="text-white text-2xl">
+                  Send us a Message
+                </CardTitle>
+                <p className="text-blue-100">
+                  Fill out the form below and we'll get back to you within 2 hours during business hours.
+                </p>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-white font-medium mb-2">
+                        Name *
+                      </label>
+                      <Input
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        required
+                        className="bg-white/10 border-white/30 text-white placeholder:text-blue-200"
+                        placeholder="Your full name"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-white font-medium mb-2">
+                        Email *
+                      </label>
+                      <Input
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                        className="bg-white/10 border-white/30 text-white placeholder:text-blue-200"
+                        placeholder="your@company.com"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-white font-medium mb-2">
+                        Company
+                      </label>
+                      <Input
+                        name="company"
+                        value={formData.company}
+                        onChange={handleInputChange}
+                        className="bg-white/10 border-white/30 text-white placeholder:text-blue-200"
+                        placeholder="Your company name"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-white font-medium mb-2">
+                        Phone
+                      </label>
+                      <Input
+                        name="phone"
+                        type="tel"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        className="bg-white/10 border-white/30 text-white placeholder:text-blue-200"
+                        placeholder="(555) 123-4567"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-white font-medium mb-2">
+                      I'm interested in *
+                    </label>
+                    <select
+                      name="contactType"
+                      value={formData.contactType}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full bg-white/10 border border-white/30 rounded-md px-3 py-2 text-white"
+                    >
+                      <option value="demo">Scheduling a Demo</option>
+                      <option value="trial">Starting a Free Trial</option>
+                      <option value="pricing">Pricing Information</option>
+                      <option value="enterprise">Enterprise Solutions</option>
+                      <option value="support">Technical Support</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-white font-medium mb-2">
+                      Subject
+                    </label>
+                    <Input
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleInputChange}
+                      className="bg-white/10 border-white/30 text-white placeholder:text-blue-200"
+                      placeholder="Brief subject line"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-white font-medium mb-2">
+                      Message *
+                    </label>
+                    <Textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      required
+                      rows={5}
+                      className="bg-white/10 border-white/30 text-white placeholder:text-blue-200"
+                      placeholder="Tell us about your safety compliance needs..."
+                    />
+                  </div>
+
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-white text-blue-600 hover:bg-gray-100"
+                  >
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                    <Send className="w-4 h-4 ml-2" />
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+
+            {/* Contact Info & Office */}
+            <div className="space-y-8">
+              <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+                <CardHeader>
+                  <CardTitle className="text-white text-xl flex items-center">
+                    <MapPin className="w-5 h-5 mr-2" />
+                    Our Office
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <p className="text-white font-semibold">SafetySync.AI Headquarters</p>
+                    <p className="text-blue-100">
+                      123 Safety Street<br />
+                      Compliance City, CC 12345<br />
+                      United States
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-white font-semibold">Business Hours</p>
+                    <p className="text-blue-100">
+                      Monday - Friday: 8:00 AM - 6:00 PM EST<br />
+                      Saturday: 9:00 AM - 3:00 PM EST<br />
+                      Sunday: Closed
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+                <CardHeader>
+                  <CardTitle className="text-white text-xl">
+                    Why Companies Choose Us
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-3">
+                    {[
+                      "OSHA-certified safety experts on staff",
+                      "98.7% customer satisfaction rating",
+                      "2-hour average response time",
+                      "Free migration from your current system",
+                      "30-day money-back guarantee"
+                    ].map((item, index) => (
+                      <li key={index} className="flex items-start text-blue-100">
+                        <CheckCircle className="w-5 h-5 text-emerald-400 mr-3 mt-0.5 flex-shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
             </div>
-          </CardContent>
-        </Card>
-
-        {/* Support Notice */}
-        <Card className="bg-blue-50 border-blue-200">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-blue-800">
-              <Clock className="w-5 h-5" />
-              Support Hours
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-blue-700 mb-4">
-              Our support team is available during business hours to help you with any questions or issues.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="outline" className="border-blue-300 text-blue-700 ">
-                <Mail className="w-4 h-4 mr-2" />
-                support@safetysync.ai
-              </Button>
-              <p className="text-sm text-blue-600 self-center">
-                Monday-Friday: 7AM-7PM CT
-              </p>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Helpdesk System */}
-        <Card className="bg-emerald-50 border-emerald-200">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-emerald-800">
-              <Ticket className="w-5 h-5" />
-              Full Helpdesk System
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-emerald-700 mb-4">
-              Access our comprehensive helpdesk system for ticket management, conversation tracking, and priority support.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/helpdesk">
-                <Button variant="secondary" className="bg-emerald-50 border-emerald-300 text-emerald-700 hover:bg-emerald-100">
-                  <Ticket className="w-4 h-4 mr-2" />
-                  Access Helpdesk
-                </Button>
-              </Link>
-              <p className="text-sm text-emerald-600 self-center">
-                Available 24/7 for ticket submission
-              </p>
-            </div>
-          </CardContent>
-        </Card>
-
+          </div>
         </div>
-      </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-white/10 backdrop-blur-sm">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            Ready to See SafetySync.AI in Action?
+          </h2>
+          <p className="text-xl text-blue-100 mb-8">
+            Schedule a personalized demo and see how we can transform your safety compliance.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
+              <Calendar className="w-5 h-5 mr-2" />
+              Schedule Demo
+            </Button>
+            <Button size="lg" variant="outline" className="bg-white/10 border-white/20 text-white hover:bg-white/20">
+              Start Free Trial
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </Button>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

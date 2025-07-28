@@ -1,4 +1,5 @@
 import React from 'react';
+import { Router, Route, Switch } from 'wouter';
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -7,8 +8,13 @@ import { CopyrightProtection } from "@/components/ui/copyright-protection";
 import { CartProvider } from "@/contexts/CartContext";
 import Navbar from './components/Navbar';
 import LandingPage from './pages/landing';
+import CaseStudies from './pages/case-studies';
+import HRTeams from './pages/hr-teams';
+import Pricing from './pages/pricing';
+import Contact from './pages/contact';
+import ClientPortal from './pages/client-portal';
+import Workspace from './pages/workspace';
 import InvoiceManagement from './pages/invoice-management';
-
 
 function App() {
   return (
@@ -20,7 +26,29 @@ function App() {
           
           <div className="font-sans bg-white min-h-screen">
             <Navbar />
-            <LandingPage />
+            <Router>
+              <Switch>
+                <Route path="/" component={LandingPage} />
+                <Route path="/case-studies" component={CaseStudies} />
+                <Route path="/hr-teams" component={HRTeams} />
+                <Route path="/pricing" component={Pricing} />
+                <Route path="/contact" component={Contact} />
+                <Route path="/client-portal" component={ClientPortal} />
+                <Route path="/workspace" component={Workspace} />
+                <Route path="/admin/invoice-management" component={InvoiceManagement} />
+                <Route>
+                  <div className="min-h-screen flex items-center justify-center">
+                    <div className="text-center">
+                      <h1 className="text-4xl font-bold text-gray-900 mb-4">404 - Page Not Found</h1>
+                      <p className="text-gray-600 mb-8">The page you're looking for doesn't exist.</p>
+                      <a href="/" className="text-blue-600 hover:text-blue-800 underline">
+                        Return to Home
+                      </a>
+                    </div>
+                  </div>
+                </Route>
+              </Switch>
+            </Router>
           </div>
         </TooltipProvider>
       </CartProvider>
