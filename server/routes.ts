@@ -479,51 +479,52 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Lead submission endpoint
   app.post("/api/leads", async (req, res) => {
-    try {
-      const leadData = insertLeadSchema.parse(req.body);
-      const lead = await storage.createLead(leadData);
-      
-      // Start automated email sequence for new lead
-      console.log(`New ${lead.leadType} lead created:`, {
-        name: lead.name,
-        email: lead.email,
-        company: lead.company,
-        leadType: lead.leadType,
-        createdAt: lead.createdAt
-      });
+    const { name, email, company, role, message } = req.body;
 
-      // Start email automation sequence
+    try {
+      // Insert lead directly into database using your provided structure
+      await pool.query(
+        'INSERT INTO leads (name, email, company, role, message, lead_type) VALUES ($1, $2, $3, $4, $5, $6)',
+        [name, email, company, role, message, 'contact'] // Default leadType for contact form submissions
+      );
+
+      // Send notification email via Brevo API
       try {
-        await emailAutomation.startSequence(lead.id, lead.leadType as 'trial' | 'demo', {
-          name: lead.name,
-          email: lead.email,
-          company: lead.company
-        });
-        console.log(`Email automation sequence started for ${lead.leadType} lead ${lead.id}`);
+        await axios.post(
+          'https://api.brevo.com/v3/smtp/email',
+          {
+            sender: { name: 'SafetySync.ai', email: 'noreply@safetysync.ai' },
+            to: [{ email: 'jerry@safetysync.ai', name: 'Jerry - SafetySync.AI' }],
+            subject: '📥 New Lead Captured',
+            htmlContent: `
+              <h3>New Lead Captured</h3>
+              <p><strong>Name:</strong> ${name}</p>
+              <p><strong>Email:</strong> ${email}</p>
+              <p><strong>Company:</strong> ${company || 'Not provided'}</p>
+              <p><strong>Role:</strong> ${role || 'Not provided'}</p>
+              <p><strong>Message:</strong><br/>${message}</p>
+              <hr/>
+              <p><em>Submitted via SafetySync.AI Contact Form</em></p>
+            `
+          },
+          {
+            headers: {
+              'api-key': process.env.BREVO_API_KEY,
+              'Content-Type': 'application/json'
+            }
+          }
+        );
+        
+        console.log(`📧 Contact form notification sent for ${name} (${email})`);
       } catch (emailError) {
-        console.error(`Failed to start email sequence for lead ${lead.id}:`, emailError);
-        // Don't fail the lead creation if email fails
+        console.error('Email notification failed:', emailError);
+        // Don't fail the form submission if email fails
       }
-      
-      res.status(201).json({ 
-        success: true, 
-        message: "Lead submitted successfully",
-        leadId: lead.id 
-      });
+
+      res.status(200).json({ success: true });
     } catch (error) {
-      if (error instanceof z.ZodError) {
-        res.status(400).json({ 
-          success: false, 
-          message: "Invalid form data", 
-          errors: error.errors 
-        });
-      } else {
-        console.error("Error creating lead:", error);
-        res.status(500).json({ 
-          success: false, 
-          message: "Internal server error" 
-        });
-      }
+      console.error('Error saving lead:', error);
+      res.status(500).json({ error: 'Internal server error' });
     }
   });
 
