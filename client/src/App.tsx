@@ -7,6 +7,7 @@ import { CopyrightProtection } from "@/components/ui/copyright-protection";
 import { CartProvider } from "@/contexts/CartContext";
 import Navbar from './components/Navbar';
 import LandingPage from './pages/landing';
+import InvoiceManagement from './pages/invoice-management';
 
 
 function App() {

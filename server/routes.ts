@@ -9,6 +9,7 @@ import { sendVerificationEmail, sendWelcomeEmail } from "./email-service";
 import crypto from "crypto";
 import emailAutomationRoutes from "./api/email-automation";
 import instructorTrainingSessionRoutes from "./api/instructor-training-sessions";
+import invoiceRoutes from "./invoice";
 import { billingAnalytics } from "./billing-analytics";
 import { 
   insertLeadSchema, insertUserSchema, loginUserSchema, insertComplianceReportSchema, 
@@ -2882,9 +2883,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Serve uploaded files (certificates and wallet cards)
   app.use('/uploads', express.static('uploads'));
+  
+  // Serve static files including W-9 forms
+  app.use(express.static("public"));
 
   // Email automation API
   app.use("/api/email", emailAutomationRoutes);
+
+  // Invoice API
+  app.use("/api/invoice", invoiceRoutes);
 
   // File system API
   const fileSystemRoutes = await import("./api/file-system");
