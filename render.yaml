@@ -1,8 +1,38 @@
 services:
   - type: web
-    name: safetysync-backend
+    name: safetysync-ai
     env: node
-    buildCommand: npm install && tsc
-    startCommand: node index.js
+    region: ohio
+    plan: starter
+    buildCommand: npm run build
+    startCommand: npm start
+    healthCheckPath: /
+    autoDeploy: false
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: safetysync-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: BREVO_API_KEY
+        sync: false
+      - key: VITE_LAUNCHDARKLY_CLIENT_ID
+        sync: false
+      - key: EMAIL_USERNAME
+        sync: false
+      - key: EMAIL_PASSWORD
+        sync: false
+      - key: BASE_URL
+        value: https://safetysync-ai.onrender.com
+
+databases:
+  - name: safetysync-db
+    databaseName: safetysync
+    user: safetysync
+    region: ohio
     plan: free
-    autoDeploy: true
