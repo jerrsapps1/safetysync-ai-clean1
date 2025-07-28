@@ -482,10 +482,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     const { name, email, company, role, message } = req.body;
 
     try {
-      // Insert lead directly into database using your provided structure
+      // Insert lead directly into database using your exact schema
       await pool.query(
-        'INSERT INTO leads (name, email, company, role, message, lead_type) VALUES ($1, $2, $3, $4, $5, $6)',
-        [name, email, company, role, message, 'contact'] // Default leadType for contact form submissions
+        'INSERT INTO leads (name, email, company, role, message) VALUES ($1, $2, $3, $4, $5)',
+        [name, email, company, role, message]
       );
 
       // Send notification email via Brevo API
