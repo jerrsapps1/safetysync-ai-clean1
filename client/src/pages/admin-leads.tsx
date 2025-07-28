@@ -1,0 +1,54 @@
+import React, { useEffect, useState } from 'react';
+
+type Lead = {
+  id: number;
+  name: string;
+  email: string;
+  company: string;
+  role: string;
+  message: string;
+  created_at: string;
+};
+
+export default function AdminLeads() {
+  const [leads, setLeads] = useState<Lead[]>([]);
+
+  useEffect(() => {
+    fetch('/api/leads')
+      .then(res => res.json())
+      .then(data => setLeads(data))
+      .catch(err => console.error(err));
+  }, []);
+
+  return (
+    <div className="max-w-6xl mx-auto p-6">
+      <h1 className="text-2xl font-semibold mb-4">📋 Lead Submissions</h1>
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white border border-gray-200 rounded-lg">
+          <thead className="bg-gray-100 text-left text-sm font-medium text-gray-600">
+            <tr>
+              <th className="p-3">Date</th>
+              <th className="p-3">Name</th>
+              <th className="p-3">Email</th>
+              <th className="p-3">Company</th>
+              <th className="p-3">Role</th>
+              <th className="p-3">Message</th>
+            </tr>
+          </thead>
+          <tbody>
+            {leads.map(lead => (
+              <tr key={lead.id} className="border-t text-sm text-gray-700">
+                <td className="p-3">{new Date(lead.created_at).toLocaleDateString()}</td>
+                <td className="p-3">{lead.name}</td>
+                <td className="p-3">{lead.email}</td>
+                <td className="p-3">{lead.company}</td>
+                <td className="p-3">{lead.role}</td>
+                <td className="p-3">{lead.message}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
