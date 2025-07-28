@@ -192,6 +192,25 @@ function authenticateToken(req: any, res: any, next: any) {
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Health check endpoint for Render deployment
+  app.get("/health", (req, res) => {
+    res.status(200).json({ 
+      status: "healthy", 
+      timestamp: new Date().toISOString(),
+      service: "SafetySync.AI",
+      version: "1.0.0"
+    });
+  });
+
+  // Root health check
+  app.get("/", (req, res) => {
+    res.status(200).json({ 
+      message: "SafetySync.AI API is running",
+      status: "operational",
+      timestamp: new Date().toISOString()
+    });
+  });
+
   // Create a test user for debugging
   app.post("/api/create-test-user", async (req, res) => {
     try {
