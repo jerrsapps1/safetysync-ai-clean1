@@ -8,6 +8,7 @@ import { CopyrightProtection } from "@/components/ui/copyright-protection";
 import { CartProvider } from "@/contexts/CartContext";
 import Navbar from './components/Navbar';
 import LandingPage from './pages/landing';
+import Home from './pages/home';
 import CaseStudies from './pages/case-studies';
 import HRTeams from './pages/hr-teams';
 import Pricing from './pages/pricing';
@@ -29,6 +30,7 @@ function App() {
             <Router>
               <Switch>
                 <Route path="/" component={LandingPage} />
+                <Route path="/home" component={Home} />
                 <Route path="/case-studies" component={CaseStudies} />
                 <Route path="/hr-teams" component={HRTeams} />
                 <Route path="/pricing" component={Pricing} />
