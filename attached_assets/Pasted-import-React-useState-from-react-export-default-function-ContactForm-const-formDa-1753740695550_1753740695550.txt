@@ -1,0 +1,46 @@
+import React, { useState } from 'react';
+
+export default function ContactForm() {
+  const [formData, setFormData] = useState({
+    name: '', email: '', company: '', role: '', message: ''
+  });
+
+  const [status, setStatus] = useState('');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('Submitting...');
+
+    const res = await fetch('/api/leads', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    });
+
+    if (res.ok) {
+      setStatus('✅ Thanks! We’ll be in touch.');
+      setFormData({ name: '', email: '', company: '', role: '', message: '' });
+    } else {
+      setStatus('❌ Something went wrong. Try again.');
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md max-w-xl mx-auto space-y-4">
+      <h2 className="text-xl font-semibold">Contact Us</h2>
+
+      <input name="name" placeholder="Your Name" onChange={handleChange} value={formData.name} required className="w-full p-2 border rounded" />
+      <input name="email" placeholder="Your Email" onChange={handleChange} value={formData.email} required className="w-full p-2 border rounded" />
+      <input name="company" placeholder="Company (optional)" onChange={handleChange} value={formData.company} className="w-full p-2 border rounded" />
+      <input name="role" placeholder="Your Role (optional)" onChange={handleChange} value={formData.role} className="w-full p-2 border rounded" />
+      <textarea name="message" placeholder="Your Message" onChange={handleChange} value={formData.message} required className="w-full p-2 border rounded" />
+
+      <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Submit</button>
+      <p className="text-sm text-gray-600">{status}</p>
+    </form>
+  );
+}

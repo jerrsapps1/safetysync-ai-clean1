@@ -24,10 +24,8 @@ export default function Contact() {
     name: '',
     email: '',
     company: '',
-    phone: '',
-    subject: '',
-    message: '',
-    contactType: 'demo'
+    role: '',
+    message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
@@ -37,7 +35,7 @@ export default function Contact() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('/api/leads', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -47,24 +45,22 @@ export default function Contact() {
 
       if (response.ok) {
         toast({
-          title: "Message sent successfully!",
+          title: "Thanks! We'll be in touch.",
           description: "We'll get back to you within 2 hours during business hours.",
         });
         setFormData({
           name: '',
           email: '',
           company: '',
-          phone: '',
-          subject: '',
-          message: '',
-          contactType: 'demo'
+          role: '',
+          message: ''
         });
       } else {
         throw new Error('Failed to send message');
       }
     } catch (error) {
       toast({
-        title: "Error sending message",
+        title: "Something went wrong. Try again.",
         description: "Please try again or contact us directly at hello@safetysync.ai",
         variant: "destructive",
       });
@@ -73,7 +69,7 @@ export default function Contact() {
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -180,101 +176,50 @@ export default function Contact() {
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-white font-medium mb-2">
-                        Name *
-                      </label>
-                      <Input
-                        name="name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        required
-                        className="bg-white/10 border-white/30 text-white placeholder:text-blue-200"
-                        placeholder="Your full name"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-white font-medium mb-2">
-                        Email *
-                      </label>
-                      <Input
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        required
-                        className="bg-white/10 border-white/30 text-white placeholder:text-blue-200"
-                        placeholder="your@company.com"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-white font-medium mb-2">
-                        Company
-                      </label>
-                      <Input
-                        name="company"
-                        value={formData.company}
-                        onChange={handleInputChange}
-                        className="bg-white/10 border-white/30 text-white placeholder:text-blue-200"
-                        placeholder="Your company name"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-white font-medium mb-2">
-                        Phone
-                      </label>
-                      <Input
-                        name="phone"
-                        type="tel"
-                        value={formData.phone}
-                        onChange={handleInputChange}
-                        className="bg-white/10 border-white/30 text-white placeholder:text-blue-200"
-                        placeholder="(555) 123-4567"
-                      />
-                    </div>
-                  </div>
-
                   <div>
-                    <label className="block text-white font-medium mb-2">
-                      I'm interested in *
-                    </label>
-                    <select
-                      name="contactType"
-                      value={formData.contactType}
+                    <Input
+                      name="name"
+                      value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="w-full bg-white/10 border border-white/30 rounded-md px-3 py-2 text-white"
-                    >
-                      <option value="demo">Scheduling a Demo</option>
-                      <option value="trial">Starting a Free Trial</option>
-                      <option value="pricing">Pricing Information</option>
-                      <option value="enterprise">Enterprise Solutions</option>
-                      <option value="support">Technical Support</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-white font-medium mb-2">
-                      Subject
-                    </label>
-                    <Input
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleInputChange}
                       className="bg-white/10 border-white/30 text-white placeholder:text-blue-200"
-                      placeholder="Brief subject line"
+                      placeholder="Your Name"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-white font-medium mb-2">
-                      Message *
-                    </label>
+                    <Input
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                      className="bg-white/10 border-white/30 text-white placeholder:text-blue-200"
+                      placeholder="Your Email"
+                    />
+                  </div>
+
+                  <div>
+                    <Input
+                      name="company"
+                      value={formData.company}
+                      onChange={handleInputChange}
+                      className="bg-white/10 border-white/30 text-white placeholder:text-blue-200"
+                      placeholder="Company (optional)"
+                    />
+                  </div>
+
+                  <div>
+                    <Input
+                      name="role"
+                      value={formData.role}
+                      onChange={handleInputChange}
+                      className="bg-white/10 border-white/30 text-white placeholder:text-blue-200"
+                      placeholder="Your Role (optional)"
+                    />
+                  </div>
+
+                  <div>
                     <Textarea
                       name="message"
                       value={formData.message}
@@ -282,7 +227,7 @@ export default function Contact() {
                       required
                       rows={5}
                       className="bg-white/10 border-white/30 text-white placeholder:text-blue-200"
-                      placeholder="Tell us about your safety compliance needs..."
+                      placeholder="Your Message"
                     />
                   </div>
 
@@ -291,7 +236,7 @@ export default function Contact() {
                     disabled={isSubmitting}
                     className="w-full bg-white text-blue-600 hover:bg-gray-100"
                   >
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                    {isSubmitting ? 'Submitting...' : 'Submit'}
                     <Send className="w-4 h-4 ml-2" />
                   </Button>
                 </form>
