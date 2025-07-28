@@ -3169,6 +3169,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Invoice management routes
+  const invoiceRouter = await import("./invoice");
+  app.use("/api/invoice", invoiceRouter.default);
+
   // Serve platform documentation files
   app.use('/platform-documentation', express.static('platform-documentation'));
 
