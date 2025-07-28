@@ -136,6 +136,17 @@ User satisfied with comprehensive platform features including dashboard, admin p
 
 ## Recent Changes
 
+- **July 28, 2025** - CONTACT FORM INTEGRATION AND HOME PAGE COMPLETED:
+  - **REUSABLE CONTACT FORM COMPONENT**: Created ContactForm.tsx component with 5 essential fields (name, email, company, role, message) connecting to /api/leads endpoint
+  - **DEDICATED HOME PAGE**: Built professional Home page (/home) with hero section, feature showcase, and integrated contact form
+  - **UPDATED DATABASE SCHEMA**: Added 'role' field to leads table to capture user's job title/position for better lead qualification
+  - **BREVO EMAIL INTEGRATION**: Updated /api/leads endpoint to use direct database queries and Brevo API for instant email notifications to jerry@safetysync.ai
+  - **NAVIGATION ENHANCEMENT**: Added Home link to both desktop and mobile navigation menus for improved user experience
+  - **PREVIEW VISIBILITY FIX**: Resolved critical issue where conflicting API route at root path was intercepting frontend requests, preventing website preview
+  - **BLUE GRADIENT THEME**: Applied consistent SafetySync.AI blue gradient design across Home page with glass morphism effects and professional styling
+  - **FORM VALIDATION**: Implemented proper client-side validation with loading states and success/error feedback for optimal user experience
+  - Contact form system now provides complete lead capture workflow from submission → database storage → email notification with professional user interface
+
 - **July 28, 2025** - WEBSITE FLOW REORGANIZATION COMPLETED:
   - **MULTI-PAGE ROUTING STRUCTURE**: Successfully transitioned from single landing page with anchor navigation to proper multi-page routing system
   - **DEDICATED PAGE COMPONENTS**: Created professional case-studies.tsx, hr-teams.tsx, pricing.tsx, contact.tsx, client-portal.tsx, and workspace.tsx pages
