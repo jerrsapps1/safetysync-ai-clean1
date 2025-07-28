@@ -202,14 +202,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     });
   });
 
-  // Root health check
-  app.get("/", (req, res) => {
-    res.status(200).json({ 
-      message: "SafetySync.AI API is running",
-      status: "operational",
-      timestamp: new Date().toISOString()
-    });
-  });
+  // Root health check removed - interferes with frontend serving
 
   // Create a test user for debugging
   app.post("/api/create-test-user", async (req, res) => {

@@ -24,7 +24,7 @@ function App() {
           <CopyrightProtection />
           <Toaster />
           
-          <div className="font-sans bg-white min-h-screen">
+          <div className="font-sans min-h-screen">
             <Navbar />
             <Router>
               <Switch>
@@ -37,11 +37,11 @@ function App() {
                 <Route path="/workspace" component={Workspace} />
                 <Route path="/admin/invoice-management" component={InvoiceManagement} />
                 <Route>
-                  <div className="min-h-screen flex items-center justify-center">
+                  <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
                     <div className="text-center">
-                      <h1 className="text-4xl font-bold text-gray-900 mb-4">404 - Page Not Found</h1>
-                      <p className="text-gray-600 mb-8">The page you're looking for doesn't exist.</p>
-                      <a href="/" className="text-blue-600 hover:text-blue-800 underline">
+                      <h1 className="text-4xl font-bold text-white mb-4">404 - Page Not Found</h1>
+                      <p className="text-blue-100 mb-8">The page you're looking for doesn't exist.</p>
+                      <a href="/" className="text-white hover:text-blue-200 underline">
                         Return to Home
                       </a>
                     </div>
