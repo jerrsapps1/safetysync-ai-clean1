@@ -41,36 +41,42 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md max-w-xl mx-auto space-y-4">
       <h2 className="text-xl font-semibold">Contact Us</h2>
 
-      <input 
-        name="name" 
-        placeholder="Your Name" 
-        onChange={handleChange} 
-        value={formData.name} 
-        required 
-        className="w-full p-2 border rounded" 
-      />
-      <input 
-        name="email" 
-        placeholder="Your Email" 
-        onChange={handleChange} 
-        value={formData.email} 
-        required 
-        className="w-full p-2 border rounded" 
-      />
-      <input 
-        name="company" 
-        placeholder="Company (optional)" 
-        onChange={handleChange} 
-        value={formData.company} 
-        className="w-full p-2 border rounded" 
-      />
-      <input 
-        name="role" 
-        placeholder="Your Role (optional)" 
-        onChange={handleChange} 
-        value={formData.role} 
-        className="w-full p-2 border rounded" 
-      />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <input 
+          name="name" 
+          placeholder="Your Name" 
+          onChange={handleChange} 
+          value={formData.name} 
+          required 
+          className="col-span-1 w-full p-2 border rounded" 
+        />
+        <input 
+          name="email" 
+          placeholder="Your Email" 
+          onChange={handleChange} 
+          value={formData.email} 
+          required 
+          className="col-span-1 w-full p-2 border rounded" 
+        />
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <input 
+          name="company" 
+          placeholder="Company (optional)" 
+          onChange={handleChange} 
+          value={formData.company} 
+          className="col-span-1 w-full p-2 border rounded" 
+        />
+        <input 
+          name="role" 
+          placeholder="Your Role (optional)" 
+          onChange={handleChange} 
+          value={formData.role} 
+          className="col-span-1 w-full p-2 border rounded" 
+        />
+      </div>
+
       <textarea 
         name="message" 
         placeholder="Your Message" 
