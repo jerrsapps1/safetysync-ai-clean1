@@ -15,45 +15,23 @@ type Lead = {
 
 export default function AdminLeads() {
   const [leads, setLeads] = useState<Lead[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
   const [, setLocation] = useLocation();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    
-    if (!token) {
-      setLocation('/admin/login');
-      return;
-    }
 
     fetch('/api/leads', {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      }
+      headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => {
-        if (res.status === 401 || res.status === 403) {
-          localStorage.removeItem('token');
-          setLocation('/admin/login');
-          return;
+        if (res.status === 403) {
+          window.location.href = '/admin/login';
+          return [];
         }
         return res.json();
       })
-      .then(data => {
-        if (data) {
-          setLeads(data);
-        }
-      })
-      .catch(err => {
-        console.error('Error fetching leads:', err);
-        setError('Failed to fetch leads');
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [setLocation]);
+      .then(data => setLeads(data));
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -80,32 +58,7 @@ export default function AdminLeads() {
     document.body.removeChild(link);
   };
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading leads...</p>
-        </div>
-      </div>
-    );
-  }
 
-  if (error) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-red-600 text-xl mb-4">{error}</div>
-          <button 
-            onClick={() => window.location.reload()} 
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-          >
-            Retry
-          </button>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="max-w-6xl mx-auto p-6">
