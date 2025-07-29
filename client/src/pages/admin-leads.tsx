@@ -26,9 +26,37 @@ export default function AdminLeads() {
       .catch(err => console.error('Error fetching leads:', err));
   }, []);
 
+  const exportCSV = () => {
+    const csv = [
+      ['Name', 'Email', 'Company', 'Role', 'Heard From', 'Demo Request', 'Message', 'Date'],
+      ...leads.map(l => [
+        l.name, l.email, l.company, l.role, l.heard_from || '',
+        l.demo_request ? 'Yes' : 'No',
+        l.message, new Date(l.created_at).toLocaleString()
+      ])
+    ].map(row => row.map(item => `"${item}"`).join(',')).join('\n');
+
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.setAttribute('href', url);
+    link.setAttribute('download', `leads_export_${Date.now()}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="max-w-6xl mx-auto p-6">
-      <h1 className="text-2xl font-semibold mb-4">📋 Lead Submissions</h1>
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-2xl font-semibold">📋 Lead Submissions</h1>
+        <button
+          onClick={exportCSV}
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
+        >
+          Export CSV
+        </button>
+      </div>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-200 rounded-lg">
           <thead className="bg-gray-100 text-left text-sm font-medium text-gray-600">
