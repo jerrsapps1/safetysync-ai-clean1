@@ -16,10 +16,15 @@ export default function AdminLeads() {
   const [leads, setLeads] = useState<Lead[]>([]);
 
   useEffect(() => {
-    fetch('/api/leads')
+    const credentials = btoa('admin:secretpassword123'); // Base64 encode credentials
+    fetch('/api/leads', {
+      headers: {
+        'Authorization': `Basic ${credentials}`
+      }
+    })
       .then(res => res.json())
       .then(data => setLeads(data))
-      .catch(err => console.error(err));
+      .catch(err => console.error('Error fetching leads:', err));
   }, []);
 
   return (
