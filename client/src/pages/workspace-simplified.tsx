@@ -103,10 +103,10 @@ export default function WorkspaceSimplified() {
         </div>
       </div>
 
-      <div className="flex min-h-screen relative z-10">
+      <div className="flex relative z-10">
         {/* Sidebar */}
         <motion.div
-          className={`${sidebarOpen ? 'w-64' : 'w-16'} bg-black/20 backdrop-blur-sm border-r border-blue-700 flex flex-col flex-shrink-0`}
+          className={`${sidebarOpen ? 'w-64' : 'w-16'} bg-black/20 backdrop-blur-sm border-r border-blue-700 flex flex-col flex-shrink-0 min-h-screen`}
           initial={sidebarOpen ? "open" : "closed"}
         >
           {/* Header */}
@@ -229,9 +229,9 @@ export default function WorkspaceSimplified() {
         </motion.div>
 
         {/* Main Content */}
-        <div className="flex-1 flex flex-col overflow-hidden">
+        <div className="flex-1 flex flex-col">
           {/* Top Bar */}
-          <div className="bg-black/20 backdrop-blur-sm border-b border-blue-700 p-4">
+          <div className="bg-black/20 backdrop-blur-sm border-b border-blue-700 p-4 flex-shrink-0">
             <div className="flex items-center justify-between">
               <div className="flex-1 min-w-0">
                 <h1 className="text-2xl font-bold text-white truncate">
@@ -253,8 +253,8 @@ export default function WorkspaceSimplified() {
           </div>
 
           {/* Content Area */}
-          <div className="flex-1 overflow-y-auto">
-            <div className="min-h-full">
+          <div className="flex-1">
+            <div className="h-full overflow-y-auto">
               {/* Dashboard Tab */}
               {activeTab === "dashboard" && (
                 <div className="p-6 space-y-6">
