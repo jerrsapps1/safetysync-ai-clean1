@@ -12,7 +12,7 @@ import {
   X,
   ArrowRight
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link } from "wouter";
 
 interface PageHeaderProps {
   // No props needed - this will be the same navigation for all pages
