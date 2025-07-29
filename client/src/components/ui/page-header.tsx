@@ -23,7 +23,9 @@ interface PageHeaderProps {
 export function PageHeader({}: PageHeaderProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, logout, user } = useAuth();
+  
+  console.log('🧭 PAGE-HEADER: Auth state', { isAuthenticated, user: user?.username });
 
   const navigationItems = [
     { name: "Home", to: "/", icon: Home },
