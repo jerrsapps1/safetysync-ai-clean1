@@ -31,6 +31,8 @@ export const leads = pgTable("leads", {
   company: text("company"),
   role: text("role"),
   message: text("message"),
+  demoRequest: boolean("demo_request").default(false),
+  heardFrom: text("heard_from"),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
