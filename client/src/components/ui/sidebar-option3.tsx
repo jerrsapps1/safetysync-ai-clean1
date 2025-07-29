@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { SafetySyncIcon } from "@/components/ui/safetysync-icon";
+import { useAuth } from "@/hooks/useAuth";
 import { 
   Home, 
   FileText, 
@@ -10,7 +11,8 @@ import {
   Phone,
   Menu,
   X,
-  ArrowRight
+  ArrowRight,
+  LogOut
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -21,6 +23,7 @@ interface SidebarOption3Props {
 export function SidebarOption3({}: SidebarOption3Props) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const { isAuthenticated, logout } = useAuth();
 
   const navigationItems = [
     { name: "Home", to: "/", icon: Home },
@@ -104,26 +107,48 @@ export function SidebarOption3({}: SidebarOption3Props) {
           </div>
         </nav>
 
-        {/* Client Login Button */}
+        {/* Client Login/Logout Button */}
         <div className="absolute bottom-6 left-2 right-2">
-          <Link to="/client-portal">
+          {isAuthenticated ? (
             <Button 
               variant={isCollapsed ? "ghost" : "default"}
               size={isCollapsed ? "sm" : "default"}
               className={`
                 ${isCollapsed ? 'w-12 h-12 p-0' : 'w-full'} 
-                bg-emerald-600 hover:bg-emerald-700 text-white
+                bg-red-600 hover:bg-red-700 text-white
               `}
-              onClick={() => setIsMobileOpen(false)}
-              title={isCollapsed ? "Client Login" : undefined}
+              onClick={() => {
+                logout();
+                setIsMobileOpen(false);
+              }}
+              title={isCollapsed ? "Logout" : undefined}
             >
               {isCollapsed ? (
-                <Users className="w-5 h-5" />
+                <LogOut className="w-5 h-5" />
               ) : (
-                "Client Login"
+                "Logout"
               )}
             </Button>
-          </Link>
+          ) : (
+            <Link to="/client-portal">
+              <Button 
+                variant={isCollapsed ? "ghost" : "default"}
+                size={isCollapsed ? "sm" : "default"}
+                className={`
+                  ${isCollapsed ? 'w-12 h-12 p-0' : 'w-full'} 
+                  bg-emerald-600 hover:bg-emerald-700 text-white
+                `}
+                onClick={() => setIsMobileOpen(false)}
+                title={isCollapsed ? "Client Login" : undefined}
+              >
+                {isCollapsed ? (
+                  <Users className="w-5 h-5" />
+                ) : (
+                  "Client Login"
+                )}
+              </Button>
+            </Link>
+          )}
         </div>
       </aside>
 
