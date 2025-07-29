@@ -322,7 +322,7 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 text-white font-sans">
+    <div className="bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 text-white font-sans">
       {/* Main Content - Full Width Since Navbar is in App.tsx */}
       <div className="pt-16"> {/* Added top padding for fixed navbar */}
 
@@ -334,7 +334,7 @@ export default function LandingPage() {
       </section>
 
       {/* Hero Section */}
-      <section className="relative pt-16 md:pt-32 pb-12 md:pb-32 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center overflow-hidden">
+      <section className="relative pt-16 md:pt-32 pb-12 md:pb-32 px-4 sm:px-6 lg:px-8 flex items-center overflow-hidden">
         {/* Floating Background Icons */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 left-20 animate-float opacity-20">
