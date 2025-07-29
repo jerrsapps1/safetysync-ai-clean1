@@ -16,10 +16,9 @@ export default function AdminLeads() {
   const [leads, setLeads] = useState<Lead[]>([]);
 
   useEffect(() => {
-    const credentials = btoa('admin:secretpassword123'); // Base64 encode credentials
     fetch('/api/leads', {
       headers: {
-        'Authorization': `Basic ${credentials}`
+        'Authorization': 'Basic ' + btoa('admin:yourStrongPassword')
       }
     })
       .then(res => res.json())
