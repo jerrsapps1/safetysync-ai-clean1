@@ -19,6 +19,7 @@ import AdminLogin from './pages/admin-login';
 import ClientPortal from './pages/client-portal';
 import Workspace from './pages/workspace';
 import InvoiceManagement from './pages/invoice-management';
+import AuthDebug from './components/AuthDebug';
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
                 <Route path="/client-portal" component={ClientPortal} />
                 <Route path="/workspace" component={Workspace} />
                 <Route path="/admin/invoice-management" component={InvoiceManagement} />
+                <Route path="/debug/auth" component={AuthDebug} />
                 <Route>
                   <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
                     <div className="text-center">

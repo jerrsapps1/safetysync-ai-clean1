@@ -59,6 +59,15 @@ export function useAuth() {
     try {
       console.log('🔐 USEAUTH: Starting login request', { username, rememberMe });
       
+      // Debug check for production troubleshooting
+      try {
+        const debugResponse = await fetch('/api/debug/auth-status');
+        const debugData = await debugResponse.json();
+        console.log('🔐 DEBUG: Auth system status', debugData);
+      } catch (debugError) {
+        console.log('🔐 DEBUG: Could not fetch auth status', debugError);
+      }
+      
       const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
@@ -67,12 +76,16 @@ export function useAuth() {
         body: JSON.stringify({ username, password }),
       });
 
+      console.log('🔐 USEAUTH: Raw response status', response.status);
+      console.log('🔐 USEAUTH: Response URL', response.url);
+
       const result = await response.json();
       console.log('🔐 USEAUTH: Login response received', { 
         status: response.status, 
         success: result.success, 
         hasToken: !!result.token,
-        hasUser: !!result.user 
+        hasUser: !!result.user,
+        fullResponse: result
       });
       
       if (result.success) {
@@ -97,7 +110,7 @@ export function useAuth() {
       }
     } catch (error) {
       console.error('🔐 USEAUTH: Login error:', error);
-      return { success: false, message: 'Login failed' };
+      return { success: false, message: 'Login failed - check console for details' };
     }
   };
 
