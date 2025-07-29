@@ -142,7 +142,7 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - **DATABASE SCHEMA EXTENSION**: Extended leads table with demo_request (boolean) and heard_from (text) columns for enhanced lead qualification
   - **ADMIN INTERFACE SECURITY**: Updated AdminLeads component to use Basic Auth credentials for secure lead data access
   - **PROFESSIONAL FORM STYLING**: Improved checkbox sizing (w-4 h-4) and label text ("I'd like a live demo") with proper grid layout
-  - **EMAIL NOTIFICATION ENHANCEMENT**: Updated email templates to include demo request status and lead source information in notifications
+  - **EMAIL NOTIFICATION ENHANCEMENT**: Updated email templates to include demo request status and lead source information, routing all notifications to hello@safetysync.ai
   - **ENVIRONMENT CONFIGURATION**: Added ADMIN_USER and ADMIN_PASS to .env.example for secure API access configuration
   - **PRODUCTION SECURITY**: API endpoints now require valid admin credentials preventing unauthorized access to lead data
   - **CSV EXPORT FUNCTIONALITY**: Added professional CSV export feature to AdminLeads with proper formatting, timestamp naming, and comprehensive data export

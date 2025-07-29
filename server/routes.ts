@@ -524,7 +524,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           'https://api.brevo.com/v3/smtp/email',
           {
             sender: { name: 'SafetySync.ai', email: 'noreply@safetysync.ai' },
-            to: [{ email: 'jerry@safetysync.ai', name: 'Jerry - SafetySync.AI' }],
+            to: [{ email: 'hello@safetysync.ai', name: 'SafetySync.AI Team' }],
             subject: '📥 New Lead Captured',
             htmlContent: `
               <h3>New Lead Captured</h3>
