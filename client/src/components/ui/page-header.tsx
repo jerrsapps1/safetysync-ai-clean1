@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { SafetySyncIcon } from "@/components/ui/safetysync-icon";
+import { useAuth } from "@/hooks/useAuth";
 import { 
   Home, 
   FileText, 
@@ -10,7 +11,8 @@ import {
   Phone,
   Menu,
   X,
-  ArrowRight
+  ArrowRight,
+  LogOut
 } from "lucide-react";
 import { Link } from "wouter";
 
@@ -21,6 +23,7 @@ interface PageHeaderProps {
 export function PageHeader({}: PageHeaderProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const { isAuthenticated, logout } = useAuth();
 
   const navigationItems = [
     { name: "Home", to: "/", icon: Home },
@@ -71,22 +74,40 @@ export function PageHeader({}: PageHeaderProps) {
           {/* Remove collapse button since it's hover-based now */}
         </div>
 
-        {/* Client Login Button - At Top */}
+        {/* Client Login/Logout Button - At Top */}
         <div className="mt-6 px-2">
-          <Link to="/client-portal">
+          {isAuthenticated ? (
             <Button 
               className={`
                 ${!isHovered ? 'w-12 h-12 p-0 justify-center' : 'w-full justify-start px-3'} 
-                bg-violet-500 hover:bg-emerald-600 text-white font-bold border-2 border-emerald-700
-                shadow-2xl  ring-2 ring-emerald-300/50
+                bg-red-600 hover:bg-red-700 text-white font-bold border-2 border-red-500
+                shadow-2xl ring-2 ring-red-300/50
               `}
-              onClick={() => setIsMobileOpen(false)}
-              title={!isHovered ? "Client Login" : undefined}
+              onClick={() => {
+                logout();
+                setIsMobileOpen(false);
+              }}
+              title={!isHovered ? "Logout" : undefined}
             >
-              <Users className={`${!isHovered ? 'w-6 h-6' : 'w-5 h-5 mr-3'} text-white flex-shrink-0 drop-shadow-lg`} />
-              {isHovered && <span className="text-white font-bold">Client Login</span>}
+              <LogOut className={`${!isHovered ? 'w-6 h-6' : 'w-5 h-5 mr-3'} text-white flex-shrink-0 drop-shadow-lg`} />
+              {isHovered && <span className="text-white font-bold">Logout</span>}
             </Button>
-          </Link>
+          ) : (
+            <Link to="/client-portal">
+              <Button 
+                className={`
+                  ${!isHovered ? 'w-12 h-12 p-0 justify-center' : 'w-full justify-start px-3'} 
+                  bg-violet-500 hover:bg-emerald-600 text-white font-bold border-2 border-emerald-700
+                  shadow-2xl  ring-2 ring-emerald-300/50
+                `}
+                onClick={() => setIsMobileOpen(false)}
+                title={!isHovered ? "Client Login" : undefined}
+              >
+                <Users className={`${!isHovered ? 'w-6 h-6' : 'w-5 h-5 mr-3'} text-white flex-shrink-0 drop-shadow-lg`} />
+                {isHovered && <span className="text-white font-bold">Client Login</span>}
+              </Button>
+            </Link>
+          )}
         </div>
 
         {/* Navigation */}
