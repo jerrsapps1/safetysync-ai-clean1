@@ -3,6 +3,8 @@ import { useAuth } from "@/hooks/useAuth";
 import { useDashboardData } from "@/hooks/useDashboardData";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { LoadingSpinner } from "@/components/ui/loading-spinner";
+import { DashboardCardsLoading } from "@/components/ui/loading-states";
 import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -71,10 +73,7 @@ export default function WorkspaceSimplified() {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
-        <div className="text-white text-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-white mx-auto mb-4"></div>
-          <p className="text-xl">Loading workspace...</p>
-        </div>
+        <LoadingSpinner size="xl" message="Loading workspace..." />
       </div>
     );
   }
