@@ -204,6 +204,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
     });
   });
 
+  // Debug endpoint to check database connectivity and user existence
+  app.get("/api/debug/auth-status", async (req, res) => {
+    try {
+      // Check if database is connected
+      const testUser = await storage.getUserByUsername("testuser");
+      const demoUser = await storage.getUserByUsername("demouser");
+      
+      res.json({
+        status: "success",
+        database: "connected",
+        timestamp: new Date().toISOString(),
+        environment: process.env.NODE_ENV || "development",
+        jwtSecret: process.env.JWT_SECRET ? "configured" : "using_default",
+        users: {
+          testuser: testUser ? "exists" : "not_found",
+          demouser: demoUser ? "exists" : "not_found"
+        }
+      });
+    } catch (error) {
+      res.status(500).json({
+        status: "error",
+        database: "connection_failed",
+        error: error instanceof Error ? error.message : "Unknown error",
+        timestamp: new Date().toISOString()
+      });
+    }
+  });
+
   // Root health check removed - interferes with frontend serving
 
   // Create a test user for debugging
@@ -250,6 +278,41 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ 
         success: false, 
         message: error instanceof Error ? error.message : "Failed to create demo user" 
+      });
+    }
+  });
+
+  // Force create production test user (for deployment troubleshooting)
+  app.post("/api/create-production-user", async (req, res) => {
+    try {
+      // Create a user specifically for production testing
+      const hashedPassword = await bcrypt.hash("password", 10);
+      
+      // Try to create with a unique timestamp-based email to avoid conflicts
+      const timestamp = Date.now();
+      const user = await storage.createUser({
+        username: "produser",
+        email: `prod-${timestamp}@safetysync.ai`,
+        password: hashedPassword,
+        name: "Production Test User",
+        company: "SafetySync Production",
+        phone: "555-0125"
+      });
+      
+      const { password, ...userWithoutPassword } = user;
+      res.json({ 
+        success: true, 
+        user: userWithoutPassword,
+        credentials: {
+          username: "produser",
+          password: "password"
+        }
+      });
+    } catch (error) {
+      console.error("Error creating production user:", error);
+      res.status(500).json({ 
+        success: false, 
+        message: error instanceof Error ? error.message : "Failed to create production user" 
       });
     }
   });
