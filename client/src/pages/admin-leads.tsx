@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'wouter';
 
 type Lead = {
   id: number;
@@ -15,7 +14,6 @@ type Lead = {
 
 export default function AdminLeads() {
   const [leads, setLeads] = useState<Lead[]>([]);
-  const [, setLocation] = useLocation();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -33,10 +31,7 @@ export default function AdminLeads() {
       .then(data => setLeads(data));
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    setLocation('/admin/login');
-  };
+
 
   const exportCSV = () => {
     const csv = [
@@ -72,8 +67,11 @@ export default function AdminLeads() {
             Export to CSV
           </button>
           <button
-            onClick={handleLogout}
-            className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+            onClick={() => {
+              localStorage.removeItem('token');
+              window.location.href = '/admin/login';
+            }}
+            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
           >
             Logout
           </button>
