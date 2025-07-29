@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'wouter';
 
 type Lead = {
   id: number;
@@ -14,17 +15,50 @@ type Lead = {
 
 export default function AdminLeads() {
   const [leads, setLeads] = useState<Lead[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [, setLocation] = useLocation();
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
+    
+    if (!token) {
+      setLocation('/admin/login');
+      return;
+    }
+
     fetch('/api/leads', {
       headers: {
-        'Authorization': 'Basic ' + btoa('admin:yourStrongPassword')
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
       }
     })
-      .then(res => res.json())
-      .then(data => setLeads(data))
-      .catch(err => console.error('Error fetching leads:', err));
-  }, []);
+      .then(res => {
+        if (res.status === 401 || res.status === 403) {
+          localStorage.removeItem('token');
+          setLocation('/admin/login');
+          return;
+        }
+        return res.json();
+      })
+      .then(data => {
+        if (data) {
+          setLeads(data);
+        }
+      })
+      .catch(err => {
+        console.error('Error fetching leads:', err);
+        setError('Failed to fetch leads');
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [setLocation]);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setLocation('/admin/login');
+  };
 
   const exportCSV = () => {
     const csv = [
@@ -46,16 +80,51 @@ export default function AdminLeads() {
     document.body.removeChild(link);
   };
 
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading leads...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-red-600 text-xl mb-4">{error}</div>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-6xl mx-auto p-6">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-semibold">📋 Lead Submissions</h1>
-        <button
-          onClick={exportCSV}
-          className="mb-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-        >
-          Export to CSV
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={exportCSV}
+            className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+          >
+            Export to CSV
+          </button>
+          <button
+            onClick={handleLogout}
+            className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+          >
+            Logout
+          </button>
+        </div>
       </div>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-200 rounded-lg">
