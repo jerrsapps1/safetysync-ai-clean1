@@ -52,9 +52,9 @@ export default function AdminLeads() {
         <h1 className="text-2xl font-semibold">📋 Lead Submissions</h1>
         <button
           onClick={exportCSV}
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
+          className="mb-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
         >
-          Export CSV
+          Export to CSV
         </button>
       </div>
       <div className="overflow-x-auto">
