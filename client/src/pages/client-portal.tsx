@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -48,12 +48,13 @@ export default function ClientPortal() {
 
   console.log('🔐 CLIENT-PORTAL: Auth state', { isAuthenticated, isLoading });
 
-  // Redirect if already authenticated (but wait for loading to complete)
-  if (isAuthenticated && !isLoading) {
-    console.log('🔐 CLIENT-PORTAL: User is authenticated, redirecting to workspace');
-    setLocation('/workspace');
-    return null;
-  }
+  // Redirect if already authenticated (using effect to avoid render issues)
+  useEffect(() => {
+    if (isAuthenticated && !isLoading) {
+      console.log('🔐 CLIENT-PORTAL: User is authenticated, redirecting to workspace');
+      setLocation('/workspace');
+    }
+  }, [isAuthenticated, isLoading, setLocation]);
 
   // Show loading while checking authentication
   if (isLoading) {
@@ -83,8 +84,8 @@ export default function ClientPortal() {
             title: "Login successful!",
             description: "Welcome back to SafetySync.AI",
           });
-          console.log('🔐 CLIENT-PORTAL: Redirecting to workspace');
-          setTimeout(() => setLocation('/workspace'), 1000);
+          console.log('🔐 CLIENT-PORTAL: Login successful, auth state will trigger redirect');
+          // Redirect will happen automatically via useEffect when isAuthenticated becomes true
         } else {
           console.error('🔐 CLIENT-PORTAL: Login failed', result.message);
           toast({
