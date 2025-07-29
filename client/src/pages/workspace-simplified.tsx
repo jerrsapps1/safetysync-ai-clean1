@@ -333,6 +333,75 @@ export default function WorkspaceSimplified() {
                       </div>
                     </CardContent>
                   </Card>
+
+                  {/* Additional Scrolling Test Content */}
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Training Compliance Overview</CardTitle>
+                      <CardDescription>Detailed compliance status by department</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-6">
+                        {[
+                          "Manufacturing Department", "Warehouse Operations", "Quality Control", 
+                          "Safety Team", "Maintenance Crew", "Shipping Department", "Office Staff",
+                          "Management Team", "Contract Workers", "Temporary Staff"
+                        ].map((dept, index) => (
+                          <div key={dept} className="border-b border-gray-200 pb-4 last:border-b-0">
+                            <div className="flex justify-between items-center mb-2">
+                              <h4 className="text-sm font-semibold">{dept}</h4>
+                              <Badge variant={index % 3 === 0 ? "default" : index % 3 === 1 ? "secondary" : "outline"}>
+                                {index % 3 === 0 ? "Compliant" : index % 3 === 1 ? "Action Required" : "Pending"}
+                              </Badge>
+                            </div>
+                            <div className="grid grid-cols-3 gap-4 text-xs">
+                              <div>
+                                <p className="text-muted-foreground">Employees</p>
+                                <p className="font-medium">{12 + index * 3}</p>
+                              </div>
+                              <div>
+                                <p className="text-muted-foreground">Trained</p>
+                                <p className="font-medium">{10 + index * 2}</p>
+                              </div>
+                              <div>
+                                <p className="text-muted-foreground">Compliance</p>
+                                <p className="font-medium">{85 + index}%</p>
+                              </div>
+                            </div>
+                            <Progress value={85 + index} className="mt-2" />
+                          </div>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Upcoming Training Sessions</CardTitle>
+                      <CardDescription>Scheduled training events for the next 30 days</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        {[
+                          { title: "Fall Protection Refresher", date: "Jan 15, 2025", attendees: 25 },
+                          { title: "OSHA 10 New Hire Training", date: "Jan 18, 2025", attendees: 15 },
+                          { title: "Forklift Operator Certification", date: "Jan 22, 2025", attendees: 8 },
+                          { title: "Hazmat Handling Training", date: "Jan 25, 2025", attendees: 12 },
+                          { title: "Emergency Response Drill", date: "Jan 28, 2025", attendees: 50 },
+                          { title: "Confined Space Entry", date: "Feb 1, 2025", attendees: 10 },
+                          { title: "Respiratory Protection Fit Testing", date: "Feb 5, 2025", attendees: 30 }
+                        ].map((session, index) => (
+                          <div key={index} className="flex items-center justify-between p-4 border rounded-lg">
+                            <div>
+                              <p className="font-medium">{session.title}</p>
+                              <p className="text-sm text-muted-foreground">{session.date}</p>
+                            </div>
+                            <Badge variant="outline">{session.attendees} attendees</Badge>
+                          </div>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
                 </div>
               )}
 
