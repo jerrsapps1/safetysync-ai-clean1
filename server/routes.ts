@@ -494,32 +494,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.status(401).json({ error: 'Invalid credentials' });
   });
 
-  // Basic auth middleware for leads GET endpoint only
-  const requireAuth = (req, res, next) => {
-    const auth = req.headers.authorization || '';
-    const token = auth.replace('Basic ', '');
+  // JWT authentication middleware for API endpoints
+  function authenticateJWT(req, res, next) {
+    const authHeader = req.headers.authorization;
+    if (!authHeader) return res.status(403).json({ error: 'Missing token' });
 
-    const adminUser = process.env.ADMIN_USER || '';
-    const adminPass = process.env.ADMIN_PASS || '';
-    const expected = Buffer.from(`${adminUser}:${adminPass}`).toString('base64');
-    
-    if (token === expected) {
+    const token = authHeader.split(' ')[1];
+
+    jwt.verify(token, JWT_SECRET, (err, user) => {
+      if (err) return res.status(403).json({ error: 'Invalid token' });
+
+      req.user = user;
       next();
-    } else {
-      res.set('WWW-Authenticate', 'Basic realm="admin"');
-      res.status(401).send('Unauthorized');
-    }
-  };
+    });
+  }
 
-  // Fetch all leads endpoint (protected)
-  app.get('/api/leads', requireAuth, async (req, res) => {
+  // Fetch all leads endpoint (JWT protected)
+  app.get('/api/leads', authenticateJWT, async (req, res) => {
     try {
       const result = await pool.query(
-        'SELECT id, name, email, company, role, message, demo_request, heard_from, created_at FROM leads ORDER BY created_at DESC'
+        'SELECT * FROM leads ORDER BY created_at DESC'
       );
       res.json(result.rows);
-    } catch (error) {
-      console.error('Error fetching leads:', error);
+    } catch (err) {
+      console.error(err);
       res.status(500).json({ error: 'Failed to fetch leads' });
     }
   });
