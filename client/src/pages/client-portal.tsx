@@ -34,13 +34,7 @@ export default function ClientPortal() {
     company: ''
   });
 
-  const fillTestCredentials = () => {
-    setFormData({
-      ...formData,
-      username: 'testuser',
-      password: 'password'
-    });
-  };
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   
   const { login, register, isAuthenticated, isLoading } = useAuth();
@@ -305,17 +299,7 @@ export default function ClientPortal() {
                     </div>
                   )}
 
-                  {/* Test Credentials Button (Development only) */}
-                  {isLogin && (
-                    <Button
-                      type="button"
-                      onClick={fillTestCredentials}
-                      variant="outline"
-                      className="w-full bg-white/10 border-white/30 text-white hover:bg-white/20"
-                    >
-                      Use Test Credentials
-                    </Button>
-                  )}
+
 
                   {/* Submit Button */}
                   <Button
