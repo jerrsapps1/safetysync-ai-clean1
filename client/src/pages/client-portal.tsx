@@ -32,6 +32,14 @@ export default function ClientPortal() {
     confirmPassword: '',
     company: ''
   });
+
+  const fillTestCredentials = () => {
+    setFormData({
+      ...formData,
+      username: 'testuser',
+      password: 'password'
+    });
+  };
   const [isSubmitting, setIsSubmitting] = useState(false);
   
   const { login, register, isAuthenticated } = useAuth();
@@ -51,17 +59,22 @@ export default function ClientPortal() {
     try {
       if (isLogin) {
         // Login flow
-        const success = await login(formData.username, formData.password);
-        if (success) {
+        console.log('🔐 CLIENT-PORTAL: Starting login with credentials', { username: formData.username });
+        const result = await login(formData.username, formData.password);
+        console.log('🔐 CLIENT-PORTAL: Login result received', result);
+        
+        if (result.success) {
           toast({
             title: "Login successful!",
             description: "Welcome back to SafetySync.AI",
           });
+          console.log('🔐 CLIENT-PORTAL: Redirecting to workspace');
           setTimeout(() => setLocation('/workspace'), 1000);
         } else {
+          console.error('🔐 CLIENT-PORTAL: Login failed', result.message);
           toast({
             title: "Login failed",
-            description: "Invalid username or password",
+            description: result.message || "Invalid username or password",
             variant: "destructive",
           });
         }
@@ -254,6 +267,18 @@ export default function ClientPortal() {
                         </button>
                       </div>
                     </div>
+                  )}
+
+                  {/* Test Credentials Button (Development only) */}
+                  {isLogin && (
+                    <Button
+                      type="button"
+                      onClick={fillTestCredentials}
+                      variant="outline"
+                      className="w-full bg-white/10 border-white/30 text-white hover:bg-white/20"
+                    >
+                      Use Test Credentials
+                    </Button>
                   )}
 
                   {/* Submit Button */}
