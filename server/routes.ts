@@ -479,6 +479,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Admin login endpoint
+  app.post('/api/login', (req, res) => {
+    const { username, password } = req.body;
+
+    if (
+      username === process.env.ADMIN_USER &&
+      password === process.env.ADMIN_PASS
+    ) {
+      const token = jwt.sign({ username }, JWT_SECRET, { expiresIn: '1h' });
+      return res.json({ token });
+    }
+
+    res.status(401).json({ error: 'Invalid credentials' });
+  });
+
   // Basic auth middleware for leads GET endpoint only
   const requireAuth = (req, res, next) => {
     const auth = req.headers.authorization || '';
