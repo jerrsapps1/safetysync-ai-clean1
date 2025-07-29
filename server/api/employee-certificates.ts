@@ -251,7 +251,6 @@ export async function generateEmployeeQrCode(req: Request, res: Response) {
     const qrCodeImage = await QRCode.toDataURL(qrUrl, {
       errorCorrectionLevel: 'M',
       type: 'image/png',
-      quality: 0.92,
       margin: 2,
       color: {
         dark: '#000000',
