@@ -85,9 +85,18 @@ export function PageHeader({}: PageHeaderProps) {
                 bg-red-600 hover:bg-red-700 text-white font-bold border-2 border-red-500
                 shadow-2xl ring-2 ring-red-300/50
               `}
-              onClick={() => {
-                logout();
-                setIsMobileOpen(false);
+              onClick={async () => {
+                try {
+                  await logout();
+                  setIsMobileOpen(false);
+                  window.location.href = '/';
+                } catch (error) {
+                  console.error('Logout error:', error);
+                  // Force logout on error
+                  localStorage.removeItem('auth_token');
+                  sessionStorage.removeItem('auth_token');
+                  window.location.href = '/';
+                }
               }}
               title={!isHovered ? "Logout" : undefined}
             >
