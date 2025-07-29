@@ -29,7 +29,7 @@ import {
 } from "lucide-react";
 
 export default function WorkspaceSimplified() {
-  const { user, isAuthenticated, logout } = useAuth();
+  const { user, isAuthenticated, isLoading, logout } = useAuth();
   const [activeTab, setActiveTab] = useState("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const { toast } = useToast();
@@ -57,12 +57,27 @@ export default function WorkspaceSimplified() {
     setActiveTab(tab);
   }, []);
 
-  // Redirect if not authenticated
+  console.log('🏢 WORKSPACE: Auth state', { isAuthenticated, isLoading });
+
+  // Redirect if not authenticated (but wait for loading to complete)
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (!isAuthenticated && !isLoading) {
+      console.log('🏢 WORKSPACE: User not authenticated, redirecting to home');
       window.location.href = '/';
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, isLoading]);
+
+  // Show loading while checking authentication
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
+        <div className="text-white text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-white mx-auto mb-4"></div>
+          <p className="text-xl">Loading workspace...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!isAuthenticated) {
     return null;
