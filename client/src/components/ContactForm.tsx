@@ -96,16 +96,16 @@ export default function ContactForm() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="col-span-1">
-          <label className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2">
             <input
               type="checkbox"
               name="demoRequest"
               checked={formData.demoRequest}
-              onChange={handleChange}
-              className="rounded"
+              onChange={e => setFormData({ ...formData, demoRequest: e.target.checked })}
+              className="w-4 h-4"
             />
-            <span className="text-sm">Request a demo</span>
-          </label>
+            <label htmlFor="demoRequest">I'd like a live demo</label>
+          </div>
         </div>
         <div className="col-span-1">
           <select
@@ -113,13 +113,13 @@ export default function ContactForm() {
             value={formData.heardFrom}
             onChange={handleChange}
             className="w-full p-2 border rounded"
+            required
           >
             <option value="">How did you hear about us?</option>
-            <option value="google">Google Search</option>
-            <option value="social">Social Media</option>
-            <option value="referral">Referral</option>
-            <option value="industry">Industry Event</option>
-            <option value="other">Other</option>
+            <option value="Google">Google</option>
+            <option value="LinkedIn">LinkedIn</option>
+            <option value="Referral">Referral</option>
+            <option value="Other">Other</option>
           </select>
         </div>
       </div>
