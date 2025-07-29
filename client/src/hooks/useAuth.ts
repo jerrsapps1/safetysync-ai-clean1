@@ -125,6 +125,8 @@ export function useAuth() {
     localStorage.removeItem('remember_me');
     sessionStorage.removeItem('auth_token');
     setUser(null);
+    // Redirect to landing page after logout
+    window.location.href = '/';
   };
 
   const isAuthenticated = !!user;

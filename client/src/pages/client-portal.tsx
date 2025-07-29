@@ -74,14 +74,11 @@ export default function ClientPortal() {
         
         if (result.success) {
           toast({
-            title: "Login successful!",
-            description: "Welcome back to SafetySync.AI",
+            title: "Login Successful",
+            description: "Welcome back to SafetySync.AI!",
           });
-          console.log('🔐 CLIENT-PORTAL: Login successful, redirecting to workspace manually');
-          // Manual redirect after successful login
-          setTimeout(() => {
-            window.location.href = '/workspace';
-          }, 1000);
+          // Redirect to workspace after successful login
+          window.location.href = '/workspace';
         } else {
           console.error('🔐 CLIENT-PORTAL: Login failed', result.message);
           toast({
