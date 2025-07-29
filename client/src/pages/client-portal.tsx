@@ -49,18 +49,13 @@ export default function ClientPortal() {
 
   console.log('🔐 CLIENT-PORTAL: Auth state', { isAuthenticated, isLoading });
 
-  // Redirect if already authenticated (using effect to avoid render issues)
-  useEffect(() => {
-    if (isAuthenticated && !isLoading) {
-      console.log('🔐 CLIENT-PORTAL: User is authenticated, redirecting to workspace');
-      setLocation('/workspace');
-    }
-  }, [isAuthenticated, isLoading, setLocation]);
+  // Allow users to access login form even when authenticated
+  // Removed automatic redirect to give users control over navigation
 
   // Show loading while checking authentication
   if (isLoading) {
     return (
-      <div className="pt-16 min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
+      <div className="pt-16 bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 min-h-screen flex items-center justify-center">
         <LoadingSpinner size="lg" message="Checking authentication..." />
       </div>
     );
@@ -82,8 +77,11 @@ export default function ClientPortal() {
             title: "Login successful!",
             description: "Welcome back to SafetySync.AI",
           });
-          console.log('🔐 CLIENT-PORTAL: Login successful, auth state will trigger redirect');
-          // Redirect will happen automatically via useEffect when isAuthenticated becomes true
+          console.log('🔐 CLIENT-PORTAL: Login successful, redirecting to workspace manually');
+          // Manual redirect after successful login
+          setTimeout(() => {
+            window.location.href = '/workspace';
+          }, 1000);
         } else {
           console.error('🔐 CLIENT-PORTAL: Login failed', result.message);
           toast({
@@ -134,6 +132,33 @@ export default function ClientPortal() {
     <div className="pt-16 bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 min-h-screen">
       <div className="container mx-auto px-4 py-20">
         <div className="max-w-6xl mx-auto">
+          
+          {/* Show authentication status if user is already logged in */}
+          {isAuthenticated && (
+            <div className="mb-8 p-4 bg-emerald-500/20 border border-emerald-400/30 rounded-lg text-center">
+              <p className="text-emerald-200 mb-3">
+                You're already logged in! 
+              </p>
+              <div className="flex gap-4 justify-center">
+                <Button 
+                  onClick={() => window.location.href = '/workspace'}
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white"
+                >
+                  Go to Workspace
+                </Button>
+                <Button 
+                  onClick={() => {
+                    localStorage.removeItem('auth_token');
+                    window.location.reload();
+                  }}
+                  variant="outline"
+                  className="bg-white/10 border-white/30 text-white hover:bg-white/20"
+                >
+                  Logout & Login as Different User
+                </Button>
+              </div>
+            </div>
+          )}
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
