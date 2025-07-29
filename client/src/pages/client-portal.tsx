@@ -131,7 +131,7 @@ export default function ClientPortal() {
   };
 
   return (
-    <div className="pt-16 min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
+    <div className="pt-16 bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 min-h-screen">
       <div className="container mx-auto px-4 py-20">
         <div className="max-w-6xl mx-auto">
           {/* Header */}

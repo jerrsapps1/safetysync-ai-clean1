@@ -136,7 +136,7 @@ export default function TestimonialsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
+    <div className="bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
       <PageHeader />
 
       {/* Main Content with Sidebar Margin */}

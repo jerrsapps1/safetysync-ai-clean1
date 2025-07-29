@@ -4,7 +4,7 @@ import { PageHeader } from '../components/ui/page-header';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
+    <div className="pt-16 bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
       <PageHeader 
         title="Home"
         subtitle="Welcome to SafetySync.AI"

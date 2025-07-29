@@ -95,7 +95,7 @@ export default function Pricing() {
   ];
 
   return (
-    <div className="pt-16 min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
+    <div className="pt-16 bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
       {/* Hero Section */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

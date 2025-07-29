@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Ensure proper scrolling on all pages */
+html, body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Fix any height constraints that might prevent scrolling */
+#root {
+  min-height: 100vh;
+}
+
+/* Ensure content can scroll properly */
+.scroll-container {
+  overflow-y: auto;
+  max-height: 100vh;
+}

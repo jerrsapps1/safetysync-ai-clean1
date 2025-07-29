@@ -29,7 +29,7 @@ function App() {
           <CopyrightProtection />
           <Toaster />
           
-          <div className="font-sans min-h-screen">
+          <div className="font-sans">
             <Navbar />
             <Router>
               <Switch>
