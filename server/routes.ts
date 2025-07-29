@@ -83,6 +83,8 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { and, eq, desc } from "drizzle-orm";
 
+const JWT_SECRET = process.env.JWT_SECRET || 'super_secret_key';
+
 // Generate compliance report data based on type
 async function generateComplianceReportData(reportType: string, periodStart?: string, periodEnd?: string, userId?: number) {
   // Get real employee data from storage
