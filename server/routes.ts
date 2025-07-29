@@ -481,7 +481,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get('/api/leads', async (req, res) => {
     try {
       const result = await pool.query(
-        'SELECT id, name, email, company, role, message, created_at FROM leads ORDER BY created_at DESC'
+        'SELECT id, name, email, company, role, message, demo_request, heard_from, created_at FROM leads ORDER BY created_at DESC'
       );
       res.json(result.rows);
     } catch (error) {
@@ -492,13 +492,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Lead submission endpoint
   app.post("/api/leads", async (req, res) => {
-    const { name, email, company, role, message } = req.body;
+    const { name, email, company, role, message, demoRequest, heardFrom } = req.body;
 
     try {
       // Insert lead directly into database using your exact schema
       await pool.query(
-        'INSERT INTO leads (name, email, company, role, message) VALUES ($1, $2, $3, $4, $5)',
-        [name, email, company, role, message]
+        'INSERT INTO leads (name, email, company, role, message, demo_request, heard_from) VALUES ($1, $2, $3, $4, $5, $6, $7)',
+        [name, email, company, role, message, demoRequest || false, heardFrom || null]
       );
 
       // Send notification email via Brevo API
@@ -515,6 +515,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
               <p><strong>Email:</strong> ${email}</p>
               <p><strong>Company:</strong> ${company || 'Not provided'}</p>
               <p><strong>Role:</strong> ${role || 'Not provided'}</p>
+              <p><strong>Demo Request:</strong> ${demoRequest ? 'Yes' : 'No'}</p>
+              <p><strong>Heard From:</strong> ${heardFrom || 'Not specified'}</p>
               <p><strong>Message:</strong><br/>${message}</p>
               <hr/>
               <p><em>Submitted via SafetySync.AI Contact Form</em></p>

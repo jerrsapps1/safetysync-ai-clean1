@@ -7,6 +7,8 @@ type Lead = {
   company: string;
   role: string;
   message: string;
+  demo_request: boolean;
+  heard_from: string;
   created_at: string;
 };
 
@@ -32,6 +34,8 @@ export default function AdminLeads() {
               <th className="p-3">Email</th>
               <th className="p-3">Company</th>
               <th className="p-3">Role</th>
+              <th className="p-3">Demo</th>
+              <th className="p-3">Heard From</th>
               <th className="p-3">Message</th>
             </tr>
           </thead>
@@ -43,7 +47,15 @@ export default function AdminLeads() {
                 <td className="p-3">{lead.email}</td>
                 <td className="p-3">{lead.company}</td>
                 <td className="p-3">{lead.role}</td>
-                <td className="p-3">{lead.message}</td>
+                <td className="p-3">
+                  {lead.demo_request ? (
+                    <span className="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">Yes</span>
+                  ) : (
+                    <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">No</span>
+                  )}
+                </td>
+                <td className="p-3">{lead.heard_from || '-'}</td>
+                <td className="p-3 max-w-xs truncate">{lead.message}</td>
               </tr>
             ))}
           </tbody>

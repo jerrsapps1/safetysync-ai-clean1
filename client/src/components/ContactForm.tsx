@@ -6,13 +6,21 @@ export default function ContactForm() {
     email: '', 
     company: '', 
     role: '', 
-    message: ''
+    message: '',
+    demoRequest: false,
+    heardFrom: '',
   });
 
   const [status, setStatus] = useState('');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value, type } = e.target;
+    if (type === 'checkbox') {
+      const checked = (e.target as HTMLInputElement).checked;
+      setFormData({ ...formData, [name]: checked });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -28,7 +36,7 @@ export default function ContactForm() {
 
       if (res.ok) {
         setStatus('✅ Thanks! We\'ll be in touch.');
-        setFormData({ name: '', email: '', company: '', role: '', message: '' });
+        setFormData({ name: '', email: '', company: '', role: '', message: '', demoRequest: false, heardFrom: '' });
       } else {
         setStatus('❌ Something went wrong. Try again.');
       }
@@ -85,6 +93,36 @@ export default function ContactForm() {
         required 
         className="w-full p-2 border rounded" 
       />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="col-span-1">
+          <label className="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              name="demoRequest"
+              checked={formData.demoRequest}
+              onChange={handleChange}
+              className="rounded"
+            />
+            <span className="text-sm">Request a demo</span>
+          </label>
+        </div>
+        <div className="col-span-1">
+          <select
+            name="heardFrom"
+            value={formData.heardFrom}
+            onChange={handleChange}
+            className="w-full p-2 border rounded"
+          >
+            <option value="">How did you hear about us?</option>
+            <option value="google">Google Search</option>
+            <option value="social">Social Media</option>
+            <option value="referral">Referral</option>
+            <option value="industry">Industry Event</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
 
       <button 
         type="submit" 
