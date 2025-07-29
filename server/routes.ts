@@ -477,8 +477,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Fetch all leads endpoint
-  app.get('/api/leads', async (req, res) => {
+  // Basic auth middleware for leads GET endpoint only
+  const requireAuth = (req, res, next) => {
+    const auth = req.headers.authorization || '';
+    const token = auth.replace('Basic ', '');
+
+    const adminUser = process.env.ADMIN_USER || '';
+    const adminPass = process.env.ADMIN_PASS || '';
+    const expected = Buffer.from(`${adminUser}:${adminPass}`).toString('base64');
+    
+    if (token === expected) {
+      next();
+    } else {
+      res.set('WWW-Authenticate', 'Basic realm="admin"');
+      res.status(401).send('Unauthorized');
+    }
+  };
+
+  // Fetch all leads endpoint (protected)
+  app.get('/api/leads', requireAuth, async (req, res) => {
     try {
       const result = await pool.query(
         'SELECT id, name, email, company, role, message, demo_request, heard_from, created_at FROM leads ORDER BY created_at DESC'
