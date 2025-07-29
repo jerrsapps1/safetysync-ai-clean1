@@ -42,14 +42,29 @@ export default function ClientPortal() {
   };
   const [isSubmitting, setIsSubmitting] = useState(false);
   
-  const { login, register, isAuthenticated } = useAuth();
+  const { login, register, isAuthenticated, isLoading } = useAuth();
   const { toast } = useToast();
   const [, setLocation] = useLocation();
 
-  // Redirect if already authenticated
-  if (isAuthenticated) {
+  console.log('🔐 CLIENT-PORTAL: Auth state', { isAuthenticated, isLoading });
+
+  // Redirect if already authenticated (but wait for loading to complete)
+  if (isAuthenticated && !isLoading) {
+    console.log('🔐 CLIENT-PORTAL: User is authenticated, redirecting to workspace');
     setLocation('/workspace');
     return null;
+  }
+
+  // Show loading while checking authentication
+  if (isLoading) {
+    return (
+      <div className="pt-16 min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center">
+        <div className="text-white text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-white mx-auto mb-4"></div>
+          <p className="text-xl">Checking authentication...</p>
+        </div>
+      </div>
+    );
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
