@@ -83,7 +83,7 @@ export default function WorkspaceSimplified() {
   }
 
   return (
-    <div className="bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 min-h-screen overflow-auto">
+    <div className="bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 min-h-screen">
       {/* Tech Grid Background */}
       <div className="fixed inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
       
@@ -229,7 +229,7 @@ export default function WorkspaceSimplified() {
         </motion.div>
 
         {/* Main Content */}
-        <div className="flex-1 flex flex-col min-h-0">
+        <div className="flex-1 flex flex-col overflow-hidden">
           {/* Top Bar */}
           <div className="bg-black/20 backdrop-blur-sm border-b border-blue-700 p-4">
             <div className="flex items-center justify-between">
@@ -253,11 +253,11 @@ export default function WorkspaceSimplified() {
           </div>
 
           {/* Content Area */}
-          <div className="flex-1 overflow-hidden">
-            <div className="h-full">
+          <div className="flex-1 overflow-y-auto">
+            <div className="min-h-full">
               {/* Dashboard Tab */}
               {activeTab === "dashboard" && (
-                <div className="p-6 space-y-6 h-full overflow-y-auto">
+                <div className="p-6 space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {/* Total Employees */}
                     <Card>
@@ -283,7 +283,7 @@ export default function WorkspaceSimplified() {
                       </CardHeader>
                       <CardContent>
                         <div className="text-2xl font-bold">
-                          {isDashboardLoading ? "..." : dashboardData?.stats?.totalTrainingSessions || 0}
+                          {isDashboardLoading ? "..." : dashboardData?.stats?.totalCertificates || 0}
                         </div>
                         <p className="text-xs text-muted-foreground">
                           Completed training sessions
@@ -315,7 +315,7 @@ export default function WorkspaceSimplified() {
                       </CardHeader>
                       <CardContent>
                         <div className="text-2xl font-bold">
-                          {isDashboardLoading ? "..." : dashboardData?.stats?.complianceRate || 0}%
+                          {isDashboardLoading ? "..." : dashboardData?.stats?.complianceScore || 0}%
                         </div>
                         <p className="text-xs text-muted-foreground">
                           Up-to-date training records
@@ -361,28 +361,28 @@ export default function WorkspaceSimplified() {
 
               {/* Instructor Sign-In Generator Tab */}
               {activeTab === "instructor-signin" && (
-                <div className="h-full">
+                <div className="p-6">
                   <InstructorSignInGenerator />
                 </div>
               )}
 
               {/* Training Records Tab */}
               {activeTab === "training-records" && (
-                <div className="h-full">
+                <div className="p-6">
                   <TrainingRecordsManager />
                 </div>
               )}
 
               {/* Document Hub Tab */}
               {activeTab === "document-hub" && (
-                <div className="h-full">
+                <div className="p-6">
                   <TrainingDocumentHub />
                 </div>
               )}
 
               {/* Employee Management Tab */}
               {activeTab === "employees" && (
-                <div className="h-full">
+                <div className="p-6">
                   <EmployeeManagement />
                 </div>
               )}
