@@ -207,18 +207,19 @@ export default function WorkspaceSimplified() {
 
         {/* Main Content */}
         <div className="flex-1 flex flex-col min-h-0">
-          {/* Top Bar - Fixed Header */}
-          <div className="bg-black/20 backdrop-blur-sm border-b border-blue-700 p-4 flex-shrink-0 sticky top-0 z-20">
-            <div className="flex items-center justify-between">
-              <div className="flex-1 min-w-0">
-                <h1 className="text-2xl font-bold text-white truncate">
+          {/* Scrollable Content Area with Internal Header */}
+          <div className="flex-1 overflow-y-auto">
+            <div className="p-6 space-y-6">
+              {/* Page Header */}
+              <div className="mb-6">
+                <h1 className="text-3xl font-bold text-white mb-2">
                   {activeTab === "dashboard" && "Dashboard"}
                   {activeTab === "instructor-signin" && "Instructor Sign-In Generator"}
                   {activeTab === "training-records" && "Training Records Manager"}
                   {activeTab === "document-hub" && "Training Document Hub"}
                   {activeTab === "employees" && "Employee Management"}
                 </h1>
-                <p className="text-white text-sm mt-1">
+                <p className="text-white/80 text-lg">
                   {activeTab === "dashboard" && "Overview of training records and activities"}
                   {activeTab === "instructor-signin" && "Create sign-in sheets for training sessions"}
                   {activeTab === "training-records" && "Manage and organize training records"}
@@ -226,15 +227,10 @@ export default function WorkspaceSimplified() {
                   {activeTab === "employees" && "Manage employee information and training status"}
                 </p>
               </div>
-            </div>
-          </div>
 
-          {/* Scrollable Content Area */}
-          <div className="flex-1 overflow-y-auto">
-            <div className="pb-6">
               {/* Dashboard Tab */}
               {activeTab === "dashboard" && (
-                <div className="p-6 space-y-6">
+                <div className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {/* Total Employees */}
                     <Card>
@@ -407,28 +403,28 @@ export default function WorkspaceSimplified() {
 
               {/* Instructor Sign-In Generator Tab */}
               {activeTab === "instructor-signin" && (
-                <div className="p-6">
+                <div>
                   <InstructorSignInGenerator />
                 </div>
               )}
 
               {/* Training Records Tab */}
               {activeTab === "training-records" && (
-                <div className="p-6">
+                <div>
                   <TrainingRecordsManager />
                 </div>
               )}
 
               {/* Document Hub Tab */}
               {activeTab === "document-hub" && (
-                <div className="p-6">
+                <div>
                   <TrainingDocumentHub />
                 </div>
               )}
 
               {/* Employee Management Tab */}
               {activeTab === "employees" && (
-                <div className="p-6">
+                <div>
                   <EmployeeManagement />
                 </div>
               )}
