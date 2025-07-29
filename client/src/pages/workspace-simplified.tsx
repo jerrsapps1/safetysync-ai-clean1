@@ -83,7 +83,7 @@ export default function WorkspaceSimplified() {
   }
 
   return (
-    <div className="bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 min-h-screen">
+    <div className="bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 min-h-screen overflow-auto">
       {/* Tech Grid Background */}
       <div className="fixed inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
       
@@ -103,7 +103,7 @@ export default function WorkspaceSimplified() {
         </div>
       </div>
 
-      <div className="flex h-screen relative z-10">
+      <div className="flex min-h-screen relative z-10">
         {/* Sidebar */}
         <motion.div
           className={`${sidebarOpen ? 'w-64' : 'w-16'} bg-black/20 backdrop-blur-sm border-r border-blue-700 flex flex-col flex-shrink-0`}

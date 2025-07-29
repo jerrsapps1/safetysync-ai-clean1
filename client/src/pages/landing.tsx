@@ -139,12 +139,12 @@ export default function LandingPage() {
 
   const handleLoginClick = () => {
     if (isAuthenticated) {
-      // User is already logged in, go to client portal
+      // User is already logged in, go to workspace
       if (window.clarity) window.clarity('set', 'login_completed', true);
-      window.location.href = '/client-portal';
-    } else {
-      // User needs to log in, go to workspace login form
       window.location.href = '/workspace';
+    } else {
+      // User needs to log in, go to client portal for login
+      window.location.href = '/client-portal';
     }
   };
 
