@@ -1,5 +1,14 @@
 import type { Express } from "express";
 import express from "express";
+
+// Extend Express Request interface to include user property
+declare global {
+  namespace Express {
+    interface Request {
+      user?: any;
+    }
+  }
+}
 import { createServer, type Server } from "http";
 import axios from "axios";
 import { storage } from "./storage";
@@ -82,6 +91,7 @@ import { z } from "zod";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { and, eq, desc } from "drizzle-orm";
+import { db } from "./db";
 
 const JWT_SECRET = process.env.JWT_SECRET || 'super_secret_key';
 
@@ -166,7 +176,7 @@ async function generateComplianceReportData(reportType: string, periodStart?: st
 }
 
 // JWT authentication middleware
-function authenticateToken(req: any, res: any, next: any) {
+function authenticateToken(req: express.Request, res: express.Response, next: express.NextFunction) {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
 
@@ -558,13 +568,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // JWT authentication middleware for API endpoints
-  function authenticateJWT(req, res, next) {
+  function authenticateJWT(req: express.Request, res: express.Response, next: express.NextFunction) {
     const authHeader = req.headers.authorization;
     if (!authHeader) return res.status(403).json({ error: 'Missing token' });
 
     const token = authHeader.split(' ')[1];
 
-    jwt.verify(token, JWT_SECRET, (err, user) => {
+    jwt.verify(token, JWT_SECRET, (err: any, user: any) => {
       if (err) return res.status(403).json({ error: 'Invalid token' });
 
       req.user = user;
@@ -772,7 +782,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         // Fallback to our Boomi AI system
         console.log('🔄 Falling back to Boomi AI processing...');
         const pdfBuffer = req.file.buffer;
-        const pdfText = await pdf(pdfBuffer).then(data => data.text);
+        const pdfText = await pdf(pdfBuffer).then((data: any) => data.text);
         result = await boomiAI.processTrainingDocument(pdfText, 'pdf');
       }
       
@@ -957,7 +967,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({
         success: false,
         message: "Failed to process document",
-        error: error.message
+        error: error instanceof Error ? error.message : 'Unknown error'
       });
     }
   });
@@ -992,7 +1002,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       );
 
       res.json({ success: true, messageId: response.data.messageId });
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to send Brevo email:', error.response?.data || error);
       res.status(500).json({ error: 'Email failed to send' });
     }
@@ -1129,7 +1139,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.error('Email test error:', error);
       res.status(500).json({ 
         success: false, 
-        message: `Email test failed: ${error.message}` 
+        message: `Email test failed: ${error instanceof Error ? error.message : 'Unknown error'}` 
       });
     }
   });
@@ -2517,7 +2527,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           });
           results.push({ success: true, employee });
         } catch (error) {
-          results.push({ success: false, error: error.message, data: employeeData });
+          results.push({ success: false, error: error instanceof Error ? error.message : 'Unknown error', data: employeeData });
         }
       }
       
@@ -3278,7 +3288,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'api-key': process.env.BREVO_API_KEY, // Using environment variable for security
+          'api-key': process.env.BREVO_API_KEY || '', // Using environment variable for security
         },
         body: JSON.stringify({
           email,
