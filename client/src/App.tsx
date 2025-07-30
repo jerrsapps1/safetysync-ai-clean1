@@ -15,8 +15,7 @@ import AdminSupportDashboard from "./pages/admin/support.jsx";
 function App() {
   return (
     <Router>
-      <Route path="/" component={SimpleTest} />
-      <Route path="/landing" component={LandingPage} />
+      <Route path="/" component={LandingPage} />
       <Route path="/test" component={SimpleTest} />
       <Route path="/ehs" component={EHSPage} />
       <Route path="/hr" component={HRPage} />
