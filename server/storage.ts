@@ -2,7 +2,7 @@ import {
   users, leads, complianceReports, cloneDetectionScans, helpDeskTickets, promoCodeUsage,
   employees, instructors, externalStudents, trainingPrograms, trainingSessions, employeeTraining, certificates, documents,
   auditLogs, notifications, integrations, locations, ticketResponses, specials, featureUpdates,
-  upcomingSoftware, softwareVotes, clientComments, commentLikes,
+  upcomingSoftware, softwareVotes, clientComments, commentLikes, supportTickets,
   type User, type InsertUser, type Lead, type InsertLead, type ComplianceReport, type InsertComplianceReport, 
   type CloneDetectionScan, type InsertCloneDetectionScan, type HelpDeskTicket, type InsertHelpDeskTicket, 
   type PromoCodeUsage, type InsertPromoCodeUsage, type Employee, type InsertEmployee,
@@ -14,7 +14,8 @@ import {
   type InsertIntegration, type Location, type InsertLocation,
   companyProfiles, type CompanyProfile, type InsertCompanyProfile, type TicketResponse, type InsertTicketResponse,
   type Special, type InsertSpecial, type FeatureUpdate, type InsertFeatureUpdate,
-  type UpcomingSoftware, type InsertUpcomingSoftware, type ClientComment, type InsertClientComment
+  type UpcomingSoftware, type InsertUpcomingSoftware, type ClientComment, type InsertClientComment,
+  type SupportTicket, type InsertSupportTicket
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, and, gt, sql } from "drizzle-orm";
@@ -185,6 +186,15 @@ export interface IStorage {
   getCompanyProfile(userId: number): Promise<CompanyProfile | undefined>;
   createCompanyProfile(profile: InsertCompanyProfile): Promise<CompanyProfile>;
   updateCompanyProfile(userId: number, updates: Partial<CompanyProfile>): Promise<CompanyProfile>;
+  
+  // Support Ticket Management
+  createSupportTicket(ticket: InsertSupportTicket): Promise<SupportTicket>;
+  getSupportTickets(): Promise<SupportTicket[]>;
+  getSupportTicketById(id: number): Promise<SupportTicket | undefined>;
+  updateSupportTicket(id: number, updates: Partial<SupportTicket>): Promise<void>;
+  assignSupportTicket(id: number, assignedTo: string): Promise<void>;
+  resolveSupportTicket(id: number, resolved: boolean): Promise<void>;
+  updateSupportTicketStatus(id: number, status: string): Promise<void>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -1480,6 +1490,52 @@ export class DatabaseStorage implements IStorage {
       .where(eq(companyProfiles.userId, userId))
       .returning();
     return updatedProfile;
+  }
+
+  // Support Ticket Management Implementation
+  async createSupportTicket(ticket: InsertSupportTicket): Promise<SupportTicket> {
+    const [newTicket] = await db
+      .insert(supportTickets)
+      .values(ticket)
+      .returning();
+    return newTicket;
+  }
+
+  async getSupportTickets(): Promise<SupportTicket[]> {
+    return await db.select().from(supportTickets);
+  }
+
+  async getSupportTicketById(id: number): Promise<SupportTicket | undefined> {
+    const [ticket] = await db.select().from(supportTickets).where(eq(supportTickets.id, id));
+    return ticket || undefined;
+  }
+
+  async updateSupportTicket(id: number, updates: Partial<SupportTicket>): Promise<void> {
+    await db.update(supportTickets)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(supportTickets.id, id));
+  }
+
+  async assignSupportTicket(id: number, assignedTo: string): Promise<void> {
+    await db.update(supportTickets)
+      .set({ assignedTo, updatedAt: new Date() })
+      .where(eq(supportTickets.id, id));
+  }
+
+  async resolveSupportTicket(id: number, resolved: boolean): Promise<void> {
+    await db.update(supportTickets)
+      .set({ 
+        resolved, 
+        status: resolved ? "Resolved" : "Open",
+        updatedAt: new Date() 
+      })
+      .where(eq(supportTickets.id, id));
+  }
+
+  async updateSupportTicketStatus(id: number, status: string): Promise<void> {
+    await db.update(supportTickets)
+      .set({ status, updatedAt: new Date() })
+      .where(eq(supportTickets.id, id));
   }
 }
 
