@@ -2,11 +2,46 @@ import { Router } from "express";
 import { db } from "../db";
 import { supportTickets } from "../../shared/schema";
 import { eq, desc } from "drizzle-orm";
+import authenticateJWT from "../middleware/authenticateJWT";
+import { insertSupportTicketSchema } from "../../shared/schema";
 
 const router = Router();
 
-// GET all support tickets
-router.get("/", async (req, res) => {
+// POST create new support ticket (public endpoint for customers)
+router.post("/", async (req, res) => {
+  try {
+    const validatedData = insertSupportTicketSchema.parse(req.body);
+    
+    const [ticket] = await db.insert(supportTickets)
+      .values({
+        ...validatedData,
+        status: 'New',
+        resolved: false,
+      })
+      .returning();
+
+    console.log('Support ticket created:', {
+      id: ticket.id,
+      name: ticket.name,
+      email: ticket.email,
+      topic: ticket.topic,
+      urgency: ticket.urgency,
+      timestamp: new Date().toISOString()
+    });
+
+    res.json({
+      success: true,
+      message: "Support request submitted successfully. We'll get back to you within 24 hours.",
+      ticketId: ticket.id
+    });
+  } catch (err) {
+    console.error("Error creating support ticket:", err);
+    res.status(500).json({ error: "Failed to submit support request." });
+  }
+});
+
+// GET all support tickets (admin only)
+router.get("/", authenticateJWT, async (req, res) => {
   try {
     const data = await db.select().from(supportTickets).orderBy(desc(supportTickets.createdAt));
     res.json(data);
@@ -16,8 +51,8 @@ router.get("/", async (req, res) => {
   }
 });
 
-// GET specific support ticket by ID
-router.get("/:id", async (req, res) => {
+// GET specific support ticket by ID (admin only)
+router.get("/:id", authenticateJWT, async (req, res) => {
   const id = parseInt(req.params.id);
   
   try {
@@ -34,8 +69,8 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// PATCH update a support ticket
-router.patch("/:id", async (req, res) => {
+// PATCH update a support ticket (admin only)
+router.patch("/:id", authenticateJWT, async (req, res) => {
   const id = parseInt(req.params.id);
   const updates = req.body;
 
@@ -53,8 +88,8 @@ router.patch("/:id", async (req, res) => {
   }
 });
 
-// PATCH assign ticket to support agent
-router.patch("/:id/assign", async (req, res) => {
+// PATCH assign ticket to support agent (admin only)
+router.patch("/:id/assign", authenticateJWT, async (req, res) => {
   const id = parseInt(req.params.id);
   const { assignedTo } = req.body;
 
@@ -73,8 +108,8 @@ router.patch("/:id/assign", async (req, res) => {
   }
 });
 
-// PATCH resolve ticket
-router.patch("/:id/resolve", async (req, res) => {
+// PATCH resolve ticket (admin only)
+router.patch("/:id/resolve", authenticateJWT, async (req, res) => {
   const id = parseInt(req.params.id);
   const { internalNotes } = req.body;
 
