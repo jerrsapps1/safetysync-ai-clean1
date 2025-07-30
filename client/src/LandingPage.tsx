@@ -110,6 +110,7 @@ export default function LandingPage() {
         <a href="/pricing" className="text-white hover:underline ml-2">Pricing</a> ·
         <a href="/contact" className="text-white hover:underline ml-2">Contact</a> ·
         <a href="/faq" className="text-white hover:underline ml-2">FAQ</a> ·
+        <a href="/support" className="text-white hover:underline ml-2">Support</a> ·
         <a href="/privacy" className="underline ml-2">Privacy Policy</a>
       </footer>
     </div>

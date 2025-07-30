@@ -7,6 +7,7 @@ import CentersPage from "./pages/centers";
 import PricingPage from "./pages/pricing";
 import ContactPage from "./pages/contact-simple";
 import FAQPage from "./pages/faq";
+import SupportPage from "./pages/support";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path="/pricing" component={PricingPage} />
       <Route path="/contact" component={ContactPage} />
       <Route path="/faq" component={FAQPage} />
+      <Route path="/support" component={SupportPage} />
     </>
   );
 }

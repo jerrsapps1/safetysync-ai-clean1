@@ -3391,6 +3391,44 @@ export async function registerRoutes(app: Express): Promise<Server> {
   const invoiceRouter = await import("./invoice");
   app.use("/api/invoice", invoiceRouter.default);
 
+  // Support request endpoint
+  app.post("/api/support", async (req, res) => {
+    try {
+      const { name, email, company, role, topic, urgency, message, agree } = req.body;
+      
+      // Validate required fields
+      if (!name || !email || !message || !agree) {
+        return res.status(400).json({ 
+          success: false, 
+          message: "Please complete all required fields." 
+        });
+      }
+      
+      // Log the support request (in production, save to database and send email)
+      console.log("Support request received:", {
+        name,
+        email,
+        company,
+        role,
+        topic,
+        urgency,
+        message,
+        timestamp: new Date().toISOString()
+      });
+
+      res.json({ 
+        success: true, 
+        message: "Support request submitted successfully. We'll get back to you within 24 hours." 
+      });
+    } catch (error) {
+      console.error("Support request error:", error);
+      res.status(500).json({ 
+        success: false, 
+        message: "Failed to submit support request" 
+      });
+    }
+  });
+
   // Serve platform documentation files
   app.use('/platform-documentation', express.static('platform-documentation'));
 
