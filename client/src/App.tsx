@@ -8,6 +8,7 @@ import PricingPage from "./pages/pricing";
 import ContactPage from "./pages/contact-simple";
 import FAQPage from "./pages/faq";
 import SupportPage from "./pages/support";
+import AdminSupportPage from "./pages/admin/support";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path="/contact" component={ContactPage} />
       <Route path="/faq" component={FAQPage} />
       <Route path="/support" component={SupportPage} />
+      <Route path="/admin/support" component={AdminSupportPage} />
     </>
   );
 }
