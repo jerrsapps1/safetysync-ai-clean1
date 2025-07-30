@@ -15,13 +15,17 @@ import { storage } from "./storage";
 import { cloneDetector } from "./ai-clone-detection";
 import { emailAutomation } from "./email-automation";
 import { sendVerificationEmail, sendWelcomeEmail } from "./email-service";
+import { initiatePasswordReset, resetPassword } from "./password-reset-service";
 import crypto from "crypto";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 import emailAutomationRoutes from "./api/email-automation";
 import instructorTrainingSessionRoutes from "./api/instructor-training-sessions";
 import invoiceRoutes from "./invoice";
 import { billingAnalytics } from "./billing-analytics";
+import { z } from "zod";
 import { 
-  insertLeadSchema, insertUserSchema, loginUserSchema, insertComplianceReportSchema, 
+  insertLeadSchema, insertUserSchema, loginUserSchema, forgotPasswordSchema, resetPasswordSchema, insertComplianceReportSchema, 
   insertCloneDetectionScanSchema, insertHelpDeskTicketSchema, insertPromoCodeUsageSchema,
   insertEmployeeSchema, insertInstructorSchema, insertExternalStudentSchema, insertTrainingProgramSchema, insertTrainingSessionSchema,
   insertEmployeeTrainingSchema, insertCertificateSchema, insertDocumentSchema,
@@ -87,9 +91,6 @@ const trackFailedLogin = (identifier: string): boolean => {
 const clearFailedAttempts = (identifier: string): void => {
   failedAttempts.delete(identifier);
 };
-import { z } from "zod";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
 import { and, eq, desc } from "drizzle-orm";
 import { db } from "./db";
 
@@ -549,6 +550,83 @@ export async function registerRoutes(app: Express): Promise<Server> {
         success: false, 
         message: "Internal server error" 
       });
+    }
+  });
+
+  // Password reset request endpoint
+  app.post("/api/auth/forgot-password", async (req, res) => {
+    try {
+      const { email } = forgotPasswordSchema.parse(req.body);
+      
+      console.log('🔄 Password reset requested for:', email);
+      
+      // Initiate password reset (this handles user existence check internally)
+      await initiatePasswordReset(email);
+      
+      // Always return success to prevent email enumeration
+      res.json({
+        success: true,
+        message: "If an account with that email exists, we've sent password reset instructions."
+      });
+      
+      console.log('✅ Password reset email sent (if user exists)');
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({
+          success: false,
+          message: "Please enter a valid email address",
+          errors: error.errors
+        });
+      } else {
+        console.error("Password reset request error:", error);
+        res.status(500).json({
+          success: false,
+          message: "Unable to process password reset request. Please try again."
+        });
+      }
+    }
+  });
+
+  // Password reset completion endpoint
+  app.post("/api/auth/reset-password", async (req, res) => {
+    try {
+      const { token, password } = resetPasswordSchema.parse(req.body);
+      
+      console.log('🔄 Password reset attempted with token');
+      
+      // Hash the new password
+      const hashedPassword = await bcrypt.hash(password, 10);
+      
+      // Reset the password using the token
+      const success = await resetPassword(token, hashedPassword);
+      
+      if (success) {
+        console.log('✅ Password reset completed successfully');
+        res.json({
+          success: true,
+          message: "Your password has been reset successfully. You can now log in with your new password."
+        });
+      } else {
+        console.log('❌ Password reset failed - invalid or expired token');
+        res.status(400).json({
+          success: false,
+          message: "Invalid or expired reset token. Please request a new password reset."
+        });
+      }
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({
+          success: false,
+          message: "Invalid password reset data",
+          errors: error.errors
+        });
+      } else {
+        console.error("Password reset error:", error);
+        res.status(500).json({
+          success: false,
+          message: "Failed to reset password. Please try again."
+        });
+      }
     }
   });
 

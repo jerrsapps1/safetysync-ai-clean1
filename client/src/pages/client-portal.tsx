@@ -311,6 +311,20 @@ export default function ClientPortal() {
                     {isLogin ? <LogIn className="w-4 h-4 ml-2" /> : <UserPlus className="w-4 h-4 ml-2" />}
                   </Button>
 
+                  {/* Forgot Password Link - Only show during login */}
+                  {isLogin && (
+                    <div className="text-center">
+                      <Link href="/forgot-password">
+                        <button
+                          type="button"
+                          className="text-blue-200 hover:text-white text-sm underline"
+                        >
+                          Forgot your password?
+                        </button>
+                      </Link>
+                    </div>
+                  )}
+
                   {/* Toggle Form */}
                   <div className="text-center pt-4">
                     <p className="text-blue-100">
