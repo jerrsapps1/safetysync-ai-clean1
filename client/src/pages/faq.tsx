@@ -5,58 +5,48 @@ export default function FAQPage() {
     {
       category: "General",
       q: "Does SafetySync.AI provide training content?",
-      a: "No. We help manage training documentation and compliance, but do not offer training courses.",
+      a: "No. SafetySync.AI does not offer training courses. We provide a platform to track, manage, and automate training documentation and OSHA compliance tasks.",
     },
     {
       category: "General",
-      q: "How does SafetySync's AI document processing work?",
-      a: "Our AI uses OpenAI GPT-4o technology to extract training data from certificates, transcripts, and safety documents with 98.7% accuracy. It automatically identifies OSHA-relevant training, instructor credentials, completion dates, and compliance requirements."
-    },
-    {
-      category: "General",
-      q: "What types of training documents can SafetySync process?",
-      a: "SafetySync processes certificates, transcripts, training records, instructor credentials, equipment operator cards, and safety documentation. Our AI recognizes OSHA standards like Fall Protection (29 CFR 1910.30), HAZWOPER (29 CFR 1910.120), HazCom (29 CFR 1910.1200), and more."
+      q: "Who is SafetySync.AI for?",
+      a: "We support EHS managers, HR teams, safety consultants, and training centers — anyone responsible for tracking safety training and maintaining compliance documentation.",
     },
     {
       category: "Plans & Billing",
-      q: "What's included in each pricing plan?",
-      a: "All plans include full platform access, AI document processing, compliance dashboards, and employee management. You only pay $5.95 per certificate or digital wallet card generated. Essential ($49/mo) supports 25 employees, Professional ($149/mo) supports 100 employees, Enterprise ($349/mo) supports 500 employees, and Enterprise Plus ($749/mo) has unlimited employees."
+      q: "How does pricing work?",
+      a: "You choose a monthly plan tier based on your organization size, and pay $5.95 only when you issue a certificate or digital wallet card. Volume discounts apply.",
     },
     {
       category: "Plans & Billing",
-      q: "How long is the free trial?",
-      a: "We offer a 6-hour focused trial that gives you full access to explore all platform features, upload documents, and see how our AI processes your training records. This concentrated trial lets you quickly evaluate if SafetySync fits your needs."
-    },
-    {
-      category: "Plans & Billing",
-      q: "How does volume pricing work for certificates?",
-      a: "Certificate generation costs $5.95 each across all plans. Volume discounts apply: 10% off for 15-29 certificates, 15% off for 30-49 certificates, and 20% off for 50+ certificates per billing cycle."
+      q: "Do I need a credit card to start?",
+      a: "No. Our 6-hour trial gives you full access with no credit card required. You'll only be billed if you continue after trial or issue compliance documents.",
     },
     {
       category: "Platform & Integrations",
-      q: "Can I integrate SafetySync with our existing HR systems?",
-      a: "Yes! Our Enterprise plans include HR integration capabilities. We support common HRIS systems and can export compliance data in multiple formats. Our team provides integration support to ensure smooth data flow between systems."
+      q: "Do you integrate with my HR software?",
+      a: "Yes. We support integrations with platforms like BambooHR, Rippling, and others. You can also export CSV files or connect via our API.",
     },
     {
       category: "Platform & Integrations",
-      q: "Can we customize certificates and digital wallet cards?",
-      a: "Yes! Enterprise Plus plans include custom branding for certificates and digital wallet cards. You can add your company logo, colors, and formatting. All generated documents include QR codes for instant verification."
+      q: "Can instructors manage multiple companies?",
+      a: "Absolutely. SafetySync allows instructors and training centers to manage separate client records, training histories, and branded certificates.",
     },
     {
       category: "Security & Compliance",
-      q: "How secure is our employee data?",
-      a: "We use enterprise-grade security with encrypted data storage, secure API connections, and compliance with data protection standards. Employee information is protected with JWT authentication, PostgreSQL database security, and regular security audits."
+      q: "How secure is the platform?",
+      a: "We use JWT authentication, encrypted data storage, audit logging, and session protections. Your data is protected at every layer.",
     },
     {
       category: "Security & Compliance",
-      q: "Can SafetySync help us prepare for OSHA inspections?",
-      a: "Absolutely! SafetySync maintains audit-ready compliance records, tracks training matrices by job title, monitors certification expiration dates, and generates comprehensive reports that demonstrate your training program's effectiveness to OSHA inspectors."
+      q: "Are SafetySync certificates verifiable?",
+      a: "Yes. Each certificate and digital wallet card includes a QR code that links to a live, verifiable compliance record.",
     },
     {
       category: "Support",
-      q: "What support is available?",
-      a: "We provide email support with 2-hour response times during business hours (Mon-Fri 9am-6pm EST). Enterprise plans include priority support, and Enterprise Plus includes dedicated onboarding assistance."
-    }
+      q: "What if I need help?",
+      a: "You can use the Helpdesk inside the platform or email us at hello@safetysync.ai. We usually respond within 24 hours.",
+    },
   ];
 
   return (
