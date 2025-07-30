@@ -102,9 +102,18 @@ app.use((req, res, next) => {
   // Register support routes
   app.use("/api/support", supportRoutes);
   
+  // Register auth routes
+  const authRoutes = await import("./routes/auth");
+  app.use("/api/auth", authRoutes.default);
+  
   // Serve admin authentication test page
   app.get("/admin-auth-test", (req, res) => {
     res.sendFile(path.join(__dirname, "../test-admin-auth.html"));
+  });
+  
+  // Serve admin login page
+  app.get("/admin-login", (req, res) => {
+    res.sendFile(path.join(__dirname, "../admin-login.html"));
   });
   
   const server = await registerRoutes(app);
