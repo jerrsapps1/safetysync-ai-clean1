@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { db } from "../db";
 import { supportTickets } from "../../shared/schema";
-import { eq, desc } from "drizzle-orm";
+import { eq, desc, and } from "drizzle-orm";
 import authenticateJWT from "../middleware/authenticateJWT";
 import { insertSupportTicketSchema } from "../../shared/schema";
 
@@ -43,7 +43,26 @@ router.post("/", async (req, res) => {
 // GET all support tickets (admin only)
 router.get("/", authenticateJWT, async (req, res) => {
   try {
-    const data = await db.select().from(supportTickets).orderBy(desc(supportTickets.createdAt));
+    const { status, urgency, resolved } = req.query;
+    
+    // Build where conditions
+    const conditions = [];
+    if (status && typeof status === 'string') {
+      conditions.push(eq(supportTickets.status, status));
+    }
+    if (urgency && typeof urgency === 'string') {
+      conditions.push(eq(supportTickets.urgency, urgency));
+    }
+    if (resolved !== undefined && typeof resolved === 'string') {
+      conditions.push(eq(supportTickets.resolved, resolved === 'true'));
+    }
+    
+    let query = db.select().from(supportTickets);
+    if (conditions.length > 0) {
+      query = query.where(and(...conditions));
+    }
+    
+    const data = await query.orderBy(desc(supportTickets.createdAt));
     res.json(data);
   } catch (err) {
     console.error("Error loading support tickets:", err);
@@ -126,6 +145,42 @@ router.patch("/:id/resolve", authenticateJWT, async (req, res) => {
   } catch (err) {
     console.error("Error resolving support ticket:", err);
     res.status(500).json({ error: "Failed to resolve ticket." });
+  }
+});
+
+// GET CSV export of support tickets (admin only)
+router.get("/export/csv", authenticateJWT, async (req, res) => {
+  try {
+    const tickets = await db.select().from(supportTickets).orderBy(desc(supportTickets.createdAt));
+    
+    // Create CSV content
+    const headers = ['ID', 'Name', 'Email', 'Company', 'Role', 'Topic', 'Urgency', 'Status', 'Message', 'Internal Notes', 'Assigned To', 'Resolved', 'Created At', 'Updated At'];
+    const csvContent = [
+      headers.join(','),
+      ...tickets.map(ticket => [
+        ticket.id,
+        `"${ticket.name}"`,
+        `"${ticket.email}"`,
+        `"${ticket.company || ''}"`,
+        `"${ticket.role || ''}"`,
+        `"${ticket.topic || ''}"`,
+        `"${ticket.urgency || ''}"`,
+        `"${ticket.status || ''}"`,
+        `"${ticket.message.replace(/"/g, '""')}"`,
+        `"${(ticket.internalNotes || '').replace(/"/g, '""')}"`,
+        `"${ticket.assignedTo || ''}"`,
+        ticket.resolved ? 'Yes' : 'No',
+        `"${ticket.createdAt}"`,
+        `"${ticket.updatedAt || ''}"`
+      ].join(','))
+    ].join('\n');
+
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', `attachment; filename="support-tickets-${new Date().toISOString().split('T')[0]}.csv"`);
+    res.send(csvContent);
+  } catch (err) {
+    console.error("Error exporting CSV:", err);
+    res.status(500).json({ error: "Failed to export CSV." });
   }
 });
 
