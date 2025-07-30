@@ -990,4 +990,34 @@ export type InsertTrainingRequest = z.infer<typeof insertTrainingRequestSchema>;
 export type UpcomingTrainingSession = typeof upcomingTrainingSessions.$inferSelect;
 export type InsertUpcomingTrainingSession = z.infer<typeof insertUpcomingTrainingSessionSchema>;
 
+// Support Tickets Schema  
+export const supportTickets = pgTable("support_tickets", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  email: varchar("email", { length: 255 }).notNull(),
+  company: varchar("company", { length: 255 }),
+  role: varchar("role", { length: 255 }),
+  topic: varchar("topic", { length: 100 }).default("General"),
+  urgency: varchar("urgency", { length: 50 }).default("Normal"),
+  message: text("message").notNull(),
+  
+  // Support team workflow fields
+  status: varchar("status", { length: 50 }).default("New"), // New, Open, Pending, Resolved
+  internalNotes: text("internal_notes").default(""),
+  assignedTo: varchar("assigned_to", { length: 255 }),
+  resolved: boolean("resolved").default(false),
+  
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const insertSupportTicketSchema = createInsertSchema(supportTickets).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export type SupportTicket = typeof supportTickets.$inferSelect;
+export type InsertSupportTicket = z.infer<typeof insertSupportTicketSchema>;
+
 

@@ -3404,21 +3404,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
       
-      // Log the support request (in production, save to database and send email)
-      console.log("Support request received:", {
+      // Create support ticket in database
+      const supportTicket = await storage.createSupportTicket({
         name,
         email,
-        company,
-        role,
+        company: company || null,
+        role: role || null,
+        topic: topic || "General",
+        urgency: urgency || "Normal",
+        message,
+        status: "New",
+        internalNotes: "",
+        assignedTo: null,
+        resolved: false,
+      });
+
+      console.log("Support ticket created:", {
+        id: supportTicket.id,
+        name,
+        email,
         topic,
         urgency,
-        message,
         timestamp: new Date().toISOString()
       });
 
       res.json({ 
         success: true, 
-        message: "Support request submitted successfully. We'll get back to you within 24 hours." 
+        message: "Support request submitted successfully. We'll get back to you within 24 hours.",
+        ticketId: supportTicket.id
       });
     } catch (error) {
       console.error("Support request error:", error);
