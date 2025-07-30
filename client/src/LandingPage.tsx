@@ -93,6 +93,7 @@ export default function LandingPage() {
       <footer className="bg-blue-900 text-white py-8 px-6 text-sm text-center">
         © {new Date().getFullYear()} SafetySync.AI · All rights reserved ·
         <a href="/ehs" className="text-white hover:underline ml-2">For EHS Managers</a> ·
+        <a href="/hr" className="text-white hover:underline ml-2">For HR Teams</a> ·
         <a href="/privacy" className="underline ml-2">Privacy Policy</a>
       </footer>
     </div>
