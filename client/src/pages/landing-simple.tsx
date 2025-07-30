@@ -1,62 +1,33 @@
-import { useState, useEffect } from 'react';
-import PricingFAQ from '@/components/PricingFAQ';
-import ComparisonModal from '@/components/ComparisonModal';
-import { clarity } from '@/lib/clarity-analytics';
-
-export default function LandingPageSimple() {
-  const [showModal, setShowModal] = useState(false);
-  const [liferCount, setLiferCount] = useState(0);
-
-  useEffect(() => {
-    async function fetchLiferCount() {
-      try {
-        const res = await fetch('/api/lifers-claimed');
-        const data = await res.json();
-        setLiferCount(data.count);
-      } catch (err) {
-        console.error('Failed to load lifer count', err);
-      }
-    }
-    fetchLiferCount();
-  }, []);
-
+export default function LandingSimple() {
   return (
-    <div className="bg-gray-50">
-      <header className="text-center py-12">
-        <h1 className="text-4xl font-bold text-blue-700 mb-4">Simplify Your OSHA Compliance</h1>
-        <p className="text-gray-600 max-w-xl mx-auto">Smart tracking for training, certification, and audit readiness.</p>
-        <div className="mt-6">
-          <button
-            onClick={() => {
-              if (window.clarity) window.clarity('set', 'comparison_modal_opened', true);
-              setShowModal(true);
-            }}
-            className="bg-blue-600  text-white px-6 py-2 rounded-xl shadow-md "
-          >
-            See Competitor Comparison
-          </button>
-        </div>
-      </header>
-
-      <section className="text-center bg-white py-6">
-        <div className="text-xl font-semibold text-gray-800">
-          🎉 {liferCount}+ companies joined the Lifer Plan
+    <div className="min-h-screen bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden py-16 px-4">
+        <div className="relative z-10 max-w-6xl mx-auto text-center">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+            SafetySync.AI
+          </h1>
+          <p className="text-xl md:text-2xl text-white mb-8">
+            AI-Powered Compliance Platform
+          </p>
+          <div className="bg-black/20 backdrop-blur-sm p-6 rounded-xl mb-8 max-w-2xl mx-auto">
+            <h2 className="text-2xl text-white mb-4">
+              127+ companies joined the Lifer Plan
+            </h2>
+            <p className="text-lg text-white">
+              Modern Safety Management, Made Simple
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="bg-blue-600 text-white font-semibold px-8 py-4 text-base rounded-xl shadow-md hover:bg-blue-700 transition-colors">
+              Get Started Free
+            </button>
+            <button className="bg-transparent border-2 border-white text-white font-semibold px-8 py-4 text-base rounded-xl hover:bg-white hover:text-blue-600 transition-colors">
+              Watch Demo
+            </button>
+          </div>
         </div>
       </section>
-
-      <section className="py-12 px-4 bg-gray-100">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-bold text-gray-700 mb-4">Pricing FAQs</h2>
-          <PricingFAQ />
-        </div>
-      </section>
-
-      {showModal && (
-        <ComparisonModal 
-          isOpen={showModal}
-          onClose={() => setShowModal(false)}
-        />
-      )}
     </div>
   );
 }
