@@ -22,7 +22,7 @@ import jwt from "jsonwebtoken";
 import emailAutomationRoutes from "./api/email-automation";
 import instructorTrainingSessionRoutes from "./api/instructor-training-sessions";
 import invoiceRoutes from "./invoice";
-import supportTicketRoutes from "./routes/support";
+import supportRoutes from "./routes/support";
 import { billingAnalytics } from "./billing-analytics";
 import { z } from "zod";
 import { 
@@ -3106,7 +3106,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.use("/api/invoice", invoiceRoutes);
 
   // Support ticket management API
-  app.use("/api/support-tickets", supportTicketRoutes);
+  app.use("/api/support", supportRoutes);
 
   // File system API
   const fileSystemRoutes = await import("./api/file-system");
