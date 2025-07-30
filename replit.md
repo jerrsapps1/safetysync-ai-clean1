@@ -141,7 +141,7 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - **DATABASE SCHEMA**: Created support_tickets table with 14 fields including name, email, company, role, topic, urgency, message, status, internal_notes, assigned_to, resolved, timestamps
   - **STORAGE INTERFACE**: Enhanced IStorage with 7 support ticket management methods (create, get, update, assign, resolve, status update)
   - **DATABASE INTEGRATION**: Updated /api/support endpoint to save tickets to PostgreSQL database with ticket ID tracking
-  - **ADMIN API ENDPOINTS**: Created complete RESTful API at /api/support-tickets/ with GET (all tickets), GET/:id (specific ticket), PATCH/:id (update), PATCH/:id/assign (assign agent), PATCH/:id/resolve (mark resolved)
+  - **ADMIN API ENDPOINTS**: Created complete RESTful API at /api/support/ with GET (all tickets), GET/:id (specific ticket), PATCH/:id (update), PATCH/:id/assign (assign agent), PATCH/:id/resolve (mark resolved)
   - **SUPPORT TEAM WORKFLOW**: Full CRUD operations for support team including ticket assignment, status updates, internal notes, and resolution tracking
   - **ENHANCED NAVIGATION**: Added support link to footer navigation across all pages for easy access
   - **COMPLETE 9-PAGE ARCHITECTURE**: Platform now includes landing, 4 persona pages, pricing, contact, FAQ, and support pages
