@@ -1,5 +1,5 @@
 import { Route } from "wouter";
-import LandingPage from "./LandingPage";
+import LandingPage from "./pages/landing";
 import EHSPage from "./pages/ehs";
 import HRPage from "./pages/hr";
 import InstructorsPage from "./pages/instructors";
