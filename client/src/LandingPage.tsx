@@ -22,11 +22,12 @@ export default function LandingPage() {
       {/* Persona Grid */}
       <section className="bg-white text-gray-900 py-16 px-6">
         <h2 className="text-3xl font-bold text-center mb-10">Who is SafetySync For?</h2>
-        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {[
             { title: "EHS Managers", href: "/ehs" },
             { title: "HR Teams", href: "/hr" },
-            { title: "Instructors & Consultants", href: "/instructors" }
+            { title: "Instructors & Consultants", href: "/instructors" },
+            { title: "Training Centers", href: "/centers" }
           ].map((item, i) => (
             <a
               key={i}
@@ -94,6 +95,7 @@ export default function LandingPage() {
         <a href="/ehs" className="text-white hover:underline ml-2">For EHS Managers</a> ·
         <a href="/hr" className="text-white hover:underline ml-2">For HR Teams</a> ·
         <a href="/instructors" className="text-white hover:underline ml-2">For Instructors</a> ·
+        <a href="/centers" className="text-white hover:underline ml-2">For Training Centers</a> ·
         <a href="/privacy" className="underline ml-2">Privacy Policy</a>
       </footer>
     </div>
