@@ -33,25 +33,56 @@ export default function AdminSupportPage() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
+  // Custom query function with authentication
+  const adminQueryFn = async ({ queryKey }) => {
+    const token = localStorage.getItem('auth-token') || sessionStorage.getItem('auth-token');
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+    
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+
+    const res = await fetch(queryKey[0], {
+      headers,
+      credentials: "include",
+    });
+
+    if (!res.ok) {
+      if (res.status === 401 || res.status === 403) {
+        throw new Error('Authentication required. Please log in.');
+      }
+      throw new Error('Failed to fetch data');
+    }
+    return await res.json();
+  };
+
   // Fetch all support tickets
-  const { data: tickets = [], isLoading, refetch } = useQuery({
-    queryKey: ['/api/support'],
+  const { data: tickets = [], isLoading, refetch, error } = useQuery({
+    queryKey: ['/api/support/'],
+    queryFn: adminQueryFn,
     refetchInterval: 30000, // Refresh every 30 seconds
+    retry: false,
   });
 
   // Update ticket mutation
   const updateTicketMutation = useMutation({
     mutationFn: async ({ id, updates }) => {
+      const token = localStorage.getItem('auth-token') || sessionStorage.getItem('auth-token');
+      const headers = { 'Content-Type': 'application/json' };
+      if (token) headers['Authorization'] = `Bearer ${token}`;
+
       const response = await fetch(`/api/support/${id}`, {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
+        headers,
         body: JSON.stringify(updates),
       });
       if (!response.ok) throw new Error('Failed to update ticket');
       return response.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(['/api/support']);
+      queryClient.invalidateQueries(['/api/support/']);
       toast({ title: 'Success', description: 'Ticket updated successfully' });
       setSelectedTicket(null);
       setInternalNotes('');
@@ -69,16 +100,20 @@ export default function AdminSupportPage() {
   // Assign ticket mutation
   const assignTicketMutation = useMutation({
     mutationFn: async ({ id, assignedTo }) => {
+      const token = localStorage.getItem('auth-token') || sessionStorage.getItem('auth-token');
+      const headers = { 'Content-Type': 'application/json' };
+      if (token) headers['Authorization'] = `Bearer ${token}`;
+
       const response = await fetch(`/api/support/${id}/assign`, {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
+        headers,
         body: JSON.stringify({ assignedTo }),
       });
       if (!response.ok) throw new Error('Failed to assign ticket');
       return response.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(['/api/support']);
+      queryClient.invalidateQueries(['/api/support/']);
       toast({ title: 'Success', description: 'Ticket assigned successfully' });
       setAssignAgent('');
     },
@@ -94,16 +129,20 @@ export default function AdminSupportPage() {
   // Resolve ticket mutation
   const resolveTicketMutation = useMutation({
     mutationFn: async ({ id, internalNotes }) => {
+      const token = localStorage.getItem('auth-token') || sessionStorage.getItem('auth-token');
+      const headers = { 'Content-Type': 'application/json' };
+      if (token) headers['Authorization'] = `Bearer ${token}`;
+
       const response = await fetch(`/api/support/${id}/resolve`, {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
+        headers,
         body: JSON.stringify({ internalNotes }),
       });
       if (!response.ok) throw new Error('Failed to resolve ticket');
       return response.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(['/api/support']);
+      queryClient.invalidateQueries(['/api/support/']);
       toast({ title: 'Success', description: 'Ticket resolved successfully' });
       setSelectedTicket(null);
       setInternalNotes('');
@@ -205,6 +244,37 @@ export default function AdminSupportPage() {
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto"></div>
             <p className="mt-4">Loading support tickets...</p>
           </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error && error.message.includes('Authentication required')) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 p-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center text-white mb-8">
+            <h1 className="text-4xl font-bold mb-4">Admin Access Required</h1>
+            <p className="text-xl text-blue-100">
+              You need to be authenticated to access the support dashboard
+            </p>
+          </div>
+          <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+            <CardContent className="p-8 text-center">
+              <AlertCircle className="h-16 w-16 text-red-400 mx-auto mb-6" />
+              <h2 className="text-2xl font-bold text-white mb-4">Authentication Required</h2>
+              <p className="text-white/80 mb-6">
+                This admin dashboard requires valid authentication credentials. 
+                Please log in with your admin account to manage support tickets.
+              </p>
+              <Button 
+                onClick={() => window.location.href = '/login'}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
+              >
+                Go to Login
+              </Button>
+            </CardContent>
+          </Card>
         </div>
       </div>
     );
