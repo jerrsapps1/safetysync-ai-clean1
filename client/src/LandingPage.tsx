@@ -17,6 +17,11 @@ export default function LandingPage() {
           <Button variant="secondary">Book a Demo</Button>
           <Button variant="outline">Get Started Free</Button>
         </div>
+        <div className="mt-6 text-center">
+          <a href="/pricing" className="text-white hover:underline text-sm">
+            View Pricing →
+          </a>
+        </div>
       </section>
 
       {/* Persona Grid */}
@@ -102,6 +107,7 @@ export default function LandingPage() {
         <a href="/hr" className="text-white hover:underline ml-2">For HR Teams</a> ·
         <a href="/instructors" className="text-white hover:underline ml-2">For Instructors</a> ·
         <a href="/centers" className="text-white hover:underline ml-2">For Training Centers</a> ·
+        <a href="/pricing" className="text-white hover:underline ml-2">Pricing</a> ·
         <a href="/privacy" className="underline ml-2">Privacy Policy</a>
       </footer>
     </div>

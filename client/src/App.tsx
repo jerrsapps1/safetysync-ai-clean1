@@ -4,6 +4,7 @@ import EHSPage from "./pages/ehs";
 import HRPage from "./pages/hr";
 import InstructorsPage from "./pages/instructors";
 import CentersPage from "./pages/centers";
+import PricingPage from "./pages/pricing";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route path="/hr" component={HRPage} />
       <Route path="/instructors" component={InstructorsPage} />
       <Route path="/centers" component={CentersPage} />
+      <Route path="/pricing" component={PricingPage} />
     </>
   );
 }
