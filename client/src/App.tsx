@@ -1,5 +1,6 @@
-import { Route } from "wouter";
+import { Router, Route } from "wouter";
 import LandingPage from "./pages/landing";
+import SimpleTest from "./pages/simple-test";
 import EHSPage from "./pages/ehs";
 import HRPage from "./pages/hr";
 import InstructorsPage from "./pages/instructors";
@@ -13,8 +14,10 @@ import AdminSupportDashboard from "./pages/admin/support.jsx";
 
 function App() {
   return (
-    <>
-      <Route path="/" component={LandingPage} />
+    <Router>
+      <Route path="/" component={SimpleTest} />
+      <Route path="/landing" component={LandingPage} />
+      <Route path="/test" component={SimpleTest} />
       <Route path="/ehs" component={EHSPage} />
       <Route path="/hr" component={HRPage} />
       <Route path="/instructors" component={InstructorsPage} />
@@ -24,7 +27,7 @@ function App() {
       <Route path="/faq" component={FAQPage} />
       <Route path="/support" component={SupportPage} />
       <Route path="/admin/support" component={AdminSupportDashboard} />
-    </>
+    </Router>
   );
 }
 
