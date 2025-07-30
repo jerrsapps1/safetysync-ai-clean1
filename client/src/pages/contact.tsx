@@ -18,6 +18,7 @@ import {
   Calendar,
   Headphones
 } from 'lucide-react';
+import { PageHeader } from '@/components/ui/page-header';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -104,7 +105,9 @@ export default function Contact() {
   ];
 
   return (
-    <div className="pt-16 bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
+    <>
+      <PageHeader />
+      <div className="md:ml-16 pt-16 bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
       {/* Hero Section */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -321,6 +324,7 @@ export default function Contact() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }
