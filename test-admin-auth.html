@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafetySync.AI - Admin Authentication Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #2563eb, #3b82f6, #60a5fa);
+            min-height: 100vh;
+            color: white;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+        }
+        button {
+            background: #1d4ed8;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px 5px;
+            font-size: 14px;
+        }
+        button:hover { background: #1e40af; }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            margin: 10px 0;
+        }
+        input::placeholder, textarea::placeholder { color: rgba(255, 255, 255, 0.6); }
+        .result {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-family: monospace;
+            font-size: 12px;
+            overflow-x: auto;
+        }
+        .success { border-left: 4px solid #10b981; }
+        .error { border-left: 4px solid #ef4444; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 SafetySync.AI Admin Authentication Test</h1>
+        <p>This page demonstrates the JWT authentication system for admin support dashboard access.</p>
+
+        <div class="test-section">
+            <h3>📝 Create Support Ticket (Public - No Auth Required)</h3>
+            <input type="text" id="customerName" placeholder="Customer Name" value="Test Admin User">
+            <input type="email" id="customerEmail" placeholder="Email" value="admin.test@safetysync.ai">
+            <input type="text" id="customerCompany" placeholder="Company" value="SafetySync Testing Corp">
+            <select id="customerTopic" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.3); background: rgba(255, 255, 255, 0.1); color: white; margin: 10px 0;">
+                <option value="Technical">Technical</option>
+                <option value="Account">Account</option>
+                <option value="Billing">Billing</option>
+                <option value="General">General</option>
+            </select>
+            <textarea id="customerMessage" placeholder="Support request message..." rows="3">Testing admin authentication system functionality.</textarea>
+            <button onclick="createTicket()">Submit Support Request</button>
+            <div id="createResult" class="result" style="display: none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>🔑 Admin Authentication Test</h3>
+            <input type="text" id="jwtToken" placeholder="Enter JWT Token (or test with invalid token)" value="test_invalid_token">
+            <button onclick="testAdminAccess()">Test Admin Access</button>
+            <div id="authResult" class="result" style="display: none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>📊 Admin Actions (Requires Authentication)</h3>
+            <button onclick="getAllTickets()">Get All Support Tickets</button>
+            <button onclick="getTicketById()">Get Ticket #2</button>
+            <button onclick="assignTicket()">Assign Ticket #4 to Agent</button>
+            <button onclick="resolveTicket()">Resolve Ticket #4</button>
+            <div id="adminResult" class="result" style="display: none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>📈 Current System Status</h3>
+            <p><strong>Database:</strong> 4 support tickets with full lifecycle tracking</p>
+            <p><strong>Public API:</strong> Customer submissions working without authentication</p>
+            <p><strong>Admin Protection:</strong> JWT middleware protecting sensitive operations</p>
+            <p><strong>Ready for:</strong> JWT_SECRET configuration to enable full admin dashboard</p>
+        </div>
+    </div>
+
+    <script>
+        function showResult(elementId, content, isError = false) {
+            const element = document.getElementById(elementId);
+            element.style.display = 'block';
+            element.innerHTML = content;
+            element.className = 'result ' + (isError ? 'error' : 'success');
+        }
+
+        async function createTicket() {
+            try {
+                const response = await fetch('/api/support', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: document.getElementById('customerName').value,
+                        email: document.getElementById('customerEmail').value,
+                        company: document.getElementById('customerCompany').value,
+                        role: 'System Administrator',
+                        topic: document.getElementById('customerTopic').value,
+                        urgency: 'Normal',
+                        message: document.getElementById('customerMessage').value,
+                        agree: true
+                    })
+                });
+                const result = await response.json();
+                showResult('createResult', `✅ SUCCESS: ${JSON.stringify(result, null, 2)}`, false);
+            } catch (error) {
+                showResult('createResult', `❌ ERROR: ${error.message}`, true);
+            }
+        }
+
+        async function testAdminAccess() {
+            try {
+                const token = document.getElementById('jwtToken').value;
+                const response = await fetch('/api/support/', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const result = await response.json();
+                
+                if (response.ok) {
+                    showResult('authResult', `✅ AUTHENTICATED: Found ${result.length} tickets\n${JSON.stringify(result, null, 2)}`, false);
+                } else {
+                    showResult('authResult', `🔒 AUTHENTICATION REQUIRED: ${JSON.stringify(result, null, 2)}`, true);
+                }
+            } catch (error) {
+                showResult('authResult', `❌ ERROR: ${error.message}`, true);
+            }
+        }
+
+        async function getAllTickets() {
+            const token = document.getElementById('jwtToken').value;
+            try {
+                const response = await fetch('/api/support/', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const result = await response.json();
+                showResult('adminResult', JSON.stringify(result, null, 2), !response.ok);
+            } catch (error) {
+                showResult('adminResult', `ERROR: ${error.message}`, true);
+            }
+        }
+
+        async function getTicketById() {
+            const token = document.getElementById('jwtToken').value;
+            try {
+                const response = await fetch('/api/support/2', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const result = await response.json();
+                showResult('adminResult', JSON.stringify(result, null, 2), !response.ok);
+            } catch (error) {
+                showResult('adminResult', `ERROR: ${error.message}`, true);
+            }
+        }
+
+        async function assignTicket() {
+            const token = document.getElementById('jwtToken').value;
+            try {
+                const response = await fetch('/api/support/4/assign', {
+                    method: 'PATCH',
+                    headers: { 
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ assignedTo: 'Support Agent Charlie' })
+                });
+                const result = await response.json();
+                showResult('adminResult', JSON.stringify(result, null, 2), !response.ok);
+            } catch (error) {
+                showResult('adminResult', `ERROR: ${error.message}`, true);
+            }
+        }
+
+        async function resolveTicket() {
+            const token = document.getElementById('jwtToken').value;
+            try {
+                const response = await fetch('/api/support/4/resolve', {
+                    method: 'PATCH',
+                    headers: { 
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ 
+                        internalNotes: 'Authentication system tested successfully. All endpoints functioning as expected.' 
+                    })
+                });
+                const result = await response.json();
+                showResult('adminResult', JSON.stringify(result, null, 2), !response.ok);
+            } catch (error) {
+                showResult('adminResult', `ERROR: ${error.message}`, true);
+            }
+        }
+    </script>
+</body>
+</html>

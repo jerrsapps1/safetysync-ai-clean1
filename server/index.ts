@@ -1,4 +1,5 @@
 import express, { type Request, Response, NextFunction } from "express";
+import path from "path";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import supportRoutes from "./routes/support";
@@ -100,6 +101,11 @@ app.use((req, res, next) => {
 
   // Register support routes
   app.use("/api/support", supportRoutes);
+  
+  // Serve admin authentication test page
+  app.get("/admin-auth-test", (req, res) => {
+    res.sendFile(path.join(__dirname, "../test-admin-auth.html"));
+  });
   
   const server = await registerRoutes(app);
 
