@@ -8,6 +8,7 @@ import PricingPage from "./pages/pricing";
 import ContactPage from "./pages/contact-simple";
 import FAQPage from "./pages/faq";
 import SupportPage from "./pages/support";
+// @ts-ignore
 import AdminSupportDashboard from "./pages/admin/support.jsx";
 
 function App() {
