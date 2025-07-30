@@ -20,6 +20,8 @@ import ClientPortal from './pages/client-portal';
 import Workspace from './pages/workspace';
 import InvoiceManagement from './pages/invoice-management';
 import AuthDebug from './components/AuthDebug';
+import ForgotPassword from './pages/forgot-password';
+import ResetPassword from './pages/reset-password';
 
 function App() {
   return (
@@ -46,6 +48,8 @@ function App() {
                 <Route path="/workspace" component={Workspace} />
                 <Route path="/admin/invoice-management" component={InvoiceManagement} />
                 <Route path="/debug/auth" component={AuthDebug} />
+                <Route path="/forgot-password" component={ForgotPassword} />
+                <Route path="/reset-password" component={ResetPassword} />
                 <Route>
                   <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
                     <div className="text-center">
