@@ -94,6 +94,8 @@ export default function LandingPage() {
         © {new Date().getFullYear()} SafetySync.AI · All rights reserved ·
         <a href="/ehs" className="text-white hover:underline ml-2">For EHS Managers</a> ·
         <a href="/hr" className="text-white hover:underline ml-2">For HR Teams</a> ·
+        <a href="/instructors" className="text-white hover:underline ml-2">For Instructors</a> ·
+        <a href="/centers" className="text-white hover:underline ml-2">For Training Centers</a> ·
         <a href="/privacy" className="underline ml-2">Privacy Policy</a>
       </footer>
     </div>
