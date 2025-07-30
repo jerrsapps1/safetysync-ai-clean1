@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafetySync.AI - Admin Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            min-height: 100vh;
+            color: white;
+        }
+        .login-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            box-sizing: border-box;
+        }
+        input::placeholder { color: rgba(255, 255, 255, 0.6); }
+        button {
+            width: 100%;
+            background: #1d4ed8;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        button:hover { background: #1e40af; }
+        .result {
+            margin: 15px 0;
+            padding: 12px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        .success { background: rgba(16, 185, 129, 0.2); border: 1px solid #10b981; }
+        .error { background: rgba(239, 68, 68, 0.2); border: 1px solid #ef4444; }
+        .info { background: rgba(59, 130, 246, 0.2); border: 1px solid #3b82f6; }
+        .quick-actions {
+            margin-top: 20px;
+            display: none;
+        }
+        .quick-actions.show { display: block; }
+        .quick-actions button {
+            margin: 5px 0;
+            background: #065f46;
+        }
+        .quick-actions button:hover { background: #047857; }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>🔐 Admin Login</h1>
+        <p>Enter admin credentials to access the support dashboard</p>
+        
+        <div class="info">
+            <strong>Test Credentials:</strong><br>
+            Username: admin<br>
+            Password: admin123
+        </div>
+        
+        <input type="text" id="username" placeholder="Username" value="admin">
+        <input type="password" id="password" placeholder="Password" value="admin123">
+        <button onclick="login()">Login</button>
+        
+        <div id="result"></div>
+        
+        <div id="quickActions" class="quick-actions">
+            <h3>Quick Actions</h3>
+            <button onclick="goToDashboard()">Open Support Dashboard</button>
+            <button onclick="testAuthTest()">Open Auth Test Page</button>
+            <button onclick="showToken()">Show Current Token</button>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <script>
+        function showResult(content, type = 'info') {
+            const element = document.getElementById('result');
+            element.innerHTML = content;
+            element.className = 'result ' + type;
+        }
+
+        async function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            try {
+                const response = await fetch('/api/auth/admin-login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    localStorage.setItem('token', result.token);
+                    showResult(`✅ Login successful!<br>Token stored in localStorage`, 'success');
+                    document.getElementById('quickActions').classList.add('show');
+                } else {
+                    showResult(`❌ ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showResult(`❌ Login failed: ${error.message}`, 'error');
+            }
+        }
+
+        function goToDashboard() {
+            window.open('/admin/support', '_blank');
+        }
+
+        function testAuthTest() {
+            window.open('/admin-auth-test', '_blank');
+        }
+
+        function showToken() {
+            const token = localStorage.getItem('token');
+            if (token) {
+                showResult(`Current token: ${token.substring(0, 50)}...`, 'info');
+            } else {
+                showResult('No token found. Please login first.', 'error');
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('token');
+            showResult('Logged out successfully', 'info');
+            document.getElementById('quickActions').classList.remove('show');
+        }
+
+        // Check if already logged in
+        window.onload = function() {
+            if (localStorage.getItem('token')) {
+                showResult('Already logged in with valid token', 'success');
+                document.getElementById('quickActions').classList.add('show');
+            }
+        };
+    </script>
+</body>
+</html>
