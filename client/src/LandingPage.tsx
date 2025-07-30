@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "./components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Shield, Zap, Award } from "lucide-react";
 
 export default function LandingPage() {
   return (
@@ -32,10 +32,12 @@ export default function LandingPage() {
             <a
               key={i}
               href={item.href}
-              className="bg-blue-100 hover:bg-blue-200 transition p-6 rounded-xl shadow text-center font-semibold"
+              className="bg-blue-100 hover:bg-blue-200 transition-all duration-300 p-6 rounded-xl shadow text-center font-semibold hover:transform hover:scale-105 hover:shadow-lg group"
             >
-              {item.title}
-              <ArrowRight className="inline-block ml-2" size={18} />
+              <div className="flex items-center justify-center">
+                {item.title}
+                <ArrowRight className="inline-block ml-2 transition-transform group-hover:translate-x-1" size={18} />
+              </div>
             </a>
           ))}
         </div>
@@ -49,20 +51,24 @@ export default function LandingPage() {
             {
               title: "AI-Powered Document Processing",
               desc: "Extract, verify, and align training records with OSHA standards — instantly.",
+              icon: <Zap className="w-8 h-8 text-yellow-400 mb-4" />
             },
             {
               title: "Live Training Matrix",
               desc: "Auto-update training records, show progress by department, and stay inspection-ready.",
+              icon: <Shield className="w-8 h-8 text-green-400 mb-4" />
             },
             {
               title: "Certificate & Wallet Card Generator",
               desc: "Generate QR-verifiable certificates and digital ID cards for every employee.",
+              icon: <Award className="w-8 h-8 text-blue-400 mb-4" />
             },
           ].map((feature, idx) => (
             <div
               key={idx}
-              className="bg-white/10 backdrop-blur p-6 rounded-xl border border-white/20"
+              className="bg-white/10 backdrop-blur p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300 hover:transform hover:scale-105"
             >
+              {feature.icon}
               <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
               <p>{feature.desc}</p>
             </div>
