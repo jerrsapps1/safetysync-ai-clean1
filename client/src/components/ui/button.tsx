@@ -1,7 +1,13 @@
 import React from "react";
 import clsx from "clsx";
 
-export function Button({ children, className = "", variant = "primary", ...props }) {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  children: React.ReactNode;
+  className?: string;
+  variant?: "primary" | "secondary" | "outline";
+}
+
+export function Button({ children, className = "", variant = "primary", ...props }: ButtonProps) {
   const baseStyles = "rounded-xl px-5 py-3 font-semibold transition";
 
   const variants = {
