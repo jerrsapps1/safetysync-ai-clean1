@@ -1,8 +1,14 @@
-import React from "react";
-import LandingPage from "./LandingPage.tsx";
+import { Route } from "wouter";
+import LandingPage from "./LandingPage";
+import EHSPage from "./pages/ehs";
 
 function App() {
-  return <LandingPage />;
+  return (
+    <>
+      <Route path="/" component={LandingPage} />
+      <Route path="/ehs" component={EHSPage} />
+    </>
+  );
 }
 
 export default App;
