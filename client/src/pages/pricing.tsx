@@ -137,9 +137,17 @@ export default function PricingPage() {
         <p className="text-lg max-w-xl mx-auto mb-8">
           Try SafetySync free — and pay only when you issue documents. No hidden fees. No contracts.
         </p>
-        <Button className="bg-white text-blue-800 hover:bg-gray-100 text-lg font-semibold px-6 py-3 rounded-xl">
-          Start My Free Trial
-        </Button>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button className="bg-white text-blue-800 hover:bg-gray-100 text-lg font-semibold px-6 py-3 rounded-xl">
+            Start My Free Trial
+          </Button>
+          <a
+            href="/faq"
+            className="border border-white text-white hover:bg-white/10 font-semibold py-3 px-6 rounded-xl transition-colors inline-block text-center"
+          >
+            View FAQ
+          </a>
+        </div>
       </section>
     </div>
   );
