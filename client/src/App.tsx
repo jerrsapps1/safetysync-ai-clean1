@@ -1,5 +1,6 @@
 import { Router, Route } from "wouter";
 import LandingPage from "./pages/landing";
+import LandingSimple from "./pages/landing-simple";
 import Minimal from "./pages/minimal";
 import EHSPage from "./pages/ehs";
 import HRPage from "./pages/hr";
@@ -15,7 +16,8 @@ import AdminSupportDashboard from "./pages/admin/support.jsx";
 function App() {
   return (
     <Router>
-      <Route path="/" component={LandingPage} />
+      <Route path="/" component={LandingSimple} />
+      <Route path="/full" component={LandingPage} />
       <Route path="/minimal" component={Minimal} />
       <Route path="/ehs" component={EHSPage} />
       <Route path="/hr" component={HRPage} />
