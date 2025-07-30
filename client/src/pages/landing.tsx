@@ -407,8 +407,8 @@ export default function LandingPage() {
           <div className="text-center">
             <Button 
               onClick={() => setShowProductTour(true)}
-              variant="link"
-              className="text-white hover:text-violet-400 underline transition-colors duration-300"
+              variant="outline"
+              className="text-white hover:text-violet-400 underline transition-colors duration-300 bg-transparent border-none"
             >
               Take a Quick Tour
             </Button>
