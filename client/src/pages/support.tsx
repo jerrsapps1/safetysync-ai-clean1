@@ -14,7 +14,7 @@ const initialState = {
 
 export default function SupportPage() {
   const [form, setForm] = useState(initialState);
-  const [status, setStatus] = useState({ loading: false, ok: null, msg: "" });
+  const [status, setStatus] = useState<{ loading: boolean; ok: boolean | null; msg: string }>({ loading: false, ok: null, msg: "" });
 
   const update = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
