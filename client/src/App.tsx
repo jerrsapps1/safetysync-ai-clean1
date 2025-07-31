@@ -9,8 +9,9 @@ import MainLayout from "./layouts/MainLayout";
 // Pages
 import LandingPage from "./pages/landing-replit-ready";
 // @ts-ignore
-import Features from "./pages/features";
-import HRPage from "./pages/hr-teams";
+import Features from "./pages/features.jsx";
+// @ts-ignore
+import HRPage from "./pages/hr-teams.jsx";
 import Pricing from "./pages/pricing";
 import CaseStudies from "./pages/case-studies";
 import Contact from "./pages/contact";
