@@ -52,6 +52,7 @@
         "express-session": "^1.18.2",
         "framer-motion": "^12.23.11",
         "helmet": "^8.1.0",
+        "json2csv": "^6.0.0-alpha.2",
         "jsonwebtoken": "^9.0.2",
         "jspdf": "^3.0.1",
         "launchdarkly-js-client-sdk": "^3.8.1",
