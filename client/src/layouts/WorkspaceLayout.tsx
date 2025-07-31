@@ -1,7 +1,7 @@
 // File: src/layouts/WorkspaceLayout.tsx
 
 import React from "react";
-import { useLocation, Route, Switch } from "wouter";
+import { Route, Switch } from "wouter";
 // @ts-ignore
 import Sidebar from "../components/Sidebar.tsx";
 // @ts-ignore
