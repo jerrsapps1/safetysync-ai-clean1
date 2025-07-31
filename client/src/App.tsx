@@ -1,10 +1,12 @@
-// File: src/App.jsx
+// File: src/App.tsx
 
 import React from "react";
 import { Route, Switch } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 // @ts-ignore
 import MainLayout from "./layouts/MainLayout";
+// @ts-ignore
+import WorkspaceLayout from "./layouts/WorkspaceLayout";
 
 // Pages
 import LandingPage from "./pages/landing-replit-ready";
@@ -23,17 +25,7 @@ import ClientPortal from "./pages/client-portal.jsx";
 // @ts-ignore
 import AdminSupportDashboard from "./pages/admin/support.jsx";
 // @ts-ignore
-import WorkspaceView from "./pages/workspace-view.jsx";
-// @ts-ignore
 import InstructorPortal from "./pages/instructor-portal.jsx";
-// @ts-ignore
-import EmployeeManagement from "./pages/employee-management.jsx";
-// @ts-ignore
-import UploadTrainingRecord from "./pages/upload-training-record.jsx";
-// @ts-ignore
-import EmployeeProfile from "./pages/employee-profile.jsx";
-// @ts-ignore
-import InstructorBackgroundUpload from "./pages/instructor-background-upload.jsx";
 
 // Create query client
 const queryClient = new QueryClient({
@@ -47,24 +39,24 @@ const queryClient = new QueryClient({
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <MainLayout>
-        <Switch>
-          <Route path="/" component={LandingPage} />
-          <Route path="/features" component={Features} />
-          <Route path="/hr-teams" component={HRPage} />
-          <Route path="/pricing" component={Pricing} />
-          <Route path="/case-studies" component={CaseStudies} />
-          <Route path="/contact" component={Contact} />
-          <Route path="/client-portal" component={ClientPortal} />
-          <Route path="/workspace-view" component={WorkspaceView} />
-          <Route path="/instructor-portal" component={InstructorPortal} />
-          <Route path="/employee-management" component={EmployeeManagement} />
-          <Route path="/upload-training-record" component={UploadTrainingRecord} />
-          <Route path="/employee/:id" component={EmployeeProfile} />
-          <Route path="/instructor-background-upload" component={InstructorBackgroundUpload} />
-          <Route path="/admin/support" component={AdminSupportDashboard} />
-        </Switch>
-      </MainLayout>
+      <Switch>
+        <Route path="/workspace/:rest*" component={WorkspaceLayout} />
+        <Route>
+          <MainLayout>
+            <Switch>
+              <Route path="/" component={LandingPage} />
+              <Route path="/features" component={Features} />
+              <Route path="/hr-teams" component={HRPage} />
+              <Route path="/pricing" component={Pricing} />
+              <Route path="/case-studies" component={CaseStudies} />
+              <Route path="/contact" component={Contact} />
+              <Route path="/client-portal" component={ClientPortal} />
+              <Route path="/instructor-portal" component={InstructorPortal} />
+              <Route path="/admin/support" component={AdminSupportDashboard} />
+            </Switch>
+          </MainLayout>
+        </Route>
+      </Switch>
     </QueryClientProvider>
   );
 }
