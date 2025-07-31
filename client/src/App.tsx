@@ -12,7 +12,8 @@ import LandingPage from "./pages/landing-replit-ready";
 import Features from "./pages/features.jsx";
 // @ts-ignore
 import HRPage from "./pages/hr-teams.jsx";
-import Pricing from "./pages/pricing";
+// @ts-ignore
+import Pricing from "./pages/pricing.jsx";
 import CaseStudies from "./pages/case-studies";
 import Contact from "./pages/contact";
 import ClientPortal from "./pages/client-portal";

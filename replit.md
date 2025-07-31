@@ -142,7 +142,7 @@ User satisfied with comprehensive platform features including dashboard, admin p
   - **AUTHENTIC LOGO INTEGRATION**: Updated MainLayout to use actual SafetySync.AI logo (/logo.png) with responsive sizing and spacing (space-x-2, h-8 md:h-10 w-auto)
   - **RESPONSIVE BRANDING**: Logo displays on all devices, text shows on small screens and up (hidden sm:inline), with refined typography (text-xl font-semibold)
   - **FEATURES PAGE CREATED**: Built comprehensive Features page with 6-feature grid showcasing platform capabilities
-  - **SIMPLIFIED PRICING PAGE**: Updated pricing page to simple "under construction" format with clean layout
+  - **SIMPLIFIED PRICING PAGE**: Updated pricing page to simple "under construction" format with clean layout and .jsx extension
   - **SIMPLIFIED FEATURES PAGE**: Created features.jsx with simple "under construction" format matching pricing page
   - **SIMPLIFIED HR TEAMS PAGE**: Created hr-teams.jsx with simple "under construction" format for HR Teams section
   - **CLEAN IMPORT STRUCTURE**: Organized imports exactly as user specified - React, wouter components, QueryClient, MainLayout, then all pages
