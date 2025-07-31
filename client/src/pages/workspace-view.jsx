@@ -1,7 +1,8 @@
 // File: src/pages/workspace-view.jsx
 
 import React from "react";
-import { BarChart3, Users, FileText } from "lucide-react";
+import { BarChart3, Users, FileText, Settings, ClipboardList } from "lucide-react";
+import { Link } from "wouter";
 
 export default function WorkspaceView() {
   return (
@@ -10,15 +11,31 @@ export default function WorkspaceView() {
       <aside className="w-64 bg-blue-800 text-white p-6 space-y-6">
         <h2 className="text-xl font-bold mb-6">Dashboard</h2>
         <nav className="space-y-3">
-          <a href="#" className="flex items-center space-x-2 hover:text-emerald-400">
-            <Users className="w-5 h-5" /> <span>Employees</span>
-          </a>
-          <a href="#" className="flex items-center space-x-2 hover:text-emerald-400">
-            <FileText className="w-5 h-5" /> <span>Documents</span>
-          </a>
-          <a href="#" className="flex items-center space-x-2 hover:text-emerald-400">
-            <BarChart3 className="w-5 h-5" /> <span>Analytics</span>
-          </a>
+          <Link href="/employee-management">
+            <a className="flex items-center space-x-2 hover:text-emerald-400">
+              <Users className="w-5 h-5" /> <span>Employees</span>
+            </a>
+          </Link>
+          <Link href="/training-documents">
+            <a className="flex items-center space-x-2 hover:text-emerald-400">
+              <FileText className="w-5 h-5" /> <span>Documents</span>
+            </a>
+          </Link>
+          <Link href="/analytics">
+            <a className="flex items-center space-x-2 hover:text-emerald-400">
+              <BarChart3 className="w-5 h-5" /> <span>Analytics</span>
+            </a>
+          </Link>
+          <Link href="/certificates">
+            <a className="flex items-center space-x-2 hover:text-emerald-400">
+              <ClipboardList className="w-5 h-5" /> <span>Certificates</span>
+            </a>
+          </Link>
+          <Link href="/settings">
+            <a className="flex items-center space-x-2 hover:text-emerald-400">
+              <Settings className="w-5 h-5" /> <span>Settings</span>
+            </a>
+          </Link>
         </nav>
       </aside>
 
