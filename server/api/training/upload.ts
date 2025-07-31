@@ -4,6 +4,7 @@ import path from "path";
 import fs from "fs";
 import { TrainingRecord, saveTrainingRecord } from "../../models/training-record";
 import { generateCertificate } from "./certificate-generator";
+import { generateWalletCard } from "./wallet-card-generator";
 
 const router = express.Router();
 
@@ -55,5 +56,8 @@ router.post("/training/upload", upload.single("trainingRecord"), async (req, res
 
 // POST /api/training/certificate
 router.post("/training/certificate", generateCertificate);
+
+// POST /api/training/wallet-card
+router.post("/training/wallet-card", generateWalletCard);
 
 export default router;
