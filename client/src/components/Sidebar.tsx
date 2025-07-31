@@ -1,51 +1,16 @@
-// File: src/components/Sidebar.tsx
-
-import React from "react";
-import { Link, useLocation } from "wouter";
+// src/components/Sidebar.tsx
 
 export default function Sidebar() {
-  const [location] = useLocation();
-
-  const navItems = [
-    { path: "/workspace", label: "Dashboard" },
-    { path: "/workspace/employee-management", label: "Employees" },
-    { path: "/workspace/upload-training", label: "Upload Training" },
-    { path: "/workspace/instructor-backgrounds", label: "Instructor Backgrounds" },
-    { path: "/workspace/certificates", label: "Certificates" },
-    { path: "/workspace/settings", label: "Settings" }
-  ];
-
   return (
-    <div style={{ 
-      width: "250px", 
-      backgroundColor: "#1e40af", 
-      color: "white", 
-      padding: "16px",
-      minHeight: "100vh"
-    }}>
-      <h2 style={{ fontSize: "20px", fontWeight: "bold", marginBottom: "16px" }}>Workspace</h2>
-      <nav>
-        {navItems.map((item) => (
-          <Link key={item.path} href={item.path} style={{ 
-            display: "block", 
-            marginBottom: "8px", 
-            color: "white", 
-            textDecoration: "none",
-            padding: "8px 12px",
-            borderRadius: "4px",
-            backgroundColor: location === item.path ? "#1d4ed8" : "transparent"
-          }} onMouseOver={(e) => {
-            if (location !== item.path) {
-              e.target.style.backgroundColor = "#2563eb";
-            }
-          }} onMouseOut={(e) => {
-            if (location !== item.path) {
-              e.target.style.backgroundColor = "transparent";
-            }
-          }}>
-            {item.label}
-          </Link>
-        ))}
+    <div className="w-64 bg-blue-800 text-white p-4 h-full">
+      <h2 className="text-xl font-bold mb-4">Workspace</h2>
+      <nav className="space-y-2">
+        <div className="block p-2 rounded bg-blue-700">Dashboard</div>
+        <div className="block p-2 rounded hover:bg-blue-700 cursor-pointer">Employees</div>
+        <div className="block p-2 rounded hover:bg-blue-700 cursor-pointer">Upload Training</div>
+        <div className="block p-2 rounded hover:bg-blue-700 cursor-pointer">Instructor Backgrounds</div>
+        <div className="block p-2 rounded hover:bg-blue-700 cursor-pointer">Certificates</div>
+        <div className="block p-2 rounded hover:bg-blue-700 cursor-pointer">Settings</div>
       </nav>
     </div>
   );
