@@ -1,94 +1,186 @@
 import React, { useState } from 'react';
-import { useLocation } from 'wouter';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Label } from '@/components/ui/label';
-import { Alert, AlertDescription } from '@/components/ui/alert';
 
 export default function AdminLogin() {
-  const [formData, setFormData] = useState({ username: '', password: '' });
+  const [credentials, setCredentials] = useState({ username: '', password: '' });
+  const [token, setToken] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [, setLocation] = useLocation();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
+  const generateToken = async () => {
     setLoading(true);
-
+    setError('');
+    
     try {
-      const res = await fetch('/api/login', {
+      const response = await fetch('/api/auth/admin-login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(credentials)
       });
-
-      const data = await res.json();
-      if (res.ok) {
+      
+      const data = await response.json();
+      
+      if (response.ok) {
+        setToken(data.token);
         localStorage.setItem('token', data.token);
-        setLocation('/admin/leads');
+        setError('');
       } else {
         setError(data.error || 'Login failed');
       }
     } catch (err) {
-      setError('Network error. Please try again.');
+      setError('Network error occurred');
     } finally {
       setLoading(false);
     }
   };
 
+  const testToken = async () => {
+    if (!token) {
+      setError('No token available');
+      return;
+    }
+    
+    try {
+      const response = await fetch('/api/support', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      
+      if (response.ok) {
+        setError('✅ Token is valid! Admin access granted.');
+      } else {
+        setError('❌ Token invalid or expired');
+      }
+    } catch (err) {
+      setError('Test failed');
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-bold">Admin Login</CardTitle>
-          <CardDescription>
-            Enter your credentials to access the admin dashboard
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="username">Username</Label>
-              <Input
-                id="username"
-                type="text"
-                placeholder="Enter username"
-                value={formData.username}
-                onChange={e => setFormData({ ...formData, username: e.target.value })}
-                required
-              />
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                placeholder="Enter password"
-                value={formData.password}
-                onChange={e => setFormData({ ...formData, password: e.target.value })}
-                required
-              />
-            </div>
-
-            <Button 
-              type="submit" 
-              className="w-full" 
-              disabled={loading}
-            >
-              {loading ? 'Signing in...' : 'Sign In'}
-            </Button>
-
-            {error && (
-              <Alert variant="destructive">
-                <AlertDescription>{error}</AlertDescription>
-              </Alert>
-            )}
-          </form>
-        </CardContent>
-      </Card>
+    <div style={{
+      maxWidth: '500px',
+      margin: '50px auto',
+      padding: '30px',
+      fontFamily: 'Arial, sans-serif',
+      border: '1px solid #ddd',
+      borderRadius: '8px',
+      backgroundColor: '#f9f9f9'
+    }}>
+      <h2 style={{ color: '#2563eb', marginBottom: '20px' }}>Admin Authentication Test</h2>
+      
+      <div style={{ marginBottom: '15px' }}>
+        <label style={{ display: 'block', marginBottom: '5px' }}>Username:</label>
+        <input
+          type="text"
+          value={credentials.username}
+          onChange={(e) => setCredentials({...credentials, username: e.target.value})}
+          style={{
+            width: '100%',
+            padding: '8px',
+            border: '1px solid #ccc',
+            borderRadius: '4px'
+          }}
+          placeholder="admin"
+        />
+      </div>
+      
+      <div style={{ marginBottom: '15px' }}>
+        <label style={{ display: 'block', marginBottom: '5px' }}>Password:</label>
+        <input
+          type="password"
+          value={credentials.password}
+          onChange={(e) => setCredentials({...credentials, password: e.target.value})}
+          style={{
+            width: '100%',
+            padding: '8px',
+            border: '1px solid #ccc',
+            borderRadius: '4px'
+          }}
+          placeholder="password"
+        />
+      </div>
+      
+      <button
+        onClick={generateToken}
+        disabled={loading || !credentials.username || !credentials.password}
+        style={{
+          backgroundColor: '#2563eb',
+          color: 'white',
+          padding: '10px 20px',
+          border: 'none',
+          borderRadius: '4px',
+          cursor: 'pointer',
+          marginRight: '10px'
+        }}
+      >
+        {loading ? 'Generating...' : 'Generate Token'}
+      </button>
+      
+      {token && (
+        <button
+          onClick={testToken}
+          style={{
+            backgroundColor: '#10b981',
+            color: 'white',
+            padding: '10px 20px',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer'
+          }}
+        >
+          Test Token
+        </button>
+      )}
+      
+      {error && (
+        <div style={{
+          marginTop: '15px',
+          padding: '10px',
+          backgroundColor: error.includes('✅') ? '#d1fae5' : '#fee2e2',
+          border: `1px solid ${error.includes('✅') ? '#10b981' : '#ef4444'}`,
+          borderRadius: '4px',
+          color: error.includes('✅') ? '#065f46' : '#991b1b'
+        }}>
+          {error}
+        </div>
+      )}
+      
+      {token && (
+        <div style={{
+          marginTop: '15px',
+          padding: '10px',
+          backgroundColor: '#f0f9ff',
+          border: '1px solid #0ea5e9',
+          borderRadius: '4px'
+        }}>
+          <strong>Generated Token:</strong>
+          <br />
+          <code style={{
+            fontSize: '12px',
+            wordBreak: 'break-all',
+            backgroundColor: '#e0f2fe',
+            padding: '5px',
+            borderRadius: '3px',
+            display: 'block',
+            marginTop: '5px'
+          }}>
+            {token}
+          </code>
+        </div>
+      )}
+      
+      <div style={{
+        marginTop: '20px',
+        padding: '15px',
+        backgroundColor: '#fef7cd',
+        border: '1px solid #f59e0b',
+        borderRadius: '4px',
+        fontSize: '14px'
+      }}>
+        <strong>Quick Demo:</strong>
+        <br />
+        Use username: <code>admin</code> and password: <code>password</code>
+        <br />
+        This will generate a JWT token for testing admin functionality.
+      </div>
     </div>
   );
 }
