@@ -2,19 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Ensure proper scrolling on all pages */
-html, body {
-  overflow-x: hidden;
-  overflow-y: auto;
+/* SafetySync.AI Blue Gradient Theme */
+.bg-gradient-to-tr { 
+  background-image: linear-gradient(to top right, var(--tw-gradient-stops)); 
 }
 
-/* Fix any height constraints that might prevent scrolling */
-#root {
-  min-height: 100vh;
+.from-blue-600 { 
+  --tw-gradient-from: #2563eb; 
+  --tw-gradient-to: rgba(37, 99, 235, 0); 
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); 
 }
 
-/* Ensure content can scroll properly */
-.scroll-container {
-  overflow-y: auto;
-  max-height: 100vh;
+.via-blue-500 { 
+  --tw-gradient-to: rgba(59, 130, 246, 0); 
+  --tw-gradient-stops: var(--tw-gradient-from), #3b82f6, var(--tw-gradient-to); 
 }
+
+.to-blue-400 { 
+  --tw-gradient-to: #60a5fa; 
+}
+
+.text-white { color: #ffffff; }
+.text-center { text-align: center; }
+.font-bold { font-weight: 700; }
+.font-semibold { font-weight: 600; }
+.py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+.px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+.text-5xl { font-size: 3rem; line-height: 1; }
+.text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-8 { margin-bottom: 2rem; }
+.max-w-2xl { max-width: 42rem; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+.flex { display: flex; }
+.justify-center { justify-content: center; }
+.gap-4 { gap: 1rem; }
+.bg-white { background-color: #ffffff; }
+.bg-blue-600 { background-color: #2563eb; }
+.text-blue-700 { color: #1d4ed8; }
+.hover\:bg-blue-700:hover { background-color: #1d4ed8; }
+.rounded-xl { border-radius: 0.75rem; }
+.px-8 { padding-left: 2rem; padding-right: 2rem; }
+.py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+.transition { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+.font-sans { font-family: ui-sans-serif, system-ui, sans-serif; }
