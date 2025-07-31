@@ -1,7 +1,9 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Router, Route } from "wouter";
 
-// Import pages
+// Import layout and pages
+// @ts-ignore
+import MainLayout from "./layouts/MainLayout";
 import LandingPage from "./pages/landing-replit-ready";
 import Basic from "./pages/basic";
 import SupportPage from "./pages/support";
@@ -25,17 +27,19 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Router>
-        <Route path="/" component={LandingPage} />
-        <Route path="/basic" component={Basic} />
-        <Route path="/support" component={SupportPage} />
-        <Route path="/test" component={PlatformTest} />
-        <Route path="/admin-login" component={AdminLogin} />
-        <Route path="/admin/support" component={AdminSupportDashboard} />
-        <Route path="/client-portal" component={ClientPortal} />
-        <Route path="/contact" component={Contact} />
-        <Route path="/pricing" component={Pricing} />
-      </Router>
+      <MainLayout>
+        <Router>
+          <Route path="/" component={LandingPage} />
+          <Route path="/basic" component={Basic} />
+          <Route path="/support" component={SupportPage} />
+          <Route path="/test" component={PlatformTest} />
+          <Route path="/admin-login" component={AdminLogin} />
+          <Route path="/admin/support" component={AdminSupportDashboard} />
+          <Route path="/client-portal" component={ClientPortal} />
+          <Route path="/contact" component={Contact} />
+          <Route path="/pricing" component={Pricing} />
+        </Router>
+      </MainLayout>
     </QueryClientProvider>
   );
 }

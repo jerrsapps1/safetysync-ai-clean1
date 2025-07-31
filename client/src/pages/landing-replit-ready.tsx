@@ -6,7 +6,7 @@ import { Link } from "wouter";
 
 export default function LandingPage() {
   return (
-    <div className="bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 text-white min-h-screen">
+    <div className="bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 text-white">
       {/* Hero */}
       <section className="text-center py-20 px-6 max-w-4xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-bold mb-6">
