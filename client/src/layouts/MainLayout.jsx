@@ -14,7 +14,11 @@ export default function MainLayout({ children }) {
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/">
             <div className="flex items-center gap-3">
-              <img src="/logo.png" alt="SafetySync.AI Logo" className="w-8 h-8" />
+              <img
+                src="/logo.svg"
+                alt="SafetySync.AI Logo"
+                className="h-8 md:h-10 w-auto"
+              />
               <span className="text-2xl font-bold text-blue-600 tracking-tight">SafetySync.AI</span>
             </div>
           </Link>
