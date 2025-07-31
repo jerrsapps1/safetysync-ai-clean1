@@ -2,17 +2,17 @@
 
 import React from "react";
 // @ts-ignore
-import Sidebar from "../components/Sidebar.tsx";
+import SidebarTest from "../components/sidebar-test.jsx";
 // @ts-ignore
-import WorkspaceView from "../pages/workspace-view.jsx"; // or use <Outlet /> if using React Router
+import WorkspaceTest from "../pages/workspace-test.jsx";
 
 export default function WorkspaceLayout() {
   return (
-    <div className="flex h-screen">
-      <Sidebar />
-      <main className="flex-1 bg-gray-50 p-6 overflow-auto">
-        <WorkspaceView />
-      </main>
+    <div style={{ display: "flex", minHeight: "100vh" }}>
+      <SidebarTest />
+      <div style={{ flex: "1", backgroundColor: "#f3f4f6", padding: "20px" }}>
+        <WorkspaceTest />
+      </div>
     </div>
   );
 }
