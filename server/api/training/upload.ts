@@ -3,6 +3,7 @@ import multer from "multer";
 import path from "path";
 import fs from "fs";
 import { TrainingRecord, saveTrainingRecord } from "../../models/training-record";
+import { generateCertificate } from "./certificate-generator";
 
 const router = express.Router();
 
@@ -51,5 +52,8 @@ router.post("/training/upload", upload.single("trainingRecord"), async (req, res
     return res.status(500).json({ error: "Internal server error." });
   }
 });
+
+// POST /api/training/certificate
+router.post("/training/certificate", generateCertificate);
 
 export default router;
