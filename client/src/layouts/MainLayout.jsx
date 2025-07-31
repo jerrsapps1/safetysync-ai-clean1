@@ -15,7 +15,7 @@ export default function MainLayout({ children }) {
           <Link href="/">
             <div className="flex items-center space-x-2">
               <img
-                src="/logo.svg"
+                src="/logo.png"
                 alt="SafetySync.AI Logo"
                 className="h-8 md:h-10 w-auto"
               />
