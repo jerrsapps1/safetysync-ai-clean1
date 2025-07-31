@@ -57,12 +57,12 @@ router.get("/", authenticateJWT, async (req, res) => {
       conditions.push(eq(supportTickets.resolved, resolved === 'true'));
     }
     
-    let query = db.select().from(supportTickets);
-    if (conditions.length > 0) {
-      query = query.where(and(...conditions));
-    }
-    
-    const data = await query.orderBy(desc(supportTickets.createdAt));
+    const data = conditions.length > 0
+      ? await db.select().from(supportTickets)
+          .where(and(...conditions))
+          .orderBy(desc(supportTickets.createdAt))
+      : await db.select().from(supportTickets)
+          .orderBy(desc(supportTickets.createdAt));
     res.json(data);
   } catch (err) {
     console.error("Error loading support tickets:", err);
