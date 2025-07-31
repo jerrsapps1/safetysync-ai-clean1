@@ -22,6 +22,8 @@ import Contact from "./pages/contact.jsx";
 import ClientPortal from "./pages/client-portal.jsx";
 // @ts-ignore
 import AdminSupportDashboard from "./pages/admin/support.jsx";
+// @ts-ignore
+import WorkspaceView from "./pages/workspace-view.jsx";
 
 // Create query client
 const queryClient = new QueryClient({
@@ -44,6 +46,7 @@ export default function App() {
           <Route path="/case-studies" component={CaseStudies} />
           <Route path="/contact" component={Contact} />
           <Route path="/client-portal" component={ClientPortal} />
+          <Route path="/workspace-view" component={WorkspaceView} />
           <Route path="/admin/support" component={AdminSupportDashboard} />
         </Switch>
       </MainLayout>
