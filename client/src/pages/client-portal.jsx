@@ -19,7 +19,7 @@ export default function ClientPortal() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Login failed");
       localStorage.setItem("token", data.token);
-      window.location.href = "/workspace-view";
+      window.location.href = "/workspace";
     } catch (err) {
       setError(err.message);
     }
