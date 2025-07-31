@@ -26,6 +26,8 @@ import AdminSupportDashboard from "./pages/admin/support.jsx";
 import WorkspaceView from "./pages/workspace-view.jsx";
 // @ts-ignore
 import InstructorPortal from "./pages/instructor-portal.jsx";
+// @ts-ignore
+import EmployeeManagement from "./pages/employee-management.jsx";
 
 // Create query client
 const queryClient = new QueryClient({
@@ -50,6 +52,7 @@ export default function App() {
           <Route path="/client-portal" component={ClientPortal} />
           <Route path="/workspace-view" component={WorkspaceView} />
           <Route path="/instructor-portal" component={InstructorPortal} />
+          <Route path="/employee-management" component={EmployeeManagement} />
           <Route path="/admin/support" component={AdminSupportDashboard} />
         </Switch>
       </MainLayout>
