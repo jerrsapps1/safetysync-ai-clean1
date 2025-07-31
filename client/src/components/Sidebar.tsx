@@ -1,8 +1,20 @@
 // File: src/components/Sidebar.tsx
 
 import React from "react";
+import { Link, useLocation } from "wouter";
 
 export default function Sidebar() {
+  const [location] = useLocation();
+
+  const navItems = [
+    { path: "/workspace", label: "Dashboard" },
+    { path: "/workspace/employee-management", label: "Employees" },
+    { path: "/workspace/upload-training", label: "Upload Training" },
+    { path: "/workspace/instructor-backgrounds", label: "Instructor Backgrounds" },
+    { path: "/workspace/certificates", label: "Certificates" },
+    { path: "/workspace/settings", label: "Settings" }
+  ];
+
   return (
     <div style={{ 
       width: "250px", 
@@ -13,60 +25,29 @@ export default function Sidebar() {
     }}>
       <h2 style={{ fontSize: "20px", fontWeight: "bold", marginBottom: "16px" }}>Workspace</h2>
       <nav>
-        <a href="/workspace" style={{ 
-          display: "block", 
-          marginBottom: "8px", 
-          color: "white", 
-          textDecoration: "none" 
-        }} onMouseOver={(e) => e.target.style.textDecoration = "underline"} 
-           onMouseOut={(e) => e.target.style.textDecoration = "none"}>
-          Dashboard
-        </a>
-        <a href="/workspace/employee-management" style={{ 
-          display: "block", 
-          marginBottom: "8px", 
-          color: "white", 
-          textDecoration: "none" 
-        }} onMouseOver={(e) => e.target.style.textDecoration = "underline"} 
-           onMouseOut={(e) => e.target.style.textDecoration = "none"}>
-          Employees
-        </a>
-        <a href="/workspace/upload-training" style={{ 
-          display: "block", 
-          marginBottom: "8px", 
-          color: "white", 
-          textDecoration: "none" 
-        }} onMouseOver={(e) => e.target.style.textDecoration = "underline"} 
-           onMouseOut={(e) => e.target.style.textDecoration = "none"}>
-          Upload Training
-        </a>
-        <a href="/workspace/instructor-backgrounds" style={{ 
-          display: "block", 
-          marginBottom: "8px", 
-          color: "white", 
-          textDecoration: "none" 
-        }} onMouseOver={(e) => e.target.style.textDecoration = "underline"} 
-           onMouseOut={(e) => e.target.style.textDecoration = "none"}>
-          Instructor Backgrounds
-        </a>
-        <a href="/workspace/certificates" style={{ 
-          display: "block", 
-          marginBottom: "8px", 
-          color: "white", 
-          textDecoration: "none" 
-        }} onMouseOver={(e) => e.target.style.textDecoration = "underline"} 
-           onMouseOut={(e) => e.target.style.textDecoration = "none"}>
-          Certificates
-        </a>
-        <a href="/workspace/settings" style={{ 
-          display: "block", 
-          marginBottom: "8px", 
-          color: "white", 
-          textDecoration: "none" 
-        }} onMouseOver={(e) => e.target.style.textDecoration = "underline"} 
-           onMouseOut={(e) => e.target.style.textDecoration = "none"}>
-          Settings
-        </a>
+        {navItems.map((item) => (
+          <Link key={item.path} href={item.path}>
+            <a style={{ 
+              display: "block", 
+              marginBottom: "8px", 
+              color: "white", 
+              textDecoration: "none",
+              padding: "8px 12px",
+              borderRadius: "4px",
+              backgroundColor: location === item.path ? "#1d4ed8" : "transparent"
+            }} onMouseOver={(e) => {
+              if (location !== item.path) {
+                e.target.style.backgroundColor = "#2563eb";
+              }
+            }} onMouseOut={(e) => {
+              if (location !== item.path) {
+                e.target.style.backgroundColor = "transparent";
+              }
+            }}>
+              {item.label}
+            </a>
+          </Link>
+        ))}
       </nav>
     </div>
   );
