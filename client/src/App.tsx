@@ -16,7 +16,8 @@ import HRPage from "./pages/hr-teams.jsx";
 import Pricing from "./pages/pricing.jsx";
 // @ts-ignore
 import CaseStudies from "./pages/case-studies.jsx";
-import Contact from "./pages/contact";
+// @ts-ignore
+import Contact from "./pages/contact.jsx";
 import ClientPortal from "./pages/client-portal";
 // @ts-ignore
 import AdminSupportDashboard from "./pages/admin/support.jsx";
