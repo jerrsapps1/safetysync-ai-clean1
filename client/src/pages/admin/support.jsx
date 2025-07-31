@@ -13,36 +13,18 @@ export default function AdminSupportDashboard() {
 
   const fetchTickets = async () => {
     try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        setError("Authentication required. Please login first.");
-        setLoading(false);
-        return;
-      }
-
       const params = new URLSearchParams();
       if (filters.status) params.append("status", filters.status);
       if (filters.urgency) params.append("urgency", filters.urgency);
       if (filters.resolved) params.append("resolved", filters.resolved);
 
-      const res = await fetch(`/api/support/?${params.toString()}`, {
-        headers: { Authorization: `Bearer ${token}` },
+      const res = await fetch(`/api/support?${params.toString()}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
-      
-      if (!res.ok) {
-        if (res.status === 401 || res.status === 403) {
-          setError("Authentication failed. Please login again.");
-          localStorage.removeItem("token");
-          return;
-        }
-        throw new Error(`Server error: ${res.status}`);
-      }
-      
       const data = await res.json();
-      setTickets(Array.isArray(data) ? data : []);
+      setTickets(data);
     } catch (err) {
-      setError("Failed to load support tickets: " + err.message);
-      setTickets([]);
+      setError("Failed to load support tickets.");
     } finally {
       setLoading(false);
     }
@@ -126,21 +108,7 @@ export default function AdminSupportDashboard() {
       </div>
 
       <div className="space-y-6">
-        {loading && <p>Loading tickets...</p>}
-        {error && (
-          <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded">
-            {error}
-            {error.includes("Authentication") && (
-              <div className="mt-2">
-                <a href="/admin-login" className="underline">Go to Login</a>
-              </div>
-            )}
-          </div>
-        )}
-        {!loading && !error && tickets.length === 0 && (
-          <p>No support tickets found.</p>
-        )}
-        {!loading && !error && Array.isArray(tickets) && tickets.map((t) => (
+        {tickets.map((t) => (
           <div key={t.id} className="p-4 border rounded-xl shadow bg-white">
             <div className="flex justify-between items-center mb-2">
               <div>
