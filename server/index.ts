@@ -8,6 +8,7 @@ import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import supportRoutes from "./routes/support";
 import trainingUploadRoutes from "./api/training/upload";
+import instructorRoutes from "./routes/instructor";
 import {
   securityHeaders,
   generalLimiter,
@@ -104,11 +105,17 @@ app.use((req, res, next) => {
     process.exit(1);
   }
 
+  // Serve uploaded files
+  app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
+  
   // Register support routes
   app.use("/api/support", supportRoutes);
   
   // Register training upload routes
   app.use("/api", trainingUploadRoutes);
+  
+  // Register instructor routes
+  app.use("/api/instructor", instructorRoutes);
   
   // Register admin auth routes
   const adminAuthRoutes = await import("./routes/admin-auth");

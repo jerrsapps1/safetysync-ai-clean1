@@ -32,6 +32,8 @@ import EmployeeManagement from "./pages/employee-management.jsx";
 import UploadTrainingRecord from "./pages/upload-training-record.jsx";
 // @ts-ignore
 import EmployeeProfile from "./pages/employee-profile.jsx";
+// @ts-ignore
+import InstructorBackgroundUpload from "./pages/instructor-background-upload.jsx";
 
 // Create query client
 const queryClient = new QueryClient({
@@ -59,6 +61,7 @@ export default function App() {
           <Route path="/employee-management" component={EmployeeManagement} />
           <Route path="/upload-training-record" component={UploadTrainingRecord} />
           <Route path="/employee/:id" component={EmployeeProfile} />
+          <Route path="/instructor-background-upload" component={InstructorBackgroundUpload} />
           <Route path="/admin/support" component={AdminSupportDashboard} />
         </Switch>
       </MainLayout>
