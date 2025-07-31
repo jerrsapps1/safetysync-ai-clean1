@@ -1,28 +1,14 @@
 // File: src/App.tsx
-import { Route, Switch } from "wouter";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-// @ts-ignore
-import WorkspaceLayout from "./layouts/WorkspaceLayout";
-// @ts-ignore
-import LandingPage from "./pages/landing-replit-ready";
 
-// Create query client
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: false,
-    },
-  },
-});
+import { Route, Switch } from "wouter";
+import LandingPage from "./pages/landing-page.jsx";
+import WorkspaceLayout from "./layouts/WorkspaceLayout";
 
 export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <Switch>
-        <Route path="/" component={LandingPage} />
-        <Route path="/workspace" component={WorkspaceLayout} />
-        <Route path="/workspace/:rest*" component={WorkspaceLayout} />
-      </Switch>
-    </QueryClientProvider>
+    <Switch>
+      <Route path="/" component={LandingPage} />
+      <Route path="/workspace" component={WorkspaceLayout} />
+    </Switch>
   );
 }
