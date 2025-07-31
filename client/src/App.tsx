@@ -40,6 +40,7 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Switch>
+        <Route path="/workspace" component={WorkspaceLayout} />
         <Route path="/workspace/:rest*" component={WorkspaceLayout} />
         <Route>
           <MainLayout>
