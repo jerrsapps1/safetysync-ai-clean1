@@ -6,41 +6,7 @@ import { Link } from "wouter";
 
 export default function WorkspaceView() {
   return (
-    <div className="flex min-h-screen">
-      {/* Sidebar */}
-      <aside className="w-64 bg-blue-800 text-white p-6 space-y-6">
-        <h2 className="text-xl font-bold mb-6">Dashboard</h2>
-        <nav className="space-y-3">
-          <Link href="/workspace/employees">
-            <a className="flex items-center space-x-2 hover:text-emerald-400">
-              <Users className="w-5 h-5" /> <span>Employees</span>
-            </a>
-          </Link>
-          <Link href="/workspace/upload-training">
-            <a className="flex items-center space-x-2 hover:text-emerald-400">
-              <FileText className="w-5 h-5" /> <span>Upload Training</span>
-            </a>
-          </Link>
-          <Link href="/workspace/instructor-backgrounds">
-            <a className="flex items-center space-x-2 hover:text-emerald-400">
-              <BarChart3 className="w-5 h-5" /> <span>Instructor Backgrounds</span>
-            </a>
-          </Link>
-          <Link href="/workspace">
-            <a className="flex items-center space-x-2 hover:text-emerald-400">
-              <ClipboardList className="w-5 h-5" /> <span>Dashboard</span>
-            </a>
-          </Link>
-          <Link href="/workspace">
-            <a className="flex items-center space-x-2 hover:text-emerald-400">
-              <Settings className="w-5 h-5" /> <span>Settings</span>
-            </a>
-          </Link>
-        </nav>
-      </aside>
-
-      {/* Main Content */}
-      <main className="flex-1 p-10 bg-gray-50">
+    <div className="w-full">
         <h1 className="text-3xl font-bold text-gray-800 mb-6">Welcome to SafetySync.AI</h1>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-white shadow rounded-xl p-6">
@@ -56,7 +22,6 @@ export default function WorkspaceView() {
             <p className="text-gray-500">92.4%</p>
           </div>
         </div>
-      </main>
     </div>
   );
 }
