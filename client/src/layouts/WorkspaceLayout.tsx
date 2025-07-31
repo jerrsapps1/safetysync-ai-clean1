@@ -2,16 +2,16 @@
 
 import React from "react";
 // @ts-ignore
-import SidebarTest from "../components/sidebar-test.jsx";
+import Sidebar from "../components/Sidebar.tsx";
 // @ts-ignore
-import WorkspaceTest from "../pages/workspace-test.jsx";
+import WorkspaceView from "../pages/workspace-view.jsx";
 
 export default function WorkspaceLayout() {
   return (
     <div style={{ display: "flex", minHeight: "100vh" }}>
-      <SidebarTest />
+      <Sidebar />
       <div style={{ flex: "1", backgroundColor: "#f3f4f6", padding: "20px" }}>
-        <WorkspaceTest />
+        <WorkspaceView />
       </div>
     </div>
   );
