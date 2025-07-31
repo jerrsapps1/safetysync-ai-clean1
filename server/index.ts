@@ -7,6 +7,7 @@ const __dirname = path.dirname(__filename);
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import supportRoutes from "./routes/support";
+import trainingUploadRoutes from "./api/training/upload";
 import {
   securityHeaders,
   generalLimiter,
@@ -105,6 +106,9 @@ app.use((req, res, next) => {
 
   // Register support routes
   app.use("/api/support", supportRoutes);
+  
+  // Register training upload routes
+  app.use("/api", trainingUploadRoutes);
   
   // Register admin auth routes
   const adminAuthRoutes = await import("./routes/admin-auth");
