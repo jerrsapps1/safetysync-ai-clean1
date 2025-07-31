@@ -15,9 +15,14 @@ export async function generateWalletCard(req: Request, res: Response) {
     if (backgroundUrl) {
       try {
         // Support both uploaded backgrounds and external URLs
-        const imagePath = backgroundUrl.startsWith('/uploads/') 
-          ? path.join(process.cwd(), backgroundUrl.replace('/uploads/', 'uploads/'))
-          : backgroundUrl;
+        let imagePath;
+        if (backgroundUrl.startsWith('/uploads/instructor-backgrounds/')) {
+          imagePath = path.join(__dirname, "../../uploads/instructor-backgrounds", path.basename(backgroundUrl));
+        } else if (backgroundUrl.startsWith('/uploads/')) {
+          imagePath = path.join(process.cwd(), backgroundUrl.replace('/uploads/', 'uploads/'));
+        } else {
+          imagePath = backgroundUrl;
+        }
         const bgImage = await loadImage(imagePath);
         ctx.drawImage(bgImage, 0, 0, width, height);
       } catch (error) {

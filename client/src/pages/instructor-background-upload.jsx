@@ -92,7 +92,7 @@ export default function InstructorBackgroundUpload() {
           <p className="text-blue-100 text-sm">
             After uploading, your background will be available at a URL like:
             <code className="bg-white/10 px-2 py-1 rounded text-xs block mt-2">
-              /uploads/backgrounds/background-[timestamp].jpg
+              /uploads/instructor-backgrounds/[instructorId]-cert-background.jpg
             </code>
             Use this URL when generating certificates or wallet cards with custom backgrounds.
           </p>
