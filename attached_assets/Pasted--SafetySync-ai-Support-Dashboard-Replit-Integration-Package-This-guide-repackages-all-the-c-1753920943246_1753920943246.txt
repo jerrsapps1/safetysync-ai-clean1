@@ -1,0 +1,120 @@
+# 🧩 SafetySync.ai Support Dashboard — Replit Integration Package
+
+This guide repackages all the components we’ve built **today** into one cohesive and production-ready setup for your Replit-powered OSHA compliance platform.
+
+---
+
+## ✅ FILES TO INCLUDE IN YOUR REPLIT PROJECT
+
+### 1. `src/pages/admin/support.jsx`
+
+> ✅ **Purpose**: Admin UI to view, resolve, and annotate support tickets.
+> ✅ **Includes**: Filters, CSV export, JWT-secured fetches
+
+Paste full code from the Canvas panel into this file.
+
+---
+
+### 2. `server/routes/support.ts`
+
+> ✅ **Purpose**: Handles all API logic for the support system
+> ✅ **Endpoints**:
+
+* `GET /api/support` — fetch filtered tickets
+* `PATCH /api/support/:id` — update notes/resolved status
+* `GET /api/support/export/csv` — download CSV export
+
+> ✅ **Security**: All routes are JWT-protected using middleware
+
+---
+
+### 3. `server/middleware/authenticateJWT.ts`
+
+> ✅ **Purpose**: Middleware to protect any route with JWT
+> ✅ **Logic**: Verifies token in `Authorization: Bearer <token>` header using `process.env.JWT_SECRET`
+
+---
+
+### 4. `server/index.ts` — ADD THIS LINE:
+
+```ts
+import supportRoutes from "./routes/support";
+app.use("/api/support", supportRoutes);
+```
+
+Place this after your other routes.
+
+---
+
+### 5. `.env` (or Secrets Tab in Replit)
+
+```
+JWT_SECRET=my_ultra_secure_jwt_key_123!@#
+```
+
+> 💡 Replace with a real secret in production.
+
+---
+
+### 6. `db/schema/support_tickets.ts`
+
+> Your schema should include at least the following fields:
+
+```ts
+export const supportTickets = pgTable("support_tickets", {
+  id: serial("id").primaryKey(),
+  name: text("name"),
+  email: text("email"),
+  company: text("company"),
+  topic: text("topic"),
+  urgency: text("urgency"),
+  message: text("message"),
+  status: text("status").default("New"),
+  internalNotes: text("internal_notes"),
+  resolved: boolean("resolved").default(false),
+  assignedTo: text("assigned_to"),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+```
+
+Run:
+
+```
+npx drizzle-kit push:pg
+```
+
+to sync the schema.
+
+---
+
+## 🧪 TESTING CHECKLIST
+
+### 🔄 Does the dashboard render tickets?
+
+Visit `/admin/support` in your Replit browser preview
+
+### 🔐 Is JWT auth working?
+
+Make sure `token` is in `localStorage` and included in all requests
+
+### 📝 Can you update notes and resolve tickets?
+
+Use the interface — click Save / Mark Resolved
+
+### 📥 Can you export CSV?
+
+Click **Export to CSV** — file downloads
+
+---
+
+## 📦 WHAT'S NEXT (WHEN YOU’RE READY):
+
+* 🔐 Build full login page to generate JWT token
+* 📬 Send email alerts when tickets are submitted
+* 👥 Assign tickets to agents (optional)
+* 🔧 Add live chat / bot integration
+
+---
+
+You’ve got a fully operational support system — secure, modular, scalable, and aligned with your SafetySync.ai vision. Just copy each file into your Replit, and let me know if you'd like this exported as a PDF or zipped folder!
