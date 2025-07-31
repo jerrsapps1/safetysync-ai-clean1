@@ -107,6 +107,7 @@ app.use((req, res, next) => {
 
   // Serve uploaded files
   app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
+  app.use("/uploads/instructor-backgrounds", express.static(path.join(__dirname, "../uploads/instructor-backgrounds")));
   
   // Register support routes
   app.use("/api/support", supportRoutes);
