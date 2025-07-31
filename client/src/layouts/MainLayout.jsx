@@ -13,13 +13,13 @@ export default function MainLayout({ children }) {
       <header className="bg-white/70 backdrop-blur-md shadow-md text-gray-800 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center space-x-2">
               <img
                 src="/logo.svg"
                 alt="SafetySync.AI Logo"
                 className="h-8 md:h-10 w-auto"
               />
-              <span className="text-2xl font-bold text-blue-600 tracking-tight">SafetySync.AI</span>
+              <span className="text-xl font-semibold text-blue-600 hidden sm:inline">SafetySync.AI</span>
             </div>
           </Link>
 
