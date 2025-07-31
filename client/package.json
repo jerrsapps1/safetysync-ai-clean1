@@ -1,13 +1,6 @@
-{
-  "name": "safetysync-client",
-  "version": "1.0.0",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "vite": "^5.0.0"
-    // plus whatever else you're using
-  }
+"scripts": {
+  "dev": "vite",
+  "build": "vite build",
+  "vercel-build": "vite build",
+  "preview": "vite preview"
 }
