@@ -18,7 +18,8 @@ import Pricing from "./pages/pricing.jsx";
 import CaseStudies from "./pages/case-studies.jsx";
 // @ts-ignore
 import Contact from "./pages/contact.jsx";
-import ClientPortal from "./pages/client-portal";
+// @ts-ignore
+import ClientPortal from "./pages/client-portal.jsx";
 // @ts-ignore
 import AdminSupportDashboard from "./pages/admin/support.jsx";
 
