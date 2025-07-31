@@ -17,7 +17,7 @@ import AdminSupportDashboard from "./pages/admin/support.jsx";
 function App() {
   return (
     <Router>
-      <Route path="/" component={LandingFixed} />
+      <Route path="/" component={LandingPage} />
       <Route path="/full" component={LandingPage} />
       <Route path="/minimal" component={Minimal} />
       <Route path="/ehs" component={EHSPage} />
