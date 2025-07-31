@@ -13,8 +13,18 @@ export async function generateWalletCard(req: Request, res: Response) {
     const ctx = canvas.getContext("2d");
 
     if (backgroundUrl) {
-      const bgImage = await loadImage(backgroundUrl);
-      ctx.drawImage(bgImage, 0, 0, width, height);
+      try {
+        // Support both uploaded backgrounds and external URLs
+        const imagePath = backgroundUrl.startsWith('/uploads/') 
+          ? path.join(process.cwd(), backgroundUrl.replace('/uploads/', 'uploads/'))
+          : backgroundUrl;
+        const bgImage = await loadImage(imagePath);
+        ctx.drawImage(bgImage, 0, 0, width, height);
+      } catch (error) {
+        console.warn("Could not load background image, using default:", error);
+        ctx.fillStyle = "#002855"; // Fallback to default
+        ctx.fillRect(0, 0, width, height);
+      }
     } else {
       ctx.fillStyle = "#002855"; // Default deep blue background
       ctx.fillRect(0, 0, width, height);
