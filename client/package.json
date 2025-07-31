@@ -1,6 +1,6 @@
 {
   "name": "safetysync-client",
-  "version": "1.0.0",
+  "vers"
   "private": true,
   "scripts": {
     "dev": "vite",
