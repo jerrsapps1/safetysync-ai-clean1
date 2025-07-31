@@ -2,6 +2,7 @@ import express from "express";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
+import { TrainingRecord, saveTrainingRecord } from "../../models/training-record";
 
 const router = express.Router();
 
@@ -28,10 +29,23 @@ router.post("/training/upload", upload.single("trainingRecord"), async (req, res
       standard: "1926.503",
     };
 
-    // 🔗 Placeholder logic: store parsedData to DB
-    console.log("Parsed Training Data:", parsedData);
+    // Create training record with proper structure
+    const trainingRecord: TrainingRecord = {
+      id: `tr_${Date.now()}`,
+      course: parsedData.course,
+      date: parsedData.date,
+      instructor: parsedData.instructor,
+      employees: parsedData.employees,
+      standard: parsedData.standard,
+      documentUrl: file.path,
+      status: "pending",
+      createdAt: new Date().toISOString(),
+    };
 
-    return res.json({ success: true, data: parsedData });
+    // Save to database (placeholder)
+    saveTrainingRecord(trainingRecord);
+
+    return res.json({ success: true, data: trainingRecord });
   } catch (err) {
     console.error("Upload error:", err);
     return res.status(500).json({ error: "Internal server error." });
