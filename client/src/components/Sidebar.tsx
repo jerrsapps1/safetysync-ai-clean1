@@ -26,26 +26,24 @@ export default function Sidebar() {
       <h2 style={{ fontSize: "20px", fontWeight: "bold", marginBottom: "16px" }}>Workspace</h2>
       <nav>
         {navItems.map((item) => (
-          <Link key={item.path} href={item.path}>
-            <a style={{ 
-              display: "block", 
-              marginBottom: "8px", 
-              color: "white", 
-              textDecoration: "none",
-              padding: "8px 12px",
-              borderRadius: "4px",
-              backgroundColor: location === item.path ? "#1d4ed8" : "transparent"
-            }} onMouseOver={(e) => {
-              if (location !== item.path) {
-                e.target.style.backgroundColor = "#2563eb";
-              }
-            }} onMouseOut={(e) => {
-              if (location !== item.path) {
-                e.target.style.backgroundColor = "transparent";
-              }
-            }}>
-              {item.label}
-            </a>
+          <Link key={item.path} href={item.path} style={{ 
+            display: "block", 
+            marginBottom: "8px", 
+            color: "white", 
+            textDecoration: "none",
+            padding: "8px 12px",
+            borderRadius: "4px",
+            backgroundColor: location === item.path ? "#1d4ed8" : "transparent"
+          }} onMouseOver={(e) => {
+            if (location !== item.path) {
+              e.target.style.backgroundColor = "#2563eb";
+            }
+          }} onMouseOut={(e) => {
+            if (location !== item.path) {
+              e.target.style.backgroundColor = "transparent";
+            }
+          }}>
+            {item.label}
           </Link>
         ))}
       </nav>
