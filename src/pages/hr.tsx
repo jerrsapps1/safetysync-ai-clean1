@@ -1,0 +1,75 @@
+import React from "react";
+import { Button } from "../components/ui/button";
+
+export default function HRPage() {
+  return (
+    <div className="bg-white text-gray-900 font-sans">
+      {/* Header */}
+      <section className="bg-gradient-to-r from-blue-700 to-blue-500 text-white text-center py-20 px-6">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">Built for HR Teams</h1>
+        <p className="text-lg max-w-2xl mx-auto">
+          Connect HR systems with safety records, track onboarding compliance, and ensure every employee meets OSHA training requirements without spreadsheets or stress.
+        </p>
+      </section>
+
+      {/* Problems + Solutions */}
+      <section className="py-16 px-6 max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
+        <div>
+          <h2 className="text-2xl font-bold mb-4">The Problem</h2>
+          <ul className="list-disc list-inside text-gray-700 space-y-2">
+            <li>Onboarding is disconnected from compliance tracking</li>
+            <li>Training records live in spreadsheets or filing cabinets</li>
+            <li>No unified system for HR + safety collaboration</li>
+            <li>Audits are rushed and stressful</li>
+          </ul>
+        </div>
+        <div>
+          <h2 className="text-2xl font-bold mb-4">How SafetySync Helps</h2>
+          <ul className="list-disc list-inside text-blue-700 space-y-2">
+            <li>Auto-track OSHA-required training for each role</li>
+            <li>Sync employee records with your HR system</li>
+            <li>Generate audit-ready reports in seconds</li>
+            <li>Support for multi-location teams and role-based training</li>
+          </ul>
+        </div>
+      </section>
+
+      {/* HR-Focused Features */}
+      <section className="bg-gray-50 py-16 px-6">
+        <h2 className="text-3xl font-bold text-center mb-12">Key Features for HR Teams</h2>
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {[
+            {
+              title: "Employee Compliance Profiles",
+              desc: "One-click access to each employee's training status, certificates, and history.",
+            },
+            {
+              title: "Role-Based Training Assignments",
+              desc: "Automatically assign required courses to new hires or role changes.",
+            },
+            {
+              title: "Integrated Reports & Exports",
+              desc: "Export records for internal audits, insurance, or legal compliance in seconds.",
+            },
+          ].map((f, i) => (
+            <div key={i} className="bg-white p-6 rounded-xl shadow border hover:shadow-md transition">
+              <h3 className="text-xl font-semibold mb-2">{f.title}</h3>
+              <p>{f.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-blue-900 text-white text-center py-20 px-6">
+        <h2 className="text-3xl font-bold mb-4">Less Paperwork. More Peace of Mind.</h2>
+        <p className="text-lg max-w-xl mx-auto mb-8">
+          SafetySync helps HR teams onboard faster, maintain compliance, and collaborate with safety—without ever touching a spreadsheet again.
+        </p>
+        <Button className="bg-white text-blue-800 hover:bg-gray-100 text-lg font-semibold px-6 py-3 rounded-xl">
+          Get Started for HR
+        </Button>
+      </section>
+    </div>
+  );
+}

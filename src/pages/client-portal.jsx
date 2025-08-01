@@ -1,0 +1,62 @@
+// File: src/pages/client-portal.jsx
+
+import React, { useState } from "react";
+
+export default function ClientPortal() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Login failed");
+      localStorage.setItem("token", data.token);
+      window.location.href = "/workspace";
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  return (
+    <div className="max-w-md mx-auto mt-24 bg-white shadow-lg rounded-xl p-8">
+      <h1 className="text-2xl font-bold mb-6 text-center">Client Portal Login</h1>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium">Email</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full px-4 py-2 border rounded-md"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium">Password</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full px-4 py-2 border rounded-md"
+            required
+          />
+        </div>
+        {error && <p className="text-red-500 text-sm">{error}</p>}
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
+        >
+          Log In
+        </button>
+      </form>
+    </div>
+  );
+}
