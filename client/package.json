@@ -1,11 +1,10 @@
 {
-  "name": "safetysync-client",
+  "name": "safetysync-ai",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "vercel-build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -13,7 +12,8 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "vite": "^4.4.9",
-    "typescript": "^5.0.0"
+    "vite": "^5.0.0",
+    "typescript": "^5.0.0",
+    "@vitejs/plugin-react": "^4.0.0"
   }
 }
