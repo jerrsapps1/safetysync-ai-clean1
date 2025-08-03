@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo, useRef } from "react";
+import { useState, useEffect, useCallback, useMemo, useRef, lazy, Suspense } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useDashboardData } from "@/hooks/useDashboardData";
@@ -16,39 +16,37 @@ import { Switch } from "@/components/ui/switch";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { ComplianceReportGenerator } from "@/components/ui/compliance-report-generator";
-import { AICloneDetector } from "@/components/ui/ai-clone-detector";
-import { CollaborationLayer } from "@/components/ui/collaboration-layer";
-import EmployeeManagement from "@/components/enterprise/EmployeeManagement";
-import { EmployeeInsightsDashboard } from "@/components/enterprise/EmployeeInsightsDashboard";
-import DocumentManager from "@/components/enterprise/DocumentManager";
-import CompanyProfile from "@/components/enterprise/CompanyProfile";
-import TrainingManagement from "@/components/training/TrainingManagement";
-import CertificateGeneration from "@/components/certificates/CertificateGeneration";
-import EmployeePortal from "@/components/portal/EmployeePortal";
-import NotificationSystem from "@/components/notifications/NotificationSystem";
 
-
-import SubscriptionBilling from "@/components/billing/SubscriptionBilling";
-import AnalyticsReports from "@/components/reports/AnalyticsReports";
-
-import { InstructorSignInGenerator } from "@/components/ui/instructor-signin-generator";
-import TrainingRecordsManager from "@/components/records/TrainingRecordsManager";
-import TrainingDocumentHub from "@/components/TrainingDocumentHub";
-import FileManagerTrainingHub from "@/components/FileManagerTrainingHub";
-import AIDocumentProcessor from "@/components/AIDocumentProcessor";
-import EmployeeProfile from "@/components/EmployeeProfile";
-import InstructorTrainingCompletion from "@/components/InstructorTrainingCompletion";
-import OSHAComplianceManager from "@/components/OSHAComplianceManager";
+// Lazy load heavy components
+const ComplianceReportGenerator = lazy(() => import("@/components/ui/compliance-report-generator").then(m => ({ default: m.ComplianceReportGenerator })));
+const AICloneDetector = lazy(() => import("@/components/ui/ai-clone-detector").then(m => ({ default: m.AICloneDetector })));
+const CollaborationLayer = lazy(() => import("@/components/ui/collaboration-layer").then(m => ({ default: m.CollaborationLayer })));
+const EmployeeManagement = lazy(() => import("@/components/enterprise/EmployeeManagement"));
+const EmployeeInsightsDashboard = lazy(() => import("@/components/enterprise/EmployeeInsightsDashboard").then(m => ({ default: m.EmployeeInsightsDashboard })));
+const DocumentManager = lazy(() => import("@/components/enterprise/DocumentManager"));
+const CompanyProfile = lazy(() => import("@/components/enterprise/CompanyProfile"));
+const TrainingManagement = lazy(() => import("@/components/training/TrainingManagement"));
+const CertificateGeneration = lazy(() => import("@/components/certificates/CertificateGeneration"));
+const EmployeePortal = lazy(() => import("@/components/portal/EmployeePortal"));
+const NotificationSystem = lazy(() => import("@/components/notifications/NotificationSystem"));
+const SubscriptionBilling = lazy(() => import("@/components/billing/SubscriptionBilling"));
+const AnalyticsReports = lazy(() => import("@/components/reports/AnalyticsReports"));
+const InstructorSignInGenerator = lazy(() => import("@/components/ui/instructor-signin-generator").then(m => ({ default: m.InstructorSignInGenerator })));
+const TrainingRecordsManager = lazy(() => import("@/components/records/TrainingRecordsManager"));
+const TrainingDocumentHub = lazy(() => import("@/components/TrainingDocumentHub"));
+const FileManagerTrainingHub = lazy(() => import("@/components/FileManagerTrainingHub"));
+const AIDocumentProcessor = lazy(() => import("@/components/AIDocumentProcessor"));
+const EmployeeProfile = lazy(() => import("@/components/EmployeeProfile"));
+const InstructorTrainingCompletion = lazy(() => import("@/components/InstructorTrainingCompletion"));
+const OSHAComplianceManager = lazy(() => import("@/components/OSHAComplianceManager"));
+const SafetyTrendsDashboard = lazy(() => import("@/components/safety-trends-dashboard"));
+const QuickSearchWidget = lazy(() => import("@/components/safetytracker/QuickSearchWidget"));
 
 import { AIPatternSkeleton } from "@/components/ui/ai-skeleton";
 import { SmoothLoading } from "@/components/ui/smooth-loading";
-import SafetyTrendsDashboard from "@/components/safety-trends-dashboard";
-import QuickSearchWidget from "@/components/safetytracker/QuickSearchWidget";
 import { SafetySyncIcon } from "@/components/ui/safetysync-icon";
 import { ContextualHelpButton } from "@/components/ContextualHelpButton";
 import CertificateBalanceWidget from '@/components/CertificateBalanceWidget';
-import ShoppingCartButton from '@/components/shopping-cart/ShoppingCartButton';
 
 import { Responsive, WidthProvider } from "react-grid-layout";
 import "react-grid-layout/css/styles.css";
@@ -2815,13 +2813,17 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
           {activeTab === "employees" && (
             <div className="rounded-lg p-2 md:p-6">
-              <EmployeeManagement />
+              <Suspense fallback={<SmoothLoading variant="ai-skeleton" text="Loading Employee Management..." />}>
+                <EmployeeManagement />
+              </Suspense>
             </div>
           )}
 
           {activeTab === "employee-insights" && (
             <div className="rounded-lg">
-              <EmployeeInsightsDashboard />
+              <Suspense fallback={<SmoothLoading variant="ai-skeleton" text="Loading Employee Insights..." />}>
+                <EmployeeInsightsDashboard />
+              </Suspense>
             </div>
           )}
 
@@ -2842,7 +2844,9 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
                       Back to Employee Selection
                     </Button>
                   </div>
-                  <EmployeeProfile employeeId={selectedEmployeeForProfile} />
+                  <Suspense fallback={<SmoothLoading variant="ai-skeleton" text="Loading Employee Profile..." />}>
+                    <EmployeeProfile employeeId={selectedEmployeeForProfile} />
+                  </Suspense>
                 </div>
               ) : (
                 <div className="space-y-6">
@@ -2889,31 +2893,41 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
           {activeTab === "training" && (
             <div className="p-2 md:p-8">
-              <TrainingManagement />
+              <Suspense fallback={<SmoothLoading variant="ai-skeleton" text="Loading Training Management..." />}>
+                <TrainingManagement />
+              </Suspense>
             </div>
           )}
 
           {activeTab === "certificates" && (
             <div className="p-2 md:p-8">
-              <CertificateGeneration />
+              <Suspense fallback={<SmoothLoading variant="ai-skeleton" text="Loading Certificate Generation..." />}>
+                <CertificateGeneration />
+              </Suspense>
             </div>
           )}
 
           {activeTab === "reports" && (
             <div className="space-y-6">
-              <ComplianceReportGenerator />
+              <Suspense fallback={<SmoothLoading variant="ai-skeleton" text="Loading Compliance Reports..." />}>
+                <ComplianceReportGenerator />
+              </Suspense>
             </div>
           )}
 
           {activeTab === "osha-compliance" && (
             <div className="space-y-6">
-              <OSHAComplianceManager />
+              <Suspense fallback={<SmoothLoading variant="ai-skeleton" text="Loading OSHA Compliance Manager..." />}>
+                <OSHAComplianceManager />
+              </Suspense>
             </div>
           )}
 
           {activeTab === "document-manager" && (
             <div className="space-y-6">
-              <DocumentManager />
+              <Suspense fallback={<SmoothLoading variant="ai-skeleton" text="Loading Document Management..." />}>
+                <DocumentManager />
+              </Suspense>
             </div>
           )}
 
@@ -2921,9 +2935,9 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
           {activeTab === "trends" && (
             <div className="space-y-6">
-              <div className="flex items-center justify-between">
-                <h2 className="text-xl md:text-2xl font-bold text-white">Safety Trends</h2>
-              </div>
+              <Suspense fallback={<SmoothLoading variant="ai-skeleton" text="Loading Safety Trends..." />}>
+                <SafetyTrendsDashboard />
+              </Suspense>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                 {/* Safety Trends Chart */}
@@ -3303,13 +3317,17 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
           {activeTab === "employee-portal" && (
             <div className="p-8">
-              <EmployeePortal />
+              <Suspense fallback={<SmoothLoading variant="ai-skeleton" text="Loading Employee Portal..." />}>
+                <EmployeePortal />
+              </Suspense>
             </div>
           )}
 
           {activeTab === "notifications" && (
             <div className="p-8">
-              <NotificationSystem />
+              <Suspense fallback={<SmoothLoading variant="ai-skeleton" text="Loading Notification System..." />}>
+                <NotificationSystem />
+              </Suspense>
             </div>
           )}
 
@@ -3317,43 +3335,57 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
           {activeTab === "instructor-signin" && (
             <div className="p-8">
-              <InstructorSignInGenerator />
+              <Suspense fallback={<SmoothLoading variant="ai-skeleton" text="Loading Instructor Sign-In Sheets..." />}>
+                <InstructorSignInGenerator />
+              </Suspense>
             </div>
           )}
 
           {activeTab === "training-records" && (
             <div className="p-8 min-h-screen">
-              <TrainingRecordsManager />
+              <Suspense fallback={<SmoothLoading variant="ai-skeleton" text="Loading Training Records..." />}>
+                <TrainingRecordsManager />
+              </Suspense>
             </div>
           )}
 
           {activeTab === "training-document-hub" && (
             <div className="min-h-screen">
-              <FileManagerTrainingHub />
+              <Suspense fallback={<SmoothLoading variant="ai-skeleton" text="Loading Training Document Hub..." />}>
+                <TrainingDocumentHub />
+              </Suspense>
             </div>
           )}
 
           {activeTab === "ai-document-processor" && (
             <div className="p-8 min-h-screen">
-              <AIDocumentProcessor />
+              <Suspense fallback={<SmoothLoading variant="ai-skeleton" text="Loading AI Document Processor..." />}>
+                <AIDocumentProcessor />
+              </Suspense>
             </div>
           )}
 
           {activeTab === "instructor-training-completion" && (
             <div className="p-8 min-h-screen">
-              <InstructorTrainingCompletion />
+              <Suspense fallback={<SmoothLoading variant="ai-skeleton" text="Loading Instructor Training Completion..." />}>
+                <InstructorTrainingCompletion />
+              </Suspense>
             </div>
           )}
 
           {activeTab === "subscription-billing" && (
             <div className="p-8">
-              <SubscriptionBilling />
+              <Suspense fallback={<SmoothLoading variant="ai-skeleton" text="Loading Subscription Billing..." />}>
+                <SubscriptionBilling />
+              </Suspense>
             </div>
           )}
 
           {activeTab === "analytics-reports" && (
             <div className="p-8">
-              <AnalyticsReports />
+              <Suspense fallback={<SmoothLoading variant="ai-skeleton" text="Loading Analytics & Reports..." />}>
+                <AnalyticsReports />
+              </Suspense>
             </div>
           )}
 
@@ -3361,7 +3393,9 @@ Mike,Johnson,EMP003,mike.johnson@company.com,Manufacturing,Supervisor,active`;
 
           {activeTab === "company-profile" && (
             <div className="p-8">
-              <CompanyProfile />
+              <Suspense fallback={<SmoothLoading variant="ai-skeleton" text="Loading Company Profile..." />}>
+                <CompanyProfile />
+              </Suspense>
             </div>
           )}
 

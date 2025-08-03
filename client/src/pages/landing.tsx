@@ -1,22 +1,25 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-// Removed PageHeader since we're using Navbar in App.tsx
-import { TrialSignupDialog } from "@/components/ui/trial-signup-dialog";
-import { DemoRequestDialog } from "@/components/ui/demo-request-dialog";
 import { Toaster } from "@/components/ui/toaster";
-// Removed Link import since we're using a simple App structure
-import PricingFAQ from "@/components/PricingFAQ";
-import ComparisonModal from "@/components/ComparisonModal";
-
-import { ProductTour } from "@/components/ui/product-tour";
-import { LiveChatWidget } from "@/components/ui/live-chat-widget";
-import { TermsAndConditions } from "@/components/ui/terms-and-conditions";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/useAuth";
-import { trackConversionEvent, CONVERSION_EVENTS } from "@/lib/analytics";
-import { useLaunchDarkly, FEATURE_FLAGS, LAUNCHDARKLY_EVENTS } from "@/lib/launchdarkly";
-import { clarity } from '@/lib/clarity-analytics';
+import { SmoothLoading } from "@/components/ui/smooth-loading";
+
+// Lazy load heavy components to reduce initial bundle size
+const TrialSignupDialog = lazy(() => import("@/components/ui/trial-signup-dialog").then(m => ({ default: m.TrialSignupDialog })));
+const DemoRequestDialog = lazy(() => import("@/components/ui/demo-request-dialog").then(m => ({ default: m.DemoRequestDialog })));
+const PricingFAQ = lazy(() => import("@/components/PricingFAQ"));
+const ComparisonModal = lazy(() => import("@/components/ComparisonModal"));
+const ProductTour = lazy(() => import("@/components/ui/product-tour").then(m => ({ default: m.ProductTour })));
+const LiveChatWidget = lazy(() => import("@/components/ui/live-chat-widget").then(m => ({ default: m.LiveChatWidget })));
+const TermsAndConditions = lazy(() => import("@/components/ui/terms-and-conditions").then(m => ({ default: m.TermsAndConditions })));
+
+// Analytics imports - only load when needed
+const trackConversionEvent = lazy(() => import("@/lib/analytics").then(m => ({ default: m.trackConversionEvent })));
+const useLaunchDarkly = lazy(() => import("@/lib/launchdarkly").then(m => ({ default: m.useLaunchDarkly })));
+const clarity = lazy(() => import("@/lib/clarity-analytics").then(m => ({ default: m.clarity })));
+
 import { 
   CheckCircle, 
   AlertCircle, 
@@ -48,13 +51,6 @@ import {
   Users,
   Timer,
   Award,
-  Target,
-  ChevronDown,
-  Play,
-  MessageCircle,
-  X,
-  AlertTriangle,
-  FileX
 } from "lucide-react";
 import { SafetySyncIcon } from "@/components/ui/safetysync-icon";
 
